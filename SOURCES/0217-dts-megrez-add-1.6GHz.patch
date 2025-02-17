@@ -1,0 +1,29 @@
+From 529869ea6be456e00d1d70139ec8a055a4888ab8 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Sat, 2 Nov 2024 22:00:52 +0800
+Subject: [PATCH 217/370] dts: megrez: add 1.6GHz
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 01740497fc84..b060cebe874b 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -896,3 +896,11 @@ &gpio0 {
+ &dev_llc_d0{
+ 	apply_npu_high_freq;
+ };
++
++&d0_cpu_opp_table {
++	opp-1600000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
++};
+-- 
+2.47.0
+

@@ -1,0 +1,73 @@
+From 653df923bc50974dba21ed59036750d93e549fe3 Mon Sep 17 00:00:00 2001
+From: zouxiaojun <zouxiaojun@eswincomputing.com>
+Date: Tue, 13 Aug 2024 15:32:51 +0800
+Subject: [PATCH 247/370] <WIN2030-16132>:feat(enc):new feature of d2d for
+ enc(driver)
+
+Changelogs:
+	add new feature of d2d for enc
+
+Change-Id: Ie42d62b81408b234d7007e067e495163f40c1000
+Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
+---
+ .../staging/media/eswin/venc/vc8000_driver.h    |  1 +
+ .../media/eswin/venc/vc8000_vcmd_driver.c       | 17 +++++++++++++++--
+ 2 files changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/staging/media/eswin/venc/vc8000_driver.h b/drivers/staging/media/eswin/venc/vc8000_driver.h
+index 2863a47ff0ff..3aad8ae83bec 100644
+--- a/drivers/staging/media/eswin/venc/vc8000_driver.h
++++ b/drivers/staging/media/eswin/venc/vc8000_driver.h
+@@ -297,6 +297,7 @@ struct exchange_parameter {
+ 	u16 priority; //input,normal=0, high/live=1
+ 	u16 cmdbuf_id; //output ,it is unique in driver.
+ 	u16 core_id; //just used for polling.
++	u16 numa_id; //bind the task to the specified numa_id
+ };
+ 
+ typedef struct CoreWaitOut {
+diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
+index 5f88db259b5c..66cf710ff470 100644
+--- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
++++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
+@@ -1025,7 +1025,7 @@ static int wait_abort_rdy(struct hantrovcmd_dev *dev)
+ 	return dev->working_state == WORKING_STATE_IDLE;
+ }
+ 
+-static int select_vcmd(bi_list_node *new_cmdbuf_node)
++static int select_vcmd(bi_list_node *new_cmdbuf_node, u16 numa_id)
+ {
+ 	struct cmdbuf_obj *cmdbuf_obj = NULL;
+ 	bi_list_node *curr_cmdbuf_node = NULL;
+@@ -1041,6 +1041,19 @@ static int select_vcmd(bi_list_node *new_cmdbuf_node)
+ 	u32 cmdbuf_id = 0;
+ 
+ 	cmdbuf_obj = (struct cmdbuf_obj *)new_cmdbuf_node->data;
++
++	/** bind the task to the specified core_id if necessary*/
++	if (numa_id < vcmd_type_core_num[cmdbuf_obj->module_type]) {
++		dev = vcmd_manager[cmdbuf_obj->module_type][numa_id];
++		list = &dev->list_manager;
++		spin_lock_irqsave(dev->spinlock, flags);
++		bi_list_insert_node_tail(list, new_cmdbuf_node);
++		spin_unlock_irqrestore(dev->spinlock, flags);
++
++		cmdbuf_obj->core_id = dev->core_id;
++		return 0;
++	}
++
+ 	//there is an empty vcmd to be used
+ 	while (1) {
+ 		dev = vcmd_manager[cmdbuf_obj->module_type][vcmd_position[cmdbuf_obj->module_type]];
+@@ -1623,7 +1636,7 @@ static long link_and_run_cmdbuf(struct file *filp,
+ 		return -ERESTARTSYS;
+ 	}
+ 
+-	return_value = select_vcmd(new_cmdbuf_node);
++	return_value = select_vcmd(new_cmdbuf_node, input_para->numa_id);
+ 	if (return_value) {
+ 		LOG_ERR("vcmd: error return from select_vcmd\n");
+ 		return return_value;
+-- 
+2.47.0
+

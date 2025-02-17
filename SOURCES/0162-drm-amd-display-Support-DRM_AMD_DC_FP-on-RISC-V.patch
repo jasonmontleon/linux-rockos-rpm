@@ -1,0 +1,85 @@
+From fbb0a0564817b46266e9318410fe6598f393995b Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel.holland@sifive.com>
+Date: Tue, 21 Nov 2023 19:05:15 -0800
+Subject: [PATCH 162/370] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
+
+RISC-V uses kernel_fpu_begin()/kernel_fpu_end() like several other
+architectures. Enabling hardware FP requires overriding the ISA string
+for the relevant compilation units.
+
+Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+Link: https://lore.kernel.org/r/20231122030621.3759313-4-samuel.holland@sifive.com
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ drivers/gpu/drm/amd/display/Kconfig            | 5 ++++-
+ drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c | 6 ++++--
+ drivers/gpu/drm/amd/display/dc/dml/Makefile    | 6 ++++++
+ 3 files changed, 14 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
+index 901d1961b739..49b33b2f6701 100644
+--- a/drivers/gpu/drm/amd/display/Kconfig
++++ b/drivers/gpu/drm/amd/display/Kconfig
+@@ -8,7 +8,10 @@ config DRM_AMD_DC
+ 	depends on BROKEN || !CC_IS_CLANG || ARM64 || RISCV || SPARC64 || X86_64
+ 	select SND_HDA_COMPONENT if SND_HDA_CORE
+ 	# !CC_IS_CLANG: https://github.com/ClangBuiltLinux/linux/issues/1752
+-	select DRM_AMD_DC_FP if (X86 || LOONGARCH || (PPC64 && ALTIVEC) || (ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG))
++	select DRM_AMD_DC_FP if ARM64 && KERNEL_MODE_NEON && !CC_IS_CLANG
++	select DRM_AMD_DC_FP if PPC64 && ALTIVEC
++	select DRM_AMD_DC_FP if RISCV && FPU
++	select DRM_AMD_DC_FP if LOONGARCH || X86
+ 	help
+ 	  Choose this option if you want to use the new display engine
+ 	  support for AMDGPU. This adds required support for Vega and
+diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+index 172aa10a8800..53a7122ba98d 100644
+--- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
++++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
+@@ -35,6 +35,8 @@
+ #include <asm/neon.h>
+ #elif defined(CONFIG_LOONGARCH)
+ #include <asm/fpu.h>
++#elif defined(CONFIG_RISCV)
++#include <asm/switch_to.h>
+ #endif
+ 
+ /**
+@@ -90,7 +92,7 @@ void dc_fpu_begin(const char *function_name, const int line)
+ 	*pcpu += 1;
+ 
+ 	if (*pcpu == 1) {
+-#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
++#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH) || defined(CONFIG_RISCV)
+ 		migrate_disable();
+ 		kernel_fpu_begin();
+ #elif defined(CONFIG_PPC64)
+@@ -130,7 +132,7 @@ void dc_fpu_end(const char *function_name, const int line)
+ 	pcpu = get_cpu_ptr(&fpu_recursion_depth);
+ 	*pcpu -= 1;
+ 	if (*pcpu <= 0) {
+-#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH)
++#if defined(CONFIG_X86) || defined(CONFIG_LOONGARCH) || defined(CONFIG_RISCV)
+ 		kernel_fpu_end();
+ 		migrate_enable();
+ #elif defined(CONFIG_PPC64)
+diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+index 0ba9a7997d56..96f7110e8e41 100644
+--- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
++++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
+@@ -43,6 +43,12 @@ dml_ccflags := -mfpu=64
+ dml_rcflags := -msoft-float
+ endif
+ 
++ifdef CONFIG_RISCV
++include $(srctree)/arch/riscv/Makefile.isa
++# Remove V from the ISA string, like in arch/riscv/Makefile, but keep F and D.
++dml_ccflags := -march=$(shell echo $(riscv-march-y) | sed -E 's/(rv32ima|rv64ima)([^v_]*)v?/\1\2/')
++endif
++
+ ifdef CONFIG_CC_IS_GCC
+ ifneq ($(call gcc-min-version, 70100),y)
+ IS_OLD_GCC = 1
+-- 
+2.47.0
+

@@ -1,0 +1,193 @@
+From 657bc1e8ebf227228645a3c7dd1f05ce7c12ba31 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Wed, 9 Oct 2024 20:51:07 +0800
+Subject: [PATCH 304/370] package: add linux-tools
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ scripts/package/builddeb     | 36 ++++++++++++++++++++++++++++++++++++
+ scripts/package/debian/rules | 20 +++++++++++++++++++-
+ scripts/package/generic      | 16 ++++++++++++++++
+ scripts/package/mkdebian     | 22 ++++++++++++++++++++++
+ 4 files changed, 93 insertions(+), 1 deletion(-)
+ create mode 100755 scripts/package/generic
+
+diff --git a/scripts/package/builddeb b/scripts/package/builddeb
+index cbcf14820fb9..d0c49dbded92 100755
+--- a/scripts/package/builddeb
++++ b/scripts/package/builddeb
+@@ -182,6 +182,34 @@ install_libc_headers () {
+ 	mv $pdir/usr/include/asm $pdir/usr/include/$host_arch/
+ }
+ 
++install_tools(){
++	pdir=$1
++	version=$2
++
++	rm -rf $pdir
++
++	mkdir -p "$pdir/usr/lib/linux-tools/$version"
++	install -m755 $srctree/tools/perf/perf $pdir/usr/lib/linux-tools/$version
++}
++
++install_tools_common(){
++	pdir=$1
++
++	rm -rf $pdir
++
++	toolsbin=$pdir/usr/bin
++	toolssbin=$pdir/usr/sbin
++	toolsman=$pdir/usr/share/man
++
++	install -d $toolsbin
++	install -d $toolssbin
++	install -d $toolsman/man1
++	install -d $toolsman/man8
++
++	install -m755 $srctree/scripts/package/generic $toolsbin/perf
++	install -m644 $srctree/tools/perf/Documentation/*.1 $toolsman/man1
++}
++
+ rm -f debian/files
+ 
+ packages_enabled=$(dh_listpackages)
+@@ -199,6 +227,10 @@ do
+ 		install_libc_headers debian/linux-libc-dev;;
+ 	linux-headers-*)
+ 		install_kernel_headers debian/linux-headers ${package#linux-headers-};;
++	linux-tools-common)
++		install_tools_common debian/linux-tools-common;;
++	linux-tools-*)
++		install_tools debian/linux-tools ${package#linux-tools-};;
+ 	esac
+ done
+ 
+@@ -213,6 +245,10 @@ do
+ 		create_package ${package} debian/linux-libc-dev;;
+ 	linux-headers-*)
+ 		create_package ${package} debian/linux-headers;;
++	linux-tools-common)
++		create_package ${package} debian/linux-tools-common;;
++	linux-tools-*)
++		create_package ${package} debian/linux-tools;;
+ 	esac
+ done
+ 
+diff --git a/scripts/package/debian/rules b/scripts/package/debian/rules
+index 3dafa9496c63..af3e0bb0d3a1 100755
+--- a/scripts/package/debian/rules
++++ b/scripts/package/debian/rules
+@@ -3,13 +3,26 @@
+ 
+ include debian/rules.vars
+ 
+-srctree ?= .
++srctree = $(abs_srctree)
+ 
+ ifneq (,$(filter-out parallel=1,$(filter parallel=%,$(DEB_BUILD_OPTIONS))))
+     NUMJOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+     MAKEFLAGS += -j$(NUMJOBS)
+ endif
+ 
++PERF_BUILD_OPTS := prefix=/usr LDFLAGS=-static HAVE_NO_LIBBFD=1 HAVE_CPLUS_DEMANGLE_SUPPORT=1 CROSS_COMPILE=$(CROSS_COMPILE) NO_LIBPERL=1 WERROR=0 PYTHON=python3
++
++## Conditional flags based on whether it's a cross-compile
++#ifeq ("$(DEB_BUILD_GNU_TYPE)", "$(DEB_HOST_GNU_TYPE)")
++#    # Building for the host
++#    ADDITIONAL_OPTS :=
++#else
++#    # Cross-compiling
++#    ADDITIONAL_OPTS := NO_LIBELF=1 NO_LIBTRACEEVENT=1
++#endif
++
++ADDITIONAL_OPTS := NO_LIBELF=1 NO_LIBTRACEEVENT=1
++
+ .PHONY: binary binary-indep binary-arch
+ binary: binary-arch binary-indep
+ binary-indep: build-indep
+@@ -26,8 +39,13 @@ build-arch:
+ 	KERNELRELEASE=$(KERNELRELEASE) \
+ 	$(shell $(srctree)/scripts/package/deb-build-option) \
+ 	olddefconfig all
++	# perf
++	cd $(srctree)/tools/perf && $(MAKE) $(PERF_BUILD_OPTS) $(ADDITIONAL_OPTS)
++	cd $(srctree)/tools/perf && $(MAKE) $(PERF_BUILD_OPTS) $(ADDITIONAL_OPTS) man
+ 
+ .PHONY: clean
+ clean:
+ 	rm -rf debian/files debian/linux-*
+ 	$(MAKE) -f $(srctree)/Makefile ARCH=$(ARCH) clean
++	# perf
++	cd $(srctree)/tools/perf && $(MAKE) clean
+diff --git a/scripts/package/generic b/scripts/package/generic
+new file mode 100755
+index 000000000000..fc21a8f7b25a
+--- /dev/null
++++ b/scripts/package/generic
+@@ -0,0 +1,16 @@
++#!/bin/bash
++full_version=`uname -r`
++
++# First check for a fully qualified version.
++this="/usr/lib/linux-tools/$full_version/`basename $0`"
++if [ -f "$this" ]; then
++	exec "$this" "$@"
++fi
++
++# Give them a hint as to what to install.
++echo "WARNING: `basename $0` not found for kernel $full_version" >&2
++echo "" >&2
++echo "  You may need to install the following packages for this specific kernel:" >&2
++echo "    linux-tools-$full_version" >&2
++
++exit 2
+diff --git a/scripts/package/mkdebian b/scripts/package/mkdebian
+index fcbcfa0c3a6a..a2d133c5a6d5 100755
+--- a/scripts/package/mkdebian
++++ b/scripts/package/mkdebian
+@@ -153,6 +153,7 @@ else
+ 	packageversion=$(${srctree}/scripts/setlocalversion --no-local ${srctree})-$($srctree/init/build-version)
+ fi
+ sourcename=${KDEB_SOURCENAME:-linux-upstream}
++kernelgitver=$(git rev-parse --short HEAD)
+ 
+ if [ "$ARCH" = "um" ] ; then
+ 	packagename=user-mode-linux
+@@ -217,6 +218,7 @@ Maintainer: $maintainer
+ Rules-Requires-Root: no
+ Build-Depends: bc, debhelper, rsync, kmod, cpio, bison, flex $extra_build_depends
+ Homepage: https://www.kernel.org/
++XBS-Commit-Id: $kernelgitver
+ 
+ Package: $packagename-$version
+ Architecture: $debarch
+@@ -237,6 +239,26 @@ Description: Linux support headers for userspace development
+  This package provides userspaces headers from the Linux kernel.  These headers
+  are used by the installed headers for GNU glibc and other system libraries.
+ Multi-Arch: same
++
++Package: linux-tools-$version
++Architecture: $debarch
++Section: devel
++Depends: linux-tools-common
++Description: Linux kernel version specific tools for version -$version
++ This package provides the architecture dependant parts for kernel
++ version locked tools (such as perf) for
++ version -$version on
++ .
++
++Package: linux-tools-common
++Architecture: all
++Multi-Arch: foreign
++Section: kernel
++Depends: lsb-release
++Description: Linux kernel version specific tools for version $version
++ This package provides the architecture independent parts for kernel
++ version locked tools (such as perf) for
++ version $version.
+ EOF
+ 
+ if is_enabled CONFIG_MODULES; then
+-- 
+2.47.0
+

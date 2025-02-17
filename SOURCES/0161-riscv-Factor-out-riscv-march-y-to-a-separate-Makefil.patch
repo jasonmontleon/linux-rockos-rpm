@@ -1,0 +1,76 @@
+From 0efb2c89cf2e97d8103a203ad713bc6d3b218224 Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel.holland@sifive.com>
+Date: Tue, 21 Nov 2023 19:05:14 -0800
+Subject: [PATCH 161/370] riscv: Factor out riscv-march-y to a separate
+ Makefile
+
+Since it is not possible to incrementally add/remove extensions from the
+compiler's ISA string by appending arguments, any code that wants to
+modify the ISA string must recreate the whole thing. To support this,
+factor out the logic for generating the -march argument so it can be
+reused where needed.
+
+Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+Link: https://lore.kernel.org/r/20231122030621.3759313-3-samuel.holland@sifive.com
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/Makefile     | 17 +----------------
+ arch/riscv/Makefile.isa | 18 ++++++++++++++++++
+ 2 files changed, 19 insertions(+), 16 deletions(-)
+ create mode 100644 arch/riscv/Makefile.isa
+
+diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
+index 4d06f3402674..a040fd5f83ad 100644
+--- a/arch/riscv/Makefile
++++ b/arch/riscv/Makefile
+@@ -54,22 +54,7 @@ endif
+ endif
+ endif
+ 
+-# ISA string setting
+-riscv-march-$(CONFIG_ARCH_RV32I)	:= rv32ima
+-riscv-march-$(CONFIG_ARCH_RV64I)	:= rv64ima
+-riscv-march-$(CONFIG_FPU)		:= $(riscv-march-y)fd
+-riscv-march-$(CONFIG_RISCV_ISA_C)	:= $(riscv-march-y)c
+-riscv-march-$(CONFIG_RISCV_ISA_V)	:= $(riscv-march-y)v
+-
+-ifdef CONFIG_TOOLCHAIN_NEEDS_OLD_ISA_SPEC
+-KBUILD_CFLAGS += -Wa,-misa-spec=2.2
+-KBUILD_AFLAGS += -Wa,-misa-spec=2.2
+-else
+-riscv-march-$(CONFIG_TOOLCHAIN_NEEDS_EXPLICIT_ZICSR_ZIFENCEI) := $(riscv-march-y)_zicsr_zifencei
+-endif
+-
+-# Check if the toolchain supports Zihintpause extension
+-riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) := $(riscv-march-y)_zihintpause
++include $(srctree)/arch/riscv/Makefile.isa
+ 
+ # Remove F,D,V from isa string for all. Keep extensions between "fd" and "v" by
+ # matching non-v and non-multi-letter extensions out with the filter ([^v_]*)
+diff --git a/arch/riscv/Makefile.isa b/arch/riscv/Makefile.isa
+new file mode 100644
+index 000000000000..322a83958b96
+--- /dev/null
++++ b/arch/riscv/Makefile.isa
+@@ -0,0 +1,18 @@
++# SPDX-License-Identifier: GPL-2.0-only
++
++# ISA string setting
++riscv-march-$(CONFIG_ARCH_RV32I)	:= rv32ima
++riscv-march-$(CONFIG_ARCH_RV64I)	:= rv64ima
++riscv-march-$(CONFIG_FPU)		:= $(riscv-march-y)fd
++riscv-march-$(CONFIG_RISCV_ISA_C)	:= $(riscv-march-y)c
++riscv-march-$(CONFIG_RISCV_ISA_V)	:= $(riscv-march-y)v
++
++ifdef CONFIG_TOOLCHAIN_NEEDS_OLD_ISA_SPEC
++KBUILD_CFLAGS += -Wa,-misa-spec=2.2
++KBUILD_AFLAGS += -Wa,-misa-spec=2.2
++else
++riscv-march-$(CONFIG_TOOLCHAIN_NEEDS_EXPLICIT_ZICSR_ZIFENCEI) := $(riscv-march-y)_zicsr_zifencei
++endif
++
++# Check if the toolchain supports Zihintpause extension
++riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) := $(riscv-march-y)_zihintpause
+-- 
+2.47.0
+

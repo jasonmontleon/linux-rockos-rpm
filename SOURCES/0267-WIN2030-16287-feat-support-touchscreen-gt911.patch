@@ -1,0 +1,126 @@
+From 55a2dbceb4ba0242d74617e255c7d1d7e5a76a6b Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Sat, 14 Sep 2024 14:39:17 +0800
+Subject: [PATCH 267/370] WIN2030-16287:feat:support touchscreen(gt911)
+
+Changelogs:
+   support touchscreen, the touch screen chip model is GT911
+
+Change-Id: I0ed95e378c1a971a90a1592ebea0f26f87c26008
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  | 14 ++++++++--
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 28 +++++++++++++++++--
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  2 ++
+ arch/riscv/configs/eic7700_defconfig          |  2 ++
+ arch/riscv/configs/eic7702_defconfig          |  2 ++
+ 5 files changed, 43 insertions(+), 5 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index d329b5d3652e..4d20e6b2ccca 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -734,8 +734,18 @@ npu_vcc1:npu_svcc{
+ };
+ 
+ &d0_i2c2 {
+-	/* mipi dsi */
+-	status = "disabled";
++	/* touch screen*/
++	status = "ok";
++	gt911:touchscreen@14 {
++		compatible = "goodix,gt911";
++		reg = <0x14>;
++		interrupt-parent = <&porta>;
++		interrupts = <10 IRQ_TYPE_EDGE_RISING>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio10_default>;
++		irq-gpios = <&porta 10 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&portd 10 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &d0_i2c3 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 0c360b4c90ac..60a60f3b7f30 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -1154,11 +1154,33 @@ d1_npu_vcc:npu_svcc{
+ };
+ 
+ &d0_i2c2 {
+-	/* mipi dsi */
+-	status = "disabled";
++	/* touch screen*/
++	status = "ok";
++	d0_gt911:touchscreen@14 {
++		compatible = "goodix,gt911";
++		reg = <0x14>;
++		interrupt-parent = <&porta>;
++		interrupts = <20 IRQ_TYPE_EDGE_RISING>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_die0_gpio20_default>;
++		irq-gpios = <&porta 20 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&portd 15 GPIO_ACTIVE_HIGH>;
++	};
+ };
++
+ &d1_i2c2 {
+-	status = "disabled";
++	/* touch screen*/
++	status = "ok";
++	d1_gt911:touchscreen@14 {
++		compatible = "goodix,gt911";
++		reg = <0x14>;
++		interrupt-parent = <&d1_porta>;
++		interrupts = <0 IRQ_TYPE_EDGE_RISING>;
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_die1_gpio0_default>;
++		irq-gpios = <&d1_porta 0 GPIO_ACTIVE_HIGH>;
++		reset-gpios = <&d1_portd 15 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &d0_i2c3 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index b48b2b84020d..d8a5da7a0d39 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1130,6 +1130,8 @@ d1_porta: gpio-port@0 {
+ 				ngpios = <32>;
+ 				reg = <0>;
+ 				interrupt-parent = <&plic1>;
++				interrupt-controller;
++				#interrupt-cells = <2>;
+ 				interrupts = <303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318
+ 								319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334>;
+ 			};
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index a4618fd33805..7c0606ba04d5 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -432,6 +432,8 @@ CONFIG_RTL8192SE=m
+ CONFIG_INPUT_EVDEV=y
+ # CONFIG_INPUT_KEYBOARD is not set
+ # CONFIG_INPUT_MOUSE is not set
++CONFIG_INPUT_TOUCHSCREEN=y
++CONFIG_TOUCHSCREEN_GOODIX=y
+ CONFIG_SERIO_LIBPS2=y
+ # CONFIG_LEGACY_PTYS is not set
+ CONFIG_SERIAL_8250=y
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 1e9388335206..01d1b3969200 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -429,6 +429,8 @@ CONFIG_RTL8192SE=m
+ CONFIG_INPUT_EVDEV=y
+ # CONFIG_INPUT_KEYBOARD is not set
+ # CONFIG_INPUT_MOUSE is not set
++CONFIG_INPUT_TOUCHSCREEN=y
++CONFIG_TOUCHSCREEN_GOODIX=y
+ CONFIG_SERIO_LIBPS2=y
+ # CONFIG_LEGACY_PTYS is not set
+ CONFIG_SERIAL_8250=y
+-- 
+2.47.0
+

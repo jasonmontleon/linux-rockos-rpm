@@ -1,0 +1,82 @@
+From c243af63cf2903e168e44e2a7c9c3bf31f7d8234 Mon Sep 17 00:00:00 2001
+From: Pritesh Patel <pritesh.patel@einfochips.com>
+Date: Thu, 19 Sep 2024 11:52:55 +0000
+Subject: [PATCH 228/370] drivers: gpu: img: Resolve compilation warnings
+
+Warnings:
+----------
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c: In function 'riscv_invalidate_addr':
+./include/linux/kern_levels.h:5:25: warning: format '%x' expects argument of type 'unsigned int', but argument 3 has type 'phys_addr_t' {aka 'long long unsigned int'} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+./include/linux/printk.h:427:25: note: in definition of macro 'printk_index_wrap'
+  427 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c:63:2: note: in expansion of macro 'printk'
+   63 |  printk(KERN_ALERT "eswin:%s not implement now start 0x%x size=0x%x\n",__func__,addr,size);
+      |  ^~~~~~
+./include/linux/kern_levels.h:9:25: note: in expansion of macro 'KERN_SOH'
+    9 | #define KERN_ALERT      KERN_SOH "1"    /* action must be taken immediately */
+      |                         ^~~~~~~~
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c:63:9: note: in expansion of macro 'KERN_ALERT'
+   63 |  printk(KERN_ALERT "eswin:%s not implement now start 0x%x size=0x%x\n",__func__,addr,size);
+      |         ^~~~~~~~~~
+./include/linux/kern_levels.h:5:25: warning: format '%x' expects argument of type 'unsigned int', but argument 4 has type 'size_t' {aka 'long unsigned int'} [-Wformat=]
+    5 | #define KERN_SOH        "\001"          /* ASCII Start Of Header */
+      |                         ^~~~~~
+./include/linux/printk.h:427:25: note: in definition of macro 'printk_index_wrap'
+  427 |                 _p_func(_fmt, ##__VA_ARGS__);                           \
+      |                         ^~~~
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c:63:2: note: in expansion of macro 'printk'
+   63 |  printk(KERN_ALERT "eswin:%s not implement now start 0x%x size=0x%x\n",__func__,addr,size);
+      |  ^~~~~~
+./include/linux/kern_levels.h:9:25: note: in expansion of macro 'KERN_SOH'
+    9 | #define KERN_ALERT      KERN_SOH "1"    /* action must be taken immediately */
+      |                         ^~~~~~~~
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c:63:9: note: in expansion of macro 'KERN_ALERT'
+   63 |  printk(KERN_ALERT "eswin:%s not implement now start 0x%x size=0x%x\n",__func__,addr,size);
+      |         ^~~~~~~~~~
+
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c: At top level:
+./include/linux/stddef.h:8:14: warning: excess elements in struct initializer
+    8 | #define NULL ((void *)0)
+      |              ^
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c:183:9: note: in expansion of macro 'NULL'
+  183 |         NULL,
+      |         ^~~~
+./include/linux/stddef.h:8:14: note: (near initialization for 'gsPhysHeapFuncs')
+    8 | #define NULL ((void *)0)
+      |              ^
+drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c:183:9: note: in expansion of macro 'NULL'
+  183 |         NULL,
+
+Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
+---
+ .../img/img-volcanic/services/system/eswin_cpu/sysconfig.c    | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+index d94c76cc68b9..ab17236f36cd 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+@@ -60,7 +60,7 @@ void eswin_l2_flush64(phys_addr_t addr, size_t size) {
+ #endif
+ void riscv_invalidate_addr(phys_addr_t addr, size_t size,IMG_BOOL virtual) {
+ 
+- printk(KERN_ALERT "eswin:%s not implement now start 0x%x size=0x%x\n",__func__,addr,size);	
++ printk(KERN_ALERT "eswin:%s not implement now start 0x%llx size=0x%lx\n",__func__,addr,size);
+ }
+ void riscv_flush_addr(IMG_UINT64 cpuaddr,IMG_UINT64 bytes_size, IMG_BOOL virtual)
+ {
+@@ -179,8 +179,6 @@ static PHYS_HEAP_FUNCTIONS gsPhysHeapFuncs =
+ 	UMAPhysHeapCpuPAddrToDevPAddr,
+ 	/* pfnDevPAddrToCpuPAddr */
+ 	UMAPhysHeapDevPAddrToCpuPAddr,
+-	/* pfnGetRegionId */
+-	NULL,
+ };
+ 
+ static PVRSRV_ERROR PhysHeapsCreate(PHYS_HEAP_CONFIG **ppasPhysHeapsOut,
+-- 
+2.47.0
+

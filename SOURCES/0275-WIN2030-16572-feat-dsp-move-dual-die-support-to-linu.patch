@@ -1,0 +1,163 @@
+From 6e0d3fe13cb47efd3efe6b75e51a588456e7e3a1 Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Tue, 29 Oct 2024 16:23:18 +0800
+Subject: [PATCH 275/370] WIN2030-16572:feat: dsp move dual die support to
+ linux kernel
+
+Changelogs:
+	move dsp drv dual die support to linux kernel
+
+Change-Id: I71075a066a0262a56ae7fc0a7fea34865649227f
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ .../riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi |  8 ++++----
+ drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c          | 11 ++++++-----
+ drivers/soc/eswin/ai_driver/dsp/dsp_platform.c       | 12 ++++++------
+ 3 files changed, 16 insertions(+), 15 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 20ddace05a59..e5580ff203fb 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1368,7 +1368,7 @@ ESWIN_MAIBOX_U84_IRQ_BIT
+ 				device-uart = <0x70910000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+-				firmware-name = "eic7702_dsp_fw";
++				firmware-name = "eic7700_dsp_fw";
+ 				process-id = <0>;
+ 				iommus = <&smmu1 WIN2030_SID_DSP_0>;
+ 				tbus = <WIN2030_TBUID_DSP0>;
+@@ -1397,7 +1397,7 @@ ESWIN_MAIBOX_U84_IRQ_BIT
+ 				device-uart = <0x70910000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+-				firmware-name = "eic7702_dsp_fw";
++				firmware-name = "eic7700_dsp_fw";
+ 				process-id = <1>;
+ 				iommus = <&smmu1 WIN2030_SID_DSP_1>;
+ 				tbus = <WIN2030_TBUID_DSP1>;
+@@ -1426,7 +1426,7 @@ ESWIN_MAIBOX_U84_IRQ_BIT
+ 				device-uart = <0x70910000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+-				firmware-name = "eic7702_dsp_fw";
++				firmware-name = "eic7700_dsp_fw";
+ 				process-id = <2>;
+ 				iommus = <&smmu1 WIN2030_SID_DSP_2>;
+ 				tbus = <WIN2030_TBUID_DSP2>;
+@@ -1455,7 +1455,7 @@ ESWIN_MAIBOX_U84_IRQ_BIT
+ 				device-uart = <0x70910000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+-				firmware-name = "eic7702_dsp_fw";
++				firmware-name = "eic7700_dsp_fw";
+ 				process-id = <3>;
+ 				iommus = <&smmu1 WIN2030_SID_DSP_3>;
+ 				tbus = <WIN2030_TBUID_DSP3>;
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
+index 1e7871eb56b0..2250f2cfd476 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
+@@ -67,8 +67,9 @@ static struct dsp_user *dsp_op_add_user(struct dsp_file *dsp_file,
+ {
+ 	struct dsp_user *user;
+ 	int ret;
++	struct es_dsp *dsp = op->dsp;
+ 
+-	user = kmalloc(sizeof(struct dsp_user), GFP_KERNEL);
++	user = kzalloc(sizeof(struct dsp_user), GFP_KERNEL);
+ 	if (!user) {
+ 		dsp_err("alloc dsp user mem failed.\n");
+ 		return NULL;
+@@ -479,7 +480,7 @@ static struct dsp_user_req_async *dsp_set_task_info(struct dsp_file *dsp_file,
+ 	buffer_count = task->task.bufferCntCfg + task->task.bufferCntInput +
+ 		       task->task.bufferCntOutput;
+ 
+-	user_req = kmalloc(sizeof(struct dsp_user_req_async) +
++	user_req = kzalloc(sizeof(struct dsp_user_req_async) +
+ 				   sizeof(struct dsp_dma_buf *) * buffer_count,
+ 			   GFP_KERNEL);
+ 	if (!user_req) {
+@@ -1172,7 +1173,7 @@ static void dsp_file_release(struct khandle *handle)
+ 	}
+ 
+ 	dsp = dsp_file->dsp;
+-	devm_kfree(dsp->dev, dsp_file);
++	kfree(dsp_file);
+ 	es_dsp_pm_put_sync(dsp);
+ 	dsp_debug("release dsp_file done.\n");
+ }
+@@ -1195,7 +1196,7 @@ static int dsp_open(struct inode *inode, struct file *flip)
+ 			__LINE__, ret);
+ 		return ret;
+ 	}
+-	dsp_file = devm_kzalloc(dsp->dev, sizeof(*dsp_file), GFP_KERNEL);
++	dsp_file = kzalloc(sizeof(*dsp_file), GFP_KERNEL);
+ 	if (!dsp_file) {
+ 		es_dsp_pm_put_sync(dsp);
+ 		return -ENOMEM;
+@@ -1205,7 +1206,7 @@ static int dsp_open(struct inode *inode, struct file *flip)
+ 				 DSP_FILE_HANDLE_MAGIC, NULL);
+ 	if (ret != 0) {
+ 		dsp_err("%s, init kernel handle error.\n", __func__);
+-		devm_kfree(dsp->dev, dsp_file);
++		kfree(dsp_file);
+ 		es_dsp_pm_put_sync(dsp->dev);
+ 		return ret;
+ 	}
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+index 83c309dcae5a..45c8bda644cc 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+@@ -38,7 +38,7 @@
+ #include <linux/clk.h>
+ #include <linux/slab.h>
+ #include <linux/iommu.h>
+-#include "es_iommu_rsv.h"
++#include <linux/es_iommu_rsv.h>
+ #include "eswin-dsp-subsys.h"
+ 
+ #include "dsp_platform.h"
+@@ -711,7 +711,7 @@ static inline int init_hw_uart(struct es_dsp_hw *hw)
+ 
+ 	ret = iommu_map_rsv_iova_with_phys(
+ 		dsp->dev, (dma_addr_t)DSP_DEVICE_UART_MUTEX_IOVA,
+-		DSP_DEVICE_UART_MUTEX_IOVA_SIZE, UART_MUTEX_BASE_ADDR,
++		DSP_DEVICE_UART_MUTEX_IOVA_SIZE, UART_MUTEX_BASE_ADDR + dsp->numa_id * DIE_BASE_INTERVAL,
+ 		IOMMU_MMIO);
+ 	if (ret != 0) {
+ 		dev_err(dsp->dev, "uart mutex iommu map error\n");
+@@ -1158,7 +1158,7 @@ int es_dsp_map_resource(struct es_dsp *dsp)
+ 	}
+ 
+ 	hw->uart_mutex_base =
+-		ioremap(UART_MUTEX_BASE_ADDR, DSP_DEVICE_UART_MUTEX_IOVA_SIZE);
++		devm_ioremap(dsp->dev, UART_MUTEX_BASE_ADDR + dsp->numa_id * DIE_BASE_INTERVAL, DSP_DEVICE_UART_MUTEX_IOVA_SIZE);
+ 	if (!hw->uart_mutex_base) {
+ 		dev_err(&hw->pdev->dev, "ioremap error\n");
+ 		ret = -ENOMEM;
+@@ -1212,7 +1212,7 @@ int es_dsp_unmap_resource(struct es_dsp *dsp)
+ 	}
+ 	if (hw->uart_mutex_base != NULL) {
+ 
+-		iounmap(hw->uart_mutex_base);
++		devm_iounmap(dsp->dev, hw->uart_mutex_base);
+ 		hw->uart_mutex_base = NULL;
+ 	}
+ 	return 0;
+@@ -1260,9 +1260,9 @@ int es_dsp_hw_init(struct es_dsp *dsp)
+ 
+ 	hw->pts_iova = DSP_PTS_IOVA;
+ 	hw->pts_iova_size = DSP_PTS_IOVA_SIZE;
+-	hw->pts_phys_base = 0x51840000;
++	hw->pts_phys_base = 0x51840000 + dsp->numa_id * DIE_BASE_INTERVAL;
+ 	ret = iommu_map_rsv_iova_with_phys(dsp->dev, (dma_addr_t)DSP_PTS_IOVA,
+-					   DSP_PTS_IOVA_SIZE, 0x51840000,
++					   DSP_PTS_IOVA_SIZE, hw->pts_phys_base,
+ 					   IOMMU_MMIO);
+ 	if (ret != 0) {
+ 		dev_err(dsp->dev, "iommu map dsp pts phy error.\n");
+-- 
+2.47.0
+

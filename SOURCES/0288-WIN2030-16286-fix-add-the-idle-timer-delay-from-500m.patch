@@ -1,0 +1,63 @@
+From 9d55675de6151884fd5ddf2aec88065065c48836 Mon Sep 17 00:00:00 2001
+From: liusheng <liusheng@eswincomputing.com>
+Date: Tue, 29 Oct 2024 13:26:18 +0800
+Subject: [PATCH 288/370] <WIN2030-16286>:fix:add the idle timer delay from
+ 500ms to 1s
+
+Changelogs:
+add the idle timer delay from 500ms to 1s
+
+Change-Id: Ic07639afbcdc35c9cbf06c8c81c12e46be1e54eb
+Signed-off-by: liusheng <liusheng@eswincomputing.com>
+---
+ .../hae/hal/kernel/gc_hal_kernel_event.c      | 23 +++++++++++++++++--
+ 1 file changed, 21 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
+index c210a5237740..b58544de1fb4 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
++++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
+@@ -1,3 +1,4 @@
++// SPDX-License-Identifier: GPL-2.0
+ /****************************************************************************
+ *
+ *    The MIT License (MIT)
+@@ -51,7 +52,25 @@
+ *    version of this file.
+ *
+ *****************************************************************************/
+-
++/*
++ * ESWIN cipher serivce driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Huan Sun <sunhuan@eswincomputing.com>
++ */
+ 
+ #include "gc_hal_kernel_precomp.h"
+ 
+@@ -2066,7 +2085,7 @@ gckEVENT_Notify(gckEVENT Event, gctUINT32 IDs, gceEVENT_FAULT *Fault)
+     if (IDs == 0) {
+         gcmkONERROR(gckOS_StartTimer(Event->kernel->os,
+                                     Event->kernel->eventObj->tryIdleTimer,
+-                                    500));
++                                    1000));
+     }
+ 
+     /* End of event handling. */
+-- 
+2.47.0
+

@@ -1,0 +1,3744 @@
+From fef53588c0045e00e40de9e7167b7d807d2b9c53 Mon Sep 17 00:00:00 2001
+From: luyulin <luyulin@eswincomputing.com>
+Date: Mon, 2 Sep 2024 16:41:42 +0800
+Subject: [PATCH 248/370] WIN2030-16070:feat:add eic7x pinctrl driver
+
+Changelogs:
+	1. add eic7x pinctrl driver
+
+Change-Id: I9aeddf1aa9dff479fab34ab7e536a7dacd58b1e0
+Signed-off-by: luyulin <luyulin@eswincomputing.com>
+---
+ .../riscv/boot/dts/eswin/eic7700-pinctrl.dtsi |   14 +-
+ .../boot/dts/eswin/eic7x-die0-pinctrl.dtsi    | 1447 +++++++++++++++++
+ .../boot/dts/eswin/eic7x-die1-pinctrl.dtsi    | 1447 +++++++++++++++++
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |    2 +-
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |    2 +-
+ arch/riscv/configs/eic7700_defconfig          |    2 +-
+ arch/riscv/configs/eic7702_defconfig          |    2 +-
+ arch/riscv/configs/win2030_defconfig          |    2 +-
+ drivers/pinctrl/Kconfig                       |    6 +-
+ drivers/pinctrl/Makefile                      |    2 +-
+ .../{pinctrl-eic7700.c => pinctrl-eic7x.c}    |  351 +++-
+ 11 files changed, 3204 insertions(+), 73 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
+ rename drivers/pinctrl/{pinctrl-eic7700.c => pinctrl-eic7x.c} (85%)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
+index 0529f98d4dd3..26aa840c9882 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
+@@ -25,7 +25,7 @@ / {
+ 	#size-cells = <2>;
+     soc {
+         pinctrl: pinctrl@0x51600080 {
+-			compatible = "eswin,eic7700-pinctrl", "syscon";
++			compatible = "eswin,eic7x-pinctrl", "syscon";
+ 			reg = <0x0 0x51600080 0x0 0x1FFF80>;
+ 			status = "disabled";
+             //func0
+@@ -41,12 +41,6 @@ mux {
+ 					function = "sdio1_func";
+ 				};
+ 			};
+-            pinctrl_por_sel_default: por_sel-default{
+-				mux {
+-					groups = "por_sel_group";
+-					function = "por_sel_func";
+-				};
+-			};
+             pinctrl_jtag0_default: jtag0-default{
+ 				mux {
+ 					groups = "jtag0_group";
+@@ -275,10 +269,10 @@ mux {
+ 					function = "s_mode_func";
+ 				};
+ 			};
+-            pinctrl_pinmux_ddr_refclk_sel_default: pinmux_ddr_refclk_sel-default{
++            pinctrl_ddr_refclk_sel_default: ddr_refclk_sel-default{
+ 				mux {
+-					groups = "pinmux_ddr_refclk_sel_group";
+-					function = "pinmux_ddr_refclk_sel_func";
++					groups = "ddr_refclk_sel_group";
++					function = "ddr_refclk_sel_func";
+ 				};
+ 			};
+             pinctrl_boot_sel_default: boot_sel-default{
+diff --git a/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
+new file mode 100644
+index 000000000000..dcbd96fc473e
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
+@@ -0,0 +1,1447 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Include file for pin control of Eswin EIC770x family SoC.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++#include "eswin-win2030-die0-soc.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++    #address-cells = <2>;
++	#size-cells = <2>;
++    soc {
++        pinctrl: pinctrl@0x51600080 {
++			compatible = "eswin,eic7x-pinctrl", "syscon";
++			reg = <0x0 0x51600080 0x0 0x1FFF80>;
++			status = "disabled";
++
++			//Dual Die Configuration
++			//func0
++			/* used with pinctrl_die1_jtag1_off_default*/
++			pinctrl_die0_jtag1_on_default: jtag1_on-default{
++				mux {
++					groups = "jtag1_on_group";
++					function = "jtag1_on_func";
++				};
++			};
++			/* used with pinctrl_die1_jtag1_on_default*/
++			pinctrl_die0_jtag1_off_default: jtag1_off-default{
++				mux {
++					groups = "jtag1_off_group";
++					function = "jtag1_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_jtag2_off_default*/
++			pinctrl_die0_jtag2_on_default: jtag2_on-default{
++				mux {
++					groups = "jtag2_on_group";
++					function = "jtag2_on_func";
++				};
++			};
++			/* used with pinctrl_die1_jtag2_on_default*/
++			pinctrl_die0_jtag2_off_default: jtag2_off-default{
++				mux {
++					groups = "jtag2_off_group";
++					function = "jtag2_off_func";
++				};
++			};
++
++			//func2
++			/* used with pinctrl_die1_gpio7_off_default*/
++			pinctrl_die0_gpio7_on_default: gpio7_on-default{
++				mux {
++					groups = "gpio7_on_group";
++					function = "gpio7_on_func";
++				};
++				conf {
++					groups = "gpio7_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio7_on_default*/
++			pinctrl_die0_gpio7_off_default: gpio7_off-default{
++				mux {
++					groups = "gpio7_off_group";
++					function = "gpio7_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_gpio8_off_default*/
++			pinctrl_die0_gpio8_on_default: gpio8_on-default{
++				mux {
++					groups = "gpio8_on_group";
++					function = "gpio8_on_func";
++				};
++				conf {
++					groups = "gpio8_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio8_on_default*/
++			pinctrl_die0_gpio8_off_default: gpio8_off-default{
++				mux {
++					groups = "gpio8_off_group";
++					function = "gpio8_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_gpio9_off_default*/
++			pinctrl_die0_gpio9_on_default: gpio9_on-default{
++				mux {
++					groups = "gpio9_on_group";
++					function = "gpio9_on_func";
++				};
++				conf {
++					groups = "gpio9_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio9_on_default*/
++			pinctrl_die0_gpio9_off_default: gpio9_off-default{
++				mux {
++					groups = "gpio9_off_group";
++					function = "gpio9_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_gpio17_off_default*/
++			pinctrl_die0_gpio17_on_default: gpio17_on-default{
++				mux {
++					groups = "gpio17_on_group";
++					function = "gpio17_on_func";
++				};
++				conf {
++					groups = "gpio17_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio17_on_default*/
++			pinctrl_die0_gpio17_off_default: gpio17_off-default{
++				mux {
++					groups = "gpio17_off_group";
++					function = "gpio17_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_gpio64_off_default*/
++			pinctrl_die0_gpio64_on_default: gpio64_on-default{
++				mux {
++					groups = "gpio64_on_group";
++					function = "gpio64_on_func";
++				};
++				conf {
++					groups = "gpio64_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio64_on_default*/
++			pinctrl_die0_gpio64_off_default: gpio64_off-default{
++				mux {
++					groups = "gpio64_off_group";
++					function = "gpio64_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_gpio65_off_default*/
++			pinctrl_die0_gpio65_on_default: gpio65_on-default{
++				mux {
++					groups = "gpio65_on_group";
++					function = "gpio65_on_func";
++				};
++				conf {
++					groups = "gpio65_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio65_on_default*/
++			pinctrl_die0_gpio65_off_default: gpio65_off-default{
++				mux {
++					groups = "gpio65_off_group";
++					function = "gpio65_off_func";
++				};
++			};
++
++			/* used with pinctrl_die1_gpio66_off_default*/
++			pinctrl_die0_gpio66_on_default: gpio66_on-default{
++				mux {
++					groups = "gpio66_on_group";
++					function = "gpio66_on_func";
++				};
++				conf {
++					groups = "gpio66_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die1_gpio66_on_default*/
++			pinctrl_die0_gpio66_off_default: gpio66_off-default{
++				mux {
++					groups = "gpio66_off_group";
++					function = "gpio66_off_func";
++				};
++			};
++
++			//func6
++			/* used with pinctrl_die1_vc_g2d0_debug_out_off_default*/
++			pinctrl_die0_vc_g2d0_debug_out_on_default: vc_g2d0_debug_out_on-default{
++				mux {
++					groups = "vc_g2d0_debug_out_on_group";
++					function = "vc_g2d0_debug_out_on_func";
++				};
++			};
++			/* used with pinctrl_die1_vc_g2d0_debug_out_on_default*/
++			pinctrl_die0_vc_g2d0_debug_out_off_default: vc_g2d0_debug_out_off-default{
++				mux {
++					groups = "vc_g2d0_debug_out_off_group";
++					function = "vc_g2d0_debug_out_off_func";
++				};
++			};
++
++			//func7
++			/* used with pinctrl_die1_ftm_test_out_off_default*/
++			pinctrl_die0_ftm_test_out_on_default: ftm_test_out_on-default{
++				mux {
++					groups = "ftm_test_out_on_group";
++					function = "ftm_test_out_on_func";
++				};
++			};
++			/* used with pinctrl_die1_ftm_test_out_on_default*/
++			pinctrl_die0_ftm_test_out_off_default: ftm_test_out_off-default{
++				mux {
++					groups = "ftm_test_out_off_group";
++					function = "ftm_test_out_off_func";
++				};
++			};
++
++            //func0
++            pinctrl_die0_sdio0_default: sdio0-default{
++				mux {
++					groups = "sdio0_group";
++					function = "sdio0_func";
++				};
++			};
++            pinctrl_die0_sdio1_default: sdio1-default{
++				mux {
++					groups = "sdio1_group";
++					function = "sdio1_func";
++				};
++			};
++            pinctrl_die0_jtag0_default: jtag0-default{
++				mux {
++					groups = "jtag0_group";
++					function = "jtag0_func";
++				};
++			};
++            pinctrl_die0_pcie_default: pcie-default{
++				mux{
++					groups = "pcie_group";
++					function = "pcie_func";
++				};
++			};
++            pinctrl_die0_hdmi_default: hdmi-default{
++				mux{
++					groups = "hdmi_group";
++					function = "hdmi_func";
++				};
++			};
++            pinctrl_die0_rgmii0_default: rgmii0-default{
++				mux {
++					groups = "rgmii0_group";
++					function = "rgmii0_func";
++				};
++			};
++            pinctrl_die0_rgmii1_default: rgmii1-default{
++				mux{
++					groups = "rgmii1_group";
++					function = "rgmii1_func";
++				};
++			};
++            pinctrl_die0_spi0_default: spi0-default{
++				mux {
++					groups = "spi0_group";
++					function = "spi0_func";
++				};
++			};
++            pinctrl_die0_spi1_default: spi1-default{
++				mux{
++					groups = "spi1_group";
++					function = "spi1_func";
++				};
++			};
++            pinctrl_die0_spi3_default: spi3-default{
++				mux {
++					groups = "spi3_group";
++					function = "spi3_func";
++				};
++			};
++            pinctrl_die0_por_time_sel0_default: por_time_sel0-default{
++				mux {
++					groups = "por_time_sel0_group";
++					function = "por_time_sel0_func";
++				};
++			};
++            pinctrl_die0_por_time_sel1_default: por_time_sel1-default{
++				mux {
++					groups = "por_time_sel1_group";
++					function = "por_time_sel1_func";
++				};
++			};
++            pinctrl_die0_i2s0_default: i2s0-default{
++				mux {
++					groups = "i2s0_group";
++					function = "i2s0_func";
++				};
++			};
++            pinctrl_die0_i2s1_default: i2s1-default{
++				mux {
++					groups = "i2s1_group";
++					function = "i2s1_func";
++				};
++			};
++            pinctrl_die0_i2s2_default: i2s2-default{
++				mux {
++					groups = "i2s2_group";
++					function = "i2s2_func";
++				};
++			};
++            pinctrl_die0_usb0_pwren_default: usb0_pwren-default{
++				mux {
++					groups = "usb0_pwren_group";
++					function = "usb0_pwren_func";
++				};
++			};
++            pinctrl_die0_usb1_pwren_default: usb1_pwren-default{
++				mux {
++					groups = "usb1_pwren_group";
++					function = "usb1_pwren_func";
++				};
++			};
++            pinctrl_die0_i2c0_default: i2c0-default{
++				mux {
++					groups = "i2c0_group";
++					function = "i2c0_func";
++				};
++			};
++            pinctrl_die0_i2c1_default: i2c1-default{
++				mux {
++					groups = "i2c1_group";
++					function = "i2c1_func";
++				};
++			};
++            pinctrl_die0_i2c2_default: i2c2-default{
++				mux {
++					groups = "i2c2_group";
++					function = "i2c2_func";
++				};
++			};
++            pinctrl_die0_i2c3_default: i2c3-default{
++				mux {
++					groups = "i2c3_group";
++					function = "i2c3_func";
++				};
++			};
++            pinctrl_die0_i2c4_default: i2c4-default{
++				mux {
++					groups = "i2c4_group";
++					function = "i2c4_func";
++				};
++			};
++            pinctrl_die0_i2c5_default: i2c5-default{
++				mux {
++					groups = "i2c5_group";
++					function = "i2c5_func";
++				};
++			};
++            pinctrl_die0_i2c8_default: i2c8-default{
++				mux {
++					groups = "i2c8_group";
++					function = "i2c8_func";
++				};
++			};
++            pinctrl_die0_i2c10_default: i2c10-default{
++				mux {
++					groups = "i2c10_group";
++					function = "i2c10_func";
++				};
++			};
++            pinctrl_die0_i2c11_default: i2c11-default{
++				mux {
++					groups = "i2c11_group";
++					function = "i2c11_func";
++				};
++			};
++            pinctrl_die0_uart0_default: uart0-default{
++				mux {
++					groups = "uart0_group";
++					function = "uart0_func";
++				};
++			};
++            pinctrl_die0_uart1_default: uart1-default{
++				mux {
++					groups = "uart1_group";
++					function = "uart1_func";
++				};
++			};
++            pinctrl_die0_uart2_default: uart2-default{
++				mux {
++					groups = "uart2_group";
++					function = "uart2_func";
++				};
++			};
++			pinctrl_die0_pwm0_default: pwm0-default{
++				mux {
++					groups = "pwm0_group";
++					function = "pwm0_func";
++				};
++			};
++            pinctrl_die0_fan_tach_default: fan_tach-default{
++				mux {
++					groups = "fan_tach_group";
++					function = "fan_tach_func";
++				};
++			};
++            pinctrl_die0_mipi_csi0_default: mipi_csi0-default{
++				mux {
++					groups = "mipi_csi0_group";
++					function = "mipi_csi0_func";
++				};
++			};
++            pinctrl_die0_mipi_csi1_default: mipi_csi1-default{
++				mux {
++					groups = "mipi_csi1_group";
++					function = "mipi_csi1_func";
++				};
++			};
++            pinctrl_die0_mipi_csi2_default: mipi_csi2-default{
++				mux {
++					groups = "mipi_csi2_group";
++					function = "mipi_csi2_func";
++				};
++			};
++            pinctrl_die0_mipi_csi3_default: mipi_csi3-default{
++				mux {
++					groups = "mipi_csi3_group";
++					function = "mipi_csi3_func";
++				};
++			};
++            pinctrl_die0_mipi_csi4_default: mipi_csi4-default{
++				mux {
++					groups = "mipi_csi4_group";
++					function = "mipi_csi4_func";
++				};
++			};
++            pinctrl_die0_mipi_csi5_default: mipi_csi5-default{
++				mux {
++					groups = "mipi_csi5_group";
++					function = "mipi_csi5_func";
++				};
++			};
++            pinctrl_die0_s_mode_default: s_mode-default{
++				mux {
++					groups = "s_mode_group";
++					function = "s_mode_func";
++				};
++			};
++            pinctrl_die0_ddr_refclk_sel_default: ddr_refclk_sel-default{
++				mux {
++					groups = "ddr_refclk_sel_group";
++					function = "ddr_refclk_sel_func";
++				};
++			};
++            pinctrl_die0_boot_sel_default: boot_sel-default{
++				mux {
++					groups = "boot_sel_group";
++					function = "boot_sel_func";
++				};
++			};
++            pinctrl_die0_lpddr_ref_clk_default: lpddr_ref_clk-default{
++				mux {
++					groups = "lpddr_ref_clk_group";
++					function = "lpddr_ref_clk_func";
++				};
++			};
++
++            //func1
++            pinctrl_die0_spi2_default: spi2-default{
++				mux1 {
++					groups = "spi2_clk_group";
++					function = "spi2_clk_func";
++				};
++				conf1 {
++					groups = "spi2_clk_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++					bias-pull-down = <0>;
++				};
++				mux2 {
++					groups = "spi2_d0_group";
++					function = "spi2_d0_func";
++				};
++				conf2 {
++					groups = "spi2_d0_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++					bias-pull-down = <0>;
++				};
++				mux3 {
++					groups = "spi2_d1_d2_d3_group";
++					function = "spi2_d1_d2_d3_func";
++				};
++				conf3 {
++					groups = "spi2_d1_d2_d3_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++					bias-pull-down = <0>;
++				};
++				mux4 {
++					groups = "spi2_cs_group";
++					function = "spi2_cs_func";
++				};
++			};
++
++            pinctrl_die0_sata_act_led_default: sata_act_led-default{
++				mux {
++					groups = "sata_act_led_group";
++					function = "sata_act_led_func";
++				};
++				conf {
++					groups = "sata_act_led_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_emmc_led_control_default: emmc_led_control-default{
++				mux {
++					groups = "emmc_led_control_group";
++					function = "emmc_led_control_func";
++				};
++				conf {
++					groups = "emmc_led_control_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_sd0_led_control_default: sd0_led_control-default{
++				mux {
++					groups = "sd0_led_control_group";
++					function = "sd0_led_control_func";
++				};
++			};
++            pinctrl_die0_sd1_led_control_default: sd1_led_control-default{
++				mux {
++					groups = "sd1_led_control_group";
++					function = "sd1_led_control_func";
++				};
++			};
++            pinctrl_die0_i2c6_default: i2c6-default{
++				mux {
++					groups = "i2c6_group";
++					function = "i2c6_func";
++				};
++			};
++            pinctrl_die0_i2c7_default: i2c7-default{
++				mux {
++					groups = "i2c7_group";
++					function = "i2c7_func";
++				};
++			};
++            pinctrl_die0_i2c9_default: i2c9-default{
++				mux {
++					groups = "i2c9_group";
++					function = "i2c9_func";
++				};
++			};
++            pinctrl_die0_pwm1_default: pwm1-default{
++				mux {
++					groups = "pwm1_group";
++					function = "pwm1_func";
++				};
++			};
++            pinctrl_die0_pwm2_default: pwm2-default{
++				mux {
++					groups = "pwm2_group";
++					function = "pwm2_func";
++				};
++			};
++            pinctrl_die0_mipi_csi_xtrig_default: mipi_csi_xtrig-default{
++				mux {
++					groups = "mipi_csi_xtrig_group";
++					function = "mipi_csi_xtrig_func";
++				};
++			};
++
++            //func3
++            pinctrl_die0_uart3_default: uart3-default{
++				mux {
++					groups = "uart3_group";
++					function = "uart3_func";
++				};
++			};
++            pinctrl_die0_uart4_default: uart4-default{
++				mux {
++					groups = "uart4_group";
++					function = "uart4_func";
++				};
++			};
++
++            //gpio
++            pinctrl_die0_gpio0_default: gpio0-default{
++				mux {
++					groups = "gpio0_group";
++					function = "gpio0_func";
++				};
++				conf {
++					groups = "gpio0_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die0_gpio1_default: gpio1-default{
++				mux {
++					groups = "gpio1_group";
++					function = "gpio1_func";
++				};
++			};
++            pinctrl_die0_gpio2_default: gpio2-default{
++				mux {
++					groups = "gpio2_group";
++					function = "gpio2_func";
++				};
++			};
++            pinctrl_die0_gpio3_default: gpio3-default{
++				mux {
++					groups = "gpio3_group";
++					function = "gpio3_func";
++				};
++			};
++            pinctrl_die0_gpio4_default: gpio4-default{
++				mux {
++					groups = "gpio4_group";
++					function = "gpio4_func";
++				};
++			};
++            pinctrl_die0_gpio5_default: gpio5-default{
++				mux {
++					groups = "gpio5_group";
++					function = "gpio5_func";
++				};
++				conf {
++					groups = "gpio5_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die0_gpio6_default: gpio6-default{
++				mux {
++					groups = "gpio6_group";
++					function = "gpio6_func";
++				};
++				conf {
++					groups = "gpio6_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio10_default: gpio10-default{
++				mux {
++					groups = "gpio10_group";
++					function = "gpio10_func";
++				};
++				conf {
++					groups = "gpio10_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die0_gpio11_default: gpio11-default{
++				mux {
++					groups = "gpio11_group";
++					function = "gpio11_func";
++				};
++				conf {
++					groups = "gpio11_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die0_gpio12_default: gpio12-default{
++				mux {
++					groups = "gpio12_group";
++					function = "gpio12_func";
++				};
++			};
++            pinctrl_die0_gpio13_default: gpio13-default{
++				mux {
++					groups = "gpio13_group";
++					function = "gpio13_func";
++				};
++			};
++            pinctrl_die0_gpio14_default: gpio14-default{
++				mux {
++					groups = "gpio14_group";
++					function = "gpio14_func";
++				};
++			};
++            pinctrl_die0_gpio15_default: gpio15-default{
++				mux {
++					groups = "gpio15_group";
++					function = "gpio15_func";
++				};
++			};
++            pinctrl_die0_gpio16_default: gpio16-default{
++				mux {
++					groups = "gpio16_group";
++					function = "gpio16_func";
++				};
++				conf {
++					groups = "gpio16_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio18_default: gpio18-default{
++				mux {
++					groups = "gpio18_group";
++					function = "gpio18_func";
++				};
++				conf {
++					groups = "gpio18_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio19_default: gpio19-default{
++				mux {
++					groups = "gpio19_group";
++					function = "gpio19_func";
++				};
++				conf {
++					groups = "gpio19_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio20_default: gpio20-default{
++				mux {
++					groups = "gpio20_group";
++					function = "gpio20_func";
++				};
++				conf {
++					groups = "gpio20_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio21_default: gpio21-default{
++				mux {
++					groups = "gpio21_group";
++					function = "gpio21_func";
++				};
++				conf {
++					groups = "gpio21_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio22_default: gpio22-default{
++				mux {
++					groups = "gpio22_group";
++					function = "gpio22_func";
++				};
++			};
++            pinctrl_die0_gpio23_default: gpio23-default{
++				mux {
++					groups = "gpio23_group";
++					function = "gpio23_func";
++				};
++			};
++            pinctrl_die0_gpio24_default: gpio24-default{
++				mux {
++					groups = "gpio24_group";
++					function = "gpio24_func";
++				};
++			};
++            pinctrl_die0_gpio25_default: gpio25-default{
++				mux {
++					groups = "gpio25_group";
++					function = "gpio25_func";
++				};
++			};
++            pinctrl_die0_gpio26_default: gpio26-default{
++				mux {
++					groups = "gpio26_group";
++					function = "gpio26_func";
++				};
++			};
++            pinctrl_die0_gpio27_default: gpio27-default{
++				mux {
++					groups = "gpio27_group";
++					function = "gpio27_func";
++				};
++			};
++            pinctrl_die0_gpio28_default: gpio28-default{
++				mux {
++					groups = "gpio28_group";
++					function = "gpio28_func";
++				};
++				conf {
++					groups = "gpio28_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die0_gpio29_default: gpio29-default{
++				mux {
++					groups = "gpio29_group";
++					function = "gpio29_func";
++				};
++			};
++            pinctrl_die0_gpio30_default: gpio30-default{
++				mux {
++					groups = "gpio30_group";
++					function = "gpio30_func";
++				};
++			};
++            pinctrl_die0_gpio31_default: gpio31-default{
++				mux {
++					groups = "gpio31_group";
++					function = "gpio31_func";
++				};
++			};
++            pinctrl_die0_gpio32_default: gpio32-default{
++				mux {
++					groups = "gpio32_group";
++					function = "gpio32_func";
++				};
++			};
++            pinctrl_die0_gpio33_default: gpio33-default{
++				mux {
++					groups = "gpio33_group";
++					function = "gpio33_func";
++				};
++			};
++            pinctrl_die0_gpio34_default: gpio34-default{
++				mux {
++					groups = "gpio34_group";
++					function = "gpio34_func";
++				};
++			};
++            pinctrl_die0_gpio35_default: gpio35-default{
++				mux {
++					groups = "gpio35_group";
++					function = "gpio35_func";
++				};
++				conf {
++					groups = "gpio35_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio36_default: gpio36-default{
++				mux {
++					groups = "gpio36_group";
++					function = "gpio36_func";
++				};
++				conf {
++					groups = "gpio36_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio37_default: gpio37-default{
++				mux {
++					groups = "gpio37_group";
++					function = "gpio37_func";
++				};
++				conf {
++					groups = "gpio37_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio38_default: gpio38-default{
++				mux {
++					groups = "gpio38_group";
++					function = "gpio38_func";
++				};
++				conf {
++					groups = "gpio38_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio39_default: gpio39-default{
++				mux {
++					groups = "gpio39_group";
++					function = "gpio39_func";
++				};
++				conf {
++					groups = "gpio39_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio40_default: gpio40-default{
++				mux {
++					groups = "gpio40_group";
++					function = "gpio40_func";
++				};
++				conf {
++					groups = "gpio40_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio41_default: gpio41-default{
++				mux {
++					groups = "gpio41_group";
++					function = "gpio41_func";
++				};
++			};
++            pinctrl_die0_gpio42_default: gpio42-default{
++				mux {
++					groups = "gpio42_group";
++					function = "gpio42_func";
++				};
++				conf {
++					groups = "gpio42_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio43_default: gpio43-default{
++				mux {
++					groups = "gpio43_group";
++					function = "gpio43_func";
++				};
++			};
++            pinctrl_die0_gpio44_default: gpio44-default{
++				mux {
++					groups = "gpio44_group";
++					function = "gpio44_func";
++				};
++			};
++            pinctrl_die0_gpio45_default: gpio45-default{
++				mux {
++					groups = "gpio45_group";
++					function = "gpio45_func";
++				};
++			};
++            pinctrl_die0_gpio46_default: gpio46-default{
++				mux {
++					groups = "gpio46_group";
++					function = "gpio46_func";
++				};
++				conf {
++					groups = "gpio46_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio47_default: gpio47-default{
++				mux {
++					groups = "gpio47_group";
++					function = "gpio47_func";
++				};
++				conf {
++					groups = "gpio47_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio48_default: gpio48-default{
++				mux {
++					groups = "gpio48_group";
++					function = "gpio48_func";
++				};
++			};
++            pinctrl_die0_gpio49_default: gpio49-default{
++				mux {
++					groups = "gpio49_group";
++					function = "gpio49_func";
++				};
++			};
++            pinctrl_die0_gpio50_default: gpio50-default{
++				mux {
++					groups = "gpio50_group";
++					function = "gpio50_func";
++				};
++			};
++            pinctrl_die0_gpio51_default: gpio51-default{
++				mux {
++					groups = "gpio51_group";
++					function = "gpio51_func";
++				};
++			};
++            pinctrl_die0_gpio52_default: gpio52-default{
++				mux {
++					groups = "gpio52_group";
++					function = "gpio52_func";
++				};
++				conf {
++					groups = "gpio52_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio53_default: gpio53-default{
++				mux {
++					groups = "gpio53_group";
++					function = "gpio53_func";
++				};
++				conf {
++					groups = "gpio53_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio54_default: gpio54-default{
++				mux {
++					groups = "gpio54_group";
++					function = "gpio54_func";
++				};
++			};
++            pinctrl_die0_gpio55_default: gpio55-default{
++				mux {
++					groups = "gpio55_group";
++					function = "gpio55_func";
++				};
++			};
++            pinctrl_die0_gpio56_default: gpio56-default{
++				mux {
++					groups = "gpio56_group";
++					function = "gpio56_func";
++				};
++			};
++            pinctrl_die0_gpio57_default: gpio57-default{
++				mux {
++					groups = "gpio57_group";
++					function = "gpio57_func";
++				};
++			};
++            pinctrl_die0_gpio58_default: gpio58-default{
++				mux {
++					groups = "gpio58_group";
++					function = "gpio58_func";
++				};
++			};
++            pinctrl_die0_gpio59_default: gpio59-default{
++				mux {
++					groups = "gpio59_group";
++					function = "gpio59_func";
++				};
++			};
++            pinctrl_die0_gpio60_default: gpio60-default{
++				mux {
++					groups = "gpio60_group";
++					function = "gpio60_func";
++				};
++			};
++            pinctrl_die0_gpio61_default: gpio61-default{
++				mux {
++					groups = "gpio61_group";
++					function = "gpio61_func";
++				};
++			};
++            pinctrl_die0_gpio62_default: gpio62-default{
++				mux {
++					groups = "gpio62_group";
++					function = "gpio62_func";
++				};
++			};
++            pinctrl_die0_gpio63_default: gpio63-default{
++				mux {
++					groups = "gpio63_group";
++					function = "gpio63_func";
++				};
++			};
++            pinctrl_die0_gpio67_default: gpio67-default{
++				mux {
++					groups = "gpio67_group";
++					function = "gpio67_func";
++				};
++				conf {
++					groups = "gpio67_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio68_default: gpio68-default{
++				mux {
++					groups = "gpio68_group";
++					function = "gpio68_func";
++				};
++			};
++            pinctrl_die0_gpio69_default: gpio69-default{
++				mux {
++					groups = "gpio69_group";
++					function = "gpio69_func";
++				};
++			};
++            pinctrl_die0_gpio70_default: gpio70-default{
++				mux {
++					groups = "gpio70_group";
++					function = "gpio70_func";
++				};
++			};
++            pinctrl_die0_gpio71_default: gpio71-default{
++				mux {
++					groups = "gpio71_group";
++					function = "gpio71_func";
++				};
++			};
++            pinctrl_die0_gpio72_default: gpio72-default{
++				mux {
++					groups = "gpio72_group";
++					function = "gpio72_func";
++				};
++			};
++            pinctrl_die0_gpio73_default: gpio73-default{
++				mux {
++					groups = "gpio73_group";
++					function = "gpio73_func";
++				};
++			};
++            pinctrl_die0_gpio74_default: gpio74-default{
++				mux {
++					groups = "gpio74_group";
++					function = "gpio74_func";
++				};
++			};
++            pinctrl_die0_gpio75_default: gpio75-default{
++				mux {
++					groups = "gpio75_group";
++					function = "gpio75_func";
++				};
++			};
++            pinctrl_die0_gpio76_default: gpio76-default{
++				mux {
++					groups = "gpio76_group";
++					function = "gpio76_func";
++				};
++			};
++            pinctrl_die0_gpio77_default: gpio77-default{
++				mux {
++					groups = "gpio77_group";
++					function = "gpio77_func";
++				};
++			};
++            pinctrl_die0_gpio78_default: gpio78-default{
++				mux {
++					groups = "gpio78_group";
++					function = "gpio78_func";
++				};
++			};
++            pinctrl_die0_gpio79_default: gpio79-default{
++				mux {
++					groups = "gpio79_group";
++					function = "gpio79_func";
++				};
++			};
++            pinctrl_die0_gpio80_default: gpio80-default{
++				mux {
++					groups = "gpio80_group";
++					function = "gpio80_func";
++				};
++			};
++            pinctrl_die0_gpio81_default: gpio81-default{
++				mux {
++					groups = "gpio81_group";
++					function = "gpio81_func";
++				};
++			};
++            pinctrl_die0_gpio88_default: gpio88-default{
++				mux {
++					groups = "gpio88_group";
++					function = "gpio88_func";
++				};
++			};
++            pinctrl_die0_gpio89_default: gpio89-default{
++				mux {
++					groups = "gpio89_group";
++					function = "gpio89_func";
++				};
++			};
++            pinctrl_die0_gpio90_default: gpio90-default{
++				mux {
++					groups = "gpio90_group";
++					function = "gpio90_func";
++				};
++			};
++            pinctrl_die0_gpio91_default: gpio91-default{
++				mux {
++					groups = "gpio91_group";
++					function = "gpio91_func";
++				};
++			};
++            pinctrl_die0_gpio92_default: gpio92-default{
++				mux {
++					groups = "gpio92_group";
++					function = "gpio92_func";
++				};
++				conf {
++					groups = "gpio92_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio93_default: gpio93-default{
++				mux {
++					groups = "gpio93_group";
++					function = "gpio93_func";
++				};
++				conf {
++					groups = "gpio93_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio94_default: gpio94-default{
++				mux {
++					groups = "gpio94_group";
++					function = "gpio94_func";
++				};
++				conf {
++					groups = "gpio94_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio95_default: gpio95-default{
++				mux {
++					groups = "gpio95_group";
++					function = "gpio95_func";
++				};
++			};
++            pinctrl_die0_gpio96_default: gpio96-default{
++				mux {
++					groups = "gpio96_group";
++					function = "gpio96_func";
++				};
++			};
++            pinctrl_die0_gpio97_default: gpio97-default{
++				mux {
++					groups = "gpio97_group";
++					function = "gpio97_func";
++				};
++			};
++            pinctrl_die0_gpio98_default: gpio98-default{
++				mux {
++					groups = "gpio98_group";
++					function = "gpio98_func";
++				};
++			};
++            pinctrl_die0_gpio99_default: gpio99-default{
++				mux {
++					groups = "gpio99_group";
++					function = "gpio99_func";
++				};
++			};
++            pinctrl_die0_gpio100_default: gpio100-default{
++				mux {
++					groups = "gpio100_group";
++					function = "gpio100_func";
++				};
++			};
++            pinctrl_die0_gpio101_default: gpio101-default{
++				mux {
++					groups = "gpio101_group";
++					function = "gpio101_func";
++				};
++			};
++            pinctrl_die0_gpio102_default: gpio102-default{
++				mux {
++					groups = "gpio102_group";
++					function = "gpio102_func";
++				};
++			};
++            pinctrl_die0_gpio103_default: gpio103-default{
++				mux {
++					groups = "gpio103_group";
++					function = "gpio103_func";
++				};
++			};
++            pinctrl_die0_gpio104_default: gpio104-default{
++				mux {
++					groups = "gpio104_group";
++					function = "gpio104_func";
++				};
++			};
++            pinctrl_die0_gpio105_default: gpio105-default{
++				mux {
++					groups = "gpio105_group";
++					function = "gpio105_func";
++				};
++			};
++            pinctrl_die0_gpio106_default: gpio106-default{
++				mux {
++					groups = "gpio106_group";
++					function = "gpio106_func";
++				};
++				conf {
++					groups = "gpio106_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio107_default: gpio107-default{
++				mux {
++					groups = "gpio107_group";
++					function = "gpio107_func";
++				};
++				conf {
++					groups = "gpio107_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio108_default: gpio108-default{
++				mux {
++					groups = "gpio108_group";
++					function = "gpio108_func";
++				};
++				conf {
++					groups = "gpio108_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio109_default: gpio109-default{
++				mux {
++					groups = "gpio109_group";
++					function = "gpio109_func";
++				};
++				conf {
++					groups = "gpio109_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio110_default: gpio110-default{
++				mux {
++					groups = "gpio110_group";
++					function = "gpio110_func";
++				};
++				conf {
++					groups = "gpio110_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die0_gpio111_default: gpio111-default{
++				mux {
++					groups = "gpio111_group";
++					function = "gpio111_func";
++				};
++				conf {
++					groups = "gpio111_group";
++					input-enable = <0>;
++					bias-pull-up = <1>;
++				};
++			};
++
++            //func6
++            pinctrl_die0_csi_mon_out_default: csi_mon_out-default{
++				mux {
++					groups = "csi_mon_out_group";
++					function = "csi_mon_out_func";
++				};
++			};
++            pinctrl_die0_csi_ocla_clk_default: csi_ocla_clk-default{
++				mux {
++					groups = "csi_ocla_clk_group";
++					function = "csi_ocla_clk_func";
++				};
++			};
++            pinctrl_die0_csi_mon_out_valid_default: csi_mon_out_valid-default{
++				mux {
++					groups = "csi_mon_out_valid_group";
++					function = "csi_mon_out_valid_func";
++				};
++			};
++            pinctrl_die0_csi_parity_error_default: csi_parity_error-default{
++				mux {
++					groups = "csi_parity_error_group";
++					function = "csi_parity_error_func";
++				};
++			};
++            pinctrl_die0_csi_dtb_out_default: csi_dtb_out-default{
++				mux {
++					groups = "csi_dtb_out_group";
++					function = "csi_dtb_out_func";
++				};
++			};
++            pinctrl_die0_csi_phy_sel_default: csi_phy_sel-default{
++				mux {
++					groups = "csi_phy_sel_group";
++					function = "csi_phy_sel_func";
++				};
++			};
++            pinctrl_die0_vc_g2d0_debug_out_default: vc_g2d0_debug_out-default{
++				mux {
++					groups = "vc_g2d0_debug_out_group";
++					function = "vc_g2d0_debug_out_func";
++				};
++			};
++            pinctrl_die0_vc_g2d1_debug_out_default: vc_g2d1_debug_out-default{
++				mux {
++					groups = "vc_g2d1_debug_out_group";
++					function = "vc_g2d1_debug_out_func";
++				};
++			};
++            pinctrl_die0_sata_mpll_clk_default: sata_mpll_clk-default{
++				mux {
++					groups = "sata_mpll_clk_group";
++					function = "sata_mpll_clk_func";
++				};
++			};
++            pinctrl_die0_sata_ref_repeat_clk_m_default: sata_ref_repeat_clk_m-default{
++				mux {
++					groups = "sata_ref_repeat_clk_m_group";
++					function = "sata_ref_repeat_clk_m_func";
++				};
++			};
++            pinctrl_die0_sata_ref_repeat_clk_p_default: sata_ref_repeat_clk_p-default{
++				mux {
++					groups = "sata_ref_repeat_clk_p_group";
++					function = "sata_ref_repeat_clk_p_func";
++				};
++			};
++
++			//func7
++			pinctrl_die0_clk_d2d_test_out_default: clk_d2d_test_out-default{
++				mux {
++					groups = "clk_d2d_test_out_group";
++					function = "clk_d2d_test_out_func";
++				};
++			};
++			pinctrl_die0_clk_spll0_test_out_default: clk_spll0_test_out-default{
++				mux {
++					groups = "clk_spll0_test_out_group";
++					function = "clk_spll0_test_out_func";
++				};
++			};
++		};
++    };
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
+new file mode 100644
+index 000000000000..ef18b0649043
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
+@@ -0,0 +1,1447 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Include file for pin control of Eswin EIC770x family SoC.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++#include "eswin-win2030-die0-soc.dtsi"
++#include <dt-bindings/interrupt-controller/irq.h>
++
++/ {
++    #address-cells = <2>;
++	#size-cells = <2>;
++    soc {
++        pinctrl: pinctrl@0x71600080 {
++			compatible = "eswin,eic7x-pinctrl", "syscon";
++			reg = <0x0 0x71600080 0x0 0x1FFF80>;
++			status = "disabled";
++
++			//Dual Die Configuration
++			//func0
++			/* used with pinctrl_die0_jtag1_off_default*/
++			pinctrl_die1_jtag1_on_default: jtag1_on-default{
++				mux {
++					groups = "jtag1_on_group";
++					function = "jtag1_on_func";
++				};
++			};
++			/* used with pinctrl_die0_jtag1_on_default*/
++			pinctrl_die1_jtag1_off_default: jtag1_off-default{
++				mux {
++					groups = "jtag1_off_group";
++					function = "jtag1_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_jtag2_off_default*/
++			pinctrl_die1_jtag2_on_default: jtag2_on-default{
++				mux {
++					groups = "jtag2_on_group";
++					function = "jtag2_on_func";
++				};
++			};
++			/* used with pinctrl_die0_jtag2_on_default*/
++			pinctrl_die1_jtag2_off_default: jtag2_off-default{
++				mux {
++					groups = "jtag2_off_group";
++					function = "jtag2_off_func";
++				};
++			};
++
++			//func2
++			/* used with pinctrl_die0_gpio7_off_default*/
++			pinctrl_die1_gpio7_on_default: gpio7_on-default{
++				mux {
++					groups = "gpio7_on_group";
++					function = "gpio7_on_func";
++				};
++				conf {
++					groups = "gpio7_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio7_on_default*/
++			pinctrl_die1_gpio7_off_default: gpio7_off-default{
++				mux {
++					groups = "gpio7_off_group";
++					function = "gpio7_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_gpio8_off_default*/
++			pinctrl_die1_gpio8_on_default: gpio8_on-default{
++				mux {
++					groups = "gpio8_on_group";
++					function = "gpio8_on_func";
++				};
++				conf {
++					groups = "gpio8_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio8_on_default*/
++			pinctrl_die1_gpio8_off_default: gpio8_off-default{
++				mux {
++					groups = "gpio8_off_group";
++					function = "gpio8_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_gpio9_off_default*/
++			pinctrl_die1_gpio9_on_default: gpio9_on-default{
++				mux {
++					groups = "gpio9_on_group";
++					function = "gpio9_on_func";
++				};
++				conf {
++					groups = "gpio9_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio9_on_default*/
++			pinctrl_die1_gpio9_off_default: gpio9_off-default{
++				mux {
++					groups = "gpio9_off_group";
++					function = "gpio9_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_gpio17_off_default*/
++			pinctrl_die1_gpio17_on_default: gpio17_on-default{
++				mux {
++					groups = "gpio17_on_group";
++					function = "gpio17_on_func";
++				};
++				conf {
++					groups = "gpio17_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio17_on_default*/
++			pinctrl_die1_gpio17_off_default: gpio17_off-default{
++				mux {
++					groups = "gpio17_off_group";
++					function = "gpio17_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_gpio64_off_default*/
++			pinctrl_die1_gpio64_on_default: gpio64_on-default{
++				mux {
++					groups = "gpio64_on_group";
++					function = "gpio64_on_func";
++				};
++				conf {
++					groups = "gpio64_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio64_on_default*/
++			pinctrl_die1_gpio64_off_default: gpio64_off-default{
++				mux {
++					groups = "gpio64_off_group";
++					function = "gpio64_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_gpio65_off_default*/
++			pinctrl_die1_gpio65_on_default: gpio65_on-default{
++				mux {
++					groups = "gpio65_on_group";
++					function = "gpio65_on_func";
++				};
++				conf {
++					groups = "gpio65_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio65_on_default*/
++			pinctrl_die1_gpio65_off_default: gpio65_off-default{
++				mux {
++					groups = "gpio65_off_group";
++					function = "gpio65_off_func";
++				};
++			};
++
++			/* used with pinctrl_die0_gpio66_off_default*/
++			pinctrl_die1_gpio66_on_default: gpio66_on-default{
++				mux {
++					groups = "gpio66_on_group";
++					function = "gpio66_on_func";
++				};
++				conf {
++					groups = "gpio66_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++			/* used with pinctrl_die0_gpio66_on_default*/
++			pinctrl_die1_gpio66_off_default: gpio66_off-default{
++				mux {
++					groups = "gpio66_off_group";
++					function = "gpio66_off_func";
++				};
++			};
++
++			//func6
++			/* used with pinctrl_die0_vc_g2d0_debug_out_off_default*/
++			pinctrl_die1_vc_g2d0_debug_out_on_default: vc_g2d0_debug_out_on-default{
++				mux {
++					groups = "vc_g2d0_debug_out_on_group";
++					function = "vc_g2d0_debug_out_on_func";
++				};
++			};
++			/* used with pinctrl_die0_vc_g2d0_debug_out_on_default*/
++			pinctrl_die1_vc_g2d0_debug_out_off_default: vc_g2d0_debug_out_off-default{
++				mux {
++					groups = "vc_g2d0_debug_out_off_group";
++					function = "vc_g2d0_debug_out_off_func";
++				};
++			};
++
++			//func7
++			/* used with pinctrl_die0_ftm_test_out_off_default*/
++			pinctrl_die1_ftm_test_out_on_default: ftm_test_out_on-default{
++				mux {
++					groups = "ftm_test_out_on_group";
++					function = "ftm_test_out_on_func";
++				};
++			};
++			/* used with pinctrl_die0_ftm_test_out_on_default*/
++			pinctrl_die1_ftm_test_out_off_default: ftm_test_out_off-default{
++				mux {
++					groups = "ftm_test_out_off_group";
++					function = "ftm_test_out_off_func";
++				};
++			};
++
++            //func0
++            pinctrl_die1_sdio0_default: sdio0-default{
++				mux {
++					groups = "sdio0_group";
++					function = "sdio0_func";
++				};
++			};
++            pinctrl_die1_sdio1_default: sdio1-default{
++				mux {
++					groups = "sdio1_group";
++					function = "sdio1_func";
++				};
++			};
++            pinctrl_die1_jtag0_default: jtag0-default{
++				mux {
++					groups = "jtag0_group";
++					function = "jtag0_func";
++				};
++			};
++            pinctrl_die1_pcie_default: pcie-default{
++				mux{
++					groups = "pcie_group";
++					function = "pcie_func";
++				};
++			};
++            pinctrl_die1_hdmi_default: hdmi-default{
++				mux{
++					groups = "hdmi_group";
++					function = "hdmi_func";
++				};
++			};
++            pinctrl_die1_rgmii0_default: rgmii0-default{
++				mux {
++					groups = "rgmii0_group";
++					function = "rgmii0_func";
++				};
++			};
++            pinctrl_die1_rgmii1_default: rgmii1-default{
++				mux{
++					groups = "rgmii1_group";
++					function = "rgmii1_func";
++				};
++			};
++            pinctrl_die1_spi0_default: spi0-default{
++				mux {
++					groups = "spi0_group";
++					function = "spi0_func";
++				};
++			};
++            pinctrl_die1_spi1_default: spi1-default{
++				mux{
++					groups = "spi1_group";
++					function = "spi1_func";
++				};
++			};
++            pinctrl_die1_spi3_default: spi3-default{
++				mux {
++					groups = "spi3_group";
++					function = "spi3_func";
++				};
++			};
++            pinctrl_die1_por_time_sel0_default: por_time_sel0-default{
++				mux {
++					groups = "por_time_sel0_group";
++					function = "por_time_sel0_func";
++				};
++			};
++            pinctrl_die1_por_time_sel1_default: por_time_sel1-default{
++				mux {
++					groups = "por_time_sel1_group";
++					function = "por_time_sel1_func";
++				};
++			};
++            pinctrl_die1_i2s0_default: i2s0-default{
++				mux {
++					groups = "i2s0_group";
++					function = "i2s0_func";
++				};
++			};
++            pinctrl_die1_i2s1_default: i2s1-default{
++				mux {
++					groups = "i2s1_group";
++					function = "i2s1_func";
++				};
++			};
++            pinctrl_die1_i2s2_default: i2s2-default{
++				mux {
++					groups = "i2s2_group";
++					function = "i2s2_func";
++				};
++			};
++            pinctrl_die1_usb0_pwren_default: usb0_pwren-default{
++				mux {
++					groups = "usb0_pwren_group";
++					function = "usb0_pwren_func";
++				};
++			};
++            pinctrl_die1_usb1_pwren_default: usb1_pwren-default{
++				mux {
++					groups = "usb1_pwren_group";
++					function = "usb1_pwren_func";
++				};
++			};
++            pinctrl_die1_i2c0_default: i2c0-default{
++				mux {
++					groups = "i2c0_group";
++					function = "i2c0_func";
++				};
++			};
++            pinctrl_die1_i2c1_default: i2c1-default{
++				mux {
++					groups = "i2c1_group";
++					function = "i2c1_func";
++				};
++			};
++            pinctrl_die1_i2c2_default: i2c2-default{
++				mux {
++					groups = "i2c2_group";
++					function = "i2c2_func";
++				};
++			};
++            pinctrl_die1_i2c3_default: i2c3-default{
++				mux {
++					groups = "i2c3_group";
++					function = "i2c3_func";
++				};
++			};
++            pinctrl_die1_i2c4_default: i2c4-default{
++				mux {
++					groups = "i2c4_group";
++					function = "i2c4_func";
++				};
++			};
++            pinctrl_die1_i2c5_default: i2c5-default{
++				mux {
++					groups = "i2c5_group";
++					function = "i2c5_func";
++				};
++			};
++            pinctrl_die1_i2c8_default: i2c8-default{
++				mux {
++					groups = "i2c8_group";
++					function = "i2c8_func";
++				};
++			};
++            pinctrl_die1_i2c10_default: i2c10-default{
++				mux {
++					groups = "i2c10_group";
++					function = "i2c10_func";
++				};
++			};
++            pinctrl_die1_i2c11_default: i2c11-default{
++				mux {
++					groups = "i2c11_group";
++					function = "i2c11_func";
++				};
++			};
++            pinctrl_die1_uart0_default: uart0-default{
++				mux {
++					groups = "uart0_group";
++					function = "uart0_func";
++				};
++			};
++            pinctrl_die1_uart1_default: uart1-default{
++				mux {
++					groups = "uart1_group";
++					function = "uart1_func";
++				};
++			};
++            pinctrl_die1_uart2_default: uart2-default{
++				mux {
++					groups = "uart2_group";
++					function = "uart2_func";
++				};
++			};
++			pinctrl_die1_pwm0_default: pwm0-default{
++				mux {
++					groups = "pwm0_group";
++					function = "pwm0_func";
++				};
++			};
++            pinctrl_die1_fan_tach_default: fan_tach-default{
++				mux {
++					groups = "fan_tach_group";
++					function = "fan_tach_func";
++				};
++			};
++            pinctrl_die1_mipi_csi0_default: mipi_csi0-default{
++				mux {
++					groups = "mipi_csi0_group";
++					function = "mipi_csi0_func";
++				};
++			};
++            pinctrl_die1_mipi_csi1_default: mipi_csi1-default{
++				mux {
++					groups = "mipi_csi1_group";
++					function = "mipi_csi1_func";
++				};
++			};
++            pinctrl_die1_mipi_csi2_default: mipi_csi2-default{
++				mux {
++					groups = "mipi_csi2_group";
++					function = "mipi_csi2_func";
++				};
++			};
++            pinctrl_die1_mipi_csi3_default: mipi_csi3-default{
++				mux {
++					groups = "mipi_csi3_group";
++					function = "mipi_csi3_func";
++				};
++			};
++            pinctrl_die1_mipi_csi4_default: mipi_csi4-default{
++				mux {
++					groups = "mipi_csi4_group";
++					function = "mipi_csi4_func";
++				};
++			};
++            pinctrl_die1_mipi_csi5_default: mipi_csi5-default{
++				mux {
++					groups = "mipi_csi5_group";
++					function = "mipi_csi5_func";
++				};
++			};
++            pinctrl_die1_s_mode_default: s_mode-default{
++				mux {
++					groups = "s_mode_group";
++					function = "s_mode_func";
++				};
++			};
++            pinctrl_die1_ddr_refclk_sel_default: ddr_refclk_sel-default{
++				mux {
++					groups = "ddr_refclk_sel_group";
++					function = "ddr_refclk_sel_func";
++				};
++			};
++            pinctrl_die1_boot_sel_default: boot_sel-default{
++				mux {
++					groups = "boot_sel_group";
++					function = "boot_sel_func";
++				};
++			};
++            pinctrl_die1_lpddr_ref_clk_default: lpddr_ref_clk-default{
++				mux {
++					groups = "lpddr_ref_clk_group";
++					function = "lpddr_ref_clk_func";
++				};
++			};
++
++            //func1
++            pinctrl_die1_spi2_default: spi2-default{
++				mux1 {
++					groups = "spi2_clk_group";
++					function = "spi2_clk_func";
++				};
++				conf1 {
++					groups = "spi2_clk_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++					bias-pull-down = <0>;
++				};
++				mux2 {
++					groups = "spi2_d0_group";
++					function = "spi2_d0_func";
++				};
++				conf2 {
++					groups = "spi2_d0_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++					bias-pull-down = <0>;
++				};
++				mux3 {
++					groups = "spi2_d1_d2_d3_group";
++					function = "spi2_d1_d2_d3_func";
++				};
++				conf3 {
++					groups = "spi2_d1_d2_d3_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++					bias-pull-down = <0>;
++				};
++				mux4 {
++					groups = "spi2_cs_group";
++					function = "spi2_cs_func";
++				};
++			};
++
++            pinctrl_die1_sata_act_led_default: sata_act_led-default{
++				mux {
++					groups = "sata_act_led_group";
++					function = "sata_act_led_func";
++				};
++				conf {
++					groups = "sata_act_led_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_emmc_led_control_default: emmc_led_control-default{
++				mux {
++					groups = "emmc_led_control_group";
++					function = "emmc_led_control_func";
++				};
++				conf {
++					groups = "emmc_led_control_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_sd0_led_control_default: sd0_led_control-default{
++				mux {
++					groups = "sd0_led_control_group";
++					function = "sd0_led_control_func";
++				};
++			};
++            pinctrl_die1_sd1_led_control_default: sd1_led_control-default{
++				mux {
++					groups = "sd1_led_control_group";
++					function = "sd1_led_control_func";
++				};
++			};
++            pinctrl_die1_i2c6_default: i2c6-default{
++				mux {
++					groups = "i2c6_group";
++					function = "i2c6_func";
++				};
++			};
++            pinctrl_die1_i2c7_default: i2c7-default{
++				mux {
++					groups = "i2c7_group";
++					function = "i2c7_func";
++				};
++			};
++            pinctrl_die1_i2c9_default: i2c9-default{
++				mux {
++					groups = "i2c9_group";
++					function = "i2c9_func";
++				};
++			};
++            pinctrl_die1_pwm1_default: pwm1-default{
++				mux {
++					groups = "pwm1_group";
++					function = "pwm1_func";
++				};
++			};
++            pinctrl_die1_pwm2_default: pwm2-default{
++				mux {
++					groups = "pwm2_group";
++					function = "pwm2_func";
++				};
++			};
++            pinctrl_die1_mipi_csi_xtrig_default: mipi_csi_xtrig-default{
++				mux {
++					groups = "mipi_csi_xtrig_group";
++					function = "mipi_csi_xtrig_func";
++				};
++			};
++
++            //func3
++            pinctrl_die1_uart3_default: uart3-default{
++				mux {
++					groups = "uart3_group";
++					function = "uart3_func";
++				};
++			};
++            pinctrl_die1_uart4_default: uart4-default{
++				mux {
++					groups = "uart4_group";
++					function = "uart4_func";
++				};
++			};
++
++            //gpio
++            pinctrl_die1_gpio0_default: gpio0-default{
++				mux {
++					groups = "gpio0_group";
++					function = "gpio0_func";
++				};
++				conf {
++					groups = "gpio0_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die1_gpio1_default: gpio1-default{
++				mux {
++					groups = "gpio1_group";
++					function = "gpio1_func";
++				};
++			};
++            pinctrl_die1_gpio2_default: gpio2-default{
++				mux {
++					groups = "gpio2_group";
++					function = "gpio2_func";
++				};
++			};
++            pinctrl_die1_gpio3_default: gpio3-default{
++				mux {
++					groups = "gpio3_group";
++					function = "gpio3_func";
++				};
++			};
++            pinctrl_die1_gpio4_default: gpio4-default{
++				mux {
++					groups = "gpio4_group";
++					function = "gpio4_func";
++				};
++			};
++            pinctrl_die1_gpio5_default: gpio5-default{
++				mux {
++					groups = "gpio5_group";
++					function = "gpio5_func";
++				};
++				conf {
++					groups = "gpio5_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die1_gpio6_default: gpio6-default{
++				mux {
++					groups = "gpio6_group";
++					function = "gpio6_func";
++				};
++				conf {
++					groups = "gpio6_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio10_default: gpio10-default{
++				mux {
++					groups = "gpio10_group";
++					function = "gpio10_func";
++				};
++				conf {
++					groups = "gpio10_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die1_gpio11_default: gpio11-default{
++				mux {
++					groups = "gpio11_group";
++					function = "gpio11_func";
++				};
++				conf {
++					groups = "gpio11_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die1_gpio12_default: gpio12-default{
++				mux {
++					groups = "gpio12_group";
++					function = "gpio12_func";
++				};
++			};
++            pinctrl_die1_gpio13_default: gpio13-default{
++				mux {
++					groups = "gpio13_group";
++					function = "gpio13_func";
++				};
++			};
++            pinctrl_die1_gpio14_default: gpio14-default{
++				mux {
++					groups = "gpio14_group";
++					function = "gpio14_func";
++				};
++			};
++            pinctrl_die1_gpio15_default: gpio15-default{
++				mux {
++					groups = "gpio15_group";
++					function = "gpio15_func";
++				};
++			};
++            pinctrl_die1_gpio16_default: gpio16-default{
++				mux {
++					groups = "gpio16_group";
++					function = "gpio16_func";
++				};
++				conf {
++					groups = "gpio16_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio18_default: gpio18-default{
++				mux {
++					groups = "gpio18_group";
++					function = "gpio18_func";
++				};
++				conf {
++					groups = "gpio18_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio19_default: gpio19-default{
++				mux {
++					groups = "gpio19_group";
++					function = "gpio19_func";
++				};
++				conf {
++					groups = "gpio19_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio20_default: gpio20-default{
++				mux {
++					groups = "gpio20_group";
++					function = "gpio20_func";
++				};
++				conf {
++					groups = "gpio20_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio21_default: gpio21-default{
++				mux {
++					groups = "gpio21_group";
++					function = "gpio21_func";
++				};
++				conf {
++					groups = "gpio21_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio22_default: gpio22-default{
++				mux {
++					groups = "gpio22_group";
++					function = "gpio22_func";
++				};
++			};
++            pinctrl_die1_gpio23_default: gpio23-default{
++				mux {
++					groups = "gpio23_group";
++					function = "gpio23_func";
++				};
++			};
++            pinctrl_die1_gpio24_default: gpio24-default{
++				mux {
++					groups = "gpio24_group";
++					function = "gpio24_func";
++				};
++			};
++            pinctrl_die1_gpio25_default: gpio25-default{
++				mux {
++					groups = "gpio25_group";
++					function = "gpio25_func";
++				};
++			};
++            pinctrl_die1_gpio26_default: gpio26-default{
++				mux {
++					groups = "gpio26_group";
++					function = "gpio26_func";
++				};
++			};
++            pinctrl_die1_gpio27_default: gpio27-default{
++				mux {
++					groups = "gpio27_group";
++					function = "gpio27_func";
++				};
++			};
++            pinctrl_die1_gpio28_default: gpio28-default{
++				mux {
++					groups = "gpio28_group";
++					function = "gpio28_func";
++				};
++				conf {
++					groups = "gpio28_group";
++					input-enable = <1>;
++					bias-pull-up = <1>;
++				};
++			};
++            pinctrl_die1_gpio29_default: gpio29-default{
++				mux {
++					groups = "gpio29_group";
++					function = "gpio29_func";
++				};
++			};
++            pinctrl_die1_gpio30_default: gpio30-default{
++				mux {
++					groups = "gpio30_group";
++					function = "gpio30_func";
++				};
++			};
++            pinctrl_die1_gpio31_default: gpio31-default{
++				mux {
++					groups = "gpio31_group";
++					function = "gpio31_func";
++				};
++			};
++            pinctrl_die1_gpio32_default: gpio32-default{
++				mux {
++					groups = "gpio32_group";
++					function = "gpio32_func";
++				};
++			};
++            pinctrl_die1_gpio33_default: gpio33-default{
++				mux {
++					groups = "gpio33_group";
++					function = "gpio33_func";
++				};
++			};
++            pinctrl_die1_gpio34_default: gpio34-default{
++				mux {
++					groups = "gpio34_group";
++					function = "gpio34_func";
++				};
++			};
++            pinctrl_die1_gpio35_default: gpio35-default{
++				mux {
++					groups = "gpio35_group";
++					function = "gpio35_func";
++				};
++				conf {
++					groups = "gpio35_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio36_default: gpio36-default{
++				mux {
++					groups = "gpio36_group";
++					function = "gpio36_func";
++				};
++				conf {
++					groups = "gpio36_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio37_default: gpio37-default{
++				mux {
++					groups = "gpio37_group";
++					function = "gpio37_func";
++				};
++				conf {
++					groups = "gpio37_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio38_default: gpio38-default{
++				mux {
++					groups = "gpio38_group";
++					function = "gpio38_func";
++				};
++				conf {
++					groups = "gpio38_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio39_default: gpio39-default{
++				mux {
++					groups = "gpio39_group";
++					function = "gpio39_func";
++				};
++				conf {
++					groups = "gpio39_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio40_default: gpio40-default{
++				mux {
++					groups = "gpio40_group";
++					function = "gpio40_func";
++				};
++				conf {
++					groups = "gpio40_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio41_default: gpio41-default{
++				mux {
++					groups = "gpio41_group";
++					function = "gpio41_func";
++				};
++			};
++            pinctrl_die1_gpio42_default: gpio42-default{
++				mux {
++					groups = "gpio42_group";
++					function = "gpio42_func";
++				};
++				conf {
++					groups = "gpio42_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio43_default: gpio43-default{
++				mux {
++					groups = "gpio43_group";
++					function = "gpio43_func";
++				};
++			};
++            pinctrl_die1_gpio44_default: gpio44-default{
++				mux {
++					groups = "gpio44_group";
++					function = "gpio44_func";
++				};
++			};
++            pinctrl_die1_gpio45_default: gpio45-default{
++				mux {
++					groups = "gpio45_group";
++					function = "gpio45_func";
++				};
++			};
++            pinctrl_die1_gpio46_default: gpio46-default{
++				mux {
++					groups = "gpio46_group";
++					function = "gpio46_func";
++				};
++				conf {
++					groups = "gpio46_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio47_default: gpio47-default{
++				mux {
++					groups = "gpio47_group";
++					function = "gpio47_func";
++				};
++				conf {
++					groups = "gpio47_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio48_default: gpio48-default{
++				mux {
++					groups = "gpio48_group";
++					function = "gpio48_func";
++				};
++			};
++            pinctrl_die1_gpio49_default: gpio49-default{
++				mux {
++					groups = "gpio49_group";
++					function = "gpio49_func";
++				};
++			};
++            pinctrl_die1_gpio50_default: gpio50-default{
++				mux {
++					groups = "gpio50_group";
++					function = "gpio50_func";
++				};
++			};
++            pinctrl_die1_gpio51_default: gpio51-default{
++				mux {
++					groups = "gpio51_group";
++					function = "gpio51_func";
++				};
++			};
++            pinctrl_die1_gpio52_default: gpio52-default{
++				mux {
++					groups = "gpio52_group";
++					function = "gpio52_func";
++				};
++				conf {
++					groups = "gpio52_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio53_default: gpio53-default{
++				mux {
++					groups = "gpio53_group";
++					function = "gpio53_func";
++				};
++				conf {
++					groups = "gpio53_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio54_default: gpio54-default{
++				mux {
++					groups = "gpio54_group";
++					function = "gpio54_func";
++				};
++			};
++            pinctrl_die1_gpio55_default: gpio55-default{
++				mux {
++					groups = "gpio55_group";
++					function = "gpio55_func";
++				};
++			};
++            pinctrl_die1_gpio56_default: gpio56-default{
++				mux {
++					groups = "gpio56_group";
++					function = "gpio56_func";
++				};
++			};
++            pinctrl_die1_gpio57_default: gpio57-default{
++				mux {
++					groups = "gpio57_group";
++					function = "gpio57_func";
++				};
++			};
++            pinctrl_die1_gpio58_default: gpio58-default{
++				mux {
++					groups = "gpio58_group";
++					function = "gpio58_func";
++				};
++			};
++            pinctrl_die1_gpio59_default: gpio59-default{
++				mux {
++					groups = "gpio59_group";
++					function = "gpio59_func";
++				};
++			};
++            pinctrl_die1_gpio60_default: gpio60-default{
++				mux {
++					groups = "gpio60_group";
++					function = "gpio60_func";
++				};
++			};
++            pinctrl_die1_gpio61_default: gpio61-default{
++				mux {
++					groups = "gpio61_group";
++					function = "gpio61_func";
++				};
++			};
++            pinctrl_die1_gpio62_default: gpio62-default{
++				mux {
++					groups = "gpio62_group";
++					function = "gpio62_func";
++				};
++			};
++            pinctrl_die1_gpio63_default: gpio63-default{
++				mux {
++					groups = "gpio63_group";
++					function = "gpio63_func";
++				};
++			};
++            pinctrl_die1_gpio67_default: gpio67-default{
++				mux {
++					groups = "gpio67_group";
++					function = "gpio67_func";
++				};
++				conf {
++					groups = "gpio67_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio68_default: gpio68-default{
++				mux {
++					groups = "gpio68_group";
++					function = "gpio68_func";
++				};
++			};
++            pinctrl_die1_gpio69_default: gpio69-default{
++				mux {
++					groups = "gpio69_group";
++					function = "gpio69_func";
++				};
++			};
++            pinctrl_die1_gpio70_default: gpio70-default{
++				mux {
++					groups = "gpio70_group";
++					function = "gpio70_func";
++				};
++			};
++            pinctrl_die1_gpio71_default: gpio71-default{
++				mux {
++					groups = "gpio71_group";
++					function = "gpio71_func";
++				};
++			};
++            pinctrl_die1_gpio72_default: gpio72-default{
++				mux {
++					groups = "gpio72_group";
++					function = "gpio72_func";
++				};
++			};
++            pinctrl_die1_gpio73_default: gpio73-default{
++				mux {
++					groups = "gpio73_group";
++					function = "gpio73_func";
++				};
++			};
++            pinctrl_die1_gpio74_default: gpio74-default{
++				mux {
++					groups = "gpio74_group";
++					function = "gpio74_func";
++				};
++			};
++            pinctrl_die1_gpio75_default: gpio75-default{
++				mux {
++					groups = "gpio75_group";
++					function = "gpio75_func";
++				};
++			};
++            pinctrl_die1_gpio76_default: gpio76-default{
++				mux {
++					groups = "gpio76_group";
++					function = "gpio76_func";
++				};
++			};
++            pinctrl_die1_gpio77_default: gpio77-default{
++				mux {
++					groups = "gpio77_group";
++					function = "gpio77_func";
++				};
++			};
++            pinctrl_die1_gpio78_default: gpio78-default{
++				mux {
++					groups = "gpio78_group";
++					function = "gpio78_func";
++				};
++			};
++            pinctrl_die1_gpio79_default: gpio79-default{
++				mux {
++					groups = "gpio79_group";
++					function = "gpio79_func";
++				};
++			};
++            pinctrl_die1_gpio80_default: gpio80-default{
++				mux {
++					groups = "gpio80_group";
++					function = "gpio80_func";
++				};
++			};
++            pinctrl_die1_gpio81_default: gpio81-default{
++				mux {
++					groups = "gpio81_group";
++					function = "gpio81_func";
++				};
++			};
++            pinctrl_die1_gpio88_default: gpio88-default{
++				mux {
++					groups = "gpio88_group";
++					function = "gpio88_func";
++				};
++			};
++            pinctrl_die1_gpio89_default: gpio89-default{
++				mux {
++					groups = "gpio89_group";
++					function = "gpio89_func";
++				};
++			};
++            pinctrl_die1_gpio90_default: gpio90-default{
++				mux {
++					groups = "gpio90_group";
++					function = "gpio90_func";
++				};
++			};
++            pinctrl_die1_gpio91_default: gpio91-default{
++				mux {
++					groups = "gpio91_group";
++					function = "gpio91_func";
++				};
++			};
++            pinctrl_die1_gpio92_default: gpio92-default{
++				mux {
++					groups = "gpio92_group";
++					function = "gpio92_func";
++				};
++				conf {
++					groups = "gpio92_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio93_default: gpio93-default{
++				mux {
++					groups = "gpio93_group";
++					function = "gpio93_func";
++				};
++				conf {
++					groups = "gpio93_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio94_default: gpio94-default{
++				mux {
++					groups = "gpio94_group";
++					function = "gpio94_func";
++				};
++				conf {
++					groups = "gpio94_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio95_default: gpio95-default{
++				mux {
++					groups = "gpio95_group";
++					function = "gpio95_func";
++				};
++			};
++            pinctrl_die1_gpio96_default: gpio96-default{
++				mux {
++					groups = "gpio96_group";
++					function = "gpio96_func";
++				};
++			};
++            pinctrl_die1_gpio97_default: gpio97-default{
++				mux {
++					groups = "gpio97_group";
++					function = "gpio97_func";
++				};
++			};
++            pinctrl_die1_gpio98_default: gpio98-default{
++				mux {
++					groups = "gpio98_group";
++					function = "gpio98_func";
++				};
++			};
++            pinctrl_die1_gpio99_default: gpio99-default{
++				mux {
++					groups = "gpio99_group";
++					function = "gpio99_func";
++				};
++			};
++            pinctrl_die1_gpio100_default: gpio100-default{
++				mux {
++					groups = "gpio100_group";
++					function = "gpio100_func";
++				};
++			};
++            pinctrl_die1_gpio101_default: gpio101-default{
++				mux {
++					groups = "gpio101_group";
++					function = "gpio101_func";
++				};
++			};
++            pinctrl_die1_gpio102_default: gpio102-default{
++				mux {
++					groups = "gpio102_group";
++					function = "gpio102_func";
++				};
++			};
++            pinctrl_die1_gpio103_default: gpio103-default{
++				mux {
++					groups = "gpio103_group";
++					function = "gpio103_func";
++				};
++			};
++            pinctrl_die1_gpio104_default: gpio104-default{
++				mux {
++					groups = "gpio104_group";
++					function = "gpio104_func";
++				};
++			};
++            pinctrl_die1_gpio105_default: gpio105-default{
++				mux {
++					groups = "gpio105_group";
++					function = "gpio105_func";
++				};
++			};
++            pinctrl_die1_gpio106_default: gpio106-default{
++				mux {
++					groups = "gpio106_group";
++					function = "gpio106_func";
++				};
++				conf {
++					groups = "gpio106_group";
++					input-enable = <0>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio107_default: gpio107-default{
++				mux {
++					groups = "gpio107_group";
++					function = "gpio107_func";
++				};
++				conf {
++					groups = "gpio107_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio108_default: gpio108-default{
++				mux {
++					groups = "gpio108_group";
++					function = "gpio108_func";
++				};
++				conf {
++					groups = "gpio108_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio109_default: gpio109-default{
++				mux {
++					groups = "gpio109_group";
++					function = "gpio109_func";
++				};
++				conf {
++					groups = "gpio109_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio110_default: gpio110-default{
++				mux {
++					groups = "gpio110_group";
++					function = "gpio110_func";
++				};
++				conf {
++					groups = "gpio110_group";
++					input-enable = <1>;
++					bias-pull-down = <1>;
++				};
++			};
++            pinctrl_die1_gpio111_default: gpio111-default{
++				mux {
++					groups = "gpio111_group";
++					function = "gpio111_func";
++				};
++				conf {
++					groups = "gpio111_group";
++					input-enable = <0>;
++					bias-pull-up = <1>;
++				};
++			};
++
++            //func6
++            pinctrl_die1_csi_mon_out_default: csi_mon_out-default{
++				mux {
++					groups = "csi_mon_out_group";
++					function = "csi_mon_out_func";
++				};
++			};
++            pinctrl_die1_csi_ocla_clk_default: csi_ocla_clk-default{
++				mux {
++					groups = "csi_ocla_clk_group";
++					function = "csi_ocla_clk_func";
++				};
++			};
++            pinctrl_die1_csi_mon_out_valid_default: csi_mon_out_valid-default{
++				mux {
++					groups = "csi_mon_out_valid_group";
++					function = "csi_mon_out_valid_func";
++				};
++			};
++            pinctrl_die1_csi_parity_error_default: csi_parity_error-default{
++				mux {
++					groups = "csi_parity_error_group";
++					function = "csi_parity_error_func";
++				};
++			};
++            pinctrl_die1_csi_dtb_out_default: csi_dtb_out-default{
++				mux {
++					groups = "csi_dtb_out_group";
++					function = "csi_dtb_out_func";
++				};
++			};
++            pinctrl_die1_csi_phy_sel_default: csi_phy_sel-default{
++				mux {
++					groups = "csi_phy_sel_group";
++					function = "csi_phy_sel_func";
++				};
++			};
++            pinctrl_die1_vc_g2d0_debug_out_default: vc_g2d0_debug_out-default{
++				mux {
++					groups = "vc_g2d0_debug_out_group";
++					function = "vc_g2d0_debug_out_func";
++				};
++			};
++            pinctrl_die1_vc_g2d1_debug_out_default: vc_g2d1_debug_out-default{
++				mux {
++					groups = "vc_g2d1_debug_out_group";
++					function = "vc_g2d1_debug_out_func";
++				};
++			};
++            pinctrl_die1_sata_mpll_clk_default: sata_mpll_clk-default{
++				mux {
++					groups = "sata_mpll_clk_group";
++					function = "sata_mpll_clk_func";
++				};
++			};
++            pinctrl_die1_sata_ref_repeat_clk_m_default: sata_ref_repeat_clk_m-default{
++				mux {
++					groups = "sata_ref_repeat_clk_m_group";
++					function = "sata_ref_repeat_clk_m_func";
++				};
++			};
++            pinctrl_die1_sata_ref_repeat_clk_p_default: sata_ref_repeat_clk_p-default{
++				mux {
++					groups = "sata_ref_repeat_clk_p_group";
++					function = "sata_ref_repeat_clk_p_func";
++				};
++			};
++
++			//func7
++			pinctrl_die1_clk_d2d_test_out_default: clk_d2d_test_out-default{
++				mux {
++					groups = "clk_d2d_test_out_group";
++					function = "clk_d2d_test_out_func";
++				};
++			};
++			pinctrl_die1_clk_spll0_test_out_default: clk_spll0_test_out-default{
++				mux {
++					groups = "clk_spll0_test_out_group";
++					function = "clk_spll0_test_out_func";
++				};
++			};
++		};
++    };
++};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 2a99656c01b4..66e375244082 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -1501,7 +1501,7 @@ d0_aon_i2c1: i2c@51838000 {
+ 				interrupt-parent = <&plic0>;
+ 		};
+ 		pinctrl: pinctrl@0x51600080 {
+-			compatible = "eswin,eic7700-pinctrl";
++			compatible = "eswin,eic7x-pinctrl";
+ 			reg = <0x0 0x51600080 0x0 0x1FFF80>;
+ 			status = "disabled";
+ 		};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 30492bf2b7c3..a2afa1dbe862 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1035,7 +1035,7 @@ d1_sata: sata@0x70420000 {
+ 		};
+ 
+ 		d1_pinctrl: pinctrl@0x71600080 {
+-			compatible = "eswin,win2030-pinctrl";
++			compatible = "eswin,eic7x-pinctrl";
+ 			reg = <0x0 0x71600080 0x0 0x1FFF80>;
+ 			status = "disabled";
+ 			d1_pinctrl_pwm0_default: pwm0-default{
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 4381b03d08cf..a4618fd33805 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -457,7 +457,7 @@ CONFIG_SPI_DW_MMIO=y
+ CONFIG_SPI_ESWIN_BOOTSPI=y
+ # CONFIG_PTP_1588_CLOCK is not set
+ CONFIG_PINCTRL=y
+-CONFIG_PINCTRL_EIC7700=y
++CONFIG_PINCTRL_EIC7X=y
+ CONFIG_GPIOLIB=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_GPIO_DWAPB=y
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 36bcc734ee7e..3e746b7c0bf6 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -451,7 +451,7 @@ CONFIG_SPI_DW_MMIO=y
+ CONFIG_SPI_ESWIN_BOOTSPI=y
+ # CONFIG_PTP_1588_CLOCK is not set
+ CONFIG_PINCTRL=y
+-CONFIG_PINCTRL_EIC7700=y
++CONFIG_PINCTRL_EIC7X=y
+ CONFIG_GPIOLIB=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_GPIO_DWAPB=y
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 7d9b96993252..0d21bb6bf614 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -485,7 +485,7 @@ CONFIG_SPI_DW_MMIO=y
+ CONFIG_SPI_ESWIN_BOOTSPI=y
+ # CONFIG_PTP_1588_CLOCK is not set
+ CONFIG_PINCTRL=y
+-CONFIG_PINCTRL_EIC7700=y
++CONFIG_PINCTRL_EIC7X=y
+ CONFIG_GPIOLIB=y
+ CONFIG_GPIO_SYSFS=y
+ CONFIG_GPIO_DWAPB=y
+diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
+index 8ea6e4f7421a..1c0df67e7556 100644
+--- a/drivers/pinctrl/Kconfig
++++ b/drivers/pinctrl/Kconfig
+@@ -49,8 +49,8 @@ config PINCTRL_AMD
+ 	  Requires ACPI/FDT device enumeration code to set up a platform
+ 	  device.
+ 
+-config PINCTRL_EIC7700
+-	tristate "EIC7700 PINCTRL driver"
++config PINCTRL_EIC7X
++	tristate "EIC7X PINCTRL driver"
+ 	depends on ARCH_ESWIN_EIC770X_SOC_FAMILY
+ 	select GENERIC_PINCONF
+ 	select PINMUX
+@@ -58,7 +58,7 @@ config PINCTRL_EIC7700
+ 	select GENERIC_PINCTRL_GROUPS
+ 	select GENERIC_PINMUX_FUNCTIONS
+ 	help
+-	 say Y here to add pinctrl eic7700 driver
++	 say Y here to add pinctrl eic7x driver
+ 
+ config PINCTRL_APPLE_GPIO
+ 	tristate "Apple SoC GPIO pin controller driver"
+diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
+index 3b1057c5411e..571811fb66ee 100644
+--- a/drivers/pinctrl/Makefile
++++ b/drivers/pinctrl/Makefile
+@@ -10,7 +10,7 @@ obj-$(CONFIG_GENERIC_PINCONF)	+= pinconf-generic.o
+ obj-$(CONFIG_OF)		+= devicetree.o
+ 
+ obj-$(CONFIG_PINCTRL_AMD)	+= pinctrl-amd.o
+-obj-$(CONFIG_PINCTRL_EIC7700)	+= pinctrl-eic7700.o
++obj-$(CONFIG_PINCTRL_EIC7X)	+= pinctrl-eic7x.o
+ obj-$(CONFIG_PINCTRL_APPLE_GPIO) += pinctrl-apple-gpio.o
+ obj-$(CONFIG_PINCTRL_ARTPEC6)	+= pinctrl-artpec6.o
+ obj-$(CONFIG_PINCTRL_AS3722)	+= pinctrl-as3722.o
+diff --git a/drivers/pinctrl/pinctrl-eic7700.c b/drivers/pinctrl/pinctrl-eic7x.c
+similarity index 85%
+rename from drivers/pinctrl/pinctrl-eic7700.c
+rename to drivers/pinctrl/pinctrl-eic7x.c
+index c464e6964f26..1a04a041432d 100644
+--- a/drivers/pinctrl/pinctrl-eic7700.c
++++ b/drivers/pinctrl/pinctrl-eic7x.c
+@@ -37,10 +37,9 @@
+ #define ESWIN_PINCONF_IE	   BIT(0)
+ #define ESWIN_PINCONF_PULLUP   BIT(1)
+ #define ESWIN_PINCONF_PULLDOWN BIT(2)
+-#define ESWIN_PINCONF_DRIVER_STRENGTH_MASK  0xf  // 0111 1000
++#define ESWIN_PINCONF_DRIVER_STRENGTH_MASK  0xf
+ #define ESWIN_PINCONF_DRIVER_SHIFT 3
+ #define ESWIN_PINCONF_SMT BIT(7)
+-
+ struct eswin_function_desc {
+ 	const char *name;
+ 	const char * const *groups;
+@@ -239,16 +238,69 @@ static const struct pinctrl_pin_desc eswin_pins[] = {
+ 			.pins = _name ## _pins, \
+ 			.npins = ARRAY_SIZE(_name ## _pins), \
+ 		}
++
++#ifdef ARCH_ESWIN_EIC7702_SOC
++static const char * const jtag1_on_group[] = {"jtag1_on_group"};
++static const char * const jtag1_off_group[] = {"jtag1_off_group"}; //fun1
++
++static const char * const jtag2_on_group[] = {"jtag2_on_group"};
++static const char * const jtag2_off_group[] = {"jtag2_off_group"}; //fun1
++
++static const char * const gpio7_on_group[] = {"gpio7_on_group"};
++static const char * const gpio7_off_group[] = {"gpio7_off_group"}; //fun1
++
++static const char * const gpio8_on_group[] = {"gpio8_on_group"};
++static const char * const gpio8_off_group[] = {"gpio8_off_group"}; //fun1
++
++static const char * const gpio9_on_group[] = {"gpio9_on_group"};
++static const char * const gpio9_off_group[] = {"gpio9_off_group"}; //fun1
++
++static const char * const gpio17_on_group[] = {"gpio17_on_group"};
++static const char * const gpio17_off_group[] = {"gpio17_off_group"}; //fun1
++
++static const char * const gpio64_on_group[] = {"gpio64_on_group"};
++static const char * const gpio64_off_group[] = {"gpio64_off_group"}; //fun1
++
++static const char * const gpio65_on_group[] = {"gpio65_on_group"};
++static const char * const gpio65_off_group[] = {"gpio65_off_group"}; //fun1
++
++static const char * const gpio66_on_group[] = {"gpio66_on_group"};
++static const char * const gpio66_off_group[] = {"gpio66_off_group"}; //fun1
++
++//func6
++static const char * const vc_g2d0_debug_out_on_group[] = {"vc_g2d0_debug_out_on_group"};
++static const char * const vc_g2d0_debug_out_off_group[] = {"vc_g2d0_debug_out_off_group"}; //func3
++
++//func7
++static const char * const ftm_test_out_on_group[] = {"ftm_test_out_on_group"};
++static const char * const ftm_test_out_off_group[] = {"ftm_test_out_off_group"}; //func3
++
++#else
++static const char * const jtag1_group[] = {"jtag1_group"};
++static const char * const jtag2_group[] = {"jtag2_group"};
++static const char * const gpio7_group[] = {"gpio7_group"};
++static const char * const gpio8_group[] = {"gpio8_group"};
++static const char * const gpio9_group[] = {"gpio9_group"};
++
++static const char * const gpio17_group[] = {"gpio17_group"};
++static const char * const gpio64_group[] = {"gpio64_group"};
++static const char * const gpio65_group[] = {"gpio65_group"};
++static const char * const gpio66_group[] = {"gpio66_group"};
++
++//func6
++static const char * const vc_g2d0_debug_out_group[] = {"vc_g2d0_debug_out_group"};
++
++//func7
++static const char * const ftm_test_out_group[] = {"ftm_test_out_group"};
++#endif
++
+ //func0
+ static const char * const sdio0_group[] = {"sdio0_group"};
+ static const char * const sdio1_group[] = {"sdio1_group"};
+-static const char * const por_sel_group[] = {"por_sel_group"};
+ static const char * const jtag0_group[] = {"jtag0_group"};
+-static const char * const jtag1_group[] = {"jtag1_group"};
+ static const char * const spi2_cs_group[] = {"spi2_cs_group"};
+ static const char * const pcie_group[] = {"pcie_group"};
+ static const char * const hdmi_group[] = {"hdmi_group"};
+-static const char * const jtag2_group[] = {"jtag2_group"};
+ static const char * const rgmii0_group[] = {"rgmii0_group"};
+ static const char * const i2s0_group[] = {"i2s0_group"};
+ static const char * const i2s1_group[] = {"i2s1_group"};
+@@ -275,12 +327,14 @@ static const char * const mipi_csi0_group[] = {"mipi_csi0_group"};
+ static const char * const mipi_csi1_group[] = {"mipi_csi1_group"};
+ static const char * const mipi_csi2_group[] = {"mipi_csi2_group"};
+ static const char * const mipi_csi3_group[] = {"mipi_csi3_group"};
++#ifndef ARCH_ESWIN_EIC7702_SOC
+ static const char * const mipi_csi4_group[] = {"mipi_csi4_group"};
+ static const char * const mipi_csi5_group[] = {"mipi_csi5_group"};
++#endif
+ static const char * const spi3_group[] = {"spi3_group"};
+ static const char * const i2c8_group[] = {"i2c8_group"};
+ static const char * const s_mode_group[] = {"s_mode_group"};
+-static const char * const pinmux_ddr_refclk_sel_group[] = {"pinmux_ddr_refclk_sel_group"};
++static const char * const ddr_refclk_sel_group[] = {"ddr_refclk_sel_group"};
+ static const char * const spi0_group[] = {"spi0_group"};
+ static const char * const i2c10_group[] = {"i2c10_group"};
+ static const char * const i2c11_group[] = {"i2c11_group"};
+@@ -311,9 +365,6 @@ static const char * const gpio3_group[] = {"gpio3_group"};
+ static const char * const gpio4_group[] = {"gpio4_group"};
+ static const char * const gpio5_group[] = {"gpio5_group"};
+ static const char * const gpio6_group[] = {"gpio6_group"};
+-static const char * const gpio7_group[] = {"gpio7_group"};
+-static const char * const gpio8_group[] = {"gpio8_group"};
+-static const char * const gpio9_group[] = {"gpio9_group"};
+ static const char * const gpio10_group[] = {"gpio10_group"};
+ static const char * const gpio11_group[] = {"gpio11_group"};
+ static const char * const gpio12_group[] = {"gpio12_group"};
+@@ -321,7 +372,6 @@ static const char * const gpio13_group[] = {"gpio13_group"};
+ static const char * const gpio14_group[] = {"gpio14_group"};
+ static const char * const gpio15_group[] = {"gpio15_group"};
+ static const char * const gpio16_group[] = {"gpio16_group"};
+-static const char * const gpio17_group[] = {"gpio17_group"};
+ static const char * const gpio18_group[] = {"gpio18_group"};
+ static const char * const gpio19_group[] = {"gpio19_group"};
+ static const char * const gpio20_group[] = {"gpio20_group"};
+@@ -370,10 +420,9 @@ static const char * const gpio60_group[] = {"gpio60_group"};
+ static const char * const gpio61_group[] = {"gpio61_group"};
+ static const char * const gpio62_group[] = {"gpio62_group"};
+ static const char * const gpio63_group[] = {"gpio63_group"};
+-static const char * const gpio64_group[] = {"gpio64_group"};
+-static const char * const gpio65_group[] = {"gpio65_group"};
+-static const char * const gpio66_group[] = {"gpio66_group"};
++#ifndef ARCH_ESWIN_EIC7702_SOC
+ static const char * const gpio67_group[] = {"gpio67_group"};
++#endif
+ static const char * const gpio68_group[] = {"gpio68_group"};
+ static const char * const gpio69_group[] = {"gpio69_group"};
+ 
+@@ -390,12 +439,14 @@ static const char * const gpio79_group[] = {"gpio79_group"};
+ 
+ static const char * const gpio80_group[] = {"gpio80_group"};
+ static const char * const gpio81_group[] = {"gpio81_group"};
++#ifndef ARCH_ESWIN_EIC7702_SOC
+ static const char * const gpio82_group[] = {"gpio82_group"};
+ static const char * const gpio83_group[] = {"gpio83_group"};
+ static const char * const gpio84_group[] = {"gpio84_group"};
+ static const char * const gpio85_group[] = {"gpio85_group"};
+ static const char * const gpio86_group[] = {"gpio86_group"};
+ static const char * const gpio87_group[] = {"gpio87_group"};
++#endif
+ static const char * const gpio88_group[] = {"gpio88_group"};
+ static const char * const gpio89_group[] = {"gpio89_group"};
+ 
+@@ -434,22 +485,82 @@ static const char * const csi_mon_out_valid_group[] = {"csi_mon_out_valid_group"
+ static const char * const csi_parity_error_group[] = {"csi_parity_error_group"};
+ static const char * const csi_dtb_out_group[] = {"csi_dtb_out_group"};
+ static const char * const csi_phy_sel_group[] = {"csi_phy_sel_group"};
+-static const char * const vc_g2d0_debug_out_group[] = {"vc_g2d0_debug_out_group"};
+ static const char * const vc_g2d1_debug_out_group[] = {"vc_g2d1_debug_out_group"};
+ static const char * const sata_mpll_clk_group[] = {"sata_mpll_clk_group"};
+ static const char * const sata_ref_repeat_clk_m_group[] = {"sata_ref_repeat_clk_m_group"};
+ static const char * const sata_ref_repeat_clk_p_group[] = {"sata_ref_repeat_clk_p_group"};
+ 
++//func7
++static const char * const clk_d2d_test_out_group[] = {"clk_d2d_test_out_group"};
++static const char * const clk_spll0_test_out_group[] = {"clk_spll0_test_out_group"};
++#ifndef ARCH_ESWIN_EIC7702_SOC
++static const char * const clk_spll1_test_out_group[] = {"clk_spll1_test_out_group"};
++static const char * const clk_spll2_test_out_group[] = {"clk_spll2_test_out_group"};
++static const char * const clk_vpll_test_out_group[] = {"clk_vpll_test_out_group"};
++static const char * const clk_apll_test_out_group[] = {"clk_apll_test_out_group"};
++static const char * const clk_cpll_test_out_group[] = {"clk_cpll_test_out_group"};
++static const char * const clk_pll_lpddr_test_out_group[] = {"clk_pll_lpddr_test_out_group"};
++#endif
++
++
++#ifdef ARCH_ESWIN_EIC7702_SOC
++static const unsigned int jtag1_on_pins[] = {20,21,22};
++static const unsigned int jtag1_off_pins[] = {20,21,22};
++
++static const unsigned int jtag2_on_pins[] = {32,111,112,113};
++static const unsigned int jtag2_off_pins[] = {32,111,112,113};
++
++static const unsigned int gpio7_on_pins[] = {20};
++static const unsigned int gpio7_off_pins[] = {20};
++
++static const unsigned int gpio8_on_pins[] = {21};
++static const unsigned int gpio8_off_pins[] = {21};
++
++static const unsigned int gpio9_on_pins[] = {22};
++static const unsigned int gpio9_off_pins[] = {22};
++
++static const unsigned int gpio17_on_pins[] = {32};
++static const unsigned int gpio17_off_pins[] = {32};
++
++static const unsigned int gpio64_on_pins[] = {111};
++static const unsigned int gpio64_off_pins[] = {111};
++
++static const unsigned int gpio65_on_pins[] = {112};
++static const unsigned int gpio65_off_pins[] = {112};
++
++static const unsigned int gpio66_on_pins[] = {113};
++static const unsigned int gpio66_off_pins[] = {113};
++
++//func6
++static const unsigned int vc_g2d0_debug_out_on_pins[] = {110,115,116,117};
++static const unsigned int vc_g2d0_debug_out_off_pins[] = {111,112,113}; //func3
++
++//func7
++static const unsigned int ftm_test_out_on_pins[] = {109,110,115,116,117,118,119,120,121,122,123,124};
++static const unsigned int ftm_test_out_off_pins[] = {111,112,113}; //func3
++#else
++static const unsigned int jtag1_pins[] = {20,21,22,23};
++static const unsigned int jtag2_pins[] = {32,111,112,113,114};
++static const unsigned int gpio7_pins[] = {20};
++static const unsigned int gpio8_pins[] = {21};
++static const unsigned int gpio9_pins[] = {22};
++static const unsigned int gpio17_pins[] = {32};
++static const unsigned int gpio64_pins[] = {111};
++static const unsigned int gpio65_pins[] = {112};
++static const unsigned int gpio66_pins[] = {113};
++//func6
++static const unsigned int vc_g2d0_debug_out_pins[] = {110,112,113,114,115,116,117};
++//func7
++static const unsigned int ftm_test_out_pins[] = {109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124};
++#endif
++
+ //func0
+ static const unsigned int sdio0_pins[] = {1,2};
+ static const unsigned int sdio1_pins[] = {3,4};
+-static const unsigned int por_sel_pins[] = {13};
+ static const unsigned int jtag0_pins[] = {14,15,16,17};
+-static const unsigned int jtag1_pins[] = {20,21,22,23};
+ static const unsigned int spi2_cs_pins[] = {19,25};
+ static const unsigned int pcie_pins[] = {26,27,28};
+ static const unsigned int hdmi_pins[] = {29,30,31};
+-static const unsigned int jtag2_pins[] = {32,111,112,113,114};
+ static const unsigned int rgmii0_pins[] = {33,34,35,36,37,38,39,45,46,47,48,49,50,58,59,60};
+ static const unsigned int i2s0_pins[] = {40,41,42,43,44};
+ static const unsigned int i2s1_pins[] = {68,69,70,71,44};
+@@ -475,12 +586,14 @@ static const unsigned int mipi_csi0_pins[] = {117,118,119};
+ static const unsigned int mipi_csi1_pins[] = {120,121,122};
+ static const unsigned int mipi_csi2_pins[] = {123,124,125};
+ static const unsigned int mipi_csi3_pins[] = {126,127,128};
++#ifndef ARCH_ESWIN_EIC7702_SOC
+ static const unsigned int mipi_csi4_pins[] = {129,130,131};
+ static const unsigned int mipi_csi5_pins[] = {132,133,134};
++#endif
+ static const unsigned int spi3_pins[] = {135,136,137,138};
+ static const unsigned int i2c8_pins[] = {139,140};
+ static const unsigned int s_mode_pins[] = {141};
+-static const unsigned int pinmux_ddr_refclk_sel_pins[] = {142};
++static const unsigned int ddr_refclk_sel_pins[] = {142};
+ static const unsigned int spi0_pins[] = {143,144,145,146,147,148};
+ static const unsigned int i2c10_pins[] = {149,150};
+ static const unsigned int i2c11_pins[] = {151,152};
+@@ -511,9 +624,6 @@ static const unsigned int gpio3_pins[] = {16};
+ static const unsigned int gpio4_pins[] = {17};
+ static const unsigned int gpio5_pins[] = {18};
+ static const unsigned int gpio6_pins[] = {19};
+-static const unsigned int gpio7_pins[] = {20};
+-static const unsigned int gpio8_pins[] = {21};
+-static const unsigned int gpio9_pins[] = {22};
+ 
+ static const unsigned int gpio10_pins[] = {23};
+ static const unsigned int gpio11_pins[] = {24};
+@@ -522,7 +632,6 @@ static const unsigned int gpio13_pins[] = {1};
+ static const unsigned int gpio14_pins[] = {2};
+ static const unsigned int gpio15_pins[] = {3};
+ static const unsigned int gpio16_pins[] = {4};
+-static const unsigned int gpio17_pins[] = {32};
+ static const unsigned int gpio18_pins[] = {40};
+ static const unsigned int gpio19_pins[] = {41};
+ 
+@@ -574,10 +683,9 @@ static const unsigned int gpio60_pins[] = {107};
+ static const unsigned int gpio61_pins[] = {108};
+ static const unsigned int gpio62_pins[] = {109};
+ static const unsigned int gpio63_pins[] = {110};
+-static const unsigned int gpio64_pins[] = {111};
+-static const unsigned int gpio65_pins[] = {112};
+-static const unsigned int gpio66_pins[] = {113};
++#ifndef ARCH_ESWIN_EIC7702_SOC
+ static const unsigned int gpio67_pins[] = {114};
++#endif
+ static const unsigned int gpio68_pins[] = {115};
+ static const unsigned int gpio69_pins[] = {116};
+ 
+@@ -594,12 +702,14 @@ static const unsigned int gpio79_pins[] = {126};
+ 
+ static const unsigned int gpio80_pins[] = {127};
+ static const unsigned int gpio81_pins[] = {128};
++#ifndef ARCH_ESWIN_EIC7702_SOC
+ static const unsigned int gpio82_pins[] = {129};
+ static const unsigned int gpio83_pins[] = {130};
+ static const unsigned int gpio84_pins[] = {131};
+ static const unsigned int gpio85_pins[] = {132};
+ static const unsigned int gpio86_pins[] = {133};
+ static const unsigned int gpio87_pins[] = {134};
++#endif
+ static const unsigned int gpio88_pins[] = {135};
+ static const unsigned int gpio89_pins[] = {136};
+ 
+@@ -636,26 +746,92 @@ static const unsigned int csi_mon_out_pins[] = {32,33,34,35,36,37,38,39,40,41,42
+ static const unsigned int csi_ocla_clk_pins[] = {96};
+ static const unsigned int csi_mon_out_valid_pins[] = {97};
+ static const unsigned int csi_parity_error_pins[] = {98};
++#ifdef ARCH_ESWIN_EIC7702_SOC
++static const unsigned int csi_dtb_out_pins[] = {99,100,101,102};
++static const unsigned int csi_phy_sel_pins[] = {109};
++#else
+ static const unsigned int csi_dtb_out_pins[] = {99,100,101,102,129,130,131,132};
+ static const unsigned int csi_phy_sel_pins[] = {133,134,109};
+-static const unsigned int vc_g2d0_debug_out_pins[] = {110,111,112,113,114,115,116,117};
++#endif
+ static const unsigned int vc_g2d1_debug_out_pins[] = {118,119,120,121,122,123,124,125};
+ static const unsigned int sata_mpll_clk_pins[] = {126};
+ static const unsigned int sata_ref_repeat_clk_m_pins[] = {127};
+ static const unsigned int sata_ref_repeat_clk_p_pins[] = {128};
+ 
++//func7
++static const unsigned int clk_d2d_test_out_pins[] = {127};
++static const unsigned int clk_spll0_test_out_pins[] = {128};
++#ifndef ARCH_ESWIN_EIC7702_SOC
++static const unsigned int clk_spll1_test_out_pins[] = {129};
++static const unsigned int clk_spll2_test_out_pins[] = {130};
++static const unsigned int clk_vpll_test_out_pins[] = {131};
++static const unsigned int clk_apll_test_out_pins[] = {132};
++static const unsigned int clk_cpll_test_out_pins[] = {133};
++static const unsigned int clk_pll_lpddr_test_out_pins[] = {134};
++#endif
++
+ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ {
++	#ifdef ARCH_ESWIN_EIC7702_SOC
++	//func0
++	ESWIN_PINCTRL_GRP(jtag1_on),
++	ESWIN_PINCTRL_GRP(jtag1_off),
++
++	ESWIN_PINCTRL_GRP(jtag2_on),
++	ESWIN_PINCTRL_GRP(jtag2_off),
++
++	//func2
++	ESWIN_PINCTRL_GRP(gpio7_on),
++	ESWIN_PINCTRL_GRP(gpio7_off),
++
++	ESWIN_PINCTRL_GRP(gpio8_on),
++	ESWIN_PINCTRL_GRP(gpio8_off),
++
++	ESWIN_PINCTRL_GRP(gpio9_on),
++	ESWIN_PINCTRL_GRP(gpio9_off),
++
++	ESWIN_PINCTRL_GRP(gpio17_on),
++	ESWIN_PINCTRL_GRP(gpio17_off),
++
++	ESWIN_PINCTRL_GRP(gpio64_on),
++	ESWIN_PINCTRL_GRP(gpio64_off),
++
++	ESWIN_PINCTRL_GRP(gpio65_on),
++	ESWIN_PINCTRL_GRP(gpio65_off),
++
++	ESWIN_PINCTRL_GRP(gpio66_on),
++	ESWIN_PINCTRL_GRP(gpio66_off),
++
++	//func6
++	ESWIN_PINCTRL_GRP(vc_g2d0_debug_out_on),
++	ESWIN_PINCTRL_GRP(vc_g2d0_debug_out_off),
++
++	//func7
++	ESWIN_PINCTRL_GRP(ftm_test_out_on),
++	ESWIN_PINCTRL_GRP(ftm_test_out_off),
++	#else
++	ESWIN_PINCTRL_GRP(jtag1),
++	ESWIN_PINCTRL_GRP(jtag2),
++	ESWIN_PINCTRL_GRP(gpio7),
++	ESWIN_PINCTRL_GRP(gpio8),
++	ESWIN_PINCTRL_GRP(gpio9),
++	ESWIN_PINCTRL_GRP(gpio17),
++	ESWIN_PINCTRL_GRP(gpio64),
++	ESWIN_PINCTRL_GRP(gpio65),
++	ESWIN_PINCTRL_GRP(gpio66),
++	//func6
++	ESWIN_PINCTRL_GRP(vc_g2d0_debug_out),
++	//func7
++	ESWIN_PINCTRL_GRP(ftm_test_out),
++	#endif
++
+ 	//func0
+     ESWIN_PINCTRL_GRP(sdio0),
+     ESWIN_PINCTRL_GRP(sdio1),
+-    ESWIN_PINCTRL_GRP(por_sel),
+     ESWIN_PINCTRL_GRP(jtag0),
+-    ESWIN_PINCTRL_GRP(jtag1),
+     ESWIN_PINCTRL_GRP(spi2_cs),
+     ESWIN_PINCTRL_GRP(pcie),
+     ESWIN_PINCTRL_GRP(hdmi),
+-    ESWIN_PINCTRL_GRP(jtag2),
+     ESWIN_PINCTRL_GRP(rgmii0),
+     ESWIN_PINCTRL_GRP(i2s0),
+     ESWIN_PINCTRL_GRP(i2s1),
+@@ -681,12 +857,14 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+     ESWIN_PINCTRL_GRP(mipi_csi1),
+     ESWIN_PINCTRL_GRP(mipi_csi2),
+     ESWIN_PINCTRL_GRP(mipi_csi3),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
+     ESWIN_PINCTRL_GRP(mipi_csi4),
+     ESWIN_PINCTRL_GRP(mipi_csi5),
++	#endif
+     ESWIN_PINCTRL_GRP(spi3),
+     ESWIN_PINCTRL_GRP(i2c8),
+     ESWIN_PINCTRL_GRP(s_mode),
+-    ESWIN_PINCTRL_GRP(pinmux_ddr_refclk_sel),
++    ESWIN_PINCTRL_GRP(ddr_refclk_sel),
+     ESWIN_PINCTRL_GRP(spi0),
+     ESWIN_PINCTRL_GRP(i2c10),
+     ESWIN_PINCTRL_GRP(i2c11),
+@@ -717,9 +895,6 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ 	ESWIN_PINCTRL_GRP(gpio4),
+ 	ESWIN_PINCTRL_GRP(gpio5),
+ 	ESWIN_PINCTRL_GRP(gpio6),
+-	ESWIN_PINCTRL_GRP(gpio7),
+-	ESWIN_PINCTRL_GRP(gpio8),
+-	ESWIN_PINCTRL_GRP(gpio9),
+ 	ESWIN_PINCTRL_GRP(gpio10),
+ 	ESWIN_PINCTRL_GRP(gpio11),
+ 	ESWIN_PINCTRL_GRP(gpio12),
+@@ -727,7 +902,6 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ 	ESWIN_PINCTRL_GRP(gpio14),
+ 	ESWIN_PINCTRL_GRP(gpio15),
+ 	ESWIN_PINCTRL_GRP(gpio16),
+-	ESWIN_PINCTRL_GRP(gpio17),
+ 	ESWIN_PINCTRL_GRP(gpio18),
+ 	ESWIN_PINCTRL_GRP(gpio19),
+ 	ESWIN_PINCTRL_GRP(gpio20),
+@@ -776,10 +950,9 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ 	ESWIN_PINCTRL_GRP(gpio61),
+ 	ESWIN_PINCTRL_GRP(gpio62),
+ 	ESWIN_PINCTRL_GRP(gpio63),
+-	ESWIN_PINCTRL_GRP(gpio64),
+-	ESWIN_PINCTRL_GRP(gpio65),
+-	ESWIN_PINCTRL_GRP(gpio66),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
+ 	ESWIN_PINCTRL_GRP(gpio67),
++	#endif
+ 	ESWIN_PINCTRL_GRP(gpio68),
+ 	ESWIN_PINCTRL_GRP(gpio69),
+ 
+@@ -796,12 +969,14 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ 
+ 	ESWIN_PINCTRL_GRP(gpio80),
+ 	ESWIN_PINCTRL_GRP(gpio81),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
+ 	ESWIN_PINCTRL_GRP(gpio82),
+ 	ESWIN_PINCTRL_GRP(gpio83),
+ 	ESWIN_PINCTRL_GRP(gpio84),
+ 	ESWIN_PINCTRL_GRP(gpio85),
+ 	ESWIN_PINCTRL_GRP(gpio86),
+ 	ESWIN_PINCTRL_GRP(gpio87),
++	#endif
+ 	ESWIN_PINCTRL_GRP(gpio88),
+ 	ESWIN_PINCTRL_GRP(gpio89),
+ 
+@@ -840,11 +1015,22 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ 	ESWIN_PINCTRL_GRP(csi_parity_error),
+ 	ESWIN_PINCTRL_GRP(csi_dtb_out),
+ 	ESWIN_PINCTRL_GRP(csi_phy_sel),
+-	ESWIN_PINCTRL_GRP(vc_g2d0_debug_out),
+ 	ESWIN_PINCTRL_GRP(vc_g2d1_debug_out),
+ 	ESWIN_PINCTRL_GRP(sata_mpll_clk),
+ 	ESWIN_PINCTRL_GRP(sata_ref_repeat_clk_m),
+ 	ESWIN_PINCTRL_GRP(sata_ref_repeat_clk_p),
++
++	//func7
++	ESWIN_PINCTRL_GRP(clk_d2d_test_out),
++	ESWIN_PINCTRL_GRP(clk_spll0_test_out),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
++	ESWIN_PINCTRL_GRP(clk_spll1_test_out),
++	ESWIN_PINCTRL_GRP(clk_spll2_test_out),
++	ESWIN_PINCTRL_GRP(clk_vpll_test_out),
++	ESWIN_PINCTRL_GRP(clk_apll_test_out),
++	ESWIN_PINCTRL_GRP(clk_cpll_test_out),
++	ESWIN_PINCTRL_GRP(clk_pll_lpddr_test_out),
++	#endif
+ };
+ 
+ #define ESWIN_PINMUX_FUNCTION(_func_name, _mux_val, _mask)\
+@@ -861,16 +1047,65 @@ static const struct eswin_group_desc eswin_pinctrl_groups[] =
+ 
+ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+ 
++	#ifdef ARCH_ESWIN_EIC7702_SOC
++	//func0
++	ESWIN_PINMUX_FUNCTION(jtag1_on, 0, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(jtag1_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(jtag2_on, 0, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(jtag2_off, 1, ESWIN_PINMUX_MASK),
++
++	//func2
++	ESWIN_PINMUX_FUNCTION(gpio7_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio7_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(gpio8_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio8_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(gpio9_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio9_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(gpio17_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio17_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(gpio64_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio64_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(gpio65_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio65_off, 1, ESWIN_PINMUX_MASK),
++
++	ESWIN_PINMUX_FUNCTION(gpio66_on, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio66_off, 1, ESWIN_PINMUX_MASK),
++
++	//func6
++	ESWIN_PINMUX_FUNCTION(vc_g2d0_debug_out_on, 6, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(vc_g2d0_debug_out_off, 3, ESWIN_PINMUX_MASK),
++
++	//func7
++	ESWIN_PINMUX_FUNCTION(ftm_test_out_on, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(ftm_test_out_off, 3, ESWIN_PINMUX_MASK),
++
++	#else
++	ESWIN_PINMUX_FUNCTION(jtag1, 0, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(jtag2, 0, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio7, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio8, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio9, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio17, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio64, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio65, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(gpio66, 2, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(vc_g2d0_debug_out, 6, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(ftm_test_out, 7, ESWIN_PINMUX_MASK),
++	#endif
++
+ 	//func0
+     ESWIN_PINMUX_FUNCTION(sdio0, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(sdio1, 0, ESWIN_PINMUX_MASK),
+-    ESWIN_PINMUX_FUNCTION(por_sel, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(jtag0, 0, ESWIN_PINMUX_MASK),
+-    ESWIN_PINMUX_FUNCTION(jtag1, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(spi2_cs, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(pcie, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(hdmi, 0, ESWIN_PINMUX_MASK),
+-    ESWIN_PINMUX_FUNCTION(jtag2, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(rgmii0, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(i2s0, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(i2s1, 0, ESWIN_PINMUX_MASK),
+@@ -896,18 +1131,20 @@ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+     ESWIN_PINMUX_FUNCTION(mipi_csi1, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(mipi_csi2, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(mipi_csi3, 0, ESWIN_PINMUX_MASK),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
+     ESWIN_PINMUX_FUNCTION(mipi_csi4, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(mipi_csi5, 0, ESWIN_PINMUX_MASK),
++	#endif
+     ESWIN_PINMUX_FUNCTION(spi3, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(i2c8, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(s_mode, 0, ESWIN_PINMUX_MASK),
+-    ESWIN_PINMUX_FUNCTION(pinmux_ddr_refclk_sel, 0, ESWIN_PINMUX_MASK),
++    ESWIN_PINMUX_FUNCTION(ddr_refclk_sel, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(spi0, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(i2c10, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(i2c11, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(boot_sel, 0, ESWIN_PINMUX_MASK),
+     ESWIN_PINMUX_FUNCTION(lpddr_ref_clk, 0, ESWIN_PINMUX_MASK),
+-	
++
+ 	//func1
+ 	ESWIN_PINMUX_FUNCTION(spi2_clk, 1, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(spi2_d0, 1, ESWIN_PINMUX_MASK),
+@@ -931,9 +1168,6 @@ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+ 	ESWIN_PINMUX_FUNCTION(gpio4, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio5, 0, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio6, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio7, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio8, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio9, 2, ESWIN_PINMUX_MASK),
+ 
+ 	ESWIN_PINMUX_FUNCTION(gpio10, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio11, 0, ESWIN_PINMUX_MASK),
+@@ -942,7 +1176,6 @@ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+ 	ESWIN_PINMUX_FUNCTION(gpio14, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio15, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio16, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio17, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio18, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio19, 2, ESWIN_PINMUX_MASK),
+ 
+@@ -994,10 +1227,9 @@ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+ 	ESWIN_PINMUX_FUNCTION(gpio61, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio62, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio63, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio64, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio65, 2, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(gpio66, 2, ESWIN_PINMUX_MASK),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
+ 	ESWIN_PINMUX_FUNCTION(gpio67, 2, ESWIN_PINMUX_MASK),
++	#endif
+ 	ESWIN_PINMUX_FUNCTION(gpio68, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio69, 2, ESWIN_PINMUX_MASK),
+ 
+@@ -1014,12 +1246,14 @@ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+ 
+ 	ESWIN_PINMUX_FUNCTION(gpio80, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio81, 2, ESWIN_PINMUX_MASK),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
+ 	ESWIN_PINMUX_FUNCTION(gpio82, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio83, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio84, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio85, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio86, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio87, 2, ESWIN_PINMUX_MASK),
++	#endif
+ 	ESWIN_PINMUX_FUNCTION(gpio88, 2, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(gpio89, 2, ESWIN_PINMUX_MASK),
+ 
+@@ -1058,11 +1292,22 @@ static const struct eswin_function_desc eswin_pinmux_functions[] = {
+ 	ESWIN_PINMUX_FUNCTION(csi_parity_error, 6, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(csi_dtb_out, 6, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(csi_phy_sel, 6, ESWIN_PINMUX_MASK),
+-	ESWIN_PINMUX_FUNCTION(vc_g2d0_debug_out, 6, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(vc_g2d1_debug_out, 6, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(sata_mpll_clk, 6, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(sata_ref_repeat_clk_m, 6, ESWIN_PINMUX_MASK),
+ 	ESWIN_PINMUX_FUNCTION(sata_ref_repeat_clk_p, 6, ESWIN_PINMUX_MASK),
++
++	//func7
++	ESWIN_PINMUX_FUNCTION(clk_d2d_test_out, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(clk_spll0_test_out, 7, ESWIN_PINMUX_MASK),
++	#ifndef ARCH_ESWIN_EIC7702_SOC
++	ESWIN_PINMUX_FUNCTION(clk_spll1_test_out, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(clk_spll2_test_out, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(clk_vpll_test_out, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(clk_apll_test_out, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(clk_cpll_test_out, 7, ESWIN_PINMUX_MASK),
++	ESWIN_PINMUX_FUNCTION(clk_pll_lpddr_test_out, 7, ESWIN_PINMUX_MASK),
++	#endif
+ };
+ 
+ /* pinctrl */
+@@ -1245,8 +1490,6 @@ int eswin_pinconf_cfg_set(struct pinctrl_dev *pctldev,
+ 					param);
+ 				continue;
+ 		}
+-
+-
+ 	}
+ 		writel(reg,pctrl->base + 4*pin);
+ 
+@@ -1332,7 +1575,7 @@ static int eswin_pinctrl_remove(struct platform_device *platform_dev)
+ }
+ 
+ static const struct of_device_id eswin_pinctrl_of_match[] = {
+-	{ .compatible = "eswin,eic7700-pinctrl" },
++	{ .compatible = "eswin,eic7x-pinctrl" },
+ 	{ }
+ };
+ static struct platform_driver eswin_pinctrl_driver = {
+-- 
+2.47.0
+

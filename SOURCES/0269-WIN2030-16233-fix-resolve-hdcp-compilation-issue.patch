@@ -1,0 +1,114 @@
+From 5250d9db54fe560eead63ddd283d28aac1e2f690 Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Fri, 20 Sep 2024 09:05:43 +0800
+Subject: [PATCH 269/370] WIN2030-16233:fix:resolve hdcp compilation issue.
+
+Changelogs:
+	1.resolve hccp compilation issue.
+	2.remove the submission of turn off the clock.
+
+Change-Id: I0d34742c7f63bb8689b87de708d365a67c588ed9
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ drivers/gpu/drm/eswin/Makefile        |  2 ++
+ drivers/gpu/drm/eswin/dw-hdmi.c       | 13 -------------
+ drivers/gpu/drm/eswin/dw-hdmi.h       |  1 -
+ drivers/gpu/drm/eswin/dw_hdmi_hdcp.h  |  2 +-
+ drivers/gpu/drm/eswin/eswin_dw_hdmi.c | 15 ++-------------
+ 5 files changed, 5 insertions(+), 28 deletions(-)
+
+diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
+index 6d4043ca833c..09cb7092e2e5 100644
+--- a/drivers/gpu/drm/eswin/Makefile
++++ b/drivers/gpu/drm/eswin/Makefile
+@@ -1,5 +1,7 @@
+ # SPDX-License-Identifier: GPL-2.0
+ 
++ccflags-y += -I$(srctree)/drivers/memory/eswin/es_dev_buf/include/linux
++
+ es_drm-objs := es_dc_hw.o \
+ 		es_dc.o \
+ 		es_crtc.o \
+diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
+index a54dddc63d30..c301d589a508 100644
+--- a/drivers/gpu/drm/eswin/dw-hdmi.c
++++ b/drivers/gpu/drm/eswin/dw-hdmi.c
+@@ -4616,10 +4616,6 @@ void dw_hdmi_suspend(struct dw_hdmi *hdmi)
+ 	cancel_delayed_work(&hdmi->work);
+ 	flush_workqueue(hdmi->workqueue);
+ 	pinctrl_pm_select_sleep_state(hdmi->dev);
+-
+-	clk_disable(hdmi->cec_clk);
+-	clk_disable(hdmi->iahb_clk);
+-	clk_disable(hdmi->isfr_clk);
+ }
+ EXPORT_SYMBOL_GPL(dw_hdmi_suspend);
+ 
+@@ -4630,15 +4626,6 @@ void dw_hdmi_resume(struct dw_hdmi *hdmi)
+ }
+ EXPORT_SYMBOL_GPL(dw_hdmi_resume);
+ 
+-void dw_hdmi_resume_early(struct dw_hdmi *hdmi)
+-{
+-	dev_dbg(hdmi->dev, "%s", __func__);
+-	clk_enable(hdmi->cec_clk);
+-	clk_enable(hdmi->iahb_clk);
+-	clk_enable(hdmi->isfr_clk);
+-}
+-EXPORT_SYMBOL_GPL(dw_hdmi_resume_early);
+-
+ MODULE_AUTHOR("Sascha Hauer <s.hauer@pengutronix.de>");
+ MODULE_AUTHOR("Andy Yan <andy.yan@rock-chips.com>");
+ MODULE_AUTHOR("Yakir Yang <ykk@rock-chips.com>");
+diff --git a/drivers/gpu/drm/eswin/dw-hdmi.h b/drivers/gpu/drm/eswin/dw-hdmi.h
+index 880e51f246b0..dcfeaada7f1d 100644
+--- a/drivers/gpu/drm/eswin/dw-hdmi.h
++++ b/drivers/gpu/drm/eswin/dw-hdmi.h
+@@ -1286,5 +1286,4 @@ enum supported_eotf_type {
+ void dw_hdmi_suspend(struct dw_hdmi *hdmi);
+ void dw_hdmi_enable_video(struct dw_hdmi *hdmi);
+ void dw_hdmi_disable_video(struct dw_hdmi *hdmi);
+-void dw_hdmi_resume_early(struct dw_hdmi *hdmi);
+ #endif /* __DW_HDMI_H__ */
+diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
+index 239a41809cc9..20fd169b387c 100644
+--- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
++++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
+@@ -23,7 +23,7 @@
+ #define DW_HDMI_HDCP_H
+ 
+ #include <linux/miscdevice.h>
+-#include <linux/dsp_dma_buf.h>
++#include "dsp_dma_buf.h"
+ 
+ #define DW_HDCP_DRIVER_NAME "dw-hdmi-hdcp"
+ #define HDCP_PRIVATE_KEY_SIZE 280
+diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
+index 62373b2b7eb5..19f7cccdca33 100644
+--- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
++++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
+@@ -955,19 +955,8 @@ static int __maybe_unused dw_hdmi_eswin_resume(struct device *dev)
+ 	return 0;
+ }
+ 
+-static int __maybe_unused dw_hdmi_eswin_resume_early(struct device *dev)
+-{
+-	struct eswin_hdmi *hdmi = dev_get_drvdata(dev);
+-
+-	dw_hdmi_resume_early(hdmi->hdmi);
+-
+-	return 0;
+-}
+-
+-static const struct dev_pm_ops dw_hdmi_eswin_pm = {
+-	SET_SYSTEM_SLEEP_PM_OPS(dw_hdmi_eswin_suspend, dw_hdmi_eswin_resume)
+-	.resume_early = dw_hdmi_eswin_resume_early,
+-};
++static const struct dev_pm_ops dw_hdmi_eswin_pm = {	SET_SYSTEM_SLEEP_PM_OPS(
++	dw_hdmi_eswin_suspend, dw_hdmi_eswin_resume) };
+ 
+ struct platform_driver dw_hdmi_eswin_pltfm_driver = {
+     .probe  = dw_hdmi_eswin_probe,
+-- 
+2.47.0
+

@@ -1,0 +1,114 @@
+From fff75efc472c1a1e350b391665bdb8998789b428 Mon Sep 17 00:00:00 2001
+From: Pritesh Patel <pritesh.patel@einfochips.com>
+Date: Tue, 17 Sep 2024 10:18:04 +0000
+Subject: [PATCH 227/370] gpu: img: Replace deprecated functions
+
+- Use queue_work instead of schedule_work
+- Replaced flush_scheduled_work with flush_workqueue
+
+Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
+---
+ .../services/server/env/linux/module_common.c       |  2 --
+ .../services/server/env/linux/pvr_fence.c           |  3 ++-
+ .../services/server/env/linux/pvr_fence.h           | 13 ++++++-------
+ .../services/server/env/linux/pvr_sync_file.c       |  4 ++--
+ 4 files changed, 10 insertions(+), 12 deletions(-)
+
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c
+index f1442074b9c2..3dbe76134b65 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c
+@@ -353,8 +353,6 @@ void PVRSRVDeviceDeinit(PVRSRV_DEVICE_NODE *psDeviceNode)
+ #if defined(SUPPORT_DMA_TRANSFER)
+ 	PVRSRVDeInitialiseDMA(psDeviceNode);
+ #endif
+-
+-	pvr_fence_cleanup();
+ }
+ 
+ /**************************************************************************/ /*!
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c
+index e94522a647ae..51000fbf70b5 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c
+@@ -354,6 +354,7 @@ pvr_fence_context_create_internal(struct workqueue_struct *fence_status_wq,
+ 	atomic_set(&fctx->fence_seqno, 0);
+ 	INIT_WORK(&fctx->check_status_work, pvr_fence_context_check_status);
+ 	INIT_WORK(&fctx->destroy_work, destroy_callback);
++	fctx->destroy_wq = create_workqueue("destroy-wq");
+ 	spin_lock_init(&fctx->list_lock);
+ 	INIT_LIST_HEAD(&fctx->signal_list);
+ 	INIT_LIST_HEAD(&fctx->fence_list);
+@@ -506,7 +507,7 @@ static void pvr_fence_context_destroy_kref(struct kref *kref)
+ 
+ 	trace_pvr_fence_context_destroy_kref(fctx);
+ 
+-	schedule_work(&fctx->destroy_work);
++	queue_work(fctx->destroy_wq, &fctx->destroy_work);
+ }
+ 
+ /**
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h
+index 21870ba9113e..2047719c6a9e 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h
+@@ -47,7 +47,7 @@
+ #include <linux/version.h>
+ 
+ #if (LINUX_VERSION_CODE < KERNEL_VERSION(3, 17, 0))
+-static inline void pvr_fence_cleanup(void)
++static inline void pvr_fence_cleanup(struct pvr_fence_context *ctx)
+ {
+ }
+ #else
+@@ -97,6 +97,8 @@ struct pvr_fence_context {
+ 	struct list_head deferred_free_list;
+ 
+ 	struct kref kref;
++
++	struct workqueue_struct *destroy_wq;
+ 	struct work_struct destroy_work;
+ };
+ 
+@@ -188,13 +190,10 @@ u32 pvr_fence_dump_info_on_stalled_ufos(struct pvr_fence_context *fctx,
+ 					u32 nr_ufos,
+ 					u32 *vaddrs);
+ 
+-static inline void pvr_fence_cleanup(void)
++static inline void pvr_fence_cleanup(struct pvr_fence_context *ctx)
+ {
+-	/*
+-	 * Ensure all PVR fence contexts have been destroyed, by flushing
+-	 * the global workqueue.
+-	 */
+-	flush_scheduled_work();
++	flush_workqueue(ctx->destroy_wq);
++	destroy_workqueue(ctx->destroy_wq);
+ }
+ 
+ #if defined(PVR_FENCE_DEBUG)
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c
+index e3656108e963..e29c4dfeac61 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c
+@@ -826,7 +826,7 @@ int pvr_sync_init(void)
+ 
+ err_ioctl_init:
+ 	pvr_fence_context_destroy(pvr_sync_data.foreign_fence_context);
+-	pvr_fence_cleanup();
++	pvr_fence_cleanup(pvr_sync_data.foreign_fence_context);
+ err_out:
+ 	return err;
+ }
+@@ -835,7 +835,7 @@ void pvr_sync_deinit(void)
+ {
+ 	pvr_sync_ioctl_deinit();
+ 	pvr_fence_context_destroy(pvr_sync_data.foreign_fence_context);
+-	pvr_fence_cleanup();
++	pvr_fence_cleanup(pvr_sync_data.foreign_fence_context);
+ }
+ 
+ enum PVRSRV_ERROR_TAG pvr_sync_device_init(struct device *dev)
+-- 
+2.47.0
+

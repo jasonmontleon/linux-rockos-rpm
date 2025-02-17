@@ -1,0 +1,98 @@
+From 5997c68b5495c6a6ea1afeb9edd0549ef9452bf6 Mon Sep 17 00:00:00 2001
+From: liusheng <liusheng@eswincomputing.com>
+Date: Wed, 11 Sep 2024 17:21:40 +0800
+Subject: [PATCH 263/370] WIN2030-16286:feat:fix 2d cannot alloc die0 cma addr
+ issue
+
+Changelogs:
+1.add the numa-node-id for 2d
+
+Change-Id: Id2fbfd0143d7f028a140511a4ad432df1eb39511
+Signed-off-by: liusheng <liusheng@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  1 +
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     | 55 ++++++++++---------
+ 2 files changed, 29 insertions(+), 27 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index d87b845a0966..5750ea1646ca 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -751,6 +751,7 @@ gc820: g2d@50140000 {
+ 			contiguous-size = <0xa00000>;
+ 			recovery = <0>;
+ 			dma-noncoherent;
++			numa-node-id = <0>;
+ 		};
+ 
+ 		gpu0: gpu@51400000 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 2f36205bc50e..e23aace10f03 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1912,34 +1912,35 @@ d1_wdt3: watchdog@0x7080c000 {
+ 			status = "disabled";
+ 		};
+ 
+-				d1_gc820: g2d@70140000 {
+-						compatible = "eswin,galcore_d1";
+-						clocks = <&d1_clock WIN2030_CLK_VC_ACLK>,
+-										<&d1_clock WIN2030_CLK_VC_CFG_CLK>,
+-										<&d1_clock WIN2030_CLK_G2D_CFG_CLK>,
+-										<&d1_clock WIN2030_CLK_CLK_G2D_ST2>,
+-										<&d1_clock WIN2030_CLK_G2D_CLK>,
+-										<&d1_clock WIN2030_CLK_G2D_ACLK>,
+-										<&d1_clock WIN2030_CLK_VC_MON_PCLK>;
+-						clock-names = "vc_aclk", "vc_cfg", "g2d_cfg", "g2d_st2", "g2d_clk", "g2d_aclk","mon_pclk";
+-						resets = <&d1_reset VC_RST_CTRL SW_VC_AXI_RSTN>,
+-										<&d1_reset VC_RST_CTRL SW_VC_CFG_RSTN>,
+-										<&d1_reset VC_RST_CTRL SW_VC_MONCFG_RSTN>,
+-										<&d1_reset G2D_RST_CTRL SW_G2D_CORE_RSTN>,
+-										<&d1_reset G2D_RST_CTRL SW_G2D_CFG_RSTN>,
+-										<&d1_reset G2D_RST_CTRL SW_G2D_AXI_RSTN>;
+-						reset-names = "axi", "cfg", "moncfg", "g2d_core", "g2d_cfg", "g2d_axi";
+-						reg = <0 0x70140000 0 0x40000>, <0 0x70180000 0 0x40000>;
+-						reg-names = "core_2d", "core_2d1";
+-						fe-apb-offset = <0x800>;
+-						interrupt-parent = <&plic1>;
+-						interrupts = <49>, <50>;
+-						interrupt-names = "core_2d", "core_2d1";
+-						enable-mmu = <1>;
+-						contiguous-size = <0xa00000>;
+-						recovery = <0>;
++		d1_gc820: g2d@70140000 {
++			compatible = "eswin,galcore_d1";
++			clocks = <&d1_clock WIN2030_CLK_VC_ACLK>,
++					<&d1_clock WIN2030_CLK_VC_CFG_CLK>,
++					<&d1_clock WIN2030_CLK_G2D_CFG_CLK>,
++					<&d1_clock WIN2030_CLK_CLK_G2D_ST2>,
++					<&d1_clock WIN2030_CLK_G2D_CLK>,
++					<&d1_clock WIN2030_CLK_G2D_ACLK>,
++					<&d1_clock WIN2030_CLK_VC_MON_PCLK>;
++			clock-names = "vc_aclk", "vc_cfg", "g2d_cfg", "g2d_st2", "g2d_clk", "g2d_aclk","mon_pclk";
++			resets = <&d1_reset VC_RST_CTRL SW_VC_AXI_RSTN>,
++					<&d1_reset VC_RST_CTRL SW_VC_CFG_RSTN>,
++					<&d1_reset VC_RST_CTRL SW_VC_MONCFG_RSTN>,
++					<&d1_reset G2D_RST_CTRL SW_G2D_CORE_RSTN>,
++					<&d1_reset G2D_RST_CTRL SW_G2D_CFG_RSTN>,
++					<&d1_reset G2D_RST_CTRL SW_G2D_AXI_RSTN>;
++			reset-names = "axi", "cfg", "moncfg", "g2d_core", "g2d_cfg", "g2d_axi";
++			reg = <0 0x70140000 0 0x40000>, <0 0x70180000 0 0x40000>;
++			reg-names = "core_2d", "core_2d1";
++			fe-apb-offset = <0x800>;
++			interrupt-parent = <&plic1>;
++			interrupts = <49>, <50>;
++			interrupt-names = "core_2d", "core_2d1";
++			enable-mmu = <1>;
++			contiguous-size = <0xa00000>;
++			recovery = <0>;
+ 			dma-noncoherent;
+-				};
++			numa-node-id = <1>;
++		};
+ 
+ 		d1_sdhci_emmc: mmc@70450000 {
+ 			compatible = "eswin,emmc-sdhci-5.1";
+-- 
+2.47.0
+

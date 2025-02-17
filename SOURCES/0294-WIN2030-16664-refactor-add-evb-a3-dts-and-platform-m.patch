@@ -1,0 +1,176 @@
+From 7b63b6af85434497da291c256056a0c90d62e101 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Wed, 27 Nov 2024 14:22:07 +0800
+Subject: [PATCH 294/370] WIN2030-16664:refactor:add evb a3 dts and platform
+ model
+
+Changelogs:
+Add 7700 EVB A3 dts, and adpate model description of other platforms
+
+Change-Id: I172e02d9b1933fa42dbbf15ca2dcf88fd5377635
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/Makefile            |  1 +
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  |  2 +-
+ arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts  | 55 +++++++++++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-evb.dts     |  2 +-
+ .../dts/eswin/eic7700-hifive-premier-p550.dts | 10 ++++
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  |  2 +-
+ drivers/clk/eswin/clk.c                       |  1 +
+ 7 files changed, 70 insertions(+), 3 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+
+diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
+index 83ba4023ed5e..80efde30fa4f 100644
+--- a/arch/riscv/boot/dts/eswin/Makefile
++++ b/arch/riscv/boot/dts/eswin/Makefile
+@@ -2,6 +2,7 @@
+ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
+ 							eic7700-evb.dtb \
+ 							eic7700-evb-a2.dtb \
++							eic7700-evb-a3.dtb \
+ 							eic7700-hifive-premier-p550.dtb \
+                                                         eic7700-milkv-megrez.dtb \
+                                                         eic7700-pine64-starpro64.dtb \
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index 4d20e6b2ccca..1ea82a170c60 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -39,7 +39,7 @@
+ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+-	model = "ESWIN EIC7700";
++	model = "ESWIN EIC7700 EVB A2";
+ 	compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000",
+ 		     "sifive,fu740", "eswin,eic7700";
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+new file mode 100644
+index 000000000000..47b490f8c6c1
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+@@ -0,0 +1,55 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree file for Eswin EIC7700 SoC.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#include "eic7700-evb-a2.dts"
++
++/ {
++	model = "ESWIN EIC7700 EVB A3";
++};
++
++&d0_clock {
++	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio95_default>;
++	cpu-voltage-gpios = <&portc 31 GPIO_ACTIVE_HIGH>;
++};
++
++&d0_cpu_opp_table {
++	opp-1500000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
++	opp-1600000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
++	opp-1700000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1700M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
++	opp-1800000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
++};
+\ No newline at end of file
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+index 456890a19c8c..aba11f7d5040 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+@@ -38,7 +38,7 @@
+ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+-	model = "ESWIN EIC7700";
++	model = "ESWIN EIC7700 EVB A1";
+ 	compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000",
+ 		     "sifive,fu740", "eswin,eic7700";
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 0a8342376dbc..1271e31fb764 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -851,11 +851,21 @@ &d0_clock {
+ };
+ 
+ &d0_cpu_opp_table {
++	opp-1500000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
+ 	opp-1600000000 {
+ 		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
+ 		opp-microvolt = <900000>;
+ 		clock-latency-ns = <70000>;
+ 	};
++	opp-1700000000 {
++		opp-hz = /bits/ 64 <CLK_FREQ_1700M>;
++		opp-microvolt = <900000>;
++		clock-latency-ns = <70000>;
++	};
+ 	opp-1800000000 {
+ 		opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
+ 		opp-microvolt = <900000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 642ebf79f2dd..bf68852cbb0e 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -42,7 +42,7 @@
+ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+-	model = "ESWIN EIC7702";
++	model = "ESWIN EIC7702 EVB A1";
+ 	compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000",
+ 		     "sifive,fu740", "eswin,eic7700";
+ 
+diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
+index c035da206e7b..3c3ba2be4bfa 100755
+--- a/drivers/clk/eswin/clk.c
++++ b/drivers/clk/eswin/clk.c
+@@ -379,6 +379,7 @@ static int clk_pll_set_rate(struct clk_hw *hw,
+ 				}
+ 				break;
+ 			case CLK_FREQ_1600M:
++			case CLK_FREQ_1500M:
+ 				cpu_target_volatge = true == cpu_no_boost_1_6ghz ? VOLTAGE_0_8V : VOLTAGE_0_9V;
+ 				ret = eswin_clk_set_cpu_volatge(clk->cpu_voltage_gpio, cpu_target_volatge);
+ 				if (ret) {
+-- 
+2.47.0
+

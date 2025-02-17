@@ -1,0 +1,47 @@
+From 0cba8859eca9a6eb76fb461a532e99b6cd1db937 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Tue, 17 Dec 2024 22:44:44 +0800
+Subject: [PATCH 308/370] eic7700: megrez: add opp table for 1.5G-1.8G
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ .../boot/dts/eswin/eic7700-milkv-megrez.dts   | 25 +++++++++++++++----
+ 1 file changed, 20 insertions(+), 5 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 0df73dab566b..3fbee7bee395 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -880,9 +880,24 @@ &dev_llc_d0{
+ };
+ 
+ &d0_cpu_opp_table {
+-	opp-1600000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
++        opp-1500000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1600000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1700000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1700M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1800000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
+ };
+-- 
+2.47.0
+

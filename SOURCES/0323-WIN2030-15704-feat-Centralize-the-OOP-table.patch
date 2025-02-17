@@ -1,0 +1,618 @@
+From 37e82eb00fbb2e3c43bd938291a6498491b386f0 Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Mon, 28 Oct 2024 13:11:34 +0800
+Subject: [PATCH 323/370] WIN2030-15704:feat:Centralize the OOP table
+
+Changelogs:
+Centralize the OOP table into the eic770x_ooptable.dtsi file to
+facilitate user reference
+
+Change-Id: Ib20b13470d6b9d834ea90f0c85e3f702e910084e
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |   2 +-
+ .../boot/dts/eswin/eic770x-ooptable.dtsi      | 173 ++++++++++++++++++
+ .../dts/eswin/eswin-win2030-arch-d2d.dtsi     |   8 +-
+ .../boot/dts/eswin/eswin-win2030-arch.dtsi    |   9 +-
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     | 165 +----------------
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  71 -------
+ 6 files changed, 191 insertions(+), 237 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 1271e31fb764..b30953a9f27c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -850,7 +850,7 @@ &d0_clock {
+ 	cpu-voltage-gpios = <&portc 30 GPIO_ACTIVE_HIGH>;
+ };
+ 
+-&d0_cpu_opp_table {
++&cpu_opp_table {
+ 	opp-1500000000 {
+ 		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
+ 		opp-microvolt = <900000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
+new file mode 100644
+index 000000000000..9f1da7ec26ce
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
+@@ -0,0 +1,173 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Include file for pin control of Eswin EIC770x family SoC.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++
++#include <dt-bindings/clock/win2030-clock.h>
++/ {
++	cpu_opp_table: opp-table@cpu {
++		compatible = "operating-points-v2";
++		opp-shared;
++
++		opp-24000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_24M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-100000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_100M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-200000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_200M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-400000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_400M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-500000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_500M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-600000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_600M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-700000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_700M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-800000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_800M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-900000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_900M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-1000000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_1000M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-1200000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_1200M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-1300000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_1300M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++		opp-1400000000 {
++			opp-hz = /bits/ 64 <CLK_FREQ_1400M>;
++			opp-microvolt = <800000>;
++			clock-latency-ns = <70000>;
++		};
++	};
++
++	dsp_opp_table: opp-table@dsp {
++		compatible = "operating-points-v2";
++		opp@520000000 {
++			opp-hz = /bits/ 64 <520000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@1040000000 {
++			opp-hz = /bits/ 64 <1040000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
++	g2d_opp_table: opp-table@g2d {
++		compatible = "operating-points-v2";
++		opp@260000000 {
++			opp-hz = /bits/ 64 <260000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@520000000 {
++			opp-hz = /bits/ 64 <520000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@693333334 {
++			opp-hz = /bits/ 64 <693333334>;
++			opp-microvolt = <800000>;
++		};
++		opp@1040000000 {
++			opp-hz = /bits/ 64 <1040000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
++	vi_opp_table: opp-table@vi {
++		compatible = "operating-points-v2";
++		opp@800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
++	venc_opp_table: opp-table@venc {
++		compatible = "operating-points-v2";
++		opp@800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
++	vdec_opp_table: opp-table@vdec {
++		compatible = "operating-points-v2";
++		opp@800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
+index c9afd60d2434..f138a64dfd45 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
+@@ -105,7 +105,7 @@ cpu_4: cpu@4 {
+ 		tlb-split;
+ 		numa-node-id = <1>;
+ 		clocks = <&d1_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_0>;
+-		operating-points-v2 = <&d1_cpu_opp_table>;
++		operating-points-v2 = <&cpu_opp_table>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu4_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+@@ -153,7 +153,7 @@ cpu_5: cpu@5 {
+ 		tlb-split;
+ 		numa-node-id = <1>;
+ 		clocks = <&d1_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_1>;
+-		operating-points-v2 = <&d1_cpu_opp_table>;
++		operating-points-v2 = <&cpu_opp_table>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu5_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+@@ -200,7 +200,7 @@ cpu_6: cpu@6 {
+ 		tlb-split;
+ 		numa-node-id = <1>;
+ 		clocks = <&d1_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_2>;
+-		operating-points-v2 = <&d1_cpu_opp_table>;
++		operating-points-v2 = <&cpu_opp_table>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu6_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+@@ -247,7 +247,7 @@ cpu_7: cpu@7 {
+ 		tlb-split;
+ 		numa-node-id = <1>;
+ 		clocks = <&d1_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_3>;
+-		operating-points-v2 = <&d1_cpu_opp_table>;
++		operating-points-v2 = <&cpu_opp_table>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu7_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+index 64671ff693e3..0f0e36842fd0 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+@@ -19,6 +19,7 @@
+  */
+ 
+ #include <dt-bindings/clock/win2030-clock.h>
++#include "eic770x-ooptable.dtsi"
+ 
+ #define UART0_INT	100
+ #define UART1_INT	101
+@@ -84,7 +85,7 @@ cpu_0: cpu@0 {
+ 			tlb-split;
+ 			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_0>;
+-			operating-points-v2 = <&d0_cpu_opp_table>;
++			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <324>;
+ 			cpu-idle-states = <&CPU_RET>;
+@@ -130,7 +131,7 @@ cpu_1: cpu@1 {
+ 			tlb-split;
+ 			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_1>;
+-			operating-points-v2 = <&d0_cpu_opp_table>;
++			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <324>;
+ 			cpu-idle-states = <&CPU_RET>;
+@@ -176,7 +177,7 @@ cpu_2: cpu@2 {
+ 			tlb-split;
+ 			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_2>;
+-			operating-points-v2 = <&d0_cpu_opp_table>;
++			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <324>;
+ 			cpu-idle-states = <&CPU_RET>;
+@@ -222,7 +223,7 @@ cpu_3: cpu@3 {
+ 			tlb-split;
+ 			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_3>;
+-			operating-points-v2 = <&d0_cpu_opp_table>;
++			operating-points-v2 = <&cpu_opp_table>;
+ 			#cooling-cells = <2>;
+ 			dynamic-power-coefficient = <324>;
+ 			cpu-idle-states = <&CPU_RET>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 57fbb83e48a9..a7e0b18764fb 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -32,155 +32,6 @@
+ 
+ / {
+     compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000","sifive,fu740";
+-	d0_cpu_opp_table: opp-table0 {
+-		compatible = "operating-points-v2";
+-		opp-shared;
+-
+-		opp-24000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_24M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_100M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-200000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_200M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-400000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_400M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_500M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-600000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_600M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-700000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_700M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-800000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_800M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-900000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_900M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1000000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1000M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1200000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1200M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1300000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1300M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1400000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1400M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-	};
+-
+-	d0_dsp_opp_table: opp-table@dsp {
+-		compatible = "operating-points-v2";
+-		opp@600000000 {
+-			opp-hz = /bits/ 64 <520000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@1040000000 {
+-			opp-hz = /bits/ 64 <1040000000>;
+-			opp-microvolt = <800000>;
+-		};
+-	};
+-	d0_g2d_opp_table: opp-table@g2d {
+-		compatible = "operating-points-v2";
+-		opp@260000000 {
+-			opp-hz = /bits/ 64 <260000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@520000000 {
+-			opp-hz = /bits/ 64 <520000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@693333334 {
+-			opp-hz = /bits/ 64 <693333334>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@1040000000 {
+-			opp-hz = /bits/ 64 <1040000000>;
+-			opp-microvolt = <800000>;
+-		};
+-	};
+-
+-	d0_vi_opp_table: opp-table@vi {
+-		compatible = "operating-points-v2";
+-		opp@800000000 {
+-			opp-hz = /bits/ 64 <800000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@400000000 {
+-			opp-hz = /bits/ 64 <400000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@200000000 {
+-			opp-hz = /bits/ 64 <200000000>;
+-			opp-microvolt = <800000>;
+-		};
+-	};
+-
+-	d0_venc_opp_table: opp-table@venc {
+-		compatible = "operating-points-v2";
+-		opp@800000000 {
+-			opp-hz = /bits/ 64 <800000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@400000000 {
+-			opp-hz = /bits/ 64 <400000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@200000000 {
+-			opp-hz = /bits/ 64 <200000000>;
+-			opp-microvolt = <800000>;
+-		};
+-	};
+-
+-	d0_vdec_opp_table: opp-table@vdec {
+-		compatible = "operating-points-v2";
+-		opp@800000000 {
+-			opp-hz = /bits/ 64 <800000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@400000000 {
+-			opp-hz = /bits/ 64 <400000000>;
+-			opp-microvolt = <800000>;
+-		};
+-		opp@200000000 {
+-			opp-hz = /bits/ 64 <200000000>;
+-			opp-microvolt = <800000>;
+-		};
+-	};
+ 
+ 	thermal-zones {
+ 		thermal0 {
+@@ -693,7 +544,7 @@ d0_dsp0:es_dsp@0 {
+ 					0x28120000 0 0x5b120000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_0>;
+ 				clock-names = "aclk";
+-				operating-points-v2 = <&d0_dsp_opp_table>;
++				operating-points-v2 = <&dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox4>;
+ 				device-irq = <11
+ 					ESWIN_MAILBOX_DSP_0_TO_U84_REG_BASE
+@@ -724,7 +575,7 @@ d0_dsp1:es_dsp@1 {
+ 					0x28120000 0 0x5b160000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_1>;
+ 				clock-names = "aclk";
+-				operating-points-v2 = <&d0_dsp_opp_table>;
++				operating-points-v2 = <&dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox5>;
+ 				device-irq = <13
+ 					ESWIN_MAILBOX_DSP_1_TO_U84_REG_BASE
+@@ -754,7 +605,7 @@ d0_dsp2:es_dsp@2 {
+ 					0x28120000 0 0x5b1a0000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_2>;
+ 				clock-names = "aclk";
+-				operating-points-v2 = <&d0_dsp_opp_table>;
++				operating-points-v2 = <&dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox6>;
+ 				device-irq = <15
+ 					ESWIN_MAILBOX_DSP_2_TO_U84_REG_BASE
+@@ -784,7 +635,7 @@ d0_dsp3:es_dsp@3 {
+ 					0x28120000 0 0x5b1e0000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_3>;
+ 				clock-names = "aclk";
+-				operating-points-v2 = <&d0_dsp_opp_table>;
++				operating-points-v2 = <&dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox7>;
+ 				device-irq = <17
+ 					ESWIN_MAILBOX_DSP_3_TO_U84_REG_BASE
+@@ -835,7 +686,7 @@ gc820: g2d@50140000 {
+ 			recovery = <0>;
+ 			dma-noncoherent;
+ 			numa-node-id = <0>;
+-			operating-points-v2 = <&d0_g2d_opp_table>;
++			operating-points-v2 = <&g2d_opp_table>;
+ 		};
+ 
+ 		gpu0: gpu@51400000 {
+@@ -1108,7 +959,7 @@ vdec0: video-decoder0@50100000 {
+ 					 <&d0_reset VD_RST_CTRL SW_VD_AXI_RSTN>;
+ 			reset-names = "axi", "cfg", "moncfg", "jd_cfg", "jd_axi", "vd_cfg", "vd_axi";
+ 			eswin,syscfg = <&d0_sys_con 0x0 0x4>;
+-			operating-points-v2 = <&d0_vdec_opp_table>;
++			operating-points-v2 = <&vdec_opp_table>;
+ 
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x200 0x100>;
+@@ -1157,7 +1008,7 @@ venc0: video-encoder@50110000 {
+ 					 <&d0_reset VE_RST_CTRL SW_VE_AXI_RSTN>;
+ 			reset-names = "axi", "cfg", "moncfg", "je_cfg", "je_axi", "ve_cfg", "ve_axi";
+ 			eswin,syscfg = <&d0_sys_con 0x0 0x4>;
+-			operating-points-v2 = <&d0_venc_opp_table>;
++			operating-points-v2 = <&venc_opp_table>;
+ 
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x2000 0x7d0>;
+@@ -2226,7 +2077,7 @@ dewarp: dewarp@51020000 {
+ 			         <&d0_reset VI_RST_CTRL SW_VI_DWE_RSTN>;
+ 			reset-names = "axi", "cfg", "dwe";
+ 
+-			operating-points-v2 = <&d0_vi_opp_table>;
++			operating-points-v2 = <&vi_opp_table>;
+ 			interrupt-parent = <&plic0>;
+ 			interrupts = <26 25>;
+ 			#size-cells = <2>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 31b718685d06..66c2a8dddd04 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -30,77 +30,6 @@
+ #include <dt-bindings/power/eswin,eic770x-pmu.h>
+ 
+ / {
+-	d1_cpu_opp_table: opp-table1 {
+-		compatible = "operating-points-v2";
+-		opp-shared;
+-
+-		opp-24000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_24M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-100000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_100M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-200000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_200M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-400000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_400M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-500000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_500M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-600000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_600M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-700000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_700M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-800000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_800M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-900000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_900M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1000000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1000M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1200000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1200M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1300000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1300M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-		opp-1400000000 {
+-			opp-hz = /bits/ 64 <CLK_FREQ_1400M>;
+-			opp-microvolt = <800000>;
+-			clock-latency-ns = <70000>;
+-		};
+-	};
+-
+ 	thermal-zones {
+ 		d1_thermal0 {
+ 			polling-delay-passive = <500>; /*ms*/
+-- 
+2.47.0
+

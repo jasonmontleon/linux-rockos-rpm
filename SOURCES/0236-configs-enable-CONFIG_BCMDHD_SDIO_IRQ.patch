@@ -1,0 +1,25 @@
+From f9b7ded8ed639797a6eeae2c2ff483042ec82449 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Fri, 22 Nov 2024 18:04:21 +0800
+Subject: [PATCH 236/370] configs: enable CONFIG_BCMDHD_SDIO_IRQ
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/configs/win2030_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index c1ce4ce9ed4c..7d9b96993252 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -457,6 +457,7 @@ CONFIG_RTW89_8852CE=m
+ # CONFIG_WLAN_VENDOR_TI is not set
+ # CONFIG_WLAN_VENDOR_ZYDAS is not set
+ # CONFIG_WLAN_VENDOR_QUANTENNA is not set
++CONFIG_BCMDHD_SDIO_IRQ=y
+ CONFIG_INPUT_EVDEV=y
+ # CONFIG_INPUT_KEYBOARD is not set
+ # CONFIG_INPUT_MOUSE is not set
+-- 
+2.47.0
+

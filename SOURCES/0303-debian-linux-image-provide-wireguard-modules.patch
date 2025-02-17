@@ -1,0 +1,26 @@
+From f4c8c572d2978750c60e433e8e144ec4a4ad2702 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Mon, 14 Oct 2024 16:13:35 +0800
+Subject: [PATCH 303/370] debian: linux-image provide wireguard-modules
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ scripts/package/mkdebian | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/scripts/package/mkdebian b/scripts/package/mkdebian
+index 5044224cf671..fcbcfa0c3a6a 100755
+--- a/scripts/package/mkdebian
++++ b/scripts/package/mkdebian
+@@ -220,6 +220,7 @@ Homepage: https://www.kernel.org/
+ 
+ Package: $packagename-$version
+ Architecture: $debarch
++Provides: wireguard-modules (= 1.0.0)
+ Description: Linux kernel, version $version
+  This package contains the Linux kernel, modules and corresponding other
+  files, version: $version.
+-- 
+2.47.0
+

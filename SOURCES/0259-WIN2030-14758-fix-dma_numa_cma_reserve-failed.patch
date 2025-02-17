@@ -1,0 +1,86 @@
+From 2897fbf8e061c79d803631f9b4586e190030ef4b Mon Sep 17 00:00:00 2001
+From: linmin <linmin@eswincomputing.com>
+Date: Tue, 10 Sep 2024 13:11:44 +0800
+Subject: [PATCH 259/370] WIN2030-14758:fix:dma_numa_cma_reserve failed
+
+Changelogs:
+1.It said "cma: dma_numa_cma_reserve: reservation failed: err -12, node 0"
+  when trying to reserve cma memory for each numa node.
+  This is because node_online_map has not been initialized.
+  Fixing this bug by moving dma_contiguous_reserve(dma32_phys_limit) to
+  the place after arch_numa_init().
+2.Set CONFIG_NODES_SHIFT to 1
+3.Set cma_pernuma to 0x20000000, i.e. 512MB
+4.Removed d1_g2d_12GB_boundary_reserved_4k node which is overlaped with
+  mmz_nid_1_part_0
+
+Signed-off-by: linmin <linmin@eswincomputing.com>
+Change-Id: Ife33c1d822cd2c2a048beb5b689929525d1f432c
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts | 5 -----
+ arch/riscv/configs/eic7702_defconfig         | 3 ++-
+ arch/riscv/mm/init.c                         | 9 ++++++++-
+ 3 files changed, 10 insertions(+), 7 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 2019957d4530..d5547aef615c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -140,11 +140,6 @@ d1_g2d_8GB_boundary_reserved_4k {
+ 			reg = <0x21 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+-		d1_g2d_12GB_boundary_reserved_4k {
+-			no-map;
+-			reg = <0x22 0xfffff000 0x0 0x1000>;
+-		};
+-
+ 		mmz_nid_1_part_0 {
+ 			compatible = "eswin-reserve-memory";
+ 			reg = <0x22 0x80000000 0x1 0x80000000>;
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 724605bbb530..bb996acd43d9 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -36,9 +36,10 @@ CONFIG_SMP=y
+ CONFIG_NR_CPUS=8
+ CONFIG_HOTPLUG_CPU=y
+ CONFIG_NUMA=y
++CONFIG_NODES_SHIFT=1
+ CONFIG_RISCV_SBI_V01=y
+ # CONFIG_RISCV_BOOT_SPINWAIT is not set
+-CONFIG_CMDLINE="earlycon=sbi console=ttyS0,115200n8 clk_ignore_unused cma_pernuma=0x2000000 disable_bypass=false firmware_class.path=/lib/firmware/eic7x/"
++CONFIG_CMDLINE="earlycon=sbi console=ttyS0,115200n8 clk_ignore_unused cma_pernuma=0x20000000 disable_bypass=false firmware_class.path=/lib/firmware/eic7x/"
+ CONFIG_CMDLINE_EXTEND=y
+ # CONFIG_SUSPEND is not set
+ CONFIG_CPU_FREQ=y
+diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
+index bdf8ac6c7e30..6584317decd5 100644
+--- a/arch/riscv/mm/init.c
++++ b/arch/riscv/mm/init.c
+@@ -295,7 +295,6 @@ static void __init setup_bootmem(void)
+ 	if (!IS_ENABLED(CONFIG_BUILTIN_DTB))
+ 		memblock_reserve(dtb_early_pa, fdt_totalsize(dtb_early_va));
+ 
+-	dma_contiguous_reserve(dma32_phys_limit);
+ 	if (IS_ENABLED(CONFIG_64BIT))
+ 		hugetlb_cma_reserve(PUD_SHIFT - PAGE_SHIFT);
+ }
+@@ -1533,6 +1532,14 @@ void __init misc_mem_init(void)
+ 	local_flush_tlb_kernel_range(VMEMMAP_START, VMEMMAP_END);
+ #endif
+ 	zone_sizes_init();
++
++	/*
++	 * Reserve the CMA area after dma32_phys_limit was initialised.
++	 * It must be called after arch_numa_init() which calls numa_init() to
++	 * initialize node_online_map that gets used by dma_contiguous_reserve()
++	 */
++	dma_contiguous_reserve(dma32_phys_limit);
++
+ 	reserve_crashkernel();
+ 	memblock_dump_all();
+ }
+-- 
+2.47.0
+

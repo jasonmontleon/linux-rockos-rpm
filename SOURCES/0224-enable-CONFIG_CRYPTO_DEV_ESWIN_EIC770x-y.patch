@@ -1,0 +1,25 @@
+From 9e08bf844724f0fc028fd0b014d1c894af9f16b0 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Tue, 12 Nov 2024 00:04:57 +0800
+Subject: [PATCH 224/370] enable CONFIG_CRYPTO_DEV_ESWIN_EIC770x=y
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/configs/win2030_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 079152612a36..043710150877 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -809,6 +809,7 @@ CONFIG_CRYPTO_HMAC=m
+ CONFIG_CRYPTO_MD5=y
+ CONFIG_CRYPTO_SHA512=m
+ CONFIG_CRYPTO_DEV_VIRTIO=y
++CONFIG_CRYPTO_DEV_ESWIN_EIC770x=y
+ CONFIG_CRC_ITU_T=y
+ CONFIG_CRC7=y
+ CONFIG_DMA_CMA=y
+-- 
+2.47.0
+

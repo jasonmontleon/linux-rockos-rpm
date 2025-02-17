@@ -1,0 +1,64 @@
+From a6d40738c12c976026d77509907b7fdea040f1b8 Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Thu, 21 Nov 2024 15:51:28 +0800
+Subject: [PATCH 285/370] WIN2030-15186:fix:Fan at maximum speed
+
+Changelogs:
+	Fan at maximum speed
+
+Change-Id: Ia945a2497384d84a819aa43646518962c249272e
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ drivers/hwmon/eswin-fan-control.c | 20 ++++++++++++++++----
+ 1 file changed, 16 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
+index b1b48b5ec94b..5e39c7b49eb5 100644
+--- a/drivers/hwmon/eswin-fan-control.c
++++ b/drivers/hwmon/eswin-fan-control.c
+@@ -3,7 +3,6 @@
+  * ESWIN Fan Control CORE driver
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -17,9 +16,10 @@
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  *
+- * Author: Han Min <hanmin@eswincomputing.com>
++ * Authors: Han Min <hanmin@eswincomputing.com>
+  */
+ 
++
+ #include <linux/bits.h>
+ #include <linux/clk.h>
+ #include <linux/reset.h>
+@@ -509,8 +509,20 @@ static int eswin_fan_control_probe(struct platform_device *pdev)
+ 	/* Then fill it with the reference config */
+ 	pwm_get_args(ctl->pwm, &pwm_args);
+ 
+-	state.period = pwm_args.period;
+-	state.duty_cycle = state.period*99/100; /* default set max speed */
++	if (0 == ctl->pwm_inverted)
++	{
++		state.period = pwm_args.period;
++		state.duty_cycle = state.period * 99 / 100; /* default set max speed */
++	}
++	else
++	{
++		state.period = pwm_args.period;
++		state.duty_cycle = state.period / 100; /* default set max speed */
++		if(0 == state.duty_cycle)
++		{
++			state.duty_cycle = 1;
++		}
++	}
+ 	dev_err(&pdev->dev, "state.period: %d state.duty_cycle: %d\n",
+ 			state.period,state.duty_cycle);
+ 	ret = pwm_apply_might_sleep(ctl->pwm, &state);
+-- 
+2.47.0
+

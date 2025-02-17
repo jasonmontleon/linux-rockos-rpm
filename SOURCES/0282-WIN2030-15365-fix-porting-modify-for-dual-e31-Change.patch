@@ -1,0 +1,144 @@
+From 4bd495a6e248b43a0027b7f35d7cb3f1604c2cc4 Mon Sep 17 00:00:00 2001
+From: luoshanggui <luoshanggui@eswincomputing.com>
+Date: Tue, 5 Nov 2024 14:59:26 +0800
+Subject: [PATCH 282/370] WIN2030-15365: fix: porting modify for dual e31
+ Changelogs:
+
+Change-Id: I2d1b7021bb093e96d03fb70bd3f7f172872d9631
+Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
+---
+ .../ai_driver/common/devices/mailbox_regs.h     | 17 ++++++++++-------
+ .../ai_driver/common/devices/npu_base_regs.h    | 17 ++++++++++++++---
+ .../soc/eswin/ai_driver/common/hetero_arch.h    |  4 ++++
+ 3 files changed, 28 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
+index f4be79fac599..a92f45669a4e 100644
+--- a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
++++ b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
+@@ -44,8 +44,11 @@
+  * @brief ESWIN_MAILBOX_REG_BASE 0x50a00000
+  *
+  */
++#if defined(DIE1) && DIE1
++#define MBOX_REG_BASE 0x70a00000
++#else
+ #define MBOX_REG_BASE 0x50a00000
+-
++#endif
+ /**
+  * @brief MBOX_REG_OFFSET 0x10000
+  *
+@@ -56,37 +59,37 @@
+  * @brief ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE (mailbox 4)
+  *
+  */
+-#define ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE 0x50a40000
++#define ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE (MBOX_REG_BASE + 0x40000UL)
+ 
+ /**
+  * @brief ESWIN_MAILBOX_NPU_0_TO_U84_REG_BASE (mailbox 5)
+  *
+  */
+-#define ESWIN_MAILBOX_NPU_0_TO_U84_REG_BASE 0x50a50000
++#define ESWIN_MAILBOX_NPU_0_TO_U84_REG_BASE (MBOX_REG_BASE + 0x50000UL)
+ 
+ /**
+  * @brief ESWIN_MAILBOX_U84_TO_DSP_0_REG_BASE (mailbox 8)
+  *
+  */
+-#define ESWIN_MAILBOX_U84_TO_DSP_0_REG_BASE 0x50a80000UL
++#define ESWIN_MAILBOX_U84_TO_DSP_0_REG_BASE (MBOX_REG_BASE + 0x80000UL)
+ 
+ /**
+  * @brief ESWIN_MAILBOX_U84_TO_DSP_1_REG_BASE (mailbox 10)
+  *
+  */
+-#define ESWIN_MAILBOX_U84_TO_DSP_1_REG_BASE 0x50aa0000UL
++#define ESWIN_MAILBOX_U84_TO_DSP_1_REG_BASE (MBOX_REG_BASE + 0xa0000UL)
+ 
+ /**
+  * @brief ESWIN_MAILBOX_U84_TO_DSP_2_REG_BASE (mailbox 12)
+  *
+  */
+-#define ESWIN_MAILBOX_U84_TO_DSP_2_REG_BASE 0x50ac0000UL
++#define ESWIN_MAILBOX_U84_TO_DSP_2_REG_BASE (MBOX_REG_BASE + 0xc0000UL)
+ 
+ /**
+  * @brief ESWIN_MAILBOX_U84_TO_DSP_3_REG_BASE (mailbox 14)
+  *
+  */
+-#define ESWIN_MAILBOX_U84_TO_DSP_3_REG_BASE 0x50ae0000UL
++#define ESWIN_MAILBOX_U84_TO_DSP_3_REG_BASE (MBOX_REG_BASE + 0xe0000UL)
+ 
+ /**
+  * @brief MBOX_NPU_WR_DATA0_OFFSET
+diff --git a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
+index 80e7cc72497b..bfbbe244a712 100644
+--- a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
++++ b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
+@@ -85,7 +85,11 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
+ } NPU_MODULE_SEL_ID_E;
+ 
+ /* NPU system port base address */
++#if defined(DIE1) && DIE1
++#define NPU_SYS_BASE_ADDR 0x71C00000
++#else
+ #define NPU_SYS_BASE_ADDR 0x51C00000
++#endif
+ /* NPU configuration base address */
+ #define NPU_CFG_BASE_ADDR 0x51828000
+ 
+@@ -95,6 +99,11 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
+ /*NPU Die Register Offset*/
+ #define NPU_DIE_REG_OFFSET 0x20000000
+ 
++#if defined(DIE1) && DIE1
++#define NPU_SRAM_BASE_ADDR 0x79000000
++#define SYS_CON_BASE_ADDR 0x71810000
++#define PMC_BASE_ADDR 0x71800000
++#else
+ /* NPU sram base address */
+ #define NPU_SRAM_BASE_ADDR 0x59000000
+ 
+@@ -103,6 +112,7 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
+ 
+ /* Power domain management control base address */
+ #define PMC_BASE_ADDR 0x51800000
++#endif
+ 
+ #define PMC_REG_MAX 0x9000
+ 
+@@ -310,9 +320,10 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
+  * @brief Assert the register access address is legal.
+  *
+  */
+-#define ASSERT_REG_ADDR(addr)                                                                                   \
+-    ASSERT(((addr)-NPU_HW_MODULE_BASE_ADDR) < NPU_HW_MODULE_SIZE || ((addr)-SYS_CON_BASE_ADDR) < CON_REG_MAX || \
+-           ((addr)-PMC_BASE_ADDR) < PMC_REG_MAX || ((addr)-ESWIN_MAILBOX_NPU_0_TO_U84_REG_BASE) < MBOX_NPU_MAX_SIZE)
++#define ASSERT_REG_ADDR(addr)                                                                                       \
++    ASSERT(((addr) - NPU_HW_MODULE_BASE_ADDR) < NPU_HW_MODULE_SIZE || ((addr) - SYS_CON_BASE_ADDR) < CON_REG_MAX || \
++           ((addr) - PMC_BASE_ADDR) < PMC_REG_MAX ||                                                                \
++           ((addr) - ESWIN_MAILBOX_NPU_0_TO_U84_REG_BASE) < MBOX_NPU_MAX_SIZE)
+ 
+ /**
+  * @brief The ssid of write and read operation.
+diff --git a/drivers/soc/eswin/ai_driver/common/hetero_arch.h b/drivers/soc/eswin/ai_driver/common/hetero_arch.h
+index e577200853af..deb46ac3d38f 100644
+--- a/drivers/soc/eswin/ai_driver/common/hetero_arch.h
++++ b/drivers/soc/eswin/ai_driver/common/hetero_arch.h
+@@ -125,7 +125,11 @@ static inline u32 _ffs(u32 r0)
+     return r1;
+ }
+ 
++#if defined(DIE1) && DIE1
++#define TIMER0_BASE 0x71840000
++#else
+ #define TIMER0_BASE 0x51840000
++#endif
+ #define PTS_CHAN 7
+ #define PTS_END_CYCLE (*(u32 *)(TIMER0_BASE + 0x0 + PTS_CHAN * 0x14))
+ #define PTS_START_CYCLE (*(u32 *)(TIMER0_BASE + 0x4 + PTS_CHAN * 0x14))
+-- 
+2.47.0
+

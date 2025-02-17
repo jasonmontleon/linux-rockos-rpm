@@ -1,0 +1,49 @@
+From ba240a9bb9a7cac5da891b05282a0219088b0f63 Mon Sep 17 00:00:00 2001
+From: liangshuang <liangshuang@eswincomputing.com>
+Date: Fri, 1 Nov 2024 10:43:47 +0800
+Subject: [PATCH 281/370] WIN2030-15078:fix:add irq/reset gpio for aw3155 in
+ 7702 dts.
+
+Changelogs:
+1.add irq/reset gpio for aw3155.
+
+Change-Id: Icaa2ccc09a41afd2f40f8cd581f7e20951afdda1
+Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 629626b35c4b..f6b416a65a95 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -734,7 +734,7 @@ &sdio0 {
+ 
+ &d1_sdio0 {
+ 	/* wifi module */
+-	status = "disabled";
++	status = "okay";
+ 	delay_code = <0x29>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+@@ -743,6 +743,17 @@ &d1_sdio0 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	aw315:wifi_aw3155@0 {
++		compatible = "aml_w1_sdio";
++		reg = <0x0>;
++		interrupt-parent = <&d1_porta>;
++		interrupts = <18 IRQ_TYPE_LEVEL_LOW>;
++		pinctrl-names = "default", "default";
++		pinctrl-0 = <&pinctrl_die1_gpio18_default>;
++		pinctrl-1 = <&pinctrl_die1_gpio16_default>;
++		irq-gpios = <&d1_porta 18 GPIO_ACTIVE_HIGH>;
++		rst-gpios = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &sdio1 {
+-- 
+2.47.0
+

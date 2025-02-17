@@ -1,0 +1,30 @@
+From 4eeb9d5f961e47d9671a36b5cf2ae3f329eab659 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Tue, 26 Nov 2024 14:03:48 +0800
+Subject: [PATCH 292/370] WIN2030-16664:fix:modify machine model of 7702
+
+Changelogs:
+Modify 7702 EVB DTS model from EIC7700 to EIC7702
+
+Change-Id: Ic9d44f7ffd8adbc8b0a8a51dc8b4ff85644d2ed1
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index d26e6e5f505f..642ebf79f2dd 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -42,7 +42,7 @@
+ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+-	model = "ESWIN EIC7700";
++	model = "ESWIN EIC7702";
+ 	compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000",
+ 		     "sifive,fu740", "eswin,eic7700";
+ 
+-- 
+2.47.0
+

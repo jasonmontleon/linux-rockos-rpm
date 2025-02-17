@@ -1,0 +1,558 @@
+From bb98a9f38eaf00997d837cd22a8c717f38e385df Mon Sep 17 00:00:00 2001
+From: linmin <linmin@eswincomputing.com>
+Date: Fri, 13 Sep 2024 16:57:31 +0800
+Subject: [PATCH 270/370] WIN2030-14758:fix(venc driver):iova allocation for
+ venc on DIE1
+
+Changelogs:
+1.In order to allocate the same iova for venc on die1, an API named
+  common_dmabuf_heap_rsv_iova_map() is introduced.
+  This API just tries to use the given iova to map the dmabuf, the refcount
+  of the dmabuf will not be increased, in other words, the dmabuf will not
+  be attached by the venc on die1.
+2.Unmap the venc iova on DIE1 when venc release is called.
+Notes:rsv_iova_unmap() must be called before hmem of die0 is released.
+
+Signed-off-by: linmin <linmin@eswincomputing.com>
+Change-Id: I425964a00b491715ab55bdb2984b542eb81d0b81
+---
+ drivers/memory/eswin/es_iommu_rsv/Makefile    |   4 -
+ drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c |  59 +++++++-
+ .../dmabuf-heap-import-helper.c               | 136 ++++++++++++++++++
+ .../media/eswin/venc/vc8000_vcmd_driver.c     | 107 +++++---------
+ include/linux/dmabuf-heap-import-helper.h     |   7 +
+ .../include => include}/linux/es_iommu_rsv.h  |   1 +
+ 6 files changed, 239 insertions(+), 75 deletions(-)
+ rename {drivers/memory/eswin/es_iommu_rsv/include => include}/linux/es_iommu_rsv.h (77%)
+
+diff --git a/drivers/memory/eswin/es_iommu_rsv/Makefile b/drivers/memory/eswin/es_iommu_rsv/Makefile
+index 25f75be421e6..361a05e9f900 100644
+--- a/drivers/memory/eswin/es_iommu_rsv/Makefile
++++ b/drivers/memory/eswin/es_iommu_rsv/Makefile
+@@ -1,5 +1 @@
+ obj-$(CONFIG_ESWIN_IOMMU_RSV) += iommu_rsv.o
+-
+-ES_IOMMU_RSV_HEADER := $(srctree)/drivers/memory/eswin/es_iommu_rsv/include/linux
+-
+-COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_IOMMU_RSV_HEADER)/*h include/linux)
+diff --git a/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c b/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
+index 397601410e6e..9bcbec3fa4e7 100644
+--- a/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
++++ b/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
+@@ -370,8 +370,8 @@ int iommu_unmap_rsv_iova(struct device *dev, void *cpu_addr, dma_addr_t iova, un
+ 	phys = iommu_iova_to_phys(domain, iova);
+ 	if (phys == 0)
+ 	{
+-		dev_err(dev, "%s, iova=0x%llx, have not maps\n", __func__, iova);
+-		return -EINVAL;
++		dev_dbg(dev, "%s, iova=0x%llx, have not maps\n", __func__, iova);
++		return -EFAULT;
+ 	}
+ 
+ 	if (!size)
+@@ -389,6 +389,61 @@ int iommu_unmap_rsv_iova(struct device *dev, void *cpu_addr, dma_addr_t iova, un
+ }
+ EXPORT_SYMBOL(iommu_unmap_rsv_iova);
+ 
++ssize_t iommu_rsv_iova_map_sgt(struct device *dev, dma_addr_t iova, struct sg_table *sgt, unsigned long attrs, size_t buf_size)
++{
++	struct iommu_domain *domain = iommu_get_domain_for_dev(dev);
++	bool coherent = dev_is_dma_coherent(dev);
++	int ioprot = dma_info_to_prot(DMA_BIDIRECTIONAL, coherent, attrs);
++	struct scatterlist *sg;
++	phys_addr_t phys;
++	int i;
++	size_t size = 0;
++	ssize_t ret = 0;
++
++	phys = iommu_iova_to_phys(domain, iova);
++	if (phys != 0) {
++		if (phys != sg_phys(sgt->sgl)) {
++			dev_err(dev, "%s, iova=0x%llx, have exits phys=0x%llx\n", __func__, iova, phys);
++			return -EINVAL;
++		}
++		else {
++			dev_dbg(dev, "%s, iova=0x%llx mapped!\n", __func__, iova);
++			return ret;
++		}
++	}
++#if 0
++	if (!(ioprot & IOMMU_CACHE))
++	{
++		int i;
++
++		for_each_sg(sgt->sgl, sg, sgt->orig_nents, i)
++			dma_prep_coherent(sg_page(sg), sg->length);
++	}
++#endif
++	for_each_sg(sgt->sgl, sg, sgt->orig_nents, i)
++		size += sg->length;
++
++	if (size != buf_size) {
++		dev_err(dev, "%s %d fail, sg size 0x%lx != buf_size 0x%lx\n", __func__, __LINE__, size, buf_size);
++		return -EINVAL;
++	}
++
++	ret = iommu_map_sg(domain, iova, sgt->sgl, sgt->orig_nents, ioprot, GFP_KERNEL);
++	if (ret < 0 || ret < size)
++	{
++		dev_err(dev, "%s %d fail, ret %ld, size %ld\n", __func__, __LINE__, ret, size);
++		goto out;
++	}
++
++	return ret;
++out:
++	if (ret != -ENOMEM && ret != -EREMOTEIO)
++		return -EINVAL;
++
++	return ret;
++}
++EXPORT_SYMBOL(iommu_rsv_iova_map_sgt);
++
+ static void eswin_iommu_put_func(void)
+ {
+ 	if (__iommu_dma_free)
+diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
+index fdbcfe7e6c70..8e1e14487a31 100644
+--- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
++++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
+@@ -24,6 +24,13 @@ struct drm_prime_member {
+ 	struct rb_node handle_rb;
+ };
+ 
++struct dma_heap_attachment {
++	struct device *dev;
++	struct sg_table *table;
++	struct list_head list;
++	bool mapped;
++};
++
+ static int dmabuf_heap_add_buf_handle(struct dmaheap_file_private *prime_fpriv,
+ 				    struct dma_buf *dma_buf, uint64_t handle)
+ {
+@@ -433,6 +440,135 @@ common_dmabuf_heap_import_from_kernel(struct heap_root *root, char *name, size_t
+ }
+ EXPORT_SYMBOL(common_dmabuf_heap_import_from_kernel);
+ 
++struct heap_mem *common_dmabuf_heap_rsv_iova_map(struct heap_root *root, int fd, dma_addr_t iova, size_t size)
++{
++	struct dma_buf *dma_buf;
++	struct dma_buf_attachment *attach;
++	struct dma_heap_attachment *a;
++
++	uint64_t handle;
++	struct heap_mem *heap_obj;
++	ssize_t ret = 0;
++
++	/* get dmabuf handle */
++	dma_buf = dma_buf_get(fd);
++	if (IS_ERR(dma_buf)) {
++		return ERR_CAST(dma_buf);
++	}
++
++	mutex_lock(&root->lock);
++	dev_dbg(root->dev, "%s, fd=%d, iova=0x%llx, size=0x%lx\n", __func__, fd, iova, size);
++
++	ret = dmabuf_heap_lookup_buf_handle(&root->fp, dma_buf, &handle);
++	if (ret == 0) {
++		heap_obj = (struct heap_mem *)handle;
++		dma_buf_put(dma_buf);
++		kref_get(&heap_obj->refcount);
++		mutex_unlock(&root->lock);
++		return heap_obj;
++	}
++
++	heap_obj = kzalloc(sizeof(*heap_obj), GFP_KERNEL);
++	if (!heap_obj) {
++		mutex_unlock(&root->lock);
++		dma_buf_put(dma_buf);
++		return ERR_PTR(-ENOMEM);
++	}
++
++	attach = dma_buf_attach(dma_buf, root->dev);
++	if (IS_ERR(attach)) {
++		ret = PTR_ERR(attach);
++		goto clean_up;
++	}
++
++	a = (struct dma_heap_attachment *)attach->priv;
++	ret = iommu_rsv_iova_map_sgt(root->dev, iova, a->table, 0, size);
++	dma_buf_detach(dma_buf, attach);
++	if (ret < 0)
++		goto clean_up;
++
++	heap_obj->dbuf_fd = fd;
++	heap_obj->dbuf = dma_buf;
++	heap_obj->root = root;
++	heap_obj->vaddr = NULL;
++	heap_obj->dir = DMA_BIDIRECTIONAL;
++	heap_obj->iova = iova;
++	heap_obj->size = size;
++
++	/* get_dma_buf was called in dmabuf_heap_add_buf_handle()*/
++	ret = dmabuf_heap_add_buf_handle(&root->fp, dma_buf, (uint64_t)heap_obj);
++		if (ret) {
++		goto fail_add_handle;
++	}
++	/* get_dma_buf was called in dmabuf_heap_add_buf_handle(), need to put back since
++	 * we don't want to hold the dma_buf in this API
++	*/
++	dma_buf_put(dma_buf);
++
++	kref_init(&heap_obj->refcount);
++
++	list_add(&heap_obj->list, &root->header);
++
++	mutex_unlock(&root->lock);
++
++	dma_buf_put(dma_buf);
++
++	return heap_obj;
++
++fail_add_handle:
++	iommu_unmap_rsv_iova(root->dev, 0, iova, size);
++clean_up:
++	kfree(heap_obj);
++	mutex_unlock(&root->lock);
++	dma_buf_put(dma_buf);
++
++	return ERR_PTR(ret);
++}
++EXPORT_SYMBOL(common_dmabuf_heap_rsv_iova_map);
++
++static void __common_dmabuf_heap_rsv_iova_unmap(struct kref *kref)
++{
++	struct heap_root *root;
++	struct heap_mem *heap_obj = container_of(kref, struct heap_mem, refcount);
++
++	WARN_ON(!heap_obj);
++	if (!heap_obj)
++		return;
++
++	root = heap_obj->root;
++	WARN_ON(!mutex_is_locked(&root->lock));
++	list_del(&heap_obj->list);
++
++
++	iommu_unmap_rsv_iova(root->dev, 0, heap_obj->iova, heap_obj->size);
++	/* dma_buf_put will be  called in _dmabuf_heap_remove_buf_handle(),
++	 * so, call get_dma_buf first
++	*/
++	get_dma_buf(heap_obj->dbuf);
++	_dmabuf_heap_remove_buf_handle(&root->fp, heap_obj->dbuf);
++	kfree(heap_obj);
++}
++
++void common_dmabuf_heap_rsv_iova_unmap(struct heap_mem *heap_obj)
++{
++	struct heap_root *root = heap_obj->root;
++
++	mutex_lock(&root->lock);
++	kref_put(&heap_obj->refcount, __common_dmabuf_heap_rsv_iova_unmap);
++	mutex_unlock(&root->lock);
++}
++EXPORT_SYMBOL(common_dmabuf_heap_rsv_iova_unmap);
++
++void common_dmabuf_heap_rsv_iova_uninit(struct heap_root *root)
++{
++	struct heap_mem *h, *tmp;
++
++	list_for_each_entry_safe(h, tmp, &root->header, list) {
++		common_dmabuf_heap_rsv_iova_unmap(h);
++	}
++}
++EXPORT_SYMBOL(common_dmabuf_heap_rsv_iova_uninit);
++
+ struct esw_exp_attachment {
+ 	struct heap_mem *hmem;
+ 	struct sg_table table;
+diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
+index 44d3f79ce197..5e24f087817d 100644
+--- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
++++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
+@@ -249,9 +249,6 @@ struct hantrovcmd_dev {
+ #define VCMD_HW_ID                  0x4342
+ 
+ 
+-#ifdef SUPPORT_DMA_HEAP
+-static struct mutex dmaheap_mutex;
+-#endif /**SUPPORT_DMA_HEAP*/
+ 
+ static struct noncache_mem vcmd_buf_mem_pool;
+ static struct noncache_mem vcmd_status_buf_mem_pool;
+@@ -2086,27 +2083,13 @@ static long hantrovcmd_ioctl(struct file *filp, unsigned int cmd,
+ 		if (copy_from_user(&dbcfg, (void __user *)arg, sizeof(struct dmabuf_cfg)) != 0)
+ 			return -EFAULT;
+ 
+-		LOG_DBG("import dmabuf_fd = %d\n", dbcfg.dmabuf_fd);
+-
+-		mutex_lock(&dmaheap_mutex);
+ 		/* map the pha to dma addr(iova)*/
+ 		hmem = common_dmabuf_heap_import_from_user(&fp_priv->root, dbcfg.dmabuf_fd);
+ 		if(IS_ERR(hmem)) {
+-			mutex_unlock(&dmaheap_mutex);
+ 			LOG_ERR("dmabuf-heap import from userspace failed\n");
+ 			return -ENOMEM;
+ 		}
+-
+-		if (venc_pdev_d1) {
+-			hmem_d1 = common_dmabuf_heap_import_from_user(&fp_priv->root_d1, dbcfg.dmabuf_fd);
+-			if(IS_ERR(hmem_d1)) {
+-				common_dmabuf_heap_release(hmem);
+-				mutex_unlock(&dmaheap_mutex);
+-				LOG_ERR("dmabuf-heap alloc from userspace failed for d1\n");
+-				return -ENOMEM;
+-			}
+-		}
+-
++		dbcfg.iova = (unsigned long)sg_dma_address(hmem->sgt->sgl);
+ 		/* get the size of the dmabuf allocated by dmabuf_heap */
+ 		buf_size = common_dmabuf_heap_get_size(hmem);
+ 		LOG_DBG("fd = %d, dmabuf info: CPU VA:0x%lx, PA:0x%lx, DMA addr(iova):0x%lx, size=0x%lx\n"
+@@ -2116,37 +2099,30 @@ static long hantrovcmd_ioctl(struct file *filp, unsigned int cmd,
+ 				, (unsigned long)sg_dma_address(hmem->sgt->sgl)
+ 				, (unsigned long)buf_size);
+ 
+-		dbcfg.iova = (unsigned long)sg_dma_address(hmem->sgt->sgl);
+ 		if (venc_pdev_d1) {
+-			unsigned long iova_d1;
+-
+-			iova_d1 = (unsigned long)sg_dma_address(hmem_d1->sgt->sgl);
+-			if (dbcfg.iova != iova_d1) {
++			hmem_d1 = common_dmabuf_heap_rsv_iova_map(&fp_priv->root_d1, dbcfg.dmabuf_fd, dbcfg.iova, buf_size);
++			if ((IS_ERR(hmem_d1))) {
++				LOG_ERR("dmabuf-heap rsv iova map failed for d1\n");
+ 				common_dmabuf_heap_release(hmem);
+-				common_dmabuf_heap_release(hmem_d1);
+-				mutex_unlock(&dmaheap_mutex);
+-				LOG_ERR("VENC_VCMD: IOVA addrs of d0 and d1 are not the same, 0x%lx vs 0x%lx\n"
+-					, dbcfg.iova, iova_d1);
+-				return -EFAULT;
++				return err;
+ 			}
+ 		}
+ 
+-
+ 		retval = copy_to_user((u32 __user *)arg, &dbcfg,
+ 				sizeof(struct dmabuf_cfg));
+ 		if (retval) {
+-			common_dmabuf_heap_release(hmem);
+ 			if (venc_pdev_d1)
+-				common_dmabuf_heap_release(hmem_d1);
+-			mutex_unlock(&dmaheap_mutex);
++				common_dmabuf_heap_rsv_iova_unmap(hmem_d1);
++
++			common_dmabuf_heap_release(hmem);
+ 			LOG_DBG("copy_to_user failed, returned %li\n", retval);
+ 			return -EFAULT;
+ 		}
+-		mutex_unlock(&dmaheap_mutex);
+ 
+ 		return 0;
+ 	}
+ 	case HANTRO_IOCH_DMA_HEAP_PUT_IOVA: {
++		struct dmabuf_cfg dbcfg;
+ 		struct heap_mem *hmem, *hmem_d1;
+ 		unsigned int dmabuf_fd;
+ 		struct filp_priv *fp_priv = (struct filp_priv *)filp->private_data;
+@@ -2154,28 +2130,24 @@ static long hantrovcmd_ioctl(struct file *filp, unsigned int cmd,
+ 		if (copy_from_user(&dmabuf_fd, (void __user *)arg, sizeof(int)) != 0)
+ 			return -EFAULT;
+ 
+-		LOG_DBG("release dmabuf_fd = %d\n", dmabuf_fd);
+-
+ 		/* find the heap_mem */
+ 		hmem = common_dmabuf_lookup_heapobj_by_fd(&fp_priv->root, dmabuf_fd);
+ 		if(IS_ERR(hmem)) {
+ 			LOG_ERR("cannot find dmabuf-heap for dmabuf_fd %d\n", dmabuf_fd);
+ 			return -ENOMEM;
+ 		}
++		LOG_DBG("release dmabuf_fd = %d, iova 0x%llx\n", dmabuf_fd, sg_dma_address(hmem->sgt->sgl));
+ 
+-		mutex_lock(&dmaheap_mutex);
+ 		if (venc_pdev_d1) {
+ 			hmem_d1 = common_dmabuf_lookup_heapobj_by_fd(&fp_priv->root_d1, dmabuf_fd);
+ 			if (IS_ERR(hmem_d1)) {
+-				mutex_unlock(&dmaheap_mutex);
+ 				LOG_ERR("cannot find dmabuf-heap for dmabuf_fd %d on d1\n", dmabuf_fd);
+ 				return -EFAULT;
+ 			}
+-			common_dmabuf_heap_release(hmem_d1);
++			common_dmabuf_heap_rsv_iova_unmap(hmem_d1);
+ 		}
+ 
+ 		common_dmabuf_heap_release(hmem);
+-		mutex_unlock(&dmaheap_mutex);
+ 		return 0;
+ 	}
+ #endif
+@@ -2849,22 +2821,24 @@ static int hantrovcmd_release(struct inode *inode, struct file *filp)
+ 		}
+ 	}
+ #ifdef SUPPORT_DMA_HEAP
+-	common_dmabuf_heap_import_uninit(&fp_priv->root);
+ 	if (venc_pdev_d1) {
+-		common_dmabuf_heap_import_uninit(&fp_priv->root_d1);
++		common_dmabuf_heap_rsv_iova_uninit(&fp_priv->root_d1);
+ 	}
++
++	common_dmabuf_heap_import_uninit(&fp_priv->root);
+ #endif
+ 	kfree(fp_priv);
+ 	return 0;
+ 
+ error:
+ #ifdef SUPPORT_DMA_HEAP
+-	common_dmabuf_heap_import_uninit(&fp_priv->root);
+ 	if (venc_pdev_d1) {
+-		common_dmabuf_heap_import_uninit(&fp_priv->root_d1);
++		common_dmabuf_heap_rsv_iova_uninit(&fp_priv->root_d1);
+ 	}
+-	kfree(fp_priv);
++
++	common_dmabuf_heap_import_uninit(&fp_priv->root);
+ #endif
++	kfree(fp_priv);
+ 
+ 	return -ERESTARTSYS;
+ }
+@@ -3610,16 +3584,14 @@ int vcmd_mem_init(void)
+ 	dma_addr_t dma_handle = 0;
+ 	dma_addr_t dma_handle_d1 = 0;
+ 
+-#ifdef SUPPORT_DMA_HEAP
+-	mutex_init(&dmaheap_mutex);
+-#endif /**SUPPORT_DMA_HEAP*/
+ 
+ 	vcmd_buf_mem_pool.size = CMDBUF_POOL_TOTAL_SIZE;
+ 
+ 	/* command buffer */
+-	vcmd_buf_mem_pool.virtualAddress = (u32 *)dma_alloc_coherent(&venc_pdev->dev,
++	vcmd_buf_mem_pool.virtualAddress = (u32 *)dma_alloc_attrs(&venc_pdev->dev,
+ 			vcmd_buf_mem_pool.size, &dma_handle,
+-			GFP_KERNEL | __GFP_DMA32);
++			GFP_KERNEL, DMA_ATTR_FORCE_CONTIGUOUS);
++
+ 	vcmd_buf_mem_pool.busAddress = (unsigned long long)dma_handle;
+ 	vcmd_buf_mem_pool.phy_address = pfn_to_phys(vmalloc_to_pfn(vcmd_buf_mem_pool.virtualAddress));
+ 
+@@ -3641,11 +3613,10 @@ int vcmd_mem_init(void)
+ 
+ 	/* status buffer */
+ 	vcmd_status_buf_mem_pool.size = CMDBUF_POOL_TOTAL_SIZE;
+-	vcmd_status_buf_mem_pool.virtualAddress =
+-		(u32 *)dma_alloc_coherent(&venc_pdev->dev,
+-				vcmd_status_buf_mem_pool.size,
+-				&dma_handle,
+-				GFP_KERNEL | __GFP_DMA32);
++	vcmd_status_buf_mem_pool.virtualAddress = (u32 *)dma_alloc_attrs(&venc_pdev->dev,
++			vcmd_status_buf_mem_pool.size, &dma_handle,
++			GFP_KERNEL, DMA_ATTR_FORCE_CONTIGUOUS);
++
+ 	vcmd_status_buf_mem_pool.busAddress = (unsigned long long)dma_handle;
+ 	vcmd_status_buf_mem_pool.phy_address = pfn_to_phys(vmalloc_to_pfn(vcmd_status_buf_mem_pool.virtualAddress));
+ 
+@@ -3667,11 +3638,10 @@ int vcmd_mem_init(void)
+ 
+ 	/* register buffer */
+ 	vcmd_registers_mem_pool.size = CMDBUF_POOL_TOTAL_SIZE;
+-	vcmd_registers_mem_pool.virtualAddress =
+-		(u32 *)dma_alloc_coherent(&venc_pdev->dev,
+-				vcmd_registers_mem_pool.size,
+-				&dma_handle,
+-				GFP_KERNEL | __GFP_DMA32);
++	vcmd_registers_mem_pool.virtualAddress = (u32 *)dma_alloc_attrs(&venc_pdev->dev,
++			vcmd_registers_mem_pool.size, &dma_handle,
++			GFP_KERNEL, DMA_ATTR_FORCE_CONTIGUOUS);
++
+ 	vcmd_registers_mem_pool.busAddress = (unsigned long long)dma_handle;
+ 	vcmd_registers_mem_pool.phy_address = pfn_to_phys(vmalloc_to_pfn(vcmd_registers_mem_pool.virtualAddress));
+ 
+@@ -3697,20 +3667,23 @@ int vcmd_mem_init(void)
+ void vcmd_mem_cleanup(void)
+ {
+ 	if (vcmd_buf_mem_pool.virtualAddress)
+-		dma_free_coherent(
++		dma_free_attrs(
+ 				&venc_pdev->dev, vcmd_buf_mem_pool.size,
+ 				vcmd_buf_mem_pool.virtualAddress,
+-				(dma_addr_t)vcmd_buf_mem_pool.busAddress);
++				(dma_addr_t)vcmd_buf_mem_pool.busAddress,
++				0);
+ 	if (vcmd_status_buf_mem_pool.virtualAddress)
+-		dma_free_coherent(
++		dma_free_attrs(
+ 				&venc_pdev->dev, vcmd_status_buf_mem_pool.size,
+ 				vcmd_status_buf_mem_pool.virtualAddress,
+-				(dma_addr_t)vcmd_status_buf_mem_pool.busAddress);
++				(dma_addr_t)vcmd_status_buf_mem_pool.busAddress,
++				0);
+ 	if (vcmd_registers_mem_pool.virtualAddress)
+-		dma_free_coherent(
++		dma_free_attrs(
+ 				&venc_pdev->dev, vcmd_registers_mem_pool.size,
+ 				vcmd_registers_mem_pool.virtualAddress,
+-				(dma_addr_t)vcmd_registers_mem_pool.busAddress);
++				(dma_addr_t)vcmd_registers_mem_pool.busAddress,
++				0);
+ 
+ 	if (venc_pdev_d1) {
+ 		dma_unmap_page(&venc_pdev_d1->dev,
+@@ -3720,10 +3693,6 @@ void vcmd_mem_cleanup(void)
+ 		dma_unmap_page(&venc_pdev_d1->dev,
+ 				(dma_addr_t)vcmd_registers_mem_pool.busAddress, vcmd_registers_mem_pool.size, DMA_BIDIRECTIONAL);
+ 	}
+-
+-#ifdef SUPPORT_DMA_HEAP
+-	mutex_destroy(&dmaheap_mutex);
+-#endif /**SUPPORT_DMA_HEAP*/
+ }
+ 
+ int hantroenc_vcmd_init(void)
+diff --git a/include/linux/dmabuf-heap-import-helper.h b/include/linux/dmabuf-heap-import-helper.h
+index 6fd339ee8ff3..0b0e5824f19f 100644
+--- a/include/linux/dmabuf-heap-import-helper.h
++++ b/include/linux/dmabuf-heap-import-helper.h
+@@ -7,6 +7,7 @@
+ #include <linux/types.h>
+ #include <linux/scatterlist.h>
+ #include <linux/eswin_rsvmem_common.h>
++#include <linux/es_iommu_rsv.h>
+ 
+ #define SYSTEM_DEV_NODE "system"
+ #define CMA_DEV_NODE_RES "reserved"
+@@ -42,6 +43,8 @@ struct heap_mem {
+ 	void *vaddr;
+ 
+ 	enum dma_data_direction dir;
++	dma_addr_t iova;
++	size_t size;
+ };
+ 
+ struct esw_export_buffer_info {
+@@ -97,4 +100,8 @@ struct heap_mem *common_dmabuf_heap_import_from_kernel(struct heap_root *root, c
+ 
+ int esw_common_dmabuf_split_export(int dbuf_fd, unsigned int offset, size_t len, int fd_flags, char *name);
+ 
++struct heap_mem *common_dmabuf_heap_rsv_iova_map(struct heap_root *root, int fd, dma_addr_t iova, size_t size);
++void common_dmabuf_heap_rsv_iova_unmap(struct heap_mem *heap_obj);
++void common_dmabuf_heap_rsv_iova_uninit(struct heap_root *root);
++
+ #endif
+diff --git a/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h b/include/linux/es_iommu_rsv.h
+similarity index 77%
+rename from drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h
+rename to include/linux/es_iommu_rsv.h
+index 3e11a6421502..cda1c83d47a2 100644
+--- a/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h
++++ b/include/linux/es_iommu_rsv.h
+@@ -6,5 +6,6 @@
+ int iommu_unmap_rsv_iova(struct device *dev, void *cpu_addr, dma_addr_t iova, unsigned long size);
+ int iommu_map_rsv_iova_with_phys(struct device *dev, dma_addr_t iova, unsigned long size, phys_addr_t paddr, unsigned long attrs);
+ void *iommu_map_rsv_iova(struct device *dev, dma_addr_t iova, unsigned long size, gfp_t gfp, unsigned long attrs);
++ssize_t iommu_rsv_iova_map_sgt(struct device *dev, unsigned long iova, struct sg_table *sgt, unsigned long attrs, size_t buf_size);
+ 
+ #endif
+-- 
+2.47.0
+

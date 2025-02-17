@@ -1,0 +1,56 @@
+From bd5a38b8d73d9fcddb2f7030f3b245ecc56f0000 Mon Sep 17 00:00:00 2001
+From: Samuel Holland <samuel.holland@sifive.com>
+Date: Tue, 21 Nov 2023 19:05:13 -0800
+Subject: [PATCH 160/370] riscv: Add support for kernel-mode FPU
+
+This is needed to support recent hardware in the amdgpu DRM driver. The
+FPU code in that driver is not performance-critical, so only provide the
+minimal support.
+
+Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
+Link: https://lore.kernel.org/r/20231122030621.3759313-2-samuel.holland@sifive.com
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/include/asm/switch_to.h | 14 ++++++++++++++
+ arch/riscv/kernel/process.c        |  3 +++
+ 2 files changed, 17 insertions(+)
+
+diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
+index a727be723c56..6fd519f9e364 100644
+--- a/arch/riscv/include/asm/switch_to.h
++++ b/arch/riscv/include/asm/switch_to.h
+@@ -63,6 +63,20 @@ static __always_inline bool has_fpu(void)
+ 	return riscv_has_extension_likely(RISCV_ISA_EXT_f) ||
+ 		riscv_has_extension_likely(RISCV_ISA_EXT_d);
+ }
++
++static inline void kernel_fpu_begin(void)
++{
++	preempt_disable();
++	fstate_save(current, task_pt_regs(current));
++	csr_set(CSR_SSTATUS, SR_FS);
++}
++
++static inline void kernel_fpu_end(void)
++{
++	csr_clear(CSR_SSTATUS, SR_FS);
++	fstate_restore(current, task_pt_regs(current));
++	preempt_enable();
++}
+ #else
+ static __always_inline bool has_fpu(void) { return false; }
+ #define fstate_save(task, regs) do { } while (0)
+diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
+index 83e223318822..dd973216e31c 100644
+--- a/arch/riscv/kernel/process.c
++++ b/arch/riscv/kernel/process.c
+@@ -204,3 +204,6 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
+ 	p->thread.sp = (unsigned long)childregs; /* kernel sp */
+ 	return 0;
+ }
++
++EXPORT_SYMBOL_GPL(__fstate_save);
++EXPORT_SYMBOL_GPL(__fstate_restore);
+-- 
+2.47.0
+

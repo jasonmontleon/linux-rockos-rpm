@@ -1,0 +1,69 @@
+From 1fc444751214da09e61ab8bf418bb29540adb1ef Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Fri, 1 Nov 2024 16:33:03 +0800
+Subject: [PATCH 278/370] WIN2030-16035:refactor:Add numa node id of Die0's cpu
+
+Changelogs:
+Add numa node id of Die0's cpu, and update numa distence module
+
+Change-Id: If4c86de52aee146b80eb378415247c711f66e8a6
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts      | 4 ++--
+ arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi | 4 ++++
+ 2 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 78a78d0ca9a6..2e99b78abc91 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -153,8 +153,8 @@ mmz_nid_1_part_0 {
+ 	distance-map {
+ 		compatible = "numa-distance-map-v1";
+ 		distance-matrix = <0 0 10>,
+-				<0 1 15>,
+-				<1 0 15>,
++				<0 1 100>,
++				<1 0 100>,
+ 				<1 1 10>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+index a1c618fabcea..64671ff693e3 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+@@ -82,6 +82,7 @@ cpu_0: cpu@0 {
+ 			status = "okay";
+ 			timebase-frequency = <RTCCLK_FREQ>;
+ 			tlb-split;
++			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_0>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+@@ -127,6 +128,7 @@ cpu_1: cpu@1 {
+ 			status = "okay";
+ 			timebase-frequency = <RTCCLK_FREQ>;
+ 			tlb-split;
++			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_1>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+@@ -172,6 +174,7 @@ cpu_2: cpu@2 {
+ 			status = "okay";
+ 			timebase-frequency = <RTCCLK_FREQ>;
+ 			tlb-split;
++			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_2>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+@@ -217,6 +220,7 @@ cpu_3: cpu@3 {
+ 			status = "okay";
+ 			timebase-frequency = <RTCCLK_FREQ>;
+ 			tlb-split;
++			numa-node-id = <0>;
+ 			clocks = <&d0_clock WIN2030_CLK_CPU_EXT_SRC_CORE_CLK_3>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+-- 
+2.47.0
+

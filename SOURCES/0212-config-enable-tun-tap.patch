@@ -1,0 +1,26 @@
+From 4daf41a8f25e91bcbecc97366206c1101348c1dd Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Tue, 1 Oct 2024 23:09:44 +0800
+Subject: [PATCH 212/370] config: enable tun/tap
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/configs/win2030_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index cc2484e64c2c..3f122dd04f2f 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -366,6 +366,7 @@ CONFIG_IPVLAN=m
+ CONFIG_IPVTAP=m
+ CONFIG_VXLAN=m
+ CONFIG_GENEVE=m
++CONFIG_TUN=m
+ CONFIG_VETH=m
+ CONFIG_VIRTIO_NET=m
+ # CONFIG_NET_VENDOR_ALACRITECH is not set
+-- 
+2.47.0
+

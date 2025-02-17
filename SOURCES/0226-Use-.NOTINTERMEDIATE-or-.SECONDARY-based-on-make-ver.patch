@@ -1,0 +1,32 @@
+From 2f4de73308ff10eed31d393ea3a0db2fed8deafe Mon Sep 17 00:00:00 2001
+From: Jeegar Lakhani <jeegar.lakhani@sifive.com>
+Date: Mon, 26 Aug 2024 22:35:26 -0700
+Subject: [PATCH 226/370] Use .NOTINTERMEDIATE or .SECONDARY based on make
+ version
+
+Signed-off-by: Jeegar Lakhani <jeegar.lakhani@sifive.com>
+---
+ drivers/gpu/drm/img/img-volcanic/Makefile | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/drivers/gpu/drm/img/img-volcanic/Makefile b/drivers/gpu/drm/img/img-volcanic/Makefile
+index 60174af49e4a..087e156a263f 100644
+--- a/drivers/gpu/drm/img/img-volcanic/Makefile
++++ b/drivers/gpu/drm/img/img-volcanic/Makefile
+@@ -74,7 +74,13 @@ WINDOW_SYSTEM=nulldrmws
+ #include $(OUT)/config_kernel.mk
+ include $(srctree)/$(src)/config_kernel.mk
+ 
++# Use the logic from kernel's Kbuild.include to select .NOTINTERMEDIATE or .SECONDARY based on make version
++ifneq ($(and $(filter notintermediate, $(.FEATURES)),$(filter-out 4.4,$(MAKE_VERSION))),)
++.NOTINTERMEDIATE:
++else
+ .SECONDARY:
++endif
++
+ 
+ define symlink-source-file
+ @if [ ! -e $(dir $@) ]; then mkdir -p $(dir $@); fi
+-- 
+2.47.0
+

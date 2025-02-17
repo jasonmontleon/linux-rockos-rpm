@@ -1,0 +1,94 @@
+From 7b42ff56958a3eb8a73c01ca76a0eced6f53e7cb Mon Sep 17 00:00:00 2001
+From: liangshuang <liangshuang@eswincomputing.com>
+Date: Wed, 4 Sep 2024 14:56:47 +0800
+Subject: [PATCH 249/370] WIN2030-13899:fix:adapt sdhci driver to eic7702.
+
+Changelogs:
+1.adapt sdhci driver to eic7702.
+
+Change-Id: I74b9fd7685086e6b7fd3d498f04cd94530fc4b7b
+Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  1 +
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     | 39 +++++++++++++++++++
+ 2 files changed, 40 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 66e375244082..b1ba158a56ab 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -911,6 +911,7 @@ sdhci_emmc: mmc@50450000 {
+ 				<&d0_reset HSPDMA_RST_CTRL SW_HSP_EMMC_ARSTN>;
+ 			reset-names = "txrx_rst", "phy_rst", "prstn", "arstn";
+ 
++			core-clk-reg = <0x51828160>;
+ 			disable-cqe-dcmd;
+ 			bus-width = <8>;
+ 			non-removable;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index a2afa1dbe862..242961e9d459 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1603,6 +1603,7 @@ d1_sdio0: mmc@0x70460000{
+ 				<&d1_reset HSPDMA_RST_CTRL SW_HSP_SD0_ARSTN>;
+ 			reset-names = "txrx_rst","phy_rst","prstn","arstn";
+ 
++			core-clk-reg = <0x71828164>;
+ 			clock-frequency = <208000000>;
+ 			max-frequency = <208000000>;
+ 			#address-cells = <1>;
+@@ -1637,6 +1638,7 @@ d1_sdio1: mmc@0x70470000{
+ 				<&d1_reset HSPDMA_RST_CTRL SW_HSP_SD1_ARSTN>;
+ 			reset-names = "txrx_rst","phy_rst","prstn","arstn";
+ 
++			core-clk-reg = <0x71828168>;
+ 			clock-frequency = <208000000>;
+ 			max-frequency = <208000000>;
+ 			#address-cells = <1>;
+@@ -1940,6 +1942,43 @@ d1_gc820: g2d@70140000 {
+ 			dma-noncoherent;
+                 };
+ 
++		d1_sdhci_emmc: mmc@70450000 {
++			compatible = "eswin,emmc-sdhci-5.1";
++			reg = <0x0 0x70450000 0x0 0x10000>;
++			interrupt-parent = <&plic1>;
++			interrupts = <79>;
++			assigned-clocks = <&d1_clock WIN2030_CLK_HSP_MSHC0_CORE_CLK>;
++			assigned-clock-rates = <200000000>;
++			clocks = <&d1_clock WIN2030_CLK_HSP_MSHC0_CORE_CLK>, <&d1_clock WIN2030_CLK_HSP_CFG_CLK>;
++			clock-names = "clk_xin", "clk_ahb";
++			clock-output-names = "d1_emmc_cardclock";
++			#clock-cells = <0>;
++
++			resets = <&d1_reset HSPDMA_RST_CTRL SW_MSHC0_TXRX_RSTN>,
++				<&d1_reset HSPDMA_RST_CTRL SW_MSHC0_PHY_RSTN>,
++				<&d1_reset HSPDMA_RST_CTRL SW_HSP_EMMC_PRSTN>,
++				<&d1_reset HSPDMA_RST_CTRL SW_HSP_EMMC_ARSTN>;
++			reset-names = "txrx_rst", "phy_rst", "prstn", "arstn";
++
++			core-clk-reg = <0x71828160>;
++			disable-cqe-dcmd;
++			bus-width = <8>;
++			non-removable;
++			/* mmc-ddr-1_8v; */
++			mmc-hs400-1_8v;
++			max-frequency = <200000000>;
++			/* sdhci-caps-mask =  <0x0 0x3200000>; */
++			/* smmu */
++			#size-cells = <2>;
++			iommus = <&smmu1 WIN2030_SID_EMMC0>;
++			tbus = <WIN2030_TBUID_EMMC>;
++			dma-ranges = <0x0 0x00000000 0x0 0xc0000000 0x1 0x0>;
++			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x1038>;
++			status = "disabled";
++			numa-node-id = <1>;
++			dma-noncoherent;
++		};
++
+ 		d1_graphcard: graphcard {
+ 			compatible = "audio-graph-card";
+ 		};
+-- 
+2.47.0
+

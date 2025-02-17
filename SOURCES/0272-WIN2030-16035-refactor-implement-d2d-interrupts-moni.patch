@@ -1,0 +1,388 @@
+From ee788bdd38e1cf04d6dc9b7916c0f1674c686428 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Tue, 24 Sep 2024 09:59:34 +0800
+Subject: [PATCH 272/370] WIN2030-16035:refactor:implement d2d interrupts
+ monitor
+
+Changelogs:
+1. Implement d2d driver for monitoring error interrupts
+2. Enable ddr controller of die1
+
+Change-Id: I02b315600910f8d34262c7a4f8f4f56dcb9045cf
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  |  16 ++
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  12 +
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  32 +++
+ arch/riscv/configs/eic7702_defconfig          |   1 +
+ drivers/soc/eswin/Kconfig                     |   6 +
+ drivers/soc/eswin/Makefile                    |   3 +-
+ drivers/soc/eswin/d2d.c                       | 210 ++++++++++++++++++
+ 7 files changed, 279 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/soc/eswin/d2d.c
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 60a60f3b7f30..78a78d0ca9a6 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -202,6 +202,14 @@ &ddr1 {
+ 	status = "okay";
+ };
+ 
++&d1_ddr0 {
++	status = "okay";
++};
++
++&d1_ddr1 {
++	status = "okay";
++};
++
+ &smmu0 {
+ 	status = "okay";
+ };
+@@ -1440,6 +1448,14 @@ &d1_llc_dev{
+ 	status = "okay";
+ };
+ 
++&d2d {
++	status = "okay";
++};
++
++&d1_d2d {
++	status = "okay";
++};
++
+ /* die0 GPIO Function Description
+ 
+ 	gpio0   : pcie prstn(I)
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index b14fec6ad256..347738617668 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -2315,6 +2315,7 @@ ddr0: ddr-controller@0 {
+ 			interrupt-names = "ddr-ecc";
+ 			reg = <0x0 0x52300000 0x0 0x40000>;
+ 			ctrl-id = <0>;
++			numa-node-id = <0>;
+ 			status = "disabled";
+ 		};
+ 
+@@ -2325,6 +2326,17 @@ ddr1: ddr-controller@1 {
+ 			interrupt-names = "ddr-ecc";
+ 			reg = <0x0 0x52380000 0x0 0x40000>;
+ 			ctrl-id = <1>;
++			numa-node-id = <0>;
++			status = "disabled";
++		};
++
++		d2d: d2d-unit@52100000 {
++			compatible = "eswin,eic7x-d2d";
++			interrupt-parent = <&plic0>;
++			interrupts = <287>, <288>;
++			reg = <0x0 0x52100000 0x0 0x1000>;
++			reg-names = "control";
++			numa-node-id = <0>;
+ 			status = "disabled";
+ 		};
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index ca0d63978d78..34c5a22cdf26 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -2362,5 +2362,37 @@ d1_numa_sample:numa_sample@1 {
+ 			numa-node-id = <1>;
+ 			dma-noncoherent;
+ 		};
++
++		d1_ddr0: ddr-controller@0 {
++			compatible = "eswin,ddrc-1.20a";
++			interrupt-parent = <&plic1>;
++			interrupts = <10>;
++			interrupt-names = "ddr-ecc";
++			reg = <0x0 0x72300000 0x0 0x40000>;
++			ctrl-id = <0>;
++			numa-node-id = <1>;
++			status = "disabled";
++		};
++
++		d1_ddr1: ddr-controller@1 {
++			compatible = "eswin,ddrc-1.20a";
++			interrupt-parent = <&plic1>;
++			interrupts = <299>;
++			interrupt-names = "ddr-ecc";
++			reg = <0x0 0x72380000 0x0 0x40000>;
++			ctrl-id = <1>;
++			numa-node-id = <1>;
++			status = "disabled";
++		};
++
++		d1_d2d: d2d-unit@72100000 {
++			compatible = "eswin,eic7x-d2d";
++			interrupt-parent = <&plic1>;
++			interrupts = <287>, <288>;
++			reg = <0x0 0x72100000 0x0 0x1000>;
++			reg-names = "control";
++			numa-node-id = <1>;
++			status = "disabled";
++		};
+ };
+ 
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 01d1b3969200..9318fc21eaa9 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -742,6 +742,7 @@ CONFIG_ARM_SMMU_V3=y
+ CONFIG_RPMSG_VIRTIO=y
+ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ARCH_ESWIN_EIC7702_SOC=y
++CONFIG_EIC7X_D2D=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+ CONFIG_ESWIN_BUDDY=y
+diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
+index 256bfa5d85eb..ed45c8ff1d8b 100644
+--- a/drivers/soc/eswin/Kconfig
++++ b/drivers/soc/eswin/Kconfig
+@@ -19,4 +19,10 @@ config ESWIN_DSP_SUBSYS
+ 
+       If unsure, say N.
+ 
++config EIC7X_D2D
++    bool "Eswin EIC7X D2D interrupt status"
++    depends on ARCH_ESWIN_EIC7702_SOC
++    help
++        This is interrputs status of D2D which includes error interrupts.
++
+ endif
+diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
+index 391ab603d23a..07df48f987ec 100644
+--- a/drivers/soc/eswin/Makefile
++++ b/drivers/soc/eswin/Makefile
+@@ -1,4 +1,5 @@
+ obj-$(CONFIG_ESWIN_KHANDLE) += eswin-khandle.o
+ obj-$(CONFIG_ESWIN_DSP_SUBSYS) += dsp_subsys.o
+ obj-y += ai_driver/
+-obj-$(CONFIG_SUSPEND) += pm_eic770x.o
+\ No newline at end of file
++obj-$(CONFIG_SUSPEND) += pm_eic770x.o
++obj-$(CONFIG_EIC7X_D2D) += d2d.o 
+\ No newline at end of file
+diff --git a/drivers/soc/eswin/d2d.c b/drivers/soc/eswin/d2d.c
+new file mode 100644
+index 000000000000..e237641177b7
+--- /dev/null
++++ b/drivers/soc/eswin/d2d.c
+@@ -0,0 +1,210 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * D2D error monitor of core driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Yu Ning <ningyu@eswincomputing.com>
++ */
++
++#include <linux/init.h>
++#include <linux/io.h>
++#include <linux/of.h>
++#include <linux/interrupt.h>
++#include <linux/of_address.h>
++#include <linux/of_irq.h>
++#include <linux/platform_device.h>
++#include <linux/slab.h>
++
++/**
++ * D2D error unit register map
++ * 0x28 : d2d common interrupt
++ * 0x30 : d2d common interrupt2
++ */
++
++#define REG_D2D_INTR_SUMMARY    0x810
++#define REG_D2D_INTR2_SUMMARY   0x814
++#define REG_D2D_INTR_MASK       0x818
++#define REG_D2D_INTR2_MASK      0x81c
++#define REG_D2D_COMMON_INTR     0x828
++#define REG_D2D_COMMON_INTR2    0x830
++
++#define D2D_CNTRL_TOP_INTR  (0x1<<8)
++#define SERDES_INTR  (0x1<<9)
++
++#define D2D_HW_INTR     287
++#define D2D_HW_INTR2    288
++
++struct d2d_device {
++	struct device *dev;
++	void __iomem *control;
++	int plic_irq;
++    int numa_id;
++};
++
++static char *d2d_err_desc = {
++    "RX_ERR_ALL_INT",
++    "RX_LOCAL_LINKUP_INT",
++    "RX_REMOTE_LINKUP_INT",
++    "CMN_BRIDGE_RX_AFIFO_OVF_ERR_INT",
++    "CMN_BRIDGE_RX_AFIFO_UNF_ERR_INT",
++    "CMN_BRIDGE_TX_AFIFO_OVF_ERR_INT",
++    "CMN_BRIDGE_TX_AFIFO_UNF_ERR_INT",
++};
++
++char *d2d_irq_src[] = {
++	"d2d interrupt",
++	"d2d 2nd interrupt",
++};
++
++#define 	D2D_IRQ_NUMBER			(ARRAY_SIZE(d2d_irq_src))
++
++static irqreturn_t d2d_irqhandle(int irq, void *dev_id)
++{
++	struct d2d_device *d2d_dev = dev_id;
++	void __iomem *base = d2d_dev->control;
++    unsigned int intr_status, index;
++    struct irq_data *data = NULL;
++	// char *irq_src = NULL;
++    // int ret, nid;
++
++	data = irq_get_irq_data(irq);
++	if (NULL == data) {
++		pr_err("D2D: invalid irq data\n");
++	}
++
++    if (data->hwirq == D2D_HW_INTR) {
++        printk(KERN_ERR "%s , hw irq %ld!\n", d2d_irq_src[0], data->hwirq);
++        intr_status = readl(base+REG_D2D_INTR_SUMMARY);
++        printk(KERN_ERR "D2D-%d interrupt summary : 0x%x, d2d top interrupt: 0x%x\n",
++                d2d_dev->numa_id,intr_status,readl(base+REG_D2D_COMMON_INTR));
++        if (intr_status & D2D_CNTRL_TOP_INTR) {
++            for(index=0,intr_status=readl(base+REG_D2D_COMMON_INTR);index<7;index++) {
++                if (intr_status & (0x1<<index)) {
++                    printk(KERN_ERR "D2D error[%s]\n", d2d_err_desc[index]);
++                    writel((0x1<<index),base+REG_D2D_COMMON_INTR);
++                }
++            }
++        }
++    } else if (data->hwirq == D2D_HW_INTR2) {
++        printk(KERN_ERR "%s , hw irq %ld!\n", d2d_irq_src[1], data->hwirq);
++        intr_status = readl(base+REG_D2D_INTR2_SUMMARY);
++        printk(KERN_ERR "D2D-%d interrupt2 summary : 0x%x, d2d top interrupt: 0x%x\n",
++                d2d_dev->numa_id,intr_status,readl(base+REG_D2D_COMMON_INTR2));
++        if (intr_status & D2D_CNTRL_TOP_INTR) {
++            for(index=0,intr_status=readl(base+REG_D2D_COMMON_INTR2);index<7;index++) {
++                if (intr_status & (0x1<<index)) {
++                    printk(KERN_ERR "D2D error[%s]\n", d2d_err_desc[index]);
++                    writel((0x1<<index),base+REG_D2D_COMMON_INTR2);
++                }
++            }
++        }
++    }
++
++	return IRQ_HANDLED;
++}
++
++static const struct of_device_id eic7x_d2d_error_of_match[] = {
++	{.compatible = "eswin,eic7x-d2d", },
++	{ /* sentinel value */ }
++};
++
++static int  d2d_probe(struct platform_device *pdev)
++{
++	struct device *dev = &pdev->dev;
++	struct device_node *node = pdev->dev.of_node;
++	struct d2d_device *d2d_dev;
++	int ret, i, req_irq;
++	struct resource *res;
++
++	d2d_dev = devm_kcalloc(dev, 1,
++		sizeof(struct d2d_device), GFP_KERNEL);
++	if (!d2d_dev)
++		return -ENOMEM;
++
++	d2d_dev->dev = dev;
++	dev_set_drvdata(dev, d2d_dev);
++	res = platform_get_resource(pdev, IORESOURCE_MEM, 0);
++	if (!res) {
++		dev_err(dev, "Error while get mem resource\n");
++		return -ENODEV;
++	}
++	d2d_dev->control = devm_ioremap_resource(&pdev->dev, res);
++	if (IS_ERR_OR_NULL(d2d_dev->control)) {
++		dev_err(dev, "Fail to get resource %s from 0x%llx!\n",
++			node->name, res->start);
++		ret = -EINVAL;
++		goto free_d2d_err_dev;
++	}
++
++    ret = device_property_read_u32(d2d_dev->dev, "numa-node-id", &(d2d_dev->numa_id));
++	if (ret) {
++        dev_err(dev, "Can not get numa node!\n");
++        goto free_d2d_err_dev;
++    }
++
++    /* mask interrupts except D2D controller status and SerDes */
++	writel(0xff,d2d_dev->control+REG_D2D_INTR_MASK);
++	writel(0xff,d2d_dev->control+REG_D2D_INTR2_MASK);
++
++    if (readl(d2d_dev->control+REG_D2D_INTR_SUMMARY)||readl(d2d_dev->control+REG_D2D_INTR2_SUMMARY)) {
++        dev_info(dev, "D2D has intterupt  intr:0x%x, intr2:0x%x\n",
++                readl(d2d_dev->control+REG_D2D_INTR_SUMMARY),readl(d2d_dev->control+REG_D2D_INTR2_SUMMARY));
++    }
++
++    /* clean any interrupt before */
++	writel(0,d2d_dev->control+REG_D2D_COMMON_INTR);
++	writel(0,d2d_dev->control+REG_D2D_COMMON_INTR2);
++
++    for (i = 0; i < D2D_IRQ_NUMBER; i++) {
++		req_irq = platform_get_irq(pdev, i);
++		if (req_irq < 0)
++			return req_irq;
++
++		ret = devm_request_irq(&pdev->dev, req_irq, &d2d_irqhandle,
++				IRQF_SHARED |IRQF_ONESHOT ,
++				d2d_irq_src[i], d2d_dev);
++		if (ret) {
++			dev_err(&pdev->dev, "cannot register irq %d, ret %d\n", req_irq, ret);
++			return ret;
++		}
++		dev_dbg(&pdev->dev,"registered irq %s, base %d, num %ld\n", d2d_irq_src[i],
++			platform_get_irq(pdev, 0), D2D_IRQ_NUMBER);
++	}
++
++	dev_info(dev, "D2D-%d init OK\n",d2d_dev->numa_id);
++	return 0;
++
++free_d2d_err_dev:
++	return ret;
++
++}
++
++static struct platform_driver d2d_driver = {
++	.probe = d2d_probe,
++	// .remove = d2d_remove,
++	.driver = {
++		.name = "d2d_monitor",
++		.owner = THIS_MODULE,
++		.of_match_table = of_match_ptr(eic7x_d2d_error_of_match),},
++};
++
++static int __init init_d2d_unit(void)
++{
++	return platform_driver_register(&d2d_driver);
++}
++
++subsys_initcall(init_d2d_unit);
+-- 
+2.47.0
+

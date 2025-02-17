@@ -1,0 +1,186 @@
+From e4dc016787a92a3db41bbf36dbb3db2d2a6503bb Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Fri, 22 Nov 2024 10:08:37 +0800
+Subject: [PATCH 293/370] WIN2030-15186:fix:change voltage of 7702 npu to 1.08V
+
+Changelogs:
+	change voltage of 7702 npu to 1.08V
+
+Change-Id: Iefe1f4d017e0c84f80b9d14b049fe19e2b30b1b7
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ drivers/regulator/es5340.c | 32 +++++++++++++++-----------------
+ include/linux/eswin_npu.h  | 24 ++++++++++++++++++------
+ 2 files changed, 33 insertions(+), 23 deletions(-)
+
+diff --git a/drivers/regulator/es5340.c b/drivers/regulator/es5340.c
+index c49fcfbf4dc0..359f9a6ead15 100644
+--- a/drivers/regulator/es5340.c
++++ b/drivers/regulator/es5340.c
+@@ -2,8 +2,7 @@
+ /*
+  * eswin Specific Glue layer
+  *
+- * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights
+- * reserved. SPDX-License-Identifier: GPL-2.0
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -114,7 +113,7 @@ static u8 es5340_read_byte(struct ES5340_DRIVER_DATA *data, u8 command)
+ 				ret);
+ 		return 0xff;
+ 	}
+-		return (u8)ret;
++	return (u8)ret;
+ }
+ 
+ static s32 es5340_write_byte(struct ES5340_DRIVER_DATA *data, u8 command,
+@@ -124,7 +123,7 @@ static s32 es5340_write_byte(struct ES5340_DRIVER_DATA *data, u8 command,
+ 	mutex_lock(&data->config_lock);
+ 	ret = i2c_smbus_write_byte_data(data->client, command, val);
+ 	mutex_unlock(&data->config_lock);
+-		if (ret < 0)
++	if (ret < 0)
+ 	{
+ 		dev_err(&data->client->dev, "set command:0x%x value:0x%x error:%d\n",
+ 				command, val, ret);
+@@ -178,7 +177,7 @@ static s32 es5340_write_word(struct ES5340_DRIVER_DATA *data, u8 command,
+ 	mutex_lock(&data->config_lock);
+ 	ret = i2c_smbus_write_word_data(data->client, command, val);
+ 	mutex_unlock(&data->config_lock);
+-		if (ret < 0)
++	if (ret < 0)
+ 	{
+ 		dev_err(&data->client->dev, "set command:0x%x value:0x%x error:%d\n",
+ 				command, val, ret);
+@@ -496,8 +495,6 @@ static struct hwmon_chip_info es5340_chip_info = {
+ 
+ };
+ 
+-
+-
+ static u8 es5340_volt2reg(struct ES5340_DRIVER_DATA *data, u32 volt_mv)
+ {
+ 	s32 surplus_volt = (s32)ES5340_INIT_VOLT - (s32)volt_mv;
+@@ -533,10 +530,10 @@ static s32 es5340_set_vout(struct ES5340_DRIVER_DATA *data, u32 volt_mv)
+ {
+ 	u16 new_value = (u8)es5340_volt2reg(data, volt_mv);
+ 	const struct regulation_constraints *constraints = &es5340_matches[0].init_data->constraints;
+-	if((volt_mv > (constraints->max_uV/1000))||( volt_mv < (constraints->min_uV/1000)))
++	if ((volt_mv > (constraints->max_uV / 1000)) || (volt_mv < (constraints->min_uV / 1000)))
+ 	{
+-		dev_err(&data->rdev->dev,"max:%dmV,min:%dmV,now:%dmV\n",
+-			(constraints->max_uV/1000),constraints->min_uV/1000,volt_mv);
++		dev_err(&data->rdev->dev, "max:%dmV,min:%dmV,now:%dmV\n",
++				(constraints->max_uV / 1000), constraints->min_uV / 1000, volt_mv);
+ 		return -EINVAL;
+ 	}
+ 
+@@ -582,8 +579,7 @@ static struct attribute *es5340_attrs[] = {
+ ATTRIBUTE_GROUPS(es5340);
+ 
+ static struct linear_range es5340_ext_ranges[] = {
+-	/* REGULATOR_LINEAR_RANGE(700000, 0, 100, 15625), //=1.953125mV*1000*8  */
+-	REGULATOR_LINEAR_RANGE(600000, 0, 320, 3125), /* =1.5625mV*1000*2 */
++	REGULATOR_LINEAR_RANGE(600000, 0, 320, 3125),
+ };
+ 
+ /**
+@@ -610,8 +606,8 @@ static s32 es5340_set_voltage_sel(struct regulator_dev *rdev,
+ 	new_value = es5340_ext_ranges->min + es5340_ext_ranges->step * selector;
+ 
+ 	dev_dbg(dev, "%s_volt:%duV,selector:%u,step:%u,min:%u\n", __FUNCTION__,
+-			 new_value, selector, es5340_ext_ranges->step,
+-			 es5340_ext_ranges->min);
++			new_value, selector, es5340_ext_ranges->step,
++			es5340_ext_ranges->min);
+ 
+ 	es5340_set_vout(data, new_value / 1000);
+ 
+@@ -644,7 +640,7 @@ static s32 es5340_get_voltage_sel(struct regulator_dev *rdev)
+ 		diff_volt = 0;
+ 	}
+ 	dev_dbg(dev, "%s_diff_volt:%duV,volt:%u,min:%u\n", __FUNCTION__, diff_volt,
+-			 volt_value, es5340_ext_ranges->min);
++			volt_value, es5340_ext_ranges->min);
+ 	index = DIV_ROUND_CLOSEST(diff_volt, es5340_ext_ranges->step);
+ 	if (index > es5340_ext_ranges->max_sel)
+ 	{
+@@ -652,7 +648,7 @@ static s32 es5340_get_voltage_sel(struct regulator_dev *rdev)
+ 	}
+ 
+ 	dev_dbg(dev, "%s_diff_volt:%duV,step:%d,index:%d\n", __FUNCTION__, diff_volt,
+-			 es5340_ext_ranges->step, index);
++			es5340_ext_ranges->step, index);
+ 	return index;
+ }
+ 
+@@ -730,8 +726,10 @@ static s32 es5340_init_data(struct ES5340_DRIVER_DATA *data,
+ 			 constraints->over_voltage_limits.warn);
+ 	es5340_ext_ranges->min = constraints->min_uV;
+ 	es5340_ext_ranges->min_sel = 0;
++	es5340_ext_ranges->step = (ES5340_VOLT_DENOMINATOR / ES5340_VOLT_NUMERATOR)*1000;
+ 	es5340_ext_ranges->max_sel = (constraints->max_uV - constraints->min_uV) / es5340_ext_ranges->step + 1;
+ 	es5340_regulator_desc.n_voltages = es5340_ext_ranges->max_sel;
++	dev_dbg(dev,"min:%duV,max:%duV,step:%duV,max_sel:%d\n", es5340_ext_ranges->min, constraints->max_uV, es5340_ext_ranges->step, es5340_ext_ranges->max_sel);
+ 
+ 	es5340_set_vout(data, default_voltage / 1000);
+ 	return ret;
+@@ -797,7 +795,7 @@ static s32 es5340_probe(struct i2c_client *client)
+ 	}
+ 
+ 	dev_dbg(dev, "default_voltage:%u,%s,%s,%s,%s\n", default_voltage, data->es5340_label[0],
+-			 data->es5340_label[1], data->es5340_label[2], data->es5340_label[3]);
++			data->es5340_label[1], data->es5340_label[2], data->es5340_label[3]);
+ 	/* fill isl6271a_matches array */
+ 	regulator_cnt = of_regulator_match(dev, parent, es5340_matches, ARRAY_SIZE(es5340_matches));
+ 	of_node_put(parent);
+diff --git a/include/linux/eswin_npu.h b/include/linux/eswin_npu.h
+index 44784eeefba3..1b226c3dfe17 100644
+--- a/include/linux/eswin_npu.h
++++ b/include/linux/eswin_npu.h
+@@ -1,14 +1,22 @@
++// SPDX-License-Identifier: GPL-2.0
+ /*
+  * ESWIN NPU Clock Rate Definitaions
+  *
+- * This program is free software; you can redistribute it and/or
+- * modify it under the terms of the GNU General Public License as
+- * published by the Free Software Foundation version 2.
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+  *
+- * This program is distributed "as is" WITHOUT ANY WARRANTY of any
+- * kind, whether express or implied; without even the implied warranty
+- * of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Yang Wei <yangwei1@eswincomputing.com>
+  */
+ #ifndef __LINUX_ESWIN_NPU_H
+ #define __LINUX_ESWIN_NPU_H
+@@ -17,7 +25,11 @@
+ #define NPU_DEFAULT_VOLTAGE 800000  //uV
+ #define NPU_LLC_CLK_RATE	800000000   //nvdla
+ #define NPU_CORE_CLK_RATE	1040000000  //npu and e31
++#ifdef CONFIG_ARCH_ESWIN_EIC7702_SOC
++#define NPU_1P5G_VOLTAGE    1080000  //uV
++#else
+ #define NPU_1P5G_VOLTAGE    1050000  //uV
++#endif
+ #define NPU_LLC_CLK_1P5G_RATE	1188000000    //nvdla
+ #define NPU_CORE_CLK_1P5G_RATE	1500000000  //npu and e31
+ #define NPU_E31_CLK_RATE	1040000000  //llc
+-- 
+2.47.0
+

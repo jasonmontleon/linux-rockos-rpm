@@ -1,0 +1,27 @@
+From 7fe76cc3b1039f596a55ca46f818cd42efac1d33 Mon Sep 17 00:00:00 2001
+From: liwenkai <liwenkai@eswincomputing.com>
+Date: Thu, 21 Nov 2024 18:16:01 +0800
+Subject: [PATCH 289/370] WIN2030-16671:fix(drm):add VIRTUAL on 7702 board
+ Changelogs:
+
+Change-Id: I90c09cfd4299fdb2873803f99c49a74018b831ab
+Signed-off-by: liwenkai <liwenkai@eswincomputing.com>
+---
+ arch/riscv/configs/eic7702_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 5ae50b34eea1..830481fffc7e 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -634,6 +634,7 @@ CONFIG_DRM_SIMPLEDRM=m
+ CONFIG_DRM_ESWIN=y
+ CONFIG_ESWIN_MMU=y
+ CONFIG_ESWIN_DW_HDMI=y
++CONFIG_ESWIN_VIRTUAL_DISPLAY=y
+ CONFIG_DW_HDMI_I2S_AUDIO=y
+ CONFIG_DW_HDMI_CEC=y
+ CONFIG_DRM_IMG_VOLCANIC=m
+-- 
+2.47.0
+

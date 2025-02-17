@@ -1,0 +1,60 @@
+From 8d108289c09f121afbd8637e8c97cc22f22cd34a Mon Sep 17 00:00:00 2001
+From: zouxiaojun <zouxiaojun@eswincomputing.com>
+Date: Tue, 19 Nov 2024 14:25:46 +0800
+Subject: [PATCH 283/370] WIN2030-16657:fix(jenc):enc 32k jpeg hang
+
+Changelogs:
+	too samll size counting for jenc, encoding 32k*32k jpeg
+continuously causing hang.
+
+Change-Id: I2318ae913d0e9da61d4c40a6403b3da02059ad7f
+Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
+---
+ .../media/eswin/venc/vc8000_vcmd_driver.c     | 24 ++++++++++++++++++-
+ 1 file changed, 23 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
+index 5e24f087817d..0686cc8dbd04 100644
+--- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
++++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
+@@ -53,6 +53,25 @@
+  *
+  *****************************************************************************
+  */
++/*
++ * ESWIN cipher serivce driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Xiaojun Zou <zouxiaojun@eswincomputing.com>
++ */
+ 
+ #include <linux/kernel.h>
+ #include <linux/module.h>
+@@ -130,7 +149,10 @@
+ #define MAX_CMDBUF_INT_NUMBER             1
+ #define INT_MIN_SUM_OF_IMAGE_SIZE         (4096 * 2160 * 1 * MAX_CMDBUF_INT_NUMBER)
+ #define MAX_PROCESS_CORE_NUMBER           (4 * 8)
+-#define PROCESS_MAX_SUM_OF_IMAGE_SIZE     (4096 * 2160 * MAX_SAME_MODULE_TYPE_CORE_NUMBER * MAX_PROCESS_CORE_NUMBER)
++#define PROCESS_MAX_VIDO_SIZE             (4096 * 2160 * MAX_SAME_MODULE_TYPE_CORE_NUMBER * MAX_PROCESS_CORE_NUMBER)
++#define PROCESS_MAX_JPEG_SIZE             (2147483648U) //32K*32K*2
++#define PROCESS_MAX_SUM_OF_IMAGE_SIZE                         \
++                    (PROCESS_MAX_VIDO_SIZE > PROCESS_MAX_JPEG_SIZE ? PROCESS_MAX_VIDO_SIZE : PROCESS_MAX_JPEG_SIZE)
+ 
+ /** the wait time for the vcmd task list(in milliseconds):
+  * 200x frame encoding time + 1000ms
+-- 
+2.47.0
+

@@ -1,0 +1,126 @@
+From c2229e3995298ce73d38c86c8b080662cb605fdd Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Mon, 9 Sep 2024 14:09:30 +0800
+Subject: [PATCH 253/370] WIN2030-16289:feat:support npu dual die
+
+Changelogs:
+	support npu dual die
+
+Change-Id: I5633eb8b68d7d7cfd754b5982535694944e53d44
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts     | 16 +++++++++-------
+ .../boot/dts/eswin/eswin-win2030-die0-soc.dtsi   |  2 +-
+ .../boot/dts/eswin/eswin-win2030-die1-soc.dtsi   |  4 ++--
+ 3 files changed, 12 insertions(+), 10 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 073decf58c03..6f148bfed948 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -379,42 +379,42 @@ &d0_npu{
+ 	status = "okay";
+ };
+ &d1_npu {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp_subsys {
+ 	status = "okay";
+ };
+ &d1_dsp_subsys {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp0 {
+ 	status = "okay";
+ };
+ &d1_dsp0 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp1 {
+ 	status = "okay";
+ };
+ &d1_dsp1 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp2 {
+ 	status = "okay";
+ };
+ &d1_dsp2 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp3 {
+ 	status = "okay";
+ };
+ &d1_dsp2 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &gpu0 {
+@@ -1371,9 +1371,11 @@ &d1_gpio0 {
+ 
+ &dev_llc_d0{
+ 	apply_npu_high_freq;
++	status = "okay";
+ };
+ &d1_llc_dev{
+ 	apply_npu_high_freq;
++	status = "okay";
+ };
+ 
+ /* die0 GPIO Function Description
+@@ -1414,4 +1416,4 @@ gpio92  : frex gp0(O)
+ 	gpio93  : frex gp1(O)
+ 	gpio106 : host wak bt(O)
+ 	gpio111 : lcd touch resetn(O)
+-*/
+\ No newline at end of file
++*/
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index ea0f74325103..775c6231f3a8 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -534,7 +534,7 @@ noc {
+ 		};
+ 
+ 		d0_npu: eswin-npu@51c00000 {
+-			compatible = "eswin,npu0";
++			compatible = "eswin,npu";
+ 			reg = <0x0 0x51c00000 0x0 0x400000>;
+ 			interrupt-parent = <&plic0>;
+ 			interrupts = <387 16>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 5be5d6f3d76a..95cc804403c9 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -542,7 +542,7 @@ d1_mbox1: mbox@70a20000 {
+ 
+ 		/*mailbox between u84 & npu_0*/
+ 		d1_mbox2: mbox@70a40000 {
+-			compatible = "eswin,win2030-mailbox";
++			compatible = "eswin,npu1-mailbox";
+ 			reg = <0 (ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE + 0x20000000) 0 0x10000>,
+ 				  <0 (ESWIN_MAILBOX_NPU_0_TO_U84_REG_BASE + 0x20000000) 0 0x10000>;
+ 			interrupt-parent = <&plic1>;
+@@ -940,7 +940,7 @@ d1_aon_i2c1: i2c@71838000 {
+ 		};
+ 
+ 		d1_npu: eswin-npu@71c00000 {
+-			compatible = "eswin,npu1";
++			compatible = "eswin,npu";
+ 			reg = <0x0 0x71c00000 0x0 0x400000>;
+ 			interrupt-parent = <&plic1>;
+ 			interrupts = <387 16>;
+-- 
+2.47.0
+

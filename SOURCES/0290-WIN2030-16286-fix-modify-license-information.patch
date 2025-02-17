@@ -1,0 +1,30 @@
+From f2a8212d01e0e80048bd4a55bebad2fc13b08b78 Mon Sep 17 00:00:00 2001
+From: sun huan <sunhuan@eswincomputing.com>
+Date: Mon, 25 Nov 2024 13:56:45 +0800
+Subject: [PATCH 290/370] <WIN2030-16286>:fix:modify license information.
+
+Changelogs:
+gc_hal_kernel_event.c
+
+Change-Id: Ibc23edb68c486ce180bdd8a277be147e549faf12
+Signed-off-by: sun huan <sunhuan@eswincomputing.com>
+---
+ .../staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c    | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
+index b58544de1fb4..a1b78ba8e70b 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
++++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
+@@ -53,7 +53,7 @@
+ *
+ *****************************************************************************/
+ /*
+- * ESWIN cipher serivce driver
++ * ESWIN gc hal kernel event APIs
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+  *
+-- 
+2.47.0
+

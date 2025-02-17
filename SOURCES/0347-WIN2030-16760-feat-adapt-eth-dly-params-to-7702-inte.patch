@@ -1,0 +1,66 @@
+From 960fa96d3461d0a041e1cc9d39e862967a4ea63a Mon Sep 17 00:00:00 2001
+From: liangshuang <liangshuang@eswincomputing.com>
+Date: Thu, 19 Dec 2024 09:36:02 +0800
+Subject: [PATCH 347/370] WIN2030-16760:feat:adapt eth dly params to 7702
+ interleave dts.
+
+Changelogs:
+1.adapt eth dly params to 7702 interleave dts.
+
+Change-Id: Iee6af3f236db3ed126a56c0b86129d82bc14b84f
+Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
+---
+ .../boot/dts/eswin/eic7702-evb-a1-interleave.dts | 16 ++++++++++++----
+ 1 file changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+index 8e0d8e10a664..1470d3990cd5 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+@@ -797,7 +797,9 @@ &d0_gmac0 {
+ 	rst-gpios = <&porta 15 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x290 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x23232323 0x800c8023 0x0c0c0c0c>;
++	dly-param-100m = <0x50505050 0x803f8050 0x3f3f3f3f>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+@@ -807,7 +809,9 @@ &d1_gmac0 {
+ 	rst-gpios = <&d1_porta 13 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&d1_pinctrl 0x290 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x23232323 0x800c8023 0x0c0c0c0c>;
++	dly-param-100m = <0x50505050 0x803f8050 0x3f3f3f3f>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+@@ -817,7 +821,9 @@ &d0_gmac1 {
+ 	rst-gpios = <&porta 14 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x294 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x25252525 0x80268025 0x26262626>;
++	dly-param-100m = <0x48484848 0x80588048 0x58585858>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+@@ -827,7 +833,9 @@ &d1_gmac1 {
+ 	rst-gpios = <&d1_porta 14 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&d1_pinctrl 0x294 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x25252525 0x80268025 0x26262626>;
++	dly-param-100m = <0x48484848 0x80588048 0x58585858>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.47.0
+

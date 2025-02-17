@@ -1,0 +1,76 @@
+From aefdf641d3c6f661f810e3dc80f984185695c670 Mon Sep 17 00:00:00 2001
+From: lilijun <lilijun@eswincomputing.com>
+Date: Wed, 11 Sep 2024 13:58:01 +0800
+Subject: [PATCH 261/370] WIN2030-16098:fix:Drm driver add component failed
+ issue
+
+Changelogs:
+1. When dts open the node of drm dev eg:es_dsi,but CONFIG_ESWIN_MIPI_DSI
+   disabled. The card will probe failed.
+
+Change-Id: I5fc916c8442d77de5c43bef3774b297db842f6ab
+Signed-off-by: lilijun <lilijun@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts | 16 ++++++++--------
+ 1 file changed, 8 insertions(+), 8 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index d5547aef615c..2e0d2fb3838f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -439,14 +439,14 @@ &vdec0 {
+ 	status = "okay";
+ };
+ &vdec1 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &venc0 {
+ 	status = "okay";
+ };
+ &venc1 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &video_output {
+@@ -473,29 +473,29 @@ &d1_dc_test {
+ };
+ 
+ &virtual_display {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d1_virtual_display {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &dsi_controller {
+-    status = "disabled";
++    status = "okay";
+ };
+ &d1_dsi_controller {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &dsi_panel {
+-	status = "disabled";
++	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_die0_gpio27_default &pinctrl_die0_gpio106_default>;
+ 	backlight0-gpios = <&porta 27 GPIO_ACTIVE_HIGH>;
+ 	rst-gpios = <&portd 10 GPIO_ACTIVE_HIGH>;
+ };
+ &d1_dsi_panel {
+-	status = "disabled";
++	status = "okay";
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_die1_gpio69_default &pinctrl_die1_gpio21_default>;
+ 	backlight0-gpios = <&d1_portc 5 GPIO_ACTIVE_HIGH>;
+-- 
+2.47.0
+

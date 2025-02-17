@@ -1,0 +1,74 @@
+From 2e982245f4eb356ec5a2faac5d55ce8da40975e8 Mon Sep 17 00:00:00 2001
+From: zhouliang2 <zhouliang2@eswincomputing.com>
+Date: Tue, 3 Dec 2024 17:45:27 +0800
+Subject: [PATCH 342/370] WIN2030-16733:feat:audio perf for rtc processing
+
+Changelogs:
+1. linux6.6-perf
+
+Change-Id: I0771086fa17650ebf31c207572a50cb2545f05d5
+Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
+---
+ sound/soc/eswin/esw-audio-proc.c | 26 ++++++++++++--------------
+ 1 file changed, 12 insertions(+), 14 deletions(-)
+
+diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
+index 17b7c21f7b69..f21e269af657 100644
+--- a/sound/soc/eswin/esw-audio-proc.c
++++ b/sound/soc/eswin/esw-audio-proc.c
+@@ -46,9 +46,7 @@ typedef enum
+ 	AENC_SEND_FRAME,
+ 	AENC_GET_STREAM,
+ 	AENC_ENCODE_FRAME,
+-	AGC_PROCESS,
+-	ANS_PROCESS,
+-	AEC_PROCESS,
++	RTC_PROCESS, //rtc processing for aec, ans, agc
+ 	DRC_PROCESS,
+ 	EQ_PROCESS,
+ 	DCBLOCK_PROCESS,
+@@ -142,15 +140,15 @@ static void show_ao_data(struct seq_file *m)
+ 	seq_printf(m, "-----------------------------------------------------------------------------"
+ 				"-----------------------------------------------------\n");
+ 	seq_printf(m, "audio argorithm performance(ns/1ms):\n");
+-	seq_printf(m, "%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s\n", "agc", "ans", "eq", "hpf",
++	seq_printf(m, "%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s\n", "rtc", "eq", "hpf",
+ 				"volume", "src-host","src-dai", "host", "dai");
+ 	seq_printf(m, "------------------------------------------------------------------------------"
+ 				"----------------------------------------------------\n");
+-	seq_printf(m, "%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d\n", g_perf_data[AO][AGC_PROCESS],
+-				g_perf_data[AO][ANS_PROCESS],g_perf_data[AO][EQ_PROCESS],
+-				g_perf_data[AO][DCBLOCK_PROCESS],g_perf_data[AO][VOLUME_PROCESS],
+-				g_perf_data[AO][SRC_HOST_PROCESS],g_perf_data[AO][SRC_DAI_PROCESS],
+-				g_perf_data[AO][HOST_PROCESS], g_perf_data[AO][DAI_PROCESS]);
++	seq_printf(m, "%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d\n", g_perf_data[AO][RTC_PROCESS],
++				g_perf_data[AO][EQ_PROCESS],g_perf_data[AO][DCBLOCK_PROCESS],
++				g_perf_data[AO][VOLUME_PROCESS],g_perf_data[AO][SRC_HOST_PROCESS],
++				g_perf_data[AO][SRC_DAI_PROCESS],g_perf_data[AO][HOST_PROCESS],
++				g_perf_data[AO][DAI_PROCESS]);
+ 	seq_printf(m, "\n");
+ 	seq_printf(m,"-----------------------------------------------------AO PERF STATISTIC END"
+ 				"-----------------------------------------------------\n");
+@@ -173,14 +171,14 @@ static void show_ai_data(struct seq_file *m)
+ 	seq_printf(m, "-----------------------------------------------------------------------------"
+ 				"-----------------------------------------------------\n");
+ 	seq_printf(m, "audio argorithm performance(ns/1ms):\n");
+-	seq_printf(m, "%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s\n", "agc", "ans", "drc", "eq",
++	seq_printf(m, "%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s%-14s\n", "rtc", "drc", "eq",
+ 				"hpf", "volume","src-host", "src-dai", "host", "dai");
+ 	seq_printf(m, "------------------------------------------------------------------------------"
+ 				"----------------------------------------------------\n");
+-	seq_printf(m, "%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d\n", g_perf_data[AI][AGC_PROCESS],
+-		g_perf_data[AI][ANS_PROCESS],g_perf_data[AI][DRC_PROCESS], g_perf_data[AI][EQ_PROCESS],
+-		g_perf_data[AI][DCBLOCK_PROCESS], g_perf_data[AI][VOLUME_PROCESS],g_perf_data[AI][SRC_HOST_PROCESS],
+-		g_perf_data[AI][SRC_DAI_PROCESS], g_perf_data[AI][HOST_PROCESS], g_perf_data[AI][DAI_PROCESS]);
++	seq_printf(m, "%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d%-14d\n", g_perf_data[AI][RTC_PROCESS],
++		g_perf_data[AI][DRC_PROCESS], g_perf_data[AI][EQ_PROCESS], g_perf_data[AI][DCBLOCK_PROCESS],
++		g_perf_data[AI][VOLUME_PROCESS], g_perf_data[AI][SRC_HOST_PROCESS], g_perf_data[AI][SRC_DAI_PROCESS],
++		g_perf_data[AI][HOST_PROCESS], g_perf_data[AI][DAI_PROCESS]);
+ 	seq_printf(m, "\n");
+ 	seq_printf(m,"-----------------------------------------------------AI PERF STATISTIC END"
+ 				"-----------------------------------------------------\n");
+-- 
+2.47.0
+

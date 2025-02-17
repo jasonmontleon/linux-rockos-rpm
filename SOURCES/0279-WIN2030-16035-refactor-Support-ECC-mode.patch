@@ -1,0 +1,57 @@
+From c170beaa618af15ccb2005d03f1b8526f7d0f4a4 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Tue, 5 Nov 2024 10:24:03 +0800
+Subject: [PATCH 279/370] WIN2030-16035:refactor:Support ECC mode
+
+Changelogs:
+In order to support ECC mode during 7702 bringup, reserve hightest 1/8 ddr for ECC
+
+Change-Id: I11bcd2b5adac9dbb32eb9d0a4bcc348118454a16
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts | 13 ++++---------
+ 1 file changed, 4 insertions(+), 9 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 2e99b78abc91..629626b35c4b 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -24,8 +24,8 @@
+ #define LSPCLK_FREQ		200000000
+ 
+ /* If wanna enable ECC capability of DDR, should reserve highest zone of 1/8 all space for it */
+-#define MEMORY_SIZE_H		0x4
+-#define MEMORY_SIZE_L		0x0
++#define MEMORY_SIZE_H		0x3
++#define MEMORY_SIZE_L		0x80000000
+ #define CMA_SIZE		0x20000000
+ 
+ #include "eswin-win2030-die0-soc.dtsi"
+@@ -122,14 +122,9 @@ g2d_8GB_boundary_reserved_4k {
+ 			reg = <0x1 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+-		g2d_12GB_boundary_reserved_4k {
+-			no-map;
+-			reg = <0x2 0xfffff000 0x0 0x1000>;
+-		};
+-
+ 		mmz_nid_0_part_0 {
+ 			compatible = "eswin-reserve-memory";
+-			reg = <0x3 0x0 0x1 0x80000000>;
++			reg = <0x2 0x80000000 0x1 0x80000000>;
+ 			no-map;
+ 		};
+ 
+@@ -145,7 +140,7 @@ d1_g2d_8GB_boundary_reserved_4k {
+ 
+ 		mmz_nid_1_part_0 {
+ 			compatible = "eswin-reserve-memory";
+-			reg = <0x22 0x80000000 0x1 0x80000000>;
++			reg = <0x22 0x0 0x1 0x80000000>;
+ 			no-map;
+ 		};
+ 	};
+-- 
+2.47.0
+

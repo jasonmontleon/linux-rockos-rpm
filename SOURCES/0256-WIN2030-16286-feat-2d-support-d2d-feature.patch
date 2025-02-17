@@ -1,0 +1,213 @@
+From 3b7e89323802a09ea00b24384a961a69167a37e5 Mon Sep 17 00:00:00 2001
+From: liusheng <liusheng@eswincomputing.com>
+Date: Mon, 9 Sep 2024 09:23:12 +0800
+Subject: [PATCH 256/370] WIN2030-16286:feat:2d support d2d feature
+
+Changelogs:
+1. enable the die1 2d to work
+2. enable the die1 share die0 mmu table
+
+Change-Id: I1ded5ba23393f2a4c21a9c08ee8bb780eac888b8
+Signed-off-by: liusheng <liusheng@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  |  2 +-
+ .../eswin/hae/hal/kernel/gc_hal_kernel.c      |  7 ++++
+ .../os/linux/kernel/gc_hal_kernel_driver.c    | 11 +++---
+ .../os/linux/kernel/gc_hal_kernel_parameter.h |  2 +-
+ .../eswin/gc_hal_kernel_platform_win2030.c    | 38 ++++++++++++++-----
+ 5 files changed, 44 insertions(+), 16 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 9f1bba379969..2019957d4530 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -437,7 +437,7 @@ &gc820 {
+ 	status = "okay";
+ };
+ &d1_gc820 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &vdec0 {
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
+index 8303e9a139c6..fb921fbd970e 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
++++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
+@@ -732,6 +732,13 @@ gckKERNEL_Construct(gckOS Os, gceCORE Core,
+ 
+             if (kernel->sharedPageTable) {
+                 gcmkONERROR(gckDEVICE_GetMMU(Device, kernel->hardware->type, &kernel->mmu));
++                if(!kernel->mmu && Device->id == 1) {
++                    /* let the die1 share die0 mmu table */
++                    gckGALDEVICE gal_device = (gckGALDEVICE)Context;
++                    gckDEVICE die0_device = gal_device->devices[0];
++                    gcmkONERROR(gckDEVICE_GetMMU(die0_device, kernel->hardware->type, &kernel->mmu));
++                    gcmkONERROR(gckDEVICE_SetMMU(Device, kernel->hardware->type, kernel->mmu));
++                }
+ 
+                 if (!kernel->mmu) {
+                     gcmkONERROR(gckMMU_Construct(kernel, gcdMMU_SIZE, &kernel->mmu));
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
+index 9386092809b5..a428dcd84af5 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
+@@ -314,6 +314,8 @@ _SyncModuleParam(gcsMODULE_PARAMETERS *ModuleParam)
+     irqLineVG = p->irqVG;
+     registerMemBaseVG = (ulong)p->registerVGBase;
+     registerMemSizeVG = (ulong)p->registerVGSize;
++    registerMemBase2D = p->register2DBases[0];
++    registerMemSize2D = p->register2DSizes[0];
+ 
+     for (i = 0; i < gcvCORE_COUNT; i++)
+         chipIDs[i] = p->chipIDs[i];
+@@ -1178,9 +1180,9 @@ gceSTATUS viv_device_node_create(uint32_t dev_index)
+ 
+     if (dev_index > 0) {
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 27)
+-        device_create(gpu_class, NULL, MKDEV(major, dev_index), NULL, "galcore%d", dev_index);
++        device_create(gpu_class, NULL, MKDEV(major, dev_index), NULL, DEVICE_NAME "%d", dev_index);
+ #else
+-        device_create(gpu_class, NULL, MKDEV(major, dev_index), "galcore%d", dev_index);
++        device_create(gpu_class, NULL, MKDEV(major, dev_index), DEVICE_NAME "%d", dev_index);
+ #endif
+     } else { /* Compatible with old style. */
+ #if LINUX_VERSION_CODE >= KERNEL_VERSION(2, 6, 27)
+@@ -1346,9 +1348,7 @@ static int __devinit viv_dev_probe(struct platform_device *pdev)
+     }
+ 
+     /* Gather module parameters. */
+-    if (activeDeviceCount == 0) {
+-        _InitModuleParam(&platform->params);
+-    }
++    _InitModuleParam(&platform->params);
+ 
+     platform->params.devices[activeDeviceCount] = &pdev->dev;
+ 
+@@ -1396,6 +1396,7 @@ static int __devinit viv_dev_probe(struct platform_device *pdev)
+         activeDeviceCount++;
+         if(gcvSTATUS_MORE_DATA == platform->ops->adjustParam(platform, &platform->params)){
+             gcmkPRINT("hae loaded first device, waiting for another...");
++            _SyncModuleParam(&platform->params);
+             return 0;
+         }
+     }
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
+index 0adeae90bc10..db95354cb7c0 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
+@@ -248,7 +248,7 @@ static uint devCoreCounts[gcdDEVICE_COUNT] = {gcdCORE_3D_COUNT, 0};
+ module_param_array(devCoreCounts, uint, NULL, 0644);
+ MODULE_PARM_DESC(devCoreCounts, "Array of core count of each hardware device");
+ 
+-static uint dev2DCoreCounts[gcdDEVICE_COUNT] = {gcdCORE_2D_COUNT, 0};
++static uint dev2DCoreCounts[gcdDEVICE_COUNT] = {0, 0};
+ module_param_array(dev2DCoreCounts, uint, NULL, 0644);
+ MODULE_PARM_DESC(dev2DCoreCounts, "Array of core 2D count of each hardware device");
+ 
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
+index 4b52d9679954..580267770992 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
+@@ -163,7 +163,13 @@ struct gpu_power_domain {
+ 
+ static struct _gpu_reset {
+     struct reset_control *rsts[gcdDEVICE_COUNT][gcvRST_COUNT];
+-}gpu_reset;
++} gpu_reset;
++
++static struct _gpu_device {
++    struct device *devs[gcdDEVICE_COUNT];
++} gpu_device = {
++    .devs = { gcvNULL, gcvNULL },
++};
+ 
+ static struct _gcsPLATFORM default_platform = {
+     .name = __FILE__,
+@@ -288,7 +294,7 @@ static int gpu_add_power_domains(struct platform_device *pdev, gcsMODULE_PARAMET
+     int ret = 0;
+ 
+     memset(&gpd, 0, sizeof(struct gpu_power_domain));
+-    num_domains = params->devCount;
++    num_domains = (gpu_device.devs[0] != gcvNULL) + (gpu_device.devs[1] != gcvNULL);
+     gpd.num_domains = num_domains;
+ 
+     /* If the num of domains is less than 2, the domain will be attached automatically */
+@@ -300,13 +306,13 @@ static int gpu_add_power_domains(struct platform_device *pdev, gcsMODULE_PARAMET
+ 
+     for (i = 0; i < num_domains; i++) {
+         if (gpd.power_dev) {
+-            gpd.power_dev[i] = dev_pm_domain_attach_by_id(dev, i);
++            gpd.power_dev[i] = dev_pm_domain_attach_by_id(gpu_device.devs[i], i);
+             if (IS_ERR(gpd.power_dev[i]))
+                 goto error;
+         }
+ 
+         for (j = 0; j < nc_of_clks; j++) {
+-            gpd.clks[i][j] = devm_clk_get(dev, clk_names[j]);
++            gpd.clks[i][j] = devm_clk_get(gpu_device.devs[i], clk_names[j]);
+             if (IS_ERR(gpd.clks[i][j])) {
+                 ret = PTR_ERR(gpd.clks[i][j]);
+                 dev_err(dev, "failed to get die-%d:%s clock: %d\n", i, clk_names[j], ret);
+@@ -330,14 +336,19 @@ static int gpu_add_power_domains(struct platform_device *pdev, gcsMODULE_PARAMET
+ 
+ static int g2d_device_node_scan(unsigned char *compatible) {
+     struct device_node *np;
++    const char *str;
++    int ret = -1;
+ 
+     np = of_find_compatible_node(NULL, NULL, compatible);
+     if (!np) {
+-        return -1;
++        return ret;
++    }
++    if (!of_property_read_string(np, "status", &str) && !strcmp(str, "okay")) {
++        ret = 0;
+     }
+     of_node_put(np);
+ 
+-    return 0;
++    return ret;
+ }
+ 
+ static int g2d_reset(struct device *dev, int dieIndex, int enable) {
+@@ -399,6 +410,7 @@ static int gpu_parse_dt(struct platform_device *pdev, gcsMODULE_PARAMETERS *para
+     const gctUINT32 *value;
+     const char *str;
+     int dieIndex = 0;
++    int peerDieIndex;
+ 
+     gcmSTATIC_ASSERT(gcvCORE_COUNT == gcmCOUNTOF(core_names),
+                      "core_names array does not match core types");
+@@ -410,6 +422,7 @@ static int gpu_parse_dt(struct platform_device *pdev, gcsMODULE_PARAMETERS *para
+     } else if (!strcmp("eswin,galcore_d1", str)) {
+         dieIndex = 1;
+     }
++    peerDieIndex = (dieIndex + 1) % 2;
+ 
+     /* parse the irqs config */
+     for (i = gcvCORE_2D; i <= gcvCORE_2D1; i++) {
+@@ -540,10 +553,17 @@ static int gpu_parse_dt(struct platform_device *pdev, gcsMODULE_PARAMETERS *para
+ 
+     params->devCount++;
+ 
+-    if (params->devCount == 1) {
++    params->devices[dieIndex] = gpu_device.devs[dieIndex] = &pdev->dev;
++    params->platformIDs[dieIndex] = dieIndex;
++    if(params->dev2DCoreCounts[dieIndex] && params->dev2DCoreCounts[peerDieIndex]){
++        /*all device probe done, it need restore remembered peer device pointer*/
++        params->devices[peerDieIndex] = gpu_device.devs[peerDieIndex];
++    }
++
++    if (params->devCount == 1 && params->dev2DCoreCounts[peerDieIndex] == 0) {
+         unsigned char compatible[32] = { 0 };
+-        sprintf(compatible, "eswin,galcore_d%d", (dieIndex + 1) % 2);
+-        if(!g2d_device_node_scan(compatible)){
++        sprintf(compatible, "eswin,galcore_d%d", peerDieIndex);
++        if (!g2d_device_node_scan(compatible)) {
+             return 1;
+         }
+     }
+-- 
+2.47.0
+

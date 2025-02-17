@@ -1,0 +1,49 @@
+From 3285448d730fbfa9c796d9505b6e5cf6ac8ed9ef Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Tue, 12 Nov 2024 00:13:32 +0800
+Subject: [PATCH 225/370] sync: sync thermal config for win2030
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+---
+ arch/riscv/configs/win2030_defconfig | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 043710150877..fe6b5b7f98ef 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -38,6 +38,7 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
+ CONFIG_CMDLINE_EXTEND=y
+ CONFIG_PM_DEBUG=y
+ CONFIG_PM_ADVANCED_DEBUG=y
++CONFIG_ENERGY_MODEL=y
+ CONFIG_CPU_IDLE=y
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
+@@ -461,10 +462,14 @@ CONFIG_SENSORS_INA2XX=y
+ CONFIG_SENSORS_PAC1934=y
+ CONFIG_THERMAL=y
+ CONFIG_THERMAL_STATISTICS=y
++CONFIG_THERMAL_DEFAULT_GOV_POWER_ALLOCATOR=y
+ CONFIG_THERMAL_GOV_FAIR_SHARE=y
++CONFIG_THERMAL_GOV_STEP_WISE=y
+ CONFIG_THERMAL_GOV_BANG_BANG=y
+ CONFIG_THERMAL_GOV_USER_SPACE=y
++CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
+ CONFIG_CPU_THERMAL=y
++CONFIG_DEVFREQ_THERMAL=y
+ CONFIG_THERMAL_EMULATION=y
+ CONFIG_WATCHDOG=y
+ CONFIG_DW_WATCHDOG=y
+@@ -746,6 +751,8 @@ CONFIG_RPMSG_VIRTIO=y
+ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
++CONFIG_PM_DEVFREQ=y
++CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+ CONFIG_ESWIN_BUDDY=y
+-- 
+2.47.0
+

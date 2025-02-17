@@ -1,0 +1,1112 @@
+From cafee7660916e8bb52886df2f7de4a2c4f32ea38 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Thu, 5 Sep 2024 16:14:07 +0800
+Subject: [PATCH 250/370] WIN2030-16035:refactor:support eic7702 evb
+
+Changelogs:
+Provide bring up code for eic7702 evb a1
+
+Change-Id: Id1056300c32f770a43571ebeccdfd4f5bd49e635
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 253 ++++++++++++------
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |   4 +-
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  61 +++--
+ arch/riscv/configs/eic7702_defconfig          |  12 +-
+ drivers/iommu/eswin/eswin-win2030-sid.c       |  10 +-
+ drivers/soc/sifive/sifive_ccache.c            | 245 ++++++++---------
+ 6 files changed, 346 insertions(+), 239 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index a388e009f877..e5c44cf04df5 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -50,7 +50,6 @@ aliases {
+ 		ethernet0 = &d0_gmac0;
+ 		ethernet1 = &d0_gmac1;
+ 		rtc0 = &die0_rtc;
+-		rtc1 = &pcf_rtc;
+ 	};
+ 
+ 	chosen {
+@@ -152,47 +151,19 @@ mmz_nid_1_part_0 {
+ 		};
+ 	};
+ 
++	/* die1 gpio68
+ 	leds {
+ 		compatible = "gpio-leds";
+ 		pinctrl-names = "default";
+ 		pinctrl-0 = <&pinctrl_gpio107_default &pinctrl_gpio108_default &pinctrl_gpio109_default>;
+ 
+-		gpio-107 {
+-			gpios = <&portd 11 GPIO_ACTIVE_HIGH>;
+-			label = "power";
+-			linux,default-trigger = "default-on";
+-		};
+-
+-		gpio-108 {
++		gpio-68 {
+ 			gpios = <&portd 12 GPIO_ACTIVE_LOW>;
+ 			label = "heartbeat";
+ 			linux,default-trigger = "heartbeat";
+ 		};
+-
+-		gpio-109 {
+-			gpios = <&portd 13 GPIO_ACTIVE_HIGH>;
+-			label = "gpio-109";
+-			linux,default-trigger = "default-off";
+-		};
+-
+-		gpio-110 {
+-			gpios = <&portd 14 GPIO_ACTIVE_HIGH>;
+-			label = "gpio-109";
+-			linux,default-trigger = "default-off";
+-		};
+-	};
+-
+-	gpio-keys {
+-		compatible = "gpio-keys";
+-
+-		ok_key {
+-			label = "OK";
+-			linux,code = <KEY_OK>;
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&pinctrl_gpio6_default>;
+-			gpios = <&porta 6 GPIO_ACTIVE_LOW>;
+-		};
+ 	};
++	*/
+ };
+ 
+ &d0_clock {
+@@ -313,6 +284,76 @@ &d0_noc_wdt {
+ 	status = "okay";
+ };
+ 
++&d1_cfg_noc {
++	status = "okay";
++};
++
++&d1_llc_noc {
++	status = "okay";
++	stat,0 = "TracePort:ddr0_p0_req";
++	stat,1 = "TracePort:ddr1_p0_req";
++	//latency,0 = "TracePort:llcnoc_trans_probe";
++	//pending,0 = "TracePort:llcnoc_trans_probe";
++};
++
++&d1_sys_noc {
++	status = "okay";
++
++	//eswin,DSPT-qos-owner;
++	//eswin,NPU-qos-owner;
++	//eswin,SPISLV_TBU3-qos-owner;
++
++	stat,0 = "TracePort:ddr0_p1_req",
++		 "InitFlow:mcput_snoc_mp/I/0";
++
++	stat,1 = "TracePort:ddr0_p2_req",
++		 "InitFlow:dspt_snoc/I/0",
++		 "AddrBase:0x81000000", "AddrSize:0x30",
++		 "Opcode:RdWrLockUrg", "Status:ReqRsp", "Length:0x8000", "Urgency:0x0";
++
++	stat,2 = "TracePort:ddr1_p1_req",
++		 "Status:Req", "AddrSize:0x28";
++
++	stat,3 = "TracePort:ddr1_p2_req";
++
++	latency,0 = "TracePort:sysnoc_trans_probe_0", "AddrSize:0x0";
++	latency,1 = "TracePort:sysnoc_trans_probe_1","Mode:latency","AddrBase:0x82000000","AddrSize:0x28","Opcode:RdWr";
++	//latency,2 = "TracePort:sysnoc_trans_probe_2";
++
++	//pending,0 = "TracePort:sysnoc_trans_probe_0";
++	//pending,1 = "TracePort:sysnoc_trans_probe_1","Mode:latency","AddrBase:0x82000000","AddrSize:0x0","Opcode:RdWr";
++	pending,0 = "TracePort:sysnoc_trans_probe_2", "AddrSize:0x3";
++};
++
++&d1_media_noc {
++	status = "okay";
++
++	//eswin,GPU-qos-owner;
++	//eswin,TBU2-qos-owner;
++	//eswin,VC-qos-owner;
++
++	stat,0 = "TracePort:ddr0_p3_req";
++	stat,1 = "TracePort:ddr1_p3_req";
++	//latency,0 = "TracePort:mnoc_trans_probe";
++	//pending,0 = "TracePort:mnoc_trans_probe";
++};
++
++&d1_realtime_noc {
++	status = "okay";
++
++	//eswin,TBU0-qos-owner;
++	//eswin,VO-qos-owner;
++
++	stat,0 = "TracePort:ddr0_p4_req";
++	stat,1 = "TracePort:ddr1_p4_req";
++	//latency,0 = "TracePort:rnoc_trans_probe";
++	//pending,0 = "TracePort:rnoc_trans_probe";
++};
++
++&d1_noc_wdt {
++	status = "okay";
++};
++
+ &d0_ipc_scpu {
+ 	status = "okay";
+ };
+@@ -330,7 +371,7 @@ &d1_lpcpu {
+ &pcie {
+ 	status = "okay";
+ };
+-&d0_pcie {
++&d1_pcie {
+ 	status = "disabled";
+ };
+ 
+@@ -602,32 +643,35 @@ &sdhci_emmc {
+ 	drive-impedance-ohm = <50>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_emmc_led_control_default>;
+ 	no-sdio;
+ 	no-sd;
+ };
++
+ &d1_sdhci_emmc {
+-	status = "disabled";
++	/* emmc */
++	status = "okay";
++	delay_code = <0x17>;
++	drive-impedance-ohm = <50>;
++	enable-cmd-pullup;
++	enable-data-pullup;
++	no-sdio;
++	no-sd;
+ };
+ 
+ &sdio0 {
+ 	/* sd card */
+ 	status = "okay";
+-	delay_code = <0x29>;
++	delay_code = <0x55>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+ 	no-sdio;
+ 	no-mmc;
+ };
+-&d1_sdio0 {
+-	status = "disabled";
+-};
+ 
+-&sdio1 {
++&d1_sdio0 {
+ 	/* wifi module */
+-	status = "okay";
++	status = "disabled";
+ 	delay_code = <0x29>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+@@ -637,6 +681,11 @@ &sdio1 {
+ 	no-sd;
+ 	no-mmc;
+ };
++
++&sdio1 {
++	status = "disabled";
++};
++
+ &d1_sdio1 {
+ 	status = "disabled";
+ };
+@@ -650,14 +699,16 @@ &d0_gmac0 {
+ 
+ 	status = "okay";
+ };
++
+ &d1_gmac0 {
++/*	
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gpio13_default>;
+ 	rst-gpios = <&porta 13 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x290 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
+-	status = "okay";
++*/
++	status = "disabled";
+ };
+ 
+ &d0_gmac1 {
+@@ -669,31 +720,31 @@ &d0_gmac1 {
+ 
+ 	status = "okay";
+ };
++
+ &d1_gmac1 {
++	/*
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gpio14_default>;
+ 	rst-gpios = <&porta 14 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x294 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
+-	status = "okay";
++	*/
++	status = "disabled";
+ };
+ 
+-
+ &d0_sata {
+ 	status = "okay";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_sata_act_led_default>;
+ };
++
+ &d1_sata {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_usbdrd3_0 {
+ 	status = "okay";
+ };
+ &d1_usbdrd3_0 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_usbdrd_dwc3_0 {
+@@ -702,11 +753,18 @@ &d0_usbdrd_dwc3_0 {
+ 	maximum-speed = "super-speed";
+ };
+ 
++&d1_usbdrd_dwc3_0 {
++	status = "okay";
++	dr_mode = "host";
++	maximum-speed = "super-speed";
++};
++
+ &d0_usbdrd3_1 {
+ 	status = "okay";
+ };
+-&d1_usbdrd3_0 {
+-	status = "disabled";
++
++&d1_usbdrd3_1 {
++	status = "okay";
+ };
+ 
+ &d0_usbdrd_dwc3_1 {
+@@ -714,13 +772,17 @@ &d0_usbdrd_dwc3_1 {
+ 	dr_mode = "host";
+ 	maximum-speed = "super-speed";
+ };
++
+ &d1_usbdrd_dwc3_1 {
+-	status = "disabled";
++	status = "okay";
++	dr_mode = "host";
++	maximum-speed = "super-speed";
+ };
+ 
+ &d0_dmac0 {
+ 	status = "okay";
+ };
++
+ &d1_dmac0 {
+ 	status = "disabled";
+ };
+@@ -728,29 +790,32 @@ &d1_dmac0 {
+ &d0_aon_dmac {
+ 	status = "okay";
+ };
++
+ &d1_aon_dmac {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_uart0 {
+ 	/* debug */
+ 	status = "okay";
+ };
++
+ &d1_uart0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_uart1 {
+ 	/* BT M.2 KEY-E */
+-	status = "okay";
++	status = "disabled";
+ };
++
+ &d1_uart1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_uart2 {
+ 	/* RS232 DB9 */
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_uart3 {
+@@ -787,14 +852,8 @@ spi-flash@1 {
+ 	};
+ };
+ &d1_ssi0 {
+-	status = "disabled";
+-};
+-
+-&ssi1 {
+ 	/* spi flash */
+-	status = "disabled";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_spi2_default>;
++	status = "okay";
+ 	num-cs = <2>;
+ 	spi-flash@0 {
+ 		compatible = "winbond,w25q128fw",
+@@ -816,9 +875,31 @@ spi-flash@1 {
+ 	};
+ };
+ 
++&ssi1 {
++	/* unused */
++	status = "disabled";
++};
++
+ &bootspi {
+ 	/* spi flash */
+-	status = "okay";
++	status = "disabled";
++	num-cs = <1>;
++	cs-gpios = <&portd 0 GPIO_ACTIVE_LOW>;
++	wp-gpios = <&portd 4 GPIO_ACTIVE_LOW>;
++	spi-flash@0 {
++		compatible = "winbond,w25q128jw",
++					"jedec,spi-nor";
++		reg = <0>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++		spi-max-frequency = <4800000>;
++		rx-sample-delay-ns = <10>;
++	};
++};
++
++&d1_bootspi {
++	/* spi flash */
++	status = "disabled";
+ 	num-cs = <1>;
+ 	cs-gpios = <&portd 0 GPIO_ACTIVE_LOW>;
+ 	wp-gpios = <&portd 4 GPIO_ACTIVE_LOW>;
+@@ -924,10 +1005,6 @@ d0_codec1_endpoint: endpoint {
+ };
+ &d1_i2c0 {
+ 	status = "disabled";
+-	eeprom@50 {
+-		compatible = "atmel,24c1024";
+-		reg = <0x50>;
+-	};
+ };
+ 
+ &d0_i2c1 {
+@@ -1042,12 +1119,36 @@ &d1_i2c9 {
+ };
+ 
+ &d0_aon_i2c0 {
+-	/* temp sensor & rtc */
++	/* ina226x4 & tmp102aidrlr */
+ 	status = "okay";
+-	eswin,syscfg = <&d0_sys_con 0x3C0 16>;
+-	pcf_rtc:rtc@51 {
+-		compatible = "nxp,pcf8563";
+-		reg = <0x51>;
++	i2c-sda-hold-time-ns = <0x40>;
++	ina226@45 {
++		compatible = "ti,ina226";
++		#io-channel-cells = <1>;
++		label = "cpu_vdd";
++		reg = <0x45>;
++		shunt-resistor = <1000>;
++	};
++	ina226@44 {
++		compatible = "ti,ina226";
++		#io-channel-cells = <1>;
++		label = "soc_vdd";
++		reg = <0x44>;
++		shunt-resistor = <1000>;
++	};
++	ina226@41 {
++		compatible = "ti,ina226";
++		#io-channel-cells = <1>;
++		label = "lpddr_vdd";
++		reg = <0x41>;
++		shunt-resistor = <1000>;
++	};
++	ina226@48 {
++		compatible = "ti,ina226";
++		#io-channel-cells = <1>;
++		label = "dc_vdd";
++		reg = <0x48>;
++		shunt-resistor = <1000>;
+ 	};
+ };
+ &d1_aon_i2c0 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index b1ba158a56ab..62d91800185b 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -482,7 +482,7 @@ d0_gmac0: ethernet@50400000 {
+ 			clock-names = "app", "stmmaceth","tx";
+ 			resets = <&d0_reset HSPDMA_RST_CTRL SW_HSP_ETH0_ARSTN>;
+ 			reset-names = "ethrst";
+-			// iommus = <&smmu0 WIN2030_SID_ETH0>;
++			iommus = <&smmu0 WIN2030_SID_ETH0>;
+ 			tbus = <WIN2030_TBUID_ETH>;
+ 			dma-noncoherent;
+ 			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x1030 0x100 0x108>;
+@@ -512,7 +512,7 @@ d0_gmac1: ethernet@50410000 {
+ 			clock-names = "app", "stmmaceth","tx";
+ 			resets = <&d0_reset HSPDMA_RST_CTRL SW_HSP_ETH1_ARSTN>;
+ 			reset-names = "ethrst";
+-			// iommus = <&smmu0 WIN2030_SID_ETH1>;
++			iommus = <&smmu0 WIN2030_SID_ETH1>;
+ 			tbus = <WIN2030_TBUID_ETH>;
+ 			dma-noncoherent;
+ 			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x1034 0x200 0x208>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 242961e9d459..e9fe4bc75031 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -345,7 +345,7 @@ d1_pmu_dsp3: win2030-pmu-controller-port@240 {
+ 		};
+ 
+ 		d1_dmac0: dma-controller-hsp@0x70430000 {
+-			compatible = "snps,axi-dma-1.01a";
++			compatible = "eswin,eic770x-axi-dma";
+ 			reg = <0x0 0x70430000 0x0 0x10000>;
+ 			interrupt-parent = <&plic1>;
+ 			interrupts = <57>;
+@@ -372,7 +372,7 @@ d1_dmac0: dma-controller-hsp@0x70430000 {
+ 		};
+ 
+ 		d1_aon_dmac: dma-controller-aon@0x718c0000 {
+-			compatible = "snps,axi-dma-1.01a";
++			compatible = "eswin,eic770x-axi-dma";
+ 			reg = <0x0 0x718c0000 0x0 0x10000>;
+ 			interrupt-parent = <&plic1>;
+ 			interrupts = <289>;
+@@ -1022,8 +1022,12 @@ d1_sata: sata@0x70420000 {
+ 				interrupt-names = "intrq", "msi", "pme";
+ 				interrupts = <58>, <59>, <60>;
+ 				ports-implemented = <0x1>;
+-				resets = <&d1_reset HSPDMA_RST_CTRL SW_HSP_SATA_ARSTN>;
+-				reset-names = "apb";
++				resets = <&d1_reset HSPDMA_RST_CTRL SW_SATA_ASIC0_RSTN>,
++ 					<&d1_reset HSPDMA_RST_CTRL SW_SATA_OOB_RSTN>,
++ 					<&d1_reset HSPDMA_RST_CTRL SW_SATA_PMALIVE_RSTN>,
++					<&d1_reset HSPDMA_RST_CTRL SW_SATA_RBC_RSTN>,
++					<&d1_reset HSPDMA_RST_CTRL SW_HSP_SATA_ARSTN>;
++				reset-names = "asic0", "oob", "pmalive", "rbc", "apb";
+ 				#size-cells = <2>;
+ 				iommus = <&smmu1 WIN2030_SID_SATA>;
+ 				tbus = <WIN2030_TBUID_SATA>;
+@@ -1438,7 +1442,7 @@ d1_rtc: rtc@71818000 {
+ 			status = "disabled";
+ 		};
+ 
+-		d0_pcie: pcie@0x74000000 {
++		d1_pcie: pcie@0x74000000 {
+ 			compatible = "eswin,win2030-pcie";
+ 			clocks = <&d1_clock WIN2030_CLK_PCIET_ACLK>,
+ 				 <&d1_clock WIN2030_CLK_PCIET_CFG_CLK>,
+@@ -1464,24 +1468,23 @@ d0_pcie: pcie@0x74000000 {
+ 
+ 			ranges = <0x81000000  0x0 0x60800000  0x0 0x60800000 0x0 0x800000>,      /* I/O */
+ 				 <0x82000000  0x0 0x61000000  0x0 0x61000000 0x0 0xf000000>,    /* mem */
+-				 <0xc3000000 0xa0 0x00000000 0xa0 0x00000000 0x20 0x00000000>;  /* mem prefetchable */
++				 <0xc3000000 0xa0 0x00000000 0xa0 0x00000000 0x2 0x00000000>;  /* mem prefetchable */
+ 
+-			/* num-lanes = <0x4>; */
++			num-lanes = <0x4>;
+ 			/**********************************
+ 			  	msi_ctrl_io[0~31] : 188~219
+ 			  	msi_ctrl_int : 220
+ 			**********************************/
+-			interrupts = <220>;
+-			interrupt-names = "msi";
++			interrupts = <220>, <179>, <180>, <181>, <182>, <183>, <184>, <185>, <186>;
++			interrupt-names = "msi", "inta", "intb", "intc", "intd";
+ 			interrupt-parent = <&plic1>;
++			interrupt-map-mask = <0x0 0x0 0x0 0x7>;
++			interrupt-map = <0x0 0x0 0x0 0x1 &plic1 179>,
++							<0x0 0x0 0x0 0x2 &plic1 180>,
++							<0x0 0x0 0x0 0x3 &plic1 181>,
++							<0x0 0x0 0x0 0x4 &plic1 182>;
+ 			iommus = <&smmu1 0xfe0000>;
+ 			iommu-map = <0x0 &smmu1 0xff0000 0xffffff>;
+-			#ifdef PLATFORM_HAPS
+-			gen-x = <1>;
+-			#else
+-			gen-x = <3>;
+-			#endif
+-			lane-x = <4>;
+ 			tbus = <WIN2030_TBUID_PCIE>;
+ 			status = "disabled";
+ 			numa-node-id = <1>;
+@@ -1657,9 +1660,9 @@ d1_sdio1: mmc@0x70470000{
+ 
+ 		d1_ssi0: spi1@70810000 {
+ 			compatible = "snps,eic770x-spi";
+-			#address-cells = <2>;
+-			#size-cells = <2>;
+-			reg = <0x0 0x70810000 0x0 0x5000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x0 0x70810000 0x0 0x4000>;
+ 			spi-max-frequency = <4800000>;
+ 			clocks = <&d1_clock WIN2030_CLK_LSP_SSI0_PCLK>;
+ 			clock-names = "clk";
+@@ -1670,11 +1673,23 @@ d1_ssi0: spi1@70810000 {
+ 			numa-node-id = <1>;
+ 			status = "disabled";
+ 			dma-noncoherent;
+-			d1_spi_demo: spi-demo@0 {
+-				compatible = "eswin,demo-spi";
+-				reg = <0 0 0 0>;
+-				spi-max-frequency = <4800000>;
+-			};
++		};
++
++		d1_bootspi: spi@71800000 {
++			compatible = "eswin,bootspi";
++			reg = <0x0 0x71800000 0x0 0x8000>,
++				<0x0 0x71828000 0x0 0x8000>,
++				<0x0 0x7c000000 0x0 0x8000>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++			clocks = <&d1_clock WIN2030_CLK_CLK_BOOTSPI_CFG>,
++					<&d1_clock WIN2030_CLK_CLK_BOOTSPI>;
++			clock-names = "cfg_clk", "clk";
++			resets = <&d1_reset BOOTSPI_RST_CTRL SW_BOOTSPI_RSTN>;
++			reset-names = "rst";
++			spi-max-frequency = <4800000>;
++			reg-io-width = <4>;
++			status = "disabled";
+ 		};
+ 
+         d1_video_output: display-subsystem {
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 3e746b7c0bf6..724605bbb530 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -9,6 +9,7 @@ CONFIG_BPF_SYSCALL=y
+ CONFIG_PREEMPT_VOLUNTARY=y
+ CONFIG_IKCONFIG=y
+ CONFIG_IKCONFIG_PROC=y
++CONFIG_NUMA_BALANCING=y
+ CONFIG_CGROUPS=y
+ CONFIG_MEMCG=y
+ CONFIG_BLK_CGROUP=y
+@@ -32,13 +33,14 @@ CONFIG_PERF_EVENTS=y
+ CONFIG_SOC_SIFIVE=y
+ CONFIG_SOC_VIRT=y
+ CONFIG_SMP=y
++CONFIG_NR_CPUS=8
++CONFIG_HOTPLUG_CPU=y
++CONFIG_NUMA=y
+ CONFIG_RISCV_SBI_V01=y
+ # CONFIG_RISCV_BOOT_SPINWAIT is not set
+-CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unused cma_pernuma=0x2000000 disable_bypass=false no_console_suspend"
++CONFIG_CMDLINE="earlycon=sbi console=ttyS0,115200n8 clk_ignore_unused cma_pernuma=0x2000000 disable_bypass=false firmware_class.path=/lib/firmware/eic7x/"
+ CONFIG_CMDLINE_EXTEND=y
+-CONFIG_PM_DEBUG=y
+-CONFIG_PM_ADVANCED_DEBUG=y
+-CONFIG_CPU_IDLE=y
++# CONFIG_SUSPEND is not set
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
+ CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
+@@ -57,7 +59,6 @@ CONFIG_MODULE_UNLOAD=y
+ CONFIG_BLK_DEV_INTEGRITY=y
+ CONFIG_BLK_DEV_THROTTLING=y
+ CONFIG_BINFMT_MISC=m
+-CONFIG_SPARSEMEM_MANUAL=y
+ CONFIG_CMA=y
+ CONFIG_NET=y
+ CONFIG_PACKET=y
+@@ -804,6 +805,7 @@ CONFIG_CRC_ITU_T=y
+ CONFIG_CRC7=y
+ CONFIG_XZ_DEC=y
+ CONFIG_DMA_CMA=y
++CONFIG_DMA_NUMA_CMA=y
+ CONFIG_PRINTK_TIME=y
+ CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
+ CONFIG_CONSOLE_LOGLEVEL_QUIET=15
+diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
+index 21b40bc64082..a4f4b4a394d8 100644
+--- a/drivers/iommu/eswin/eswin-win2030-sid.c
++++ b/drivers/iommu/eswin/eswin-win2030-sid.c
+@@ -923,11 +923,11 @@ static int __init tcu_proc_init(void)
+ {
+ 	char proc_name[64];
+ 
+-	sprintf(proc_name, "%s_info", "tcu");
+-	pr_debug("%s, proc_name:%s\n", __func__, proc_name);
+-	if (NULL == proc_create_single_data(proc_name, 0, NULL, tcu_proc_show, NULL)) {
+-		return -1;
+-	}
++	// sprintf(proc_name, "%s_info", "tcu");
++	// pr_debug("%s, proc_name:%s\n", __func__, proc_name);
++	// if (NULL == proc_create_single_data(proc_name, 0, NULL, tcu_proc_show, NULL)) {
++	// 	return -1;
++	// }
+ 
+ 	return 0;
+ }
+diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
+index a88123c81ace..f73cda043cbc 100644
+--- a/drivers/soc/sifive/sifive_ccache.c
++++ b/drivers/soc/sifive/sifive_ccache.c
+@@ -1,3 +1,4 @@
++
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+  * SiFive composable cache controller Driver
+@@ -5,9 +6,7 @@
+  * Copyright (C) 2018-2022 SiFive, Inc.
+  *
+  */
+-
+ #define pr_fmt(fmt) "CCACHE: " fmt
+-
+ #include <linux/debugfs.h>
+ #include <linux/interrupt.h>
+ #include <linux/of_irq.h>
+@@ -16,175 +15,172 @@
+ #include <linux/bitfield.h>
+ #include <asm/cacheinfo.h>
+ #include <soc/sifive/sifive_ccache.h>
+-
+ #include <asm/dma-noncoherent.h>
+-
+ #define SIFIVE_CCACHE_DIRECCFIX_LOW 0x100
+ #define SIFIVE_CCACHE_DIRECCFIX_HIGH 0x104
+ #define SIFIVE_CCACHE_DIRECCFIX_COUNT 0x108
+-
+ #define SIFIVE_CCACHE_DIRECCFAIL_LOW 0x120
+ #define SIFIVE_CCACHE_DIRECCFAIL_HIGH 0x124
+ #define SIFIVE_CCACHE_DIRECCFAIL_COUNT 0x128
+-
+ #define SIFIVE_CCACHE_DATECCFIX_LOW 0x140
+ #define SIFIVE_CCACHE_DATECCFIX_HIGH 0x144
+ #define SIFIVE_CCACHE_DATECCFIX_COUNT 0x148
+-
+ #define SIFIVE_CCACHE_DATECCFAIL_LOW 0x160
+ #define SIFIVE_CCACHE_DATECCFAIL_HIGH 0x164
+ #define SIFIVE_CCACHE_DATECCFAIL_COUNT 0x168
+-
+ #define SIFIVE_CCACHE_CONFIG 0x00
+ #define SIFIVE_CCACHE_CONFIG_BANK_MASK GENMASK_ULL(7, 0)
+ #define SIFIVE_CCACHE_CONFIG_WAYS_MASK GENMASK_ULL(15, 8)
+ #define SIFIVE_CCACHE_CONFIG_SETS_MASK GENMASK_ULL(23, 16)
+ #define SIFIVE_CCACHE_CONFIG_BLKS_MASK GENMASK_ULL(31, 24)
+-
+ #define SIFIVE_CCACHE_WAYENABLE 0x08
+ #define SIFIVE_CCACHE_ECCINJECTERR 0x40
+-
+ #define SIFIVE_CCACHE_MAX_ECCINTR 4
+-
+ #define SIFIVE_CCACHE_FLUSH64 0x200
+ #define SIFIVE_CCACHE_FLUSH64_LINE_LEN 64
+-
+-static void __iomem *ccache_base;
+-static int g_irq[SIFIVE_CCACHE_MAX_ECCINTR];
++enum {
++	CACHE_NODE_0 = 0,
++	CACHE_NODE_1,
++	SHARE_CACHE_NODE_NUM,
++};
++static void __iomem *ccache_base[SHARE_CACHE_NODE_NUM];
++static int g_irq[SHARE_CACHE_NODE_NUM][SIFIVE_CCACHE_MAX_ECCINTR];
+ static struct riscv_cacheinfo_ops ccache_cache_ops;
+ static int level;
+-
+ enum {
+ 	DIR_CORR = 0,
+ 	DATA_CORR,
+ 	DATA_UNCORR,
+ 	DIR_UNCORR,
+ };
+-
+ #ifdef CONFIG_DEBUG_FS
+ static struct dentry *sifive_test;
+-
+ static ssize_t ccache_write(struct file *file, const char __user *data,
+ 			    size_t count, loff_t *ppos)
+ {
+ 	unsigned int val;
+-
+ 	if (kstrtouint_from_user(data, count, 0, &val))
+ 		return -EINVAL;
+ 	if ((val < 0xFF) || (val >= 0x10000 && val < 0x100FF))
+-		writel(val, ccache_base + SIFIVE_CCACHE_ECCINJECTERR);
++		writel(val, ccache_base[0] + SIFIVE_CCACHE_ECCINJECTERR);
+ 	else
+ 		return -EINVAL;
+ 	return count;
+ }
+-
+ static const struct file_operations ccache_fops = {
+ 	.owner = THIS_MODULE,
+ 	.open = simple_open,
+ 	.write = ccache_write
+ };
+-
+ static void setup_sifive_debug(void)
+ {
+ 	sifive_test = debugfs_create_dir("sifive_ccache_cache", NULL);
+-
+ 	debugfs_create_file("sifive_debug_inject_error", 0200,
+ 			    sifive_test, NULL, &ccache_fops);
+ }
+ #endif
+-
+-static void ccache_config_read(void)
++static void ccache_config_read(int node_id)
+ {
+ 	u32 cfg;
+-
+-	cfg = readl(ccache_base + SIFIVE_CCACHE_CONFIG);
++	cfg = readl(ccache_base[node_id] + SIFIVE_CCACHE_CONFIG);
+ 	pr_info("%llu banks, %llu ways, sets/bank=%llu, bytes/block=%llu\n",
+ 		FIELD_GET(SIFIVE_CCACHE_CONFIG_BANK_MASK, cfg),
+ 		FIELD_GET(SIFIVE_CCACHE_CONFIG_WAYS_MASK, cfg),
+ 		BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_SETS_MASK, cfg)),
+ 		BIT_ULL(FIELD_GET(SIFIVE_CCACHE_CONFIG_BLKS_MASK, cfg)));
+-
+-	cfg = readl(ccache_base + SIFIVE_CCACHE_WAYENABLE);
+-	pr_info("Index of the largest way enabled: %u\n", cfg);
++	cfg = readl(ccache_base[node_id] + SIFIVE_CCACHE_WAYENABLE);
++	pr_info("Node %d, index of the largest way enabled: %u\n", node_id, cfg);
+ }
+-
+ #if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
+-static void ccache_way_enable(void)
++static void ccache_way_enable(int node_id)
+ {
+ 	u32 cfg, val;
+-
+-	cfg = readl(ccache_base + SIFIVE_CCACHE_CONFIG);
++	cfg = readl(ccache_base[node_id] + SIFIVE_CCACHE_CONFIG);
+ 	val = FIELD_GET(SIFIVE_CCACHE_CONFIG_WAYS_MASK, cfg);
+-	writel(val -1 , ccache_base + SIFIVE_CCACHE_WAYENABLE);
++	writel(val -1 , ccache_base[node_id] + SIFIVE_CCACHE_WAYENABLE);
+ }
+-
+ static void ccache_flush64_range(phys_addr_t paddr, size_t size)
+ {
+ 	unsigned long line;
+-
+ 	size = size + (paddr % SIFIVE_CCACHE_FLUSH64_LINE_LEN);
+ 	paddr = ALIGN_DOWN(paddr, SIFIVE_CCACHE_FLUSH64_LINE_LEN);
+-
+ 	mb();	/* sync */
+-
+-	for (line = paddr; line < paddr + size;
+-	line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
+-		writeq(line, ccache_base + SIFIVE_CCACHE_FLUSH64);
+-		mb();
++	#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC7702_SOC)
++	if (paddr >= CONFIG_RISCV_DIE0_CACHED_OFFSET && (paddr + size) <= (CONFIG_RISCV_DIE0_CACHED_OFFSET + CONFIG_RISCV_DIE0_MEM_MAX_SIZE)) {
++	#endif
++		for (line = paddr; line < paddr + size;
++		line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
++			writeq(line, ccache_base[CACHE_NODE_0] + SIFIVE_CCACHE_FLUSH64);
++			mb();
++		}
++	#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC7702_SOC)
++	}else if (paddr >= CONFIG_RISCV_DIE1_CACHED_OFFSET && (paddr + size) <= (CONFIG_RISCV_DIE1_CACHED_OFFSET + CONFIG_RISCV_DIE1_MEM_MAX_SIZE)) {
++		for (line = paddr; line < paddr + size;
++		line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
++			writeq(line, ccache_base[CACHE_NODE_1] + SIFIVE_CCACHE_FLUSH64);
++			mb();
++		}
++	}
++	else if (paddr >= CONFIG_RISCV_INTERLEAVE_CACHED_OFFSET && (paddr + size) <= (CONFIG_RISCV_INTERLEAVE_CACHED_OFFSET + CONFIG_RISCV_INTERLEAVE_MEM_MAX_SIZE)){
++		for (line = paddr; line < paddr + size;
++		line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
++			if((!(!(line & 0x40000)))^(!(!(line & 0x100)))) {
++				writeq(line, ccache_base[CACHE_NODE_1] + SIFIVE_CCACHE_FLUSH64);
++			}
++			else {
++				writeq(line, ccache_base[CACHE_NODE_0] + SIFIVE_CCACHE_FLUSH64);
++			}
++			mb();
++		}
++	}
++	else {
++		WARN(1, "Sifive ccache: flush64 out of range: %llx(%lx), skip flush\n",
++		     paddr, size);
++		return;
+ 	}
++	#endif
+ }
+-
+ static const struct riscv_nonstd_cache_ops ccache_cmo_ops __initdata = {
+ 	.wback = &ccache_flush64_range,
+ 	.inv = &ccache_flush64_range,
+ 	.wback_inv = &ccache_flush64_range,
+ };
+ #endif
+-
+ static const struct of_device_id sifive_ccache_ids[] = {
+ 	{ .compatible = "sifive,fu540-c000-ccache" },
+ 	{ .compatible = "sifive,fu740-c000-ccache" },
+ 	{ .compatible = "sifive,ccache0" },
+ 	{ /* end of table */ }
+ };
+-
+ static ATOMIC_NOTIFIER_HEAD(ccache_err_chain);
+-
+ int register_sifive_ccache_error_notifier(struct notifier_block *nb)
+ {
+ 	return atomic_notifier_chain_register(&ccache_err_chain, nb);
+ }
+ EXPORT_SYMBOL_GPL(register_sifive_ccache_error_notifier);
+-
+ int unregister_sifive_ccache_error_notifier(struct notifier_block *nb)
+ {
+ 	return atomic_notifier_chain_unregister(&ccache_err_chain, nb);
+ }
+ EXPORT_SYMBOL_GPL(unregister_sifive_ccache_error_notifier);
+-
+ static int ccache_largest_wayenabled(void)
+ {
+-	return readl(ccache_base + SIFIVE_CCACHE_WAYENABLE) & 0xFF;
++	return readl(ccache_base[0] + SIFIVE_CCACHE_WAYENABLE) & 0xFF;
+ }
+-
+ static ssize_t number_of_ways_enabled_show(struct device *dev,
+ 					   struct device_attribute *attr,
+ 					   char *buf)
+ {
+ 	return sprintf(buf, "%u\n", ccache_largest_wayenabled());
+ }
+-
+ static DEVICE_ATTR_RO(number_of_ways_enabled);
+-
+ static struct attribute *priv_attrs[] = {
+ 	&dev_attr_number_of_ways_enabled.attr,
+ 	NULL,
+ };
+-
+ static const struct attribute_group priv_attr_group = {
+ 	.attrs = priv_attrs,
+ };
+-
+ static const struct attribute_group *ccache_get_priv_group(struct cacheinfo
+ 							   *this_leaf)
+ {
+@@ -194,122 +190,115 @@ static const struct attribute_group *ccache_get_priv_group(struct cacheinfo
+ 	else
+ 		return NULL;
+ }
+-
+ static irqreturn_t ccache_int_handler(int irq, void *device)
+ {
+ 	unsigned int add_h, add_l;
+-
+-	if (irq == g_irq[DIR_CORR]) {
+-		add_h = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_HIGH);
+-		add_l = readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_LOW);
++	int node_id = *(int *)device;
++	if (irq == g_irq[node_id][DIR_CORR]) {
++		add_h = readl(ccache_base[node_id] + SIFIVE_CCACHE_DIRECCFIX_HIGH);
++		add_l = readl(ccache_base[node_id] + SIFIVE_CCACHE_DIRECCFIX_LOW);
+ 		pr_err("DirError @ 0x%08X.%08X\n", add_h, add_l);
+ 		/* Reading this register clears the DirError interrupt sig */
+-		readl(ccache_base + SIFIVE_CCACHE_DIRECCFIX_COUNT);
++		readl(ccache_base[node_id] + SIFIVE_CCACHE_DIRECCFIX_COUNT);
+ 		atomic_notifier_call_chain(&ccache_err_chain,
+ 					   SIFIVE_CCACHE_ERR_TYPE_CE,
+ 					   "DirECCFix");
+ 	}
+-	if (irq == g_irq[DIR_UNCORR]) {
+-		add_h = readl(ccache_base + SIFIVE_CCACHE_DIRECCFAIL_HIGH);
+-		add_l = readl(ccache_base + SIFIVE_CCACHE_DIRECCFAIL_LOW);
++	if (irq == g_irq[node_id][DIR_UNCORR]) {
++		add_h = readl(ccache_base[node_id] + SIFIVE_CCACHE_DIRECCFAIL_HIGH);
++		add_l = readl(ccache_base[node_id] + SIFIVE_CCACHE_DIRECCFAIL_LOW);
+ 		/* Reading this register clears the DirFail interrupt sig */
+-		readl(ccache_base + SIFIVE_CCACHE_DIRECCFAIL_COUNT);
++		readl(ccache_base[node_id] + SIFIVE_CCACHE_DIRECCFAIL_COUNT);
+ 		atomic_notifier_call_chain(&ccache_err_chain,
+ 					   SIFIVE_CCACHE_ERR_TYPE_UE,
+ 					   "DirECCFail");
+ 		panic("CCACHE: DirFail @ 0x%08X.%08X\n", add_h, add_l);
+ 	}
+-	if (irq == g_irq[DATA_CORR]) {
+-		add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_HIGH);
+-		add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_LOW);
++	if (irq == g_irq[node_id][DATA_CORR]) {
++		add_h = readl(ccache_base[node_id] + SIFIVE_CCACHE_DATECCFIX_HIGH);
++		add_l = readl(ccache_base[node_id] + SIFIVE_CCACHE_DATECCFIX_LOW);
+ 		pr_err("DataError @ 0x%08X.%08X\n", add_h, add_l);
+ 		/* Reading this register clears the DataError interrupt sig */
+-		readl(ccache_base + SIFIVE_CCACHE_DATECCFIX_COUNT);
++		readl(ccache_base[node_id] + SIFIVE_CCACHE_DATECCFIX_COUNT);
+ 		atomic_notifier_call_chain(&ccache_err_chain,
+ 					   SIFIVE_CCACHE_ERR_TYPE_CE,
+ 					   "DatECCFix");
+ 	}
+-	if (irq == g_irq[DATA_UNCORR]) {
+-		add_h = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_HIGH);
+-		add_l = readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_LOW);
++	if (irq == g_irq[node_id][DATA_UNCORR]) {
++		add_h = readl(ccache_base[node_id] + SIFIVE_CCACHE_DATECCFAIL_HIGH);
++		add_l = readl(ccache_base[node_id] + SIFIVE_CCACHE_DATECCFAIL_LOW);
+ 		pr_err("DataFail @ 0x%08X.%08X\n", add_h, add_l);
+ 		/* Reading this register clears the DataFail interrupt sig */
+-		readl(ccache_base + SIFIVE_CCACHE_DATECCFAIL_COUNT);
++		readl(ccache_base[node_id] + SIFIVE_CCACHE_DATECCFAIL_COUNT);
+ 		atomic_notifier_call_chain(&ccache_err_chain,
+ 					   SIFIVE_CCACHE_ERR_TYPE_UE,
+ 					   "DatECCFail");
+ 	}
+-
+ 	return IRQ_HANDLED;
+ }
+-
++static int node_index = 0;
+ static int __init sifive_ccache_init(void)
+ {
+ 	struct device_node *np;
+ 	struct resource res;
+ 	int i, rc, intr_num;
+-
+-	np = of_find_matching_node(NULL, sifive_ccache_ids);
+-	if (!np)
+-		return -ENODEV;
+-
+-	if (of_address_to_resource(np, 0, &res)) {
+-		rc = -ENODEV;
+-		goto err_node_put;
+-	}
+-
+-	ccache_base = ioremap(res.start, resource_size(&res));
+-	if (!ccache_base) {
+-		rc = -ENOMEM;
+-		goto err_node_put;
+-	}
+-
+-	if (of_property_read_u32(np, "cache-level", &level)) {
+-		rc = -ENOENT;
+-		goto err_unmap;
+-	}
+-
+-	intr_num = of_property_count_u32_elems(np, "interrupts");
+-	if (!intr_num) {
+-		pr_err("No interrupts property\n");
+-		rc = -ENODEV;
+-		goto err_unmap;
+-	}
+-
+-	for (i = 0; i < intr_num; i++) {
+-		g_irq[i] = irq_of_parse_and_map(np, i);
+-		rc = request_irq(g_irq[i], ccache_int_handler, 0, "ccache_ecc",
+-				 NULL);
+-		if (rc) {
+-			pr_err("Could not request IRQ %d\n", g_irq[i]);
+-			goto err_free_irq;
++	for_each_matching_node(np, sifive_ccache_ids) {
++		if (!np)
++			return -ENODEV;
++		if (of_address_to_resource(np, 0, &res)) {
++			rc = -ENODEV;
++			goto err_node_put;
+ 		}
+-	}
+-	of_node_put(np);
+-
+-	#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
+-	ccache_way_enable();
+-	riscv_noncoherent_register_cache_ops(&ccache_cmo_ops);
++		if (of_property_read_u32(np, "numa-node-id", &node_index))
++			return -ENODEV;
++		if (node_index >= SHARE_CACHE_NODE_NUM) {
++			rc = -ENODEV;
++			goto err_node_put;
++		}
++		ccache_base[node_index] = ioremap(res.start, resource_size(&res));
++		if (!ccache_base[node_index]) {
++			rc = -ENOMEM;
++			goto err_node_put;
++		}
++		if (of_property_read_u32(np, "cache-level", &level)) {
++			rc = -ENOENT;
++			goto err_unmap;
++		}
++		intr_num = of_property_count_u32_elems(np, "interrupts");
++		if (!intr_num) {
++			pr_err("No interrupts property\n");
++			rc = -ENODEV;
++			goto err_unmap;
++		}
++		for (i = 0; i < intr_num; i++) {
++			g_irq[node_index][i] = irq_of_parse_and_map(np, i);
++			rc = request_irq(g_irq[node_index][i], ccache_int_handler, 0, "ccache_ecc",
++					&node_index);
++			if (rc) {
++				pr_err("Could not request IRQ %d\n", g_irq[node_index][i]);
++				goto err_free_irq;
++			}
++		}
++		of_node_put(np);
++		#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
++		ccache_way_enable(node_index);
++		riscv_noncoherent_register_cache_ops(&ccache_cmo_ops);
++		#endif
++		ccache_config_read(node_index);
++		ccache_cache_ops.get_priv_group = ccache_get_priv_group;
++		riscv_set_cacheinfo_ops(&ccache_cache_ops);
++	#ifdef CONFIG_DEBUG_FS
++		setup_sifive_debug();
+ 	#endif
+-
+-	ccache_config_read();
+-
+-	ccache_cache_ops.get_priv_group = ccache_get_priv_group;
+-	riscv_set_cacheinfo_ops(&ccache_cache_ops);
+-
+-#ifdef CONFIG_DEBUG_FS
+-	setup_sifive_debug();
+-#endif
++	}
+ 	return 0;
+-
+ err_free_irq:
+ 	while (--i >= 0)
+-		free_irq(g_irq[i], NULL);
++		free_irq(g_irq[node_index][i], NULL);
+ err_unmap:
+-	iounmap(ccache_base);
++	iounmap(ccache_base[node_index]);
+ err_node_put:
+ 	of_node_put(np);
+ 	return rc;
+ }
+-
+ device_initcall(sifive_ccache_init);
+-- 
+2.47.0
+

@@ -1,0 +1,98 @@
+From 48efa334f3267aa1983aad9d11c89a72ee8b5366 Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Tue, 24 Dec 2024 10:29:33 +0800
+Subject: [PATCH 356/370] WIN2030-14758:feat:clk support set default cpu freq
+
+Changelogs:
+If the clock node in the device tree is configured with the
+cpu-default-frequency property, the clock driver will initialize the CPU
+frequency to the specified value during initialization.
+
+Change-Id: I4bdaf5ff999d68532fa9f184b4124bceb661c205
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts |  1 +
+ drivers/clk/eswin/clk-win2030.c              | 41 +++++++++++++++++++-
+ 2 files changed, 41 insertions(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+index 47b490f8c6c1..9631c73e0bd3 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+@@ -29,6 +29,7 @@ &d0_clock {
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_gpio95_default>;
+ 	cpu-voltage-gpios = <&portc 31 GPIO_ACTIVE_HIGH>;
++	cpu-default-frequency = <CLK_FREQ_1600M>;
+ };
+ 
+ &d0_cpu_opp_table {
+diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
+index ccb7dade5475..93cb6c6c8507 100755
+--- a/drivers/clk/eswin/clk-win2030.c
++++ b/drivers/clk/eswin/clk-win2030.c
+@@ -24,7 +24,7 @@
+ #include <linux/clk-provider.h>
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+-
++#include <linux/clk.h>
+ #include <dt-bindings/reset/eswin,win2030-syscrg.h>
+ #include <dt-bindings/clock/win2030-clock.h>
+ 
+@@ -1170,6 +1170,42 @@ static void special_div_table_init(struct clk_div_table *table, int table_size)
+ 	return;
+ }
+ 
++
++static int eswin_cpu_clk_init(struct platform_device *pdev)
++{
++	struct clk *cpu_clk;
++	struct device *dev = &pdev->dev;
++	struct device_node *np = dev->of_node;
++	u32 default_freq;
++	int ret = 0;
++	int numa_id;
++	char name[128] = {0};
++
++	ret = of_property_read_u32(np, "cpu-default-frequency", &default_freq);
++	if (ret) {
++		dev_info(dev, "cpu-default-frequency not set\n");
++		return ret;
++	}
++	numa_id = dev_to_node(dev->parent);
++	if (numa_id < 0) {
++		sprintf(name, "%s", "clk_cpu_ext_src_core_clk_0");
++	} else {
++		sprintf(name, "d%d_%s", numa_id, "clk_cpu_ext_src_core_clk_0");
++	}
++	cpu_clk = __clk_lookup(name);
++	if (!cpu_clk) {
++		dev_err(dev, "Failed to lookup CPU clock\n");
++		return -EINVAL;
++	}
++	ret = clk_set_rate(cpu_clk, default_freq);
++	if (ret) {
++		dev_err(dev, "Failed to set CPU frequency: %d\n", ret);
++		return ret;
++	}
++	dev_info(dev, "CPU frequency set to %u Hz\n", default_freq);
++	return 0;
++}
++
+ static int eswin_clk_probe(struct platform_device *pdev)
+ {
+ 	struct eswin_clock_data *clk_data;
+@@ -1207,6 +1243,9 @@ static int eswin_clk_probe(struct platform_device *pdev)
+ 	eswin_clk_register_gate(win2030_gate_clks, ARRAY_SIZE(win2030_gate_clks),
+ 				clk_data);
+ 	eswin_clk_register_clk(win2030_clks, ARRAY_SIZE(win2030_clks), clk_data);
++
++	eswin_cpu_clk_init(pdev);
++
+ 	return 0;
+ }
+ 
+-- 
+2.47.0
+

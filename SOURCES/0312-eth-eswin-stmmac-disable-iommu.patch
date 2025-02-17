@@ -1,0 +1,58 @@
+From dfa0df5a4b52bdf5934e526b57f96ceef6954135 Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Wed, 25 Dec 2024 11:43:23 +0800
+Subject: [PATCH 312/370] eth: eswin: stmmac: disable iommu
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi | 4 ++--
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 7df6029a9451..6b5c63f0e5a8 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -482,7 +482,7 @@ d0_gmac0: ethernet@50400000 {
+ 			clock-names = "app", "stmmaceth","tx";
+ 			resets = <&d0_reset HSPDMA_RST_CTRL SW_HSP_ETH0_ARSTN>;
+ 			reset-names = "ethrst";
+-			iommus = <&smmu0 WIN2030_SID_ETH0>;
++			//iommus = <&smmu0 WIN2030_SID_ETH0>;
+ 			tbus = <WIN2030_TBUID_ETH>;
+ 			dma-noncoherent;
+ 			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x1030 0x100 0x108>;
+@@ -512,7 +512,7 @@ d0_gmac1: ethernet@50410000 {
+ 			clock-names = "app", "stmmaceth","tx";
+ 			resets = <&d0_reset HSPDMA_RST_CTRL SW_HSP_ETH1_ARSTN>;
+ 			reset-names = "ethrst";
+-			iommus = <&smmu0 WIN2030_SID_ETH1>;
++			//iommus = <&smmu0 WIN2030_SID_ETH1>;
+ 			tbus = <WIN2030_TBUID_ETH>;
+ 			dma-noncoherent;
+ 			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x1034 0x200 0x208>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index e0eb8522a10b..31b718685d06 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1545,7 +1545,7 @@ d1_gmac0: ethernet@70400000 {
+ 			clock-names = "app", "stmmaceth","tx";
+ 			resets = <&d1_reset HSPDMA_RST_CTRL SW_HSP_ETH0_ARSTN>;
+ 			reset-names = "ethrst";
+-			iommus = <&smmu1 WIN2030_SID_ETH0>;
++			//iommus = <&smmu1 WIN2030_SID_ETH0>;
+ 			tbus = <WIN2030_TBUID_ETH>;
+ 			dma-noncoherent;
+ 			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x1030 0x100 0x108>;
+@@ -1575,7 +1575,7 @@ d1_gmac1: ethernet@70410000 {
+ 			clock-names = "app", "stmmaceth","tx";
+ 			resets = <&d1_reset HSPDMA_RST_CTRL SW_HSP_ETH1_ARSTN>;
+ 			reset-names = "ethrst";
+-			iommus = <&smmu1 WIN2030_SID_ETH1>;
++			//iommus = <&smmu1 WIN2030_SID_ETH1>;
+ 			tbus = <WIN2030_TBUID_ETH>;
+ 			dma-noncoherent;
+ 			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x1034 0x200 0x208>;
+-- 
+2.47.0
+

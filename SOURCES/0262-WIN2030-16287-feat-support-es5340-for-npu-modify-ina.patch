@@ -1,0 +1,294 @@
+From be1975e3e7cbc5a31b037c46d023b64befd23388 Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Mon, 9 Sep 2024 19:29:58 +0800
+Subject: [PATCH 262/370] WIN2030-16287:feat:support es5340 for npu;modify
+ ina226 address
+
+Changelogs:
+	1.you can modify voltage by sysfs named es5340_vout and read it by sysfs named in1_input in /sys/class/hwmon/hwmon*/
+	2.default voltage is 1.05V and support 1.5G;if you want to work on 1G ,please add below context in dts:
+		&dev_llc_d0{
+				apply_npu_1G_freq;
+			};
+
+Change-Id: I151133de811c0494119aab7f2a1aa2bec8ec5bad
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ .../boot/dts/eswin/eic7702-evb-a1-d0.dts      | 28 +++---
+ .../boot/dts/eswin/eic7702-evb-a1-d1.dts      |  7 +-
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 87 +++++++++----------
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  2 +-
+ arch/riscv/configs/eic7702_defconfig          |  2 +-
+ 5 files changed, 58 insertions(+), 68 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+index 8c558119a286..22a8b5764493 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+@@ -609,11 +609,10 @@ d0_codec1_endpoint: endpoint {
+ };
+ 
+ &d0_i2c1 {
+-	/* mpq8785 */
+ 	status = "okay";
+-	mpq8785@10 {
+-		compatible = "mps,mpq8785";
+-		reg = <0x10>;
++	es5430@f {
++		compatible = "einno,es5340";
++		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+ 		eswin,regulator_label = "supply vdd1", "npu vdd1", "npu current1", "npu temperature1";
+ 		label = "npu_vdd";
+@@ -693,35 +692,28 @@ &d0_i2c9 {
+ };
+ 
+ &d0_aon_i2c0 {
+-	/* ina226x4 & tmp102aidrlr */
++	/* ina226x3 */
+ 	status = "okay";
+ 	i2c-sda-hold-time-ns = <0x40>;
+-	ina226@45 {
++	ina226@40 {
+ 		compatible = "ti,ina226";
+ 		#io-channel-cells = <1>;
+ 		label = "cpu_vdd";
+-		reg = <0x45>;
+-		shunt-resistor = <1000>;
+-	};
+-	ina226@44 {
+-		compatible = "ti,ina226";
+-		#io-channel-cells = <1>;
+-		label = "soc_vdd";
+-		reg = <0x44>;
++		reg = <0x40>;
+ 		shunt-resistor = <1000>;
+ 	};
+ 	ina226@41 {
+ 		compatible = "ti,ina226";
+ 		#io-channel-cells = <1>;
+-		label = "lpddr_vdd";
++		label = "d0_lpddr_vdd";
+ 		reg = <0x41>;
+ 		shunt-resistor = <1000>;
+ 	};
+-	ina226@48 {
++	ina226@44 {
+ 		compatible = "ti,ina226";
+ 		#io-channel-cells = <1>;
+-		label = "dc_vdd";
+-		reg = <0x48>;
++		label = "d0_soc_vdd";
++		reg = <0x44>;
+ 		shunt-resistor = <1000>;
+ 	};
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+index 2733649b4c3f..4154b2da9d22 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+@@ -623,11 +623,10 @@ d0_codec1_endpoint: endpoint {
+ };
+ 
+ &d0_i2c1 {
+-	/* mpq8785 */
+ 	status = "okay";
+-	mpq8785@10 {
+-		compatible = "mps,mpq8785";
+-		reg = <0x10>;
++	es5430@f {
++		compatible = "einno,es5340";
++		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+ 		eswin,regulator_label = "supply vdd1", "npu vdd1", "npu current1", "npu temperature1";
+ 		label = "npu_vdd";
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 2e0d2fb3838f..6d1db9c6a713 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -1087,16 +1087,15 @@ d1_codec1_endpoint: endpoint {
+ };
+ 
+ &d0_i2c1 {
+-	/* mpq8785 */
+ 	status = "okay";
+-	mpq8785@10 {
+-		compatible = "mps,mpq8785";
+-		reg = <0x10>;
++	es5430@f {
++		compatible = "einno,es5340";
++		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+ 		eswin,regulator_label = "supply vdd1", "npu vdd1", "npu current1", "npu temperature1";
+ 		label = "npu_vdd";
+ 		regulators{
+-			npu_vcc1:npu_svcc{
++			d0_npu_vcc:npu_svcc{
+ 				regulator-name="NPU_SVCC";
+ 				regulator-min-microvolt=<700000>;
+ 				regulator-max-microvolt=<1100000>;
+@@ -1109,7 +1108,25 @@ npu_vcc1:npu_svcc{
+ 	};
+ };
+ &d1_i2c1 {
+-	status = "disabled";
++	status = "okay";
++	es5430@f {
++		compatible = "einno,es5340";
++		reg = <0xf>;
++		eswin,regulator_default-microvolt=<1000000>;
++		eswin,regulator_label = "supply vdd1", "npu vdd1", "npu current1", "npu temperature1";
++		label = "d1_npu_vdd";
++		regulators{
++			d1_npu_vcc:npu_svcc{
++				regulator-name="NPU_SVCC2";
++				regulator-min-microvolt=<700000>;
++				regulator-max-microvolt=<1100000>;
++				regulator-min-microamp=<20000000>;
++				regulator-max-microamp=<40000000>;
++				regulator-ov-protection-microvolt=<1100000>;
++				regulator-always-on;
++			};
++		};
++	};
+ };
+ 
+ &d0_i2c2 {
+@@ -1198,76 +1215,56 @@ &d1_i2c9 {
+ };
+ 
+ &d0_aon_i2c0 {
+-	/* ina226x4 & tmp102aidrlr */
++	/* ina226x3 */
+ 	status = "okay";
+ 	i2c-sda-hold-time-ns = <0x40>;
+-	ina226@45 {
++	ina226@40 {
+ 		compatible = "ti,ina226";
+ 		#io-channel-cells = <1>;
+ 		label = "cpu_vdd";
+-		reg = <0x45>;
+-		shunt-resistor = <1000>;
+-	};
+-	ina226@44 {
+-		compatible = "ti,ina226";
+-		#io-channel-cells = <1>;
+-		label = "soc_vdd";
+-		reg = <0x44>;
++		reg = <0x40>;
+ 		shunt-resistor = <1000>;
+ 	};
+ 	ina226@41 {
+ 		compatible = "ti,ina226";
+ 		#io-channel-cells = <1>;
+-		label = "lpddr_vdd";
++		label = "d0_lpddr_vdd";
+ 		reg = <0x41>;
+ 		shunt-resistor = <1000>;
+ 	};
+-	ina226@48 {
++	ina226@44 {
+ 		compatible = "ti,ina226";
+ 		#io-channel-cells = <1>;
+-		label = "dc_vdd";
+-		reg = <0x48>;
++		label = "d0_soc_vdd";
++		reg = <0x44>;
+ 		shunt-resistor = <1000>;
+ 	};
+ };
+-&d1_aon_i2c0 {
+-	status = "disabled";
+-	aon_eeprom@50 {
+-		compatible = "atmel,24c1024";
+-		reg = <0x50>;
+-	};
+-};
+ 
+-&d0_aon_i2c1 {
++
++&d1_aon_i2c0 {
+ 	/* ina226x4 */
+ 	status = "okay";
+ 	i2c-sda-hold-time-ns = <0x40>;
+-	ina226@45 {
+-		compatible = "ti,ina226";
+-		#io-channel-cells = <1>;
+-		label = "cpu_vdd";
+-		reg = <0x45>;
+-		shunt-resistor = <1000>;
+-	};
+-	ina226@44 {
++	ina226@40 {
+ 			compatible = "ti,ina226";
+ 			#io-channel-cells = <1>;
+-			label = "soc_vdd";
+-			reg = <0x44>;
++			label = "vdd_dc_in";
++			reg = <0x40>;
+ 			shunt-resistor = <1000>;
+ 		};
+ 	ina226@41 {
+ 			compatible = "ti,ina226";
+ 			#io-channel-cells = <1>;
+-			label = "lpddr_vdd";
++			label = "d1_lpddr_vdd";
+ 			reg = <0x41>;
+ 			shunt-resistor = <1000>;
+ 		};
+-	ina226@48 {
++	ina226@44 {
+ 			compatible = "ti,ina226";
+ 			#io-channel-cells = <1>;
+-			label = "dc_vdd";
+-			reg = <0x48>;
++			label = "d1_soc_vdd";
++			reg = <0x44>;
+ 			shunt-resistor = <1000>;
+ 		};
+ };
+@@ -1375,11 +1372,13 @@ &d1_gpio0 {
+ };
+ 
+ &dev_llc_d0{
+-	apply_npu_high_freq;
++	/* apply_npu_1G_freq; */
++	npu-supply=<&d0_npu_vcc>;
+ 	status = "okay";
+ };
+ &d1_llc_dev{
+-	apply_npu_high_freq;
++	/* apply_npu_1G_freq; */
++	npu-supply=<&d1_npu_vcc>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index fde17194951a..2f36205bc50e 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -980,7 +980,7 @@ d1_llc_dev: llc@71c00000 {
+ 				 <&d1_clock WIN2030_CLK_NPU_CLK>,
+ 				 <&d1_clock WIN2030_MUX_U_NPU_CORE_3MUX1_GFREE>,
+ 				 <&d1_clock WIN2030_SPLL2_FOUT2>,
+-				 <&d0_clock WIN2030_SPLL1_FOUT1>;
++				 <&d1_clock WIN2030_SPLL1_FOUT1>;
+ 			clock-names = "aclk", "cfg_clk", "llc_clk", "core_clk",
+ 					"mux_u_npu_core_3mux1_gfree", "fixed_rate_clk_spll2_fout2",
+ 					"fixed_rate_clk_spll1_fout1";
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index bb996acd43d9..f0de31f666a0 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -464,7 +464,7 @@ CONFIG_SENSORS_PAC1934=y
+ CONFIG_WATCHDOG=y
+ CONFIG_DW_WATCHDOG=y
+ CONFIG_REGULATOR=y
+-CONFIG_REGULATOR_MPQ8785=y
++CONFIG_REGULATOR_ES5340=y
+ CONFIG_REGULATOR_PCA9450=y
+ CONFIG_MEDIA_SUPPORT=y
+ CONFIG_MEDIA_SUPPORT_FILTER=y
+-- 
+2.47.0
+

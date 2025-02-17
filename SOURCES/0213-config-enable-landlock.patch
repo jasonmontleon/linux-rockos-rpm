@@ -1,0 +1,26 @@
+From 48f25f24e9607dfd2c6fa5c3bc63f198bca5f0d0 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Wed, 2 Oct 2024 01:14:19 +0800
+Subject: [PATCH 213/370] config: enable landlock
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/configs/win2030_defconfig | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 3f122dd04f2f..801434d707a2 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -795,6 +795,7 @@ CONFIG_SECURITY=y
+ CONFIG_SECURITY_SELINUX=y
+ CONFIG_SECURITY_SELINUX_BOOTPARAM=y
+ CONFIG_SECURITY_APPARMOR=y
++CONFIG_SECURITY_LANDLOCK=y
+ CONFIG_DEFAULT_SECURITY_APPARMOR=y
+ CONFIG_LSM="landlock,lockdown,yama,integrity,apparmor"
+ CONFIG_CRYPTO_CBC=m
+-- 
+2.47.0
+
