@@ -1,0 +1,549 @@
+From e3791497767020eae260b5fd1fbd419337d8eb7d Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Fri, 24 Jan 2025 10:18:24 +0800
+Subject: [PATCH 394/413] WIN2030-17055:feat: npu set voltage modify
+
+Changelogs:
+	1. npu dts add 'apply_npu_1G_freq' node, and if set this node , cannot
+	change npu voltage and freq.
+	2. add modify llc clock
+
+Change-Id: I340066807c10d813269a47b6fbf90f96115dae6a
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts  |   3 +-
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  14 +-
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  14 +-
+ drivers/memory/eswin/codacache/llc_spram.c    |  65 ------
+ drivers/soc/eswin/ai_driver/npu/dla_driver.h  |   5 +
+ drivers/soc/eswin/ai_driver/npu/npu_main.c    | 205 ++++++++++++++----
+ drivers/soc/eswin/ai_driver/npu/nvdla_hw.c    |  35 ++-
+ 7 files changed, 226 insertions(+), 115 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+index af42c22de94b..2d8f548f198f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+@@ -265,6 +265,7 @@ &pcie {
+ &d0_npu{
+ 	status = "okay";
+ 	npu-supply=<&npu_vcc1>;
++	apply_npu_1G_freq;
+ };
+ 
+ &d0_dsp_subsys {
+@@ -801,4 +802,4 @@ &dev_llc_d0{
+ 	/* apply_npu_1G_freq; */
+ 	npu-supply=<&npu_vcc1>;
+ 	status = "okay";
+-};
+\ No newline at end of file
++};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 4a0b46ee05b3..e4663a6e1be6 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -489,13 +489,19 @@ d0_npu: eswin-npu@51c00000 {
+ 			clocks = <&d0_clock WIN2030_CLK_NPU_ACLK>,
+ 					<&d0_clock WIN2030_CLK_NPU_CFG_CLK>,
+ 					<&d0_clock WIN2030_CLK_NPU_CLK>,
++					<&d0_clock WIN2030_CLK_NPU_LLC_ACLK>,
+ 					<&d0_clock WIN2030_CLK_NPU_E31_CLK>,
+ 					<&d0_clock WIN2030_MUX_U_NPU_CORE_3MUX1_GFREE>,
++					<&d0_clock WIN2030_MUX_U_NPU_LLCLK_3MUX1_GFREE>,
+ 					<&d0_clock WIN2030_SPLL2_FOUT2>,
+-					<&d0_clock WIN2030_SPLL1_FOUT1>;
+-
+-			clock-names = "aclk", "cfg_clk", "core_clk", "e31_core_clk", "mux_u_npu_core_3mux1_gfree", "fixed_rate_clk_spll2_fout2",
+-					"fixed_rate_clk_spll1_fout1";
++					<&d0_clock WIN2030_SPLL1_FOUT1>,
++					<&d0_clock WIN2030_CLK_CLK_NPU_LLC_SRC0>,
++					<&d0_clock WIN2030_VPLL_FOUT1>;
++
++			clock-names = 	"aclk", "cfg_clk", "core_clk", "clk_npu_llc_aclk", "e31_core_clk",
++					"mux_u_npu_core_3mux1_gfree", "mux_u_npu_llclk_3mux1_gfree",
++					"fixed_rate_clk_spll2_fout2", "fixed_rate_clk_spll1_fout1", "clk_clk_npu_llc_src0",
++					"fixed_rate_clk_vpll_fout1";
+ 
+ 			resets = <&d0_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 4ddcb756d336..cf93f0a96878 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -954,13 +954,21 @@ d1_npu: eswin-npu@71c00000 {
+ 			clocks = <&d1_clock WIN2030_CLK_NPU_ACLK>,
+ 					<&d1_clock WIN2030_CLK_NPU_CFG_CLK>,
+ 					<&d1_clock WIN2030_CLK_NPU_CLK>,
++					<&d1_clock WIN2030_CLK_NPU_LLC_ACLK>,
+ 					<&d1_clock WIN2030_CLK_NPU_E31_CLK>,
+ 					<&d1_clock WIN2030_MUX_U_NPU_CORE_3MUX1_GFREE>,
++					<&d1_clock WIN2030_MUX_U_NPU_LLCLK_3MUX1_GFREE>,
+ 					<&d1_clock WIN2030_SPLL2_FOUT2>,
+-					<&d1_clock WIN2030_SPLL1_FOUT1>;
++					<&d1_clock WIN2030_SPLL1_FOUT1>,
++					<&d1_clock WIN2030_CLK_CLK_NPU_LLC_SRC0>,
++					<&d1_clock WIN2030_VPLL_FOUT1>;
++
++
++			clock-names = "aclk", "cfg_clk", "core_clk", "clk_npu_llc_aclk", "e31_core_clk",
++					"mux_u_npu_core_3mux1_gfree", "mux_u_npu_llclk_3mux1_gfree",
++					"fixed_rate_clk_spll2_fout2", "fixed_rate_clk_spll1_fout1", "clk_clk_npu_llc_src0",
++					"fixed_rate_clk_vpll_fout1";
+ 
+-			clock-names = "aclk", "cfg_clk", "core_clk", "e31_core_clk", "mux_u_npu_core_3mux1_gfree", "fixed_rate_clk_spll2_fout2",
+-					"fixed_rate_clk_spll1_fout1";
+ 
+ 			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
+index 101be38bbbfc..1a55d0dbcfad 100644
+--- a/drivers/memory/eswin/codacache/llc_spram.c
++++ b/drivers/memory/eswin/codacache/llc_spram.c
+@@ -788,34 +788,6 @@ static int llc_clk_set_parent(struct platform_device *pdev)
+ 			return ret;
+ 		}
+ 	}
+-	if (0 == spram->is_low_freq)
+-	{
+-		ret = regulator_set_voltage(spram->npu_regulator, NPU_1P5G_VOLTAGE, NPU_1P5G_VOLTAGE);
+-		if (0 != ret) {
+-			dev_err(dev, "set volt:%duV ret:%d.\n", NPU_1P5G_VOLTAGE, ret);
+-			return -EINVAL;
+-		}
+-		mdelay(10);
+-		ret = clk_set_parent(spram->mux_u_npu_core_3mux1_gfree,
+-							 spram->fixed_rate_clk_spll1_fout1);
+-	}
+-	else
+-	{
+-		if (((NULL != spram->npu_regulator)) && (!IS_ERR(spram->npu_regulator))) {
+-			regulator_set_voltage(spram->npu_regulator, NPU_DEFAULT_VOLTAGE, NPU_DEFAULT_VOLTAGE);
+-			dev_dbg(dev, "name:%s, volt:%d, ret:%d\n", pdev->name, NPU_DEFAULT_VOLTAGE, ret);
+-			mdelay(10);
+-		}
+-		ret = clk_set_parent(spram->mux_u_npu_core_3mux1_gfree,
+-							 spram->fixed_rate_clk_spll2_fout2);
+-	}
+-
+-	if (ret)
+-	{
+-		dev_err(&pdev->dev, "failed to set mux_u_npu_core_3mux1_gfree parent: %d\n",
+-				ret);
+-		return ret;
+-	}
+ 	return 0;
+ }
+ static int llc_clk_set_frq(struct platform_device *pdev)
+@@ -835,43 +807,6 @@ static int llc_clk_set_frq(struct platform_device *pdev)
+ 		return ret;
+ 	}
+ 
+-	if (0 == spram->is_low_freq)
+-	{
+-		rate = clk_round_rate(spram->llc_clk, NPU_LLC_CLK_1P5G_RATE);
+-		ret = clk_set_rate(spram->llc_clk, rate);
+-
+-		if (ret != 0)
+-		{
+-			dev_err(&pdev->dev, "failed to set llc_clk: %d\n", ret);
+-			return ret;
+-		}
+-		rate = clk_round_rate(spram->core_clk, NPU_CORE_CLK_1P5G_RATE);
+-		ret = clk_set_rate(spram->core_clk, rate);
+-		if (ret != 0)
+-		{
+-			dev_err(&pdev->dev, "failed to set core_clk: %d\n", ret);
+-			return ret;
+-		}
+-	}
+-	else
+-	{
+-		rate = clk_round_rate(spram->llc_clk, NPU_LLC_CLK_RATE);
+-
+-		ret = clk_set_rate(spram->llc_clk, rate);
+-		if (ret != 0)
+-		{
+-			dev_err(&pdev->dev, "failed to set llc_clk: %d\n", ret);
+-			return ret;
+-		}
+-		rate = clk_round_rate(spram->core_clk, NPU_CORE_CLK_RATE);
+-		ret = clk_set_rate(spram->core_clk, rate);
+-		if (ret != 0)
+-		{
+-			dev_err(&pdev->dev, "failed to set core_clk: %d\n", ret);
+-			return ret;
+-		}
+-	}
+-
+ 	return 0;
+ }
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
+index bb5af332c770..86e096f6ce51 100644
+--- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
++++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
+@@ -72,6 +72,10 @@ struct nvdla_device {
+ 	struct clk *mux_u_npu_core_3mux1_gfree;
+ 	struct clk *fixed_rate_clk_spll2_fout2;
+ 	struct clk *fixed_rate_clk_spll1_fout1;
++	struct clk *llc_aclk;
++	struct clk *mux_u_npu_llclk_3mux1_gfree;
++	struct clk *fixed_rate_clk_spll0_fout1;
++	struct clk *fixed_rate_clk_vpll_fout1;
+ 
+ 	struct clk *mbox_pclk_device;
+ 	struct clk *mbox_pclk;
+@@ -88,6 +92,7 @@ struct nvdla_device {
+ 
+ 	uint16_t *pause_op_list;
+ 	struct regulator *npu_regulator;
++	u8 is_low_freq;
+ };
+ 
+ void dla_reg_write(struct nvdla_device *dev, uint32_t addr, uint32_t value);
+diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+index f6970d560605..d55fb1a8dbff 100644
+--- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
++++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+@@ -332,14 +332,139 @@ struct nvdla_device *get_nvdla_dev(int i)
+ 	return static_nvdla_dev[i];
+ }
+ 
++static int npu_set_higher_vol_and_freq(struct nvdla_device *nvdla_dev, unsigned long npu_freq)
++{
++	struct clk *llc_parent;
++	struct clk *npu_parent;
++	unsigned long llc_rate, npu_rate;
++	unsigned long rate;
++	int ret;
++
++	llc_parent = clk_get_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree);
++	if (!llc_parent) {
++		dev_err(&nvdla_dev->pdev->dev, "get npu llc clock pareent err.\n");
++		return -EINVAL;
++	}
++	npu_parent = clk_get_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree);
++	if (!npu_parent) {
++		dev_err(&nvdla_dev->pdev->dev, "get npu core clock pareent err.\n");
++		return -EINVAL;
++	}
++	
++	llc_rate = clk_get_rate(nvdla_dev->mux_u_npu_llclk_3mux1_gfree);
++	npu_rate = clk_get_rate(nvdla_dev->mux_u_npu_core_3mux1_gfree);
++
++	ret = clk_set_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree, nvdla_dev->fixed_rate_clk_vpll_fout1);
++	if (ret) {
++		dev_err(&nvdla_dev->pdev->dev, "set npu llc clock parent err = %d.\n", ret);
++		return -EINVAL;
++	}
++
++	ret = clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, nvdla_dev->fixed_rate_clk_spll1_fout1);
++	if (ret) {
++		dev_err(&nvdla_dev->pdev->dev, "Cannot set target rate %lu parent, (%d)\n", npu_freq, ret);
++		goto err_npu_core;
++	}
++	mdelay(10);
++	rate = clk_round_rate(nvdla_dev->llc_aclk, NPU_LLC_CLK_1P5G_RATE);
++	ret = clk_set_rate(nvdla_dev->llc_aclk, rate);
++	if (ret) {
++		dev_err(&nvdla_dev->pdev->dev, "failed to set npu llc clock rate: %lu, ret = %d.\n", rate, ret);
++		goto err_llc_rate;
++	}
++
++	rate = clk_round_rate(nvdla_dev->core_clk, npu_freq);
++	ret = clk_set_rate(nvdla_dev->core_clk, rate);
++       	if (ret != 0)
++        {
++		dev_err(&nvdla_dev->pdev->dev, "failed to set npu core_clk=%lu, ret = %d\n", rate, ret);
++		goto err_npu_rate;
++
++        }
++	return 0;
++
++err_npu_rate:
++	clk_set_rate(nvdla_dev->llc_aclk, llc_rate);
++err_llc_rate:
++	clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, npu_parent);
++err_npu_core:
++	clk_set_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree, llc_parent);
++	return ret;
++}
++
++static int npu_set_lower_vol_and_freq(struct nvdla_device *nvdla_dev, unsigned long npu_freq)
++{
++	struct clk *llc_parent;
++	struct clk *npu_parent;
++	unsigned long llc_rate, npu_rate;
++	unsigned long rate;
++	int ret;
++
++	llc_parent = clk_get_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree);
++	if (!llc_parent) {
++		dev_err(&nvdla_dev->pdev->dev, "get npu llc clock pareent err.\n");
++		return -EINVAL;
++	}
++	npu_parent = clk_get_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree);
++	if (!npu_parent) {
++		dev_err(&nvdla_dev->pdev->dev, "get npu core clock pareent err.\n");
++		return -EINVAL;
++	}
++	
++	llc_rate = clk_get_rate(nvdla_dev->mux_u_npu_llclk_3mux1_gfree);
++	npu_rate = clk_get_rate(nvdla_dev->mux_u_npu_core_3mux1_gfree);
++
++	ret = clk_set_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree, nvdla_dev->fixed_rate_clk_spll0_fout1);
++	if (ret) {
++		dev_err(&nvdla_dev->pdev->dev, "set npu llc clock parent err = %d.\n", ret);
++		return -EINVAL;
++	}
++
++	ret = clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, nvdla_dev->fixed_rate_clk_spll2_fout2);
++	if (ret) {
++		dev_err(&nvdla_dev->pdev->dev, "Cannot set target rate %lu parent, (%d)\n", npu_freq, ret);
++		goto err_npu_core;
++	}
++
++	mdelay(10);
++	rate = clk_round_rate(nvdla_dev->llc_aclk, NPU_LLC_CLK_RATE);
++	ret = clk_set_rate(nvdla_dev->llc_aclk, rate);
++	if (ret) {
++		dev_err(&nvdla_dev->pdev->dev, "failed to set npu llc clock rate: %lu, ret = %d.\n", rate, ret);
++		goto err_llc_rate;
++	}
++
++	rate = clk_round_rate(nvdla_dev->core_clk, npu_freq);
++	ret = clk_set_rate(nvdla_dev->core_clk, rate);
++       	if (ret != 0)
++        {
++		dev_err(&nvdla_dev->pdev->dev, "failed to set npu core_clk=%lu, ret = %d\n", rate, ret);
++		goto err_npu_rate;
++
++        }
++	return 0;
++
++err_npu_rate:
++	clk_set_rate(nvdla_dev->llc_aclk, llc_rate);
++err_llc_rate:
++	clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, npu_parent);
++err_npu_core:
++	clk_set_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree, llc_parent);
++	return ret;
++}
++
+ #if defined(CONFIG_PM_DEVFREQ)
+ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags)
+ {
+ 	struct nvdla_device *nvdla_dev = dev_get_drvdata(dev);
+ 	struct dev_pm_opp *opp;
+ 	unsigned long target_volt, target_rate;
+-	unsigned long rate;
+ 	int ret;
++	
++	if (nvdla_dev->is_low_freq) {
++		dev_err(dev, "Prohibit set voltage and freq, because dts set 'apply_npu_1G_freq' property.\n");
++		return 0;
++	}
+ 
+ 	opp = devfreq_recommended_opp(dev, freq, flags);
+ 	if (IS_ERR(opp)) {
+@@ -360,39 +485,22 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
+ 			dev_err(dev, "Cannot set voltage %lu uV\n", target_volt);
+ 			goto out;
+ 		}
++		ret = npu_set_higher_vol_and_freq(nvdla_dev, target_rate);
+ 
+-		ret = clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, nvdla_dev->fixed_rate_clk_spll1_fout1);
+-		if (ret) {
+-			dev_err(dev, "Cannot set target voltage %lu parent, (%d)\n", target_rate, ret);
++		if (ret != 0) {
++			dev_err(dev, "failed to change core_clk: %d\n", ret);
+ 			goto err_parent;
+-		}
+-		mdelay(10);
+-		rate = clk_round_rate(nvdla_dev->core_clk, target_rate);
+-		ret = clk_set_rate(nvdla_dev->core_clk, rate);
+-        	if (ret != 0)
+-	        {
+-			dev_err(dev, "failed to set core_clk: %d\n", ret);
+-			goto err_rate;
+-
+ 	        }
+ 
+ 	} else { // lower freq
+-		ret = clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, nvdla_dev->fixed_rate_clk_spll2_fout2);
++		
++		ret = npu_set_lower_vol_and_freq(nvdla_dev, target_rate);
++
+ 		if (ret) {
+ 			dev_err(dev, "Cannot set target voltage %lu parent, (%d)\n", target_rate, ret);
+ 			goto out;
+ 		}
+ 
+-		rate = clk_round_rate(nvdla_dev->core_clk, target_rate);
+-		ret = clk_set_rate(nvdla_dev->core_clk, rate);
+-        	if (ret != 0)
+-	        {
+-			dev_err(dev, "failed to set core_clk: %d\n", ret);
+-			goto err_rate;
+-
+-	        }
+-
+-
+ 		ret = regulator_set_voltage(nvdla_dev->npu_regulator, target_volt, target_volt);
+ 		if (ret) {
+ 			dev_err(dev, "Cannot set voltage %lu uV\n", target_volt);
+@@ -415,6 +523,7 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
+ 
+ err_rate:
+ 	clk_set_parent(nvdla_dev->mux_u_npu_core_3mux1_gfree, nvdla_dev->fixed_rate_clk_spll1_fout1);
++	clk_set_parent(nvdla_dev->mux_u_npu_llclk_3mux1_gfree, nvdla_dev->fixed_rate_clk_vpll_fout1);
+ err_parent:
+ 	regulator_set_voltage(nvdla_dev->npu_regulator, nvdla_dev->volt, nvdla_dev->volt);
+ out:
+@@ -450,7 +559,6 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 	uint32_t version;
+ #if defined(CONFIG_PM_DEVFREQ)
+ 	struct devfreq *df = NULL;
+-	struct dev_pm_opp *opp;
+ #endif
+ 
+ 	dla_debug("%s enter.\n", __FUNCTION__);
+@@ -474,15 +582,20 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 	mutex_init(&nvdla_dev->devfreq_lock);
+ 
+ 	nvdla_dev->npu_regulator = devm_regulator_get(dev, "npu");
++	if (nvdla_dev->npu_regulator == NULL) {
++		dla_error("cannot get npu regulator, error.\n");
++		return -EINVAL;
++	}
++	nvdla_dev->is_low_freq = of_property_read_bool(pdev->dev.of_node, "apply_npu_1G_freq");
++
+ 	err = regulator_enable(nvdla_dev->npu_regulator);
+ 	if (err < 0)
+ 	{
+ 		dla_error("npu_regulator enble error:%d\n\r", err);
+-		regulator_put(nvdla_dev->npu_regulator);
+ 		nvdla_dev->npu_regulator = NULL;
+ 		return err;
+ 	}
+-
++	
+ 	err = npu_dt_node_resources(nvdla_dev);
+ 	if (err) {
+ 		dla_error("error, get hw resource, ret=%d\n", err);
+@@ -498,6 +611,29 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 		goto err_mem0;
+ 	}
+ 
++	if (nvdla_dev->is_low_freq == 0) {
++                err = regulator_set_voltage(nvdla_dev->npu_regulator, NPU_1P5G_VOLTAGE, NPU_1P5G_VOLTAGE);
++                if (err != 0) {
++                        dla_error("error npu regulator volt:%duV ret:%d.\n", NPU_1P5G_VOLTAGE, err);
++                        goto err_mem0;
++                }
++                mdelay(10);
++		err = npu_set_higher_vol_and_freq(nvdla_dev, NPU_CORE_CLK_1P5G_RATE);
++
++        } else {
++                err = regulator_set_voltage(nvdla_dev->npu_regulator, NPU_DEFAULT_VOLTAGE, NPU_DEFAULT_VOLTAGE);
++                dla_debug("name:%s, volt:%d, ret:%d\n", pdev->name, NPU_DEFAULT_VOLTAGE, err);
++                mdelay(10);
++		err = npu_set_lower_vol_and_freq(nvdla_dev, NPU_CORE_CLK_RATE);
++        }
++
++	if (err) {
++		dev_err(&pdev->dev, "failed to set mux_u_npu_core_3mux1_gfree parent: %d\n", err);
++		goto err_mem0;
++	}
++
++	nvdla_dev->rate = clk_get_rate(nvdla_dev->core_clk);
++	nvdla_dev->volt = regulator_get_voltage(nvdla_dev->npu_regulator);
+ 
+ 	//npu configuration space, start from 0x51c00000
+ 	nvdla_dev->base = devm_ioremap_resource(&pdev->dev, res);
+@@ -555,20 +691,7 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 		dev_err(dev, "%s, %d, Failed to add OPP table, ret = %d.\n", __func__, __LINE__, err);
+ 		goto err_init_reset;
+ 	}
+-	nvdla_dev->rate = clk_get_rate(nvdla_dev->core_clk);
+-	opp = devfreq_recommended_opp(dev, &nvdla_dev->rate, 0);
+-	if (IS_ERR(opp)) {
+-		err = PTR_ERR(opp);
+-		goto err_init_reset;
+-	}
+-
+-	nvdla_dev->rate = dev_pm_opp_get_freq(opp);
+-	nvdla_dev->volt = dev_pm_opp_get_voltage(opp);
+-
+-	regulator_set_voltage(nvdla_dev->npu_regulator, nvdla_dev->volt, nvdla_dev->volt);
+-
+-	dev_pm_opp_put(opp);
+-
++	
+ 	df = devm_devfreq_add_device(dev, &npu_devfreq_profile, "userspace", NULL);
+ 	if (IS_ERR(df)) {
+ 		err = PTR_ERR(df);
+diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
+index a33c8efbcceb..1addd530c1f7 100644
+--- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
++++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
+@@ -862,6 +862,15 @@ int npu_dt_node_resources(struct nvdla_device *nvdla_dev)
+ 		dev_err(&pdev->dev, "failed to get core clk: %d.\n", ret);
+ 		return ret;
+ 	}
++
++	nvdla_dev->llc_aclk = devm_clk_get(&pdev->dev, "clk_npu_llc_aclk");
++	if (IS_ERR(nvdla_dev->llc_aclk)) {
++		ret = PTR_ERR(nvdla_dev->llc_aclk);
++		nvdla_dev->llc_aclk = NULL;
++		dev_err(&pdev->dev, "failed to get llc_aclk clk, ret = %d,\n", ret);
++		return ret;
++	}
++
+ 	nvdla_dev->cfg_clk = devm_clk_get(&pdev->dev, "cfg_clk");
+ 	if (IS_ERR(nvdla_dev->cfg_clk)) {
+ 		ret = PTR_ERR(nvdla_dev->cfg_clk);
+@@ -877,6 +886,14 @@ int npu_dt_node_resources(struct nvdla_device *nvdla_dev)
+ 		return ret;
+ 	}
+ 
++	nvdla_dev->mux_u_npu_llclk_3mux1_gfree = devm_clk_get(&pdev->dev, "mux_u_npu_llclk_3mux1_gfree");
++	if (IS_ERR(nvdla_dev->mux_u_npu_llclk_3mux1_gfree)) {
++		ret = PTR_ERR(nvdla_dev->mux_u_npu_llclk_3mux1_gfree);
++		nvdla_dev->mux_u_npu_llclk_3mux1_gfree = NULL;
++		dev_err(&pdev->dev, "failed to get mux_u_npu_llclk_3mux1_gfree clk: %d, \n", ret);
++		return ret;
++	}
++
+ 	nvdla_dev->fixed_rate_clk_spll2_fout2 = devm_clk_get(&pdev->dev, "fixed_rate_clk_spll2_fout2");
+ 	if (IS_ERR(nvdla_dev->fixed_rate_clk_spll2_fout2)) {
+ 		ret = PTR_ERR(nvdla_dev->fixed_rate_clk_spll2_fout2);
+@@ -892,7 +909,23 @@ int npu_dt_node_resources(struct nvdla_device *nvdla_dev)
+ 		dev_err(&pdev->dev, "failed to get fixed_rate_clk_spll1_fout1 clk: %d.\n", ret);
+ 		return ret;
+ 	}
+-	//nvdla_dev->rstc_e31_core = devm_reset_control_get_optional_exclusive(
++
++	nvdla_dev->fixed_rate_clk_spll0_fout1 = devm_clk_get(&pdev->dev, "clk_clk_npu_llc_src0");
++	if (IS_ERR(nvdla_dev->fixed_rate_clk_spll0_fout1)) {
++		ret = PTR_ERR(nvdla_dev->fixed_rate_clk_spll0_fout1);
++		nvdla_dev->fixed_rate_clk_spll0_fout1 = NULL;
++		dev_err(&pdev->dev, "failed to get fixed_rate_clk_spll0_fout1 clk: %d.\n", ret);
++		return ret;
++	}
++
++	nvdla_dev->fixed_rate_clk_vpll_fout1 = devm_clk_get(&pdev->dev, "fixed_rate_clk_vpll_fout1");
++	if (IS_ERR(nvdla_dev->fixed_rate_clk_vpll_fout1)) {
++		ret = PTR_ERR(nvdla_dev->fixed_rate_clk_vpll_fout1);
++		nvdla_dev->fixed_rate_clk_vpll_fout1 = NULL;
++		dev_err(&pdev->dev, "failed to get fixed_rate_clk_vpll_fout1 clk: %d.\n", ret);
++		return ret;
++	}
++
+ 	nvdla_dev->rstc_e31_core = devm_reset_control_get_optional(
+ 		&pdev->dev, "e31_core");
+ 	if (IS_ERR_OR_NULL(nvdla_dev->rstc_e31_core)) {
+-- 
+2.47.0
+

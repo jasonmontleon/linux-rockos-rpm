@@ -1,7 +1,7 @@
-From 164e80134e4575f3ceb33a2d04769f29d4f277e0 Mon Sep 17 00:00:00 2001
+From 40c343aac124b8febd429ca298470272016281a0 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 31 Oct 2024 09:46:25 +0800
-Subject: [PATCH 237/370] fix:add irq/reset gpio for aw3155.
+Subject: [PATCH 237/413] fix:add irq/reset gpio for aw3155.
 
 Changelogs:
 1.add irq/reset gpio for aw3155.

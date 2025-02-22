@@ -1,7 +1,7 @@
-From 3fc74a35acfa152742590d74d2346ab5868aed61 Mon Sep 17 00:00:00 2001
+From 6279a9461383da5623e91c5a6c86a01d3e2ec8c8 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Thu, 17 Oct 2024 09:59:33 +0800
-Subject: [PATCH 319/370] WIN2030-15754:feat:VI dw200 add devfreq support
+Subject: [PATCH 319/413] WIN2030-15754:feat:VI dw200 add devfreq support
 
 Changelogs:
    1.Sync code from eic7702

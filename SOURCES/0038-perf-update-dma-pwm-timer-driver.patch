@@ -1,7 +1,7 @@
-From 81070881e1526b09814a472b8d8f0075eb631dd1 Mon Sep 17 00:00:00 2001
+From ebb29099c051b80facaa9c687f14bd301aa66e4f Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 27 May 2024 18:53:47 +0800
-Subject: [PATCH 038/370] perf:update dma, pwm, timer driver
+Subject: [PATCH 038/413] perf:update dma, pwm, timer driver
 
 Changelogs:
 1. Optimizing dma drivers
@@ -594,7 +594,7 @@ index f7ca5c29520b..ea92a0bb9906 100644
  	ret = devm_add_action_or_reset(&pdev->dev, eswin_fan_control_remove, ctl);
  	if (ret)
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index e62175b2b860..9cbf670a9ea0 100644
+index 24fc76fe7272..6d8602c47805 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -216,6 +216,53 @@ int win2030_aon_sid_cfg(struct device *dev)

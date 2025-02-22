@@ -1,0 +1,76 @@
+From 5163c00cee9c8d85d82a352de08f0c4bc5fd53dc Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Fri, 7 Feb 2025 20:00:25 +0800
+Subject: [PATCH 401/413] WIN2030-17055:feat: npu set voltage modify
+
+Changelogs:
+Reference commit df263db7636872
+
+Change-Id: Id126183cfcbc8ec42814734950a847288dccf341
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi | 1 +
+ arch/riscv/boot/dts/eswin/eic7700-som314.dtsi    | 1 +
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts     | 2 ++
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts         | 2 ++
+ 4 files changed, 6 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+index ce1ca4a3b815..bfffe51b7a6a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+@@ -297,6 +297,7 @@ &pcie {
+ 
+ &d0_npu{
+ 	status = "okay";
++	npu-supply=<&npu_vcc1>;
+ };
+ 
+ &d0_dsp_subsys {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+index bbee71eff099..5d0d8de19f0e 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+@@ -239,6 +239,7 @@ &pcie {
+ 
+ &d0_npu{
+ 	status = "okay";
++	npu-supply=<&npu_vcc1>;
+ };
+ 
+ &d0_dsp_subsys {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 6141c93d92d0..564272a1e8e3 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -406,9 +406,11 @@ &d1_pcie {
+ 
+ &d0_npu{
+ 	status = "okay";
++	npu-supply=<&d0_npu_vcc>;
+ };
+ &d1_npu {
+ 	status = "okay";
++	npu-supply=<&d1_npu_vcc>;
+ };
+ 
+ &d0_dsp_subsys {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index aa3be74f7e38..e4b6eca92483 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -459,9 +459,11 @@ &d1_pcie {
+ 
+ &d0_npu{
+ 	status = "okay";
++	npu-supply=<&d0_npu_vcc>;
+ };
+ &d1_npu {
+ 	status = "okay";
++	npu-supply=<&d1_npu_vcc>;
+ };
+ 
+ &d0_dsp_subsys {
+-- 
+2.47.0
+

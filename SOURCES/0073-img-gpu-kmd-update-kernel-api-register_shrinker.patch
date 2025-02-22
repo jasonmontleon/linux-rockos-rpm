@@ -1,7 +1,7 @@
-From 10e1b7a742e3c3cefa86c133e9b95ac9bb779fe5 Mon Sep 17 00:00:00 2001
+From d7badc75d972dd8f8e434ae9ab45bb035faa13ef Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Wed, 10 Jul 2024 17:24:52 +0800
-Subject: [PATCH 073/370] img gpu kmd: update kernel api - register_shrinker
+Subject: [PATCH 073/413] img gpu kmd: update kernel api - register_shrinker
 
 ref: https://github.com/torvalds/linux/commit/e33c267a
 ---

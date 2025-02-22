@@ -1,7 +1,7 @@
-From cafee7660916e8bb52886df2f7de4a2c4f32ea38 Mon Sep 17 00:00:00 2001
+From 3da2bebf487556e042e06c45a1eb92bffd346e85 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 5 Sep 2024 16:14:07 +0800
-Subject: [PATCH 250/370] WIN2030-16035:refactor:support eic7702 evb
+Subject: [PATCH 250/413] WIN2030-16035:refactor:support eic7702 evb
 
 Changelogs:
 Provide bring up code for eic7702 evb a1
@@ -653,7 +653,7 @@ index 3e746b7c0bf6..724605bbb530 100644
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 21b40bc64082..a4f4b4a394d8 100644
+index 8e89b75e71ea..27ce32947e69 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -923,11 +923,11 @@ static int __init tcu_proc_init(void)

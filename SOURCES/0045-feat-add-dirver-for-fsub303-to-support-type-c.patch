@@ -1,7 +1,7 @@
-From 304b6be55f332efa76779218b35458f2b472c2e8 Mon Sep 17 00:00:00 2001
+From 60529535aec17a7a47319d38c291cbd291793ca3 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 3 Jun 2024 19:06:17 +0800
-Subject: [PATCH 045/370] feat:add dirver for fsub303 to support type-c
+Subject: [PATCH 045/413] feat:add dirver for fsub303 to support type-c
 
 Changelogs:
 	if you want to otg,Set as follows

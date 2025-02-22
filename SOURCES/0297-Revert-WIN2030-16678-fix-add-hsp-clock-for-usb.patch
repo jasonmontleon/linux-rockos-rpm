@@ -1,7 +1,7 @@
-From ec3828020b9c1b069cfac621a6f478efcac8260b Mon Sep 17 00:00:00 2001
+From cf9ab1393151275a1c83464ef79f74f84275c9dd Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 28 Nov 2024 10:22:22 +0800
-Subject: [PATCH 297/370] Revert "WIN2030-16678:fix:add hsp clock for usb"
+Subject: [PATCH 297/413] Revert "WIN2030-16678:fix:add hsp clock for usb"
 
 This reverts commit daf035f071a30f5c88e99c936230ca1af5a47b09.
 

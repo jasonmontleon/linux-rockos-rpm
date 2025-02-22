@@ -1,0 +1,1791 @@
+From 423f85e11d7145c8c734206cad3aea0f10646119 Mon Sep 17 00:00:00 2001
+From: lilijun <lilijun@eswincomputing.com>
+Date: Tue, 17 Dec 2024 14:22:26 +0800
+Subject: [PATCH 371/413] WIN2030-16550:feat:Differentiate output devices for
+ platforms
+
+Changelogs:
+
+1. Differentiate output devices for platforms in the device tree
+2. If DVB or Z530 board, open ESWIN_RASPBERRYPI_7INCH_PANEL
+3. 7700, 7702, dvb, z530 test pass
+
+Change-Id: Id05e851efb61cb93e4f78c0630541732cd5669d7
+Signed-off-by: lilijun <lilijun@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-d314.dts    |   2 +
+ .../boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi | 130 ++++++++++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  |  69 +++++++++-
+ arch/riscv/boot/dts/eswin/eic7700-evb.dts     |  61 ++++++++
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |  45 ++++--
+ .../boot/dts/eswin/eic7700-milkv-megrez.dts   |  68 ++++++++-
+ .../dts/eswin/eic7700-pine64-starpro64.dts    |  66 ++++++++-
+ .../boot/dts/eswin/eic7700-som260-a1.dtsi     |  35 +++--
+ arch/riscv/boot/dts/eswin/eic7700-som314.dtsi |  33 ++++-
+ .../dts/eswin/eic7700-z530-dsi-panel.dtsi     | 111 +++++++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-z530.dts    |   7 -
+ .../boot/dts/eswin/eic7702-evb-a1-d0.dts      |  61 ++++++++
+ .../boot/dts/eswin/eic7702-evb-a1-d1.dts      |  61 ++++++++
+ .../dts/eswin/eic7702-evb-a1-interleave.dts   | 121 ++++++++++++++++
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 121 ++++++++++++++++
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  71 +---------
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  70 ----------
+ arch/riscv/configs/eic7700_defconfig          |   2 +
+ arch/riscv/configs/eic7702_defconfig          |   2 +
+ drivers/gpu/drm/eswin/Kconfig                 |  14 +-
+ drivers/gpu/drm/eswin/Makefile                |   2 +-
+ drivers/gpu/drm/panel/panel-simple.c          |  28 ++++
+ 22 files changed, 994 insertions(+), 186 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+index f8bfb293fcfa..3c2da482d2fe 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+@@ -43,6 +43,7 @@ usb-hub {
+ 	};
+ };
+ 
++/*
+ &dsi_panel {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+@@ -50,6 +51,7 @@ &dsi_panel {
+ 	backlight0-gpios = <&portc 18 GPIO_ACTIVE_HIGH>;
+ 	rst-gpios = <&portc 21 GPIO_ACTIVE_HIGH>;
+ };
++*/
+ 
+ &d0_i2s1 {
+ 	status = "okay";
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
+new file mode 100644
+index 000000000000..4b5eb4c16220
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
+@@ -0,0 +1,130 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Include file for pin control of Eswin EIC770x family SoC.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++#include "eswin-win2030-die0-soc.dtsi"
++
++&SOC {
++	panel_disp: panel_disp {
++		compatible = "raspberrypi,7inch-dsi";
++		status = "okay";
++		backlight = <&reg_display>;
++		power-supply = <&reg_display>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&bridge_out>;
++			};
++		};
++	};
++};
++
++&dc {
++	status = "okay";
++	dc_out: port {
++		dc_out_dsi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&dsi_input>;
++		};
++	};
++};
++
++&dsi_controller {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&bridge_in>;
++			};
++		};
++	};
++
++	toshiba_bridge: bridge@0 {
++		reg = <0>;
++		compatible = "toshiba,tc358762";
++		status = "okay";
++		vddc-supply = <&reg_display>;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				bridge_in: endpoint {
++					remote-endpoint = <&mipi_dsi_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				bridge_out: endpoint {
++					remote-endpoint = <&panel_in>;
++				};
++			};
++		};
++	};
++};
++
++&video_output {
++	status = "okay";
++	power-supply = <&reg_display>;
++};
++
++&d0_i2c5 {
++	status = "okay";
++	/* i2c-sda-hold-time-ns = <1000>; */
++	/* clock-frequency = <0x186a0>; */
++
++	pca9548: i2c-mux@70 {
++		/*compatible = "ti,tca9548"; */
++		compatible = "nxp,pca9548";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x70>;
++
++		i2c@7 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x7>;
++			// reg_display = &reg_display;
++
++			reg_display: regulator@45 {
++				compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
++				reg = <0x45>;
++				gpio-controller;
++				#gpio-cells = <2>;
++			};
++
++		};
++	};
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index 38e593b4c97c..e27a53bb2717 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -330,22 +330,75 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+-    status = "disabled";
++	status = "disabled";
+ };
+ 
+ &virtual_display {
+-    status = "okay";
++	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+-    status = "okay";
++	status = "okay";
+ };
+ 
+ &dsi_controller {
+-    status = "okay";
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -359,6 +412,14 @@ &dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+index 7842d5136303..31d9befdd3f0 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+@@ -291,6 +291,22 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+@@ -299,6 +315,11 @@ &dc_test {
+ 
+ &virtual_display {
+     status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+@@ -307,6 +328,38 @@ &dsi_output {
+ 
+ &dsi_controller {
+     status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -320,6 +373,14 @@ &dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 94ea752f5e05..badde2fa404c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -29,6 +29,7 @@
+ #define CMA_SIZE		0x20000000
+ 
+ #include "eswin-win2030-die0-soc.dtsi"
++#include "eic7700-dvb-dsi-panel.dtsi"
+ #include "eic7700-pinctrl.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
+@@ -279,41 +280,59 @@ &venc0 {
+ 	status = "okay";
+ };
+ 
++&dc_test {
++	status = "disabled";
++};
++
+ &video_output {
+ 	status = "okay";
+ };
+ 
+ &dc {
+ 	status = "okay";
+-};
+ 
+-&dc_test {
+-    status = "disabled";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dpi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &virtual_display {
+-    status = "okay";
++	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+-    status = "okay";
++	status = "okay";
+ };
+ 
+ &dsi_controller {
+-    status = "okay";
+-};
+-
+-&dsi_panel {
+ 	status = "okay";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_gpio82_default &pinctrl_gpio85_default>;
+-	backlight0-gpios = <&portc 18 GPIO_ACTIVE_HIGH>;
+-	rst-gpios = <&portc 21 GPIO_ACTIVE_HIGH>;
+ };
+ 
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 1809b384d0be..3a016445160a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -319,22 +319,74 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+-    status = "disabled";
++	status = "disabled";
+ };
+ 
+ &virtual_display {
+-    status = "okay";
++	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+-    status = "okay";
++	status = "okay";
+ };
+ 
+ &dsi_controller {
+-    status = "okay";
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -348,6 +400,14 @@ &dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index 0d2d03ac73aa..1b7d32898c4c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -286,14 +286,35 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+-    status = "disabled";
++	status = "disabled";
+ };
+ 
+ &virtual_display {
+-    status = "okay";
++	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+@@ -301,7 +322,38 @@ &dsi_output {
+ };
+ 
+ &dsi_controller {
+-    status = "okay";
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -315,6 +367,14 @@ &dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+index ee83ad1ee128..bf6d610b3cf0 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+@@ -29,6 +29,7 @@
+ #define CMA_SIZE		0x20000000
+ 
+ #include "eswin-win2030-die0-soc.dtsi"
++#include "eic7700-z530-dsi-panel.dtsi"
+ #include "eic7700-pinctrl.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
+@@ -340,32 +341,50 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dpi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+-    status = "disabled";
++	status = "disabled";
+ };
+ 
+ &virtual_display {
+-    status = "okay";
++	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+-    status = "okay";
++	status = "okay";
+ };
+ 
+ &dsi_controller {
+-    status = "okay";
+-};
+-
+-&dsi_panel {
+-	/* backlight0-gpios, rst-gpios */
+ 	status = "okay";
+ };
+ 
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+index 2b7360126921..ff10802cc2a3 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+@@ -283,31 +283,56 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dpi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+-    status = "disabled";
++	status = "disabled";
+ };
+ 
+ &virtual_display {
+-    status = "okay";
++	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+-    status = "okay";
++	status = "okay";
+ };
+ 
+ &dsi_controller {
+-    status = "okay";
++	status = "okay";
+ };
+ 
++/*
+ &dsi_panel {
+ 	status = "okay";
+ };
++*/
+ 
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
+new file mode 100644
+index 000000000000..2875ce48c1a8
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
+@@ -0,0 +1,111 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Device Tree Include file for pin control of Eswin EIC770x family SoC.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ */
++#include "eswin-win2030-die0-soc.dtsi"
++
++&SOC {
++	panel_disp: panel_disp {
++		compatible = "raspberrypi,7inch-dsi";
++		status = "okay";
++		backlight = <&reg_display>;
++		power-supply = <&reg_display>;
++
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&bridge_out>;
++			};
++		};
++	};
++};
++
++&dc {
++	status = "okay";
++	dc_out: port {
++		dc_out_dsi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&dsi_input>;
++		};
++	};
++};
++
++&dsi_controller {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&bridge_in>;
++			};
++		};
++	};
++
++	toshiba_bridge: bridge@0 {
++		reg = <0>;
++		compatible = "toshiba,tc358762";
++		status = "okay";
++		vddc-supply = <&reg_display>;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				bridge_in: endpoint {
++					remote-endpoint = <&mipi_dsi_out>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				bridge_out: endpoint {
++					remote-endpoint = <&panel_in>;
++				};
++			};
++		};
++	};
++};
++
++&video_output {
++	status = "okay";
++	power-supply = <&reg_display>;
++};
++
++&d0_i2c1 {
++	status = "okay";
++	reg_display: regulator@45 {
++		compatible = "raspberrypi,7inch-touchscreen-panel-regulator";
++		reg = <0x45>;
++		gpio-controller;
++		#gpio-cells = <2>;
++	};
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
+index d9dc8a8afd6a..038ee48f8ddf 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
+@@ -100,13 +100,6 @@ &ssi1 {
+ 	status = "disabled";
+ };
+ 
+-&dsi_panel {
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_gpio7_default &pinctrl_gpio92_default>;
+-	backlight0-gpios = <&porta 7 GPIO_ACTIVE_HIGH>;
+-	rst-gpios = <&portc 28 GPIO_ACTIVE_HIGH>;
+-};
+-
+ &d0_graphcard1 {
+ 	status = "okay";
+ 	label = "Analog Audio-0";
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+index 45fb6aca84c0..77da51ea4a24 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+@@ -273,6 +273,22 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+@@ -281,6 +297,11 @@ &dc_test {
+ 
+ &virtual_display {
+     status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+@@ -289,6 +310,38 @@ &dsi_output {
+ 
+ &dsi_controller {
+     status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -302,6 +355,14 @@ &dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+index 453dcea70155..efa27dd9eb5a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+@@ -285,6 +285,22 @@ &video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+@@ -293,6 +309,11 @@ &dc_test {
+ 
+ &virtual_display {
+     status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_output {
+@@ -301,6 +322,38 @@ &dsi_output {
+ 
+ &dsi_controller {
+     status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -314,6 +367,14 @@ &dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+index 1c0820e01cfb..7ded7b9b4a84 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+@@ -526,10 +526,42 @@ &d1_video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &d1_dc {
+ 	status = "okay";
++	d1_dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		d1_dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&d1_dsi_input>;
++		};
++		d1_dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&d1_vd_input>;
++		};
++		d1_dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&d1_hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+@@ -541,17 +573,90 @@ &d1_dc_test {
+ 
+ &virtual_display {
+ 	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &d1_virtual_display {
+ 	status = "okay";
++	port {
++		d1_vd_input: endpoint {
++			remote-endpoint = <&d1_dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_controller {
+     status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ &d1_dsi_controller {
+ 	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			d1_dsi_input: endpoint {
++				remote-endpoint = <&d1_dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			d1_mipi_dsi_out: endpoint {
++				remote-endpoint = <&d1_panel_in>;
++			};
++		};
++	};
++	d1_dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			d1_panel_in: endpoint {
++				remote-endpoint = <&d1_mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -572,6 +677,14 @@ &d1_dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+@@ -584,6 +697,14 @@ hdmi_in_i2s: endpoint@1 {
+ &d1_dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			d1_hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&d1_dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			d1_hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 76bb244c3250..ef4dd86c24e2 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -484,10 +484,42 @@ &d1_video_output {
+ 
+ &dc {
+ 	status = "okay";
++	dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&dsi_input>;
++		};
++		dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&vd_input>;
++		};
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &d1_dc {
+ 	status = "okay";
++	d1_dc_out: port {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		d1_dc_out_dsi: endpoint@0 {
++			reg = <0>;
++			remote-endpoint = <&d1_dsi_input>;
++		};
++		d1_dc_out_dpi1: endpoint@1 {
++			reg = <1>;
++			remote-endpoint = <&d1_vd_input>;
++		};
++		d1_dc_out_hdmi: endpoint@2 {
++			reg = <2>;
++			remote-endpoint = <&d1_hdmi_in_dc>;
++		};
++	};
+ };
+ 
+ &dc_test {
+@@ -499,17 +531,90 @@ &d1_dc_test {
+ 
+ &virtual_display {
+ 	status = "okay";
++	port {
++		vd_input: endpoint {
++			remote-endpoint = <&dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &d1_virtual_display {
+ 	status = "okay";
++	port {
++		d1_vd_input: endpoint {
++			remote-endpoint = <&d1_dc_out_dpi1>;
++		};
++	};
+ };
+ 
+ &dsi_controller {
+     status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			dsi_input: endpoint {
++				remote-endpoint = <&dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			mipi_dsi_out: endpoint {
++				remote-endpoint = <&panel_in>;
++			};
++		};
++	};
++
++	dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			panel_in: endpoint {
++				remote-endpoint = <&mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ &d1_dsi_controller {
+ 	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0>;
++			d1_dsi_input: endpoint {
++				remote-endpoint = <&d1_dc_out_dsi>;
++			};
++		};
++		port@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <1>;
++			d1_mipi_dsi_out: endpoint {
++				remote-endpoint = <&d1_panel_in>;
++			};
++		};
++	};
++	d1_dsi_panel:dsi_panel@0 {
++		compatible = "eswin,generic-panel";
++		reg = <0>;
++		dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
++		dsi,lanes = <4>;
++		port {
++			d1_panel_in: endpoint {
++				remote-endpoint = <&d1_mipi_dsi_out>;
++			};
++		};
++	};
+ };
+ 
+ &dsi_panel {
+@@ -530,6 +635,14 @@ &d1_dsi_panel {
+ &dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			hdmi_in_i2s: endpoint@1 {
+@@ -542,6 +655,14 @@ hdmi_in_i2s: endpoint@1 {
+ &d1_dw_hdmi {
+ 	status = "okay";
+ 	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++		port@0 {
++			reg = <0>;
++			d1_hdmi_in_dc: endpoint@0 {
++				remote-endpoint = <&d1_dc_out_hdmi>;
++			};
++		};
+ 		port@2 {
+ 			reg = <2>;
+ 			d1_hdmi_in_i2s: endpoint@1 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index b6d4e88e747c..2403d2c604fd 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -1824,8 +1824,8 @@ d0_graphcard2: graphcard2 {
+ 
+ 		video_output: display-subsystem@0 {
+ 			compatible = "eswin,display-subsystem";
+-			ports = <&dc_out>;
+ 			numa-node-id = <0>;
++			ports = <&dc_out>;
+ 			dma-noncoherent;
+ 		};
+ 
+@@ -1862,21 +1862,6 @@ dc: display_control@502c0000 {
+ 			dc_out: port {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+-
+-				dc_out_dsi: endpoint@0 {
+-					reg = <0>;
+-					remote-endpoint = <&dsi_input>;
+-				};
+-
+-				dc_out_dpi1: endpoint@1 {
+-					reg = <1>;
+-					remote-endpoint = <&vd_input>;
+-				};
+-
+-				dc_out_hdmi: endpoint@2 {
+-					reg = <2>;
+-					remote-endpoint = <&hdmi_in_dc>;
+-				};
+ 			};
+ 		};
+ 
+@@ -1884,12 +1869,6 @@ virtual_display: es_wb@0 {
+ 			compatible = "eswin,virtual_display";
+ 			bpp = /bits/ 8 <8>;
+ 			numa-node-id = <0>;
+-
+-			port {
+-				vd_input: endpoint {
+-					remote-endpoint = <&dc_out_dpi1>;
+-				};
+-			};
+ 		};
+ 
+ 		dsi_output: dsi-output@0 {
+@@ -1908,47 +1887,10 @@ dsi_controller: mipi_dsi@50270000 {
+ 			resets = <&d0_reset VO_PHYRST_CTRL SW_VO_MIPI_PRSTN>;
+ 			reset-names ="phyrstn";
+ 			numa-node-id = <0>;
+-
+ 			/*
+ 			phys = <&dphy>;
+ 			phy-names = "dphy";
+ 			*/
+-
+-			ports {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-
+-				port@0 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					reg = <0>;
+-					dsi_input: endpoint {
+-						remote-endpoint = <&dc_out_dsi>;
+-					};
+-				};
+-
+-				port@1 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					reg = <1>;
+-
+-					mipi_dsi_out: endpoint {
+-						remote-endpoint = <&panel_in>;
+-					};
+-				};
+-			};
+-
+-			dsi_panel:dsi_panel@0 {
+-				compatible = "eswin,generic-panel";
+-				reg = <0>;
+-				dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
+-				dsi,lanes = <4>;
+-				port {
+-					panel_in: endpoint {
+-						remote-endpoint = <&mipi_dsi_out>;
+-					};
+-				};
+-			};
+ 		};
+ 
+ 		dc_test: dctest@502c0000 {
+@@ -1979,17 +1921,6 @@ dw_hdmi: hdmi@502a0000 {
+ 					 <&d0_reset VO_PHYRST_CTRL SW_VO_HDMI_RSTN>;
+ 			reset-names = "prstn", "phyrstn", "rstn";
+ 			numa-node-id = <0>;
+-
+-			ports {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-				port@0 {
+-					reg = <0>;
+-					hdmi_in_dc: endpoint@0 {
+-						remote-endpoint = <&dc_out_hdmi>;
+-					};
+-				};
+-			};
+ 		};
+ 
+ 		dw_hdmi_hdcp2: hdmi-hdcp2@50290000 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index f4c173ccb408..2eb71e5e8525 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1772,21 +1772,6 @@ d1_dc: display_control@702c0000 {
+ 			d1_dc_out: port {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+-
+-				d1_dc_out_dsi: endpoint@0 {
+-					reg = <0>;
+-					remote-endpoint = <&d1_dsi_input>;
+-				};
+-
+-				d1_dc_out_dpi1: endpoint@1 {
+-					reg = <1>;
+-					remote-endpoint = <&d1_vd_input>;
+-				};
+-
+-				d1_dc_out_hdmi: endpoint@2 {
+-					reg = <2>;
+-					remote-endpoint = <&d1_hdmi_in_dc>;
+-				};
+ 			};
+ 		};
+ 
+@@ -1794,12 +1779,6 @@ d1_virtual_display: es_wb@1 {
+ 			compatible = "eswin,virtual_display";
+ 			bpp = /bits/ 8 <8>;
+ 			numa-node-id = <1>;
+-
+-			port {
+-				d1_vd_input: endpoint {
+-					remote-endpoint = <&d1_dc_out_dpi1>;
+-				};
+-			};
+ 		};
+ 
+ 		d1_dsi_output: dsi-output@1 {
+@@ -1818,48 +1797,10 @@ d1_dsi_controller: mipi_dsi@70270000 {
+ 			resets = <&d1_reset VO_PHYRST_CTRL SW_VO_MIPI_PRSTN>;
+ 			reset-names ="phyrstn";
+ 			numa-node-id = <1>;
+-
+ 			/*
+ 			phys = <&dphy>;
+ 			phy-names = "dphy";
+ 			*/
+-
+-			ports {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
+-
+-				port@0 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					reg = <0>;
+-
+-					d1_dsi_input: endpoint {
+-						remote-endpoint = <&d1_dc_out_dsi>;
+-					};
+-				};
+-
+-				port@1 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					reg = <1>;
+-
+-					d1_mipi_dsi_out: endpoint {
+-						remote-endpoint = <&d1_panel_in>;
+-					};
+-				};
+-			};
+-
+-			d1_dsi_panel:dsi_panel@1 {
+-				compatible = "eswin,generic-panel";
+-				reg = <0>;
+-				dsi,format = <0>; //RGB888:0, RGB666:1, RGB565:3
+-				dsi,lanes = <4>;
+-				port {
+-					d1_panel_in: endpoint {
+-						remote-endpoint = <&d1_mipi_dsi_out>;
+-					};
+-				};
+-			};
+ 		};
+ 
+ 		d1_dc_test: dctest@702c0000 {
+@@ -1890,17 +1831,6 @@ d1_dw_hdmi: hdmi@702a0000 {
+ 					 <&d1_reset VO_PHYRST_CTRL SW_VO_HDMI_RSTN>;
+ 			reset-names = "prstn", "phyrstn", "rstn";
+ 			numa-node-id = <1>;
+-
+-			ports {
+-				port@0 {
+-					#address-cells = <1>;
+-					#size-cells = <0>;
+-					d1_hdmi_in_dc: endpoint@0 {
+-						reg = <0>;
+-						remote-endpoint = <&d1_dc_out_hdmi>;
+-					};
+-				};
+-			};
+ 		};
+ 
+ 		d1_dw_hdmi_hdcp2: hdmi-hdcp2@70290000 {
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 52c6b13f0804..f621172704ea 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -851,3 +851,5 @@ CONFIG_RCU_EQS_DEBUG=y
+ # CONFIG_FTRACE is not set
+ # CONFIG_RUNTIME_TESTING_MENU is not set
+ CONFIG_MEMTEST=y
++CONFIG_I2C_MUX=y
++CONFIG_I2C_MUX_PCA954x=y
+\ No newline at end of file
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index e2cb568415e9..7b5fa46fad2a 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -840,3 +840,5 @@ CONFIG_RCU_EQS_DEBUG=y
+ # CONFIG_FTRACE is not set
+ # CONFIG_RUNTIME_TESTING_MENU is not set
+ CONFIG_MEMTEST=y
++CONFIG_I2C_MUX=y
++CONFIG_I2C_MUX_PCA954x=y
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
+index 7edd441f446d..9a08d81437fd 100644
+--- a/drivers/gpu/drm/eswin/Kconfig
++++ b/drivers/gpu/drm/eswin/Kconfig
+@@ -74,8 +74,18 @@ config DW_HDMI_HDCP2
+       Designware HDMI block.
+ 
+ config ESWIN_MIPI_DSI
+-    tristate "Eswin mipi dsi and 1080p panel driver"
+-    select DRM_ESWIN
++    bool "Eswin mipi dsi and 1080p panel driver"
++    depends on DRM_ESWIN
+     select DRM_DW_MIPI_DSI
+     help
+       Support mipi dsi 4-lanes panel output
++
++config ESWIN_RASPBERRYPI_7INCH_PANEL
++    bool "Support for Raspberry Pi 7-inch DSI panel"
++    depends on ESWIN_MIPI_DSI
++    select PM
++    select REGULATOR_RASPBERRYPI_TOUCHSCREEN_ATTINY
++    select DRM_PANEL_SIMPLE
++    select DRM_TOSHIBA_TC358762
++    help
++      Enable support for the Raspberry Pi 7-inch DSI panel
+diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
+index b96f169eedfe..1f7a44346d8d 100644
+--- a/drivers/gpu/drm/eswin/Makefile
++++ b/drivers/gpu/drm/eswin/Makefile
+@@ -24,4 +24,4 @@ dw_hdcp2-$(CONFIG_DW_HDMI_HDCP2) += dw_hdmi_hdcp2.o
+ obj-$(CONFIG_DRM_ESWIN) += es_drm.o
+ obj-$(CONFIG_DW_HDMI_HDCP2) += dw_hdcp2.o
+ 
+-obj-$(CONFIG_ESWIN_MIPI_DSI)+= es_mipi_dsi.o es_panel.o
+\ No newline at end of file
++es_drm-$(CONFIG_ESWIN_MIPI_DSI)+= es_mipi_dsi.o es_panel.o
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
+index 37fe54c34b14..678f1d09d606 100644
+--- a/drivers/gpu/drm/panel/panel-simple.c
++++ b/drivers/gpu/drm/panel/panel-simple.c
+@@ -3376,6 +3376,31 @@ static const struct panel_desc rocktech_rk043fn48h = {
+ 	.connector_type = DRM_MODE_CONNECTOR_DPI,
+ };
+ 
++static const struct drm_display_mode raspberrypi_7inch_mode = {
++	.clock = 30000,
++	.hdisplay = 800,
++	.hsync_start = 800 + 131,
++	.hsync_end = 800 + 131 + 2,
++	.htotal = 800 + 131 + 2 + 45,
++	.vdisplay = 480,
++	.vsync_start = 480 + 7,
++	.vsync_end = 480 + 7 + 2,
++	.vtotal = 480 + 7 + 2 + 22,
++	.flags = DRM_MODE_FLAG_NVSYNC | DRM_MODE_FLAG_NHSYNC,
++};
++
++static const struct panel_desc raspberrypi_7inch = {
++	.modes = &raspberrypi_7inch_mode,
++	.num_modes = 1,
++	.bpc = 8,
++	.size = {
++		.width = 154,
++		.height = 86,
++	},
++	.bus_format = MEDIA_BUS_FMT_RGB888_1X24,
++	.connector_type = DRM_MODE_CONNECTOR_DSI,
++};
++
+ static const struct display_timing rocktech_rk070er9427_timing = {
+ 	.pixelclock = { 26400000, 33300000, 46800000 },
+ 	.hactive = { 800, 800, 800 },
+@@ -4451,6 +4476,9 @@ static const struct of_device_id platform_of_match[] = {
+ 	}, {
+ 		.compatible = "rocktech,rk043fn48h",
+ 		.data = &rocktech_rk043fn48h,
++	}, {
++		.compatible = "raspberrypi,7inch-dsi",
++		.data = &raspberrypi_7inch,
+ 	}, {
+ 		.compatible = "rocktech,rk070er9427",
+ 		.data = &rocktech_rk070er9427,
+-- 
+2.47.0
+

@@ -1,7 +1,7 @@
-From dc2a3e5ce0516374c5fb3f1bd2af3b665601c48f Mon Sep 17 00:00:00 2001
+From 9b19dcd5597b67f303a533427059b4a39df9d489 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 23 May 2024 13:43:49 +0800
-Subject: [PATCH 028/370] feat:Porting hdmi driver to linux 6.6.
+Subject: [PATCH 028/413] feat:Porting hdmi driver to linux 6.6.
 
 Changelogs:
 	Porting hdmi driver to linux 6.6.

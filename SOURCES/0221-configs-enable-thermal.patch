@@ -1,7 +1,7 @@
-From ff26d30134af616eddf3010cb4957d608d76a687 Mon Sep 17 00:00:00 2001
+From 625fe3c8f4bd2f03d1a8e349e624962081c18892 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 4 Nov 2024 21:38:53 +0800
-Subject: [PATCH 221/370] configs: enable thermal
+Subject: [PATCH 221/413] configs: enable thermal
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

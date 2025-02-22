@@ -1,14 +1,29 @@
-From 01ae966487e29dd32f8db819bc817902a9a7b32f Mon Sep 17 00:00:00 2001
+From a8173b449c085b38331305dd7dcc32e5fba22495 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
-Subject: [PATCH 366/370] header workarounds
+Subject: [PATCH 408/413] header workarounds
 
 ---
+ include/uapi/linux/dma_memcp.h      |  3 ++
  include/uapi/linux/es_vb_user.h     |  4 +++
  include/uapi/linux/eswin-ipc-scpu.h |  5 +++-
  include/uapi/linux/mmz_vb.h         | 45 +++++++++++++++--------------
- 3 files changed, 32 insertions(+), 22 deletions(-)
+ 4 files changed, 35 insertions(+), 22 deletions(-)
 
+diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
+index 3cb75a348ba8..9b066772b6e0 100644
+--- a/include/uapi/linux/dma_memcp.h
++++ b/include/uapi/linux/dma_memcp.h
+@@ -21,6 +21,9 @@
+  *          Yuyang Cong <congyuyang@eswincomputing.com>
+  */
+ 
++typedef long unsigned int    __kernel_size_t;
++typedef __kernel_size_t         size_t;
++
+ #ifndef ES_DMA_MEMCP_H
+ #define ES_DMA_MEMCP_H
+ 
 diff --git a/include/uapi/linux/es_vb_user.h b/include/uapi/linux/es_vb_user.h
 index db3bda6d0d69..984bc837946f 100644
 --- a/include/uapi/linux/es_vb_user.h
@@ -48,7 +63,7 @@ index e8fa083a2c7f..a0164b374b13 100644
  }khandle_dma_allocation_data_t;
  
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
-index 49ebac96f6e1..80d599a61c43 100644
+index 1bb76ebb5aa8..9faa47344498 100644
 --- a/include/uapi/linux/mmz_vb.h
 +++ b/include/uapi/linux/mmz_vb.h
 @@ -2,6 +2,9 @@

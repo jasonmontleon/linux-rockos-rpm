@@ -1,7 +1,7 @@
-From 657bc1e8ebf227228645a3c7dd1f05ce7c12ba31 Mon Sep 17 00:00:00 2001
+From f2616d3a2bdb82ae20d1bde294116e9c9870eb76 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 9 Oct 2024 20:51:07 +0800
-Subject: [PATCH 304/370] package: add linux-tools
+Subject: [PATCH 304/413] package: add linux-tools
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

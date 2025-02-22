@@ -1,0 +1,48 @@
+From c32e3d89bfbb2278b3f279dedcf2485177fae78a Mon Sep 17 00:00:00 2001
+From: lilijun <lilijun@eswincomputing.com>
+Date: Tue, 21 Jan 2025 13:10:51 +0800
+Subject: [PATCH 389/413] WIN2030-16900:fix:Close the dsi config in default
+ .dts
+
+Changelogs:
+Dsi panel default disable, but drm will load when dsi driver probed.
+So the es_drm will probe later.
+This modification only affects the dvb board and z530 board.
+When dsi enable, open the dsi dts.
+
+Change-Id: Ibea402ba70dac07eb3283bd74db1b712e7c60349
+Signed-off-by: lilijun <lilijun@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 2 +-
+ arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi          | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 75e180fbf78f..6c3220cb4737 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -29,7 +29,7 @@
+ #define CMA_SIZE		0x20000000
+ 
+ #include "eswin-win2030-die0-soc.dtsi"
+-#include "eic7700-dvb-dsi-panel.dtsi"
++// #include "eic7700-dvb-dsi-panel.dtsi"
+ #include "eic7700-pinctrl.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+index eb5fb2350a9d..ce1ca4a3b815 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+@@ -29,7 +29,7 @@
+ #define CMA_SIZE		0x20000000
+ 
+ #include "eswin-win2030-die0-soc.dtsi"
+-#include "eic7700-z530-dsi-panel.dtsi"
++// #include "eic7700-z530-dsi-panel.dtsi"
+ #include "eic7700-pinctrl.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
+-- 
+2.47.0
+

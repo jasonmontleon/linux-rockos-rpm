@@ -1,7 +1,7 @@
-From 4a49e0abc3601fd103edcc69f5be6d8673d151fe Mon Sep 17 00:00:00 2001
+From 48c076537c03a597a7eed5128a7928062052be34 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 20 Dec 2024 11:27:20 +0800
-Subject: [PATCH 348/370] WIN2030-14758:feat:Select cipher as default
+Subject: [PATCH 348/413] WIN2030-14758:feat:Select cipher as default
 
 Changelogs:
 1.Select CONFIG_CRYPTO_DEV_ESWIN_EIC770x in eic7702_defconfig

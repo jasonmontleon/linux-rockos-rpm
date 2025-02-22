@@ -1,7 +1,7 @@
-From 42617327a1ce96486e3c9f07b9f01727bb015b36 Mon Sep 17 00:00:00 2001
+From 20f16c4785c5da5fb00098940c7e35b71b147cb4 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Wed, 24 Jul 2024 16:08:13 +0800
-Subject: [PATCH 117/370] fix:put power on if the interrupt came
+Subject: [PATCH 117/413] fix:put power on if the interrupt came
 
 Changelogs:
 1. interrupt came when the clock disable, so set power on

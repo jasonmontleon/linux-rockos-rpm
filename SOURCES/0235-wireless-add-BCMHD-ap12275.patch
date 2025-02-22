@@ -1,7 +1,7 @@
-From 35879b633cc4903007eb45adec2c0e05e044bf04 Mon Sep 17 00:00:00 2001
+From 0241c33e45d13268148e1f0fe9ae37757b620961 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 15 Jun 2024 22:52:21 +0800
-Subject: [PATCH 235/370] wireless: add BCMHD ap12275
+Subject: [PATCH 235/413] wireless: add BCMHD ap12275
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

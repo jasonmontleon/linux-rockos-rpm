@@ -1,7 +1,7 @@
-From f42963855d3d45080456994055a496cbcc63e70c Mon Sep 17 00:00:00 2001
+From 69a5d7ee763b8fda08799cc356854130e9e7c1da Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 13 Sep 2024 10:13:48 +0800
-Subject: [PATCH 265/370] WIN2030-16035:feat:Add undefined device information
+Subject: [PATCH 265/413] WIN2030-16035:feat:Add undefined device information
 
 Changelogs:
 Add undefined devices information in evb dts

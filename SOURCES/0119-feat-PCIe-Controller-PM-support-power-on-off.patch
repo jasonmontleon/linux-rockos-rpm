@@ -1,7 +1,7 @@
-From ee8446519c2b475f746b31dd3bbd7a67a130574a Mon Sep 17 00:00:00 2001
+From da88720eed48ec520bd9477940551ca9df1988ba Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Thu, 25 Jul 2024 18:13:06 +0800
-Subject: [PATCH 119/370] feat:PCIe Controller PM support power on/off.
+Subject: [PATCH 119/413] feat:PCIe Controller PM support power on/off.
 
 Changelogs:
 1.PCIe Controller PM support power on/off.

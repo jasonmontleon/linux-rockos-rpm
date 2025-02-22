@@ -1,7 +1,7 @@
-From 8718cc71cbf4ace2c2b21b89f1f4d2cbaa95d501 Mon Sep 17 00:00:00 2001
+From 1b9ec533444ee3c680f43d4eb629baf3ad0b0ca4 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Wed, 20 Nov 2024 21:26:37 +0800
-Subject: [PATCH 233/370] riscv: dts: eswin: add Pine64 StarPro64
+Subject: [PATCH 233/413] riscv: dts: eswin: add Pine64 StarPro64
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---

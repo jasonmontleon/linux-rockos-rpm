@@ -1,7 +1,7 @@
-From 8b26be8a01ca164fafe2656e01d7b26961ef0605 Mon Sep 17 00:00:00 2001
+From df32303a57e6fcd168bb2671c93cbd5373a59191 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 7 Jun 2024 12:08:13 +0800
-Subject: [PATCH 086/370] config: enable option for docker/podman
+Subject: [PATCH 086/413] config: enable option for docker/podman
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

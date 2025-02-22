@@ -1,7 +1,7 @@
-From 5161fba2e78f2e8f54efa48b8c12df1ad26586b8 Mon Sep 17 00:00:00 2001
+From 56bc09c2de4d50b5c3c3d934cb8287344737fff9 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 11 Mar 2024 18:50:41 +0800
-Subject: [PATCH 002/370] Added clk & reset driver
+Subject: [PATCH 002/413] Added clk & reset driver
 
 ---
  drivers/clk/Kconfig                   |    1 +

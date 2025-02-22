@@ -1,7 +1,7 @@
-From 53783de01dbbe9871f57c5bac0423bfb4dc33d70 Mon Sep 17 00:00:00 2001
+From e771b1a4506afef9548c48bfecb8511c2e235ce8 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
-Subject: [PATCH 005/370] feat(SMMU support):Support SMMU
+Subject: [PATCH 005/413] feat(SMMU support):Support SMMU
 
 Changelogs:
 1.arch/riscv/Kconfig: Do not select SWIOTLB because SMMU is used.
@@ -851,7 +851,7 @@ index 000000000000..563a2ca1a91d
 +obj-$(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY) 		+= eswin-win2030-sid.o
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
 new file mode 100644
-index 000000000000..e62175b2b860
+index 000000000000..24fc76fe7272
 --- /dev/null
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -0,0 +1,886 @@
@@ -1570,7 +1570,7 @@ index 000000000000..e62175b2b860
 +	}
 +
 +	pr_debug("%s called!\n", __func__);
-+	of_property_for_each_u32(node, "tbus", tbu_id) {
++	of_property_for_each_u32(node, "tbus", prop, cur, tbu_id) {
 +		pr_debug("tbus = <0x%02x>\n", tbu_id);
 +		if (0 == win2030_get_tbu_priv(nid, tbu_id, &tbu_priv_p)) {
 +			tbu_client_p = tbu_priv_p->tbu_client_p;
@@ -1626,7 +1626,7 @@ index 000000000000..e62175b2b860
 +	}
 +
 +	pr_debug("%s called!\n", __func__);
-+	of_property_for_each_u32(node, "tbus", tbu_id) {
++	of_property_for_each_u32(node, "tbus", prop, cur, tbu_id) {
 +		pr_debug("tbus = <0x%02x>\n", tbu_id);
 +		if (0 == win2030_get_tbu_priv(nid, tbu_id, &tbu_priv_p)) {
 +			tbu_client_p = tbu_priv_p->tbu_client_p;

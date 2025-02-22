@@ -1,0 +1,32 @@
+From a7f5ca5d6ec0914db2d4c933c51d4167b0766a5a Mon Sep 17 00:00:00 2001
+From: yiguo <yiguo@eswincomputing.com>
+Date: Mon, 30 Dec 2024 20:30:39 +0800
+Subject: [PATCH 370/413] WIN2030-16708:fix:Fix squeezenet bug
+
+Changelogs:
+1. fix squeezenet bug for dsp offset error.
+
+Change-Id: I5dcac516c95667c8ab9d41b0eb66cb437c1dbc43
+Signed-off-by: yiguo <yiguo@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/npu/dsp.c | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
+index 8c91949cb9da..5207c17be540 100644
+--- a/drivers/soc/eswin/ai_driver/npu/dsp.c
++++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
+@@ -770,8 +770,9 @@ int npu_set_dsp_iobuf(struct win_executor *executor, struct host_frame_desc *f)
+ 					"%s, %d, offset=0x%x, dma addr=0x%x.\n",
+ 					__func__, __LINE__, offset,
+ 					f->dsp_io_dmabuf[i][j]->dma_addr);
+-				*tmp = offset +
++				*tmp = offset + address[j].devBuf.offset +
+ 				       f->dsp_io_dmabuf[i][j]->dma_addr;
++
+ 				dla_debug("tmp content=0x%x.\n", *tmp);
+ 			}
+ 		}
+-- 
+2.47.0
+

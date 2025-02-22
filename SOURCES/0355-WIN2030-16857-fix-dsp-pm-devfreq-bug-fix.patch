@@ -1,7 +1,7 @@
-From ebe4d0dcb6db4b632258cb18c60137e33be0afc4 Mon Sep 17 00:00:00 2001
+From dbd41912fe23e22c68078510e0e7e742fab81cb0 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 24 Dec 2024 16:02:46 +0800
-Subject: [PATCH 355/370] WIN2030-16857:fix:dsp pm devfreq bug fix
+Subject: [PATCH 355/413] WIN2030-16857:fix:dsp pm devfreq bug fix
 
 Changelogs:
 	dsp pm devfreq bug fix when not set CONFIG_PM_DEVFREQ

@@ -1,7 +1,7 @@
-From 33b13099879a730473f7184d67e64566993b0a6c Mon Sep 17 00:00:00 2001
+From bd8f6897742ff7554ad9374d0b9c1637a84d4613 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 25 Oct 2024 10:36:46 +0800
-Subject: [PATCH 204/370] fix:resolve HDMI hot plug compatibility issues.
+Subject: [PATCH 204/413] fix:resolve HDMI hot plug compatibility issues.
 
 Changelogs:
 	resolve HDMI hot plug issues with HKC display.

@@ -1,0 +1,82 @@
+From 6be296f9617984a8cad0b16537b4e9bb0fb1a46b Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Fri, 10 Jan 2025 13:21:56 +0800
+Subject: [PATCH 381/413] WIN2030-16919:feat:Apply numa early node patch from
+ upstream
+
+Changelogs:
+     apply numa early node patch from upstream, this patch helps improve
+numa d2d performance.
+   The Original patch info is as bellow:
+
+    NUMA: early use of cpu_to_node() returns 0 instead of the correct
+node id
+
+During the kernel booting, the generic cpu_to_node() is called too
+early
+    in arm64, powerpc and riscv when CONFIG_NUMA is enabled.
+
+    There are at least four places in the common code where
+    the generic cpu_to_node() is called before it is initialized:
+               1.) early_trace_init()         in kernel/trace/trace.c
+               2.) sched_init()               in kernel/sched/core.c
+               3.) init_sched_fair_class()    in kernel/sched/fair.c
+               4.) workqueue_init_early()     in kernel/workqueue.c
+
+    This will harm performance since there is an increase in off node
+    accesses.
+
+Change-Id: I41bc5dbbba0b4cc08d3a50a2a85462a7c3b708fc
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ arch/riscv/Kconfig |  1 +
+ init/main.c        | 14 ++++++++++++++
+ 2 files changed, 15 insertions(+)
+
+diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
+index 37e9be504566..d69a7dc8a022 100644
+--- a/arch/riscv/Kconfig
++++ b/arch/riscv/Kconfig
+@@ -153,6 +153,7 @@ config RISCV
+ 	select MODULE_SECTIONS if MODULES
+ 	select OF
+ 	select OF_EARLY_FLATTREE
++	select HAVE_SETUP_PER_CPU_AREA
+ 	select OF_IRQ
+ 	select PCI_DOMAINS_GENERIC if PCI
+ 	select PCI_MSI if PCI
+diff --git a/init/main.c b/init/main.c
+index c787e94cc898..01c1cb38456f 100644
+--- a/init/main.c
++++ b/init/main.c
+@@ -872,6 +872,19 @@ static void __init print_unknown_bootoptions(void)
+ 	memblock_free(unknown_options, len);
+ }
+ 
++static void __init early_numa_node_init(void)
++{
++#ifdef CONFIG_USE_PERCPU_NUMA_NODE_ID
++#ifndef cpu_to_node
++	int cpu;
++
++	/* The early_cpu_to_node() should be ready here. */
++	for_each_possible_cpu(cpu)
++		set_cpu_numa_node(cpu, early_cpu_to_node(cpu));
++#endif
++#endif
++}
++
+ asmlinkage __visible __init __no_sanitize_address __noreturn __no_stack_protector
+ void start_kernel(void)
+ {
+@@ -902,6 +915,7 @@ void start_kernel(void)
+ 	setup_nr_cpu_ids();
+ 	setup_per_cpu_areas();
+ 	smp_prepare_boot_cpu();	/* arch-specific boot-cpu hooks */
++	early_numa_node_init();
+ 	boot_cpu_hotplug_init();
+ 
+ 	pr_notice("Kernel command line: %s\n", saved_command_line);
+-- 
+2.47.0
+

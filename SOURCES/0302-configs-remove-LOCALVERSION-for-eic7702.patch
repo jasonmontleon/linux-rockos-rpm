@@ -1,7 +1,7 @@
-From 4bc7cd00f135d6ab8eb48b270b9be5babe1f5496 Mon Sep 17 00:00:00 2001
+From 49ff825ec7286207ea0cb933204dca7f17932432 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 10 Dec 2024 20:12:08 +0800
-Subject: [PATCH 302/370] configs: remove LOCALVERSION for eic7702
+Subject: [PATCH 302/413] configs: remove LOCALVERSION for eic7702
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>

@@ -1,7 +1,7 @@
-From 442288554667f7faaa6480b144fadb4384540a4b Mon Sep 17 00:00:00 2001
+From a129c356c3463515e92171d3088be3c57a4b4cb8 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Fri, 31 May 2024 17:23:52 +0800
-Subject: [PATCH 042/370] fix:adapt linux6.6
+Subject: [PATCH 042/413] fix:adapt linux6.6
 
 Changelogs:
 1. add dma-noncoherent; in dts.

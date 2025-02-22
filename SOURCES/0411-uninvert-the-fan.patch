@@ -1,17 +1,17 @@
-From 5f4006492dd86e3dbc05770894808d0baa58806d Mon Sep 17 00:00:00 2001
+From 520a0f217d009639408d9f5479dd2c9e54b0eda3 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 14:20:11 -0500
-Subject: [PATCH 370/370] uninvert the fan...
+Subject: [PATCH 411/413] uninvert the fan...
 
 ---
  arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts | 1 -
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 1809b384d0be..964189fd7688 100644
+index e2b84bec70e0..2aa98e7ded79 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-@@ -657,7 +657,6 @@ &d0_mbox7 {
+@@ -717,7 +717,6 @@ &d0_mbox7 {
  
  &fan_control {
  	status = "okay";

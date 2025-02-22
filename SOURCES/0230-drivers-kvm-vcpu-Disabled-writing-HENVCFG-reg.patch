@@ -1,7 +1,7 @@
-From 9addc18a3c2ce423b5c92851a7ff15d9f0b18b87 Mon Sep 17 00:00:00 2001
+From 3cae1e45c6d59c4027e38d9970b250e87076a85a Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Tue, 30 Jul 2024 14:17:25 +0000
-Subject: [PATCH 230/370] drivers: kvm: vcpu: Disabled writing HENVCFG reg
+Subject: [PATCH 230/413] drivers: kvm: vcpu: Disabled writing HENVCFG reg
 
 HENVCFG register is not present in EIC7700 SOC. So disabled writing
 this register

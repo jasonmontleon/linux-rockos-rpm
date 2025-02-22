@@ -1,7 +1,7 @@
-From 4aea307db27e989a9bedf9ff27138bef90ee78ae Mon Sep 17 00:00:00 2001
+From 924fdeabb4989ef70b3e6d5de70d16f37cbae7d7 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 1 Aug 2024 15:09:50 +0800
-Subject: [PATCH 138/370] feat:change idle defconfig from win2030 to eic7700
+Subject: [PATCH 138/413] feat:change idle defconfig from win2030 to eic7700
 
 Changelogs:
 change idle defconfig from win2030 to eic7700

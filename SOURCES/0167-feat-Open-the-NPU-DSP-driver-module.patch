@@ -1,7 +1,7 @@
-From 68732749864380679f8448cb253e2dbd10ff2094 Mon Sep 17 00:00:00 2001
+From 0613051f8b9e5b0fa47d04ee5dced94ed27f1291 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 3 Sep 2024 13:40:45 +0800
-Subject: [PATCH 167/370] feat:Open the NPU & DSP driver module.
+Subject: [PATCH 167/413] feat:Open the NPU & DSP driver module.
 
 Changelogs:
 	Default to enable DSP & NPU driver compilation.

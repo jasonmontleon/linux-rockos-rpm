@@ -1,0 +1,30 @@
+From 6102a1baa016dcd3111fe9c0a4ad3b3d014573ec Mon Sep 17 00:00:00 2001
+From: linmin <linmin@eswincomputing.com>
+Date: Mon, 30 Dec 2024 10:38:49 +0800
+Subject: [PATCH 367/413] WIN2030-14758:fix(cipher):Add tbus property for
+ cipher in die1 dts
+
+Changelogs:
+1.Add tbus = <WIN2030_TBUID_SCPU>; in eswin-win2030-die1-soc.dtsi
+
+Change-Id: I79bd335ea9d0a11f38252ae214dbf61394eb9f1f
+Signed-off-by: linmin <linmin@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 454427d67f0c..46a70eb15886 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -641,6 +641,7 @@ d1_ipc_scpu:ipc@1 {
+ 			#size-cells = <2>;
+ 			dma-ranges = <0x0 0x80000000 0x0 0xc0000000 0x0 0x80000000>;
+ 			iommus = <&smmu1 WIN2030_SID_SCPU>, <&smmu1 WIN2030_SID_CRYPT>;
++			tbus = <WIN2030_TBUID_SCPU>;
+ 			eswin,syscfg = <&d1_sys_con SCPU_SID_REG_OFFSET 0>,
+ 						   <&d1_sys_con CRYPT_SID_REG_OFFSET 0>;
+ 			mboxes = <&d1_mbox0 0>;
+-- 
+2.47.0
+

@@ -1,7 +1,7 @@
-From 20e086c87b26021b151641ba9b8980c35581b288 Mon Sep 17 00:00:00 2001
+From cb2209cdf6c54e63c01f1ca3be8a5b3c9b5fb37e Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 15 Jul 2024 11:12:23 +0800
-Subject: [PATCH 096/370] chore:change CONFIG_DMATEST=m
+Subject: [PATCH 096/413] chore:change CONFIG_DMATEST=m
 
 Changelogs:
 1. CONFIG_DMATEST change to m

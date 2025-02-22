@@ -1,7 +1,7 @@
-From 3882e733f95fe1ea548d288ddd117dd0f4100496 Mon Sep 17 00:00:00 2001
+From bf5cae1671e1b27a791742176a635caab5cf52a5 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 26 Jul 2024 14:49:38 +0800
-Subject: [PATCH 121/370] refactor:add eic7700 defconfig and adjust mmz size
+Subject: [PATCH 121/413] refactor:add eic7700 defconfig and adjust mmz size
 
 Changelogs:
 1. Add eic7700_defconfig for default configuration

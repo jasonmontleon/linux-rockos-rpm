@@ -1,0 +1,37 @@
+From 5fb1ca1b70c70f7f0d444866f351dffa672e284a Mon Sep 17 00:00:00 2001
+From: linmin <linmin@eswincomputing.com>
+Date: Fri, 7 Feb 2025 18:05:45 +0800
+Subject: [PATCH 399/413] WIN2030-14758:fix:Bug introduced by "Improve GPU mmu"
+
+Changelogs:
+1.On single die, the dev_to_node(psDev) in osfunc.c always return NUMA_NO_NODE.
+  Added #ifdef CONFIG_NUMA to fix the uncorrect warnning for single die.
+
+Change-Id: Ib658489fd7f4a3a29648d3b4ceb1ba823cda0eca
+Signed-off-by: linmin <linmin@eswincomputing.com>
+---
+ .../drm/img/img-volcanic/services/server/env/linux/osfunc.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
+index 55e1c828e634..cc0652febd98 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
+@@ -345,10 +345,12 @@ PVRSRV_ERROR OSPhyContigPagesMap(PHYS_HEAP *psPhysHeap, PG_HANDLE *psMemHandle,
+ 	pgprot_t prot = PAGE_KERNEL;
+ 	void *vaddr;
+ 
++	#ifdef CONFIG_NUMA
+ 	if (page_to_nid(page) != dev_to_node(psDev)) {
+-		pr_warn("%s: mem(phys 0x%llx size 0x%lx) and dev are not on the same die\n", __func__,
+-			page_to_phys(page) ,uiSize);
++		pr_warn("%s: mem node %d(phys 0x%llx size 0x%lx) and dev node %d are not on the same die\n", __func__,
++			page_to_nid(page), page_to_phys(page) ,uiSize, dev_to_node(psDev));
+ 	}
++	#endif
+ 
+ 	for (i = 0; i < num_pages; ++i)
+ 		*tmp++ = page++;
+-- 
+2.47.0
+

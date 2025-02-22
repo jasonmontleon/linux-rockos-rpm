@@ -1,7 +1,7 @@
-From 4f2bd8509b2d8100fd09892f2b78dc94b13b43cf Mon Sep 17 00:00:00 2001
+From ae996141ad38cea5eff8b927efd2557f4cbbe465 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 1 Aug 2024 16:47:31 +0800
-Subject: [PATCH 136/370] feat:Introduce system suspend support
+Subject: [PATCH 136/413] feat:Introduce system suspend support
 
 Changelogs: eic770x support suspend to mem.
 
@@ -113,7 +113,7 @@ index 3ed853b8a8c8..8d261a317175 100644
  	SBI_EXT_PMU_NUM_COUNTERS = 0,
  	SBI_EXT_PMU_COUNTER_GET_INFO,
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 9cbf670a9ea0..21b40bc64082 100644
+index 6d8602c47805..8e89b75e71ea 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -754,7 +754,7 @@ int win2030_tbu_power(struct device *dev, bool is_powerUp)

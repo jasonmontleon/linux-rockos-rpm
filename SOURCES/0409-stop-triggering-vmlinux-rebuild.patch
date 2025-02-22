@@ -1,17 +1,20 @@
-From a4ee1a36eaddf273d5bc86468790788c358d48ea Mon Sep 17 00:00:00 2001
+From 0cb38164d0ed4f90d0dbd108afd0a6f1fbb36d19 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:03:43 -0500
-Subject: [PATCH 367/370] stop triggering vmlinux rebuild
+Subject: [PATCH 409/413] stop triggering vmlinux rebuild
 
 ---
  drivers/memory/eswin/Makefile            |   4 -
  drivers/memory/eswin/es_dev_buf/Makefile |   4 -
+ drivers/memory/eswin/es_proc/Makefile    |   4 -
  include/linux/buddy.h                    | 217 +++++++++++++++++++++++
  include/linux/dsp_dma_buf.h              |  44 +++++
+ include/linux/es_proc.h                  |  40 +++++
  include/linux/eswin_memblock.h           |  18 ++
- 5 files changed, 279 insertions(+), 8 deletions(-)
+ 7 files changed, 319 insertions(+), 12 deletions(-)
  create mode 100644 include/linux/buddy.h
  create mode 100644 include/linux/dsp_dma_buf.h
+ create mode 100644 include/linux/es_proc.h
  create mode 100644 include/linux/eswin_memblock.h
 
 diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
@@ -36,6 +39,18 @@ index 854348e41f91..391af838aada 100644
 -ES_DEV_DMA_BUF_HEADER := $(srctree)/drivers/memory/eswin/es_dev_buf/include/linux
 -COPY_HEADERS:=$(shell mkdir -p include/linux && cp $(ES_DEV_DMA_BUF_HEADER)/*.h include/linux)
 -
+diff --git a/drivers/memory/eswin/es_proc/Makefile b/drivers/memory/eswin/es_proc/Makefile
+index 9dc204e89fb8..09e2bc7767a3 100644
+--- a/drivers/memory/eswin/es_proc/Makefile
++++ b/drivers/memory/eswin/es_proc/Makefile
+@@ -1,7 +1,3 @@
+ # SPDX-License-Identifier: GPL-2.0
+ obj-$(CONFIG_ESWIN_PROC)	+= es_proc.o
+ ccflags-y := -DDEBUG
+-
+-ES_PROC_HEADER := $(srctree)/drivers/memory/eswin/es_proc/include/linux
+-
+-COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_PROC_HEADER)/*.h include/linux)
 diff --git a/include/linux/buddy.h b/include/linux/buddy.h
 new file mode 100644
 index 000000000000..ff47325f2d27
@@ -307,6 +322,52 @@ index 000000000000..ab6962ad1ccf
 +		   enum dma_data_direction direction);
 +void *dev_mem_vmap(struct dev_buffer_desc *dev_buffer);
 +void dev_mem_vunmap(struct dev_buffer_desc *dev_buf, void *vaddr);
++
++#endif
+diff --git a/include/linux/es_proc.h b/include/linux/es_proc.h
+new file mode 100644
+index 000000000000..65c73460e11b
+--- /dev/null
++++ b/include/linux/es_proc.h
+@@ -0,0 +1,40 @@
++// SPDX-License-Identifier: GPL-2.0-only
++/*
++ * Header file of es_proc.c
++ *
++ * Copyright 2024 Beijing ESWIN Computing Technology Co., Ltd.
++ *   Authors:
++ *    HuangYiFeng<huangyifeng@eswincomputing.com>
++ *
++ */
++
++#ifndef __ES_PROC__
++#define __ES_PROC__
++
++#define PROC_ENTRY_VI "vi"
++#define PROC_ENTRY_VO "vo"
++#define PROC_ENTRY_VB "vb"
++#define PROC_ENTRY_ISP "isp"
++
++// proc
++typedef struct es_proc_dir_entry {
++	char name[50];
++	void *proc_dir_entry;
++	int (*open)(struct es_proc_dir_entry *entry);
++	int (*read)(struct es_proc_dir_entry *entry);
++	int (*write)(struct es_proc_dir_entry *entry, const char *buf,
++		     int count, long long *);
++	void *private;
++	void *seqfile;
++	struct list_head node;
++} es_proc_entry_t;
++
++extern es_proc_entry_t *es_create_proc_entry(const char *name,
++					es_proc_entry_t *parent);
++extern es_proc_entry_t *es_proc_mkdir(const char *name,
++					es_proc_entry_t *parent);
++extern void es_remove_proc_entry(const char *name, es_proc_entry_t *parent);
++extern int es_seq_printf(es_proc_entry_t *entry, const char *fmt, ...)
++	__attribute__((format(printf, 2, 3)));
 +
 +#endif
 diff --git a/include/linux/eswin_memblock.h b/include/linux/eswin_memblock.h

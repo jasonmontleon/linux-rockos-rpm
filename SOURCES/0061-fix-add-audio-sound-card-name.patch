@@ -1,7 +1,7 @@
-From 2054f100e7a372c723a250584240d601a57778d6 Mon Sep 17 00:00:00 2001
+From e8819aa7cfa6e2a17849d04ff0131f41f7ce8ff3 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 2 Jul 2024 14:36:11 +0800
-Subject: [PATCH 061/370] fix:add audio sound card name.
+Subject: [PATCH 061/413] fix:add audio sound card name.
 
 Changelogs:
 	add audio sound card name.

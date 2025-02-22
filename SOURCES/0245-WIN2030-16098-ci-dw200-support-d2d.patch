@@ -1,7 +1,7 @@
-From f87f2ba66c7678f2561b73ce0d36efcc7de731d7 Mon Sep 17 00:00:00 2001
+From e568a2fd3bdbc7784d9b99cb2de62ac2eec9adf2 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Mon, 12 Aug 2024 18:41:31 +0800
-Subject: [PATCH 245/370] WIN2030-16098:ci:dw200 support d2d
+Subject: [PATCH 245/413] WIN2030-16098:ci:dw200 support d2d
 
 Changelogs:
 1. Refine dw200 driver for d2d

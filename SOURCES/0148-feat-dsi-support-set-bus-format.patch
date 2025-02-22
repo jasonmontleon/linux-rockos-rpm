@@ -1,7 +1,7 @@
-From d669173480aa9050c3ebfce795ada25dcf2f661b Mon Sep 17 00:00:00 2001
+From 7ad033d4afb7f24bc966dbd34b94cd5325c6c672 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 14 Aug 2024 14:54:12 +0800
-Subject: [PATCH 148/370] feat:dsi support set bus-format
+Subject: [PATCH 148/413] feat:dsi support set bus-format
 
 Changelogs:
 1.dts define panel bus-format:

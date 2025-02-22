@@ -1,7 +1,7 @@
-From 3091a401b60dd89eda5aa1a2a547d1006cc24051 Mon Sep 17 00:00:00 2001
+From c8663039ec51b94cef1d5871e1f7b24231a41d48 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 11 Dec 2024 18:14:17 +0800
-Subject: [PATCH 307/370] dts: enable 7702 d1_gpu
+Subject: [PATCH 307/413] dts: enable 7702 d1_gpu
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>

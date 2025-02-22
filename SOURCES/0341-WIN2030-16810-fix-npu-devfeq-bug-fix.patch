@@ -1,7 +1,7 @@
-From 9175548c94534afd781248e8c127a78770e67668 Mon Sep 17 00:00:00 2001
+From 5cc61add3e3a40b163e7752c5b0f0b94daeaf9b2 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Mon, 16 Dec 2024 11:25:50 +0800
-Subject: [PATCH 341/370] WIN2030-16810:fix: npu devfeq bug fix
+Subject: [PATCH 341/413] WIN2030-16810:fix: npu devfeq bug fix
 
 Changelogs:
 	1. when rise freq, need  firstly rise volt, and then rise freq.

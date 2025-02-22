@@ -1,0 +1,55 @@
+From 8af45b9e482a82cecc8ecc3b5958b633ae44fa59 Mon Sep 17 00:00:00 2001
+From: luoshanggui <luoshanggui@eswincomputing.com>
+Date: Mon, 16 Dec 2024 19:57:03 +0800
+Subject: [PATCH 369/413] WIN2030-16701: fix : die1 uart not inited, use uart0
+ both dual die Changelogs:
+
+Change-Id: Idcd61cbfb0f65d580925fef955205ade99f75e4b
+Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 46a70eb15886..f4c173ccb408 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1352,7 +1352,7 @@ ESWIN_MAILBOX_WR_LOCK_BIT_DSP_0
+ 					(ESWIN_MAILBOX_U84_TO_DSP_0_REG_BASE + 0x20000000)
+ 					ESWIN_MAIBOX_U84_IRQ_BIT
+ 					(ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE + 0x20000000)>;
+-				device-uart = <0x70910000>;
++				device-uart = <0x50900000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+ 				firmware-name = "eic7700_dsp_fw";
+@@ -1381,7 +1381,7 @@ ESWIN_MAILBOX_WR_LOCK_BIT_DSP_1
+ 					(ESWIN_MAILBOX_U84_TO_DSP_1_REG_BASE + 0x20000000)
+ 					ESWIN_MAIBOX_U84_IRQ_BIT
+ 					(ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE + 0x20000000)>;
+-				device-uart = <0x70910000>;
++				device-uart = <0x50900000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+ 				firmware-name = "eic7700_dsp_fw";
+@@ -1410,7 +1410,7 @@ ESWIN_MAILBOX_WR_LOCK_BIT_DSP_2
+ 					(ESWIN_MAILBOX_U84_TO_DSP_2_REG_BASE + 0x20000000)
+ 					ESWIN_MAIBOX_U84_IRQ_BIT
+ 					(ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE + 0x20000000)>;
+-				device-uart = <0x70910000>;
++				device-uart = <0x50900000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+ 				firmware-name = "eic7700_dsp_fw";
+@@ -1439,7 +1439,7 @@ ESWIN_MAILBOX_WR_LOCK_BIT_DSP_3
+ 					(ESWIN_MAILBOX_U84_TO_DSP_3_REG_BASE + 0x20000000)
+ 					ESWIN_MAIBOX_U84_IRQ_BIT
+ 					(ESWIN_MAILBOX_U84_TO_NPU_0_REG_BASE + 0x20000000)>;
+-				device-uart = <0x70910000>;
++				device-uart = <0x50900000>;
+ 				device-irq-mode = <1>;
+ 				host-irq-mode = <1>;
+ 				firmware-name = "eic7700_dsp_fw";
+-- 
+2.47.0
+
