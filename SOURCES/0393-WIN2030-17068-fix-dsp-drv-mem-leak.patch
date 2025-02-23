@@ -1,7 +1,7 @@
-From c29238bb739f1c107271cf064acb04079580d40b Mon Sep 17 00:00:00 2001
+From a84ce1f3a92ea71ca11baebcd742974f19d1c7a8 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 5 Feb 2025 19:57:56 +0800
-Subject: [PATCH 393/413] WIN2030-17068:fix:dsp drv mem leak
+Subject: [PATCH 393/414] WIN2030-17068:fix:dsp drv mem leak
 
 Changelogs:
 	dsp driver mem leak problem

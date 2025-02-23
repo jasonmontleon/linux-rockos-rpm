@@ -1,7 +1,7 @@
-From a8173b449c085b38331305dd7dcc32e5fba22495 Mon Sep 17 00:00:00 2001
+From d718946f537640217c53821ea1260817edbb1dae Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
-Subject: [PATCH 408/413] header workarounds
+Subject: [PATCH 408/414] header workarounds
 
 ---
  include/uapi/linux/dma_memcp.h      |  3 ++
@@ -11,7 +11,7 @@ Subject: [PATCH 408/413] header workarounds
  4 files changed, 35 insertions(+), 22 deletions(-)
 
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
-index 3cb75a348ba8..9b066772b6e0 100644
+index 3cb75a348ba8..3a4247abe26c 100644
 --- a/include/uapi/linux/dma_memcp.h
 +++ b/include/uapi/linux/dma_memcp.h
 @@ -21,6 +21,9 @@

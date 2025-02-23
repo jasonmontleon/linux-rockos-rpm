@@ -1,7 +1,7 @@
-From 6b997024c167b7293b1a08177d573974fe5707f3 Mon Sep 17 00:00:00 2001
+From 1714b7a0b32ea9bb55ce667929b538a5ce28a90a Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 23 May 2024 18:06:28 +0800
-Subject: [PATCH 023/413] feat(cma heap):Select CONFIG_DMABUF_HEAPS_CMA
+Subject: [PATCH 023/414] feat(cma heap):Select CONFIG_DMABUF_HEAPS_CMA
 
 Changelogs:
 1.Select CONFIG_DMABUF_HEAPS_CMA in arch/riscv/configs/win2030_defconfig

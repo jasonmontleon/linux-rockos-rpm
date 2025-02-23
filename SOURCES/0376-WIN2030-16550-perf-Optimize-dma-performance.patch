@@ -1,7 +1,7 @@
-From dfa3d72012a3df8f62198c7b2cf39bab0cd337f8 Mon Sep 17 00:00:00 2001
+From 84b4f75e5918e2fd336be3d6567d8b580cc09923 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 3 Jan 2025 18:10:25 +0800
-Subject: [PATCH 376/413] WIN2030-16550:perf:Optimize dma performance
+Subject: [PATCH 376/414] WIN2030-16550:perf:Optimize dma performance
 
 Changelogs:
 1. Dynamically adjust the parameter msize

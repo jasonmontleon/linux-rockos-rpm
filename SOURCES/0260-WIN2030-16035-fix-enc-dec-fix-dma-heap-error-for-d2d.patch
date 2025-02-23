@@ -1,7 +1,7 @@
-From f9e0a304a28b510bab52c185fac2340b29fa58d0 Mon Sep 17 00:00:00 2001
+From ea3d92c44b494629a91b1ba6e4d9dd26e3a908b5 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 10 Sep 2024 10:55:04 +0800
-Subject: [PATCH 260/413] WIN2030-16035:fix(enc&dec):fix dma heap error for d2d
+Subject: [PATCH 260/414] WIN2030-16035:fix(enc&dec):fix dma heap error for d2d
 
 Changelogs:
 	fix dma heap error for d2d.

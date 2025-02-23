@@ -1,7 +1,7 @@
-From 142d4bea27b78d315178492d73f53457df45b2a8 Mon Sep 17 00:00:00 2001
+From 4dbc6244bef82510755e975ea2b5fa1d14008a21 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 25 Jul 2024 16:21:19 +0800
-Subject: [PATCH 126/413] feat:add cpu-idle framework support
+Subject: [PATCH 126/414] feat:add cpu-idle framework support
 
 Changelogs:
 Add cpuidle driver.

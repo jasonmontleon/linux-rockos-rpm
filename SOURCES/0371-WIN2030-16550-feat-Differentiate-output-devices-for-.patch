@@ -1,7 +1,7 @@
-From 423f85e11d7145c8c734206cad3aea0f10646119 Mon Sep 17 00:00:00 2001
+From 0b724e8be07db2ccfa389bafc488b69a50e33801 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 17 Dec 2024 14:22:26 +0800
-Subject: [PATCH 371/413] WIN2030-16550:feat:Differentiate output devices for
+Subject: [PATCH 371/414] WIN2030-16550:feat:Differentiate output devices for
  platforms
 
 Changelogs:

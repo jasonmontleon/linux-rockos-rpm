@@ -1,0 +1,72 @@
+From 211cf4f692d3317a8c6a15778994681adbab7774 Mon Sep 17 00:00:00 2001
+From: Jason Montleon <jason@montleon.com>
+Date: Sat, 22 Feb 2025 21:33:23 -0500
+Subject: [PATCH 414/414] remove mmz vb reserved memory ranges
+
+---
+ arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 8 +-------
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts        | 6 ------
+ arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts    | 6 ------
+ 3 files changed, 1 insertion(+), 19 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 5e0df61988f5..6066ea39d77e 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -105,12 +105,6 @@ g2d_12GB_boundary_reserved_4k {
+ 			no-map;
+ 			reg = <0x2 0xfffff000 0x0 0x1000>;
+ 		};
+-
+-		mmz_nid_0_part_0 {
+-			compatible = "eswin-reserve-memory";
+-			reg = <0x3 0x0 0x1 0x80000000>;
+-			no-map;
+-		};
+ 	};
+ };
+ 
+@@ -896,4 +890,4 @@ opp-1800000000 {
+ 		opp-microvolt = <900000>;
+ 		clock-latency-ns = <70000>;
+ 	};
+-};
+\ No newline at end of file
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 2aa98e7ded79..a5a871d446fc 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -108,12 +108,6 @@ g2d_12GB_boundary_reserved_4k {
+ 			no-map;
+ 			reg = <0x2 0xfffff000 0x0 0x1000>;
+ 		};
+-
+-		mmz_nid_0_part_0 {
+-			compatible = "eswin-reserve-memory";
+-			reg = <0x3 0x0 0x1 0x80000000>;
+-			no-map;
+-		};
+ 	};
+ 
+ 	leds {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index 70889ccceb7d..8cb3c9eb40ff 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -96,12 +96,6 @@ g2d_12GB_boundary_reserved_4k {
+ 			no-map;
+ 			reg = <0x2 0xfffff000 0x0 0x1000>;
+ 		};
+-
+-		mmz_nid_0_part_0 {
+-			compatible = "eswin-reserve-memory";
+-			reg = <0x3 0x0 0x1 0x80000000>;
+-			no-map;
+-		};
+ 	};
+ 
+ 	leds {
+-- 
+2.47.0
+

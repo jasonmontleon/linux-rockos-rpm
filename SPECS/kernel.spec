@@ -169,7 +169,7 @@ Summary: The Linux kernel
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
-%define specrelease 201%{?buildid}%{?dist}
+%define specrelease 203%{?buildid}%{?dist}
 # This defines the kabi tarball version
 %define kabiversion 6.6.79
 
@@ -1380,6 +1380,7 @@ Patch10410: 0410-Add-missing-newline.patch
 Patch10411: 0411-uninvert-the-fan.patch
 Patch10412: 0412-Reduce-crit-threshold-temp-to-85000.patch
 Patch10413: 0413-eswin-dsp-fixes.patch
+Patch10414: 0414-remove-mmz-vb-reserved-memory-ranges.patch
 
 
 
@@ -2549,6 +2550,7 @@ ApplyOptionalPatch 0410-Add-missing-newline.patch
 ApplyOptionalPatch 0411-uninvert-the-fan.patch
 ApplyOptionalPatch 0412-Reduce-crit-threshold-temp-to-85000.patch
 ApplyOptionalPatch 0413-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0414-remove-mmz-vb-reserved-memory-ranges.patch
 
 
 
@@ -4541,6 +4543,12 @@ fi\
 #
 #
 %changelog
+* Sat Feb 22 2025 Jason Montleon <jason@montleon.com> [6.6.79-203.eswin]
+- Remove mmz reserved memory from dtbs
+
+* Sat Feb 22 2025 Jason Montleon <jason@montleon.com> [6.6.79-202.eswin]
+- Disable ESWIN_MMZ_VB 
+
 * Sat Feb 22 2025 Jason Montleon <jason@montleon.com> [6.6.79-201.eswin]
 - Disable PM. It breaks sd card detect
 

@@ -1,7 +1,7 @@
-From 244de98b43bd79dbc0c425b186c8e8b492ce42ce Mon Sep 17 00:00:00 2001
+From 75a21c627bd16b2b04f3df0797d59d0b7568f478 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Fri, 21 Feb 2025 03:13:29 -0500
-Subject: [PATCH 413/413] eswin dsp fixes
+Subject: [PATCH 413/414] eswin dsp fixes
 
 ---
  drivers/soc/eswin/ai_driver/dsp/dsp_main.c     | 1 +

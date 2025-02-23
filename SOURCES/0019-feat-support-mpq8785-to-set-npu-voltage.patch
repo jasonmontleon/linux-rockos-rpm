@@ -1,7 +1,7 @@
-From eb52896951d486f31349b3ca686e88018419da08 Mon Sep 17 00:00:00 2001
+From c884694424e37ece4c7bfe5febbf9a91af85c686 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 15:15:28 +0800
-Subject: [PATCH 019/413] feat:support mpq8785 to set npu voltage
+Subject: [PATCH 019/414] feat:support mpq8785 to set npu voltage
 
 Changelogs:
 ---

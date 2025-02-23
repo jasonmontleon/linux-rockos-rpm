@@ -1,7 +1,7 @@
-From f7b4f523295115c22d921a330a94c5d2e93a9435 Mon Sep 17 00:00:00 2001
+From 7d23ad5cb8af8a6e6b82a6753260e14ece53dfb5 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 27 Nov 2024 15:01:03 +0800
-Subject: [PATCH 295/413] WIN2030-14758:fix:split dmabuf
+Subject: [PATCH 295/414] WIN2030-14758:fix:split dmabuf
 
 Changelogs:
 1.Determine the exp_name of dmabuf, if it's linux,cma then use different struct type

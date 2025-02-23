@@ -1,7 +1,7 @@
-From b95fbbeb5d7264bbbfe297d09098fda0898670be Mon Sep 17 00:00:00 2001
+From 6c0dae6d7d261ed8b4a331cc296b5fd20e4382af Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 29 Oct 2024 09:41:49 +0800
-Subject: [PATCH 277/413] WIN2030-16445:fix:Resolve DSP & NPU driver
+Subject: [PATCH 277/414] WIN2030-16445:fix:Resolve DSP & NPU driver
  compilation issue.
 
 Changelogs:

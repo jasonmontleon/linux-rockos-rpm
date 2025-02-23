@@ -1,7 +1,7 @@
-From 8bf608b9b9ee43a478ffbd1f6dbbd8e446f8f913 Mon Sep 17 00:00:00 2001
+From 8f26282e826930717fa90de0817cd236c7e6fc9e Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 24 Jan 2025 17:16:08 +0800
-Subject: [PATCH 364/413] configs: eswin: add
+Subject: [PATCH 364/414] configs: eswin: add
  DEVFREQ_GOV_{PERFORMANCE|POWERSAVE|USERSPACE|PASSIVE}
 
 +CONFIG_DEVFREQ_GOV_PERFORMANCE=y
