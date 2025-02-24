@@ -1,7 +1,7 @@
 From b8518c9f6e6a6c52df96357d166d8c8270fdb8b6 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 16 Dec 2024 17:00:09 +0800
-Subject: [PATCH 344/414] WIN2030-16813:chore:disable IPA adjust with target
+Subject: [PATCH 344/415] WIN2030-16813:chore:disable IPA adjust with target
 
 Changelogs:
 Disable IPA adjust from soc dtsi

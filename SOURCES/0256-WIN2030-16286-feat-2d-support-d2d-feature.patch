@@ -1,7 +1,7 @@
 From e3bbf189657187013fabbf3f2c501b2dec7f2081 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Mon, 9 Sep 2024 09:23:12 +0800
-Subject: [PATCH 256/414] WIN2030-16286:feat:2d support d2d feature
+Subject: [PATCH 256/415] WIN2030-16286:feat:2d support d2d feature
 
 Changelogs:
 1. enable the die1 2d to work

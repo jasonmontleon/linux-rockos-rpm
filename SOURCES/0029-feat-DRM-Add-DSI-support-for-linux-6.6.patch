@@ -1,7 +1,7 @@
 From cb65400f26019b469b0fae688c98dcc6f4be4e35 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 22 May 2024 14:27:49 +0800
-Subject: [PATCH 029/414] feat(DRM): Add DSI support for linux 6.6
+Subject: [PATCH 029/415] feat(DRM): Add DSI support for linux 6.6
 
 Changelogs:
 1. Add support for mipi dsi driver

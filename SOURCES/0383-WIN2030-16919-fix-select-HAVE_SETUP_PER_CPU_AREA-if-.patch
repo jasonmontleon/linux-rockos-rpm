@@ -1,7 +1,7 @@
 From 8a591e805e7da5945b2fedab0d245d9a4279ae5d Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 16:45:33 +0800
-Subject: [PATCH 383/414] WIN2030-16919:fix:select HAVE_SETUP_PER_CPU_AREA if
+Subject: [PATCH 383/415] WIN2030-16919:fix:select HAVE_SETUP_PER_CPU_AREA if
  NUMA enable
 
 Changelogs:

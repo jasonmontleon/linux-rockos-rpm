@@ -1,7 +1,7 @@
 From 62d0c105f967ea6f00e00f04e6ac026182e9521b Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 6 Feb 2025 13:57:29 +0800
-Subject: [PATCH 391/414] WIN2030-16813:fix:corrected critical temperature
+Subject: [PATCH 391/415] WIN2030-16813:fix:corrected critical temperature
 
 Changelogs:
 Corrected critical temperature from 110 to 105

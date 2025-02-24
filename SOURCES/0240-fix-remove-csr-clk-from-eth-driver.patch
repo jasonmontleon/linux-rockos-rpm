@@ -1,7 +1,7 @@
 From 727d65ee5d6ee23511ddfb5c1d36965c29ebc429 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Fri, 8 Nov 2024 14:27:18 +0800
-Subject: [PATCH 240/414] fix:remove csr clk from eth driver.
+Subject: [PATCH 240/415] fix:remove csr clk from eth driver.
 
 Changelogs:
 1.remove csr clk from eth driver.

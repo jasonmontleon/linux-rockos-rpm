@@ -169,7 +169,7 @@ Summary: The Linux kernel
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
-%define specrelease 203%{?buildid}%{?dist}
+%define specrelease 204%{?buildid}%{?dist}
 # This defines the kabi tarball version
 %define kabiversion 6.6.79
 
@@ -1381,6 +1381,7 @@ Patch10411: 0411-uninvert-the-fan.patch
 Patch10412: 0412-Reduce-crit-threshold-temp-to-85000.patch
 Patch10413: 0413-eswin-dsp-fixes.patch
 Patch10414: 0414-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10415: 0415-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -2551,6 +2552,7 @@ ApplyOptionalPatch 0411-uninvert-the-fan.patch
 ApplyOptionalPatch 0412-Reduce-crit-threshold-temp-to-85000.patch
 ApplyOptionalPatch 0413-eswin-dsp-fixes.patch
 ApplyOptionalPatch 0414-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0415-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -4543,6 +4545,11 @@ fi\
 #
 #
 %changelog
+* Sun Feb 23 2025 Jason Montleon <jason@montleon.com> [6.6.79-204.eswin]
+- Enable ESWIN_MMZ_VB and other disabled ESWIN options
+- Add NPU enabled variants of dtbs (these reserve 6GB of system RAM for the NPU)
+- add remainder of dsp ai_driver workarounds so it will build
+
 * Sat Feb 22 2025 Jason Montleon <jason@montleon.com> [6.6.79-203.eswin]
 - Remove mmz reserved memory from dtbs
 
