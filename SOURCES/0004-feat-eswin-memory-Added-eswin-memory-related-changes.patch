@@ -1,7 +1,7 @@
 From 27eca641d823aebd88e8a2dc087d46559d3f27eb Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 11 Apr 2024 18:09:23 +0800
-Subject: [PATCH 004/415] feat(eswin memory):Added eswin memory related changes
+Subject: [PATCH 004/416] feat(eswin memory):Added eswin memory related changes
 
 Changelogs:
 1.Exported arch_sync_dma_for_xx() API for eswin heap and vb

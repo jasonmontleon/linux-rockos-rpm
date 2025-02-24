@@ -1,7 +1,7 @@
 From 437d599cb8377eaef5195ab43246bf8318351b85 Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Tue, 12 Nov 2024 10:47:12 +0800
-Subject: [PATCH 229/415] <WIN2030-16633>:feat:updata gpu kernel driver to
+Subject: [PATCH 229/416] <WIN2030-16633>:feat:updata gpu kernel driver to
  ddk24.2. Changelogs: updata gpu kernel driver to ddk24.2.
 
 Change-Id: I6156776066ce9d315450451616e872c4ed056ce6

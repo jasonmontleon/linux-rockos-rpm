@@ -1,7 +1,7 @@
 From 05bd7cfead521ac2c8e6249bfcd73834ccaa8e04 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 23 Oct 2024 14:19:57 +0800
-Subject: [PATCH 322/415] WIN2030-16532:feat(vdec):add devfreq support
+Subject: [PATCH 322/416] WIN2030-16532:feat(vdec):add devfreq support
 
 Changelogs:
   vdec add devfreq support.

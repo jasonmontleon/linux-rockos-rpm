@@ -1,7 +1,7 @@
 From 9e6b2f1a8d10fbc56552de647bd565601730c741 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Wed, 11 Sep 2024 17:21:40 +0800
-Subject: [PATCH 263/415] WIN2030-16286:feat:fix 2d cannot alloc die0 cma addr
+Subject: [PATCH 263/416] WIN2030-16286:feat:fix 2d cannot alloc die0 cma addr
  issue
 
 Changelogs:

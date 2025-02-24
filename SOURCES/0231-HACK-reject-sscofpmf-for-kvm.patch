@@ -1,7 +1,7 @@
 From 7f9055fc8e39730b36b6f7ab6bbdd4ffece585e1 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 11 Nov 2024 23:30:40 +0800
-Subject: [PATCH 231/415] HACK: reject sscofpmf for kvm
+Subject: [PATCH 231/416] HACK: reject sscofpmf for kvm
 
 cannot start VM properly after enabling
 temporary reject probe sscofpmf

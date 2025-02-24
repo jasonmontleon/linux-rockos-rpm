@@ -1,7 +1,7 @@
 From 102d2350448525addcefbb744a64e1e173310a62 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 27 Dec 2024 09:46:44 +0800
-Subject: [PATCH 388/415] WIN2030-16891:fix:llc drv add set npu default voltage
+Subject: [PATCH 388/416] WIN2030-16891:fix:llc drv add set npu default voltage
 
 Changelogs:
 	llc driver add set npu default voltage operation

@@ -1,0 +1,24 @@
+From 0910df55ee91699249bc0bbd754c1d862a25ff1d Mon Sep 17 00:00:00 2001
+From: Jason Montleon <jmontleo@redhat.com>
+Date: Wed, 12 Feb 2025 14:20:11 -0500
+Subject: [PATCH 412/416] uninvert the fan...
+
+---
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 44909d48079b..d04b2606d54b 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -719,7 +719,6 @@ &d0_mbox7 {
+ 
+ &fan_control {
+ 	status = "okay";
+-	eswin,pwm_inverted;
+ };
+ 
+ &d0_i2c0 {
+-- 
+2.47.0
+

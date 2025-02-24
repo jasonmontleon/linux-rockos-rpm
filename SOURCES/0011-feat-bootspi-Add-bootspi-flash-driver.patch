@@ -2,7 +2,7 @@ From 9e8fb70f91d7166779ed01935dc92540d46a59af Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 10:39:21 +0800
-Subject: [PATCH 011/415] feat(bootspi):Add bootspi flash driver
+Subject: [PATCH 011/416] feat(bootspi):Add bootspi flash driver
 
 Changelogs:
     1.Added bootspi flash driver

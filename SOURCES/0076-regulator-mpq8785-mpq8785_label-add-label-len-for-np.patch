@@ -1,7 +1,7 @@
 From 5850ec6009a46be6e44a8091168d846c838463ce Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sun, 7 Jul 2024 00:45:36 +0800
-Subject: [PATCH 076/415] regulator: mpq8785: mpq8785_label: add label len for
+Subject: [PATCH 076/416] regulator: mpq8785: mpq8785_label: add label len for
  "npu temperature1"
 
 detected buffer overflow in strcpy

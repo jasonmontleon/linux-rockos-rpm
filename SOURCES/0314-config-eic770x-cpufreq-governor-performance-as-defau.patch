@@ -1,7 +1,7 @@
 From 29075589007f4b585f119abeb47a2daf8d259f6a Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 21:42:06 +0800
-Subject: [PATCH 314/415] config: eic770x: cpufreq governor performance as
+Subject: [PATCH 314/416] config: eic770x: cpufreq governor performance as
  default
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>

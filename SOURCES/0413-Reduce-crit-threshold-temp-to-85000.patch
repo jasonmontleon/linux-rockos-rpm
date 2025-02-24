@@ -1,0 +1,25 @@
+From 6ffa4843e1753fadd27427792ab2e4e03d2227a3 Mon Sep 17 00:00:00 2001
+From: Jason Montleon <jmontleo@redhat.com>
+Date: Tue, 18 Feb 2025 12:49:37 -0500
+Subject: [PATCH 413/416] Reduce crit threshold temp to 85000
+
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index e4663a6e1be6..1e74b5e807ab 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -53,7 +53,7 @@ target: trip-point1 {
+ 				};
+ 				*/
+ 				crit: trip-point2 {
+-					temperature     = <105000>;
++					temperature     = <85000>;
+ 					hysteresis      = <0>;
+ 					type            = "critical";
+ 				};
+-- 
+2.47.0
+
