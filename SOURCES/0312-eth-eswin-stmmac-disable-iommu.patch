@@ -1,4 +1,4 @@
-From c311060c1e15a61d94f0afa4ef8ca651384da840 Mon Sep 17 00:00:00 2001
+From 5314171e5a9d7314ad5864963981979c81aabd38 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 11:43:23 +0800
 Subject: [PATCH 312/416] eth: eswin: stmmac: disable iommu

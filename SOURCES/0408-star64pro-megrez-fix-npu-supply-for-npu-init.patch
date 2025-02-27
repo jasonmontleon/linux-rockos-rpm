@@ -1,4 +1,4 @@
-From 63d12662fc593e1672561ffdf0f41ecc2bdb3f86 Mon Sep 17 00:00:00 2001
+From 9912d234f9babb1d8f33a51310dd933a5ec5aa69 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sun, 23 Feb 2025 01:51:50 +0800
 Subject: [PATCH 408/416] star64pro & megrez: fix npu-supply for npu init

@@ -1,4 +1,4 @@
-From 957a1b4a6c1c094a4f58e9778a292e06c42b26cc Mon Sep 17 00:00:00 2001
+From 3f8d52383a3838cffc427c67a7a8a2f598e5c52e Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 30 Jul 2024 15:42:23 +0800
 Subject: [PATCH 127/416] fix(VE): fix var name redefinition
