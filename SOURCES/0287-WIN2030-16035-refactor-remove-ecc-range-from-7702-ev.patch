@@ -1,4 +1,4 @@
-From 67cf007ddd072b376789b0069fc19b8aa8eeba10 Mon Sep 17 00:00:00 2001
+From a423f45f2c399855479f1546409f7bb38feace94 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 21 Nov 2024 20:09:03 +0800
 Subject: [PATCH 287/416] WIN2030-16035:refactor:remove ecc range from 7702 evb
@@ -53,5 +53,5 @@ index f6b416a65a95..d26e6e5f505f 100644
  		};
  	};
 -- 
-2.47.0
+2.48.1
 

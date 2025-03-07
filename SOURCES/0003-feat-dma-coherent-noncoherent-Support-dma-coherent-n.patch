@@ -1,4 +1,4 @@
-From f8f50813d5c741fd04b26d1721b3647f6c0caaee Mon Sep 17 00:00:00 2001
+From c4363fcf4ca06dd7b406969c424ec0ad20d4c634 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Sun, 7 Apr 2024 17:38:16 +0800
 Subject: [PATCH 003/416] feat(dma coherent/noncoherent):Support dma
@@ -810,5 +810,5 @@ index 3684f5b40a80..a88123c81ace 100644
  
  	ccache_cache_ops.get_priv_group = ccache_get_priv_group;
 -- 
-2.47.0
+2.48.1
 

@@ -1,4 +1,4 @@
-From b714bbab8d3d23e3248407935d0c51d3ae3ef6b3 Mon Sep 17 00:00:00 2001
+From 685cc4a688830e6e08cf55b9395ef5a484f1342f Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 10 Jan 2025 18:58:10 +0800
 Subject: [PATCH 396/416] WIN2030-14758:perf:Improve GPU mmu operation and
@@ -960,7 +960,7 @@ index a0357b43d914..110497d4d5af 100644
          PRINT_INFO("cycle_elapsed:%lld---%%\%lld.%2lld, %s\n",
              m_perf_i->cycles_elapased, (100*m_perf_i->cycles_elapased)/total_cycles,
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index 07ab8b4be69c..8b1b99ae333b 100644
+index b124e2243ff5..e53f317b85a9 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
 @@ -8436,6 +8436,7 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
@@ -972,5 +972,5 @@ index 07ab8b4be69c..8b1b99ae333b 100644
  static int get_user_cpu_mask(unsigned long __user *user_mask_ptr, unsigned len,
  			     struct cpumask *new_mask)
 -- 
-2.47.0
+2.48.1
 

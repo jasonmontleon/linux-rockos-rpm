@@ -1,4 +1,4 @@
-From 7941dba18be86727a7e7470ffbb94f7d9741a7c2 Mon Sep 17 00:00:00 2001
+From bb5a79f8cbc0cc10cf220e6a0fc1706b7024f9c3 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 13 Sep 2024 10:13:48 +0800
 Subject: [PATCH 265/416] WIN2030-16035:feat:Add undefined device information
@@ -266,5 +266,5 @@ index e23aace10f03..b48b2b84020d 100644
  			compatible = "eswin,bootspi";
  			reg = <0x0 0x71800000 0x0 0x8000>,
 -- 
-2.47.0
+2.48.1
 

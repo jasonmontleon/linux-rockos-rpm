@@ -1,4 +1,4 @@
-From 9b99ef9342530a3a70305955be00abc04101a0e3 Mon Sep 17 00:00:00 2001
+From abd69ab5081feeee9591ece185ee58ac791d7a63 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 21 May 2024 13:50:46 +0800
 Subject: [PATCH 010/416] feat(CMA):Select CONFIG_CMA and CONFIG_DMA_CMA
@@ -30,5 +30,5 @@ index 332acc518c31..725ad2400def 100644
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
 -- 
-2.47.0
+2.48.1
 

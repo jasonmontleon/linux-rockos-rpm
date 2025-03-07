@@ -1,4 +1,4 @@
-From c82b2521e89b47565d024b53f6ac776fc0605073 Mon Sep 17 00:00:00 2001
+From 18e651c3a820b7e28a8c4b2beab1125dab247dc4 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 11 Dec 2024 18:14:17 +0800
 Subject: [PATCH 307/416] dts: enable 7702 d1_gpu
@@ -23,5 +23,5 @@ index bf68852cbb0e..34502e9b98a1 100644
  
  &gc820 {
 -- 
-2.47.0
+2.48.1
 

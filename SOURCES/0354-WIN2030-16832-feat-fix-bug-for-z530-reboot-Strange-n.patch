@@ -1,4 +1,4 @@
-From 2087a842eaec2e8678bbd2020cabcbff01f8c2d0 Mon Sep 17 00:00:00 2001
+From d7af8bb6d78164e53ddf7a0c0996ffab7f6f0500 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 18 Dec 2024 11:00:57 +0800
 Subject: [PATCH 354/416] WIN2030-16832:feat:fix bug for z530 reboot Strange
@@ -37,5 +37,5 @@ index 77f225e11a2d..26aedb86a7c9 100644
  }
  
 -- 
-2.47.0
+2.48.1
 

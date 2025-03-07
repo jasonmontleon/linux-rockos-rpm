@@ -1,4 +1,4 @@
-From c22c7d69df843a7823f9cce2f89d8414c67ced93 Mon Sep 17 00:00:00 2001
+From 23b608e32f96193f485c8c413068261a501cae96 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Wed, 10 Jul 2024 17:24:52 +0800
 Subject: [PATCH 073/416] img gpu kmd: update kernel api - register_shrinker
@@ -39,5 +39,5 @@ index a36b769bc6d6..3a664506de4f 100644
  
  	kmem_cache_destroy(g_psLinuxPageArray);
 -- 
-2.47.0
+2.48.1
 

@@ -1,4 +1,4 @@
-From 6b6d1688de0f3e191485db272aacb3d1f6bc944f Mon Sep 17 00:00:00 2001
+From 950f3ffc421aff9940daa43bf2ab581a5710f459 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 2 Jul 2024 15:08:43 +0800
 Subject: [PATCH 060/416] feat(dts):add apply_npu_high_freq in dts
@@ -28,5 +28,5 @@ index bde120c77fe1..70b720d094c3 100644
 +};
 \ No newline at end of file
 -- 
-2.47.0
+2.48.1
 

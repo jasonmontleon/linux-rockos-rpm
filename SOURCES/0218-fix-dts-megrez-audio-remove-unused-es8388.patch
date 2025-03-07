@@ -1,4 +1,4 @@
-From 62c7d32eec114a2570715a4d48c04f3e7b6895cb Mon Sep 17 00:00:00 2001
+From 6d3695d81d8cdd21a1e3735c259e28185ba1d648 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 2 Nov 2024 22:09:23 +0800
 Subject: [PATCH 218/416] fix: dts: megrez audio: remove unused es8388
@@ -64,5 +64,5 @@ index b060cebe874b..fbab3ae40f53 100644
  
  &d0_i2c1 {
 -- 
-2.47.0
+2.48.1
 

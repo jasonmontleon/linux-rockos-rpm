@@ -1,4 +1,4 @@
-From 96970d8530e7b40eb89e2b4fc9d21317d2f101ff Mon Sep 17 00:00:00 2001
+From 34ddc365ec08c5643d82103b14f87b1d804f843f Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 20 Jun 2024 08:56:15 +0800
 Subject: [PATCH 057/416] fix:Solving HDMI driver compilation issue.
@@ -25,5 +25,5 @@ index de77dc0d9101..77733cd77352 100644
        This selects support for ESWIN SoC specific extensions
        for the Synopsys DesignWare HDMI driver. If you want to
 -- 
-2.47.0
+2.48.1
 

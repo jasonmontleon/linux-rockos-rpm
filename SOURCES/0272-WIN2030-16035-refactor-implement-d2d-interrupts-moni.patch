@@ -1,4 +1,4 @@
-From b4375f181e927e252076d8d0b56716fb36e52d7d Mon Sep 17 00:00:00 2001
+From 5332c232d36fa4383f85805624f7f225b7f4cd97 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 24 Sep 2024 09:59:34 +0800
 Subject: [PATCH 272/416] WIN2030-16035:refactor:implement d2d interrupts
@@ -384,5 +384,5 @@ index 000000000000..e237641177b7
 +
 +subsys_initcall(init_d2d_unit);
 -- 
-2.47.0
+2.48.1
 

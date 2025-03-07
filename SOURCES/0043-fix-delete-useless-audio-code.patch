@@ -1,4 +1,4 @@
-From 5e756fa7cdd1546af4a8c8228faf5483b40ed1eb Mon Sep 17 00:00:00 2001
+From d836211c7757b7c908ff4e5e5b0abd0aa061c330 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 3 Jun 2024 14:28:29 +0800
 Subject: [PATCH 043/416] fix:delete useless audio code.
@@ -405,5 +405,5 @@ index e2a203812d12..271a5881d3de 100644
  			no-map;
  			reg = <0x0 0xa0000000 0x0 0x100000>;
 -- 
-2.47.0
+2.48.1
 

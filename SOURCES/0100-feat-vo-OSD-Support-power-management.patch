@@ -1,4 +1,4 @@
-From f5482824c8979ea68ab4eaeb748d32afe947a99c Mon Sep 17 00:00:00 2001
+From 6a7ffaf7242bd319e771a65b835b6731f076eec1 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Tue, 16 Jul 2024 17:43:26 +0800
 Subject: [PATCH 100/416] feat(vo): OSD Support power management
@@ -157,5 +157,5 @@ index 3a20987aa799..8dbc3b4d7eb2 100644
  	const struct es_dc_funcs *funcs;
  };
 -- 
-2.47.0
+2.48.1
 

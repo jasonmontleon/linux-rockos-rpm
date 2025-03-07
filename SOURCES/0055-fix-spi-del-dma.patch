@@ -1,4 +1,4 @@
-From ae536a45005228d03d00f040546cff37f249bcd5 Mon Sep 17 00:00:00 2001
+From a8493e0088564b050ca2bfaf08666da845290585 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 14 Jun 2024 14:54:27 +0800
 Subject: [PATCH 055/416] fix:spi del dma
@@ -63,5 +63,5 @@ index 39c1ae316ac0..4462f5b87513 100644
  };
  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
 -- 
-2.47.0
+2.48.1
 

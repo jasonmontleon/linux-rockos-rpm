@@ -1,4 +1,4 @@
-From cec14e07bcd1c93e5a6ec6cf66f8458b83f0c4ee Mon Sep 17 00:00:00 2001
+From 2f58c1385c44f11423549cdedf6644e962d27bdf Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 17 Jan 2025 17:26:22 +0800
 Subject: [PATCH 387/416] WIN2030-16900:feature:support sbc display
@@ -961,5 +961,5 @@ index 4ea7003b0339..0f4231b585a9 100755
  MODULE_LICENSE("GPL v2");
  MODULE_DESCRIPTION("DesignWare USB3 ESWIN Glue Layer");
 -- 
-2.47.0
+2.48.1
 

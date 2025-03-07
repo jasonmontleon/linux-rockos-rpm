@@ -1,4 +1,4 @@
-From ac7bdae974f2ca64ceb7dc3ba2d71a02f67f88d1 Mon Sep 17 00:00:00 2001
+From 71df29079dcaa4c9cda87341f03dfbba723c6da4 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 14 Aug 2024 14:27:32 +0800
 Subject: [PATCH 150/416] fix:kasan for vc driver
@@ -37,5 +37,5 @@ index 09c4195a60af..008166eeb8cc 100644
  
  static struct platform_driver eswin_venc_driver = {
 -- 
-2.47.0
+2.48.1
 

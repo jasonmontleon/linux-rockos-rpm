@@ -1,4 +1,4 @@
-From c89763d6f050a2ac9d08aa159070d50c9f6279b9 Mon Sep 17 00:00:00 2001
+From 1d645b953392578505026d673b07f100dcceabf5 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 28 Aug 2024 16:01:05 +0800
 Subject: [PATCH 163/416] feat:add eic7700_dbg_defconfig
@@ -856,5 +856,5 @@ index 000000000000..16397c4ba2f4
 +# CONFIG_RUNTIME_TESTING_MENU is not set
 +CONFIG_MEMTEST=y
 -- 
-2.47.0
+2.48.1
 

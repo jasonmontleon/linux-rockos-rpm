@@ -1,4 +1,4 @@
-From a57d50dd3d868126e8cc222d2c4db1d3d27496d2 Mon Sep 17 00:00:00 2001
+From fe0f09c1787fc1fc4be329a2c7f333bd6ed19b53 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
 Subject: [PATCH 409/416] header workarounds
@@ -162,5 +162,5 @@ index 1bb76ebb5aa8..9faa47344498 100644
  
  #define MMZ_VB_IOC_MAGIC 		'M'
 -- 
-2.47.0
+2.48.1
 

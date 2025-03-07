@@ -1,4 +1,4 @@
-From 377d68b2e333934fc866614b83499ce1b5ef8ebd Mon Sep 17 00:00:00 2001
+From 82c60ed587516f71c05aa339dda3ded42f3a0c52 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:13:09 +0800
 Subject: [PATCH 216/416] dts: eswin: add megrez device tree
@@ -928,5 +928,5 @@ index 000000000000..01740497fc84
 +	apply_npu_high_freq;
 +};
 -- 
-2.47.0
+2.48.1
 

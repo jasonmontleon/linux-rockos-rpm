@@ -1,4 +1,4 @@
-From 5314171e5a9d7314ad5864963981979c81aabd38 Mon Sep 17 00:00:00 2001
+From ec098c8536e0706dcec0b574bb9b3c0a927956ad Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 11:43:23 +0800
 Subject: [PATCH 312/416] eth: eswin: stmmac: disable iommu
@@ -54,5 +54,5 @@ index e0eb8522a10b..31b718685d06 100644
  			dma-noncoherent;
  			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x1034 0x200 0x208>;
 -- 
-2.47.0
+2.48.1
 

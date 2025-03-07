@@ -1,4 +1,4 @@
-From 0915789f1fb7853fca0b63bab7f459fa83abb9f6 Mon Sep 17 00:00:00 2001
+From 37ae8a906748e01d65e334370e7dde4a6afdb85c Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 24 May 2024 16:51:46 +0800
 Subject: [PATCH 031/416] feat:pvt_sensors driver to linux 6.6.
@@ -1242,5 +1242,5 @@ index 000000000000..aaf7c55171e9
 +#endif /* __HWMON_ESWIN_PVT_H__ */
 +
 -- 
-2.47.0
+2.48.1
 

@@ -1,4 +1,4 @@
-From 0f1eb8052d0192404222eb5fe71d81fd1b7f39a1 Mon Sep 17 00:00:00 2001
+From a93c56b5b01c841bde48ed2ad45fc4c9691a74be Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 9 Oct 2024 20:51:07 +0800
 Subject: [PATCH 304/416] package: add linux-tools
@@ -189,5 +189,5 @@ index fcbcfa0c3a6a..a2d133c5a6d5 100755
  
  if is_enabled CONFIG_MODULES; then
 -- 
-2.47.0
+2.48.1
 

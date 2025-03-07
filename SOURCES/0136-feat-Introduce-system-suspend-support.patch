@@ -1,4 +1,4 @@
-From ae8ba2ae9a325f6343d8b415fa1510f13ea290eb Mon Sep 17 00:00:00 2001
+From d05fe8a174dc236764e19e297e29c94dedb99527 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 1 Aug 2024 16:47:31 +0800
 Subject: [PATCH 136/416] feat:Introduce system suspend support
@@ -226,5 +226,5 @@ index 000000000000..ac5aa4928b6c
 +
 +arch_initcall(eic770x_system_suspend_init);
 -- 
-2.47.0
+2.48.1
 

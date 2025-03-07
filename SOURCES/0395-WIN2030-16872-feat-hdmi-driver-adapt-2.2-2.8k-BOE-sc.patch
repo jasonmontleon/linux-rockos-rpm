@@ -1,4 +1,4 @@
-From dc45c5ef30f5de92c84fe90c4ffa840380ed1adc Mon Sep 17 00:00:00 2001
+From 9e6522328523fb0da8151845f921d5adfbd609de Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 6 Feb 2025 14:40:35 +0800
 Subject: [PATCH 395/416] WIN2030-16872:feat:hdmi driver adapt 2.2/2.8k BOE
@@ -107,5 +107,5 @@ index 84f75833aa62..eefbabba3c92 100644
  		513820000,
  		{ 0x3080, 0x31c0, 0x3100 },
 -- 
-2.47.0
+2.48.1
 

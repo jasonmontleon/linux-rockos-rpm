@@ -1,4 +1,4 @@
-From 83a23f99404399f773686df6e6ead510f61bfd97 Mon Sep 17 00:00:00 2001
+From a75a0bf0196afc589075dd1fd1818bff8c345b43 Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/416] Merge patch series "membarrier: riscv: Core
@@ -266,7 +266,7 @@ index 60ed7713b5ee..18176301c6b9 100644
  	bool
  
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index c686d826a91c..07ab8b4be69c 100644
+index 784a4f840945..b124e2243ff5 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
 @@ -6608,7 +6608,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
@@ -348,5 +348,5 @@ index 4e715b9b278e..809194cd779f 100644
  	 */
  	smp_mb();	/* exit from system call is not a mb */
 -- 
-2.47.0
+2.48.1
 

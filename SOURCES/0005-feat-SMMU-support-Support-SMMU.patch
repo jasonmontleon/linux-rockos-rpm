@@ -1,4 +1,4 @@
-From d38fe10694a0feeb1aaaf67a0874e11e1f02cba9 Mon Sep 17 00:00:00 2001
+From 95e031df199009d416019cc79956dbb7303948dc Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
 Subject: [PATCH 005/416] feat(SMMU support):Support SMMU
@@ -1754,5 +1754,5 @@ index 290b961eb729..d78b8c3f72a8 100644
  menu "ESWIN EIC770X SoC Family Selection"
  	depends on ARCH_ESWIN_EIC770X_SOC_FAMILY
 -- 
-2.47.0
+2.48.1
 

@@ -1,4 +1,4 @@
-From f37126ec98d0ac6a06a47d66f52189bfdc3a6938 Mon Sep 17 00:00:00 2001
+From d5ca73a2e086484cdb3f9ab8e397ad69320b1f23 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 18:04:21 +0800
 Subject: [PATCH 236/416] configs: enable CONFIG_BCMDHD_SDIO_IRQ
@@ -21,5 +21,5 @@ index c1ce4ce9ed4c..7d9b96993252 100644
  # CONFIG_INPUT_KEYBOARD is not set
  # CONFIG_INPUT_MOUSE is not set
 -- 
-2.47.0
+2.48.1
 

@@ -1,4 +1,4 @@
-From b656b3a17c227a3e5131194c3b4dec9626d8ad89 Mon Sep 17 00:00:00 2001
+From d9898774f7803908f9a57860f5466ac18c06f4a0 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Fri, 8 Nov 2024 14:27:18 +0800
 Subject: [PATCH 240/416] fix:remove csr clk from eth driver.
@@ -104,5 +104,5 @@ index e80061c95639..66e0cc12ce44 100644
  	if (IS_ERR(dwc_priv->clk_tx)) {
  		dev_err(&pdev->dev, "tx clock not found.\n");
 -- 
-2.47.0
+2.48.1
 

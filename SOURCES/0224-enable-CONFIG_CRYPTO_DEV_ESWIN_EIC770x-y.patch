@@ -1,4 +1,4 @@
-From 39c06483f8601337f7711740589ae1efea4a665c Mon Sep 17 00:00:00 2001
+From 9406a8cc22ac2642aebdf3feb6efdfd11aa79e1b Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:04:57 +0800
 Subject: [PATCH 224/416] enable CONFIG_CRYPTO_DEV_ESWIN_EIC770x=y
@@ -21,5 +21,5 @@ index 079152612a36..043710150877 100644
  CONFIG_CRC7=y
  CONFIG_DMA_CMA=y
 -- 
-2.47.0
+2.48.1
 

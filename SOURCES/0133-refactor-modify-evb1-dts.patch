@@ -1,4 +1,4 @@
-From 2176cf9b9fa95bbeca22d2af272817e781b9b331 Mon Sep 17 00:00:00 2001
+From 63cc39ff3da68f5b080207bb0ad6b20e540b2b68 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 1 Aug 2024 17:32:12 +0800
 Subject: [PATCH 133/416] refactor:modify evb1 dts
@@ -91,5 +91,5 @@ index fc7dd40a4bc4..854bd4a80e1d 100644
  };
  
 -- 
-2.47.0
+2.48.1
 

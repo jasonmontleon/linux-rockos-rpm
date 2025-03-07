@@ -1,4 +1,4 @@
-From dbb0d0d7737a36381f725f21947a579ac199e723 Mon Sep 17 00:00:00 2001
+From 8572e9f6495861db8bd7a61dc428dd615e10b489 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 19 Dec 2024 11:29:42 +0800
 Subject: [PATCH 350/416] WIN2030-16412:feat:change mode 0660
@@ -25,5 +25,5 @@ index 2901a5e8525e..7d0772bf03cd 100644
  };
  
 -- 
-2.47.0
+2.48.1
 

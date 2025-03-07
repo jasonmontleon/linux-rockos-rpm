@@ -1,4 +1,4 @@
-From fb11be11e3d1fb5661af2ed231cbd516d45cf8cb Mon Sep 17 00:00:00 2001
+From c30b1287e64423ceeb7462190ff43659980cb926 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 24 Jul 2024 16:21:05 +0800
 Subject: [PATCH 116/416] fix:Fix a fan duty cycle error
@@ -37,5 +37,5 @@ index 31a1b673b89c..1a9ded7f2c32 100644
  
  &d0_i2c0 {
 -- 
-2.47.0
+2.48.1
 

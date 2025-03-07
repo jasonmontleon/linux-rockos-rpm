@@ -1,4 +1,4 @@
-From 239e4a46c1f52fd0b28d00c908512df7514c5464 Mon Sep 17 00:00:00 2001
+From fe627f2069859011b80a989869b0dfdd0fe1d8b6 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 30 Oct 2024 10:50:24 +0800
 Subject: [PATCH 206/416] fix:open card sleep 0.5ms then set volume
@@ -25,5 +25,5 @@ index dee9086d612e..29d7c5f0c612 100644
  	mutex_lock(&es8328->vol_mutex);
  	es8328->vol_set_flag = true;
 -- 
-2.47.0
+2.48.1
 

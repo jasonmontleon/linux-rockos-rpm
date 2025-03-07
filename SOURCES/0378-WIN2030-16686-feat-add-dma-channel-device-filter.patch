@@ -1,4 +1,4 @@
-From 2cf416b82f78af1ee9a5b4eb352de6e1643b95fe Mon Sep 17 00:00:00 2001
+From b60c4b05aecce29327fa71e6b584c76b4db86136 Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Thu, 9 Jan 2025 09:44:00 +0800
 Subject: [PATCH 378/416] WIN2030-16686:feat:add dma channel & device filter
@@ -238,5 +238,5 @@ index 7d0772bf03cd..3eec1aa413f2 100644
          pr_warn("dma request channel failed, Try using any of them.\n");
          dma_ch = dma_request_channel(mask, NULL, NULL);
 -- 
-2.47.0
+2.48.1
 

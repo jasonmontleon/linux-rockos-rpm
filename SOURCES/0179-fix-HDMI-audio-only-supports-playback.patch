@@ -1,4 +1,4 @@
-From 67bb83f815eaf0e5b5ca2a66efcb026dd12edc62 Mon Sep 17 00:00:00 2001
+From e81096941c621535c27019f415ccc68aa3829e55 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 24 Sep 2024 14:29:26 +0800
 Subject: [PATCH 179/416] fix:HDMI audio only supports playback.
@@ -65,5 +65,5 @@ index fb032ebd085e..4c5d33faade4 100755
  	{
  		.name = "i2s0",
 -- 
-2.47.0
+2.48.1
 

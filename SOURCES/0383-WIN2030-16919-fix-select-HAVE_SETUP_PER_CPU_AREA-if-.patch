@@ -1,4 +1,4 @@
-From c431c5bcda68799f8f3495543f4283ac60461faa Mon Sep 17 00:00:00 2001
+From 46f253eda97a492a584dafb993e62e48203d2fd0 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 16:45:33 +0800
 Subject: [PATCH 383/416] WIN2030-16919:fix:select HAVE_SETUP_PER_CPU_AREA if
@@ -27,5 +27,5 @@ index d69a7dc8a022..02d015d8850e 100644
  	select PCI_DOMAINS_GENERIC if PCI
  	select PCI_MSI if PCI
 -- 
-2.47.0
+2.48.1
 
