@@ -1374,14 +1374,15 @@ Patch10404: 0404-fix-sifive-ccache_flush64_range.patch
 Patch10405: 0405-iommu-eswin-sync-remove-internal-arguments-from-of_p.patch
 Patch10406: 0406-config-sync-from-eic7700_defconfig.patch
 Patch10407: 0407-iommu-eswin-lower-the-priority-of-TBU-dump.patch
-Patch10408: 0408-header-workarounds.patch
-Patch10409: 0409-stop-triggering-vmlinux-rebuild.patch
-Patch10410: 0410-Add-missing-newline.patch
-Patch10411: 0411-uninvert-the-fan.patch
-Patch10412: 0412-Reduce-crit-threshold-temp-to-85000.patch
-Patch10413: 0413-eswin-dsp-fixes.patch
-Patch10414: 0414-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10415: 0415-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10408: 0408-star64pro-megrez-fix-npu-supply-for-npu-init.patch
+Patch10409: 0409-header-workarounds.patch
+Patch10410: 0410-stop-triggering-vmlinux-rebuild.patch
+Patch10411: 0411-Add-missing-newline.patch
+Patch10412: 0412-uninvert-the-fan.patch
+Patch10413: 0413-Reduce-crit-threshold-temp-to-85000.patch
+Patch10414: 0414-eswin-dsp-fixes.patch
+Patch10415: 0415-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10416: 0416-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -2545,14 +2546,15 @@ ApplyOptionalPatch 0404-fix-sifive-ccache_flush64_range.patch
 ApplyOptionalPatch 0405-iommu-eswin-sync-remove-internal-arguments-from-of_p.patch
 ApplyOptionalPatch 0406-config-sync-from-eic7700_defconfig.patch
 ApplyOptionalPatch 0407-iommu-eswin-lower-the-priority-of-TBU-dump.patch
-ApplyOptionalPatch 0408-header-workarounds.patch
-ApplyOptionalPatch 0409-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0410-Add-missing-newline.patch
-ApplyOptionalPatch 0411-uninvert-the-fan.patch
-ApplyOptionalPatch 0412-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0413-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0414-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0415-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0408-star64pro-megrez-fix-npu-supply-for-npu-init.patch
+ApplyOptionalPatch 0409-header-workarounds.patch
+ApplyOptionalPatch 0410-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0411-Add-missing-newline.patch
+ApplyOptionalPatch 0412-uninvert-the-fan.patch
+ApplyOptionalPatch 0413-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0414-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0415-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0416-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
