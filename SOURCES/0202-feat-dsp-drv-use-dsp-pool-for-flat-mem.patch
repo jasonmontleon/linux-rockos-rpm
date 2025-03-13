@@ -1,4 +1,4 @@
-From 5866f5917810ad24cb991c7b2c9a9a1da3191fe4 Mon Sep 17 00:00:00 2001
+From ec5874d5ce1d731fd147f6b000007108bbe694ee Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 23 Oct 2024 18:23:02 +0800
 Subject: [PATCH 202/416] feat: dsp drv use dsp pool for flat mem

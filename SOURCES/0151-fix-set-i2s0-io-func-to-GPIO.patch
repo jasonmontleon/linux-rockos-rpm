@@ -1,4 +1,4 @@
-From 281c8a163c2d90b8d13aa03458e7586ff131093a Mon Sep 17 00:00:00 2001
+From cea1858e0ff722340c66f76bd8a29a8d69189d79 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 15 Aug 2024 10:30:29 +0800
 Subject: [PATCH 151/416] fix:set i2s0 io func to GPIO.
