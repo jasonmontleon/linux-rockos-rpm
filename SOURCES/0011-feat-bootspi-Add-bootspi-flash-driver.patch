@@ -1,8 +1,8 @@
-From 5b05fd955508bdf324b05b9289342599c0928c55 Mon Sep 17 00:00:00 2001
+From 02c7d16785f58336e5d2552f95458453c3113d88 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 10:39:21 +0800
-Subject: [PATCH 011/416] feat(bootspi):Add bootspi flash driver
+Subject: [PATCH 011/440] feat(bootspi):Add bootspi flash driver
 
 Changelogs:
     1.Added bootspi flash driver
@@ -720,5 +720,5 @@ index 000000000000..c8fbc1b3fc91
 +MODULE_DESCRIPTION("Eswin Boot SPI Controller Driver for EIC770X SoCs");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.48.1
+2.49.0
 

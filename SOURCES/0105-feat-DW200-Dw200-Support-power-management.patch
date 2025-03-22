@@ -1,7 +1,7 @@
-From 9d1e359fbe53dd598612bd2971f8cd976142016b Mon Sep 17 00:00:00 2001
+From c1241b7e9eef889b4b7403643f29761b6537f350 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 17 Jul 2024 10:14:04 +0800
-Subject: [PATCH 105/416] feat(DW200): Dw200 Support power management
+Subject: [PATCH 105/440] feat(DW200): Dw200 Support power management
 
 Changelogs:
 1. Add generic & runtime power management for dw200.
@@ -382,5 +382,5 @@ index 2810f0a57d80..7ee5a88a803c 100644
  };
  module_platform_driver(viv_platform_driver);
 -- 
-2.48.1
+2.49.0
 

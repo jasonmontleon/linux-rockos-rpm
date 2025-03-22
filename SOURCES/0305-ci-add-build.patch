@@ -1,7 +1,7 @@
-From 4947a6d4c7794a02fffc8035e2b23e6e5e0eb8ac Mon Sep 17 00:00:00 2001
+From 1c00af2c294e3ee4943c13d066529d33b2ed0b34 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 18 Nov 2024 03:55:15 +0800
-Subject: [PATCH 305/416] ci: add build
+Subject: [PATCH 305/440] ci: add build
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
@@ -180,5 +180,5 @@ index 000000000000..5bd0b9c584eb
 +          path: rockos-${{ matrix.name }}.tar.gz
 +          retention-days: 30
 -- 
-2.48.1
+2.49.0
 

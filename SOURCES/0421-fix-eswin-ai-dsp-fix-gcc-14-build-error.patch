@@ -1,19 +1,19 @@
-From fc506fa1368512df7842489912f85d258f2fcbc1 Mon Sep 17 00:00:00 2001
-From: Jason Montleon <jason@montleon.com>
-Date: Fri, 21 Feb 2025 03:13:29 -0500
-Subject: [PATCH 414/416] eswin dsp fixes
+From c419ba6f9001f3d2cf5890bd3f995de3bd7b097b Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Sat, 8 Mar 2025 03:04:33 +0800
+Subject: [PATCH 421/440] fix: eswin: ai: dsp: fix gcc-14 build error
 
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---
  drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c             | 8 ++++----
  drivers/soc/eswin/ai_driver/dsp/dsp_main.c              | 1 +
  drivers/soc/eswin/ai_driver/dsp/dsp_platform.c          | 1 +
- drivers/soc/eswin/ai_driver/dsp/dsp_platform.h          | 4 ++++
- drivers/soc/eswin/ai_driver/dsp/dsp_proc.c              | 1 +
+ drivers/soc/eswin/ai_driver/dsp/dsp_platform.h          | 3 +++
  drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c | 4 ++--
- 6 files changed, 13 insertions(+), 6 deletions(-)
+ 5 files changed, 11 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 6b567365de80..35f3fc09c14e 100644
+index c79b5748242e..1cc31a98eb58 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -509,8 +509,8 @@ static struct dsp_user_req_async *dsp_set_task_info(struct dsp_file *dsp_file,
@@ -22,21 +22,21 @@ index 6b567365de80..35f3fc09c14e 100644
  	user_req->dsp_file = dsp_file;
 -	user_req->callback = task->task.callback;
 -	user_req->cbarg = task->task.cbArg;
-+	user_req->callback = (u64) task->task.callback;
-+	user_req->cbarg = (u64) task->task.cbArg;
++	user_req->callback = (u64)task->task.callback;
++	user_req->cbarg = (u64)task->task.cbArg;
  	INIT_LIST_HEAD(&user_req->async_ll);
  
  	dsp_debug("%s, user_req=0x%px.\n", __func__, user_req);
-@@ -1121,7 +1121,7 @@ static long dsp_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
+@@ -1138,7 +1138,7 @@ static long dsp_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
  		retval = dsp_ioctl_load_op(flip, (dsp_ioctl_load_s *)arg);
  		break;
  	case DSP_IOCTL_UNLOAD_OP:
 -		retval = dsp_ioctl_unload_op(flip, arg);
-+		retval = dsp_ioctl_unload_op(flip, &arg);
++		retval = dsp_ioctl_unload_op(flip, (dsp_ioctl_unload_s *)arg);
  		break;
  	case DSP_IOCTL_SUBMIT_TSK_ASYNC:
  		retval = dsp_ioctl_submit_tsk_async(
-@@ -1209,7 +1209,7 @@ static int dsp_open(struct inode *inode, struct file *flip)
+@@ -1226,7 +1226,7 @@ static int dsp_open(struct inode *inode, struct file *flip)
  	if (ret != 0) {
  		dsp_err("%s, init kernel handle error.\n", __func__);
  		kfree(dsp_file);
@@ -46,63 +46,50 @@ index 6b567365de80..35f3fc09c14e 100644
  	}
  	INIT_LIST_HEAD(&dsp_file->async_ll_complete);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 9cd6a5686515..d36ec75a6412 100644
+index 9cd6a5686515..c5f6f2a83b12 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-@@ -60,6 +60,7 @@
- #include <linux/dma-mapping.h>
+@@ -61,6 +61,7 @@
  #include <linux/devfreq.h>
  #include <linux/pm_opp.h>
-+#include <linux/eswin-win2030-sid-cfg.h>
  
++#include <linux/eswin-win2030-sid-cfg.h>
  #include "eswin-khandle.h"
  
+ #include "dsp_main.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 342bdb20baae..00190249c2be 100644
+index 9754713ea389..45d4821e902b 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-@@ -39,6 +39,7 @@
+@@ -36,6 +36,7 @@
+ #include <linux/eswin-win2030-sid-cfg.h>
+ #include <dt-bindings/memory/eswin-win2030-sid.h>
+ #include <linux/clk.h>
++#include <linux/clk-provider.h>
  #include <linux/slab.h>
  #include <linux/iommu.h>
  #include <linux/es_iommu_rsv.h>
-+#include <linux/clk-provider.h>
- #include "eswin-dsp-subsys.h"
- 
- #include "dsp_platform.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-index 40740cdfe21e..ea6bd9924a9b 100644
+index 40740cdfe21e..238bddc4c9eb 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-@@ -31,11 +31,15 @@ int es_dsp_reboot_core(struct es_dsp_hw *);
- int es_dsp_enable(struct es_dsp_hw *);
- void es_dsp_disable(struct es_dsp_hw *);
- int es_dsp_set_rate(struct es_dsp_hw *, unsigned long *rate);
-+int es_dsp_get_rate(struct es_dsp_hw *hw);
- void es_dsp_reset(struct es_dsp_hw *);
- void es_dsp_halt(struct es_dsp_hw *);
- void es_dsp_release(struct es_dsp_hw *);
- int es_dsp_sync(struct es_dsp *dsp);
- int es_dsp_load_op(struct es_dsp_hw *, void *op_ptr);
+@@ -64,6 +64,7 @@ int dsp_get_resource(struct platform_device *pdev, struct es_dsp *dsp);
+ int dsp_put_resource(struct es_dsp *dsp);
+ 
+ int es_dsp_get_subsys(struct platform_device *pdev, struct es_dsp *dsp);
++void es_dsp_put_subsys(struct es_dsp *dsp);
+ void dsp_free_hw(struct es_dsp *dsp);
+ int dsp_alloc_hw(struct platform_device *pdev, struct es_dsp *dsp);
+ int dsp_enable_irq(struct es_dsp *dsp);
+@@ -72,4 +73,6 @@ void dsp_disable_mbox_clock(struct es_dsp *dsp);
+ int dsp_enable_mbox_clock(struct es_dsp *dsp);
+ int wait_for_current_tsk_done(struct es_dsp *dsp);
+ 
 +int es_dsp_map_resource(struct es_dsp *dsp);
 +int es_dsp_unmap_resource(struct es_dsp *dsp);
-+void es_dsp_put_subsys(struct es_dsp *dsp);
- 
- int es_dsp_platform_init(void);
- int es_dsp_platform_uninit(void);
-diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-index e21212fecb6b..99a1cfe2b6c5 100644
---- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-+++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-@@ -26,6 +26,7 @@
- #include <linux/seq_file.h>
- #include <linux/iommu.h>
- #include "dsp_main.h"
-+#include "dsp_platform.h"
- 
- static struct proc_dir_entry *proc_es_dsp;
- extern int dsp_log_level;
+ #endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
-index e5967e94da47..1784f8c4dfc3 100644
+index e5967e94da47..f77995d442a2 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
 @@ -212,9 +212,9 @@ static xtmld_ptr align_ptr(xtmld_ptr ptr, uint32_t t_align, uint32_t t_paddr)
@@ -110,13 +97,13 @@ index e5967e94da47..1784f8c4dfc3 100644
  	// adjustment before it can be aligned to the desired boundary.
  	uint32_t align_adj = align - offset - 1;
 -	xtmld_ptr ret = ((((uint32_t)ptr + align_adj) & ~(align - 1)) + offset);
-+	xtmld_ptr ret = (void *)((((uint32_t)ptr + align_adj) & ~(align - 1)) + offset);
++	xtmld_ptr ret = (xtmld_ptr)((((uint32_t)ptr + align_adj) & ~(align - 1)) + offset);
  #ifndef __XTENSA__
 -	xtmld_ptr ret_hi = (uint64_t)ptr & ADDR64_HI;
-+	xtmld_ptr ret_hi = (void *)((uint64_t)ptr & ADDR64_HI);
++	xtmld_ptr ret_hi = (xtmld_ptr)((uint64_t)ptr & ADDR64_HI);
  	ret = (xtmld_ptr)((uint64_t)ret_hi | (uint64_t)ret);
  #endif
  	return ret;
 -- 
-2.48.1
+2.49.0
 

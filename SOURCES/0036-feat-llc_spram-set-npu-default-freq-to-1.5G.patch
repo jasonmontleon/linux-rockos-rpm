@@ -1,7 +1,7 @@
-From 8aceffda089ba958bbc7d4d6c7b818a23734d434 Mon Sep 17 00:00:00 2001
+From 20c396c306d012b367dc7bbfb084f5eda4d62b8d Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 28 May 2024 10:37:37 +0800
-Subject: [PATCH 036/416] feat(llc_spram):set npu default freq to 1.5G
+Subject: [PATCH 036/440] feat(llc_spram):set npu default freq to 1.5G
 
 Changelogs:
 1.Added apply_npu_high_freq attribute in the dev_llc_d0 dts node to set npu default freq to 1.5G
@@ -283,5 +283,5 @@ index d7f3c91491f1..44784eeefba3 100644
  
  #endif /* __LINUX_ESWIN_NPU_H */
 -- 
-2.48.1
+2.49.0
 

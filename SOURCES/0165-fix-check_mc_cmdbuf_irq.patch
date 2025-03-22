@@ -1,7 +1,7 @@
-From 2d39900133fbf0a92166da006471d982f06624ae Mon Sep 17 00:00:00 2001
+From dbeae1b7185ce29a7ea950b8033d64f72fc5b4b7 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 29 Aug 2024 17:26:10 +0800
-Subject: [PATCH 165/416] fix:check_mc_cmdbuf_irq
+Subject: [PATCH 165/440] fix:check_mc_cmdbuf_irq
 
 Changelogs:
   1. Decoder uses a thread to periodically check the vcmd status for
@@ -205,5 +205,5 @@ index 9991f4e2ed8e..4f597b740eb2 100644
  };
  #endif
 -- 
-2.48.1
+2.49.0
 

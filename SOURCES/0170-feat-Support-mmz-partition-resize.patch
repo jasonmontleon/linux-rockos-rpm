@@ -1,7 +1,7 @@
-From b2e556764b675aad38c5ad5a8ba4472fef965cbf Mon Sep 17 00:00:00 2001
+From f2a26acf992e1cd4b501e9b88667b68cd7363e99 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 4 Sep 2024 15:13:10 +0800
-Subject: [PATCH 170/416] feat:Support mmz partition resize
+Subject: [PATCH 170/440] feat:Support mmz partition resize
 
 Changelogs:
 1.It is able to resize the mmz partition via uboot command:"fdt mmz <name> <addr> <size>".
@@ -57,5 +57,5 @@ index c99b0b0b100d..06c8635c6a60 100644
  	return 0;
  }
 -- 
-2.48.1
+2.49.0
 

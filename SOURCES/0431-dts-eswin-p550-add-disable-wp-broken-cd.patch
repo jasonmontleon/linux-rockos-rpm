@@ -1,0 +1,26 @@
+From 610c9db2ec6604ce28651576f61237588440ef3a Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Thu, 20 Mar 2025 20:23:49 +0800
+Subject: [PATCH 431/440] dts: eswin: p550: add disable-wp & broken-cd
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 5e0df61988f5..e3124c608630 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -443,6 +443,8 @@ &sdio0 {
+ 	enable-data-pullup;
+ 	no-sdio;
+ 	no-mmc;
++	disable-wp;
++	broken-cd;
+ };
+ 
+ &sdio1 {
+-- 
+2.49.0
+

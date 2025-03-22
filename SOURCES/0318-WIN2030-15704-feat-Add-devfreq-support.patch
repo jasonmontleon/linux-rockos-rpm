@@ -1,7 +1,7 @@
-From edf65311d311f68d875f164578e12e2b83efa2cd Mon Sep 17 00:00:00 2001
+From 9924ca2994e57fd08fca797696c56bc7b810a83a Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 15 Oct 2024 10:29:01 +0800
-Subject: [PATCH 318/416] WIN2030-15704:feat:Add devfreq support
+Subject: [PATCH 318/440] WIN2030-15704:feat:Add devfreq support
 
 Changelogs:
    1.Enable the devfreq feature option in Linux, currently
@@ -378,5 +378,5 @@ index ea9471381e02..2a7ba4077a99 100644
  	return 0;
  }
 -- 
-2.48.1
+2.49.0
 

@@ -1,7 +1,7 @@
-From 40aac6210a57e1f9db4b93fe5c1fc7feea50df4f Mon Sep 17 00:00:00 2001
+From 16c7f9d441bbc1ff1d32ae53c3b9b84cb129a81e Mon Sep 17 00:00:00 2001
 From: Jeegar Lakhani <jeegar.lakhani@sifive.com>
 Date: Mon, 26 Aug 2024 22:35:26 -0700
-Subject: [PATCH 226/416] Use .NOTINTERMEDIATE or .SECONDARY based on make
+Subject: [PATCH 226/440] Use .NOTINTERMEDIATE or .SECONDARY based on make
  version
 
 Signed-off-by: Jeegar Lakhani <jeegar.lakhani@sifive.com>
@@ -28,5 +28,5 @@ index 60174af49e4a..087e156a263f 100644
  define symlink-source-file
  @if [ ! -e $(dir $@) ]; then mkdir -p $(dir $@); fi
 -- 
-2.48.1
+2.49.0
 

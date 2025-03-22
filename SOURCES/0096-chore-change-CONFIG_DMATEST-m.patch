@@ -1,7 +1,7 @@
-From 1ec98066aa2205beafdaca6d9600ea527a4db11a Mon Sep 17 00:00:00 2001
+From b992917f95192782055846db4e79be414cdbfffd Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 15 Jul 2024 11:12:23 +0800
-Subject: [PATCH 096/416] chore:change CONFIG_DMATEST=m
+Subject: [PATCH 096/440] chore:change CONFIG_DMATEST=m
 
 Changelogs:
 1. CONFIG_DMATEST change to m
@@ -25,5 +25,5 @@ index e7c3b818c598..370b8dbe4a2e 100644
  CONFIG_DMABUF_HEAPS_SYSTEM=y
  CONFIG_DMABUF_HEAPS_CMA=y
 -- 
-2.48.1
+2.49.0
 

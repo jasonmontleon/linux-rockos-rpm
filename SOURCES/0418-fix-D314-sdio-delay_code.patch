@@ -1,0 +1,29 @@
+From 40d1251b0314db3f4b096c8aed0b40921185d033 Mon Sep 17 00:00:00 2001
+From: Xiang Xu <xuxiang@eswincomputing.com>
+Date: Fri, 28 Feb 2025 14:17:24 +0800
+Subject: [PATCH 418/440] fix: D314 sdio delay_code
+
+Changelogs:
+1. Optimize the D314 SDIO DELAY CODE parameter
+
+Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-d314.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+index 3c2da482d2fe..df9ab2e935ec 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+@@ -89,7 +89,7 @@ &isp_1 {
+ &sdio0 {
+ 	/* sd card */
+ 	status = "okay";
+-	delay_code = <0x55>;
++	delay_code = <0x33>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+-- 
+2.49.0
+

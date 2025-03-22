@@ -1,7 +1,7 @@
-From 2bf437f8a0835c8384a8ed2f8238b908f1f3eab6 Mon Sep 17 00:00:00 2001
+From 7646ff83d957d4ac07f8ba66a3861b4e83f7e4e8 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 29 May 2024 14:11:20 +0800
-Subject: [PATCH 039/416] fix:dsp dma-ranges buf fix
+Subject: [PATCH 039/440] fix:dsp dma-ranges buf fix
 
 Changelogs:
     linux 6.6 reslove dma-ranges from parent.
@@ -99,5 +99,5 @@ index 971b506eaf0b..bbb403cf4776 100644
  				tbus = <WIN2030_TBUID_DSP3>;
  				dma-noncoherent;
 -- 
-2.48.1
+2.49.0
 

@@ -1,7 +1,7 @@
-From 5d1929cfef41deea48da4d5a662d25f83d50a5fc Mon Sep 17 00:00:00 2001
+From 38a3cb0cc98c67211d3a39c8b5d78aad0cb3b884 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 19 Dec 2024 11:29:42 +0800
-Subject: [PATCH 350/416] WIN2030-16412:feat:change mode 0660
+Subject: [PATCH 350/440] WIN2030-16412:feat:change mode 0660
 
 Changelogs:
 1. change mode 0660
@@ -25,5 +25,5 @@ index 2901a5e8525e..7d0772bf03cd 100644
  };
  
 -- 
-2.48.1
+2.49.0
 

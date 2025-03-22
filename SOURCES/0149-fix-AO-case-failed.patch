@@ -1,7 +1,7 @@
-From 3e5866ccd1f9e4dee5e06bcee0580ab2bdeff47c Mon Sep 17 00:00:00 2001
+From 464f2e34896b756b95e406db312a67b5d8d85362 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 9 Aug 2024 17:43:51 +0800
-Subject: [PATCH 149/416] fix:AO case failed.
+Subject: [PATCH 149/440] fix:AO case failed.
 
 Changelogs:
 	Resolve the issue of system crashed caused by run AO test.
@@ -165,5 +165,5 @@ index acf232996815..02c05b85dfab 100755
  err_probe:
  	clk_disable_unprepare(i2s_drvdata->clk);
 -- 
-2.48.1
+2.49.0
 

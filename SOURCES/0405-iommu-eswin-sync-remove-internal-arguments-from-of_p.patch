@@ -1,7 +1,7 @@
-From 9f1c2249c3c5721d7567f05f3a32d057744da87c Mon Sep 17 00:00:00 2001
+From f7d09e68b5bd0bb3f3a604b99f75539bd20d002d Mon Sep 17 00:00:00 2001
 From: HanGao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:26:32 +0800
-Subject: [PATCH 405/416] iommu: eswin: sync remove internal arguments from
+Subject: [PATCH 405/440] iommu: eswin: sync remove internal arguments from
  of_property_for_each_u32
 
 Signed-off-by: HanGao <rabenda.cn@gmail.com>
@@ -50,5 +50,5 @@ index 7a4d5fe5002e..e3308e4e35ee 100644
  		if (0 == win2030_get_tbu_priv(nid, tbu_id, &tbu_priv_p)) {
  			tbu_client_p = tbu_priv_p->tbu_client_p;
 -- 
-2.48.1
+2.49.0
 

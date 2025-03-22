@@ -1,7 +1,7 @@
-From 722fe99eba9690064f6fe1cf1664f58f796f4082 Mon Sep 17 00:00:00 2001
+From 7f6d4cfea17142ab7fb96593e128a41ed590bb8d Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 24 Dec 2024 16:02:46 +0800
-Subject: [PATCH 355/416] WIN2030-16857:fix:dsp pm devfreq bug fix
+Subject: [PATCH 355/440] WIN2030-16857:fix:dsp pm devfreq bug fix
 
 Changelogs:
 	dsp pm devfreq bug fix when not set CONFIG_PM_DEVFREQ
@@ -73,5 +73,5 @@ index 1a5a1a0d7e16..5a2f3e97d9d8 100644
  err_mbox_clk:
  	es_dsp_unmap_resource(dsp);
 -- 
-2.48.1
+2.49.0
 

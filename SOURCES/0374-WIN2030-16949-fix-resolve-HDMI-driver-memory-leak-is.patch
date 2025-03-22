@@ -1,7 +1,7 @@
-From 1b5f34c5364d05ecc6a37048fee8b6806d26e164 Mon Sep 17 00:00:00 2001
+From e664f17c13dc10227df1ad8b97efb3ec860650b4 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 7 Jan 2025 17:14:19 +0800
-Subject: [PATCH 374/416] WIN2030-16949:fix:resolve HDMI driver memory leak
+Subject: [PATCH 374/440] WIN2030-16949:fix:resolve HDMI driver memory leak
  issue.
 
 Changelogs:
@@ -26,5 +26,5 @@ index 82a3cc3f69aa..4a49bcfbd49f 100644
  	}
  }
 -- 
-2.48.1
+2.49.0
 

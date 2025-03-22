@@ -1,7 +1,7 @@
-From 19f1e0409868744e2f297d4ea56c2d80908f4cda Mon Sep 17 00:00:00 2001
+From f6a081e4deff84312c51987783cd7bda0e73e976 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 29 Oct 2024 16:23:18 +0800
-Subject: [PATCH 275/416] WIN2030-16572:feat: dsp move dual die support to
+Subject: [PATCH 275/440] WIN2030-16572:feat: dsp move dual die support to
  linux kernel
 
 Changelogs:
@@ -159,5 +159,5 @@ index 83c309dcae5a..45c8bda644cc 100644
  	if (ret != 0) {
  		dev_err(dsp->dev, "iommu map dsp pts phy error.\n");
 -- 
-2.48.1
+2.49.0
 

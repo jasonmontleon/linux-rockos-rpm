@@ -1,7 +1,7 @@
-From 8a24d23c15a568cd70b1e6b0e494b8a0718353c2 Mon Sep 17 00:00:00 2001
+From beb709d004fc7c1e8aa2df7ba0ed27a6c40b9427 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 8 Oct 2024 16:36:27 +0800
-Subject: [PATCH 190/416] feat:NPU & DSP driver port.
+Subject: [PATCH 190/440] feat:NPU & DSP driver port.
 
 Changelogs:
 	1.delete NPU & DSP SDK drivers.
@@ -552,5 +552,5 @@ index 29de4587ff04..3602d3c9a0f6 100644
  ccflags-y += -I$(srctree)/drivers/memory/eswin/es_dev_buf/include/linux
  
 -- 
-2.48.1
+2.49.0
 

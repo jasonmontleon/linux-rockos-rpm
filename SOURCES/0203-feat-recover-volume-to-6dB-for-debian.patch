@@ -1,7 +1,7 @@
-From 19de99068767c2db4e01d716523a638518e73214 Mon Sep 17 00:00:00 2001
+From bf7e5d34cc67c4ff9dc997c8458b16769d1cd858 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 18 Oct 2024 18:05:32 +0800
-Subject: [PATCH 203/416] feat:recover volume to -6dB for debian
+Subject: [PATCH 203/440] feat:recover volume to -6dB for debian
 
 Changelogs:
 1. reset volume for -6dB for debian
@@ -220,5 +220,5 @@ index 3c01c33f2737..dee9086d612e 100644
  }
  EXPORT_SYMBOL_GPL(es8328_probe);
 -- 
-2.48.1
+2.49.0
 

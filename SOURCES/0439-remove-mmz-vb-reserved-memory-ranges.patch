@@ -1,7 +1,7 @@
-From d9dd01e140bc5be4e0c65f5f591211d467c210be Mon Sep 17 00:00:00 2001
+From 8a4102ce7e062e047f14e83dd5274987810c9435 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sat, 22 Feb 2025 21:33:23 -0500
-Subject: [PATCH 415/416] remove mmz vb reserved memory ranges
+Subject: [PATCH 439/440] remove mmz vb reserved memory ranges
 
 ---
  arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 8 +-------
@@ -10,7 +10,7 @@ Subject: [PATCH 415/416] remove mmz vb reserved memory ranges
  3 files changed, 1 insertion(+), 19 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 5e0df61988f5..6066ea39d77e 100644
+index e3124c608630..aa0f15a46f26 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -105,12 +105,6 @@ g2d_12GB_boundary_reserved_4k {
@@ -26,7 +26,7 @@ index 5e0df61988f5..6066ea39d77e 100644
  	};
  };
  
-@@ -896,4 +890,4 @@ opp-1800000000 {
+@@ -898,4 +892,4 @@ opp-1800000000 {
  		opp-microvolt = <900000>;
  		clock-latency-ns = <70000>;
  	};
@@ -51,7 +51,7 @@ index d04b2606d54b..23b2948663b7 100644
  
  	leds {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 89ed4514b0bc..ec89e3ad343f 100644
+index 2860c4b37162..8d23cf79e8e8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -96,12 +96,6 @@ g2d_12GB_boundary_reserved_4k {
@@ -68,5 +68,5 @@ index 89ed4514b0bc..ec89e3ad343f 100644
  
  	leds {
 -- 
-2.48.1
+2.49.0
 

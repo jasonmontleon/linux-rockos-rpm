@@ -1,7 +1,7 @@
-From a567eaf5db9d32e007179ec7f679471a3e965f2a Mon Sep 17 00:00:00 2001
+From 6dab89d3ea66c992f6b26b6e0d79a1e2e4ce8919 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 14 Aug 2024 14:54:12 +0800
-Subject: [PATCH 148/416] feat:dsi support set bus-format
+Subject: [PATCH 148/440] feat:dsi support set bus-format
 
 Changelogs:
 1.dts define panel bus-format:
@@ -257,5 +257,5 @@ index 7c2bd90393e2..7342ab287c70 100644
  	drm_panel_add(&ctx->panel);
  
 -- 
-2.48.1
+2.49.0
 

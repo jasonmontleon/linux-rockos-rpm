@@ -1,7 +1,7 @@
-From 904dea782d13c1aab65a5fb3e29386ecd12591eb Mon Sep 17 00:00:00 2001
+From 3acbe395ddbba99e34861a9a72b88b098be96da4 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 3 Jan 2025 18:10:25 +0800
-Subject: [PATCH 376/416] WIN2030-16550:perf:Optimize dma performance
+Subject: [PATCH 376/440] WIN2030-16550:perf:Optimize dma performance
 
 Changelogs:
 1. Dynamically adjust the parameter msize
@@ -188,5 +188,5 @@ index 3bd0e65ed010..738954532c93 100644
   * DW AXI DMA channel interrupts
   *
 -- 
-2.48.1
+2.49.0
 

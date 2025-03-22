@@ -1,7 +1,7 @@
-From 7f32518172d1321a865822fc523648a9e9d8ff90 Mon Sep 17 00:00:00 2001
+From bcaa994e20f16003a40145f1136dd5075d81195f Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 11 Nov 2024 23:30:40 +0800
-Subject: [PATCH 231/416] HACK: reject sscofpmf for kvm
+Subject: [PATCH 231/440] HACK: reject sscofpmf for kvm
 
 cannot start VM properly after enabling
 temporary reject probe sscofpmf
@@ -25,5 +25,5 @@ index cee1b9ca4ec4..c5adad5e456e 100644
  	ret = riscv_pmu_get_hpm_info(&hpm_width, &num_hw_ctrs);
  	if (ret < 0 || !hpm_width || !num_hw_ctrs)
 -- 
-2.48.1
+2.49.0
 

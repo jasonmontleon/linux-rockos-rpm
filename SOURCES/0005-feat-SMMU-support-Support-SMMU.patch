@@ -1,7 +1,7 @@
-From 81752e67dcfa14020ab4bdcce8a1936eba47d783 Mon Sep 17 00:00:00 2001
+From 96e58cc6947bbc7071204d574ce20acef4c49379 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
-Subject: [PATCH 005/416] feat(SMMU support):Support SMMU
+Subject: [PATCH 005/440] feat(SMMU support):Support SMMU
 
 Changelogs:
 1.arch/riscv/Kconfig: Do not select SWIOTLB because SMMU is used.
@@ -1754,5 +1754,5 @@ index 290b961eb729..d78b8c3f72a8 100644
  menu "ESWIN EIC770X SoC Family Selection"
  	depends on ARCH_ESWIN_EIC770X_SOC_FAMILY
 -- 
-2.48.1
+2.49.0
 

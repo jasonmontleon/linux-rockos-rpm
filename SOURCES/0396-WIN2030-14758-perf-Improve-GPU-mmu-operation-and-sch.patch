@@ -1,7 +1,7 @@
-From 8ef9be1cf77be1bee5c403c4a4e39b367e4ae2f1 Mon Sep 17 00:00:00 2001
+From 637957501a4a0920f96f8e4e2a0499d8c3ed90ed Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 10 Jan 2025 18:58:10 +0800
-Subject: [PATCH 396/416] WIN2030-14758:perf:Improve GPU mmu operation and
+Subject: [PATCH 396/440] WIN2030-14758:perf:Improve GPU mmu operation and
  schedule domain
 
 Changelogs:
@@ -960,10 +960,10 @@ index a0357b43d914..110497d4d5af 100644
          PRINT_INFO("cycle_elapsed:%lld---%%\%lld.%2lld, %s\n",
              m_perf_i->cycles_elapased, (100*m_perf_i->cycles_elapased)/total_cycles,
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index b124e2243ff5..e53f317b85a9 100644
+index 5195b8364b56..30cc45636ebb 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
-@@ -8436,6 +8436,7 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
+@@ -8445,6 +8445,7 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
  	put_task_struct(p);
  	return retval;
  }
@@ -972,5 +972,5 @@ index b124e2243ff5..e53f317b85a9 100644
  static int get_user_cpu_mask(unsigned long __user *user_mask_ptr, unsigned len,
  			     struct cpumask *new_mask)
 -- 
-2.48.1
+2.49.0
 

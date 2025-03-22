@@ -1,7 +1,7 @@
-From ddb3e4918fc21e0c8ba7fbeaf3e12c5e6502ab15 Mon Sep 17 00:00:00 2001
+From f99f922874f5e1b107f77ea45552b567c6abbabe Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 25 Dec 2024 11:51:07 +0800
-Subject: [PATCH 357/416] WIN2030-16883:fix:npu die1 clock miss
+Subject: [PATCH 357/440] WIN2030-16883:fix:npu die1 clock miss
 
 Changelogs:
 	1. add npu die1 miseed clock
@@ -42,5 +42,5 @@ index a15a50825f39..b7405c6d6e49 100644
  			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
  			reset-names = "e31_core";
 -- 
-2.48.1
+2.49.0
 

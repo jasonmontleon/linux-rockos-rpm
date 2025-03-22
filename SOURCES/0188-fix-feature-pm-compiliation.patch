@@ -1,7 +1,7 @@
-From be43ca7c1f987ea14a60934f3c166b9c3172cebe Mon Sep 17 00:00:00 2001
+From bbd8d858e08e74e3b51f014ee766d508a6228084 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 9 Oct 2024 10:13:45 +0800
-Subject: [PATCH 188/416] fix:feature-pm compiliation
+Subject: [PATCH 188/440] fix:feature-pm compiliation
 
 Changelogs:
   1. Since only linux has feature-pm branch, compiling video dec sdk
@@ -26,5 +26,5 @@ index da90216883cc..c6482db4992e 100644
  	void *memory;  /* user space memory addr */
  	size_t size;   /* memory size */
 -- 
-2.48.1
+2.49.0
 

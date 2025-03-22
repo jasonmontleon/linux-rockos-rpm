@@ -1,7 +1,7 @@
-From a59755c86269080fad16450a7acbcfe5ebfec7b9 Mon Sep 17 00:00:00 2001
+From 6f02b73e8c54cab104cdd6b6201de045e3e8ba6a Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 5 Dec 2024 20:05:27 +0800
-Subject: [PATCH 332/416] WIN2030-16740:feat:support z530 board
+Subject: [PATCH 332/440] WIN2030-16740:feat:support z530 board
 
 Changelogs:
 1. Provide som260 dts
@@ -1005,5 +1005,5 @@ index 7fb7d3b28df2..e6d2005d854b 100644
  		};
  
 -- 
-2.48.1
+2.49.0
 

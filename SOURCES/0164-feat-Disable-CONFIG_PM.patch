@@ -1,7 +1,7 @@
-From c8974ff56ce2fb6cc202bcae52b044f91acb26fb Mon Sep 17 00:00:00 2001
+From d0270dbf69fe05b7c32f8cdcd5bdf41c822a877f Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Sat, 31 Aug 2024 12:24:04 +0800
-Subject: [PATCH 164/416] feat:Disable CONFIG_PM
+Subject: [PATCH 164/440] feat:Disable CONFIG_PM
 
 Changelogs:
 1.Deselected CONFIG_PM since the developement of power
@@ -41,5 +41,5 @@ index 585d21eb8e08..b87608ed3c65 100644
  CONFIG_PRINTK_TIME=y
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
 -- 
-2.48.1
+2.49.0
 

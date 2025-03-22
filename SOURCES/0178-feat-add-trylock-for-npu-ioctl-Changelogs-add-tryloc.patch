@@ -1,7 +1,7 @@
-From 546ed7aeba162c5871b313499ef5af6a6de100de Mon Sep 17 00:00:00 2001
+From 55c8e7293ca2638c10a0538b58f23751ca9020bc Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Mon, 23 Sep 2024 17:47:12 +0800
-Subject: [PATCH 178/416] feat: add trylock for npu ioctl Changelogs: add
+Subject: [PATCH 178/440] feat: add trylock for npu ioctl Changelogs: add
  trylock for npu ioctl
 
 Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
@@ -72,5 +72,5 @@ index 1d58f190a7a7..b32f9484d98d 100644
  	}
  	spin_lock_irqsave(&engine->executor_lock, flags);
 -- 
-2.48.1
+2.49.0
 

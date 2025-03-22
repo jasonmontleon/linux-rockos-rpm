@@ -1,7 +1,7 @@
-From bc1968eb79e7fb02fbff27900dc2eed2ef40d3c1 Mon Sep 17 00:00:00 2001
+From 48e4ae6d7ae15c447548be72ebc3521353889a83 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 10 Jul 2024 09:56:00 +0800
-Subject: [PATCH 068/416] fix:fix the issue of USB 3.0 host halt.
+Subject: [PATCH 068/440] fix:fix the issue of USB 3.0 host halt.
 
 Changelogs:
 disable parkmod of fix the issue of failed copying large files under USB 3.0.
@@ -69,5 +69,5 @@ index 1417c6298a3c..aff6298f851e 100644
  				numa-node-id = <1>;
  				tbus = <WIN2030_TBUID_USB>;
 -- 
-2.48.1
+2.49.0
 

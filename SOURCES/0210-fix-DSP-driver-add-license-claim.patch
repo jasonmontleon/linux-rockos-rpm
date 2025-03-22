@@ -1,7 +1,7 @@
-From 1d037f65e82a802f2d6ba42ec6afbbd0626c2322 Mon Sep 17 00:00:00 2001
+From 2237afcbe049cb3271586b8393e686efc21f414f Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 5 Nov 2024 15:51:38 +0800
-Subject: [PATCH 210/416] fix:DSP driver add license claim.
+Subject: [PATCH 210/440] fix:DSP driver add license claim.
 
 Changelogs:
 	DSP driver add license claim.
@@ -1301,5 +1301,5 @@ index bef308e8dccb..a1b4d007cef4 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 -- 
-2.48.1
+2.49.0
 

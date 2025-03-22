@@ -1,7 +1,7 @@
-From 0b09f64e007ff24d9160814e7a1a849ef5ce0494 Mon Sep 17 00:00:00 2001
+From 86b32fec7546ee68b4838ea8ccf92c8c502a70a2 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Wed, 27 Nov 2024 15:58:57 +0800
-Subject: [PATCH 329/416] WIN2030-15365: fix : remove error message when try
+Subject: [PATCH 329/440] WIN2030-15365: fix : remove error message when try
  lock failed Changelogs:
 
 Change-Id: I8bae755e151d8d2b69d878ea6aae96021595aa40
@@ -66,5 +66,5 @@ index 47dadc142fed..6679f371b06b 100644
  		break;
  	case ES_NPU_IOCTL_HETERO_CMD:
 -- 
-2.48.1
+2.49.0
 

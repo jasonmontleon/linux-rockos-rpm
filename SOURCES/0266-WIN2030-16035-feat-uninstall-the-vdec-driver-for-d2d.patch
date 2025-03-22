@@ -1,7 +1,7 @@
-From 630bf2a6e0087a1e581fefcc507e85a0db6ba438 Mon Sep 17 00:00:00 2001
+From 20561c4723c6552ba14a9c18fdaabb3457b0a0e0 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 12 Sep 2024 17:53:11 +0800
-Subject: [PATCH 266/416] WIN2030-16035:feat:uninstall the vdec driver for d2d
+Subject: [PATCH 266/440] WIN2030-16035:feat:uninstall the vdec driver for d2d
 
 Changelogs:
   1. Uninstall the vdec driver for d2d.
@@ -210,5 +210,5 @@ index 17a82a6169b0..92e777d40369 100644
  int hantrovcmd_wait_core_idle(u32 core_id, long timeout);
  struct platform_device *vdec_get_platform_device(u32 core_id);
 -- 
-2.48.1
+2.49.0
 

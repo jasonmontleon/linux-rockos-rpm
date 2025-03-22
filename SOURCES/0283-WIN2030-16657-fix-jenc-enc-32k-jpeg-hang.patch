@@ -1,7 +1,7 @@
-From c6864454ffabc2f15de48c763712f2f7e13c68a8 Mon Sep 17 00:00:00 2001
+From 6272fb27a96f9fdf46002f5469653fc149469303 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 19 Nov 2024 14:25:46 +0800
-Subject: [PATCH 283/416] WIN2030-16657:fix(jenc):enc 32k jpeg hang
+Subject: [PATCH 283/440] WIN2030-16657:fix(jenc):enc 32k jpeg hang
 
 Changelogs:
 	too samll size counting for jenc, encoding 32k*32k jpeg
@@ -56,5 +56,5 @@ index 5e24f087817d..0686cc8dbd04 100644
  /** the wait time for the vcmd task list(in milliseconds):
   * 200x frame encoding time + 1000ms
 -- 
-2.48.1
+2.49.0
 

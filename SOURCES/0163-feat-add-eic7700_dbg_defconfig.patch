@@ -1,7 +1,7 @@
-From 1e5fa105124089452b512a4fa7c65cdb65fcf0c8 Mon Sep 17 00:00:00 2001
+From b113228e087a5de21fab6859c70bd037aaa414a8 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 28 Aug 2024 16:01:05 +0800
-Subject: [PATCH 163/416] feat:add eic7700_dbg_defconfig
+Subject: [PATCH 163/440] feat:add eic7700_dbg_defconfig
 
 Changelogs:
     1.enable kgdb
@@ -856,5 +856,5 @@ index 000000000000..16397c4ba2f4
 +# CONFIG_RUNTIME_TESTING_MENU is not set
 +CONFIG_MEMTEST=y
 -- 
-2.48.1
+2.49.0
 

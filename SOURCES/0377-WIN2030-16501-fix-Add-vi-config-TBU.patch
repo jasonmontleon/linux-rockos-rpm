@@ -1,7 +1,7 @@
-From 5fd8ab1014f205d75abf2b5469769274ae44a55e Mon Sep 17 00:00:00 2001
+From edeba21784e79e0a703d94cc54976de7fda2e35e Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 8 Jan 2025 16:12:18 +0800
-Subject: [PATCH 377/416] WIN2030-16501:fix:Add vi config TBU
+Subject: [PATCH 377/440] WIN2030-16501:fix:Add vi config TBU
 
 Changelogs:
 The dw200 and the isp use a tbu.
@@ -27,5 +27,5 @@ index ecfff2bf0334..cc651302b4a0 100644
  
  
 -- 
-2.48.1
+2.49.0
 

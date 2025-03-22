@@ -1,7 +1,7 @@
-From f546f549ca2771de879b5816fe09148d8d4030b2 Mon Sep 17 00:00:00 2001
+From 966da8bef4a2d2e6f8d3d3e8301c851198828667 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 14 Jun 2024 17:58:40 +0800
-Subject: [PATCH 080/416] drm: eswin: fbdev: fix es-fbdev
+Subject: [PATCH 080/440] drm: eswin: fbdev: fix es-fbdev
 
 fix es-fbdev
 
@@ -61,5 +61,5 @@ index 4898c86d5d87..5406448ee2fb 100644
  }
  
 -- 
-2.48.1
+2.49.0
 

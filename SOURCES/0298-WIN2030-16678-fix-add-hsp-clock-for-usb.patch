@@ -1,7 +1,7 @@
-From f253f2234ceceaf3ff48a5ccf44887f7478df143 Mon Sep 17 00:00:00 2001
+From 30ddef85c0d549d1ce5d48bb0776844fa3e4a12e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 28 Nov 2024 10:41:03 +0800
-Subject: [PATCH 298/416] WIN2030-16678:fix:add hsp clock for usb
+Subject: [PATCH 298/440] WIN2030-16678:fix:add hsp clock for usb
 
 Changelogs:
 	if no this clock,the usb control will not work
@@ -74,5 +74,5 @@ index c05df53e7bf5..f0f24cad97a4 100644
  			resets = <&d1_reset HSPDMA_RST_CTRL SW_USB1_VAUX_RSTN>;
  			reset-names = "vaux";
 -- 
-2.48.1
+2.49.0
 

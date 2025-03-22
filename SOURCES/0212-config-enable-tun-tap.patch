@@ -1,7 +1,7 @@
-From 3a4a98655792cbdeb4fbde097f48c8ad270f527c Mon Sep 17 00:00:00 2001
+From b9cdd4819e024ffa17b61412e246f011ce42a2a4 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 1 Oct 2024 23:09:44 +0800
-Subject: [PATCH 212/416] config: enable tun/tap
+Subject: [PATCH 212/440] config: enable tun/tap
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
@@ -22,5 +22,5 @@ index cc2484e64c2c..3f122dd04f2f 100644
  CONFIG_VIRTIO_NET=m
  # CONFIG_NET_VENDOR_ALACRITECH is not set
 -- 
-2.48.1
+2.49.0
 

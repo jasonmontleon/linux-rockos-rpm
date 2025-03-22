@@ -1,7 +1,7 @@
-From 93792010f9890609c23d33ba2b2bd910bb321181 Mon Sep 17 00:00:00 2001
+From 6bc0607b611fa0d0d44622ce2f76d990eaf97212 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:34:08 +0800
-Subject: [PATCH 082/416] configs: enable initrd
+Subject: [PATCH 082/440] configs: enable initrd
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
@@ -29,5 +29,5 @@ index 9234bf09feb9..d32dd5f08021 100644
  CONFIG_PRINTK_TIME=y
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
 -- 
-2.48.1
+2.49.0
 

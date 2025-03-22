@@ -1,7 +1,7 @@
-From 8f7bdf9f076053fc1001534c77c004ed662a0c54 Mon Sep 17 00:00:00 2001
+From c1f0db65ad17e0611ac82f7334ffe6be53763250 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 17 Jan 2025 17:26:22 +0800
-Subject: [PATCH 387/416] WIN2030-16900:feature:support sbc display
+Subject: [PATCH 387/440] WIN2030-16900:feature:support sbc display
 
 Changelogs:
 1.hdmi display ok.
@@ -961,5 +961,5 @@ index 4ea7003b0339..0f4231b585a9 100755
  MODULE_LICENSE("GPL v2");
  MODULE_DESCRIPTION("DesignWare USB3 ESWIN Glue Layer");
 -- 
-2.48.1
+2.49.0
 

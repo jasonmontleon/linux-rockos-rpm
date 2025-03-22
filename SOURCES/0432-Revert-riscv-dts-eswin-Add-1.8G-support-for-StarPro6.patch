@@ -1,0 +1,41 @@
+From bc083b93021270d52eca360416feb3e319f3c1f6 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Fri, 21 Mar 2025 15:51:57 +0800
+Subject: [PATCH 432/440] Revert "riscv: dts: eswin: Add 1.8G support for
+ StarPro64"
+
+This reverts commit 75711ad38b4472e17ebce36d73959e846c9b4e4f.
+
+The next revision of StarPro64 will include GPIO voltage switch design,
+and the current hardware mod seems to be not stable now.
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts | 6 ------
+ 1 file changed, 6 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index 89ed4514b0bc..2860c4b37162 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -127,7 +127,6 @@ status {
+ 
+ &d0_clock {
+ 	status = "okay";
+-	force-1_8ghz;
+ };
+ 
+ &d0_reset {
+@@ -859,9 +858,4 @@ opp-1600000000 {
+ 		opp-microvolt = <900000>;
+ 		clock-latency-ns = <70000>;
+ 	};
+-	opp-1800000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
+ };
+-- 
+2.49.0
+

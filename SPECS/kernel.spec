@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.83
-%define specversion 6.6.83
+%define specrpmversion 6.6.84
+%define specversion 6.6.84
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.83
+%define tarfile_release 6.6.84
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.83
+%define kabiversion 6.6.84
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1375,14 +1375,39 @@ Patch10405: 0405-iommu-eswin-sync-remove-internal-arguments-from-of_p.patch
 Patch10406: 0406-config-sync-from-eic7700_defconfig.patch
 Patch10407: 0407-iommu-eswin-lower-the-priority-of-TBU-dump.patch
 Patch10408: 0408-star64pro-megrez-fix-npu-supply-for-npu-init.patch
-Patch10409: 0409-header-workarounds.patch
-Patch10410: 0410-stop-triggering-vmlinux-rebuild.patch
-Patch10411: 0411-Add-missing-newline.patch
-Patch10412: 0412-uninvert-the-fan.patch
-Patch10413: 0413-Reduce-crit-threshold-temp-to-85000.patch
-Patch10414: 0414-eswin-dsp-fixes.patch
-Patch10415: 0415-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10416: 0416-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10409: 0409-fix-Dvb-and-z530-boot-failed-issue.patch
+Patch10410: 0410-feature-Add-eic770x-OTP-driver.patch
+Patch10411: 0411-feat-reset-driver-fit-for-upstream.patch
+Patch10412: 0412-feat-add-npu-usage-Changelogs.patch
+Patch10413: 0413-fix-2d-kernel-stack-warning-after-reboot.patch
+Patch10414: 0414-feat-clk-driver-fit-for-upstream.patch
+Patch10415: 0415-feat-modify-npu-dts-voltage.patch
+Patch10416: 0416-fix-Solve-no-power-of-tp549d22-when-cold-boot.patch
+Patch10417: 0417-fix-dambuf-helper-get-the-mutex-while-operating-on-t.patch
+Patch10418: 0418-fix-D314-sdio-delay_code.patch
+Patch10419: 0419-fix-dambuf-helper-fix-bug-of-heap-object-release.patch
+Patch10420: 0420-fix-do-not-print-message-when-failed-mem.patch
+Patch10421: 0421-fix-eswin-ai-dsp-fix-gcc-14-build-error.patch
+Patch10422: 0422-config-fs-enable-xfs-gfs-f2fs-zonefs-for-eic7700x.patch
+Patch10423: 0423-config-drm-nouveau-as-module-for-eic7700x.patch
+Patch10424: 0424-config-memory-enable-zswap.patch
+Patch10425: 0425-config-scsi-enable-scsi-config-for-eic7700x.patch
+Patch10426: 0426-config-net-enable-net-device-for-eic7700x.patch
+Patch10427: 0427-config-net-enable-net-options-for-eic7700x.patch
+Patch10428: 0428-config-net-disable-realtek-phy-for-eic7700x.patch
+Patch10429: 0429-dts-eswin-gmac-use-rgmii-txid-as-phy-mode.patch
+Patch10430: 0430-configs-eswin-enable-REALTEK_PHY-as-builtin.patch
+Patch10431: 0431-dts-eswin-p550-add-disable-wp-broken-cd.patch
+Patch10432: 0432-Revert-riscv-dts-eswin-Add-1.8G-support-for-StarPro6.patch
+Patch10433: 0433-header-workarounds.patch
+Patch10434: 0434-stop-triggering-vmlinux-rebuild.patch
+Patch10435: 0435-Add-missing-newline.patch
+Patch10436: 0436-uninvert-the-fan.patch
+Patch10437: 0437-Reduce-crit-threshold-temp-to-85000.patch
+Patch10438: 0438-eswin-dsp-fixes.patch
+Patch10439: 0439-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10440: 0440-Add-NPU-enabled-variants-of-dtbs.patch
+
 
 
 
@@ -2547,14 +2572,38 @@ ApplyOptionalPatch 0405-iommu-eswin-sync-remove-internal-arguments-from-of_p.pat
 ApplyOptionalPatch 0406-config-sync-from-eic7700_defconfig.patch
 ApplyOptionalPatch 0407-iommu-eswin-lower-the-priority-of-TBU-dump.patch
 ApplyOptionalPatch 0408-star64pro-megrez-fix-npu-supply-for-npu-init.patch
-ApplyOptionalPatch 0409-header-workarounds.patch
-ApplyOptionalPatch 0410-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0411-Add-missing-newline.patch
-ApplyOptionalPatch 0412-uninvert-the-fan.patch
-ApplyOptionalPatch 0413-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0414-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0415-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0416-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0409-fix-Dvb-and-z530-boot-failed-issue.patch
+ApplyOptionalPatch 0410-feature-Add-eic770x-OTP-driver.patch
+ApplyOptionalPatch 0411-feat-reset-driver-fit-for-upstream.patch
+ApplyOptionalPatch 0412-feat-add-npu-usage-Changelogs.patch
+ApplyOptionalPatch 0413-fix-2d-kernel-stack-warning-after-reboot.patch
+ApplyOptionalPatch 0414-feat-clk-driver-fit-for-upstream.patch
+ApplyOptionalPatch 0415-feat-modify-npu-dts-voltage.patch
+ApplyOptionalPatch 0416-fix-Solve-no-power-of-tp549d22-when-cold-boot.patch
+ApplyOptionalPatch 0417-fix-dambuf-helper-get-the-mutex-while-operating-on-t.patch
+ApplyOptionalPatch 0418-fix-D314-sdio-delay_code.patch
+ApplyOptionalPatch 0419-fix-dambuf-helper-fix-bug-of-heap-object-release.patch
+ApplyOptionalPatch 0420-fix-do-not-print-message-when-failed-mem.patch
+ApplyOptionalPatch 0421-fix-eswin-ai-dsp-fix-gcc-14-build-error.patch
+ApplyOptionalPatch 0422-config-fs-enable-xfs-gfs-f2fs-zonefs-for-eic7700x.patch
+ApplyOptionalPatch 0423-config-drm-nouveau-as-module-for-eic7700x.patch
+ApplyOptionalPatch 0424-config-memory-enable-zswap.patch
+ApplyOptionalPatch 0425-config-scsi-enable-scsi-config-for-eic7700x.patch
+ApplyOptionalPatch 0426-config-net-enable-net-device-for-eic7700x.patch
+ApplyOptionalPatch 0427-config-net-enable-net-options-for-eic7700x.patch
+ApplyOptionalPatch 0428-config-net-disable-realtek-phy-for-eic7700x.patch
+ApplyOptionalPatch 0429-dts-eswin-gmac-use-rgmii-txid-as-phy-mode.patch
+ApplyOptionalPatch 0430-configs-eswin-enable-REALTEK_PHY-as-builtin.patch
+ApplyOptionalPatch 0431-dts-eswin-p550-add-disable-wp-broken-cd.patch
+ApplyOptionalPatch 0432-Revert-riscv-dts-eswin-Add-1.8G-support-for-StarPro6.patch
+ApplyOptionalPatch 0433-header-workarounds.patch
+ApplyOptionalPatch 0434-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0435-Add-missing-newline.patch
+ApplyOptionalPatch 0436-uninvert-the-fan.patch
+ApplyOptionalPatch 0437-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0438-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0439-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0440-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -4547,6 +4596,9 @@ fi\
 #
 #
 %changelog
+* Sat Mar 22 2025 Jason Montleon <jason@montleon.com> [6.6.84-200.eswin]
+- Add rockos patches up to Mar 21, 2025 
+
 * Wed Feb 26 2025 Jason Montleon <jason@montleon.com> [6.6.79-206.eswin]
 - Disable VIDEO_ESWIN_HAE
 

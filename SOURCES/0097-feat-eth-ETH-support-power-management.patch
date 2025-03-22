@@ -1,7 +1,7 @@
-From 942fa8a6b9e1111c482d70b0182e369c438a8a63 Mon Sep 17 00:00:00 2001
+From 8b4a4931f20f8ba623fc73a797afde82def65076 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Thu, 11 Jul 2024 14:04:35 +0800
-Subject: [PATCH 097/416] feat(eth): ETH support power management
+Subject: [PATCH 097/440] feat(eth): ETH support power management
 
 Changelogs:
 1. Add a callback func clks_config() which will be called
@@ -126,5 +126,5 @@ index 0b37eabd6334..5a83b55357fb 100644
  	devm_gpiod_put(&pdev->dev, dwc_priv->phy_reset);
  
 -- 
-2.48.1
+2.49.0
 

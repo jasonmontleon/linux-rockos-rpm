@@ -1,7 +1,7 @@
-From cc0b5811192f5ef7ffca1c17cb4cc94d3db707ac Mon Sep 17 00:00:00 2001
+From ab202b84bd4ca82e8ad8f49cd369c8cacb63a00b Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Tue, 30 Jul 2024 14:03:46 +0800
-Subject: [PATCH 131/416] fix:fix regulator warning print
+Subject: [PATCH 131/440] fix:fix regulator warning print
 
 Changelogs:
 	1. fix bug of regulator warning print when rtcwake
@@ -193,5 +193,5 @@ index d9495dfe9887..c97431f008a2 100644
  static const struct of_device_id ahci_of_match[] = {
      { .compatible = "snps,eswin-ahci", },
 -- 
-2.48.1
+2.49.0
 

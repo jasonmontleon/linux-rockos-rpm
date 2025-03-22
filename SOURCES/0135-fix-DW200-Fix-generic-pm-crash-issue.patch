@@ -1,7 +1,7 @@
-From 799df00fa4d7d85545d5b3bf2bf40a416f640ac0 Mon Sep 17 00:00:00 2001
+From 0e4e117b32c26bb56630522677d5989892ddf67c Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 30 Jul 2024 10:24:25 +0800
-Subject: [PATCH 135/416] fix(DW200): Fix generic pm crash issue
+Subject: [PATCH 135/440] fix(DW200): Fix generic pm crash issue
 
 Changelogs:
 1.Reduce waiting time to 10s->1s
@@ -201,5 +201,5 @@ index 7ee5a88a803c..78a843e5f85d 100644
  
  static const struct dev_pm_ops dewarp_pm_ops = {
 -- 
-2.48.1
+2.49.0
 

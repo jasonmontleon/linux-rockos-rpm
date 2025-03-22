@@ -1,0 +1,1718 @@
+From 7b61f99fb0ba270e3e515e3b07251e9b49702f05 Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Mon, 27 Jan 2025 10:54:04 +0800
+Subject: [PATCH 411/440] feat:reset driver fit for upstream
+
+Changelogs:
+1.Adapt the code style and naming conventions to meet upstream
+requirements.
+  2.Add documentation related to the reset driver.
+
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ .../bindings/reset/eswin,eic770x-reset.yaml   |  51 ++
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |   4 +-
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |   4 +-
+ arch/riscv/configs/eic7700_dbg_defconfig      |   2 +-
+ arch/riscv/configs/eic7700_defconfig          |   2 +-
+ arch/riscv/configs/eic7702_defconfig          |   2 +-
+ arch/riscv/configs/win2030_defconfig          |   2 +-
+ drivers/clk/eswin/clk-win2030.c               |   3 +-
+ drivers/clk/eswin/clk_eic770x.h               | 204 ++++++
+ drivers/reset/Kconfig                         |   6 +-
+ drivers/reset/Makefile                        |   2 +-
+ drivers/reset/reset-eswin.c                   |  37 +-
+ .../dt-bindings/reset/eswin,eic770x-reset.h   | 473 ++++++++++++
+ .../dt-bindings/reset/eswin,win2030-syscrg.h  | 693 ------------------
+ 14 files changed, 751 insertions(+), 734 deletions(-)
+ create mode 100644 Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
+ create mode 100644 drivers/clk/eswin/clk_eic770x.h
+ create mode 100755 include/dt-bindings/reset/eswin,eic770x-reset.h
+ delete mode 100755 include/dt-bindings/reset/eswin,win2030-syscrg.h
+
+diff --git a/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml b/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
+new file mode 100644
+index 000000000000..8b0b3b867011
+--- /dev/null
++++ b/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
+@@ -0,0 +1,51 @@
++# SPDX-License-Identifier: (GPL-2.0-only OR BSD-2-Clause)
++%YAML 1.2
++---
++$id: http://devicetree.org/schemas/reset/eswin,eic770x-reset.yaml#
++$schema: http://devicetree.org/meta-schemas/core.yaml#
++
++title: Eswin EIC770X SOC Reset Controller
++
++maintainers:
++  - HuangYiFeng <huangyifeng@eswincomputing.com>
++
++description: |
++  Please also refer to reset.txt in this directory for common reset
++  controller binding usage.
++  The reset controller registers are part of the syscrg block on
++  eic770x SoCs.
++
++properties:
++  compatible:
++    oneOf:
++      - items:
++          - const: eswin,eic770x-reset
++
++  '#reset-cells':
++    description: |
++      Specifies the number of cells needed to encode a reset source.
++      Cell #1 : module id of the reset consumer
++      Cell #2 : bit position of the reset in each reset consumer module
++    const: 2
++
++required:
++  - compatible
++  - '#reset-cells':
++
++additionalProperties: false
++
++examples:
++  - |
++	#include <dt-bindings/reset/eswin,eic770x-reset.h>
++
++	d0_sys_crg: sys-crg@51828000 {
++		compatible = "eswin,win2030-sys-crg", "syscon", "simple-mfd";
++		reg = <0x000000 0x51828000 0x000000 0x80000>;
++		numa-node-id = <0>;
++		d0_reset: reset-controller {
++			compatible = "eswin,eic770x-reset";
++			#reset-cells = <2>;
++		};
++	};
++...
++
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index e4663a6e1be6..03d601fe9014 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -23,7 +23,7 @@
+ 
+ #include <dt-bindings/memory/eswin-win2030-sid.h>
+ #include <dt-bindings/mailbox/eswin-mailbox.h>
+-#include <dt-bindings/reset/eswin,win2030-syscrg.h>
++#include <dt-bindings/reset/eswin,eic770x-reset.h>
+ #include <dt-bindings/clock/win2030-clock.h>
+ #include <dt-bindings/i2c/i2c.h>
+ #include <dt-bindings/interconnect/eswin,win2030.h>
+@@ -172,7 +172,7 @@ d0_sys_crg: sys-crg@51828000 {
+ 			reg = <0x000000 0x51828000 0x000000 0x80000>;
+ 			numa-node-id = <0>;
+ 			d0_reset: reset-controller {
+-				compatible = "eswin,win2030-reset";
++				compatible = "eswin,eic770x-reset";
+ 				#reset-cells = <2>;
+ 				numa-node-id = <0>;
+ 			};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index cf93f0a96878..3a7d3f05c461 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -22,7 +22,7 @@
+ 
+ #include <dt-bindings/memory/eswin-win2030-sid.h>
+ #include <dt-bindings/mailbox/eswin-mailbox.h>
+-#include <dt-bindings/reset/eswin,win2030-syscrg.h>
++#include <dt-bindings/reset/eswin,eic770x-reset.h>
+ #include <dt-bindings/clock/win2030-clock.h>
+ #include <dt-bindings/i2c/i2c.h>
+ #include <dt-bindings/interconnect/eswin,win2030.h>
+@@ -170,7 +170,7 @@ d1_sys_crg: sys-crg@71828000 {
+ 			reg = <0x000000 0x71828000 0x000000 0x80000>;
+ 			numa-node-id = <1>;
+ 			d1_reset: reset-controller {
+-				compatible = "eswin,win2030-reset";
++				compatible = "eswin,eic770x-reset";
+ 				#reset-cells = <2>;
+ 				numa-node-id = <1>;
+ 			};
+diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
+index ed5d3e6ea9e3..9f6e51f2cc8c 100644
+--- a/arch/riscv/configs/eic7700_dbg_defconfig
++++ b/arch/riscv/configs/eic7700_dbg_defconfig
+@@ -745,7 +745,7 @@ CONFIG_ESWIN_DEV_DMA_BUF=y
+ CONFIG_ESWIN_IOMMU_RSV=y
+ CONFIG_PWM=y
+ CONFIG_PWM_ESWIN=y
+-CONFIG_RESET_ESWIN_WIN2030=y
++CONFIG_RESET_ESWIN=y
+ CONFIG_INTERCONNECT=y
+ CONFIG_EXT4_FS=y
+ CONFIG_EXT4_FS_POSIX_ACL=y
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 72cc0c1c597c..7dcdf43edd4e 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -771,7 +771,7 @@ CONFIG_ESWIN_IOMMU_RSV=y
+ CONFIG_ESWIN_DMA_MEMCP=y
+ CONFIG_PWM=y
+ CONFIG_PWM_ESWIN=y
+-CONFIG_RESET_ESWIN_WIN2030=y
++CONFIG_RESET_ESWIN=y
+ CONFIG_INTERCONNECT=y
+ CONFIG_EXT4_FS=y
+ CONFIG_EXT4_FS_POSIX_ACL=y
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 4298fe7b06c6..ac24ed1fb470 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -757,7 +757,7 @@ CONFIG_ESWIN_IOMMU_RSV=y
+ CONFIG_ESWIN_DMA_MEMCP=y
+ CONFIG_PWM=y
+ CONFIG_PWM_ESWIN=y
+-CONFIG_RESET_ESWIN_WIN2030=y
++CONFIG_RESET_ESWIN=y
+ CONFIG_INTERCONNECT=y
+ CONFIG_EXT4_FS=y
+ CONFIG_EXT4_FS_POSIX_ACL=y
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 9e2a3c4483ce..67eb3b63fd12 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -812,7 +812,7 @@ CONFIG_ESWIN_IOMMU_RSV=y
+ CONFIG_ESWIN_DMA_MEMCP=y
+ CONFIG_PWM=y
+ CONFIG_PWM_ESWIN=y
+-CONFIG_RESET_ESWIN_WIN2030=y
++CONFIG_RESET_ESWIN=y
+ CONFIG_INTERCONNECT=y
+ CONFIG_EXT4_FS=y
+ CONFIG_EXT4_FS_POSIX_ACL=y
+diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
+index 93cb6c6c8507..adb21e26fba3 100755
+--- a/drivers/clk/eswin/clk-win2030.c
++++ b/drivers/clk/eswin/clk-win2030.c
+@@ -25,9 +25,8 @@
+ #include <linux/of.h>
+ #include <linux/of_device.h>
+ #include <linux/clk.h>
+-#include <dt-bindings/reset/eswin,win2030-syscrg.h>
+ #include <dt-bindings/clock/win2030-clock.h>
+-
++#include "clk_eic770x.h"
+ #include "clk.h"
+ 
+ /* clock parent list */
+diff --git a/drivers/clk/eswin/clk_eic770x.h b/drivers/clk/eswin/clk_eic770x.h
+new file mode 100644
+index 000000000000..156601fdd267
+--- /dev/null
++++ b/drivers/clk/eswin/clk_eic770x.h
+@@ -0,0 +1,204 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
++ */
++
++#ifndef __CLK_EIC770X_H__
++#define __CLK_EIC770X_H__
++
++/*REG OFFSET OF SYS-CRG*/
++#define WIN2030_REG_OFFSET_SPLL0_CFG_0                          0X0000
++#define WIN2030_REG_OFFSET_SPLL0_CFG_1                          0X0004
++#define WIN2030_REG_OFFSET_SPLL0_CFG_2                          0X0008
++#define WIN2030_REG_OFFSET_SPLL0_DSKEWCAL                       0X000C
++#define WIN2030_REG_OFFSET_SPLL0_SSC                            0X0010
++#define WIN2030_REG_OFFSET_SPLL1_CFG_0                          0X0014
++#define WIN2030_REG_OFFSET_SPLL1_CFG_1                          0X0018
++#define WIN2030_REG_OFFSET_SPLL1_CFG_2                          0X001C
++#define WIN2030_REG_OFFSET_SPLL1_DSKEWCAL                       0X0020
++#define WIN2030_REG_OFFSET_SPLL1_SSC                            0X0024
++#define WIN2030_REG_OFFSET_SPLL2_CFG_0                          0X0028
++#define WIN2030_REG_OFFSET_SPLL2_CFG_1                          0X002C
++#define WIN2030_REG_OFFSET_SPLL2_CFG_2                          0X0030
++#define WIN2030_REG_OFFSET_SPLL2_DSKEWCAL                       0X0034
++#define WIN2030_REG_OFFSET_SPLL2_SSC                            0X0038
++#define WIN2030_REG_OFFSET_VPLL_CFG_0                           0X003C
++#define WIN2030_REG_OFFSET_VPLL_CFG_1                           0X0040
++#define WIN2030_REG_OFFSET_VPLL_CFG_2                           0X0044
++#define WIN2030_REG_OFFSET_VPLL_DSKEWCAL                        0X0048
++#define WIN2030_REG_OFFSET_VPLL_SSC                             0X004C
++#define WIN2030_REG_OFFSET_APLL_CFG_0                           0X0050
++#define WIN2030_REG_OFFSET_APLL_CFG_1                           0X0054
++#define WIN2030_REG_OFFSET_APLL_CFG_2                           0X0058
++#define WIN2030_REG_OFFSET_APLL_DSKEWCAL                        0X005C
++#define WIN2030_REG_OFFSET_APLL_SSC                             0X0060
++#define WIN2030_REG_OFFSET_MCPUT_PLL_CFG_0                      0X0064
++#define WIN2030_REG_OFFSET_MCPUT_PLL_CFG_1                      0X0068
++#define WIN2030_REG_OFFSET_MCPUT_PLL_CFG_2                      0X006C
++#define WIN2030_REG_OFFSET_MCPUT_PLL_DSKEWCAL                   0X0070
++#define WIN2030_REG_OFFSET_MCPUT_PLL_SSC                        0X0074
++#define WIN2030_REG_OFFSET_DDRT_PLL_CFG_0                       0X0078
++#define WIN2030_REG_OFFSET_DDRT_PLL_CFG_1                       0X007C
++#define WIN2030_REG_OFFSET_DDRT_PLL_CFG_2                       0X0080
++#define WIN2030_REG_OFFSET_DDRT_PLL_DSKEWCAL                    0X0084
++#define WIN2030_REG_OFFSET_DDRT_PLL_SSC                         0X0088
++#define WIN2030_REG_OFFSET_PLL_STATUS                           0X00A4
++#define WIN2030_REG_OFFSET_NOC_CLK_CTRL                         0X100
++#define WIN2030_REG_OFFSET_BOOTSPI_CLK_CTRL                     0X104
++#define WIN2030_REG_OFFSET_BOOTSPI_CFGCLK_CTRL                  0X108
++#define WIN2030_REG_OFFSET_SCPU_CORECLK_CTRL                    0X10C
++#define WIN2030_REG_OFFSET_SCPU_BUSCLK_CTRL                     0X110
++#define WIN2030_REG_OFFSET_LPCPU_CORECLK_CTRL                   0X114
++#define WIN2030_REG_OFFSET_LPCPU_BUSCLK_CTRL                    0X118
++#define WIN2030_REG_OFFSET_TCU_ACLK_CTRL                        0X11C
++#define WIN2030_REG_OFFSET_TCU_CFG_CTRL                         0X120
++#define WIN2030_REG_OFFSET_DDR_CLK_CTRL                         0X124
++#define WIN2030_REG_OFFSET_DDR1_CLK_CTRL                        0X128
++#define WIN2030_REG_OFFSET_GPU_ACLK_CTRL                        0X12C
++#define WIN2030_REG_OFFSET_GPU_CFG_CTRL                         0X130
++#define WIN2030_REG_OFFSET_GPU_GRAY_CTRL                        0X134
++#define WIN2030_REG_OFFSET_DSP_ACLK_CTRL                        0X138
++#define WIN2030_REG_OFFSET_DSP_CFG_CTRL                         0X13C
++#define WIN2030_REG_OFFSET_D2D_ACLK_CTRL                        0X140
++#define WIN2030_REG_OFFSET_D2D_CFG_CTRL                         0X144
++#define WIN2030_REG_OFFSET_HSP_ACLK_CTRL                        0X148
++#define WIN2030_REG_OFFSET_HSP_CFG_CTRL                         0X14C
++#define WIN2030_REG_OFFSET_SATA_RBC_CTRL                        0X150
++#define WIN2030_REG_OFFSET_SATA_OOB_CTRL                        0X154
++#define WIN2030_REG_OFFSET_ETH0_CTRL                            0X158
++#define WIN2030_REG_OFFSET_ETH1_CTRL                            0X15C
++#define WIN2030_REG_OFFSET_MSHC0_CORECLK_CTRL                   0X160
++#define WIN2030_REG_OFFSET_MSHC1_CORECLK_CTRL                   0X164
++#define WIN2030_REG_OFFSET_MSHC2_CORECLK_CTRL                   0X168
++#define WIN2030_REG_OFFSET_MSHC_USB_SLWCLK                      0X16C
++#define WIN2030_REG_OFFSET_PCIE_ACLK_CTRL                       0X170
++#define WIN2030_REG_OFFSET_PCIE_CFG_CTRL                        0X174
++#define WIN2030_REG_OFFSET_NPU_ACLK_CTRL                        0X178
++#define WIN2030_REG_OFFSET_NPU_LLC_CTRL                         0X17C
++#define WIN2030_REG_OFFSET_NPU_CORE_CTRL                        0X180
++#define WIN2030_REG_OFFSET_VI_DWCLK_CTRL                        0X184
++#define WIN2030_REG_OFFSET_VI_ACLK_CTRL                         0X188
++#define WIN2030_REG_OFFSET_VI_DIG_ISP_CLK_CTRL                  0X18C
++#define WIN2030_REG_OFFSET_VI_DVP_CLK_CTRL                      0X190
++#define WIN2030_REG_OFFSET_VI_SHUTTER0                          0X194
++#define WIN2030_REG_OFFSET_VI_SHUTTER1                          0X198
++#define WIN2030_REG_OFFSET_VI_SHUTTER2                          0X19C
++#define WIN2030_REG_OFFSET_VI_SHUTTER3                          0X1A0
++#define WIN2030_REG_OFFSET_VI_SHUTTER4                          0X1A4
++#define WIN2030_REG_OFFSET_VI_SHUTTER5                          0X1A8
++#define WIN2030_REG_OFFSET_VI_PHY_CLKCTRL                       0X1AC
++#define WIN2030_REG_OFFSET_VO_ACLK_CTRL                         0X1B0
++#define WIN2030_REG_OFFSET_VO_IESMCLK_CTRL                      0X1B4
++#define WIN2030_REG_OFFSET_VO_PIXEL_CTRL                        0X1B8
++#define WIN2030_REG_OFFSET_VO_MCLK_CTRL                         0X1BC
++#define WIN2030_REG_OFFSET_VO_PHY_CLKCTRL                       0X1C0
++#define WIN2030_REG_OFFSET_VC_ACLK_CTRL                         0X1C4
++#define WIN2030_REG_OFFSET_VCDEC_ROOTCLK_CTRL                   0X1C8
++#define WIN2030_REG_OFFSET_G2D_CTRL                             0X1CC
++#define WIN2030_REG_OFFSET_VC_CLKEN_CTRL                        0X1D0
++#define WIN2030_REG_OFFSET_JE_CLK_CTRL                          0X1D4
++#define WIN2030_REG_OFFSET_JD_CLK_CTRL                          0X1D8
++#define WIN2030_REG_OFFSET_VD_CLK_CTRL                          0X1DC
++#define WIN2030_REG_OFFSET_VE_CLK_CTRL                          0X1E0
++#define WIN2030_REG_OFFSET_AON_DMA_CLK_CTRL                     0X1E4
++#define WIN2030_REG_OFFSET_TIMER_CLK_CTRL                       0X1E8
++#define WIN2030_REG_OFFSET_RTC_CLK_CTRL                         0X1EC
++#define WIN2030_REG_OFFSET_PKA_CLK_CTRL                         0X1F0
++#define WIN2030_REG_OFFSET_SPACC_CLK_CTRL                       0X1F4
++#define WIN2030_REG_OFFSET_TRNG_CLK_CTRL                        0X1F8
++#define WIN2030_REG_OFFSET_OTP_CLK_CTRL                         0X1FC
++#define WIN2030_REG_OFFSET_LSP_CLK_EN0                          0X200
++#define WIN2030_REG_OFFSET_LSP_CLK_EN1                          0X204
++#define WIN2030_REG_OFFSET_U84_CLK_CTRL                         0X208
++#define WIN2030_REG_OFFSET_SYSCFG_CLK_CTRL                      0X20C
++#define WIN2030_REG_OFFSET_I2C0_CLK_CTRL                        0X210
++#define WIN2030_REG_OFFSET_I2C1_CLK_CTRL                        0X214
++#define WIN2030_REG_OFFSET_DFT_CLK_CTRL                         0X280
++#define WIN2030_REG_OFFSET_SYS_SWRST_VALUE                      0X300
++#define WIN2030_REG_OFFSET_CLR_RST_STATUS                       0X304
++#define WIN2030_REG_OFFSET_DIE_STATUS                           0X308
++#define WIN2030_REG_OFFSET_CLR_BOOT_INFO                        0X30C
++#define WIN2030_REG_OFFSET_SCPU_BOOT_ADDRESS                    0X310
++#define WIN2030_REG_OFFSET_LPCPU_BOOT_ADDRESS                   0X314
++#define WIN2030_REG_OFFSET_NPUE31_BOOT_ADDRESS                  0X318
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS0_HI                 0X31C
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS0_LOW                0X320
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS1_HI                 0X324
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS1_LOW                0X328
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS2_HI                 0X32C
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS2_LOW                0X330
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS3_HI                 0X334
++#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS3_LOW                0X338
++#define WIN2030_REG_OFFSET_BOOT_SEL_STAT                        0X33C
++#define WIN2030_REG_OFFSET_BOOT_SPI_CFG                         0X340
++#define WIN2030_REG_OFFSET_SNOC_RST_CTRL                        0X400
++#define WIN2030_REG_OFFSET_GPU_RST_CTRL                         0X404
++#define WIN2030_REG_OFFSET_DSP_RST_CTRL                         0X408
++#define WIN2030_REG_OFFSET_D2D_RST_CTRL                         0X40C
++#define WIN2030_REG_OFFSET_DDR_RST_CTRL                         0X410
++#define WIN2030_REG_OFFSET_TCU_RST_CTRL                         0X414
++#define WIN2030_REG_OFFSET_NPU_RST_CTRL                         0X418
++#define WIN2030_REG_OFFSET_HSPDMA_RST_CTRL                      0X41C
++#define WIN2030_REG_OFFSET_PCIE_RST_CTRL                        0X420
++#define WIN2030_REG_OFFSET_I2C_RST_CTRL                         0X424
++#define WIN2030_REG_OFFSET_FAN_RST_CTRL                         0X428
++#define WIN2030_REG_OFFSET_PVT_RST_CTRL                         0X42C
++#define WIN2030_REG_OFFSET_MBOX_RST_CTRL                        0X430
++#define WIN2030_REG_OFFSET_UART_RST_CTRL                        0X434
++#define WIN2030_REG_OFFSET_GPIO_RST_CTRL                        0X438
++#define WIN2030_REG_OFFSET_TIMER_RST_CTRL                       0X43C
++#define WIN2030_REG_OFFSET_SSI_RST_CTRL                         0X440
++#define WIN2030_REG_OFFSET_WDT_RST_CTRL                         0X444
++#define WIN2030_REG_OFFSET_LSP_CFGRST_CTRL                      0X448
++#define WIN2030_REG_OFFSET_U84_RST_CTRL                         0X44C
++#define WIN2030_REG_OFFSET_SCPU_RST_CTRL                        0X450
++#define WIN2030_REG_OFFSET_LPCPU_RST_CTRL                       0X454
++#define WIN2030_REG_OFFSET_VC_RST_CTRL                          0X458
++#define WIN2030_REG_OFFSET_JD_RST_CTRL                          0X45C
++#define WIN2030_REG_OFFSET_JE_RST_CTRL                          0X460
++#define WIN2030_REG_OFFSET_VE_RST_CTRL                          0X468
++#define WIN2030_REG_OFFSET_G2D_RST_CTRL                         0X46C
++#define WIN2030_REG_OFFSET_VI_RST_CTRL                          0X470
++#define WIN2030_REG_OFFSET_DVP_RST_CTRL                         0X474
++#define WIN2030_REG_OFFSET_ISP0_RST_CTRL                        0X478
++#define WIN2030_REG_OFFSET_ISP1_RST_CTRL                        0X47C
++#define WIN2030_REG_OFFSET_SHUTTER_RST_CTRL                     0X480
++#define WIN2030_REG_OFFSET_VO_PHYRST_CTRL                       0X484
++#define WIN2030_REG_OFFSET_VO_I2SRST_CTRL                       0X488
++#define WIN2030_REG_OFFSET_VO_RST_CTRL                          0X48C
++#define WIN2030_REG_OFFSET_BOOTSPI_RST_CTRL                     0X490
++#define WIN2030_REG_OFFSET_I2C1_RST_CTRL                        0X494
++#define WIN2030_REG_OFFSET_I2C0_RST_CTRL                        0X498
++#define WIN2030_REG_OFFSET_DMA1_RST_CTRL                        0X49C
++#define WIN2030_REG_OFFSET_FPRT_RST_CTRL                        0X4A0
++#define WIN2030_REG_OFFSET_HBLOCK_RST_CTRL                      0X4A4
++#define WIN2030_REG_OFFSET_SECSR_RST_CTRL                       0X4A8
++#define WIN2030_REG_OFFSET_OTP_RST_CTRL                         0X4AC
++#define WIN2030_REG_OFFSET_PKA_RST_CTRL                         0X4B0
++#define WIN2030_REG_OFFSET_SPACC_RST_CTRL                       0X4B4
++#define WIN2030_REG_OFFSET_TRNG_RST_CTRL                        0X4B8
++#define WIN2030_REG_OFFSET_TIMER0_RST_CTRL                      0X4C0
++#define WIN2030_REG_OFFSET_TIMER1_RST_CTRL                      0X4C4
++#define WIN2030_REG_OFFSET_TIMER2_RST_CTRL                      0X4C8
++#define WIN2030_REG_OFFSET_TIMER3_RST_CTRL                      0X4CC
++#define WIN2030_REG_OFFSET_RTC_RST_CTRL                         0X4D0
++#define WIN2030_REG_OFFSET_MNOC_RST_CTRL                        0X4D4
++#define WIN2030_REG_OFFSET_RNOC_RST_CTRL                        0X4D8
++#define WIN2030_REG_OFFSET_CNOC_RST_CTRL                        0X4DC
++#define WIN2030_REG_OFFSET_LNOC_RST_CTRL                        0X4E0
++#endif
+diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
+index cab4e8002205..7a895a05cef8 100644
+--- a/drivers/reset/Kconfig
++++ b/drivers/reset/Kconfig
+@@ -320,11 +320,11 @@ config RESET_ZYNQ
+ 
+ source "drivers/reset/starfive/Kconfig"
+ 
+-config RESET_ESWIN_WIN2030
+-	tristate "Eswin Win2030 Reset Driver"
++config RESET_ESWIN
++	bool "Reset controller driver for Eswin SoCs"
+ 	default n
+ 	help
+-	  This enables the reset controller driver for Eswin Win2030 SoCs.
++	  This enables the reset controller driver for Eswin SoCs.
+ source "drivers/reset/sti/Kconfig"
+ source "drivers/reset/hisilicon/Kconfig"
+ source "drivers/reset/tegra/Kconfig"
+diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
+index 30d55a7f0fb9..c10a4d085ca4 100644
+--- a/drivers/reset/Makefile
++++ b/drivers/reset/Makefile
+@@ -41,5 +41,5 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
+ obj-$(CONFIG_RESET_UNIPHIER_GLUE) += reset-uniphier-glue.o
+ obj-$(CONFIG_RESET_ZYNQ) += reset-zynq.o
+ obj-$(CONFIG_ARCH_ZYNQMP) += reset-zynqmp.o
+-obj-$(CONFIG_RESET_ESWIN_WIN2030) += reset-eswin.o
++obj-$(CONFIG_RESET_ESWIN) += reset-eswin.o
+ 
+diff --git a/drivers/reset/reset-eswin.c b/drivers/reset/reset-eswin.c
+index 9ad472bca433..799795b267bc 100755
+--- a/drivers/reset/reset-eswin.c
++++ b/drivers/reset/reset-eswin.c
+@@ -3,7 +3,6 @@
+  * ESWIN Reset Driver
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -105,25 +104,14 @@ static int eswin_reset_reset(struct reset_controller_dev *rcdev,
+ {
+ 	int ret;
+ 
+-	//todo, check weather this should be removed
+-	/*clear boot flag so u84 and scpu could be reseted by software*/
+-	/*
+-	struct eswin_reset_data *data = to_eswin_reset_data(rcdev);
+-	printk("%s %d\r\n",__func__,__LINE__);
+-	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET, CLEAR_BOOT_FLAG_BIT);
+-	msleep(50);
+-	regmap_clear_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET, CLEAR_BOOT_FLAG_BIT);
+-	*/
+-
+ 	ret = eswin_reset_set(rcdev, id, true);
+-	if (0 != ret) {
++	if (ret != 0)
+ 		return ret;
+-	}
++
+ 	usleep_range(10, 15);
+ 	ret = eswin_reset_set(rcdev, id, false);
+-	if (0 != ret) {
++	if (ret != 0)
+ 		return ret;
+-	}
+ 
+ 	return 0;
+ }
+@@ -151,12 +139,10 @@ static int eswin_reset_of_xlate_lookup_id(int id, void *p, void *data)
+ 	struct of_phandle_args *reset_spec = (struct of_phandle_args *)data;
+ 	struct eswin_reset_control *slot_control = (struct eswin_reset_control *)p;
+ 
+-	if (reset_spec->args[0] == slot_control->dev_id
+-		&& reset_spec->args[1] == slot_control->reset_bit) {
+-			return id;
+-	} else {
++	if (reset_spec->args[0] == slot_control->dev_id && reset_spec->args[1] == slot_control->reset_bit)
++		return id;
++	else
+ 		return 0;
+-	}
+ }
+ 
+ /**
+@@ -184,9 +170,8 @@ static int eswin_reset_of_xlate(struct reset_controller_dev *rcdev,
+ 		return -EINVAL;
+ 
+ 	ret = idr_for_each(&data->idr, eswin_reset_of_xlate_lookup_id, (void *)reset_spec);
+-	if (0 != ret) {
++	if (ret != 0)
+ 		return ret;
+-	}
+ 
+ 	control = devm_kzalloc(data->dev, sizeof(*control), GFP_KERNEL);
+ 	if (!control)
+@@ -199,7 +184,7 @@ static int eswin_reset_of_xlate(struct reset_controller_dev *rcdev,
+ }
+ 
+ static const struct of_device_id eswin_reset_dt_ids[] = {
+-	 { .compatible = "eswin,win2030-reset", },
++	 { .compatible = "eswin,eic770x-reset", },
+ 	 { /* sentinel */ },
+ };
+ 
+@@ -238,8 +223,6 @@ static int eswin_reset_probe(struct platform_device *pdev)
+ 	/*clear boot flag so u84 and scpu could be reseted by software*/
+ 	regmap_set_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET, CLEAR_BOOT_FLAG_BIT);
+ 	msleep(50);
+-	//regmap_clear_bits(data->regmap, SYSCRG_CLEAR_BOOT_INFO_OFFSET, CLEAR_BOOT_FLAG_BIT);
+-
+ 	platform_set_drvdata(pdev, data);
+ 
+ 	return devm_reset_controller_register(&pdev->dev, &data->rcdev);
+@@ -263,8 +246,8 @@ static struct platform_driver eswin_reset_driver = {
+ 	},
+ };
+ 
+-static int __init win2030_reset_init(void)
++static int __init eswin_reset_init(void)
+ {
+ 	return platform_driver_register(&eswin_reset_driver);
+ }
+-arch_initcall(win2030_reset_init);
++arch_initcall(eswin_reset_init);
+diff --git a/include/dt-bindings/reset/eswin,eic770x-reset.h b/include/dt-bindings/reset/eswin,eic770x-reset.h
+new file mode 100755
+index 000000000000..e544fa4da748
+--- /dev/null
++++ b/include/dt-bindings/reset/eswin,eic770x-reset.h
+@@ -0,0 +1,473 @@
++/* SPDX-License-Identifier: GPL-2.0 */
++/*
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
++ */
++
++#ifndef __DT_ESWIN_EIC770X_RESET_H__
++#define __DT_ESWIN_EIC770X_RESET_H__
++
++/*
++ * RESET DEV ID  FOR EACH RESET CONSUMER
++ *
++ */
++#define		SNOC_RST_CTRL					0X00
++#define		GPU_RST_CTRL					0X01
++#define		DSP_RST_CTRL					0X02
++#define		D2D_RST_CTRL					0X03
++#define		DDR_RST_CTRL					0X04
++#define		TCU_RST_CTRL					0X05
++#define		NPU_RST_CTRL					0X06
++#define		HSPDMA_RST_CTRL					0X07
++#define		PCIE_RST_CTRL					0X08
++#define		I2C_RST_CTRL					0X09
++#define		FAN_RST_CTRL					0X0A
++#define		PVT_RST_CTRL					0X0B
++#define		MBOX_RST_CTRL					0X0C
++#define		UART_RST_CTRL					0X0D
++#define		GPIO_RST_CTRL					0X0E
++#define		TIMER_RST_CTRL					0X0F
++#define		SSI_RST_CTRL					0X10
++#define		WDT_RST_CTRL					0X11
++#define		LSP_CFGRST_CTRL					0X12
++#define		U84_RST_CTRL					0X13
++#define		SCPU_RST_CTRL					0X14
++#define		LPCPU_RST_CTRL					0X15
++#define		VC_RST_CTRL					0X16
++#define		JD_RST_CTRL					0X17
++#define		JE_RST_CTRL					0X18
++#define		VD_RST_CTRL					0X19
++#define		VE_RST_CTRL					0X1A
++#define		G2D_RST_CTRL					0X1B
++#define		VI_RST_CTRL					0X1C
++#define		DVP_RST_CTRL					0X1D
++#define		ISP0_RST_CTRL					0X1E
++#define		ISP1_RST_CTRL					0X1F
++#define		SHUTTER_RST_CTRL				0X20
++#define		VO_PHYRST_CTRL					0X21
++#define		VO_I2SRST_CTRL					0X22
++#define		VO_RST_CTRL					0X23
++#define		BOOTSPI_RST_CTRL				0X24
++#define		I2C1_RST_CTRL					0X25
++#define		I2C0_RST_CTRL					0X26
++#define		DMA1_RST_CTRL					0X27
++#define		FPRT_RST_CTRL					0X28
++#define		HBLOCK_RST_CTRL					0X29
++#define		SECSR_RST_CTRL					0X2A
++#define		OTP_RST_CTRL					0X2B
++#define		PKA_RST_CTRL					0X2C
++#define		SPACC_RST_CTRL					0X2D
++#define		TRNG_RST_CTRL					0X2E
++#define		RESERVED					0X2F
++#define		TIMER0_RST_CTRL					0X30
++#define		TIMER1_RST_CTRL					0X31
++#define		TIMER2_RST_CTRL					0X32
++#define		TIMER3_RST_CTRL					0X33
++#define		RTC_RST_CTRL					0X34
++#define		MNOC_RST_CTRL					0X35
++#define		RNOC_RST_CTRL					0X36
++#define		CNOC_RST_CTRL					0X37
++#define		LNOC_RST_CTRL					0X38
++
++/*
++ * CONSUMER RESET CONTROL BIT
++ */
++/*SNOC*/
++#define		SW_NOC_NSP_RSTN						(1 << 0)
++#define		SW_NOC_CFG_RSTN						(1 << 1)
++#define		SW_RNOC_NSP_RSTN					(1 << 2)
++#define		SW_SNOC_TCU_ARSTN					(1 << 3)
++#define		SW_SNOC_U84_ARSTN					(1 << 4)
++#define		SW_SNOC_PCIET_XSRSTN					(1 << 5)
++#define		SW_SNOC_PCIET_XMRSTN					(1 << 6)
++#define		SW_SNOC_PCIET_PRSTN					(1 << 7)
++#define		SW_SNOC_NPU_ARSTN					(1 << 8)
++#define		SW_SNOC_JTAG_ARSTN					(1 << 9)
++#define		SW_SNOC_DSPT_ARSTN					(1 << 10)
++#define		SW_SNOC_DDRC1_P2_ARSTN					(1 << 11)
++#define		SW_SNOC_DDRC1_P1_ARSTN					(1 << 12)
++#define		SW_SNOC_DDRC0_P2_ARSTN					(1 << 13)
++#define		SW_SNOC_DDRC0_P1_ARSTN					(1 << 14)
++#define		SW_SNOC_D2D_ARSTN					(1 << 15)
++#define		SW_SNOC_AON_ARSTN					(1 << 16)
++
++/*GPU*/
++#define		SW_GPU_AXI_RSTN						(1 << 0)
++#define		SW_GPU_CFG_RSTN						(1 << 1)
++#define		SW_GPU_GRAY_RSTN					(1 << 2)
++#define		SW_GPU_JONES_RSTN					(1 << 3)
++#define		SW_GPU_SPU_RSTN						(1 << 4)
++
++/*DSP*/
++#define		SW_DSP_AXI_RSTN						(1 << 0)
++#define		SW_DSP_CFG_RSTN						(1 << 1)
++#define		SW_DSP_DIV4_RSTN					(1 << 2)
++#define		SW_DSP_DIV_RSTN_0					(1 << 4)
++#define		SW_DSP_DIV_RSTN_1					(1 << 5)
++#define		SW_DSP_DIV_RSTN_2					(1 << 6)
++#define		SW_DSP_DIV_RSTN_3					(1 << 7)
++
++/*D2D*/
++#define		SW_D2D_AXI_RSTN						(1 << 0)
++#define		SW_D2D_CFG_RSTN						(1 << 1)
++#define		SW_D2D_PRST_N						(1 << 2)
++#define		SW_D2D_RAW_PCS_RST_N					(1 << 4)
++#define		SW_D2D_RX_RST_N						(1 << 5)
++#define		SW_D2D_TX_RST_N						(1 << 6)
++#define		SW_D2D_CORE_RST_N					(1 << 7)
++
++/*TCU*/
++#define		SW_TCU_AXI_RSTN						(1 << 0)
++#define		SW_TCU_CFG_RSTN						(1 << 1)
++#define		TBU_RSTN_0						(1 << 4)
++#define		TBU_RSTN_1						(1 << 5)
++#define		TBU_RSTN_2						(1 << 6)
++#define		TBU_RSTN_3						(1 << 7)
++#define		TBU_RSTN_4						(1 << 8)
++#define		TBU_RSTN_5						(1 << 9)
++#define		TBU_RSTN_6						(1 << 10)
++#define		TBU_RSTN_7						(1 << 11)
++#define		TBU_RSTN_8						(1 << 12)
++#define		TBU_RSTN_9						(1 << 13)
++#define		TBU_RSTN_10						(1 << 14)
++#define		TBU_RSTN_11						(1 << 15)
++#define		TBU_RSTN_12						(1 << 16)
++#define		TBU_RSTN_13						(1 << 17)
++#define		TBU_RSTN_14						(1 << 18)
++#define		TBU_RSTN_15						(1 << 19)
++#define		TBU_RSTN_16						(1 << 20)
++
++/*NPU*/
++#define		SW_NPU_AXI_RSTN						(1 << 0)
++#define		SW_NPU_CFG_RSTN						(1 << 1)
++#define		SW_NPU_CORE_RSTN					(1 << 2)
++#define		SW_NPU_E31CORE_RSTN					(1 << 3)
++#define		SW_NPU_E31BUS_RSTN					(1 << 4)
++#define		SW_NPU_E31DBG_RSTN					(1 << 5)
++#define		SW_NPU_LLC_RSTN						(1 << 6)
++
++/*HSP DMA*/
++#define		SW_HSP_AXI_RSTN						(1 << 0)
++#define		SW_HSP_CFG_RSTN						(1 << 1)
++#define		SW_HSP_POR_RSTN						(1 << 2)
++#define		SW_MSHC0_PHY_RSTN					(1 << 3)
++#define		SW_MSHC1_PHY_RSTN					(1 << 4)
++#define		SW_MSHC2_PHY_RSTN					(1 << 5)
++#define		SW_MSHC0_TXRX_RSTN					(1 << 6)
++#define		SW_MSHC1_TXRX_RSTN					(1 << 7)
++#define		SW_MSHC2_TXRX_RSTN					(1 << 8)
++#define		SW_SATA_ASIC0_RSTN					(1 << 9)
++#define		SW_SATA_OOB_RSTN					(1 << 10)
++#define		SW_SATA_PMALIVE_RSTN					(1 << 11)
++#define		SW_SATA_RBC_RSTN					(1 << 12)
++#define		SW_DMA0_RST_N						(1 << 13)
++#define		SW_HSP_DMA0_RSTN					(1 << 14)
++#define		SW_USB0_VAUX_RSTN					(1 << 15)
++#define		SW_USB1_VAUX_RSTN					(1 << 16)
++#define		SW_HSP_SD1_PRSTN					(1 << 17)
++#define		SW_HSP_SD0_PRSTN					(1 << 18)
++#define		SW_HSP_EMMC_PRSTN					(1 << 19)
++#define		SW_HSP_DMA_PRSTN					(1 << 20)
++#define		SW_HSP_SD1_ARSTN					(1 << 21)
++#define		SW_HSP_SD0_ARSTN					(1 << 22)
++#define		SW_HSP_EMMC_ARSTN					(1 << 23)
++#define		SW_HSP_DMA_ARSTN					(1 << 24)
++#define		SW_HSP_ETH1_ARSTN					(1 << 25)
++#define		SW_HSP_ETH0_ARSTN					(1 << 26)
++#define		SW_HSP_SATA_ARSTN					(1 << 27)
++
++/*PCIE*/
++#define		SW_PCIE_CFG_RSTN					(1 << 0)
++#define		SW_PCIE_POWERUP_RSTN					(1 << 1)
++#define		SW_PCIE_PERST_N						(1 << 2)
++
++/*I2C*/
++#define		SW_I2C_RST_N_0						(1 << 0)
++#define		SW_I2C_RST_N_1						(1 << 1)
++#define		SW_I2C_RST_N_2						(1 << 2)
++#define		SW_I2C_RST_N_3						(1 << 3)
++#define		SW_I2C_RST_N_4						(1 << 4)
++#define		SW_I2C_RST_N_5						(1 << 5)
++#define		SW_I2C_RST_N_6						(1 << 6)
++#define		SW_I2C_RST_N_7						(1 << 7)
++#define		SW_I2C_RST_N_8						(1 << 8)
++#define		SW_I2C_RST_N_9						(1 << 9)
++
++/*FAN*/
++#define		SW_FAN_RST_N						(1 << 0)
++
++/*PVT*/
++#define		SW_PVT_RST_N_0						(1 << 0)
++#define		SW_PVT_RST_N_1						(1 << 1)
++
++/*MBOX*/
++#define		SW_MBOX_RST_N_0					(1 << 0)
++#define		SW_MBOX_RST_N_1					(1 << 1)
++#define		SW_MBOX_RST_N_2					(1 << 2)
++#define		SW_MBOX_RST_N_3					(1 << 3)
++#define		SW_MBOX_RST_N_4					(1 << 4)
++#define		SW_MBOX_RST_N_5					(1 << 5)
++#define		SW_MBOX_RST_N_6					(1 << 6)
++#define		SW_MBOX_RST_N_7					(1 << 7)
++#define		SW_MBOX_RST_N_8					(1 << 8)
++#define		SW_MBOX_RST_N_9					(1 << 9)
++#define		SW_MBOX_RST_N_10				(1 << 10)
++#define		SW_MBOX_RST_N_11				(1 << 11)
++#define		SW_MBOX_RST_N_12				(1 << 12)
++#define		SW_MBOX_RST_N_13				(1 << 13)
++#define		SW_MBOX_RST_N_14				(1 << 14)
++#define		SW_MBOX_RST_N_15				(1 << 15)
++
++/*UART*/
++#define		SW_UART_RST_N_0					(1 << 0)
++#define		SW_UART_RST_N_1					(1 << 1)
++#define		SW_UART_RST_N_2					(1 << 2)
++#define		SW_UART_RST_N_3					(1 << 3)
++#define		SW_UART_RST_N_4					(1 << 4)
++
++/*GPIO*/
++#define		SW_GPIO_RST_N_0					(1 << 0)
++#define		SW_GPIO_RST_N_1					(1 << 1)
++
++/*TIMER*/
++#define		SW_TIMER_RST_N					(1 << 0)
++
++/*SSI*/
++#define		SW_SSI_RST_N_0					(1 << 0)
++#define		SW_SSI_RST_N_1					(1 << 1)
++
++/*WDT*/
++#define		SW_WDT_RST_N_0					(1 << 0)
++#define		SW_WDT_RST_N_1					(1 << 1)
++#define		SW_WDT_RST_N_2					(1 << 2)
++#define		SW_WDT_RST_N_3					(1 << 3)
++
++/*LSP CFG*/
++#define		SW_LSP_CFG_RSTN					(1 << 0)
++
++/*U84 CFG*/
++#define		SW_U84_CORE_RSTN_0				(1 << 0)
++#define		SW_U84_CORE_RSTN_1				(1 << 1)
++#define		SW_U84_CORE_RSTN_2				(1 << 2)
++#define		SW_U84_CORE_RSTN_3				(1 << 3)
++#define		SW_U84_BUS_RSTN					(1 << 4)
++#define		SW_U84_DBG_RSTN					(1 << 5)
++#define		SW_U84_TRACECOM_RSTN				(1 << 6)
++#define		SW_U84_TRACE_RSTN_0				(1 << 8)
++#define		SW_U84_TRACE_RSTN_1				(1 << 9)
++#define		SW_U84_TRACE_RSTN_2				(1 << 10)
++#define		SW_U84_TRACE_RSTN_3				(1 << 11)
++
++/*SCPU*/
++#define		SW_SCPU_CORE_RSTN				(1 << 0)
++#define		SW_SCPU_BUS_RSTN				(1 << 1)
++#define		SW_SCPU_DBG_RSTN				(1 << 2)
++
++/*LPCPU*/
++#define		SW_LPCPU_CORE_RSTN				(1 << 0)
++#define		SW_LPCPU_BUS_RSTN				(1 << 1)
++#define		SW_LPCPU_DBG_RSTN				(1 << 2)
++
++/*VC*/
++#define		SW_VC_CFG_RSTN					(1 << 0)
++#define		SW_VC_AXI_RSTN					(1 << 1)
++#define		SW_VC_MONCFG_RSTN				(1 << 2)
++
++/*JD*/
++#define		SW_JD_CFG_RSTN					(1 << 0)
++#define		SW_JD_AXI_RSTN					(1 << 1)
++
++/*JE*/
++#define		SW_JE_CFG_RSTN					(1 << 0)
++#define		SW_JE_AXI_RSTN					(1 << 1)
++
++/*VD*/
++#define		SW_VD_CFG_RSTN					(1 << 0)
++#define		SW_VD_AXI_RSTN					(1 << 1)
++
++/*VE*/
++#define		SW_VE_AXI_RSTN					(1 << 0)
++#define		SW_VE_CFG_RSTN					(1 << 1)
++
++/*G2D*/
++#define		SW_G2D_CORE_RSTN				(1 << 0)
++#define		SW_G2D_CFG_RSTN					(1 << 1)
++#define		SW_G2D_AXI_RSTN					(1 << 2)
++
++/*VI*/
++#define		SW_VI_AXI_RSTN					(1 << 0)
++#define		SW_VI_CFG_RSTN					(1 << 1)
++#define		SW_VI_DWE_RSTN					(1 << 2)
++
++/*DVP*/
++#define		SW_VI_DVP_RSTN					(1 << 0)
++
++/*ISP0*/
++#define		SW_VI_ISP0_RSTN					(1 << 0)
++
++/*ISP1*/
++#define		SW_VI_ISP1_RSTN					(1 << 0)
++
++/*SHUTTR*/
++#define		SW_VI_SHUTTER_RSTN_0				(1 << 0)
++#define		SW_VI_SHUTTER_RSTN_1				(1 << 1)
++#define		SW_VI_SHUTTER_RSTN_2				(1 << 2)
++#define		SW_VI_SHUTTER_RSTN_3				(1 << 3)
++#define		SW_VI_SHUTTER_RSTN_4				(1 << 4)
++#define		SW_VI_SHUTTER_RSTN_5				(1 << 5)
++
++/*VO PHY*/
++#define		SW_VO_MIPI_PRSTN				(1 << 0)
++#define		SW_VO_PRSTN					(1 << 1)
++#define		SW_VO_HDMI_PRSTN				(1 << 3)
++#define		SW_HDMI_PHYCTRL_RSTN				(1 << 4)
++#define		SW_VO_HDMI_RSTN					(1 << 5)
++
++/*VO I2S*/
++#define		SW_VO_I2S_RSTN					(1 << 0)
++#define		SW_VO_I2S_PRSTN					(1 << 1)
++
++/*VO*/
++#define		SW_VO_AXI_RSTN					(1 << 0)
++#define		SW_VO_CFG_RSTN					(1 << 1)
++#define		SW_VO_DC_RSTN					(1 << 2)
++#define		SW_VO_DC_PRSTN					(1 << 3)
++
++/*BOOTSPI*/
++#define		SW_BOOTSPI_HRSTN				(1 << 0)
++#define		SW_BOOTSPI_RSTN					(1 << 1)
++
++/*I2C1*/
++#define		SW_I2C1_PRSTN					(1 << 0)
++
++/*I2C0*/
++#define		SW_I2C0_PRSTN					(1 << 0)
++
++/*DMA1*/
++#define		SW_DMA1_ARSTN					(1 << 0)
++#define		SW_DMA1_HRSTN					(1 << 1)
++
++/*FPRT*/
++#define		SW_FP_PRT_HRSTN					(1 << 0)
++
++/*HBLOCK*/
++#define		SW_HBLOCK_HRSTN					(1 << 0)
++
++/*SECSR*/
++#define		SW_SECSR_HRSTN					(1 << 0)
++
++/*OTP*/
++#define		SW_OTP_PRSTN					(1 << 0)
++
++/*PKA*/
++#define		SW_PKA_HRSTN					(1 << 0)
++
++/*SPACC*/
++#define		SW_SPACC_RSTN					(1 << 0)
++
++/*TRNG*/
++#define		SW_TRNG_HRSTN					(1 << 0)
++
++/*TIMER0*/
++#define		SW_TIMER0_RSTN_0				(1 << 0)
++#define		SW_TIMER0_RSTN_1				(1 << 1)
++#define		SW_TIMER0_RSTN_2				(1 << 2)
++#define		SW_TIMER0_RSTN_3				(1 << 3)
++#define		SW_TIMER0_RSTN_4				(1 << 4)
++#define		SW_TIMER0_RSTN_5				(1 << 5)
++#define		SW_TIMER0_RSTN_6				(1 << 6)
++#define		SW_TIMER0_RSTN_7				(1 << 7)
++#define		SW_TIMER0_PRSTN					(1 << 8)
++
++/*TIMER1*/
++#define		SW_TIMER1_RSTN_0				(1 << 0)
++#define		SW_TIMER1_RSTN_1				(1 << 1)
++#define		SW_TIMER1_RSTN_2				(1 << 2)
++#define		SW_TIMER1_RSTN_3				(1 << 3)
++#define		SW_TIMER1_RSTN_4				(1 << 4)
++#define		SW_TIMER1_RSTN_5				(1 << 5)
++#define		SW_TIMER1_RSTN_6				(1 << 6)
++#define		SW_TIMER1_RSTN_7				(1 << 7)
++#define		SW_TIMER1_PRSTN					(1 << 8)
++
++/*TIMER2*/
++#define		SW_TIMER2_RSTN_0				(1 << 0)
++#define		SW_TIMER2_RSTN_1				(1 << 1)
++#define		SW_TIMER2_RSTN_2				(1 << 2)
++#define		SW_TIMER2_RSTN_3				(1 << 3)
++#define		SW_TIMER2_RSTN_4				(1 << 4)
++#define		SW_TIMER2_RSTN_5				(1 << 5)
++#define		SW_TIMER2_RSTN_6				(1 << 6)
++#define		SW_TIMER2_RSTN_7				(1 << 7)
++#define		SW_TIMER2_PRSTN					(1 << 8)
++
++/*TIMER3*/
++#define		SW_TIMER3_RSTN_0				(1 << 0)
++#define		SW_TIMER3_RSTN_1				(1 << 1)
++#define		SW_TIMER3_RSTN_2				(1 << 2)
++#define		SW_TIMER3_RSTN_3				(1 << 3)
++#define		SW_TIMER3_RSTN_4				(1 << 4)
++#define		SW_TIMER3_RSTN_5				(1 << 5)
++#define		SW_TIMER3_RSTN_6				(1 << 6)
++#define		SW_TIMER3_RSTN_7				(1 << 7)
++#define		SW_TIMER3_PRSTN					(1 << 8)
++
++/*RTC*/
++#define		SW_RTC_RSTN					(1 << 0)
++
++/*MNOC*/
++#define		SW_MNOC_SNOC_NSP_RSTN				(1 << 0)
++#define		SW_MNOC_VC_ARSTN				(1 << 1)
++#define		SW_MNOC_CFG_RSTN				(1 << 2)
++#define		SW_MNOC_HSP_ARSTN				(1 << 3)
++#define		SW_MNOC_GPU_ARSTN				(1 << 4)
++#define		SW_MNOC_DDRC1_P3_ARSTN				(1 << 5)
++#define		SW_MNOC_DDRC0_P3_ARSTN				(1 << 6)
++
++/*RNOC*/
++#define		SW_RNOC_VO_ARSTN				(1 << 0)
++#define		SW_RNOC_VI_ARSTN				(1 << 1)
++#define		SW_RNOC_SNOC_NSP_RSTN				(1 << 2)
++#define		SW_RNOC_CFG_RSTN				(1 << 3)
++#define		SW_MNOC_DDRC1_P4_ARSTN				(1 << 4)
++#define		SW_MNOC_DDRC0_P4_ARSTN				(1 << 5)
++
++/*CNOC*/
++#define		SW_CNOC_VO_CFG_RSTN				(1 << 0)
++#define		SW_CNOC_VI_CFG_RSTN				(1 << 1)
++#define		SW_CNOC_VC_CFG_RSTN				(1 << 2)
++#define		SW_CNOC_TCU_CFG_RSTN				(1 << 3)
++#define		SW_CNOC_PCIET_CFG_RSTN				(1 << 4)
++#define		SW_CNOC_NPU_CFG_RSTN				(1 << 5)
++#define		SW_CNOC_LSP_CFG_RSTN				(1 << 6)
++#define		SW_CNOC_HSP_CFG_RSTN				(1 << 7)
++#define		SW_CNOC_GPU_CFG_RSTN				(1 << 8)
++#define		SW_CNOC_DSPT_CFG_RSTN				(1 << 9)
++#define		SW_CNOC_DDRT1_CFG_RSTN				(1 << 10)
++#define		SW_CNOC_DDRT0_CFG_RSTN				(1 << 11)
++#define		SW_CNOC_D2D_CFG_RSTN				(1 << 12)
++#define		SW_CNOC_CFG_RSTN				(1 << 13)
++#define		SW_CNOC_CLMM_CFG_RSTN				(1 << 14)
++#define		SW_CNOC_AON_CFG_RSTN				(1 << 15)
++
++/*LNOC*/
++#define		SW_LNOC_CFG_RSTN				(1 << 0)
++#define		SW_LNOC_NPU_LLC_ARSTN				(1 << 1)
++#define		SW_LNOC_DDRC1_P0_ARSTN				(1 << 2)
++#define		SW_LNOC_DDRC0_P0_ARSTN				(1 << 3)
++
++#endif /*endif __DT_ESWIN_EIC770X_RESET_H__*/
+diff --git a/include/dt-bindings/reset/eswin,win2030-syscrg.h b/include/dt-bindings/reset/eswin,win2030-syscrg.h
+deleted file mode 100755
+index 3c27a51c18ae..000000000000
+--- a/include/dt-bindings/reset/eswin,win2030-syscrg.h
++++ /dev/null
+@@ -1,693 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0
+-/*
+- * ESWIN SysCrg Definition
+- *
+- * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+- *
+- * This program is free software: you can redistribute it and/or modify
+- * it under the terms of the GNU General Public License as published by
+- * the Free Software Foundation, version 2.
+- *
+- * This program is distributed in the hope that it will be useful,
+- * but WITHOUT ANY WARRANTY; without even the implied warranty of
+- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+- * GNU General Public License for more details.
+- *
+- * You should have received a copy of the GNU General Public License
+- * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+- *
+- * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
+- */
+-
+-#ifndef __DT_ESWIN_WIN2030_SYSCRG_H__
+-#define __DT_ESWIN_WIN2030_SYSCRG_H__
+-
+-/*REG OFFSET OF SYS-CRG*/
+-
+-#define WIN2030_REG_OFFSET_SPLL0_CFG_0                          0X0000
+-#define WIN2030_REG_OFFSET_SPLL0_CFG_1                          0X0004
+-#define WIN2030_REG_OFFSET_SPLL0_CFG_2                          0X0008
+-#define WIN2030_REG_OFFSET_SPLL0_DSKEWCAL                       0X000C
+-#define WIN2030_REG_OFFSET_SPLL0_SSC                            0X0010
+-#define WIN2030_REG_OFFSET_SPLL1_CFG_0                          0X0014
+-#define WIN2030_REG_OFFSET_SPLL1_CFG_1                          0X0018
+-#define WIN2030_REG_OFFSET_SPLL1_CFG_2                          0X001C
+-#define WIN2030_REG_OFFSET_SPLL1_DSKEWCAL                       0X0020
+-#define WIN2030_REG_OFFSET_SPLL1_SSC                            0X0024
+-#define WIN2030_REG_OFFSET_SPLL2_CFG_0                          0X0028
+-#define WIN2030_REG_OFFSET_SPLL2_CFG_1                          0X002C
+-#define WIN2030_REG_OFFSET_SPLL2_CFG_2                          0X0030
+-#define WIN2030_REG_OFFSET_SPLL2_DSKEWCAL                       0X0034
+-#define WIN2030_REG_OFFSET_SPLL2_SSC                            0X0038
+-#define WIN2030_REG_OFFSET_VPLL_CFG_0                           0X003C
+-#define WIN2030_REG_OFFSET_VPLL_CFG_1                           0X0040
+-#define WIN2030_REG_OFFSET_VPLL_CFG_2                           0X0044
+-#define WIN2030_REG_OFFSET_VPLL_DSKEWCAL                        0X0048
+-#define WIN2030_REG_OFFSET_VPLL_SSC                             0X004C
+-#define WIN2030_REG_OFFSET_APLL_CFG_0                           0X0050
+-#define WIN2030_REG_OFFSET_APLL_CFG_1                           0X0054
+-#define WIN2030_REG_OFFSET_APLL_CFG_2                           0X0058
+-#define WIN2030_REG_OFFSET_APLL_DSKEWCAL                        0X005C
+-#define WIN2030_REG_OFFSET_APLL_SSC                             0X0060
+-#define WIN2030_REG_OFFSET_MCPUT_PLL_CFG_0                      0X0064
+-#define WIN2030_REG_OFFSET_MCPUT_PLL_CFG_1                      0X0068
+-#define WIN2030_REG_OFFSET_MCPUT_PLL_CFG_2                      0X006C
+-#define WIN2030_REG_OFFSET_MCPUT_PLL_DSKEWCAL                   0X0070
+-#define WIN2030_REG_OFFSET_MCPUT_PLL_SSC                        0X0074
+-#define WIN2030_REG_OFFSET_DDRT_PLL_CFG_0                       0X0078
+-#define WIN2030_REG_OFFSET_DDRT_PLL_CFG_1                       0X007C
+-#define WIN2030_REG_OFFSET_DDRT_PLL_CFG_2                       0X0080
+-#define WIN2030_REG_OFFSET_DDRT_PLL_DSKEWCAL                    0X0084
+-#define WIN2030_REG_OFFSET_DDRT_PLL_SSC                         0X0088
+-#define WIN2030_REG_OFFSET_PLL_STATUS                           0X00A4
+-#define WIN2030_REG_OFFSET_NOC_CLK_CTRL                         0X100
+-#define WIN2030_REG_OFFSET_BOOTSPI_CLK_CTRL                     0X104
+-#define WIN2030_REG_OFFSET_BOOTSPI_CFGCLK_CTRL                  0X108
+-#define WIN2030_REG_OFFSET_SCPU_CORECLK_CTRL                    0X10C
+-#define WIN2030_REG_OFFSET_SCPU_BUSCLK_CTRL                     0X110
+-#define WIN2030_REG_OFFSET_LPCPU_CORECLK_CTRL                   0X114
+-#define WIN2030_REG_OFFSET_LPCPU_BUSCLK_CTRL                    0X118
+-#define WIN2030_REG_OFFSET_TCU_ACLK_CTRL                        0X11C
+-#define WIN2030_REG_OFFSET_TCU_CFG_CTRL                         0X120
+-#define WIN2030_REG_OFFSET_DDR_CLK_CTRL                         0X124
+-#define WIN2030_REG_OFFSET_DDR1_CLK_CTRL                        0X128
+-#define WIN2030_REG_OFFSET_GPU_ACLK_CTRL                        0X12C
+-#define WIN2030_REG_OFFSET_GPU_CFG_CTRL                         0X130
+-#define WIN2030_REG_OFFSET_GPU_GRAY_CTRL                        0X134
+-#define WIN2030_REG_OFFSET_DSP_ACLK_CTRL                        0X138
+-#define WIN2030_REG_OFFSET_DSP_CFG_CTRL                         0X13C
+-#define WIN2030_REG_OFFSET_D2D_ACLK_CTRL                        0X140
+-#define WIN2030_REG_OFFSET_D2D_CFG_CTRL                         0X144
+-#define WIN2030_REG_OFFSET_HSP_ACLK_CTRL                        0X148
+-#define WIN2030_REG_OFFSET_HSP_CFG_CTRL                         0X14C
+-#define WIN2030_REG_OFFSET_SATA_RBC_CTRL                        0X150
+-#define WIN2030_REG_OFFSET_SATA_OOB_CTRL                        0X154
+-#define WIN2030_REG_OFFSET_ETH0_CTRL                            0X158
+-#define WIN2030_REG_OFFSET_ETH1_CTRL                            0X15C
+-#define WIN2030_REG_OFFSET_MSHC0_CORECLK_CTRL                   0X160
+-#define WIN2030_REG_OFFSET_MSHC1_CORECLK_CTRL                   0X164
+-#define WIN2030_REG_OFFSET_MSHC2_CORECLK_CTRL                   0X168
+-#define WIN2030_REG_OFFSET_MSHC_USB_SLWCLK                      0X16C
+-#define WIN2030_REG_OFFSET_PCIE_ACLK_CTRL                       0X170
+-#define WIN2030_REG_OFFSET_PCIE_CFG_CTRL                        0X174
+-#define WIN2030_REG_OFFSET_NPU_ACLK_CTRL                        0X178
+-#define WIN2030_REG_OFFSET_NPU_LLC_CTRL                         0X17C
+-#define WIN2030_REG_OFFSET_NPU_CORE_CTRL                        0X180
+-#define WIN2030_REG_OFFSET_VI_DWCLK_CTRL                        0X184
+-#define WIN2030_REG_OFFSET_VI_ACLK_CTRL                         0X188
+-#define WIN2030_REG_OFFSET_VI_DIG_ISP_CLK_CTRL                  0X18C
+-#define WIN2030_REG_OFFSET_VI_DVP_CLK_CTRL                      0X190
+-#define WIN2030_REG_OFFSET_VI_SHUTTER0                          0X194
+-#define WIN2030_REG_OFFSET_VI_SHUTTER1                          0X198
+-#define WIN2030_REG_OFFSET_VI_SHUTTER2                          0X19C
+-#define WIN2030_REG_OFFSET_VI_SHUTTER3                          0X1A0
+-#define WIN2030_REG_OFFSET_VI_SHUTTER4                          0X1A4
+-#define WIN2030_REG_OFFSET_VI_SHUTTER5                          0X1A8
+-#define WIN2030_REG_OFFSET_VI_PHY_CLKCTRL                       0X1AC
+-#define WIN2030_REG_OFFSET_VO_ACLK_CTRL                         0X1B0
+-#define WIN2030_REG_OFFSET_VO_IESMCLK_CTRL                      0X1B4
+-#define WIN2030_REG_OFFSET_VO_PIXEL_CTRL                        0X1B8
+-#define WIN2030_REG_OFFSET_VO_MCLK_CTRL                         0X1BC
+-#define WIN2030_REG_OFFSET_VO_PHY_CLKCTRL                       0X1C0
+-#define WIN2030_REG_OFFSET_VC_ACLK_CTRL                         0X1C4
+-#define WIN2030_REG_OFFSET_VCDEC_ROOTCLK_CTRL                   0X1C8
+-#define WIN2030_REG_OFFSET_G2D_CTRL                             0X1CC
+-#define WIN2030_REG_OFFSET_VC_CLKEN_CTRL                        0X1D0
+-#define WIN2030_REG_OFFSET_JE_CLK_CTRL                          0X1D4
+-#define WIN2030_REG_OFFSET_JD_CLK_CTRL                          0X1D8
+-#define WIN2030_REG_OFFSET_VD_CLK_CTRL                          0X1DC
+-#define WIN2030_REG_OFFSET_VE_CLK_CTRL                          0X1E0
+-#define WIN2030_REG_OFFSET_AON_DMA_CLK_CTRL                     0X1E4
+-#define WIN2030_REG_OFFSET_TIMER_CLK_CTRL                       0X1E8
+-#define WIN2030_REG_OFFSET_RTC_CLK_CTRL                         0X1EC
+-#define WIN2030_REG_OFFSET_PKA_CLK_CTRL                         0X1F0
+-#define WIN2030_REG_OFFSET_SPACC_CLK_CTRL                       0X1F4
+-#define WIN2030_REG_OFFSET_TRNG_CLK_CTRL                        0X1F8
+-#define WIN2030_REG_OFFSET_OTP_CLK_CTRL                         0X1FC
+-#define WIN2030_REG_OFFSET_LSP_CLK_EN0                          0X200
+-#define WIN2030_REG_OFFSET_LSP_CLK_EN1                          0X204
+-#define WIN2030_REG_OFFSET_U84_CLK_CTRL                         0X208
+-#define WIN2030_REG_OFFSET_SYSCFG_CLK_CTRL                      0X20C
+-#define WIN2030_REG_OFFSET_I2C0_CLK_CTRL                        0X210
+-#define WIN2030_REG_OFFSET_I2C1_CLK_CTRL                        0X214
+-#define WIN2030_REG_OFFSET_DFT_CLK_CTRL                         0X280
+-#define WIN2030_REG_OFFSET_SYS_SWRST_VALUE                      0X300
+-#define WIN2030_REG_OFFSET_CLR_RST_STATUS                       0X304
+-#define WIN2030_REG_OFFSET_DIE_STATUS                           0X308
+-#define WIN2030_REG_OFFSET_CLR_BOOT_INFO                        0X30C
+-#define WIN2030_REG_OFFSET_SCPU_BOOT_ADDRESS                    0X310
+-#define WIN2030_REG_OFFSET_LPCPU_BOOT_ADDRESS                   0X314
+-#define WIN2030_REG_OFFSET_NPUE31_BOOT_ADDRESS                  0X318
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS0_HI                 0X31C
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS0_LOW                0X320
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS1_HI                 0X324
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS1_LOW                0X328
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS2_HI                 0X32C
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS2_LOW                0X330
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS3_HI                 0X334
+-#define WIN2030_REG_OFFSET_U84_BOOT_ADDRESS3_LOW                0X338
+-#define WIN2030_REG_OFFSET_BOOT_SEL_STAT                        0X33C
+-#define WIN2030_REG_OFFSET_BOOT_SPI_CFG                         0X340
+-#define WIN2030_REG_OFFSET_SNOC_RST_CTRL                        0X400
+-#define WIN2030_REG_OFFSET_GPU_RST_CTRL                         0X404
+-#define WIN2030_REG_OFFSET_DSP_RST_CTRL                         0X408
+-#define WIN2030_REG_OFFSET_D2D_RST_CTRL                         0X40C
+-#define WIN2030_REG_OFFSET_DDR_RST_CTRL                         0X410
+-#define WIN2030_REG_OFFSET_TCU_RST_CTRL                         0X414
+-#define WIN2030_REG_OFFSET_NPU_RST_CTRL                         0X418
+-#define WIN2030_REG_OFFSET_HSPDMA_RST_CTRL                      0X41C
+-#define WIN2030_REG_OFFSET_PCIE_RST_CTRL                        0X420
+-#define WIN2030_REG_OFFSET_I2C_RST_CTRL                         0X424
+-#define WIN2030_REG_OFFSET_FAN_RST_CTRL                         0X428
+-#define WIN2030_REG_OFFSET_PVT_RST_CTRL                         0X42C
+-#define WIN2030_REG_OFFSET_MBOX_RST_CTRL                        0X430
+-#define WIN2030_REG_OFFSET_UART_RST_CTRL                        0X434
+-#define WIN2030_REG_OFFSET_GPIO_RST_CTRL                        0X438
+-#define WIN2030_REG_OFFSET_TIMER_RST_CTRL                       0X43C
+-#define WIN2030_REG_OFFSET_SSI_RST_CTRL                         0X440
+-#define WIN2030_REG_OFFSET_WDT_RST_CTRL                         0X444
+-#define WIN2030_REG_OFFSET_LSP_CFGRST_CTRL                      0X448
+-#define WIN2030_REG_OFFSET_U84_RST_CTRL                         0X44C
+-#define WIN2030_REG_OFFSET_SCPU_RST_CTRL                        0X450
+-#define WIN2030_REG_OFFSET_LPCPU_RST_CTRL                       0X454
+-#define WIN2030_REG_OFFSET_VC_RST_CTRL                          0X458
+-#define WIN2030_REG_OFFSET_JD_RST_CTRL                          0X45C
+-#define WIN2030_REG_OFFSET_JE_RST_CTRL                          0X460
+-#define WIN2030_REG_OFFSET_VD_RST_CTRL                          0X464
+-#define WIN2030_REG_OFFSET_VE_RST_CTRL                          0X468
+-#define WIN2030_REG_OFFSET_G2D_RST_CTRL                         0X46C
+-#define WIN2030_REG_OFFSET_VI_RST_CTRL                          0X470
+-#define WIN2030_REG_OFFSET_DVP_RST_CTRL                         0X474
+-#define WIN2030_REG_OFFSET_ISP0_RST_CTRL                        0X478
+-#define WIN2030_REG_OFFSET_ISP1_RST_CTRL                        0X47C
+-#define WIN2030_REG_OFFSET_SHUTTER_RST_CTRL                     0X480
+-#define WIN2030_REG_OFFSET_VO_PHYRST_CTRL                       0X484
+-#define WIN2030_REG_OFFSET_VO_I2SRST_CTRL                       0X488
+-#define WIN2030_REG_OFFSET_VO_RST_CTRL                          0X48C
+-#define WIN2030_REG_OFFSET_BOOTSPI_RST_CTRL                     0X490
+-#define WIN2030_REG_OFFSET_I2C1_RST_CTRL                        0X494
+-#define WIN2030_REG_OFFSET_I2C0_RST_CTRL                        0X498
+-#define WIN2030_REG_OFFSET_DMA1_RST_CTRL                        0X49C
+-#define WIN2030_REG_OFFSET_FPRT_RST_CTRL                        0X4A0
+-#define WIN2030_REG_OFFSET_HBLOCK_RST_CTRL                      0X4A4
+-#define WIN2030_REG_OFFSET_SECSR_RST_CTRL                       0X4A8
+-#define WIN2030_REG_OFFSET_OTP_RST_CTRL                         0X4AC
+-#define WIN2030_REG_OFFSET_PKA_RST_CTRL                         0X4B0
+-#define WIN2030_REG_OFFSET_SPACC_RST_CTRL                       0X4B4
+-#define WIN2030_REG_OFFSET_TRNG_RST_CTRL                        0X4B8
+-#define WIN2030_REG_OFFSET_TIMER0_RST_CTRL                      0X4C0
+-#define WIN2030_REG_OFFSET_TIMER1_RST_CTRL                      0X4C4
+-#define WIN2030_REG_OFFSET_TIMER2_RST_CTRL                      0X4C8
+-#define WIN2030_REG_OFFSET_TIMER3_RST_CTRL                      0X4CC
+-#define WIN2030_REG_OFFSET_RTC_RST_CTRL                         0X4D0
+-#define WIN2030_REG_OFFSET_MNOC_RST_CTRL                        0X4D4
+-#define WIN2030_REG_OFFSET_RNOC_RST_CTRL                        0X4D8
+-#define WIN2030_REG_OFFSET_CNOC_RST_CTRL                        0X4DC
+-#define WIN2030_REG_OFFSET_LNOC_RST_CTRL                        0X4E0
+-
+-/*
+- * RESET DEV ID  FOR EACH RESET CONSUMER
+- *
+- */
+-#define		SNOC_RST_CTRL					0X00
+-#define		GPU_RST_CTRL					0X01
+-#define		DSP_RST_CTRL					0X02
+-#define		D2D_RST_CTRL					0X03
+-#define		DDR_RST_CTRL					0X04
+-#define		TCU_RST_CTRL					0X05
+-#define		NPU_RST_CTRL					0X06
+-#define		HSPDMA_RST_CTRL					0X07
+-#define		PCIE_RST_CTRL					0X08
+-#define		I2C_RST_CTRL					0X09
+-#define		FAN_RST_CTRL					0X0A
+-#define		PVT_RST_CTRL					0X0B
+-#define		MBOX_RST_CTRL					0X0C
+-#define		UART_RST_CTRL					0X0D
+-#define		GPIO_RST_CTRL					0X0E
+-#define		TIMER_RST_CTRL					0X0F
+-#define		SSI_RST_CTRL					0X10
+-#define		WDT_RST_CTRL					0X11
+-#define		LSP_CFGRST_CTRL					0X12
+-#define		U84_RST_CTRL					0X13
+-#define		SCPU_RST_CTRL					0X14
+-#define		LPCPU_RST_CTRL					0X15
+-#define		VC_RST_CTRL					0X16
+-#define		JD_RST_CTRL					0X17
+-#define		JE_RST_CTRL					0X18
+-#define		VD_RST_CTRL					0X19
+-#define		VE_RST_CTRL					0X1A
+-#define		G2D_RST_CTRL					0X1B
+-#define		VI_RST_CTRL					0X1C
+-#define		DVP_RST_CTRL					0X1D
+-#define		ISP0_RST_CTRL					0X1E
+-#define		ISP1_RST_CTRL					0X1F
+-#define		SHUTTER_RST_CTRL				0X20
+-#define		VO_PHYRST_CTRL					0X21
+-#define		VO_I2SRST_CTRL					0X22
+-#define		VO_RST_CTRL					0X23
+-#define		BOOTSPI_RST_CTRL				0X24
+-#define		I2C1_RST_CTRL					0X25
+-#define		I2C0_RST_CTRL					0X26
+-#define		DMA1_RST_CTRL					0X27
+-#define		FPRT_RST_CTRL					0X28
+-#define		HBLOCK_RST_CTRL					0X29
+-#define		SECSR_RST_CTRL					0X2A
+-#define		OTP_RST_CTRL					0X2B
+-#define		PKA_RST_CTRL					0X2C
+-#define		SPACC_RST_CTRL					0X2D
+-#define		TRNG_RST_CTRL					0X2E
+-#define		RESERVED					0X2F
+-#define		TIMER0_RST_CTRL					0X30
+-#define		TIMER1_RST_CTRL					0X31
+-#define		TIMER2_RST_CTRL					0X32
+-#define		TIMER3_RST_CTRL					0X33
+-#define		RTC_RST_CTRL					0X34
+-#define		MNOC_RST_CTRL					0X35
+-#define		RNOC_RST_CTRL					0X36
+-#define		CNOC_RST_CTRL					0X37
+-#define		LNOC_RST_CTRL					0X38
+-
+-#define BIT0                              (1 << 0)
+-#define BIT1                              (1 << 1)
+-#define BIT2                              (1 << 2)
+-#define BIT3                              (1 << 3)
+-#define BIT4                              (1 << 4)
+-#define BIT5                              (1 << 5)
+-#define BIT6                              (1 << 6)
+-#define BIT7                              (1 << 7)
+-#define BIT8                              (1 << 8)
+-#define BIT9                              (1 << 9)
+-#define BIT10                             (1 << 10)
+-#define BIT11                             (1 << 11)
+-#define BIT12                             (1 << 12)
+-#define BIT13                             (1 << 13)
+-#define BIT14                             (1 << 14)
+-#define BIT15                             (1 << 15)
+-#define BIT16                             (1 << 16)
+-#define BIT17                             (1 << 17)
+-#define BIT18                             (1 << 18)
+-#define BIT19                             (1 << 19)
+-#define BIT20                             (1 << 20)
+-#define BIT21                             (1 << 21)
+-#define BIT22                             (1 << 22)
+-#define BIT23                             (1 << 23)
+-#define BIT24                             (1 << 24)
+-#define BIT25                             (1 << 25)
+-#define BIT26                             (1 << 26)
+-#define BIT27                             (1 << 27)
+-#define BIT28                             (1 << 28)
+-#define BIT29                             (1 << 29)
+-#define BIT30                             (1 << 30)
+-#define BIT31                             (1 << 31)
+-
+-/*
+-	CONSUMER RESET CONTROL BIT
+-*/
+-/*SNOC*/
+-#define		SW_NOC_NSP_RSTN						BIT0
+-#define		SW_NOC_CFG_RSTN						BIT1
+-#define		SW_RNOC_NSP_RSTN					BIT2
+-#define		SW_SNOC_TCU_ARSTN					BIT3
+-#define		SW_SNOC_U84_ARSTN					BIT4
+-#define		SW_SNOC_PCIET_XSRSTN					BIT5
+-#define		SW_SNOC_PCIET_XMRSTN					BIT6
+-#define		SW_SNOC_PCIET_PRSTN					BIT7
+-#define		SW_SNOC_NPU_ARSTN					BIT8
+-#define		SW_SNOC_JTAG_ARSTN					BIT9
+-#define		SW_SNOC_DSPT_ARSTN					BIT10
+-#define		SW_SNOC_DDRC1_P2_ARSTN					BIT11
+-#define		SW_SNOC_DDRC1_P1_ARSTN					BIT12
+-#define		SW_SNOC_DDRC0_P2_ARSTN					BIT13
+-#define		SW_SNOC_DDRC0_P1_ARSTN					BIT14
+-#define		SW_SNOC_D2D_ARSTN					BIT15
+-#define		SW_SNOC_AON_ARSTN					BIT16
+-
+-/*GPU*/
+-#define		SW_GPU_AXI_RSTN						BIT0
+-#define		SW_GPU_CFG_RSTN						BIT1
+-#define		SW_GPU_GRAY_RSTN					BIT2
+-#define		SW_GPU_JONES_RSTN					BIT3
+-#define		SW_GPU_SPU_RSTN						BIT4
+-
+-/*DSP*/
+-#define		SW_DSP_AXI_RSTN						BIT0
+-#define		SW_DSP_CFG_RSTN						BIT1
+-#define		SW_DSP_DIV4_RSTN					BIT2
+-#define		SW_DSP_DIV_RSTN_0					BIT4
+-#define		SW_DSP_DIV_RSTN_1					BIT5
+-#define		SW_DSP_DIV_RSTN_2					BIT6
+-#define		SW_DSP_DIV_RSTN_3					BIT7
+-
+-/*D2D*/
+-#define		SW_D2D_AXI_RSTN						BIT0
+-#define		SW_D2D_CFG_RSTN						BIT1
+-#define		SW_D2D_PRST_N						BIT2
+-#define		SW_D2D_RAW_PCS_RST_N					BIT4
+-#define		SW_D2D_RX_RST_N						BIT5
+-#define		SW_D2D_TX_RST_N						BIT6
+-#define		SW_D2D_CORE_RST_N					BIT7
+-
+-/*TCU*/
+-#define		SW_TCU_AXI_RSTN						BIT0
+-#define		SW_TCU_CFG_RSTN						BIT1
+-#define		TBU_RSTN_0						BIT4
+-#define		TBU_RSTN_1						BIT5
+-#define		TBU_RSTN_2						BIT6
+-#define		TBU_RSTN_3						BIT7
+-#define		TBU_RSTN_4						BIT8
+-#define		TBU_RSTN_5						BIT9
+-#define		TBU_RSTN_6						BIT10
+-#define		TBU_RSTN_7						BIT11
+-#define		TBU_RSTN_8						BIT12
+-#define		TBU_RSTN_9						BIT13
+-#define		TBU_RSTN_10						BIT14
+-#define		TBU_RSTN_11						BIT15
+-#define		TBU_RSTN_12						BIT16
+-#define		TBU_RSTN_13						BIT17
+-#define		TBU_RSTN_14						BIT18
+-#define		TBU_RSTN_15						BIT19
+-#define		TBU_RSTN_16						BIT20
+-
+-/*NPU*/
+-#define		SW_NPU_AXI_RSTN						BIT0
+-#define		SW_NPU_CFG_RSTN						BIT1
+-#define		SW_NPU_CORE_RSTN					BIT2
+-#define		SW_NPU_E31CORE_RSTN					BIT3
+-#define		SW_NPU_E31BUS_RSTN					BIT4
+-#define		SW_NPU_E31DBG_RSTN					BIT5
+-#define		SW_NPU_LLC_RSTN						BIT6
+-
+-/*HSP DMA*/
+-#define		SW_HSP_AXI_RSTN						BIT0
+-#define		SW_HSP_CFG_RSTN						BIT1
+-#define		SW_HSP_POR_RSTN						BIT2
+-#define		SW_MSHC0_PHY_RSTN					BIT3
+-#define		SW_MSHC1_PHY_RSTN					BIT4
+-#define		SW_MSHC2_PHY_RSTN					BIT5
+-#define		SW_MSHC0_TXRX_RSTN					BIT6
+-#define		SW_MSHC1_TXRX_RSTN					BIT7
+-#define		SW_MSHC2_TXRX_RSTN					BIT8
+-#define		SW_SATA_ASIC0_RSTN					BIT9
+-#define		SW_SATA_OOB_RSTN					BIT10
+-#define		SW_SATA_PMALIVE_RSTN					BIT11
+-#define		SW_SATA_RBC_RSTN					BIT12
+-#define		SW_DMA0_RST_N						BIT13
+-#define		SW_HSP_DMA0_RSTN					BIT14
+-#define		SW_USB0_VAUX_RSTN					BIT15
+-#define		SW_USB1_VAUX_RSTN					BIT16
+-#define		SW_HSP_SD1_PRSTN					BIT17
+-#define		SW_HSP_SD0_PRSTN					BIT18
+-#define		SW_HSP_EMMC_PRSTN					BIT19
+-#define		SW_HSP_DMA_PRSTN					BIT20
+-#define		SW_HSP_SD1_ARSTN					BIT21
+-#define		SW_HSP_SD0_ARSTN					BIT22
+-#define		SW_HSP_EMMC_ARSTN					BIT23
+-#define		SW_HSP_DMA_ARSTN					BIT24
+-#define		SW_HSP_ETH1_ARSTN					BIT25
+-#define		SW_HSP_ETH0_ARSTN					BIT26
+-#define		SW_HSP_SATA_ARSTN					BIT27
+-
+-/*PCIE*/
+-#define		SW_PCIE_CFG_RSTN					BIT0
+-#define		SW_PCIE_POWERUP_RSTN					BIT1
+-#define		SW_PCIE_PERST_N						BIT2
+-
+-/*I2C*/
+-#define		SW_I2C_RST_N_0						BIT0
+-#define		SW_I2C_RST_N_1						BIT1
+-#define		SW_I2C_RST_N_2						BIT2
+-#define		SW_I2C_RST_N_3						BIT3
+-#define		SW_I2C_RST_N_4						BIT4
+-#define		SW_I2C_RST_N_5						BIT5
+-#define		SW_I2C_RST_N_6						BIT6
+-#define		SW_I2C_RST_N_7						BIT7
+-#define		SW_I2C_RST_N_8						BIT8
+-#define		SW_I2C_RST_N_9						BIT9
+-
+-/*FAN*/
+-#define		SW_FAN_RST_N						BIT0
+-
+-/*PVT*/
+-#define		SW_PVT_RST_N_0						BIT0
+-#define		SW_PVT_RST_N_1						BIT1
+-
+-/*MBOX*/
+-#define		SW_MBOX_RST_N_0					BIT0
+-#define		SW_MBOX_RST_N_1					BIT1
+-#define		SW_MBOX_RST_N_2					BIT2
+-#define		SW_MBOX_RST_N_3					BIT3
+-#define		SW_MBOX_RST_N_4					BIT4
+-#define		SW_MBOX_RST_N_5					BIT5
+-#define		SW_MBOX_RST_N_6					BIT6
+-#define		SW_MBOX_RST_N_7					BIT7
+-#define		SW_MBOX_RST_N_8					BIT8
+-#define		SW_MBOX_RST_N_9					BIT9
+-#define		SW_MBOX_RST_N_10				BIT10
+-#define		SW_MBOX_RST_N_11				BIT11
+-#define		SW_MBOX_RST_N_12				BIT12
+-#define		SW_MBOX_RST_N_13				BIT13
+-#define		SW_MBOX_RST_N_14				BIT14
+-#define		SW_MBOX_RST_N_15				BIT15
+-
+-/*UART*/
+-#define		SW_UART_RST_N_0					BIT0
+-#define		SW_UART_RST_N_1					BIT1
+-#define		SW_UART_RST_N_2					BIT2
+-#define		SW_UART_RST_N_3					BIT3
+-#define		SW_UART_RST_N_4					BIT4
+-
+-/*GPIO*/
+-/*
+-#define		SW_GPIO_RST_N_0					BIT0
+-#define		SW_GPIO_RST_N_1					BIT1
+-*/
+-
+-/*TIMER*/
+-#define		SW_TIMER_RST_N					BIT0
+-
+-/*SSI*/
+-#define		SW_SSI_RST_N_0					BIT0
+-#define		SW_SSI_RST_N_1					BIT1
+-
+-/*WDT*/
+-#define		SW_WDT_RST_N_0					BIT0
+-#define		SW_WDT_RST_N_1					BIT1
+-#define		SW_WDT_RST_N_2					BIT2
+-#define		SW_WDT_RST_N_3					BIT3
+-
+-/*LSP CFG*/
+-#define		SW_LSP_CFG_RSTN					BIT0
+-
+-/*U84 CFG*/
+-#define		SW_U84_CORE_RSTN_0				BIT0
+-#define		SW_U84_CORE_RSTN_1				BIT1
+-#define		SW_U84_CORE_RSTN_2				BIT2
+-#define		SW_U84_CORE_RSTN_3				BIT3
+-#define		SW_U84_BUS_RSTN					BIT4
+-#define		SW_U84_DBG_RSTN					BIT5
+-#define		SW_U84_TRACECOM_RSTN				BIT6
+-#define		SW_U84_TRACE_RSTN_0				BIT8
+-#define		SW_U84_TRACE_RSTN_1				BIT9
+-#define		SW_U84_TRACE_RSTN_2				BIT10
+-#define		SW_U84_TRACE_RSTN_3				BIT11
+-
+-/*SCPU*/
+-#define		SW_SCPU_CORE_RSTN				BIT0
+-#define		SW_SCPU_BUS_RSTN				BIT1
+-#define		SW_SCPU_DBG_RSTN				BIT2
+-
+-/*LPCPU*/
+-#define		SW_LPCPU_CORE_RSTN				BIT0
+-#define		SW_LPCPU_BUS_RSTN				BIT1
+-#define		SW_LPCPU_DBG_RSTN				BIT2
+-
+-/*VC*/
+-#define		SW_VC_CFG_RSTN					BIT0
+-#define		SW_VC_AXI_RSTN					BIT1
+-#define		SW_VC_MONCFG_RSTN				BIT2
+-
+-/*JD*/
+-#define		SW_JD_CFG_RSTN					BIT0
+-#define		SW_JD_AXI_RSTN					BIT1
+-
+-/*JE*/
+-#define		SW_JE_CFG_RSTN					BIT0
+-#define		SW_JE_AXI_RSTN					BIT1
+-
+-/*VD*/
+-#define		SW_VD_CFG_RSTN					BIT0
+-#define		SW_VD_AXI_RSTN					BIT1
+-
+-/*VE*/
+-#define		SW_VE_AXI_RSTN					BIT0
+-#define		SW_VE_CFG_RSTN					BIT1
+-
+-/*G2D*/
+-#define		SW_G2D_CORE_RSTN				BIT0
+-#define		SW_G2D_CFG_RSTN					BIT1
+-#define		SW_G2D_AXI_RSTN					BIT2
+-
+-/*VI*/
+-#define		SW_VI_AXI_RSTN					BIT0
+-#define		SW_VI_CFG_RSTN					BIT1
+-#define		SW_VI_DWE_RSTN					BIT2
+-
+-/*DVP*/
+-#define		SW_VI_DVP_RSTN					BIT0
+-
+-/*ISP0*/
+-#define		SW_VI_ISP0_RSTN					BIT0
+-
+-/*ISP1*/
+-#define		SW_VI_ISP1_RSTN					BIT0
+-
+-/*SHUTTR*/
+-#define		SW_VI_SHUTTER_RSTN_0				BIT0
+-#define		SW_VI_SHUTTER_RSTN_1				BIT1
+-#define		SW_VI_SHUTTER_RSTN_2				BIT2
+-#define		SW_VI_SHUTTER_RSTN_3				BIT3
+-#define		SW_VI_SHUTTER_RSTN_4				BIT4
+-#define		SW_VI_SHUTTER_RSTN_5				BIT5
+-
+-/*VO PHY*/
+-#define		SW_VO_MIPI_PRSTN				BIT0
+-#define		SW_VO_PRSTN					BIT1
+-#define		SW_VO_HDMI_PRSTN				BIT3
+-#define		SW_HDMI_PHYCTRL_RSTN				BIT4
+-#define		SW_VO_HDMI_RSTN					BIT5
+-
+-/*VO I2S*/
+-#define		SW_VO_I2S_RSTN					BIT0
+-#define		SW_VO_I2S_PRSTN					BIT1
+-
+-/*VO*/
+-#define		SW_VO_AXI_RSTN					BIT0
+-#define		SW_VO_CFG_RSTN					BIT1
+-#define		SW_VO_DC_RSTN					BIT2
+-#define		SW_VO_DC_PRSTN					BIT3
+-
+-/*BOOTSPI*/
+-#define		SW_BOOTSPI_HRSTN				BIT0
+-#define		SW_BOOTSPI_RSTN					BIT1
+-
+-/*I2C1*/
+-#define		SW_I2C1_PRSTN					BIT0
+-
+-/*I2C0*/
+-#define		SW_I2C0_PRSTN					BIT0
+-
+-/*DMA1*/
+-#define		SW_DMA1_ARSTN					BIT0
+-#define		SW_DMA1_HRSTN					BIT1
+-
+-/*FPRT*/
+-#define		SW_FP_PRT_HRSTN					BIT0
+-
+-/*HBLOCK*/
+-#define		SW_HBLOCK_HRSTN					BIT0
+-
+-/*SECSR*/
+-#define		SW_SECSR_HRSTN					BIT0
+-
+-/*OTP*/
+-#define		SW_OTP_PRSTN					BIT0
+-
+-/*PKA*/
+-#define		SW_PKA_HRSTN					BIT0
+-
+-/*SPACC*/
+-#define		SW_SPACC_RSTN					BIT0
+-
+-/*TRNG*/
+-#define		SW_TRNG_HRSTN					BIT0
+-
+-/*TIMER0*/
+-#define		SW_TIMER0_RSTN_0				BIT0
+-#define		SW_TIMER0_RSTN_1				BIT1
+-#define		SW_TIMER0_RSTN_2				BIT2
+-#define		SW_TIMER0_RSTN_3				BIT3
+-#define		SW_TIMER0_RSTN_4				BIT4
+-#define		SW_TIMER0_RSTN_5				BIT5
+-#define		SW_TIMER0_RSTN_6				BIT6
+-#define		SW_TIMER0_RSTN_7				BIT7
+-#define		SW_TIMER0_PRSTN					BIT8
+-
+-/*TIMER1*/
+-#define		SW_TIMER1_RSTN_0				BIT0
+-#define		SW_TIMER1_RSTN_1				BIT1
+-#define		SW_TIMER1_RSTN_2				BIT2
+-#define		SW_TIMER1_RSTN_3				BIT3
+-#define		SW_TIMER1_RSTN_4				BIT4
+-#define		SW_TIMER1_RSTN_5				BIT5
+-#define		SW_TIMER1_RSTN_6				BIT6
+-#define		SW_TIMER1_RSTN_7				BIT7
+-#define		SW_TIMER1_PRSTN					BIT8
+-
+-/*TIMER2*/
+-#define		SW_TIMER2_RSTN_0				BIT0
+-#define		SW_TIMER2_RSTN_1				BIT1
+-#define		SW_TIMER2_RSTN_2				BIT2
+-#define		SW_TIMER2_RSTN_3				BIT3
+-#define		SW_TIMER2_RSTN_4				BIT4
+-#define		SW_TIMER2_RSTN_5				BIT5
+-#define		SW_TIMER2_RSTN_6				BIT6
+-#define		SW_TIMER2_RSTN_7				BIT7
+-#define		SW_TIMER2_PRSTN					BIT8
+-
+-/*TIMER3*/
+-#define		SW_TIMER3_RSTN_0				BIT0
+-#define		SW_TIMER3_RSTN_1				BIT1
+-#define		SW_TIMER3_RSTN_2				BIT2
+-#define		SW_TIMER3_RSTN_3				BIT3
+-#define		SW_TIMER3_RSTN_4				BIT4
+-#define		SW_TIMER3_RSTN_5				BIT5
+-#define		SW_TIMER3_RSTN_6				BIT6
+-#define		SW_TIMER3_RSTN_7				BIT7
+-#define		SW_TIMER3_PRSTN					BIT8
+-
+-/*RTC*/
+-#define		SW_RTC_RSTN					BIT0
+-
+-/*MNOC*/
+-#define		SW_MNOC_SNOC_NSP_RSTN				BIT0
+-#define		SW_MNOC_VC_ARSTN				BIT1
+-#define		SW_MNOC_CFG_RSTN				BIT2
+-#define		SW_MNOC_HSP_ARSTN				BIT3
+-#define		SW_MNOC_GPU_ARSTN				BIT4
+-#define		SW_MNOC_DDRC1_P3_ARSTN				BIT5
+-#define		SW_MNOC_DDRC0_P3_ARSTN				BIT6
+-
+-/*RNOC*/
+-#define		SW_RNOC_VO_ARSTN				BIT0
+-#define		SW_RNOC_VI_ARSTN				BIT1
+-#define		SW_RNOC_SNOC_NSP_RSTN				BIT2
+-#define		SW_RNOC_CFG_RSTN				BIT3
+-#define		SW_MNOC_DDRC1_P4_ARSTN				BIT4
+-#define		SW_MNOC_DDRC0_P4_ARSTN				BIT5
+-
+-/*CNOC*/
+-#define		SW_CNOC_VO_CFG_RSTN				BIT0
+-#define		SW_CNOC_VI_CFG_RSTN				BIT1
+-#define		SW_CNOC_VC_CFG_RSTN				BIT2
+-#define		SW_CNOC_TCU_CFG_RSTN				BIT3
+-#define		SW_CNOC_PCIET_CFG_RSTN				BIT4
+-#define		SW_CNOC_NPU_CFG_RSTN				BIT5
+-#define		SW_CNOC_LSP_CFG_RSTN				BIT6
+-#define		SW_CNOC_HSP_CFG_RSTN				BIT7
+-#define		SW_CNOC_GPU_CFG_RSTN				BIT8
+-#define		SW_CNOC_DSPT_CFG_RSTN				BIT9
+-#define		SW_CNOC_DDRT1_CFG_RSTN				BIT10
+-#define		SW_CNOC_DDRT0_CFG_RSTN				BIT11
+-#define		SW_CNOC_D2D_CFG_RSTN				BIT12
+-#define		SW_CNOC_CFG_RSTN				BIT13
+-#define		SW_CNOC_CLMM_CFG_RSTN				BIT14
+-#define		SW_CNOC_AON_CFG_RSTN				BIT15
+-
+-/*LNOC*/
+-#define		SW_LNOC_CFG_RSTN				BIT0
+-#define		SW_LNOC_NPU_LLC_ARSTN				BIT1
+-#define		SW_LNOC_DDRC1_P0_ARSTN				BIT2
+-#define		SW_LNOC_DDRC0_P0_ARSTN				BIT3
+-
+-#endif /*endif __DT_ESWIN_WIN2030_SYSCRG_H__*/
+-- 
+2.49.0
+

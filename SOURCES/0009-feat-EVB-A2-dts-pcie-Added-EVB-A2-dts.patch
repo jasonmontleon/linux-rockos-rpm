@@ -1,7 +1,7 @@
-From 16591639d8251be1f4d8bff520544ce782534bbd Mon Sep 17 00:00:00 2001
+From 056dd39ba88d73a06827d43a22fcd5c6d52e6f8a Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Sat, 18 May 2024 11:16:41 +0800
-Subject: [PATCH 009/416] feat(EVB-A2 dts+pcie):Added EVB-A2 dts
+Subject: [PATCH 009/440] feat(EVB-A2 dts+pcie):Added EVB-A2 dts
 
 Changelogs:
 1.Added EVB-A2 dts file "eic7700-evb-a2.dts"
@@ -4198,5 +4198,5 @@ index 000000000000..66941cce9dde
 +MODULE_LICENSE("GPL v2");
 \ No newline at end of file
 -- 
-2.48.1
+2.49.0
 

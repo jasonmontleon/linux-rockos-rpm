@@ -1,7 +1,7 @@
-From 41f60591f736916fdcde6878de1a1e8fa34e5bdc Mon Sep 17 00:00:00 2001
+From 56c08261c2c15f50b42e164c59cc05b3070c5d22 Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Tue, 13 Aug 2024 10:56:29 +0800
-Subject: [PATCH 252/416] WIN2030-15907:feat:audio adaptation for dual die
+Subject: [PATCH 252/440] WIN2030-15907:feat:audio adaptation for dual die
 
 Changelogs:
 1. audio adaptation for dual die
@@ -559,5 +559,5 @@ index 5774a03a270b..dcb552d2331a 100755
  	if (ret != 0) {
  		dev_err(&pdev->dev, "not able to register dai\n");
 -- 
-2.48.1
+2.49.0
 

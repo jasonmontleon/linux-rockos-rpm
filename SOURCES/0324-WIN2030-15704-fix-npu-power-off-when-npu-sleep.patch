@@ -1,7 +1,7 @@
-From 6fae78ca8aaa8231ccc6232bd60ffbbfedfb6e5f Mon Sep 17 00:00:00 2001
+From 19c75c114200bba48d4d44ac6d3e639d6c86b37c Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 23 Oct 2024 17:07:29 +0800
-Subject: [PATCH 324/416] WIN2030-15704:fix:npu power off when npu sleep
+Subject: [PATCH 324/440] WIN2030-15704:fix:npu power off when npu sleep
 
 Changelogs:
 	npu power off when npu sleep,power up when resu
@@ -819,5 +819,5 @@ index 6d26b9470152..a5d3ab9b088e 100644
  void npu_dma_sid_cfg(void __iomem *npu_subsys_base, u32 sid);
  
 -- 
-2.48.1
+2.49.0
 

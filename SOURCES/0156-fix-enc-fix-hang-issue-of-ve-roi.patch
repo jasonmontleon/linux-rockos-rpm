@@ -1,7 +1,7 @@
-From 4c388f893683c1bda78e9d3848fadc2770261cc2 Mon Sep 17 00:00:00 2001
+From ecb92c86809cb363cb34b94dbe3b921e5389eadf Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 29 Jul 2024 17:05:54 +0800
-Subject: [PATCH 156/416] fix(enc):fix hang issue of ve roi
+Subject: [PATCH 156/440] fix(enc):fix hang issue of ve roi
 
 Changelogs:
 A certain timeout cycles might lead hw bug, causing ve to get stuck when
@@ -1579,5 +1579,5 @@ index 5ed832b39132..97743c8172cd 100644
  	LOG_DBG("runtime suspend\n");
  	return venc_dev_close(dev);
 -- 
-2.48.1
+2.49.0
 

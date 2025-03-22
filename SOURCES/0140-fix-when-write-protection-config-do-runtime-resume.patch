@@ -1,7 +1,7 @@
-From 9a82797fe6b61fd1b4702043330373f8dfdbaeb1 Mon Sep 17 00:00:00 2001
+From 6731e818b65800a5b6c3b184d848135c92f5fded Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 7 Aug 2024 17:01:33 +0800
-Subject: [PATCH 140/416] fix:when write protection config, do runtime resume
+Subject: [PATCH 140/440] fix:when write protection config, do runtime resume
 
 Changelogs:
       when write protection config, do runtime resume.
@@ -32,5 +32,5 @@ index 9d3447538e38..ee28701ab1b8 100644
  
  static ssize_t wp_enable_show(struct device *dev,
 -- 
-2.48.1
+2.49.0
 

@@ -1,7 +1,7 @@
-From 0a83a7ae97b41081636d764ffcff048283a454bf Mon Sep 17 00:00:00 2001
+From 83566cfcfa4a50917b7bd62c799250d89f21365e Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Thu, 26 Sep 2024 11:27:58 +0800
-Subject: [PATCH 181/416] fix: dsp driver need cancel scheduled work
+Subject: [PATCH 181/440] fix: dsp driver need cancel scheduled work
 
 Changelogs:
 	when suspend, driver need flush work for scheduled work have
@@ -199,5 +199,5 @@ index fd2edd5fa926..8c36e90e20f6 100644
  {
  	struct es_dsp_hw *hw = (struct es_dsp_hw *)dsp->hw_arg;
 -- 
-2.48.1
+2.49.0
 

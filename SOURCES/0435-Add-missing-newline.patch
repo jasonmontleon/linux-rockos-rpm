@@ -1,7 +1,7 @@
-From b0d5f1b8bc41d98f0d2ee928193d835cbee18397 Mon Sep 17 00:00:00 2001
+From d8f6dd04832798e8db286bcbd08d8abb88c41dc3 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:04:41 -0500
-Subject: [PATCH 411/416] Add missing newline
+Subject: [PATCH 435/440] Add missing newline
 
 ---
  drivers/soc/eswin/ai_driver/Kconfig | 2 +-
@@ -19,5 +19,5 @@ index 0044a4be10e5..749c03efda29 100644
 \ No newline at end of file
 +    depends on ESWIN_NPU
 -- 
-2.48.1
+2.49.0
 

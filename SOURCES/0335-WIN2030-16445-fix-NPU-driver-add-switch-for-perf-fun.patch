@@ -1,7 +1,7 @@
-From 2e3b1a125a5194dc591655bd274e29c5cfea5c71 Mon Sep 17 00:00:00 2001
+From 42cd5c96a57156ab9a38ee777b2e13bdb886044b Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 13:50:10 +0800
-Subject: [PATCH 335/416] WIN2030-16445:fix:NPU driver add switch for perf
+Subject: [PATCH 335/440] WIN2030-16445:fix:NPU driver add switch for perf
  function.
 
 Changelogs:
@@ -42,5 +42,5 @@ index 9e85f48c355b..630aa94bc05f 100644
  ccflags-y += -I$(srctree)/drivers/soc/eswin
  ccflags-y += -I$(srctree)/drivers/memory/eswin/codacache/
 -- 
-2.48.1
+2.49.0
 

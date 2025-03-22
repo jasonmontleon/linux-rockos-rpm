@@ -1,7 +1,7 @@
-From 560bf97ca5216e5e8f60f2eaa155d7eb79f72e8e Mon Sep 17 00:00:00 2001
+From b32b9f000e4343f62e8f58dc24ab602078b21d1d Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 13 Jun 2024 18:12:38 +0800
-Subject: [PATCH 051/416] refactor:Implement pcie intx and pmu dtsi config
+Subject: [PATCH 051/440] refactor:Implement pcie intx and pmu dtsi config
 
 Changelogs:
 1. Implement pcie intx, optimize pcie driver
@@ -545,5 +545,5 @@ index 66941cce9dde..ab1f4b421eab 100644
  
  	return dw_pcie_host_init(&pci->pp);
 -- 
-2.48.1
+2.49.0
 

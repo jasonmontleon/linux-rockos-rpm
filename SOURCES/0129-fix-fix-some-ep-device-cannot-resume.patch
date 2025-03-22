@@ -1,7 +1,7 @@
-From b324b35c13795dd98c7424a12b70f451d14fdf9f Mon Sep 17 00:00:00 2001
+From 8db3f73ca1e676d0ba4e51bd941db94a4f93779c Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Wed, 31 Jul 2024 17:39:47 +0800
-Subject: [PATCH 129/416] fix:fix some ep device cannot resume
+Subject: [PATCH 129/440] fix:fix some ep device cannot resume
 
 Changelogs:
 1.Fix some ep device cannot resume.
@@ -42,5 +42,5 @@ index e8d60d183d2b..4da79e854ea4 100644
  
  static int eswin_pcie_runtime_suspend(struct device *dev)
 -- 
-2.48.1
+2.49.0
 

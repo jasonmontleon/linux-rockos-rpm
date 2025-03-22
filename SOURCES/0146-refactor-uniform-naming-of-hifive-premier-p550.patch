@@ -1,7 +1,7 @@
-From d6de7c57c072b21f23de3d8d810ba0ab7deaa18e Mon Sep 17 00:00:00 2001
+From 549ca32fb08984ca8acc97621eae6a29702d1687 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 12 Aug 2024 13:10:39 +0800
-Subject: [PATCH 146/416] refactor:uniform naming of hifive premier p550
+Subject: [PATCH 146/440] refactor:uniform naming of hifive premier p550
 
 Changelogs:
 Unified use of hifive premier p550 dts file
@@ -31,5 +31,5 @@ similarity index 100%
 rename from arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 rename to arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 -- 
-2.48.1
+2.49.0
 

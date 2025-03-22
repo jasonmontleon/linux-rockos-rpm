@@ -1,7 +1,7 @@
-From 561a45ba851c88431e1d355061b67b6485778660 Mon Sep 17 00:00:00 2001
+From cd637b93ba1c5b6f51ca813d61bc786d8c42bb12 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 30 May 2024 09:50:56 +0800
-Subject: [PATCH 040/416] refactor:remove useless code in emmc/sd driver.
+Subject: [PATCH 040/440] refactor:remove useless code in emmc/sd driver.
 
 Changelogs:
 1.Remove useless code related to HAPS/ZEBU.
@@ -197,5 +197,5 @@ index 591315f48cbc..41aa80f8dbe3 100644
  	ret = eswin_sdhci_add_host(eswin_sdhci);
  	if (ret)
 -- 
-2.48.1
+2.49.0
 

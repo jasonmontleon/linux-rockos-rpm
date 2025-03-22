@@ -1,7 +1,7 @@
-From 6c3479d68d76c3475314e5b220aa86c75f3ff742 Mon Sep 17 00:00:00 2001
+From fafcde918718df58175458eae765b634fa75592f Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:12:28 +0800
-Subject: [PATCH 215/416] npu: add es5340 support
+Subject: [PATCH 215/440] npu: add es5340 support
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
@@ -964,5 +964,5 @@ index 000000000000..c49fcfbf4dc0
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.48.1
+2.49.0
 

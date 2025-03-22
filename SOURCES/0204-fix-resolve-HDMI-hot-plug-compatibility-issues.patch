@@ -1,7 +1,7 @@
-From b44d02f273e301ff9562ca4e610f4aaa7dc86f6f Mon Sep 17 00:00:00 2001
+From 9890bcdedb315147f9764df82481e0dcc511cf85 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 25 Oct 2024 10:36:46 +0800
-Subject: [PATCH 204/416] fix:resolve HDMI hot plug compatibility issues.
+Subject: [PATCH 204/440] fix:resolve HDMI hot plug compatibility issues.
 
 Changelogs:
 	resolve HDMI hot plug issues with HKC display.
@@ -36,5 +36,5 @@ index ba5aae273162..669447d03681 100644
  			i2c->is_segment = true;
  			hdmi_writeb(hdmi, DDC_SEGMENT_ADDR, HDMI_I2CM_SEGADDR);
 -- 
-2.48.1
+2.49.0
 

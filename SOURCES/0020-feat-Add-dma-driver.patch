@@ -1,7 +1,7 @@
-From 6e3ecc3a9a26f92777dafe128e9b39c66c97d74f Mon Sep 17 00:00:00 2001
+From b97e19e14ed07f9f627be8ab4ea6ab6c9e38e696 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Thu, 23 May 2024 10:01:46 +0800
-Subject: [PATCH 020/416] feat:Add dma driver.
+Subject: [PATCH 020/440] feat:Add dma driver.
 
 Changelogs:
 1.Add dma driver for linux-6.6.
@@ -457,5 +457,5 @@ index 6c85b4b980f2..7793f3925932 100755
  #define WIN2030_NR_CLKS                                         700
  
 -- 
-2.48.1
+2.49.0
 

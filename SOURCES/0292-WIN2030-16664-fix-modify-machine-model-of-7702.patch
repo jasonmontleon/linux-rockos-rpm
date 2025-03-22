@@ -1,7 +1,7 @@
-From f102bbc3e2fdfb03aefa0b5efaa4035a4f37c0f1 Mon Sep 17 00:00:00 2001
+From 61d6abcf7f47f5743c033097ddfd5765c7b3c65e Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 26 Nov 2024 14:03:48 +0800
-Subject: [PATCH 292/416] WIN2030-16664:fix:modify machine model of 7702
+Subject: [PATCH 292/440] WIN2030-16664:fix:modify machine model of 7702
 
 Changelogs:
 Modify 7702 EVB DTS model from EIC7700 to EIC7702
@@ -26,5 +26,5 @@ index d26e6e5f505f..642ebf79f2dd 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 -- 
-2.48.1
+2.49.0
 

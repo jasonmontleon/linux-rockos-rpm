@@ -1,7 +1,7 @@
-From 4cde1539d5c0670cac890b7463e1c6fe08e4b8e1 Mon Sep 17 00:00:00 2001
+From c541485943a3c74540a63c9d8e58c8dca480c1d7 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 10 Feb 2025 18:26:41 +0800
-Subject: [PATCH 403/416] fix:power down all tbus at start up
+Subject: [PATCH 403/440] fix:power down all tbus at start up
 
 Changelogs:
 1.Some of the tbus is on by default when SoC is powered up.
@@ -61,5 +61,5 @@ index 36fc0651f938..7a4d5fe5002e 100644
     win2030_tbu_power(struct device *dev, bool is_powerUp) is for powering up or down
     the tbus of the device module which is under smmu.
 -- 
-2.48.1
+2.49.0
 

@@ -1,7 +1,7 @@
-From 9606f1a5c08520f8272ec97a2166d416f5216806 Mon Sep 17 00:00:00 2001
+From 8623f38eb869b834d80da6367c6e7c0761404ad2 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Tue, 16 Jul 2024 17:43:26 +0800
-Subject: [PATCH 100/416] feat(vo): OSD Support power management
+Subject: [PATCH 100/440] feat(vo): OSD Support power management
 
 Changelogs:
 1. Add generic power management for vo.
@@ -157,5 +157,5 @@ index 3a20987aa799..8dbc3b4d7eb2 100644
  	const struct es_dc_funcs *funcs;
  };
 -- 
-2.48.1
+2.49.0
 

@@ -1,7 +1,7 @@
-From af7b179e23adac020f0d181877cd99555f06769d Mon Sep 17 00:00:00 2001
+From 17f13e7e61d975d9361b06c61e4c5de315a6fefe Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Wed, 11 Sep 2024 10:12:37 +0800
-Subject: [PATCH 174/416] to(je):disable je timeout check
+Subject: [PATCH 174/440] to(je):disable je timeout check
 
 Changelogs:
 	Disable je timeout check; No JE hang found.
@@ -28,5 +28,5 @@ index d08a8effc7f2..e0ccc2ab9673 100644
  			_vcmd_watchdog_stop(dev);
  	} else {
 -- 
-2.48.1
+2.49.0
 

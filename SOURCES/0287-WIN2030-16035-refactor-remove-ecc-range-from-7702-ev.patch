@@ -1,7 +1,7 @@
-From bbad611c3b84f1966ead33a02c02c4e1965e8bc1 Mon Sep 17 00:00:00 2001
+From fd15be7e667907b1c782a35befc6ded28b5105f1 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 21 Nov 2024 20:09:03 +0800
-Subject: [PATCH 287/416] WIN2030-16035:refactor:remove ecc range from 7702 evb
+Subject: [PATCH 287/440] WIN2030-16035:refactor:remove ecc range from 7702 evb
 
 Changelogs:
 Remove ECC range from 7702 EVB default
@@ -53,5 +53,5 @@ index f6b416a65a95..d26e6e5f505f 100644
  		};
  	};
 -- 
-2.48.1
+2.49.0
 

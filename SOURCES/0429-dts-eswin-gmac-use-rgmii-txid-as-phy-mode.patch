@@ -1,0 +1,58 @@
+From 9630cc9b8b16d8cc0e9593784e0f7efb97f507be Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Thu, 20 Mar 2025 00:14:19 +0800
+Subject: [PATCH 429/440] dts: eswin: gmac: use rgmii-txid as phy mode
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi | 4 ++--
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 4 ++--
+ 2 files changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index d376461d273d..aa7268c54410 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -409,7 +409,7 @@ d0_gmac0: ethernet@50400000 {
+ 			interrupt-parent = <&plic0>;
+ 			interrupt-names = "macirq";
+ 			interrupts = <61>;
+-			phy-mode = "rgmii";
++			phy-mode = "rgmii-txid";
+ 			numa-node-id = <0>;
+ 			id = <0>;
+ 			status = "disabled";
+@@ -440,7 +440,7 @@ d0_gmac1: ethernet@50410000 {
+ 			interrupt-parent = <&plic0>;
+ 			interrupt-names = "macirq";
+ 			interrupts = <70>;
+-			phy-mode = "rgmii";
++			phy-mode = "rgmii-txid";
+ 			numa-node-id = <0>;
+ 			id = <1>;
+ 			status = "disabled";
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 8823590fc9fa..0f1cc6970ffd 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1532,7 +1532,7 @@ d1_gmac0: ethernet@70400000 {
+ 			interrupt-parent = <&plic1>;
+ 			interrupt-names = "macirq";
+ 			interrupts = <61>;
+-			phy-mode = "rgmii";
++			phy-mode = "rgmii-txid";
+ 			numa-node-id = <1>;
+ 			id = <2>;
+ 			status = "disabled";
+@@ -1563,7 +1563,7 @@ d1_gmac1: ethernet@70410000 {
+ 			interrupt-parent = <&plic1>;
+ 			interrupt-names = "macirq";
+ 			interrupts = <70>;
+-			phy-mode = "rgmii";
++			phy-mode = "rgmii-txid";
+ 			numa-node-id = <1>;
+ 			id = <3>;
+ 			status = "disabled";
+-- 
+2.49.0
+

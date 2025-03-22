@@ -1,7 +1,7 @@
-From af593ef797512cd5596d49c6d3253d2168911f11 Mon Sep 17 00:00:00 2001
+From fc9951c9197886f6f49d32eb77c0abc04ea9b889 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 11 Apr 2024 18:09:23 +0800
-Subject: [PATCH 004/416] feat(eswin memory):Added eswin memory related changes
+Subject: [PATCH 004/440] feat(eswin memory):Added eswin memory related changes
 
 Changelogs:
 1.Exported arch_sync_dma_for_xx() API for eswin heap and vb
@@ -3193,5 +3193,5 @@ index 000000000000..d7f3c91491f1
 +
 +#endif /* __LINUX_ESWIN_NPU_H */
 -- 
-2.48.1
+2.49.0
 

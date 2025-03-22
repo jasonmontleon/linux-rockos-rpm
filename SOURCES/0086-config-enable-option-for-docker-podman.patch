@@ -1,7 +1,7 @@
-From 51509e69605d282d65e90153ae004f24a5026162 Mon Sep 17 00:00:00 2001
+From 0f5e1ca537a981bba9b5f08e44b3c4868a36ab3e Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 7 Jun 2024 12:08:13 +0800
-Subject: [PATCH 086/416] config: enable option for docker/podman
+Subject: [PATCH 086/440] config: enable option for docker/podman
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---
@@ -356,5 +356,5 @@ index a739278985ab..398b6db958bb 100644
  CONFIG_CRC_ITU_T=y
  CONFIG_CRC7=y
 -- 
-2.48.1
+2.49.0
 

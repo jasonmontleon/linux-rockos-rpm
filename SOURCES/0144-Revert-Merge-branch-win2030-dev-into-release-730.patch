@@ -1,7 +1,7 @@
-From 53faf2baed275e8af8d722daf8ff657ecaa826f8 Mon Sep 17 00:00:00 2001
+From f881530bc00a9ba92928f47d9ba5c4027e0eed5d Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 9 Aug 2024 13:22:29 +0800
-Subject: [PATCH 144/416] Revert "Merge branch 'win2030-dev' into release-730"
+Subject: [PATCH 144/440] Revert "Merge branch 'win2030-dev' into release-730"
 
 This reverts commit c2a92603cfd746ce420a5c2bd5ebc148952c3dbf, reversing
 changes made to 30f616af06e37a88c46c8e20f0cd422ec40b6b8a.
@@ -408,5 +408,5 @@ index 1e00c6863ffd..1472511bd299 100644
 +CONFIG_VIDEO_ESWIN_VDEC=y
 +CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 -- 
-2.48.1
+2.49.0
 

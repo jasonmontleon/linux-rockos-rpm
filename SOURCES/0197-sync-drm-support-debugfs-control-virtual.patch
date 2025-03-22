@@ -1,7 +1,7 @@
-From 3126e153a965286cf845ccfab61ca6258fbb50b7 Mon Sep 17 00:00:00 2001
+From 50d1096dca511c0ac92ce312532061ce85b78056 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 18 Oct 2024 10:45:13 +0800
-Subject: [PATCH 197/416] sync:drm support debugfs control virtual
+Subject: [PATCH 197/440] sync:drm support debugfs control virtual
 
 Changelogs:
    1.Sync code from eic7702
@@ -1393,5 +1393,5 @@ index 16371232d605..484d146ea178 100644
  	struct drm_connector connector;
  	struct device *dc;
 -- 
-2.48.1
+2.49.0
 

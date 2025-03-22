@@ -1,23 +1,23 @@
-From d9076c78660b2e4ec14e847a6606b384d30752b0 Mon Sep 17 00:00:00 2001
+From a66812d44afd16a724a15aaf0e635c8010105a24 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sun, 23 Feb 2025 13:25:01 -0500
-Subject: [PATCH 416/416] Add NPU enabled variants of dtbs
+Subject: [PATCH 440/440] Add NPU enabled variants of dtbs
 
 ---
  arch/riscv/boot/dts/eswin/Makefile            |   3 +
- .../eswin/eic7700-hifive-premier-p550-npu.dts | 899 ++++++++++++++++
+ .../eswin/eic7700-hifive-premier-p550-npu.dts | 901 ++++++++++++++++
  .../dts/eswin/eic7700-milkv-megrez-npu.dts    | 982 ++++++++++++++++++
- .../eswin/eic7700-pine64-starpro64-npu.dts    | 867 ++++++++++++++++
- 4 files changed, 2751 insertions(+)
+ .../eswin/eic7700-pine64-starpro64-npu.dts    | 861 +++++++++++++++
+ 4 files changed, 2747 insertions(+)
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 6594a31ce579..bc2c3eb5f078 100644
+index c1d32b8077e5..d2d1fa1bdc02 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
-@@ -6,6 +6,9 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
+@@ -6,6 +6,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
  							eic7700-hifive-premier-p550.dtb \
                                                          eic7700-milkv-megrez.dtb \
                                                          eic7700-pine64-starpro64.dtb \
@@ -29,10 +29,10 @@ index 6594a31ce579..bc2c3eb5f078 100644
  							eic7702-evb-a1.dtb\
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 new file mode 100644
-index 000000000000..5e0df61988f5
+index 000000000000..27be92a27476
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
-@@ -0,0 +1,899 @@
+@@ -0,0 +1,901 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Device Tree file for Eswin EIC7700 SoC.
@@ -478,6 +478,8 @@ index 000000000000..5e0df61988f5
 +	enable-data-pullup;
 +	no-sdio;
 +	no-mmc;
++	disable-wp;
++	broken-cd;
 +};
 +
 +&sdio1 {
@@ -932,7 +934,6 @@ index 000000000000..5e0df61988f5
 +		clock-latency-ns = <70000>;
 +	};
 +};
-\ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
 new file mode 100644
 index 000000000000..d04b2606d54b
@@ -1923,10 +1924,10 @@ index 000000000000..d04b2606d54b
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 new file mode 100644
-index 000000000000..89ed4514b0bc
+index 000000000000..2860c4b37162
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
-@@ -0,0 +1,867 @@
+@@ -0,0 +1,861 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
@@ -2056,7 +2057,6 @@ index 000000000000..89ed4514b0bc
 +
 +&d0_clock {
 +	status = "okay";
-+	force-1_8ghz;
 +};
 +
 +&d0_reset {
@@ -2788,12 +2788,7 @@ index 000000000000..89ed4514b0bc
 +		opp-microvolt = <900000>;
 +		clock-latency-ns = <70000>;
 +	};
-+	opp-1800000000 {
-+		opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
-+		opp-microvolt = <900000>;
-+		clock-latency-ns = <70000>;
-+	};
 +};
 -- 
-2.48.1
+2.49.0
 

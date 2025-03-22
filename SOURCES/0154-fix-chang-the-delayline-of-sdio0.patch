@@ -1,7 +1,7 @@
-From fe4795ba406b83ae8b549f26ab41f732f8d5bc5d Mon Sep 17 00:00:00 2001
+From 59d14a0b4aa422345aea84cec1aa10b1e8c1405a Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 14 Aug 2024 10:50:26 +0800
-Subject: [PATCH 154/416] fix:chang the delayline of sdio0.
+Subject: [PATCH 154/440] fix:chang the delayline of sdio0.
 
 Changelogs:
 1.Change the delaycode of sdio.
@@ -104,5 +104,5 @@ index bff2897c17c0..8cd8deb339b0 100644
  		dev_err(dev, "runtime resume failed!\n");
  		goto clk_disable;
 -- 
-2.48.1
+2.49.0
 

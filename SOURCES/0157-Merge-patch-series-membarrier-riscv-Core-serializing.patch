@@ -1,7 +1,7 @@
-From e770d16723d1c14b9bac31e15121300d8784146c Mon Sep 17 00:00:00 2001
+From b4010fd3cb339f512321f17cad4a0e13677f834e Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
-Subject: [PATCH 157/416] Merge patch series "membarrier: riscv: Core
+Subject: [PATCH 157/440] Merge patch series "membarrier: riscv: Core
  serializing command"
 
 RISC-V was lacking a membarrier implementation for the store/fetch
@@ -252,7 +252,7 @@ index 013da4b8b327..67bb9794b875 100644
  
 +#endif /* _LINUX_SYNC_CORE_H */
 diff --git a/init/Kconfig b/init/Kconfig
-index 60ed7713b5ee..18176301c6b9 100644
+index 1105cb53f391..1c5ab40a5f58 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1994,6 +1994,9 @@ source "kernel/Kconfig.locks"
@@ -266,10 +266,10 @@ index 60ed7713b5ee..18176301c6b9 100644
  	bool
  
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index 784a4f840945..b124e2243ff5 100644
+index 942734bf7347..5195b8364b56 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
-@@ -6608,7 +6608,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
+@@ -6609,7 +6609,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
  	 *     if (signal_pending_state())	    if (p->state & @state)
  	 *
  	 * Also, the membarrier system call requires a full memory barrier
@@ -280,7 +280,7 @@ index 784a4f840945..b124e2243ff5 100644
  	 */
  	rq_lock(rq, &rf);
  	smp_mb__after_spinlock();
-@@ -6686,6 +6688,13 @@ static void __sched notrace __schedule(unsigned int sched_mode)
+@@ -6687,6 +6689,13 @@ static void __sched notrace __schedule(unsigned int sched_mode)
  		 *   architectures where spin_unlock is a full barrier,
  		 * - switch_to() for arm64 (weakly-ordered, spin_unlock
  		 *   is a RELEASE barrier),
@@ -348,5 +348,5 @@ index 4e715b9b278e..809194cd779f 100644
  	 */
  	smp_mb();	/* exit from system call is not a mb */
 -- 
-2.48.1
+2.49.0
 

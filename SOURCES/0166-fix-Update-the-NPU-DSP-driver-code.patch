@@ -1,7 +1,7 @@
-From a8629c710fac279c66e97878a96d22307d5ea678 Mon Sep 17 00:00:00 2001
+From 9e83743a6e14cc4f98d38dbccd345f3567ccc284 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 2 Sep 2024 10:17:35 +0800
-Subject: [PATCH 166/416] fix:Update the NPU & DSP driver code.
+Subject: [PATCH 166/440] fix:Update the NPU & DSP driver code.
 
 Changelogs:
 	Merge the driver code of npu sdk & dsp sdk to dev branch.
@@ -629,5 +629,5 @@ index e83f7c9c85f3..309e6b6bafef 100644
  };
  
 -- 
-2.48.1
+2.49.0
 

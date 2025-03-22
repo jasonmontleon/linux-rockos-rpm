@@ -1,7 +1,7 @@
-From b7e216364e7d183b9e3e2413650e56e3305c71bf Mon Sep 17 00:00:00 2001
+From a687ed4e1a630c1570204d8b44f612adeecdc7c7 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 14:43:33 +0800
-Subject: [PATCH 122/416] fix:fix the cpu 100% issue when wait FE idle
+Subject: [PATCH 122/440] fix:fix the cpu 100% issue when wait FE idle
 
 Changelogs:
 1. The waiting FE idle is dead cycle query, it cause cpu 100%. The
@@ -116,5 +116,5 @@ index 21e9513d8347..b31682bb944e 100644
          gckKERNEL_Notify(kernel, gcvNOTIFY_INTERRUPT);
      }
 -- 
-2.48.1
+2.49.0
 

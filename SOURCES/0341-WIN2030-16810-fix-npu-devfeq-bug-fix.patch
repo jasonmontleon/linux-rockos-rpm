@@ -1,7 +1,7 @@
-From 724b6bf14e838b20bfd74fad0ea65bd756b45232 Mon Sep 17 00:00:00 2001
+From 96f59e17d52be9ec4829dda1750d491c13b8e883 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Mon, 16 Dec 2024 11:25:50 +0800
-Subject: [PATCH 341/416] WIN2030-16810:fix: npu devfeq bug fix
+Subject: [PATCH 341/440] WIN2030-16810:fix: npu devfeq bug fix
 
 Changelogs:
 	1. when rise freq, need  firstly rise volt, and then rise freq.
@@ -113,5 +113,5 @@ index 026a89f803b8..825c432cf2f2 100644
  	if (nvdla_dev->rate != target_rate) {
  		dev_err(dev, "Got wrong frequency, Request %lu, Current %lu.\n", target_rate, nvdla_dev->rate);
 -- 
-2.48.1
+2.49.0
 

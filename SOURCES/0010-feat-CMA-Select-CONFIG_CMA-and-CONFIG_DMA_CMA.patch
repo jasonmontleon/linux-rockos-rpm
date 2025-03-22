@@ -1,7 +1,7 @@
-From b4cd427631766a2324bf7b8fb35653c3b8eaa95b Mon Sep 17 00:00:00 2001
+From 7ddf267ece7d685bac3c660479253bcefa1cd6af Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 21 May 2024 13:50:46 +0800
-Subject: [PATCH 010/416] feat(CMA):Select CONFIG_CMA and CONFIG_DMA_CMA
+Subject: [PATCH 010/440] feat(CMA):Select CONFIG_CMA and CONFIG_DMA_CMA
 
 Changelogs:
 1.Select CONFIG_CMA and CONFIG_DMA_CMA, save it to win2030_defconfig
@@ -30,5 +30,5 @@ index 332acc518c31..725ad2400def 100644
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
 -- 
-2.48.1
+2.49.0
 

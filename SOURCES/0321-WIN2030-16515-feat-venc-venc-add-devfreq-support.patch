@@ -1,7 +1,7 @@
-From 0456be1a40e33c7cee0118db7b232e302bbfc86c Mon Sep 17 00:00:00 2001
+From 91df6fccbcc1f6f5d0f96b20148336d213c4467f Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 22 Oct 2024 15:15:39 +0800
-Subject: [PATCH 321/416] WIN2030-16515:feat(venc):venc add devfreq support
+Subject: [PATCH 321/440] WIN2030-16515:feat(venc):venc add devfreq support
 
 Changelogs:
 	venc add devfreq support
@@ -168,5 +168,5 @@ index 97743c8172cd..0244069626c1 100644
  		ret = venc_sys_reset_init(pdev, vcrt);
  		if (ret < 0) {
 -- 
-2.48.1
+2.49.0
 

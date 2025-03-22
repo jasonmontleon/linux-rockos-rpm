@@ -1,7 +1,7 @@
-From 0b45d1d36e9d0d3c033d8de012b2652ffa892568 Mon Sep 17 00:00:00 2001
+From 4ba6f5e81e834e894af5facb874223637623623f Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 21 Nov 2024 08:41:41 +0800
-Subject: [PATCH 291/416] WIN2030-14758:refactor: refact split dmabuf
+Subject: [PATCH 291/440] WIN2030-14758:refactor: refact split dmabuf
 
 Changelogs:
 1.Generate a new splitted sgt from the parent's dmabuf, and export the splitted sgt
@@ -869,5 +869,5 @@ index 0b0e5824f19f..9a474f6594e7 100644
  		__u64 offset;
  		size_t len;
 -- 
-2.48.1
+2.49.0
 

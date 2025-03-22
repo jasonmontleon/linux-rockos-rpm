@@ -1,7 +1,7 @@
-From 1f175771141dd9688140017ecbc2c672278132e2 Mon Sep 17 00:00:00 2001
+From ceba50dd5914b745944a8df49276ac68a93810e1 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Fri, 27 Dec 2024 14:46:35 +0800
-Subject: [PATCH 315/416] megrez: support rtc m41t11
+Subject: [PATCH 315/440] megrez: support rtc m41t11
 
 The rtc chip used by megrez is pt7c4311.
 It is compatible with m41t11, using the ds1307 driver.
@@ -42,5 +42,5 @@ index f71a973a7da9..477f2406826e 100644
  CONFIG_RTC_DRV_ESWIN=y
  CONFIG_DMADEVICES=y
 -- 
-2.48.1
+2.49.0
 

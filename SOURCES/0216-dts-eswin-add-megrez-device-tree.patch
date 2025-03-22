@@ -1,7 +1,7 @@
-From 20295ff9c83a150fdf1ff0b7b99ae2eec38c3dde Mon Sep 17 00:00:00 2001
+From 66e93c3aef57bc707115cd85ad3f455e7183935f Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:13:09 +0800
-Subject: [PATCH 216/416] dts: eswin: add megrez device tree
+Subject: [PATCH 216/440] dts: eswin: add megrez device tree
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
@@ -928,5 +928,5 @@ index 000000000000..01740497fc84
 +	apply_npu_high_freq;
 +};
 -- 
-2.48.1
+2.49.0
 

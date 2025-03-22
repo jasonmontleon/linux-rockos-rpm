@@ -1,7 +1,7 @@
-From 650b893e663993eaa1a619433ee447fb99c08995 Mon Sep 17 00:00:00 2001
+From 050b8cf1da2ac8db1665ac3bbcc696cc9f898284 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 14:32:12 +0800
-Subject: [PATCH 334/416] WIN2030-16445:fix:fix the issue of audio recording.
+Subject: [PATCH 334/440] WIN2030-16445:fix:fix the issue of audio recording.
 
 Changelogs:
 	1.fix the issue of audio recording on Z530 board.
@@ -90,5 +90,5 @@ index 1ceb706a9f9a..bc05b82f5c79 100644
  		/* Select default capture path ---> phone mic */
  		snd_soc_component_write(component, ES8328_ADCCONTROL2, 0xf0);
 -- 
-2.48.1
+2.49.0
 

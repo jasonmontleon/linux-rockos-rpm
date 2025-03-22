@@ -1,7 +1,7 @@
-From 1adaa6cff2b8180f579198dcba19747059fe3b00 Mon Sep 17 00:00:00 2001
+From 1a4fec29aaa9c1dcb7f96270c9a189ea9a3577a7 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Mon, 27 May 2024 16:19:01 +0800
-Subject: [PATCH 047/416] feat(ISP): Add VI dev to linux 6.6
+Subject: [PATCH 047/440] feat(ISP): Add VI dev to linux 6.6
 
 Changelogs:
 1.Add csi,isp,i2... vi device nodes to evb&evb-a2
@@ -165,5 +165,5 @@ index 47122461e3fc..65b68c9e1d27 100644
  # CONFIG_DRM_I2C_CH7006 is not set
  # CONFIG_DRM_I2C_SIL164 is not set
 -- 
-2.48.1
+2.49.0
 
