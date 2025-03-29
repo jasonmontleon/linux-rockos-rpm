@@ -1,7 +1,7 @@
-From ee4f5b21779841b8c09aac368c12f512a997493b Mon Sep 17 00:00:00 2001
+From 6772b5b8c017a607db3bfd4b485e8e9b544c0e74 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 14 Jun 2024 13:05:45 +0800
-Subject: [PATCH 089/440] configs: enable CONFIG_BINFMT_MISC
+Subject: [PATCH 089/442] configs: enable CONFIG_BINFMT_MISC
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

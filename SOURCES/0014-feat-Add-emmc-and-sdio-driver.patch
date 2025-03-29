@@ -1,7 +1,7 @@
-From 22d08a80934c7f748b1bef46ef0c99679e84a86b Mon Sep 17 00:00:00 2001
+From de0abb01740bb7cca9a74cf48ed47a535be7f43b Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 22 May 2024 17:27:11 +0800
-Subject: [PATCH 014/440] feat:Add emmc and sdio driver.
+Subject: [PATCH 014/442] feat:Add emmc and sdio driver.
 
 Changelogs:
 1.Add emmc and sdio driver for linux-6.6.

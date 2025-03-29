@@ -1,7 +1,7 @@
-From 97b9568d23120126162fcc797b97320e66fe9ae7 Mon Sep 17 00:00:00 2001
+From da6e719777eb7aa6e3ce51f0c408437c49e0b372 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 14 Oct 2024 16:13:35 +0800
-Subject: [PATCH 303/440] debian: linux-image provide wireguard-modules
+Subject: [PATCH 303/442] debian: linux-image provide wireguard-modules
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>

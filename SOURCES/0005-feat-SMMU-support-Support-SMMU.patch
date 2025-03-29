@@ -1,7 +1,7 @@
-From 96e58cc6947bbc7071204d574ce20acef4c49379 Mon Sep 17 00:00:00 2001
+From 9eeaccb2748f50ad83ec1e65d26f59d16ff1efe2 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
-Subject: [PATCH 005/440] feat(SMMU support):Support SMMU
+Subject: [PATCH 005/442] feat(SMMU support):Support SMMU
 
 Changelogs:
 1.arch/riscv/Kconfig: Do not select SWIOTLB because SMMU is used.

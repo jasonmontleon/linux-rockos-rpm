@@ -1,7 +1,7 @@
-From c5f0d8333c04eddba128f21ed354de289e8767fa Mon Sep 17 00:00:00 2001
+From 71f782eb837d9bee757e551f20bc2169ccaf12e6 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 4 Nov 2024 21:40:05 +0800
-Subject: [PATCH 219/440] dts: megrez: add pwm fan
+Subject: [PATCH 219/442] dts: megrez: add pwm fan
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

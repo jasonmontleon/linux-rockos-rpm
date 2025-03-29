@@ -1,7 +1,7 @@
-From f01f52fcc2b7e33030731243f828d40ed020b6bf Mon Sep 17 00:00:00 2001
+From d9754f3d71da8bcf9f2618ef0f8c09b2201db3ad Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 12 Feb 2025 10:50:51 +0800
-Subject: [PATCH 404/440] fix:sifive ccache_flush64_range
+Subject: [PATCH 404/442] fix:sifive ccache_flush64_range
 
 Changelogs:
 1.Do not use per_cpu variable for D2D ccache_flush64_range, since there was EMMC ADMA

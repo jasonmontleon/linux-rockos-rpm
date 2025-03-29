@@ -1,7 +1,7 @@
-From dd2b666024492bfcc74e4786c5ec0679d3788210 Mon Sep 17 00:00:00 2001
+From e9fd75df9f27e0e4b701cf943aa0e14a025445cd Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Fri, 10 Jan 2025 09:41:27 +0800
-Subject: [PATCH 384/440] WIN2030-16962:feat:enable dual 4K display for Xorg.
+Subject: [PATCH 384/442] WIN2030-16962:feat:enable dual 4K display for Xorg.
 
 Changelogs:
     enable dual 4K extended display for Xorg.

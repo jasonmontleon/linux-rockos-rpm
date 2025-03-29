@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.84
-%define specversion 6.6.84
+%define specrpmversion 6.6.85
+%define specversion 6.6.85
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.84
+%define tarfile_release 6.6.85
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.84
+%define kabiversion 6.6.85
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1399,14 +1399,16 @@ Patch10429: 0429-dts-eswin-gmac-use-rgmii-txid-as-phy-mode.patch
 Patch10430: 0430-configs-eswin-enable-REALTEK_PHY-as-builtin.patch
 Patch10431: 0431-dts-eswin-p550-add-disable-wp-broken-cd.patch
 Patch10432: 0432-Revert-riscv-dts-eswin-Add-1.8G-support-for-StarPro6.patch
-Patch10433: 0433-header-workarounds.patch
-Patch10434: 0434-stop-triggering-vmlinux-rebuild.patch
-Patch10435: 0435-Add-missing-newline.patch
-Patch10436: 0436-uninvert-the-fan.patch
-Patch10437: 0437-Reduce-crit-threshold-temp-to-85000.patch
-Patch10438: 0438-eswin-dsp-fixes.patch
-Patch10439: 0439-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10440: 0440-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10433: 0433-Add-modules-required-to-run-strongswan-as-per.patch
+Patch10434: 0434-Enable-L2TP.patch
+Patch10435: 0435-header-workarounds.patch
+Patch10436: 0436-stop-triggering-vmlinux-rebuild.patch
+Patch10437: 0437-Add-missing-newline.patch
+Patch10438: 0438-uninvert-the-fan.patch
+Patch10439: 0439-Reduce-crit-threshold-temp-to-85000.patch
+Patch10440: 0440-eswin-dsp-fixes.patch
+Patch10441: 0441-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10442: 0442-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -2596,14 +2598,16 @@ ApplyOptionalPatch 0429-dts-eswin-gmac-use-rgmii-txid-as-phy-mode.patch
 ApplyOptionalPatch 0430-configs-eswin-enable-REALTEK_PHY-as-builtin.patch
 ApplyOptionalPatch 0431-dts-eswin-p550-add-disable-wp-broken-cd.patch
 ApplyOptionalPatch 0432-Revert-riscv-dts-eswin-Add-1.8G-support-for-StarPro6.patch
-ApplyOptionalPatch 0433-header-workarounds.patch
-ApplyOptionalPatch 0434-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0435-Add-missing-newline.patch
-ApplyOptionalPatch 0436-uninvert-the-fan.patch
-ApplyOptionalPatch 0437-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0438-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0439-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0440-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0433-Add-modules-required-to-run-strongswan-as-per.patch
+ApplyOptionalPatch 0434-Enable-L2TP.patch
+ApplyOptionalPatch 0435-header-workarounds.patch
+ApplyOptionalPatch 0436-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0437-Add-missing-newline.patch
+ApplyOptionalPatch 0438-uninvert-the-fan.patch
+ApplyOptionalPatch 0439-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0440-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0441-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0442-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -4596,6 +4600,9 @@ fi\
 #
 #
 %changelog
+* Fri Mar 28 2025 Jason Montleon <jason@montleon.com> [6.6.85-200.eswin]
+- Add rockos patches up to Mar 28, 2025 
+
 * Sat Mar 22 2025 Jason Montleon <jason@montleon.com> [6.6.84-200.eswin]
 - Add rockos patches up to Mar 21, 2025 
 

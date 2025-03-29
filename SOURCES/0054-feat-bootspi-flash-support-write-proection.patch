@@ -1,8 +1,8 @@
-From 9f12ea239c279db7748049248cf349a94633759b Mon Sep 17 00:00:00 2001
+From 52fef2b9e3c07637e09f84ffa5542f86e915ac1d Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Mon, 17 Jun 2024 09:53:37 +0800
-Subject: [PATCH 054/440] feat:bootspi flash support write proection
+Subject: [PATCH 054/442] feat:bootspi flash support write proection
 
 Changelogs:
            bootspi flash support write proection,

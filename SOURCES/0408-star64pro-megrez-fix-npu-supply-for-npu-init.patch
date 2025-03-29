@@ -1,7 +1,7 @@
-From ec8d322f82d7253f4533031a9787f5323edb69da Mon Sep 17 00:00:00 2001
+From 4b1a0b194f9a18558bbe1da8f2f662903de8e4cd Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sun, 23 Feb 2025 01:51:50 +0800
-Subject: [PATCH 408/440] star64pro & megrez: fix npu-supply for npu init
+Subject: [PATCH 408/442] star64pro & megrez: fix npu-supply for npu init
 
 from: WIN2030-17055:feat: npu set voltage modify
 

@@ -1,7 +1,7 @@
-From af05dce14494cddc09950c42ac58dbf62febe053 Mon Sep 17 00:00:00 2001
+From 92aa162151f8d719a9ec76889d7effa7c6c715b3 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 1 Nov 2024 16:33:03 +0800
-Subject: [PATCH 278/440] WIN2030-16035:refactor:Add numa node id of Die0's cpu
+Subject: [PATCH 278/442] WIN2030-16035:refactor:Add numa node id of Die0's cpu
 
 Changelogs:
 Add numa node id of Die0's cpu, and update numa distence module

@@ -1,7 +1,7 @@
-From a5a2717ff7a1c0b2fd8eca38cc8a8df291b3cb5e Mon Sep 17 00:00:00 2001
+From d6ae9c817ded4cf57e6715c97d8149cd4eecb2e4 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Fri, 26 Jul 2024 10:41:37 +0800
-Subject: [PATCH 120/440] fix(eth): Add tbu power down when clk off
+Subject: [PATCH 120/442] fix(eth): Add tbu power down when clk off
 
 Changelogs:
 1. Add tbu power up or down when clk on or off

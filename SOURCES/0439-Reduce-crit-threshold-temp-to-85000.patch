@@ -1,7 +1,7 @@
-From 29a0890987bc574acca83dd5c46cfee2ee7c1591 Mon Sep 17 00:00:00 2001
+From 244587f62bd5a4de7746b962e27fb97bf664c2e2 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Tue, 18 Feb 2025 12:49:37 -0500
-Subject: [PATCH 437/440] Reduce crit threshold temp to 85000
+Subject: [PATCH 439/442] Reduce crit threshold temp to 85000
 
 ---
  arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi | 2 +-

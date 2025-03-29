@@ -1,7 +1,7 @@
-From afe8274a6424d82d01d58ef3f8681151edc223b5 Mon Sep 17 00:00:00 2001
+From c2797639bcaa4cc7eac234031bfa3c7ccc906043 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 20 Sep 2024 09:05:43 +0800
-Subject: [PATCH 269/440] WIN2030-16233:fix:resolve hdcp compilation issue.
+Subject: [PATCH 269/442] WIN2030-16233:fix:resolve hdcp compilation issue.
 
 Changelogs:
 	1.resolve hccp compilation issue.

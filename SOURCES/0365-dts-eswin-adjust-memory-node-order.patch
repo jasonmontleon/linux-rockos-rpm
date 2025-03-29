@@ -1,7 +1,7 @@
-From 6924d6320e1536124cc4302dbfb1a819a5f1e8c0 Mon Sep 17 00:00:00 2001
+From 88e78b42904aa3ea998adc2ea6e501d6de7be2a6 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sun, 26 Jan 2025 11:00:50 +0800
-Subject: [PATCH 365/440] dts: eswin: adjust memory node order
+Subject: [PATCH 365/442] dts: eswin: adjust memory node order
 
 fdt_fixup_memory in uboot can only update the first /memory
 

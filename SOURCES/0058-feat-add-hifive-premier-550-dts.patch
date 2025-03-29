@@ -1,7 +1,7 @@
-From eb42b6c3cebacc9fbce2c3c19317730b2e90f5e7 Mon Sep 17 00:00:00 2001
+From b7ebe413d100bb5a483cb554f7882b9893257e5f Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 21 Jun 2024 09:53:26 +0800
-Subject: [PATCH 058/440] feat:add hifive premier 550 dts
+Subject: [PATCH 058/442] feat:add hifive premier 550 dts
 
 Changelogs:
 1.Notes:The hifive-premier-550.dts in linux-6.6 is actually for

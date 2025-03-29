@@ -1,7 +1,7 @@
-From 37a0a3a7e5efb157a9fba37c3706e147b3ff054f Mon Sep 17 00:00:00 2001
+From 840db54f32295949bfc7d9fde247a029b79cb96e Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 13:35:25 +0800
-Subject: [PATCH 072/440] img gpu kmd: update kernel api dma_buf_map to
+Subject: [PATCH 072/442] img gpu kmd: update kernel api dma_buf_map to
  iosys_map
 
 ref: https://github.com/torvalds/linux/commit/7938f421

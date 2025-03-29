@@ -1,7 +1,7 @@
-From 2d328c9b80b4dbf41161fcfced33d10ebbd7bd63 Mon Sep 17 00:00:00 2001
+From c231ef7296a96915018a94136513dab2b3e61d91 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 9 Sep 2024 10:17:35 +0800
-Subject: [PATCH 257/440] WIN2030-16035: feat(eth): Adaption for ethernet d2d
+Subject: [PATCH 257/442] WIN2030-16035: feat(eth): Adaption for ethernet d2d
 
 Changelogs:
 1. Fix dumpstack of d1 eth probe

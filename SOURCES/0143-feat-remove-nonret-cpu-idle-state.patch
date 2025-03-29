@@ -1,7 +1,7 @@
-From 652df0e7359c50ca6514fc95b427b1005810c9c2 Mon Sep 17 00:00:00 2001
+From 7f111e04baf102f9814dbd615593f2fba3b4ec17 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 8 Aug 2024 15:04:33 +0800
-Subject: [PATCH 143/440] feat:remove nonret cpu idle state
+Subject: [PATCH 143/442] feat:remove nonret cpu idle state
 
 Changelogs:
 remove nonret cpu idle state to solve some interrupt problems.

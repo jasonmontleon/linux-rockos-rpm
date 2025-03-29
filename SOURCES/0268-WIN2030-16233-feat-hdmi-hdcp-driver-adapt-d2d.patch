@@ -1,7 +1,7 @@
-From 0716768b4710d26ca58c65584556a76009e75a15 Mon Sep 17 00:00:00 2001
+From 30b7a83ddb397dc8b0bff50b48452204927a3f9d Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 10 Sep 2024 16:54:31 +0800
-Subject: [PATCH 268/440] WIN2030-16233:feat:hdmi & hdcp driver adapt d2d.
+Subject: [PATCH 268/442] WIN2030-16233:feat:hdmi & hdcp driver adapt d2d.
 
 Changelogs:
 	hdmi & hdcp driver adapt d2d.

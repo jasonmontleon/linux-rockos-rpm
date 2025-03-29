@@ -1,7 +1,7 @@
-From 96bea52685004cefc96ec47295a8a4aa3a9448a9 Mon Sep 17 00:00:00 2001
+From 71920ebc3c5351b8051d283dd8c977991626c7c9 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:11:10 +0800
-Subject: [PATCH 423/440] config: drm: nouveau: as module for eic7700x
+Subject: [PATCH 423/442] config: drm: nouveau: as module for eic7700x
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

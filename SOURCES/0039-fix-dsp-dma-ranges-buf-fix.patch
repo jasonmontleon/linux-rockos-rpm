@@ -1,7 +1,7 @@
-From 7646ff83d957d4ac07f8ba66a3861b4e83f7e4e8 Mon Sep 17 00:00:00 2001
+From 75f10f601c803333147f68ce7ec138fb5c90e7b8 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 29 May 2024 14:11:20 +0800
-Subject: [PATCH 039/440] fix:dsp dma-ranges buf fix
+Subject: [PATCH 039/442] fix:dsp dma-ranges buf fix
 
 Changelogs:
     linux 6.6 reslove dma-ranges from parent.

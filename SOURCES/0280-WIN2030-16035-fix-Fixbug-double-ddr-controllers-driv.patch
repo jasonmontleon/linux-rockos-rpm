@@ -1,7 +1,7 @@
-From 6ac33380884be185a385a404b98a24ebe7ef4aac Mon Sep 17 00:00:00 2001
+From 7e8bad7ff87d1259506d6d134fe27a45663cf0c6 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 6 Nov 2024 15:13:54 +0800
-Subject: [PATCH 280/440] WIN2030-16035:fix:Fixbug double ddr controllers
+Subject: [PATCH 280/442] WIN2030-16035:fix:Fixbug double ddr controllers
  driver
 
 Changelogs:

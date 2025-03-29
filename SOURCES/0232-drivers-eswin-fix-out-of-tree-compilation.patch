@@ -1,7 +1,7 @@
-From 12a3c6016cbba8224dfe872504452750cb2985cc Mon Sep 17 00:00:00 2001
+From a2f13c9f5a7b98354220a7d7185b68b73a394e39 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Wed, 20 Nov 2024 15:48:28 +0800
-Subject: [PATCH 232/440] drivers: eswin: fix out-of-tree compilation
+Subject: [PATCH 232/442] drivers: eswin: fix out-of-tree compilation
 
 Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
 ---

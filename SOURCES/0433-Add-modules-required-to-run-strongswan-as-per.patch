@@ -1,0 +1,39 @@
+From b582fe198b494464a5bd5fd4a09859f8077b9d28 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Viktar=20Siarhiej=C4=8Dyk?= <a@gk.lc>
+Date: Sun, 23 Mar 2025 14:59:46 +0300
+Subject: [PATCH 433/442] Add modules required to run strongswan as per
+ https://docs.strongswan.org/docs/latest/install/kernelModules.html
+
+---
+ arch/riscv/configs/win2030_defconfig | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 4e586f315d0a..0ccf54cecfea 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -76,14 +76,21 @@ CONFIG_UNIX_DIAG=m
+ CONFIG_TLS=m
+ CONFIG_TLS_DEVICE=y
+ CONFIG_TLS_TOE=y
++CONFIG_XFRM_USER=y
++CONFIG_NET_KEY=m
+ CONFIG_XDP_SOCKETS=y
+ CONFIG_INET=y
+ CONFIG_IP_MULTICAST=y
++CONFIG_IP_ADVANCED_ROUTER=y
++CONFIG_IP_MULTIPLE_TABLES=y
+ CONFIG_IP_PNP=y
+ CONFIG_IP_PNP_DHCP=y
+ CONFIG_IP_PNP_BOOTP=y
+ CONFIG_NET_IPIP=m
+ CONFIG_NET_IPVTI=m
++CONFIG_INET_AH=m
++CONFIG_INET_ESP=m
++CONFIG_INET_IPCOMP=m
+ CONFIG_TCP_CONG_ADVANCED=y
+ CONFIG_TCP_CONG_HSTCP=m
+ CONFIG_TCP_CONG_HYBLA=m
+-- 
+2.49.0
+

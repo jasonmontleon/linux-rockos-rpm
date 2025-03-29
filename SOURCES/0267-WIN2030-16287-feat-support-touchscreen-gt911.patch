@@ -1,7 +1,7 @@
-From ef249878a3f4bddd3b28dc0154167678748ebf57 Mon Sep 17 00:00:00 2001
+From a4acdf3dd1ae3ef07631b1337ac4d3003a64558e Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Sat, 14 Sep 2024 14:39:17 +0800
-Subject: [PATCH 267/440] WIN2030-16287:feat:support touchscreen(gt911)
+Subject: [PATCH 267/442] WIN2030-16287:feat:support touchscreen(gt911)
 
 Changelogs:
    support touchscreen, the touch screen chip model is GT911

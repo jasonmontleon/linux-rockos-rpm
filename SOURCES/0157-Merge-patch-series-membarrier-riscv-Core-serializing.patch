@@ -1,7 +1,7 @@
-From b4010fd3cb339f512321f17cad4a0e13677f834e Mon Sep 17 00:00:00 2001
+From b3f2c39c050a8db00ce90205cecd530d2773256d Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
-Subject: [PATCH 157/440] Merge patch series "membarrier: riscv: Core
+Subject: [PATCH 157/442] Merge patch series "membarrier: riscv: Core
  serializing command"
 
 RISC-V was lacking a membarrier implementation for the store/fetch
@@ -266,7 +266,7 @@ index 1105cb53f391..1c5ab40a5f58 100644
  	bool
  
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index 942734bf7347..5195b8364b56 100644
+index 8c5f75af07db..09324e30d999 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
 @@ -6609,7 +6609,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)

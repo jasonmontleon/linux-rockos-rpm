@@ -1,7 +1,7 @@
-From 20561c4723c6552ba14a9c18fdaabb3457b0a0e0 Mon Sep 17 00:00:00 2001
+From 59bb752eedf8632a2aa76fbec8b21f86c3308a25 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 12 Sep 2024 17:53:11 +0800
-Subject: [PATCH 266/440] WIN2030-16035:feat:uninstall the vdec driver for d2d
+Subject: [PATCH 266/442] WIN2030-16035:feat:uninstall the vdec driver for d2d
 
 Changelogs:
   1. Uninstall the vdec driver for d2d.

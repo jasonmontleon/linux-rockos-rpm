@@ -1,7 +1,7 @@
-From 40d1251b0314db3f4b096c8aed0b40921185d033 Mon Sep 17 00:00:00 2001
+From 9576fc86ac1ea04fc22615ca0ae99e9f23f416bc Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 28 Feb 2025 14:17:24 +0800
-Subject: [PATCH 418/440] fix: D314 sdio delay_code
+Subject: [PATCH 418/442] fix: D314 sdio delay_code
 
 Changelogs:
 1. Optimize the D314 SDIO DELAY CODE parameter

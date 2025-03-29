@@ -1,7 +1,7 @@
-From 7f666b9a925356cecf4d3d3585d74096e822289d Mon Sep 17 00:00:00 2001
+From 8528a9aa6c35b3f20e06750cdb56ea7993bafb4d Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 5 Feb 2025 16:51:09 +0800
-Subject: [PATCH 410/440] feature:Add eic770x OTP driver
+Subject: [PATCH 410/442] feature:Add eic770x OTP driver
 
 Changelogs:
 In some cases, it may be necessary to read OTP information from user

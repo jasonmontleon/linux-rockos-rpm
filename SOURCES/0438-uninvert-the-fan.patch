@@ -1,7 +1,7 @@
-From 42290c28462af47692967a23c4b81c66eafaf5df Mon Sep 17 00:00:00 2001
+From 5d2e301e9ce4b9cf72cf2aa6f676b5417df51a9f Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 14:20:11 -0500
-Subject: [PATCH 436/440] uninvert the fan...
+Subject: [PATCH 438/442] uninvert the fan...
 
 ---
  arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts | 1 -

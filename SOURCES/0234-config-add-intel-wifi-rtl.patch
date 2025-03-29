@@ -1,7 +1,7 @@
-From dace3cbede3deae0b3d9c2beb1978279db2f3dab Mon Sep 17 00:00:00 2001
+From a05e61450b8178e84f833605499f4411a056efcb Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 17:14:08 +0800
-Subject: [PATCH 234/440] config: add intel wifi & rtl
+Subject: [PATCH 234/442] config: add intel wifi & rtl
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

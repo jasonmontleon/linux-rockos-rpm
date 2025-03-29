@@ -1,7 +1,7 @@
-From 8fc3d334bf128b37ec617f8e979a0cc8fb41aa9e Mon Sep 17 00:00:00 2001
+From 4cc91b8924b6d8aefdf3a228c1b4965ded67b604 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 20 Dec 2024 10:08:03 +0800
-Subject: [PATCH 366/440] WIN2030-14758:feat:L3 cache flush all
+Subject: [PATCH 366/442] WIN2030-14758:feat:L3 cache flush all
 
 Changelogs:
 1.Try to flush the entire L3 Cache as the procedure described at

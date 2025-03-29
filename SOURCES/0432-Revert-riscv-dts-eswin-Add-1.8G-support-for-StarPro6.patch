@@ -1,7 +1,7 @@
-From bc083b93021270d52eca360416feb3e319f3c1f6 Mon Sep 17 00:00:00 2001
+From 7faf039fd34304b357aa6eb0893a325267042de7 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 21 Mar 2025 15:51:57 +0800
-Subject: [PATCH 432/440] Revert "riscv: dts: eswin: Add 1.8G support for
+Subject: [PATCH 432/442] Revert "riscv: dts: eswin: Add 1.8G support for
  StarPro64"
 
 This reverts commit 75711ad38b4472e17ebce36d73959e846c9b4e4f.

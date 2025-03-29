@@ -1,7 +1,7 @@
-From f2ea6d536a1be5cdc57089db9dba987a31eda7b6 Mon Sep 17 00:00:00 2001
+From 96fa4345bba7d6c0165c6a529c4a6809bafe2dc9 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 30 Oct 2024 11:14:04 +0800
-Subject: [PATCH 326/440] WIN2030-16578:fix:npu opp dts node modify
+Subject: [PATCH 326/442] WIN2030-16578:fix:npu opp dts node modify
 
 Changelogs:
 	npu use opp-table node modify in dts

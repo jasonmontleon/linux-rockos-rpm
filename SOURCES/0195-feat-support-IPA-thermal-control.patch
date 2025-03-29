@@ -1,7 +1,7 @@
-From ba739f501cf2e59a73f65535125fb7dd2f7d8419 Mon Sep 17 00:00:00 2001
+From 5f16884393ec6b384edcb9ab1e4ba18a64cd9eb2 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 16 Oct 2024 16:46:21 +0800
-Subject: [PATCH 195/440] feat:support IPA thermal control
+Subject: [PATCH 195/442] feat:support IPA thermal control
 
 Changelogs:
     1. add IPA thermal control framework

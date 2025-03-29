@@ -1,7 +1,7 @@
-From 2dbd6ebcbae2d4e0082f18affaf18221cb1344f7 Mon Sep 17 00:00:00 2001
+From a7ef6a2426da7072f40b47c721eb352cdbb0550a Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 22 Apr 2024 16:15:37 +0800
-Subject: [PATCH 008/440] feat: Add support for ethernet driver
+Subject: [PATCH 008/442] feat: Add support for ethernet driver
 
 Changelogs:
 1. Adapt ethernet driver for linux-6.6

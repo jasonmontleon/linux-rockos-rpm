@@ -1,7 +1,7 @@
-From 4146a436c0b5f3df539d90fba0ae7030d59cb9da Mon Sep 17 00:00:00 2001
+From 01b4a5b435eb568ab000df170bcf09252e6616dc Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Thu, 18 Jul 2024 19:22:23 +0800
-Subject: [PATCH 108/440] feat:PCIe Controller support low power.
+Subject: [PATCH 108/442] feat:PCIe Controller support low power.
 
 Changelogs:
 1.PCIe Controller support low power.

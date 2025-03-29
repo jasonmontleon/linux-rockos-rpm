@@ -1,7 +1,7 @@
-From d28fd2fd3d7b2b692fc0c209ead69992aefa9dab Mon Sep 17 00:00:00 2001
+From 447e04738be0c1d99b88eb970f3b9b82e2db0759 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 24 Jan 2025 10:18:24 +0800
-Subject: [PATCH 394/440] WIN2030-17055:feat: npu set voltage modify
+Subject: [PATCH 394/442] WIN2030-17055:feat: npu set voltage modify
 
 Changelogs:
 	1. npu dts add 'apply_npu_1G_freq' node, and if set this node , cannot

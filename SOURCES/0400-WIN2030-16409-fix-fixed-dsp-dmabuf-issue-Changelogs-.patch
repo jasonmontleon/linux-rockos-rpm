@@ -1,7 +1,7 @@
-From caac81086581f94bcabfead3512ac613e3cf1cc4 Mon Sep 17 00:00:00 2001
+From c2ddf4a5d00f7936d171e0d200dbfd75f4b0b617 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Fri, 7 Feb 2025 09:44:47 +0800
-Subject: [PATCH 400/440] WIN2030-16409: fix: fixed dsp dmabuf issue
+Subject: [PATCH 400/442] WIN2030-16409: fix: fixed dsp dmabuf issue
  Changelogs: relese dsp dmabuf and module refcnt when process exit
 
 Change-Id: I9b103b25ed3b19744d9c231a8350606f30119ddb

@@ -1,7 +1,7 @@
-From beb709d004fc7c1e8aa2df7ba0ed27a6c40b9427 Mon Sep 17 00:00:00 2001
+From 69b7728fc249e97a93526cd288a692d34dc54409 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 8 Oct 2024 16:36:27 +0800
-Subject: [PATCH 190/440] feat:NPU & DSP driver port.
+Subject: [PATCH 190/442] feat:NPU & DSP driver port.
 
 Changelogs:
 	1.delete NPU & DSP SDK drivers.

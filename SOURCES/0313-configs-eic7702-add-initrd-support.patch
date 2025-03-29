@@ -1,7 +1,7 @@
-From 27f567e21bf50c87d202e33781e353748be1e483 Mon Sep 17 00:00:00 2001
+From 3f675a6dd762cc186636b3b642267d4c397f5e3e Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 17:51:00 +0800
-Subject: [PATCH 313/440] configs: eic7702: add initrd support
+Subject: [PATCH 313/442] configs: eic7702: add initrd support
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---
