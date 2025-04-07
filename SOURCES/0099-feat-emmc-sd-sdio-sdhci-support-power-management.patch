@@ -1,4 +1,4 @@
-From fbaf799752b8ba78f9fe21fd2798203199768a5a Mon Sep 17 00:00:00 2001
+From c4c812db2cbab52b7f4b235df6ae50d16775dcc6 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Tue, 16 Jul 2024 17:32:14 +0800
 Subject: [PATCH 099/442] feat(emmc sd sdio):sdhci support power management

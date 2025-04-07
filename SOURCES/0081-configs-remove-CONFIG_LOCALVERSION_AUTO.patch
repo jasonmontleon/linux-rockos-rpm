@@ -1,4 +1,4 @@
-From 6a94dc0b7227e784a5ef853e67c18ea66b97f6e8 Mon Sep 17 00:00:00 2001
+From 253fd191b73ee3aa681086a6c5d0ff52b40fba7a Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:32:21 +0800
 Subject: [PATCH 081/442] configs: remove CONFIG_LOCALVERSION_AUTO

@@ -1,4 +1,4 @@
-From 5cdc4f6c6f59e21f0e1fb18313a3890da60eeba9 Mon Sep 17 00:00:00 2001
+From 67d9fdd1512bee58d508be6aa5ce4df60126126b Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 22 Jul 2024 17:31:42 +0800
 Subject: [PATCH 115/442] fix(vo): clk off after dc initialized
