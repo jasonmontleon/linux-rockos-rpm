@@ -1,4 +1,4 @@
-From bb48968e77ef79a92f17b9a4a93ff222a05ce74d Mon Sep 17 00:00:00 2001
+From 395271f62c0a3af4ceb0198b94e37fb8881c8594 Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Tue, 30 Jul 2024 14:17:25 +0000
 Subject: [PATCH 230/442] drivers: kvm: vcpu: Disabled writing HENVCFG reg

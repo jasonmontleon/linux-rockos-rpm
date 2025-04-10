@@ -1,4 +1,4 @@
-From 61c0802c05fb37350eb8eb4c8712bea5c3df885a Mon Sep 17 00:00:00 2001
+From 1ef49446ea3c3f36fd4997a521959aace2e4df32 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 28 May 2024 09:37:29 +0800
 Subject: [PATCH 034/442] fix:Add rtc(pcf8573) driver in win2030_defconfig
