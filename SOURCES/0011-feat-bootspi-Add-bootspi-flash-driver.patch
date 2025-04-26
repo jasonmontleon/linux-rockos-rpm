@@ -1,8 +1,8 @@
-From 333aed1b25332d76b35c6e5b6efe206161707c3e Mon Sep 17 00:00:00 2001
+From be4da70a86aa6cedaee6d88b6ebe0ca45ac4e52f Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 10:39:21 +0800
-Subject: [PATCH 011/442] feat(bootspi):Add bootspi flash driver
+Subject: [PATCH 011/481] feat(bootspi):Add bootspi flash driver
 
 Changelogs:
     1.Added bootspi flash driver

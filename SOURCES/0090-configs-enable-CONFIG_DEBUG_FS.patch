@@ -1,7 +1,7 @@
-From f39b405d7ea179ffd6bc1f7c13a529f3b7aced17 Mon Sep 17 00:00:00 2001
+From d04b7fe09dca26b59df4ac8b28b1639628eff945 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 14 Jun 2024 16:42:44 +0800
-Subject: [PATCH 090/442] configs: enable CONFIG_DEBUG_FS
+Subject: [PATCH 090/481] configs: enable CONFIG_DEBUG_FS
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

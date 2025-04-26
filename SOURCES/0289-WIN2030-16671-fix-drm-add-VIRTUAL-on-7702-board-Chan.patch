@@ -1,7 +1,7 @@
-From 4d51b8bc16fa2a56dfb17c672f3f746eb182b41f Mon Sep 17 00:00:00 2001
+From 7d1c62dc697fbb25cca4143c38d1e322a07516f6 Mon Sep 17 00:00:00 2001
 From: liwenkai <liwenkai@eswincomputing.com>
 Date: Thu, 21 Nov 2024 18:16:01 +0800
-Subject: [PATCH 289/442] WIN2030-16671:fix(drm):add VIRTUAL on 7702 board
+Subject: [PATCH 289/481] WIN2030-16671:fix(drm):add VIRTUAL on 7702 board
  Changelogs:
 
 Change-Id: I90c09cfd4299fdb2873803f99c49a74018b831ab

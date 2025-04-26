@@ -1,7 +1,7 @@
-From c2b0c4d21573d2be28ac59b9bfe38b90afdd141c Mon Sep 17 00:00:00 2001
+From e73c789c81a4008897438fe77d71baf36627001d Mon Sep 17 00:00:00 2001
 From: HanGao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:26:32 +0800
-Subject: [PATCH 405/442] iommu: eswin: sync remove internal arguments from
+Subject: [PATCH 405/481] iommu: eswin: sync remove internal arguments from
  of_property_for_each_u32
 
 Signed-off-by: HanGao <rabenda.cn@gmail.com>

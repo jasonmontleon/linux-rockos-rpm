@@ -1,0 +1,42 @@
+From 9cbb8f187c749b5fc55c1f9b7c451dc85c3f70ec Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Thu, 3 Apr 2025 22:20:04 +0800
+Subject: [PATCH 437/481] drm: eswin: reject framebuffers with misaligned pitch
+
+Currently the pitch of dumb buffers seems to be not respected by the IMG
+blob, which leads to framebuffers with misaligned pitch get created; in
+addition setting such a broken pitch to the STRIDE register seems to
+crash the DC and stops it from scanning out.
+
+Filter out such framebuffers when attaching them to KMS planes.
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ drivers/gpu/drm/eswin/es_plane.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/gpu/drm/eswin/es_plane.c b/drivers/gpu/drm/eswin/es_plane.c
+index 93b97db5cb73..e2e01ac5fa3f 100644
+--- a/drivers/gpu/drm/eswin/es_plane.c
++++ b/drivers/gpu/drm/eswin/es_plane.c
+@@ -252,10 +252,17 @@ static int es_plane_atomic_check(struct drm_plane *plane,
+ 	struct drm_framebuffer *fb = new_plane_state->fb;
+ 	struct drm_crtc *crtc = new_plane_state->crtc;
+ 	struct es_crtc *es_crtc = to_es_crtc(crtc);
++	struct drm_device *dev = plane->dev;
++	struct es_drm_private *priv = dev->dev_private;
+ 
+ 	if (!crtc || !fb)
+ 		return 0;
+ 
++	/* Reject FB with misaligned pitches, which seem to crash the DC */
++	if (fb->format->num_planes == 1 &&
++	    fb->pitches[0] & (priv->pitch_alignment - 1))
++		return -EINVAL;
++
+ 	return es_plane->funcs->check(es_crtc->dev, es_plane, new_plane_state);
+ }
+ 
+-- 
+2.49.0
+

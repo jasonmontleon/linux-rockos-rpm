@@ -1,7 +1,7 @@
-From d0913e29dd1a1a339a8c4322dd61805b7a23d372 Mon Sep 17 00:00:00 2001
+From 47ef6dc99b5cb0e40c3ebf4067bd1ca208f48d36 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 17 Dec 2024 17:36:58 +0800
-Subject: [PATCH 345/442] WIN2030-16816:fix:fix the DSP issue of perf function
+Subject: [PATCH 345/481] WIN2030-16816:fix:fix the DSP issue of perf function
  on die1.
 
 Changelogs:

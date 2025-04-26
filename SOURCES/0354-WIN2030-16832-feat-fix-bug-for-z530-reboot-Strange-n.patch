@@ -1,7 +1,7 @@
-From e2962f7be1b39cfa18b307b8c4422936636db243 Mon Sep 17 00:00:00 2001
+From c22336edf6a5c6f5f4deb0f82eaf35b0a4172bce Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 18 Dec 2024 11:00:57 +0800
-Subject: [PATCH 354/442] WIN2030-16832:feat:fix bug for z530 reboot Strange
+Subject: [PATCH 354/481] WIN2030-16832:feat:fix bug for z530 reboot Strange
  noise
 
 Changelogs:

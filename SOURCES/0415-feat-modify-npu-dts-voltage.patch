@@ -1,7 +1,7 @@
-From 9211f2217ef399b2fe7233f797ebbd761fca64d2 Mon Sep 17 00:00:00 2001
+From c2ac5c098f101a0365b11de0782ef0eedd2f4265 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 18 Feb 2025 16:40:28 +0800
-Subject: [PATCH 415/442] feat: modify npu dts voltage
+Subject: [PATCH 415/481] feat: modify npu dts voltage
 
 Changelogs:
 	1. in npu dts, use macro for npu voltage set.

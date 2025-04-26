@@ -1,14 +1,14 @@
-From 183cab74b099fa7922e4c9c355553d31ec389535 Mon Sep 17 00:00:00 2001
+From 9ae0d42c641f021fae0d8b19016a78724ca725c9 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
-Subject: [PATCH 435/442] header workarounds
+Subject: [PATCH 474/481] header workarounds
 
 ---
  include/uapi/linux/dma_memcp.h      |  3 ++
- include/uapi/linux/es_vb_user.h     |  4 +++
+ include/uapi/linux/es_vb_user.h     |  6 +++-
  include/uapi/linux/eswin-ipc-scpu.h |  5 +++-
  include/uapi/linux/mmz_vb.h         | 45 +++++++++++++++--------------
- 4 files changed, 35 insertions(+), 22 deletions(-)
+ 4 files changed, 36 insertions(+), 23 deletions(-)
 
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
 index 3cb75a348ba8..3a4247abe26c 100644
@@ -25,10 +25,16 @@ index 3cb75a348ba8..3a4247abe26c 100644
  #define ES_DMA_MEMCP_H
  
 diff --git a/include/uapi/linux/es_vb_user.h b/include/uapi/linux/es_vb_user.h
-index db3bda6d0d69..984bc837946f 100644
+index 19588ab99b01..fed472773073 100644
 --- a/include/uapi/linux/es_vb_user.h
 +++ b/include/uapi/linux/es_vb_user.h
-@@ -12,6 +12,10 @@
+@@ -1,4 +1,4 @@
+-// SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
++/* SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note */
+ /*
+  * ESWIN MMZ VB user state api header.
+  *
+@@ -37,6 +37,10 @@ typedef char ES_CHAR;
  
  #define ES_MAX_MMZ_NAME_LEN	64
  
@@ -37,8 +43,8 @@ index db3bda6d0d69..984bc837946f 100644
 +typedef unsigned long long ES_U64;
 +
  /**
-  * mmz vb pool or block struct definition
-  */
+  * numa id encoding definitions
+ */
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
 index e8fa083a2c7f..a0164b374b13 100644
 --- a/include/uapi/linux/eswin-ipc-scpu.h
@@ -63,7 +69,7 @@ index e8fa083a2c7f..a0164b374b13 100644
  }khandle_dma_allocation_data_t;
  
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
-index 1bb76ebb5aa8..9faa47344498 100644
+index 27a5f0a94352..5e808bba0e49 100644
 --- a/include/uapi/linux/mmz_vb.h
 +++ b/include/uapi/linux/mmz_vb.h
 @@ -2,6 +2,9 @@
@@ -144,10 +150,10 @@ index 1bb76ebb5aa8..9faa47344498 100644
  {
 -	int fd;	// Input: The dmabuf_fd
 -	void *cpu_vaddr; // Input: The virtual addr of cpu in user space
--	int numa_node; // Ouput: return the NUMA node id of the memory
+-	EIC770X_LOGICAL_MEM_NODE_E numa_node; // Ouput: return the logic code of NUMA node id of the memory
 +	int fd;	/* Input: The dmabuf_fd */
 +	void *cpu_vaddr; /* Input: The virtual addr of cpu in user space */
-+	int numa_node; /* Ouput: return the NUMA node id of the memory */
++	EIC770X_LOGICAL_MEM_NODE_E numa_node; /* Ouput: return the logic code of NUMA node id of the memory */
  }VB_RETRIEVE_MEM_NODE_CMD_S;
  
 -//corresponding to MMZ_VB_IOCTL_DMABUF_SIZE

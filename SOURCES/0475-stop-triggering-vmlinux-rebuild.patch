@@ -1,7 +1,7 @@
-From 70678c86ddca44221c7a749d9caded320ca655dd Mon Sep 17 00:00:00 2001
+From 0d28184302b096a44aeb82b32aeba11711187f61 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:03:43 -0500
-Subject: [PATCH 436/442] stop triggering vmlinux rebuild
+Subject: [PATCH 475/481] stop triggering vmlinux rebuild
 
 ---
  drivers/memory/eswin/Makefile            |   4 -

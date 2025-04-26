@@ -1,7 +1,7 @@
-From af99abe05d0817410ad1f8a3fef0df49cce10367 Mon Sep 17 00:00:00 2001
+From 02cf6fb6e30a5fa3fefab386702174bb925df576 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 29 Oct 2024 16:23:18 +0800
-Subject: [PATCH 275/442] WIN2030-16572:feat: dsp move dual die support to
+Subject: [PATCH 275/481] WIN2030-16572:feat: dsp move dual die support to
  linux kernel
 
 Changelogs:

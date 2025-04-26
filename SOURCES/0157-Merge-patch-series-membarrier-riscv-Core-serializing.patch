@@ -1,7 +1,7 @@
-From e222e22d89c0f62ac3dfa83438eb3d1d12b77dbd Mon Sep 17 00:00:00 2001
+From 24db2197ed8b44acc17a92a342986806d1f082f2 Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
-Subject: [PATCH 157/442] Merge patch series "membarrier: riscv: Core
+Subject: [PATCH 157/481] Merge patch series "membarrier: riscv: Core
  serializing command"
 
 RISC-V was lacking a membarrier implementation for the store/fetch
@@ -126,10 +126,10 @@ index 000000000000..2387804b1c63
 +The barrier matches a full barrier in the proximity of the membarrier system call
 +entry, cf. membarrier_{private,global}_expedited().
 diff --git a/MAINTAINERS b/MAINTAINERS
-index ae4c0cec5073..574a2c203380 100644
+index 294d2ce29b73..45778c833e51 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -13702,7 +13702,9 @@ M:	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+@@ -13703,7 +13703,9 @@ M:	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
  M:	"Paul E. McKenney" <paulmck@kernel.org>
  L:	linux-kernel@vger.kernel.org
  S:	Supported

@@ -1,7 +1,7 @@
-From d7cd49334634cf4eaa0fb5d914c18a97e2cb4d49 Mon Sep 17 00:00:00 2001
+From 5347986a795f27d2c7c8612558b1e0be6ba8cdc1 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Thu, 23 May 2024 10:01:46 +0800
-Subject: [PATCH 020/442] feat:Add dma driver.
+Subject: [PATCH 020/481] feat:Add dma driver.
 
 Changelogs:
 1.Add dma driver for linux-6.6.

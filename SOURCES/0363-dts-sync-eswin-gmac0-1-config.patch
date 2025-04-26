@@ -1,7 +1,7 @@
-From 433b1da5aaf63e3d3a301bd8ee5a45c085439533 Mon Sep 17 00:00:00 2001
+From f38b353eb2b9c8f1b23ce2c4e187e9b76bad250d Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 8 Jan 2025 01:41:49 +0800
-Subject: [PATCH 363/442] dts: sync eswin gmac0/1 config
+Subject: [PATCH 363/481] dts: sync eswin gmac0/1 config
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

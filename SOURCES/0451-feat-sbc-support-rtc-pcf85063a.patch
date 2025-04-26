@@ -1,0 +1,61 @@
+From 71538d65ed96b9462067ae432f5bccdd5adacf7a Mon Sep 17 00:00:00 2001
+From: Xiang Xu <xuxiang@eswincomputing.com>
+Date: Wed, 19 Mar 2025 16:04:01 +0800
+Subject: [PATCH 451/481] feat:sbc support rtc pcf85063a
+
+Changelogs:
+1. sbc support rtc pcf85063a
+
+Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts | 6 ++++--
+ arch/riscv/configs/eic7700_defconfig         | 2 +-
+ 2 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+index 496dd80a4d3c..0de6f9e259d1 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+@@ -45,7 +45,8 @@ / {
+ 	aliases {
+ 		serial0 = &d0_uart0;
+ 		ethernet0 = &d0_gmac0;
+-		rtc0 = &pcf_rtc;
++		rtc0 = &die0_rtc;
++		rtc1 = &pcf_rtc;
+ 	};
+ 
+ 	chosen {
+@@ -448,6 +449,7 @@ &sdio0 {
+ 	status = "okay";
+ 	delay_code = <0x55>;
+ 	drive-impedance-ohm = <33>;
++	disable-wp;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+ 	no-sdio;
+@@ -694,7 +696,7 @@ &d0_aon_i2c0 {
+ 	status = "okay";
+ 	eswin,syscfg = <&d0_sys_con 0x3C0 16>;
+ 	pcf_rtc:rtc@51 {
+-		compatible = "nxp,pcf8563";
++		compatible = "nxp,pcf85063a";
+ 		reg = <0x51>;
+ 	};
+ };
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index a31c15f59201..5520be92a830 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -730,7 +730,7 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
+ CONFIG_EDAC=y
+ CONFIG_EDAC_ESWIN=y
+ CONFIG_RTC_CLASS=y
+-CONFIG_RTC_DRV_PCF85063=m
++CONFIG_RTC_DRV_PCF85063=y
+ CONFIG_RTC_DRV_PCF8563=y
+ CONFIG_RTC_DRV_ESWIN=y
+ CONFIG_DMADEVICES=y
+-- 
+2.49.0
+

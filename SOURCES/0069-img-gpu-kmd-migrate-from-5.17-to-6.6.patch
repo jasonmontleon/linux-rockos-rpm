@@ -1,7 +1,7 @@
-From a23e5e91ba0c3578c179114e98e2ffb5883280dd Mon Sep 17 00:00:00 2001
+From 55643d0942d4f8cd6b6b21ef0521406006be2328 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 11:15:06 +0800
-Subject: [PATCH 069/442] img gpu kmd: migrate from 5.17 to 6.6
+Subject: [PATCH 069/481] img gpu kmd: migrate from 5.17 to 6.6
 
 * 1.18 initial commit (no compilation)
 ---
@@ -1690,7 +1690,7 @@ index fd95a7c1c3b5..5a06fbd7c31b 100644
  CONFIG_FB=y
  CONFIG_SOUND=y
 diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index fb30fa9500b3..e24445697aa7 100644
+index 338e6e30fca1..0d12020ffd9e 100644
 --- a/drivers/gpu/drm/Kconfig
 +++ b/drivers/gpu/drm/Kconfig
 @@ -390,6 +390,8 @@ source "drivers/gpu/drm/sprd/Kconfig"

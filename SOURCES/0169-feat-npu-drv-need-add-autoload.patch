@@ -1,7 +1,7 @@
-From 454246ce8483c9c43029485aa53452ef0e8d7d08 Mon Sep 17 00:00:00 2001
+From f2dc147921db197679bbdae0e9d41b027d656755 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 4 Sep 2024 15:53:40 +0800
-Subject: [PATCH 169/442] feat:npu drv need add autoload
+Subject: [PATCH 169/481] feat:npu drv need add autoload
 
 Changelogs:
 	npu driver need autoload after system boot.

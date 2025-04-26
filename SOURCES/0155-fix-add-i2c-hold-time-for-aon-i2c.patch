@@ -1,7 +1,7 @@
-From 8b0b9ebc729d8d7988d32c800dd76f46b2c4a72e Mon Sep 17 00:00:00 2001
+From 377a63bb3864826a3d9d96826303abba7ddc0989 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 19 Aug 2024 19:16:55 +0800
-Subject: [PATCH 155/442] fix:add i2c hold time for aon i2c
+Subject: [PATCH 155/481] fix:add i2c hold time for aon i2c
 
 Changelogs:
 	add i2c hold time for aon i2c

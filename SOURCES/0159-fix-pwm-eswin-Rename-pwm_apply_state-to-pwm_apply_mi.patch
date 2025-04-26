@@ -1,7 +1,7 @@
-From 23ebe37fc3caef1639c1da181ba7a3bb0ddabd42 Mon Sep 17 00:00:00 2001
+From c58f1fb6b64686c18d9c8a722dad2ef5e55c818a Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 6 Jul 2024 20:04:55 +0800
-Subject: [PATCH 159/442] fix: pwm: eswin: Rename pwm_apply_state() to
+Subject: [PATCH 159/481] fix: pwm: eswin: Rename pwm_apply_state() to
  pwm_apply_might_sleep()
 
 [ linux-6.6.y commit a10c3d5ff9a343c0b898215253750fedc38ac765 ]

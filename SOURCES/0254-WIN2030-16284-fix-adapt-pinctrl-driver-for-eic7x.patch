@@ -1,7 +1,7 @@
-From 8c92094c4878df2f63ffcbc367d36b4314e9cf09 Mon Sep 17 00:00:00 2001
+From b6f188f653ecde87972576a571798a3ddc83155d Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 6 Sep 2024 22:22:09 +0800
-Subject: [PATCH 254/442] WIN2030-16284:fix:adapt pinctrl driver for eic7x
+Subject: [PATCH 254/481] WIN2030-16284:fix:adapt pinctrl driver for eic7x
 
 Changelogs:
 	1. fix: adapt pinctrl driver for eic7x

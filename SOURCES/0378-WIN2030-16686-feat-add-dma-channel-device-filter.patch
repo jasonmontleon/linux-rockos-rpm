@@ -1,7 +1,7 @@
-From 7aa0aec118a4184e25351dca2dc1e4e9f51ac7d1 Mon Sep 17 00:00:00 2001
+From 02036eab7714ba94200e82c9596805fab1c02da6 Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Thu, 9 Jan 2025 09:44:00 +0800
-Subject: [PATCH 378/442] WIN2030-16686:feat:add dma channel & device filter
+Subject: [PATCH 378/481] WIN2030-16686:feat:add dma channel & device filter
 
 Changelogs:
 1.user aon dma channel first

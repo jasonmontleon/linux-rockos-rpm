@@ -1,8 +1,8 @@
-From a4b1e409bb029b1902912206707f9a3302f247a0 Mon Sep 17 00:00:00 2001
+From 55e527c8473d13f50d8aa6f47e3f61e1d82ca8c5 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 14:17:38 +0800
-Subject: [PATCH 012/442] feat(noc):Add noc driver
+Subject: [PATCH 012/481] feat(noc):Add noc driver
 
 Changelogs:
         1.Added noc driver

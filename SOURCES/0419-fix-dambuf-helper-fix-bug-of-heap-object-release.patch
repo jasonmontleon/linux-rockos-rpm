@@ -1,7 +1,7 @@
-From 293a2bc1500ff90e08e409ef0570c6af1762b80d Mon Sep 17 00:00:00 2001
+From 9fdcfbd30376dd3d6be58f328e4754329543ae6c Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 3 Mar 2025 16:06:13 +0800
-Subject: [PATCH 419/442] fix(dambuf helper):fix bug of heap object release
+Subject: [PATCH 419/481] fix(dambuf helper):fix bug of heap object release
 
 Changelogs:
 1.mutext was not locked before releasing the heap object.

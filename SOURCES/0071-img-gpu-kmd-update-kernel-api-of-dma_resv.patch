@@ -1,7 +1,7 @@
-From 4dcc25f63d22ad9ba87e3f446abb2e6008570d29 Mon Sep 17 00:00:00 2001
+From 660dedf5d3c7433264978ed0060b891764972504 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 13:47:09 +0800
-Subject: [PATCH 071/442] img gpu kmd: update kernel api of dma_resv
+Subject: [PATCH 071/481] img gpu kmd: update kernel api of dma_resv
 
 ref: https://github.com/starfive-tech/linux/commit/8180dc82
      https://github.com/cl91/mtgpu-drv/blob/v5.19-fix/patch/0001-mtgpu-Update-to-kernel-v5.19.patch

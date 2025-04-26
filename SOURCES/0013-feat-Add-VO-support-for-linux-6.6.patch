@@ -1,7 +1,7 @@
-From 7ae0e6392d63004f1ad5cd671ea1b76e7528e48a Mon Sep 17 00:00:00 2001
+From 66fc98a4524341456e258270e62f490444b48a76 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Tue, 21 May 2024 15:57:24 +0800
-Subject: [PATCH 013/442] feat: Add VO support for linux 6.6
+Subject: [PATCH 013/481] feat: Add VO support for linux 6.6
 
 Changelogs:
 1. Add support for DC8000 and virtual display
@@ -116,7 +116,7 @@ index 6733030403b9..dab66c993601 100644
  CONFIG_SCHED_STACK_END_CHECK=y
  CONFIG_DEBUG_VM=y
 diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index ec4abf9ff47b..fb30fa9500b3 100644
+index a2b4c97bcb31..338e6e30fca1 100644
 --- a/drivers/gpu/drm/Kconfig
 +++ b/drivers/gpu/drm/Kconfig
 @@ -388,6 +388,8 @@ source "drivers/gpu/drm/solomon/Kconfig"

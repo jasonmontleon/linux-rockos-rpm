@@ -1,7 +1,7 @@
-From d39b79afdf2934eebf36f36c1b8367628e7dd293 Mon Sep 17 00:00:00 2001
+From fef9269a5c9738b1ccd310c21d10585f9f0aa9d9 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 22 Oct 2024 14:46:26 +0800
-Subject: [PATCH 320/442] WIN2030-16526:feat:g2d add devfreq support
+Subject: [PATCH 320/481] WIN2030-16526:feat:g2d add devfreq support
 
 Changelogs:
 Change-Id: Ib2a492549e14d6900bbc724f13acf63a79960df9

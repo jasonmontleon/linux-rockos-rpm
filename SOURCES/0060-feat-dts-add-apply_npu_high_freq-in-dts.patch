@@ -1,7 +1,7 @@
-From 49c9e2f36d8b4c819f16f40a62e37f8512fd27e8 Mon Sep 17 00:00:00 2001
+From 417dedbb0ea7fee008ec6b3e78dacf53a1590f96 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 2 Jul 2024 15:08:43 +0800
-Subject: [PATCH 060/442] feat(dts):add apply_npu_high_freq in dts
+Subject: [PATCH 060/481] feat(dts):add apply_npu_high_freq in dts
 
 Changelogs:
 1.Add below property in hifive-premier-550.dts

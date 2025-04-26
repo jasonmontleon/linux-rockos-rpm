@@ -1,7 +1,7 @@
-From 482d4ca5f49de76ab433258738c00760caddf518 Mon Sep 17 00:00:00 2001
+From b9c315c4d67a5ae7a81cfce8f8acdf1b4654a32d Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Wed, 31 Jul 2024 17:39:47 +0800
-Subject: [PATCH 129/442] fix:fix some ep device cannot resume
+Subject: [PATCH 129/481] fix:fix some ep device cannot resume
 
 Changelogs:
 1.Fix some ep device cannot resume.

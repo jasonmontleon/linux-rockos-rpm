@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.87
-%define specversion 6.6.87
+%define specrpmversion 6.6.88
+%define specversion 6.6.88
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.87
+%define tarfile_release 6.6.88
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.87
+%define kabiversion 6.6.88
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1401,15 +1401,53 @@ Patch10431: 0431-dts-eswin-p550-add-disable-wp-broken-cd.patch
 Patch10432: 0432-Revert-riscv-dts-eswin-Add-1.8G-support-for-StarPro6.patch
 Patch10433: 0433-Add-modules-required-to-run-strongswan-as-per.patch
 Patch10434: 0434-Enable-L2TP.patch
-Patch10435: 0435-header-workarounds.patch
-Patch10436: 0436-stop-triggering-vmlinux-rebuild.patch
-Patch10437: 0437-Add-missing-newline.patch
-Patch10438: 0438-uninvert-the-fan.patch
-Patch10439: 0439-Reduce-crit-threshold-temp-to-85000.patch
-Patch10440: 0440-eswin-dsp-fixes.patch
-Patch10441: 0441-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10442: 0442-Add-NPU-enabled-variants-of-dtbs.patch
-
+Patch10435: 0435-drm-eswin-es_dw_hdmi-allow-non-standard-pixclk.patch
+Patch10436: 0436-drm-eswin-clean-hwcursor-state-when-enabling-the-dis.patch
+Patch10437: 0437-drm-eswin-reject-framebuffers-with-misaligned-pitch.patch
+Patch10438: 0438-feat-merge-feature-vpu7702-branch.patch
+Patch10439: 0439-fix-2d-2d-isr-interrupt-call-muetx-err.patch
+Patch10440: 0440-feat-support-osm-dts.patch
+Patch10441: 0441-fix-modify-mpq8785-critical-uint-and-es5340-lable.patch
+Patch10442: 0442-feat-support-capture-for-osm-codec.patch
+Patch10443: 0443-feat-npu-proc-add-voltage-and-frequency.patch
+Patch10444: 0444-fix-disable-cca-pvt0-and-timer1.patch
+Patch10445: 0445-fix-disable-regulator-always-on-feature.patch
+Patch10446: 0446-fix-pwm-support-inverted.patch
+Patch10447: 0447-fix-board-eic770x-adaptive-memory-size.patch
+Patch10448: 0448-feat-kernel-Add-CacheFlushAll-API-for-lib_memory.patch
+Patch10449: 0449-fix-Fix-cnoc-npu-timeout-problem.patch
+Patch10450: 0450-fix-use-rgmii-txid-as-phy-mode-for-gmac.patch
+Patch10451: 0451-feat-sbc-support-rtc-pcf85063a.patch
+Patch10452: 0452-fix-vc-opt-error-log-for-redup-interrupts.patch
+Patch10453: 0453-feature-add-7702vpu-dts.patch
+Patch10454: 0454-fix-2d-hae-disable-powersaving-for-version-0330.patch
+Patch10455: 0455-fix-modify-evb-AX-dvb-d314-eth-para-to-fit-0.9V.patch
+Patch10456: 0456-fix-npu-dsp-cpu-gpu-support-IPA.patch
+Patch10457: 0457-chore-Reduce-the-printing-in-TBU.patch
+Patch10458: 0458-fix-fix-mpq8785-enable-error-and-read-voltage-error.patch
+Patch10459: 0459-fix-venc-opt-venc-log-while-pm-resume-suspend.patch
+Patch10460: 0460-feat-support-22.01-11.025kHz.patch
+Patch10461: 0461-feat-adapt-dual-die-model.patch
+Patch10462: 0462-feat-add-e31-event-op-Changelogs.patch
+Patch10463: 0463-fix-resolve-the-dc-cursor-layer-issue.patch
+Patch10464: 0464-Revert-feature-add-7702vpu-dts.patch
+Patch10465: 0465-fix-fix-dma-buffersize.patch
+Patch10466: 0466-fix-enable-cpu-gov-userspace.patch
+Patch10467: 0467-fix-Resolve-the-issue-of-system-crashes.patch
+Patch10468: 0468-fix-fix-dma-period-size-and-cnt-to-fit-24-16-32bit.patch
+Patch10469: 0469-feat-turne-on-NPU-perf.patch
+Patch10470: 0470-fix-revert-dma-fix.patch
+Patch10471: 0471-fix-revert-dma.patch
+Patch10472: 0472-fix-dsp-pm-notifier-problem.patch
+Patch10473: 0473-fix-disable-cpu-1.4G-upper-of-evb.patch
+Patch10474: 0474-header-workarounds.patch
+Patch10475: 0475-stop-triggering-vmlinux-rebuild.patch
+Patch10476: 0476-Add-missing-newline.patch
+Patch10477: 0477-uninvert-the-fan.patch
+Patch10478: 0478-Reduce-crit-threshold-temp-to-85000.patch
+Patch10479: 0479-eswin-dsp-fixes.patch
+Patch10480: 0480-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10481: 0481-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 
@@ -2600,14 +2638,53 @@ ApplyOptionalPatch 0431-dts-eswin-p550-add-disable-wp-broken-cd.patch
 ApplyOptionalPatch 0432-Revert-riscv-dts-eswin-Add-1.8G-support-for-StarPro6.patch
 ApplyOptionalPatch 0433-Add-modules-required-to-run-strongswan-as-per.patch
 ApplyOptionalPatch 0434-Enable-L2TP.patch
-ApplyOptionalPatch 0435-header-workarounds.patch
-ApplyOptionalPatch 0436-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0437-Add-missing-newline.patch
-ApplyOptionalPatch 0438-uninvert-the-fan.patch
-ApplyOptionalPatch 0439-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0440-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0441-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0442-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0435-drm-eswin-es_dw_hdmi-allow-non-standard-pixclk.patch
+ApplyOptionalPatch 0436-drm-eswin-clean-hwcursor-state-when-enabling-the-dis.patch
+ApplyOptionalPatch 0437-drm-eswin-reject-framebuffers-with-misaligned-pitch.patch
+ApplyOptionalPatch 0438-feat-merge-feature-vpu7702-branch.patch
+ApplyOptionalPatch 0439-fix-2d-2d-isr-interrupt-call-muetx-err.patch
+ApplyOptionalPatch 0440-feat-support-osm-dts.patch
+ApplyOptionalPatch 0441-fix-modify-mpq8785-critical-uint-and-es5340-lable.patch
+ApplyOptionalPatch 0442-feat-support-capture-for-osm-codec.patch
+ApplyOptionalPatch 0443-feat-npu-proc-add-voltage-and-frequency.patch
+ApplyOptionalPatch 0444-fix-disable-cca-pvt0-and-timer1.patch
+ApplyOptionalPatch 0445-fix-disable-regulator-always-on-feature.patch
+ApplyOptionalPatch 0446-fix-pwm-support-inverted.patch
+ApplyOptionalPatch 0447-fix-board-eic770x-adaptive-memory-size.patch
+ApplyOptionalPatch 0448-feat-kernel-Add-CacheFlushAll-API-for-lib_memory.patch
+ApplyOptionalPatch 0449-fix-Fix-cnoc-npu-timeout-problem.patch
+ApplyOptionalPatch 0450-fix-use-rgmii-txid-as-phy-mode-for-gmac.patch
+ApplyOptionalPatch 0451-feat-sbc-support-rtc-pcf85063a.patch
+ApplyOptionalPatch 0452-fix-vc-opt-error-log-for-redup-interrupts.patch
+ApplyOptionalPatch 0453-feature-add-7702vpu-dts.patch
+ApplyOptionalPatch 0454-fix-2d-hae-disable-powersaving-for-version-0330.patch
+ApplyOptionalPatch 0455-fix-modify-evb-AX-dvb-d314-eth-para-to-fit-0.9V.patch
+ApplyOptionalPatch 0456-fix-npu-dsp-cpu-gpu-support-IPA.patch
+ApplyOptionalPatch 0457-chore-Reduce-the-printing-in-TBU.patch
+ApplyOptionalPatch 0458-fix-fix-mpq8785-enable-error-and-read-voltage-error.patch
+ApplyOptionalPatch 0459-fix-venc-opt-venc-log-while-pm-resume-suspend.patch
+ApplyOptionalPatch 0460-feat-support-22.01-11.025kHz.patch
+ApplyOptionalPatch 0461-feat-adapt-dual-die-model.patch
+ApplyOptionalPatch 0462-feat-add-e31-event-op-Changelogs.patch
+ApplyOptionalPatch 0463-fix-resolve-the-dc-cursor-layer-issue.patch
+ApplyOptionalPatch 0464-Revert-feature-add-7702vpu-dts.patch
+ApplyOptionalPatch 0465-fix-fix-dma-buffersize.patch
+ApplyOptionalPatch 0466-fix-enable-cpu-gov-userspace.patch
+ApplyOptionalPatch 0467-fix-Resolve-the-issue-of-system-crashes.patch
+ApplyOptionalPatch 0468-fix-fix-dma-period-size-and-cnt-to-fit-24-16-32bit.patch
+ApplyOptionalPatch 0469-feat-turne-on-NPU-perf.patch
+ApplyOptionalPatch 0470-fix-revert-dma-fix.patch
+ApplyOptionalPatch 0471-fix-revert-dma.patch
+ApplyOptionalPatch 0472-fix-dsp-pm-notifier-problem.patch
+ApplyOptionalPatch 0473-fix-disable-cpu-1.4G-upper-of-evb.patch
+ApplyOptionalPatch 0474-header-workarounds.patch
+ApplyOptionalPatch 0475-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0476-Add-missing-newline.patch
+ApplyOptionalPatch 0477-uninvert-the-fan.patch
+ApplyOptionalPatch 0478-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0479-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0480-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0481-Add-NPU-enabled-variants-of-dtbs.patch
 
 
 

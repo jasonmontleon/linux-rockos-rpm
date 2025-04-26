@@ -1,7 +1,7 @@
-From cb7d50204ef9fd74e1d83bb83a9f4a760634f3fb Mon Sep 17 00:00:00 2001
+From 946bb9657a8fea9527f5f15e8fde8f7f16013c5e Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Thu, 13 Feb 2025 11:10:23 +0800
-Subject: [PATCH 413/442] fix(2d):kernel stack warning after reboot
+Subject: [PATCH 413/481] fix(2d):kernel stack warning after reboot
 
 Changelogs:
 

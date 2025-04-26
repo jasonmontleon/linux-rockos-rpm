@@ -1,7 +1,7 @@
-From b9f82ebc849352e9c144420c1a9dcdabf5b41e17 Mon Sep 17 00:00:00 2001
+From 840a25d8b58b3fa355d52386113d7787f3105f5a Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sun, 23 Feb 2025 13:25:01 -0500
-Subject: [PATCH 442/442] Add NPU enabled variants of dtbs
+Subject: [PATCH 481/481] Add NPU enabled variants of dtbs
 
 ---
  arch/riscv/boot/dts/eswin/Makefile            |   3 +
@@ -14,7 +14,7 @@ Subject: [PATCH 442/442] Add NPU enabled variants of dtbs
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index c1d32b8077e5..d2d1fa1bdc02 100644
+index a973f47481aa..036fc660debb 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -6,6 +6,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -29,7 +29,7 @@ index c1d32b8077e5..d2d1fa1bdc02 100644
  							eic7702-evb-a1.dtb\
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 new file mode 100644
-index 000000000000..27be92a27476
+index 000000000000..b8af15d09d1b
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 @@ -0,0 +1,901 @@
@@ -513,8 +513,8 @@ index 000000000000..27be92a27476
 +	rst-gpios = <&portd 10 GPIO_ACTIVE_LOW>;
 +	eswin,rgmiisel = <&pinctrl 0x290 0x3>;
 +	eswin,led-cfgs = <0x6100 0xa40 0x420>;
-+	dly-param-1000m = <0x23232323 0x800c8023 0x0c0c0c0c>;
-+	dly-param-100m = <0x50505050 0x803f8050 0x3f3f3f3f>;
++	dly-param-1000m = <0x20202020 0x96205A20 0x20202020>;
++	dly-param-100m = <0x20202020 0x96205A20 0x20202020>;
 +	dly-param-10m = <0 0 0>;
 +};
 +
@@ -525,8 +525,8 @@ index 000000000000..27be92a27476
 +	rst-gpios = <&portd 15 GPIO_ACTIVE_LOW>;
 +	eswin,rgmiisel = <&pinctrl 0x294 0x3>;
 +	eswin,led-cfgs = <0x6100 0xa40 0x420>;
-+	dly-param-1000m = <0x25252525 0x80268025 0x26262626>;
-+	dly-param-100m = <0x48484848 0x80588048 0x58585858>;
++	dly-param-1000m = <0x20202020 0x46204620 0x20202020>;
++	dly-param-100m = <0x20202020 0x50205020 0x20202020>;
 +	dly-param-10m = <0 0 0>;
 +};
 +
@@ -658,7 +658,7 @@ index 000000000000..27be92a27476
 +
 +&fan_control {
 +	status = "okay";
-+	eswin,pwm_inverted;
++	pwms = <&pwm0 0 100000 PWM_POLARITY_INVERTED>;
 +};
 +
 +&d0_i2c0 {

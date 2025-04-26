@@ -1,7 +1,7 @@
-From 02e3f6c8dcdcc8287ed54bebf89144f21e7b2b35 Mon Sep 17 00:00:00 2001
+From 5c9abb9f2ca061294d18bb594e4ec4ebd56fdad7 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 9 Sep 2024 19:29:58 +0800
-Subject: [PATCH 262/442] WIN2030-16287:feat:support es5340 for npu;modify
+Subject: [PATCH 262/481] WIN2030-16287:feat:support es5340 for npu;modify
  ina226 address
 
 Changelogs:

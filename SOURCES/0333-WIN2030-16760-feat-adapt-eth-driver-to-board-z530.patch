@@ -1,7 +1,7 @@
-From a317f297bb52c511830b319000eb9ccf7d1289f8 Mon Sep 17 00:00:00 2001
+From 4838111740806e24fef28b8685b91ee45f29662a Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Mon, 9 Dec 2024 17:50:25 +0800
-Subject: [PATCH 333/442] WIN2030-16760:feat:adapt eth driver to board z530.
+Subject: [PATCH 333/481] WIN2030-16760:feat:adapt eth driver to board z530.
 
 Changelogs:
 1. adapt eth driver to board z530.

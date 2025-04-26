@@ -1,0 +1,439 @@
+From f7f057cd3189c6f51072d5caef5a21b44076701e Mon Sep 17 00:00:00 2001
+From: hejiean <hejiean@eswincomputing.com>
+Date: Mon, 17 Mar 2025 18:55:55 +0800
+Subject: [PATCH 448/481] feat(kernel): Add CacheFlushAll API for lib_memory
+
+Changelogs:
+1. add type EIC770X_LOGICAL_MEM_NODE_E to encode numa node id, contains
+	EIC770X_LOGICAL_FLAT_MEM_NODE_0,
+	EIC770X_LOGICAL_FLAT_MEM_NODE_1,
+	EIC770X_LOGICAL_SPRAM_NODE_0,
+	EIC770X_LOGICAL_SPRAM_NODE_1,
+	EIC770X_LOGICAL_INTERLEAVE_MEM_NODE.
+2. cache_flush_all relate funtion flush caches use nid only.
+3. uapi/linux/es_vb_user.h add defination of ES_U64,US_U32,ES_CHAR
+4. fix compile error when CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY not set
+
+Signed-off-by: hejiean <hejiean@eswincomputing.com>
+---
+ arch/riscv/include/asm/dma-noncoherent.h      | 24 ++++---
+ arch/riscv/mm/dma-noncoherent.c               | 72 +++++++++++--------
+ .../services/system/eswin_cpu/sysconfig.c     | 11 +--
+ drivers/memory/eswin/es_mmz_vb/mmz_vb.c       | 23 +++---
+ drivers/soc/sifive/sifive_ccache.c            | 23 +++---
+ include/uapi/linux/es_vb_user.h               | 36 ++++++++++
+ include/uapi/linux/mmz_vb.h                   |  2 +-
+ 7 files changed, 120 insertions(+), 71 deletions(-)
+
+diff --git a/arch/riscv/include/asm/dma-noncoherent.h b/arch/riscv/include/asm/dma-noncoherent.h
+index 7a9fe8a0e2db..b1e0cba77c41 100644
+--- a/arch/riscv/include/asm/dma-noncoherent.h
++++ b/arch/riscv/include/asm/dma-noncoherent.h
+@@ -7,7 +7,7 @@
+ #define __ASM_DMA_NONCOHERENT_H
+ 
+ #include <linux/dma-direct.h>
+-
++#include <uapi/linux/es_vb_user.h>
+ /*
+  * struct riscv_nonstd_cache_ops - Structure for non-standard CMO function pointers
+  *
+@@ -28,7 +28,7 @@ typedef enum {
+ 	SPRAM,
+ } eic770x_memory_type_t;
+ 
+-void _do_arch_sync_cache_all(int nid, eic770x_memory_type_t mem_type);
++void _do_arch_sync_cache_all(EIC770X_LOGICAL_MEM_NODE_E nid);
+ #endif
+ 
+ extern struct riscv_nonstd_cache_ops noncoherent_cache_ops;
+@@ -36,31 +36,35 @@ extern struct riscv_nonstd_cache_ops noncoherent_cache_ops;
+ void riscv_noncoherent_register_cache_ops(const struct riscv_nonstd_cache_ops *ops);
+ 
+ 
+-static inline void arch_get_mem_node_and_type(unsigned long pfn, int *nid, eic770x_memory_type_t *p_mem_type)
++static inline void arch_get_mem_node_and_type(unsigned long pfn,
++	EIC770X_LOGICAL_MEM_NODE_E *nid, eic770x_memory_type_t *p_mem_type)
+ {
+ #ifdef CONFIG_NUMA
+ 	if (unlikely(PFN_IN_SPRAM_DIE0(pfn))) {
+-		*nid = 0;
++		*nid = EIC770X_LOGICAL_SPRAM_NODE_0;
+ 		*p_mem_type = SPRAM;
+ 	}
+ 	else if(unlikely(PFN_IN_SPRAM_DIE1(pfn))) {
+-		*nid = 1;
++		*nid = EIC770X_LOGICAL_SPRAM_NODE_1;
+ 		*p_mem_type = SPRAM;
+ 	}
+ 	else {
+-		*nid = pfn_to_nid(pfn);
+-		if (CHECK_MEMORY_RANGE_OPFUNC(pfn, MEM, INTPART0) || CHECK_MEMORY_RANGE_OPFUNC(pfn, MEM, INTPART1))
++		if (CHECK_MEMORY_RANGE_OPFUNC(pfn, MEM, INTPART0) ||
++			CHECK_MEMORY_RANGE_OPFUNC(pfn, MEM, INTPART1)) {
+ 			*p_mem_type = INTERLEAVE_DDR_MEM;
+-		else
++			*nid = EIC770X_LOGICAL_INTERLEAVE_MEM_NODE;
++		} else {
+ 			*p_mem_type = FLAT_DDR_MEM;
++			*nid = pfn_to_nid(pfn);
++		}
+ 	}
+ #else
+ 	if (unlikely(PFN_IN_SPRAM_DIE0(pfn))) {
+-		*nid = 0;
++		*nid = EIC770X_LOGICAL_SPRAM_NODE_0;
+ 		*p_mem_type = SPRAM;
+ 	}
+ 	else {
+-		*nid = 0;
++		*nid = EIC770X_LOGICAL_FLAT_MEM_NODE_0;
+ 		*p_mem_type = FLAT_DDR_MEM;
+ 	}
+ #endif
+diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
+index eec109eaf89f..5ecf95370a69 100644
+--- a/arch/riscv/mm/dma-noncoherent.c
++++ b/arch/riscv/mm/dma-noncoherent.c
+@@ -72,7 +72,7 @@ static inline bool arch_sync_dma_cpu_needs_post_dma_flush(void)
+ }
+ 
+ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+-			      enum dma_data_direction dir)
++				  enum dma_data_direction dir)
+ {
+ 	switch (dir) {
+ 	case DMA_TO_DEVICE:
+@@ -89,7 +89,7 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
+ 	case DMA_BIDIRECTIONAL:
+ 		/* Skip the invalidate here if it's done later */
+ 		if (IS_ENABLED(CONFIG_ARCH_HAS_SYNC_DMA_FOR_CPU) &&
+-		    arch_sync_dma_cpu_needs_post_dma_flush())
++			arch_sync_dma_cpu_needs_post_dma_flush())
+ 			arch_dma_cache_wback(paddr, size);
+ 		else
+ 			arch_dma_cache_wback_inv(paddr, size);
+@@ -170,7 +170,7 @@ void arch_setup_dma_ops(struct device *dev, u64 dma_base, u64 size,
+ void riscv_noncoherent_supported(void)
+ {
+ 	WARN(!riscv_cbom_block_size,
+-	     "Non-coherent DMA support enabled without a block size\n");
++		 "Non-coherent DMA support enabled without a block size\n");
+ 	noncoherent_supported = true;
+ }
+ 
+@@ -257,47 +257,59 @@ void *arch_dma_set_uncached(void *addr, size_t size)
+ #endif
+ 
+ #if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
+-void _do_arch_sync_cache_all(int nid, eic770x_memory_type_t mem_type)
++#ifdef CONFIG_NUMA
++static inline void _do_arch_sync_cache_all_by_hartid(int hartid) {
++	int cpuid;
++	int hardid_mask = BIT(hartid);
++	cpuid = riscv_hartid_to_cpuid(hartid);
++	smp_call_function_single(cpuid, ccache_flush_all, &hardid_mask, true);
++}
++#endif
++void _do_arch_sync_cache_all(EIC770X_LOGICAL_MEM_NODE_E nid)
+ {
+-	int cpuid, hartid;
+-
+ #ifdef CONFIG_NUMA
+-	if (likely(mem_type == FLAT_DDR_MEM)) {
+-		if (nid == 1) {
+-			hartid = 4;
+-		}
+-		else {
+-			hartid = 0;
+-		}
++switch (nid) {
++	case EIC770X_LOGICAL_FLAT_MEM_NODE_0: {
++		_do_arch_sync_cache_all_by_hartid(0);
++		break;
++	}
++	case EIC770X_LOGICAL_FLAT_MEM_NODE_1: {
++		_do_arch_sync_cache_all_by_hartid(4);
++		break;
++	}
++	case EIC770X_LOGICAL_INTERLEAVE_MEM_NODE: {
++		struct cpumask cpus = {0};
++		int hartids = BIT(0) | BIT(4);
+ 
+-		cpuid = riscv_hartid_to_cpuid(hartid);
+-		smp_call_function_single(cpuid, ccache_flush_all, &hartid, true);
++		cpumask_set_cpu(riscv_hartid_to_cpuid(0), &cpus);
++		cpumask_set_cpu(riscv_hartid_to_cpuid(4), &cpus);
++		smp_call_function_many(&cpus, ccache_flush_all, &hartids, true);
++		break;
+ 	}
+-	else if (mem_type == INTERLEAVE_DDR_MEM) {
+-		hartid = 0;
+-		cpuid = riscv_hartid_to_cpuid(hartid);
+-		smp_call_function_single(cpuid, ccache_flush_all, &hartid, true);
+-
+-		hartid = 4;
+-		cpuid = riscv_hartid_to_cpuid(hartid);
+-		smp_call_function_single(cpuid, ccache_flush_all, &hartid, true);
++	default: {
++		break;
+ 	}
++}
+ #else
+-	if (likely(mem_type == FLAT_DDR_MEM)) {
+-		cpuid = smp_processor_id();
+-		hartid = cpuid_to_hartid_map(cpuid);
+-		ccache_flush_all(&hartid);
+-	}
++	int cpuid, hartid_mask;
++
++	cpuid = smp_processor_id();
++	hartid_mask = BIT(cpuid_to_hartid_map(cpuid));
++	ccache_flush_all(&hartid_mask);
+ #endif
+ }
+ 
+ void arch_sync_cache_all(phys_addr_t phys, size_t size)
+ {
+-	int nid;
++	EIC770X_LOGICAL_MEM_NODE_E nid;
+ 	eic770x_memory_type_t mem_type;
+ 
+ 	arch_get_mem_node_and_type(phys_to_pfn(phys), &nid, &mem_type);
+-	_do_arch_sync_cache_all(nid, mem_type);
++	if (mem_type == EIC770X_LOGICAL_SPRAM_NODE_0 ||
++		mem_type == EIC770X_LOGICAL_SPRAM_NODE_1)
++		return;
++
++	_do_arch_sync_cache_all(nid);
+ }
+ EXPORT_SYMBOL(arch_sync_cache_all);
+ #endif
+\ No newline at end of file
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+index 9102b4ec61ae..0473c1d237b1 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+@@ -58,7 +58,7 @@ extern void eswin_l2_flush64(phys_addr_t addr, size_t size);
+ #else
+ void eswin_l2_flush64(phys_addr_t addr, size_t size) {
+ #if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
+-	int nid;
++	EIC770X_LOGICAL_MEM_NODE_E nid;
+ 	int cpuid;
+ 	eic770x_memory_type_t mem_type;
+ 
+@@ -71,10 +71,11 @@ void eswin_l2_flush64(phys_addr_t addr, size_t size) {
+ 			sched_setaffinity(current->pid, cpumask_of_node(nid));
+ 		}
+ 	}
+-#endif
++
+ 	if (unlikely(size > ES_MEM_THRESH_OF_FLUSH_CACHE_ALL))
+ 		arch_sync_cache_all(addr, size);
+ 	else
++#endif
+ 		arch_sync_dma_for_device(addr, size, DMA_TO_DEVICE);
+ };
+ #endif
+@@ -131,7 +132,7 @@ PVRSRV_ERROR SysInstallDeviceLISR(IMG_HANDLE hSysData,
+     PVR_UNREFERENCED_PARAMETER(hSysData);
+ 
+     #ifndef NO_HARDWARE
+-    eError = OSInstallSystemLISR(phLISRData, ui32IRQ, pszName, pfnLISR, pvData, SYS_IRQ_FLAG_TRIGGER_DEFAULT | SYS_IRQ_FLAG_SHARED);	
++    eError = OSInstallSystemLISR(phLISRData, ui32IRQ, pszName, pfnLISR, pvData, SYS_IRQ_FLAG_TRIGGER_DEFAULT | SYS_IRQ_FLAG_SHARED);
+     if (eError != PVRSRV_OK)
+ 		PVR_DPF((PVR_DBG_ERROR, "%s: install error %d != PVRSRV_OK", __func__, eError));
+     #endif
+@@ -210,7 +211,7 @@ static PVRSRV_ERROR PhysHeapsCreate(PHYS_HEAP_CONFIG **ppasPhysHeapsOut,
+ 	PHYS_HEAP_CONFIG *pasPhysHeaps;
+ 	IMG_UINT32 ui32NextHeapID = 0;
+ 	IMG_UINT32 uiHeapCount = 1;
+-    
++
+ 
+ 	uiHeapCount += !PVRSRV_VZ_MODE_IS(NATIVE, DEVCFG, psDevConfig) ? 1:0;
+ 
+@@ -355,7 +356,7 @@ static PVRSRV_ERROR DeviceConfigCreate(void *pvOSDevice, PVRSRV_DEVICE_CONFIG **
+ 	int ret;
+ 	struct platform_device *pdev = to_platform_device((struct device *)pvOSDevice);
+ 	struct device *dev = (struct device *)pvOSDevice;
+-#endif //CONFIG_SPARSE_IRQ 
++#endif //CONFIG_SPARSE_IRQ
+ 
+ 	psDevConfig = OSAllocZMem(sizeof(*psDevConfig) +
+ 							  sizeof(*psRGXData) +
+diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
+index 635ee815b7e7..dfbfa2783c8c 100644
+--- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
++++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
+@@ -103,7 +103,8 @@ static int vb_blk_to_pool(struct esVB_BLOCK_TO_POOL_CMD_S *blkToPoolCmd);
+ static int vb_get_blk_offset(struct esVB_GET_BLOCKOFFSET_CMD_S *getBlkOffsetCmd);
+ static int vb_split_dmabuf(struct esVB_SPLIT_DMABUF_CMD_S *splitDmabufCmd);
+ static int vb_get_dmabuf_refcnt(struct esVB_DMABUF_REFCOUNT_CMD_S *getDmabufRefCntCmd);
+-static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd, eic770x_memory_type_t *p_mem_type);
++static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd, 
++	eic770x_memory_type_t *p_mem_type);
+ static int vb_get_dmabuf_size(struct esVB_DMABUF_SIZE_CMD_S *getDmabufSizeCmd);
+ static int mmz_vb_pool_exit(void);
+ static int mmz_vb_init_memory_region(void);
+@@ -1471,19 +1472,13 @@ static int vb_ioctl_uninit_config(void __user *user_cmd)
+ 
+ static int vb_ioctl_flush_all(void __user *user_cmd)
+ {
+-	eic770x_memory_type_t mem_type;
+-	struct esVB_RETRIEVE_MEM_NODE_CMD_S retrieveMemNodeCmd;
+-	int ret = 0;
+-
+-	if (copy_from_user(&retrieveMemNodeCmd.fd, user_cmd, sizeof(int))) {
++	EIC770X_LOGICAL_MEM_NODE_E nid;
++	
++	if (copy_from_user(&nid, user_cmd, sizeof(EIC770X_LOGICAL_MEM_NODE_E))) {
+ 		return -EFAULT;
+ 	}
+-	retrieveMemNodeCmd.cpu_vaddr = NULL;
+-	ret = vb_retrieve_mem_node(&retrieveMemNodeCmd, &mem_type);
+-	if (ret)
+-		return ret;
+ 
+-	_do_arch_sync_cache_all(retrieveMemNodeCmd.numa_node, mem_type);
++	_do_arch_sync_cache_all(nid);
+ 
+ 	return 0;
+ }
+@@ -2273,7 +2268,8 @@ static int vb_get_dmabuf_refcnt(struct esVB_DMABUF_REFCOUNT_CMD_S *getDmabufRefC
+ 	return ret;
+ }
+ 
+-static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, int *p_nid, eic770x_memory_type_t *p_mem_type)
++static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, 
++	EIC770X_LOGICAL_MEM_NODE_E *p_nid, eic770x_memory_type_t *p_mem_type)
+ {
+ 	int ret = 0;
+ 	struct dma_buf_attachment *attach;
+@@ -2312,7 +2308,8 @@ static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, int *p_nid, eic770x_me
+ 	return ret;
+ }
+ 
+-static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd, eic770x_memory_type_t *p_mem_type)
++static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd, 
++	eic770x_memory_type_t *p_mem_type)
+ {
+ 	int ret = 0;
+ 	struct dma_buf *dmabuf;
+diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
+index 55e69e613a25..f6ff949eb98d 100644
+--- a/drivers/soc/sifive/sifive_ccache.c
++++ b/drivers/soc/sifive/sifive_ccache.c
+@@ -307,22 +307,20 @@ static int zero_device_init(struct device_node *root, int nid)
+ #define SIFIVE_CCACHE_TAG_SHIFT	(18)
+ void ccache_flush_all(void *arg)
+ {
+-	int hartid, masterid;
++	int hartid, masterid, hartid_mask;
+ 	int nid, wayIdx, i;
+ 	void __iomem *zero_dev_vaddr;
+ 	void __iomem *waymaskN_addr;
+ 	u64 zero_val;
+-#if 0
+-	int cpuid;
+-	cpuid = smp_processor_id();
+-	hartid = cpuid_to_hartid_map(cpuid);
+-	if (hartid != *(int *)arg) {
+-		pr_err("%s:%d, invalid para!!!, hartid:%d, arg:%d\n", __func__, __LINE__,
+-			hartid, *(int *)arg);
++
++	hartid_mask = *(int *)arg;
++	hartid = cpuid_to_hartid_map(smp_processor_id());
++	if ((BIT(hartid) &  hartid_mask) == 0) {
++		pr_err("%s:%d, invalid para!!!, current hartid_to_mask:%d, hartid_mask:%d\n", __func__, __LINE__,
++			BIT(hartid), hartid_mask);
++		return;
+ 	}
+-#else
+-	hartid = *(int *)arg;
+-#endif
++
+ 	if (hartid > 3) {
+ 		masterid = hartid - 4 + 1;
+ 		nid = 1;
+@@ -331,7 +329,8 @@ void ccache_flush_all(void *arg)
+ 		masterid = hartid + 1 ;
+ 		nid = 0;
+ 	}
+-	pr_debug("nid %d, hartid %d, masterid %d\n", nid, hartid, masterid);
++
++	pr_debug("nid %d, hartid %d, masterid %d flush all cache.\n", nid, hartid, masterid);
+ 	if (NULL !=zero_device_base[nid]) {
+ 		waymaskN_addr = ccache_base[nid] + SIFIVE_CCACHE_WAYMASK_OFFSET + (masterid << 3);
+ 		for (wayIdx = 0; wayIdx < 16; wayIdx++) {
+diff --git a/include/uapi/linux/es_vb_user.h b/include/uapi/linux/es_vb_user.h
+index db3bda6d0d69..19588ab99b01 100644
+--- a/include/uapi/linux/es_vb_user.h
++++ b/include/uapi/linux/es_vb_user.h
+@@ -1,6 +1,31 @@
++// SPDX-License-Identifier: GPL-2.0 WITH Linux-syscall-note
++/*
++ * ESWIN MMZ VB user state api header.
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Min Lin <linmin@eswincomputing.com>
++ */
++
+ #ifndef ES_VB_USER_H
+ #define ES_VB_USER_H
+ 
++typedef unsigned int ES_U32;
++typedef unsigned long long ES_U64;
++typedef char ES_CHAR;
++
+ /**
+  * mmz vb configurations
+ */
+@@ -12,6 +37,17 @@
+ 
+ #define ES_MAX_MMZ_NAME_LEN	64
+ 
++/**
++ * numa id encoding definitions
++*/
++typedef enum {
++    EIC770X_LOGICAL_FLAT_MEM_NODE_0 = 0,
++    EIC770X_LOGICAL_FLAT_MEM_NODE_1 = 1,
++    EIC770X_LOGICAL_SPRAM_NODE_0 = 500,
++    EIC770X_LOGICAL_SPRAM_NODE_1 = 501,
++    EIC770X_LOGICAL_INTERLEAVE_MEM_NODE = 1000,
++} EIC770X_LOGICAL_MEM_NODE_E;
++
+ /**
+  * mmz vb pool or block struct definition
+  */
+diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
+index 1bb76ebb5aa8..27a5f0a94352 100644
+--- a/include/uapi/linux/mmz_vb.h
++++ b/include/uapi/linux/mmz_vb.h
+@@ -145,7 +145,7 @@ typedef struct esVB_RETRIEVE_MEM_NODE_CMD_S
+ {
+ 	int fd;	// Input: The dmabuf_fd
+ 	void *cpu_vaddr; // Input: The virtual addr of cpu in user space
+-	int numa_node; // Ouput: return the NUMA node id of the memory
++	EIC770X_LOGICAL_MEM_NODE_E numa_node; // Ouput: return the logic code of NUMA node id of the memory
+ }VB_RETRIEVE_MEM_NODE_CMD_S;
+ 
+ //corresponding to MMZ_VB_IOCTL_DMABUF_SIZE
+-- 
+2.49.0
+

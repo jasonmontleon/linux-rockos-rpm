@@ -1,7 +1,7 @@
-From 3b29e9edd5b79598ad4cd02f26d04eac246eff62 Mon Sep 17 00:00:00 2001
+From c05eda8e26fb1e577a62eb80b8d226ee20f4d325 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Fri, 21 Feb 2025 03:13:29 -0500
-Subject: [PATCH 440/442] eswin dsp fixes
+Subject: [PATCH 479/481] eswin dsp fixes
 
 ---
  drivers/soc/eswin/ai_driver/dsp/dsp_main.c     | 1 +
@@ -11,10 +11,10 @@ Subject: [PATCH 440/442] eswin dsp fixes
  4 files changed, 7 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index c5f6f2a83b12..a21442df8c62 100644
+index df24ad88695c..3cd29272e671 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-@@ -60,6 +60,7 @@
+@@ -59,6 +59,7 @@
  #include <linux/dma-mapping.h>
  #include <linux/devfreq.h>
  #include <linux/pm_opp.h>
@@ -23,10 +23,10 @@ index c5f6f2a83b12..a21442df8c62 100644
  #include <linux/eswin-win2030-sid-cfg.h>
  #include "eswin-khandle.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 45d4821e902b..17f5d4574f28 100644
+index 80f49a3edf8b..a145d6e05f7b 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-@@ -40,6 +40,7 @@
+@@ -39,6 +39,7 @@
  #include <linux/slab.h>
  #include <linux/iommu.h>
  #include <linux/es_iommu_rsv.h>

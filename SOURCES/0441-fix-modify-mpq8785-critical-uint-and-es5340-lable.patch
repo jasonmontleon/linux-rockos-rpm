@@ -1,0 +1,160 @@
+From db404b5161237e10c715736d7ce43c7cd355bbde Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Tue, 11 Mar 2025 13:54:20 +0800
+Subject: [PATCH 441/481] fix:modify mpq8785 critical uint and es5340 lable
+
+Changelogs:
+
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts          |  2 +-
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts       |  2 +-
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts       |  2 +-
+ .../boot/dts/eswin/eic7702-evb-a1-interleave.dts      |  4 ++--
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts          |  4 ++--
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts              |  2 +-
+ drivers/regulator/mpq8785.c                           | 11 +++++------
+ 7 files changed, 13 insertions(+), 14 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+index 2d8f548f198f..5fd9daf579e4 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+@@ -627,7 +627,7 @@ &d0_i2c0 {
+ &d0_i2c1 {
+ 	/* pmic & usb pd sink */
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+index 6d604d24c5ca..5316b1e0d392 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+@@ -676,7 +676,7 @@ d0_codec1_endpoint: endpoint {
+ 
+ &d0_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+index 1b5e3260a978..257fa06fe5ad 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+@@ -690,7 +690,7 @@ d0_codec1_endpoint: endpoint {
+ 
+ &d0_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+index c1ab29ec50ad..7d5e105d710b 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+@@ -1316,7 +1316,7 @@ d1_codec1_endpoint: endpoint {
+ 
+ &d0_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+@@ -1337,7 +1337,7 @@ d0_npu_vcc:npu_svcc{
+ };
+ &d1_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 564272a1e8e3..73bf57188e97 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -1276,7 +1276,7 @@ d1_codec1_endpoint: endpoint {
+ 
+ &d0_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+@@ -1297,7 +1297,7 @@ d0_npu_vcc:npu_svcc{
+ };
+ &d1_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index c0dd0416b116..65789ee2fc92 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -1330,7 +1330,7 @@ d1_codec1_endpoint: endpoint {
+ 
+ &d0_i2c1 {
+ 	status = "okay";
+-	es5430@f {
++	es5340@f {
+ 		compatible = "einno,es5340";
+ 		reg = <0xf>;
+ 		eswin,regulator_default-microvolt=<1000000>;
+diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
+index 3787fe244618..994e1068a539 100644
+--- a/drivers/regulator/mpq8785.c
++++ b/drivers/regulator/mpq8785.c
+@@ -3,8 +3,7 @@
+ /*
+  * eswin Specific Glue layer
+  *
+- * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights
+- * reserved. SPDX-License-Identifier: GPL-2.0
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -524,12 +523,12 @@ static int mpq8785_read(struct device *dev, enum hwmon_sensor_types type,
+ 		case hwmon_curr_crit:
+ 			*val = mpq8785_read_mask_word(data, MPQ8785_CMD_IOUT_OC_FAULT_LIMIT,
+ 										  MPQ8785_MASK_IOUT_LIMIT);
+-
++			*val *=1000;
+ 			break;
+ 		case hwmon_curr_max:
+ 			*val = mpq8785_read_mask_word(data, MPQ8785_CMD_IOUT_OC_WARN_LIMIT,
+ 										  MPQ8785_MASK_IOUT_LIMIT);
+-
++			*val *=1000;
+ 			break;
+ 		}
+ 		break;
+@@ -665,11 +664,11 @@ static int mpq8785_write(struct device *dev, enum hwmon_sensor_types type,
+ 		{
+ 		case hwmon_curr_crit:
+ 			ret = mpq8785_update_word(data, MPQ8785_CMD_IOUT_OC_FAULT_LIMIT,
+-									  MPQ8785_MASK_IOUT_LIMIT, (u16)val);
++									  MPQ8785_MASK_IOUT_LIMIT, (u16)(val / 1000));
+ 			break;
+ 		case hwmon_curr_max:
+ 			ret = mpq8785_update_word(data, MPQ8785_CMD_IOUT_OC_WARN_LIMIT,
+-									  MPQ8785_MASK_IOUT_LIMIT, (u16)val);
++									  MPQ8785_MASK_IOUT_LIMIT, (u16)val/1000);
+ 			break;
+ 		}
+ 		break;
+-- 
+2.49.0
+

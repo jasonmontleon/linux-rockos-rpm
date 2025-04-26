@@ -1,7 +1,7 @@
-From 4d303bfae9cea2b250bfb33c57a6704b2ac51bf3 Mon Sep 17 00:00:00 2001
+From fd44cf7d51c8d6d547fecf07848f19e4113e7bbc Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 5 Jul 2024 17:23:03 +0800
-Subject: [PATCH 065/442] fix(es buddy):add spin lock
+Subject: [PATCH 065/481] fix(es buddy):add spin lock
 
 Changelogs:
 1.The es_spin_lock() should be used in es_alloc_pages() and es_free_pages,

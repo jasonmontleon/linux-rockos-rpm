@@ -1,7 +1,7 @@
-From 10c2b99e9f7b74c9b740b2a84d975289c616133c Mon Sep 17 00:00:00 2001
+From 9ec254e3d1adfcc13c61d0f9daf7cb2b5bca1ab4 Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Thu, 26 Sep 2024 13:07:50 +0800
-Subject: [PATCH 187/442] feat:NPU & DSP drivers shouldn't load on failure.
+Subject: [PATCH 187/481] feat:NPU & DSP drivers shouldn't load on failure.
 
 Changelogs:
 1. NPU & DSP drivers shouldn't load into the kernel on failure.

@@ -1,7 +1,7 @@
-From 3c6927becbc63bb534b32f431886319ea70ebab2 Mon Sep 17 00:00:00 2001
+From 27ac6227a57fe0629111f9a03ec3e020a8063966 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 11 Dec 2024 16:52:31 +0800
-Subject: [PATCH 306/442] img: AXM-8-258 not support DRIVER_MODESET
+Subject: [PATCH 306/481] img: AXM-8-258 not support DRIVER_MODESET
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
