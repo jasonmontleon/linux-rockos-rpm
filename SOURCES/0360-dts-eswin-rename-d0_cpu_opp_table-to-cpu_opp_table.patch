@@ -1,4 +1,4 @@
-From 76d410901588cc6981e5a253c81ba1092281bb61 Mon Sep 17 00:00:00 2001
+From 26cac3807f839c58955e1d4690e87e608cd7e2d1 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:30:25 +0800
 Subject: [PATCH 360/481] dts: eswin: rename d0_cpu_opp_table to cpu_opp_table

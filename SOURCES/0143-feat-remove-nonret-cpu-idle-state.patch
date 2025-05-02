@@ -1,4 +1,4 @@
-From b2c434c075b9f7bd05c95edcd72cf48e91932397 Mon Sep 17 00:00:00 2001
+From fa40c0ea0a2a972f730adcdd6f7c83d6b3146928 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 8 Aug 2024 15:04:33 +0800
 Subject: [PATCH 143/481] feat:remove nonret cpu idle state

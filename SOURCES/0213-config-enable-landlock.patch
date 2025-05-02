@@ -1,4 +1,4 @@
-From cfad13b0b9b8173bd261ceaac313dcbf0d695fb5 Mon Sep 17 00:00:00 2001
+From 50f0f804edd939e4f8bea690dd2db129d13e3ebf Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 2 Oct 2024 01:14:19 +0800
 Subject: [PATCH 213/481] config: enable landlock

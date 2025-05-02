@@ -1,4 +1,4 @@
-From 24db2197ed8b44acc17a92a342986806d1f082f2 Mon Sep 17 00:00:00 2001
+From 1038f2082de94f3bd83be2209b87bdafafc753ac Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/481] Merge patch series "membarrier: riscv: Core
@@ -252,7 +252,7 @@ index 013da4b8b327..67bb9794b875 100644
  
 +#endif /* _LINUX_SYNC_CORE_H */
 diff --git a/init/Kconfig b/init/Kconfig
-index 1105cb53f391..1c5ab40a5f58 100644
+index 8b630143c720..e2463d3e8ba7 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1994,6 +1994,9 @@ source "kernel/Kconfig.locks"
@@ -266,7 +266,7 @@ index 1105cb53f391..1c5ab40a5f58 100644
  	bool
  
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index 8c5f75af07db..09324e30d999 100644
+index 760a6c3781cb..fcf84390cf9f 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
 @@ -6609,7 +6609,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
