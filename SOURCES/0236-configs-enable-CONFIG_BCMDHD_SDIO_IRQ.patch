@@ -1,4 +1,4 @@
-From 3ad60cb147edb2f7935f3a6b1a7b3ddb299bd572 Mon Sep 17 00:00:00 2001
+From f7d100634557b48ffb4274e6f0a52be5b91c659d Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 18:04:21 +0800
 Subject: [PATCH 236/481] configs: enable CONFIG_BCMDHD_SDIO_IRQ

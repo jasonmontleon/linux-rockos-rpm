@@ -1,4 +1,4 @@
-From 15b03411cac1b0bec9dd373ef8eacf192b9b24da Mon Sep 17 00:00:00 2001
+From 1588146983be83a515835d9909ba9a4ee062198d Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 28 Oct 2024 16:44:02 +0800
 Subject: [PATCH 205/481] perf:change smmu print level,optimize ccache flush
@@ -16,10 +16,10 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 6cd5dc91cdb1..d3f4719172e6 100644
+index 54e5018782f0..f287afb2b46e 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -1661,9 +1661,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+@@ -1672,9 +1672,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
  			if (!ret || !__ratelimit(&rs))
  				continue;
  
