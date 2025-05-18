@@ -1,4 +1,4 @@
-From 9f6bce5e0c93dfb521732c58cbf8820ebae205f3 Mon Sep 17 00:00:00 2001
+From e10fb5435f61793696b154540d5814787a0cd69f Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:07:39 +0800
 Subject: [PATCH 428/481] config: net: disable realtek phy for eic7700x

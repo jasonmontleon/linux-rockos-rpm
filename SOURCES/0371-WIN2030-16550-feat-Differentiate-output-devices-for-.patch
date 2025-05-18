@@ -1,4 +1,4 @@
-From a2676cfdf5e677e3fbb0f5c7a79861b612ecbf40 Mon Sep 17 00:00:00 2001
+From c5959aa9ed7ce90ccbdb157d51ee5549706e1ba6 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 17 Dec 2024 14:22:26 +0800
 Subject: [PATCH 371/481] WIN2030-16550:feat:Differentiate output devices for
@@ -1741,10 +1741,10 @@ index b96f169eedfe..1f7a44346d8d 100644
 +es_drm-$(CONFIG_ESWIN_MIPI_DSI)+= es_mipi_dsi.o es_panel.o
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 37fe54c34b14..678f1d09d606 100644
+index 0d69098eddd9..9a35ee8d5810 100644
 --- a/drivers/gpu/drm/panel/panel-simple.c
 +++ b/drivers/gpu/drm/panel/panel-simple.c
-@@ -3376,6 +3376,31 @@ static const struct panel_desc rocktech_rk043fn48h = {
+@@ -3377,6 +3377,31 @@ static const struct panel_desc rocktech_rk043fn48h = {
  	.connector_type = DRM_MODE_CONNECTOR_DPI,
  };
  
@@ -1776,7 +1776,7 @@ index 37fe54c34b14..678f1d09d606 100644
  static const struct display_timing rocktech_rk070er9427_timing = {
  	.pixelclock = { 26400000, 33300000, 46800000 },
  	.hactive = { 800, 800, 800 },
-@@ -4451,6 +4476,9 @@ static const struct of_device_id platform_of_match[] = {
+@@ -4452,6 +4477,9 @@ static const struct of_device_id platform_of_match[] = {
  	}, {
  		.compatible = "rocktech,rk043fn48h",
  		.data = &rocktech_rk043fn48h,

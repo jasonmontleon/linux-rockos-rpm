@@ -1,4 +1,4 @@
-From d791d09a2d5305e49e67184d70eb04dd5888184f Mon Sep 17 00:00:00 2001
+From 66ea38f983979c73fd9be9d272d2d327d8ec7eae Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 21 Mar 2025 16:04:18 +0800
 Subject: [PATCH 435/481] drm: eswin: es_dw_hdmi: allow non-standard pixclk
