@@ -1,4 +1,4 @@
-From da1a64090676ffef0a969639080f37f33821bff1 Mon Sep 17 00:00:00 2001
+From 81ae6cf2ef53b45405b471e876d7280a29b1ff85 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 13 Jun 2024 18:12:38 +0800
 Subject: [PATCH 051/481] refactor:Implement pcie intx and pmu dtsi config
