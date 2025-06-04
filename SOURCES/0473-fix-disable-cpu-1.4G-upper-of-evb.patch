@@ -1,4 +1,4 @@
-From 5b428466cb51b74416c9754192fdf927d207e6ac Mon Sep 17 00:00:00 2001
+From ce2299a453fe7654197ac5d9e1c83ca5042fa625 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 14 Apr 2025 21:24:55 +0800
 Subject: [PATCH 473/481] fix:disable cpu 1.4G upper of evb

@@ -1,4 +1,4 @@
-From be36625b6a97da60d1e1e6b4ca71d3c674ec10cc Mon Sep 17 00:00:00 2001
+From f13b1aeb6b770e96427c2565de1e0baa8b81f365 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 11 Apr 2025 10:31:07 +0800
 Subject: [PATCH 472/481] fix: dsp pm notifier problem

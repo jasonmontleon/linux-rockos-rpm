@@ -1,4 +1,4 @@
-From bd4e4efe533eb83cbaac6495d877f562841c9470 Mon Sep 17 00:00:00 2001
+From 34fa642b0d4109bd6fc0e3f047e05e185855ecf2 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 14 Feb 2025 16:48:39 +0800
 Subject: [PATCH 438/481] feat:merge feature-vpu7702 branch
@@ -1991,7 +1991,7 @@ index ff5683a57f77..e51697ee439e 100644
  void dma_release_coherent_memory(struct device *dev)
  {
 diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-index dcdf449615bd..061eb7f51b81 100644
+index 51c43e0f9b29..9d25640e8525 100644
 --- a/kernel/printk/printk.c
 +++ b/kernel/printk/printk.c
 @@ -55,11 +55,40 @@
@@ -2187,7 +2187,7 @@ index dcdf449615bd..061eb7f51b81 100644
  	printk_exit_irqrestore(recursion_ptr, irqflags);
  	return ret;
  }
-@@ -3717,6 +3884,10 @@ void __init console_init(void)
+@@ -3727,6 +3894,10 @@ void __init console_init(void)
  		trace_initcall_finish(call, ret);
  		ce++;
  	}
