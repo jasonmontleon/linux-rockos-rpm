@@ -1,4 +1,4 @@
-From bd56b0aaf91049855bf3059a3f87daa4b5ea562f Mon Sep 17 00:00:00 2001
+From 5a70f4d2d485d1133325882ddb64c8cae123d2fb Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 23 May 2024 16:53:55 +0800
 Subject: [PATCH 021/481] feat:Select emmc/sdio/wireless drivers by default.

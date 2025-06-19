@@ -1,4 +1,4 @@
-From c62499d76281cd8eede69d7a30ec60e453b3bfb8 Mon Sep 17 00:00:00 2001
+From 2efcb22582cb68b77be6ce3e71280b5accd39dfc Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
 Subject: [PATCH 005/481] feat(SMMU support):Support SMMU
@@ -120,7 +120,7 @@ index 898a9c8facd4..75d3f1e6f884 100644
  
  void riscv_noncoherent_supported(void)
 diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-index d57c5adf932e..68ce46410fea 100644
+index 20aa5ed80aa3..7999c71c4612 100644
 --- a/drivers/iommu/Kconfig
 +++ b/drivers/iommu/Kconfig
 @@ -28,7 +28,7 @@ config IOMMU_IO_PGTABLE
@@ -132,7 +132,7 @@ index d57c5adf932e..68ce46410fea 100644
  	depends on !GENERIC_ATOMIC64	# for cmpxchg64()
  	help
  	  Enable support for the ARM long descriptor pagetable format.
-@@ -389,7 +389,7 @@ config ARM_SMMU_QCOM_DEBUG
+@@ -388,7 +388,7 @@ config ARM_SMMU_QCOM_DEBUG
  
  config ARM_SMMU_V3
  	tristate "ARM Ltd. System MMU Version 3 (SMMUv3) Support"

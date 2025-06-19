@@ -1,4 +1,4 @@
-From 2e00ed4e8133d01dc835fe74c057d0a72862e095 Mon Sep 17 00:00:00 2001
+From 9d07a92056c2d1ba38b4a295bfb987c6906b3fb1 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 23 Oct 2024 17:07:29 +0800
 Subject: [PATCH 324/481] WIN2030-15704:fix:npu power off when npu sleep
