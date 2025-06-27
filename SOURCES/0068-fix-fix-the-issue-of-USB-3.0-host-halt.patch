@@ -1,4 +1,4 @@
-From 7e5dc828058c7f3db50b7515bef2c20a328fadc4 Mon Sep 17 00:00:00 2001
+From be31add6565b6c1786a971358f32f13fcbb6495f Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 10 Jul 2024 09:56:00 +0800
 Subject: [PATCH 068/481] fix:fix the issue of USB 3.0 host halt.
@@ -69,5 +69,5 @@ index 1417c6298a3c..aff6298f851e 100644
  				numa-node-id = <1>;
  				tbus = <WIN2030_TBUID_USB>;
 -- 
-2.49.0
+2.50.0
 

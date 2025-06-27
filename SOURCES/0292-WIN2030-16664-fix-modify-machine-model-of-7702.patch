@@ -1,4 +1,4 @@
-From f9c32ebaa714dd72b85952c3eba880a5a34c141c Mon Sep 17 00:00:00 2001
+From 7a42e515121ef8934122fce210a74dee056306d9 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 26 Nov 2024 14:03:48 +0800
 Subject: [PATCH 292/481] WIN2030-16664:fix:modify machine model of 7702
@@ -26,5 +26,5 @@ index d26e6e5f505f..642ebf79f2dd 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 -- 
-2.49.0
+2.50.0
 

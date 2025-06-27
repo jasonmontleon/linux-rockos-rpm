@@ -1,4 +1,4 @@
-From 49929d4afa1508c16d6094e102e6a19b787af685 Mon Sep 17 00:00:00 2001
+From 7c31a59bf95d5c89dc651139ec11be37e2faff75 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 7 Feb 2025 13:12:01 +0800
 Subject: [PATCH 398/481] WIN2030-16980:fix:Dvb drm virtual debugfs node reg
@@ -51,5 +51,5 @@ index 6c3220cb4737..5e0df61988f5 100644
  		};
  	};
 -- 
-2.49.0
+2.50.0
 

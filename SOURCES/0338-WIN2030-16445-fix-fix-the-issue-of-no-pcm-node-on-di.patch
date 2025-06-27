@@ -1,4 +1,4 @@
-From 171ea6c521cb6756daaa21bb7aabb335f0223b57 Mon Sep 17 00:00:00 2001
+From e1ac9d4c3cfae4833b620479e32e3e2b6231a67a Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 12 Dec 2024 15:40:07 +0800
 Subject: [PATCH 338/481] WIN2030-16445:fix:fix the issue of no pcm node on
@@ -54,5 +54,5 @@ index 51734f0ecfe1..d7935bb5ec3b 100644
  			#size-cells = <0>;
  			#sound-dai-cells = <0x00000000>;
 -- 
-2.49.0
+2.50.0
 

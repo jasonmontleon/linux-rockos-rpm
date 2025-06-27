@@ -1,4 +1,4 @@
-From 6e5cb92cfb6fb1290b187989d5c40bc1c2c53911 Mon Sep 17 00:00:00 2001
+From 8624ca47910c259407e35b908f5f8bc83cc37e36 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 8 Jul 2024 09:24:31 +0800
 Subject: [PATCH 343/481] WIN2030-16812:feat:hdmi support 2880x1800@90 output.
@@ -211,5 +211,5 @@ index 03c4f9b8cfb9..84f75833aa62 100644
  		594000000,
  		{ 0x3080, 0x31c0, 0x3100 },
 -- 
-2.49.0
+2.50.0
 

@@ -1,4 +1,4 @@
-From dff934d586b09ba1bc35c21871f2745ea36e6e56 Mon Sep 17 00:00:00 2001
+From 000a433b81178253ef6c801b532ff376b2707950 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 2 Nov 2024 22:00:52 +0800
 Subject: [PATCH 217/481] dts: megrez: add 1.6GHz
@@ -25,5 +25,5 @@ index 01740497fc84..b060cebe874b 100644
 +	};
 +};
 -- 
-2.49.0
+2.50.0
 

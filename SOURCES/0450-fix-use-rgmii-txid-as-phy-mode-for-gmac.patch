@@ -1,4 +1,4 @@
-From 668b17ebf9833313422c0348dcaf3ce35df7ef7c Mon Sep 17 00:00:00 2001
+From 67f492069b336822fbda073c269f2fe4e2187642 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 26 Mar 2025 09:56:25 +0800
 Subject: [PATCH 450/481] fix:use rgmii-txid as phy mode for gmac
@@ -36,5 +36,5 @@ index 9da3898179d6..b3da698eba9c 100644
  # CONFIG_WLAN_VENDOR_ATH is not set
  # CONFIG_WLAN_VENDOR_ATMEL is not set
 -- 
-2.49.0
+2.50.0
 

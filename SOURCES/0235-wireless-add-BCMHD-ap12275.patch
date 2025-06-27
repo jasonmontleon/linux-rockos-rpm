@@ -1,4 +1,4 @@
-From 062f5e28baad8a66d673ed5de8426bd16f1cd782 Mon Sep 17 00:00:00 2001
+From e46771a8c7d94bd3bd99089791dafff649bbafe5 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 15 Jun 2024 22:52:21 +0800
 Subject: [PATCH 235/481] wireless: add BCMHD ap12275
@@ -433549,5 +433549,5 @@ index 000000000000..8dcbc7fb9c52
 +	return error;
 +}
 -- 
-2.49.0
+2.50.0
 

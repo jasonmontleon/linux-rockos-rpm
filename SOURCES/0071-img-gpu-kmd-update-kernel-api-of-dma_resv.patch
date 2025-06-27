@@ -1,4 +1,4 @@
-From 13bd5af8a106bc671938b759c73959f36bf3559f Mon Sep 17 00:00:00 2001
+From 4edb99797e317a9fcac5adf9badea22918217f3e Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 13:47:09 +0800
 Subject: [PATCH 071/481] img gpu kmd: update kernel api of dma_resv
@@ -203,5 +203,5 @@ index b5426d402eed..5d9ec73376d2 100644
  	}
  
 -- 
-2.49.0
+2.50.0
 

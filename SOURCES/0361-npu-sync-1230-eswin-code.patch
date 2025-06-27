@@ -1,4 +1,4 @@
-From 2d4aff73f78ae78c0861d6ec76441e021e371697 Mon Sep 17 00:00:00 2001
+From a5e79f35d4bee5bf3da750d5894f13d877ccf8e0 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:33:00 +0800
 Subject: [PATCH 361/481] npu: sync 1230 eswin code
@@ -83,5 +83,5 @@ index 825c432cf2f2..f6970d560605 100644
  		dev_err(dev, "load e31 fw error.\n");
  		goto err_load_firm;
 -- 
-2.49.0
+2.50.0
 

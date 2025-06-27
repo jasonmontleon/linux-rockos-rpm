@@ -1,4 +1,4 @@
-From 702c3da22e2b75d9dd1d0c48d819154c73a00b83 Mon Sep 17 00:00:00 2001
+From e10257d731f8db185f1d36412816d3804c2f4596 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 23 Dec 2024 20:17:49 +0800
 Subject: [PATCH 352/481] WIN2030-16797:fix:Resolve the issue of abnormal stack
@@ -210,5 +210,5 @@ index d9e1803d4ab2..415ccb866d74 100644
  #include "eswin-dsp-subsys.h"
  
 -- 
-2.49.0
+2.50.0
 

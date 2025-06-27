@@ -1,4 +1,4 @@
-From cbeb0b7951a3aada0b25b2a11f34f82aeeb2d2e3 Mon Sep 17 00:00:00 2001
+From b7ee249614523698ad2f8906d10371a029839f71 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 11 Mar 2024 14:43:40 +0800
 Subject: [PATCH 001/481] Added dts and defconfig files,modified 8250_dwlib.c
@@ -17595,5 +17595,5 @@ index 000000000000..3c27a51c18ae
 +
 +#endif /*endif __DT_ESWIN_WIN2030_SYSCRG_H__*/
 -- 
-2.49.0
+2.50.0
 

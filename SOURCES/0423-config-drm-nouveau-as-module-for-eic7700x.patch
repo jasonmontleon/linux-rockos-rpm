@@ -1,4 +1,4 @@
-From 9b84c0f0477af9bd6a618e9cf6eaf721be9009b0 Mon Sep 17 00:00:00 2001
+From 80536c50fb66607d77b4f36e505b54e92b609bfd Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:11:10 +0800
 Subject: [PATCH 423/481] config: drm: nouveau: as module for eic7700x
@@ -38,5 +38,5 @@ index 623624112dff..ce7255a46970 100644
  CONFIG_SND=y
  CONFIG_SND_HDA_INTEL=m
 -- 
-2.49.0
+2.50.0
 

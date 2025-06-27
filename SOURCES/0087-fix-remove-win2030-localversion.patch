@@ -1,4 +1,4 @@
-From 7af8093e63326ee9186e86b338cb83d3c9881247 Mon Sep 17 00:00:00 2001
+From 83c5af853b05f04393decb0a728fbc6b2b245b79 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 13 Jun 2024 22:21:56 +0800
 Subject: [PATCH 087/481] fix: remove win2030 localversion
@@ -21,5 +21,5 @@ index 398b6db958bb..f0c03fda4b3b 100644
  CONFIG_DUMMY=m
  CONFIG_WIREGUARD=m
 -- 
-2.49.0
+2.50.0
 

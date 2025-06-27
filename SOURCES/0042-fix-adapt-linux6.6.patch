@@ -1,4 +1,4 @@
-From 787d0ef4d8756a111168fcd6678f0a528ff77e09 Mon Sep 17 00:00:00 2001
+From b840167aac36ff9ba473b429d653f3b9685d3b27 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Fri, 31 May 2024 17:23:52 +0800
 Subject: [PATCH 042/481] fix:adapt linux6.6
@@ -85,5 +85,5 @@ index 63ce0ae4fde3..e387f079eb89 100644
  	dw_hdmi_hdcp2_start(3);
  
 -- 
-2.49.0
+2.50.0
 

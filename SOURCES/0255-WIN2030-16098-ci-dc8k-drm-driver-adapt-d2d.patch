@@ -1,4 +1,4 @@
-From 1371fd1e032011ca839d9cdd8e4459daab96dc34 Mon Sep 17 00:00:00 2001
+From 59876090b84479ef2cd2ad4c67ddf782cee48c8f Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 21 Aug 2024 14:55:51 +0800
 Subject: [PATCH 255/481] WIN2030-16098:ci:dc8k drm driver adapt d2d
@@ -669,5 +669,5 @@ index 5759e726f77b..ae2633ca6832 100644
  
  			interrupt-parent = <&plic1>;
 -- 
-2.49.0
+2.50.0
 

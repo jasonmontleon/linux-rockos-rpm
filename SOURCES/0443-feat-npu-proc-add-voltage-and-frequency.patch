@@ -1,4 +1,4 @@
-From cec960844d3b0dbcc455428fe1a1ee05888d34e5 Mon Sep 17 00:00:00 2001
+From 3c2c7421c1848797a6b8c704ea2dea0ebf88e258 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Wed, 12 Mar 2025 09:18:01 +0800
 Subject: [PATCH 443/481] feat:npu proc add voltage and frequency
@@ -102,5 +102,5 @@ index d7e1270e4a7d..6ed17e6af550 100644
  	remove_proc_entry("esnpu", NULL);
  }
 -- 
-2.49.0
+2.50.0
 

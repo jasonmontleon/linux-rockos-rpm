@@ -1,4 +1,4 @@
-From f6a8263a60c0e161aaa28e8b0596d3ccada256f2 Mon Sep 17 00:00:00 2001
+From 2b66f9a779cdefbbd0e37fd3a0d83c915c822c5e Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 6 Feb 2025 16:26:16 +0800
 Subject: [PATCH 402/481] WIN2030-16412:feat: Optimize dma channel request
@@ -32,5 +32,5 @@ index 3eec1aa413f2..cc4b81e6ef15 100644
          return -ENODEV;
      }
 -- 
-2.49.0
+2.50.0
 

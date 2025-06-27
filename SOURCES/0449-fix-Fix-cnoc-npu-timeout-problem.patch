@@ -1,4 +1,4 @@
-From df740efe4a8a57d316509c331a80942d15fee41c Mon Sep 17 00:00:00 2001
+From e959fb4bbbb824caecb2b3a516f51e0b345fb5ad Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 18 Mar 2025 15:17:45 +0800
 Subject: [PATCH 449/481] fix:Fix cnoc npu timeout problem.
@@ -156,5 +156,5 @@ index 994e1068a539..2e4e95e3d98b 100644
  
  int mpq8785_regulator_disable(struct regulator_dev *rdev)
 -- 
-2.49.0
+2.50.0
 

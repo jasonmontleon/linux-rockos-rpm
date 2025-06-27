@@ -1,4 +1,4 @@
-From 0cd751e06294dfce2ab84512da914ecadbeb9e98 Mon Sep 17 00:00:00 2001
+From 2f9ab6394f585c9518b4dfad02e19acafe7c2c65 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 3 Jan 2025 18:10:25 +0800
 Subject: [PATCH 376/481] WIN2030-16550:perf:Optimize dma performance
@@ -188,5 +188,5 @@ index 3bd0e65ed010..738954532c93 100644
   * DW AXI DMA channel interrupts
   *
 -- 
-2.49.0
+2.50.0
 

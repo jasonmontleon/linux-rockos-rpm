@@ -1,4 +1,4 @@
-From f723ddaf6f80dd54883852d5372b29589d522223 Mon Sep 17 00:00:00 2001
+From c5d1d35a57aaa9b35b45083d08bc98effe1b48ae Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 22 Apr 2024 16:15:37 +0800
 Subject: [PATCH 008/481] feat: Add support for ethernet driver
@@ -765,5 +765,5 @@ index 000000000000..0b37eabd6334
 +MODULE_DESCRIPTION("Eswin win2030 qos ethernet driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.49.0
+2.50.0
 

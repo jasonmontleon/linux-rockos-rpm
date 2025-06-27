@@ -1,4 +1,4 @@
-From a177f84ab7fdae191ca3b0c62dacadd9cbafd2f3 Mon Sep 17 00:00:00 2001
+From 0fe27074062ad0733e73789f0e4eded056a00ace Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Sat, 14 Sep 2024 14:39:17 +0800
 Subject: [PATCH 267/481] WIN2030-16287:feat:support touchscreen(gt911)
@@ -122,5 +122,5 @@ index 1e9388335206..01d1b3969200 100644
  # CONFIG_LEGACY_PTYS is not set
  CONFIG_SERIAL_8250=y
 -- 
-2.49.0
+2.50.0
 

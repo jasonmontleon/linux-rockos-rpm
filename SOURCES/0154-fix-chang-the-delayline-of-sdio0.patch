@@ -1,4 +1,4 @@
-From 2c5d5957a3fc94bff9cb28ff3c343c1327144180 Mon Sep 17 00:00:00 2001
+From 57c04f8dc341cbac7a909cd33623110b6d7e6bf6 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 14 Aug 2024 10:50:26 +0800
 Subject: [PATCH 154/481] fix:chang the delayline of sdio0.
@@ -104,5 +104,5 @@ index bff2897c17c0..8cd8deb339b0 100644
  		dev_err(dev, "runtime resume failed!\n");
  		goto clk_disable;
 -- 
-2.49.0
+2.50.0
 

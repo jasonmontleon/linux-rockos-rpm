@@ -1,4 +1,4 @@
-From 876cb554e3dcb6be41d5b9ef10af68d79d4aab1c Mon Sep 17 00:00:00 2001
+From 555ac56fbf4f33a7045b63ea30514f02189a2ddb Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 15 Jul 2024 11:12:23 +0800
 Subject: [PATCH 096/481] chore:change CONFIG_DMATEST=m
@@ -25,5 +25,5 @@ index e7c3b818c598..370b8dbe4a2e 100644
  CONFIG_DMABUF_HEAPS_SYSTEM=y
  CONFIG_DMABUF_HEAPS_CMA=y
 -- 
-2.49.0
+2.50.0
 

@@ -1,4 +1,4 @@
-From 6c12d1587e42b52dd4f864c31e8b15852c1b0f32 Mon Sep 17 00:00:00 2001
+From f896bc0ac590e3f540af4b5ce48047eb7c15d4e3 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Tue, 5 Nov 2024 14:59:26 +0800
 Subject: [PATCH 282/481] WIN2030-15365: fix: porting modify for dual e31
@@ -140,5 +140,5 @@ index e577200853af..deb46ac3d38f 100644
  #define PTS_END_CYCLE (*(u32 *)(TIMER0_BASE + 0x0 + PTS_CHAN * 0x14))
  #define PTS_START_CYCLE (*(u32 *)(TIMER0_BASE + 0x4 + PTS_CHAN * 0x14))
 -- 
-2.49.0
+2.50.0
 

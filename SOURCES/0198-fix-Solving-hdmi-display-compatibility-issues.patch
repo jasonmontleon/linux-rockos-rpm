@@ -1,4 +1,4 @@
-From 6c3e1f2df2250edae153000f92f03ee9fcf8e649 Mon Sep 17 00:00:00 2001
+From 6dc2222aed13cdf0c478aaa9e21fe15a26576eb3 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 22 Oct 2024 09:53:00 +0800
 Subject: [PATCH 198/481] fix:Solving hdmi display compatibility issues.
@@ -44,5 +44,5 @@ index 552b80ccacdb..ba5aae273162 100644
  }
  
 -- 
-2.49.0
+2.50.0
 

@@ -1,4 +1,4 @@
-From b98b1489dafc0486feee9e8661b9ffe06437f126 Mon Sep 17 00:00:00 2001
+From f63b9d8efe9c4869ac2ff3683183693f5a1d7463 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 20 Dec 2024 23:09:07 +0800
 Subject: [PATCH 359/481] WIN2030-16746:feat:support 7700d314 and 7700s314
@@ -1065,5 +1065,5 @@ index 000000000000..79a885bb2c62
 +	};
 +};
 -- 
-2.49.0
+2.50.0
 

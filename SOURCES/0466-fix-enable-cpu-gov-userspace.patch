@@ -1,4 +1,4 @@
-From cf1fb49e6c37cdcca50abaa8a3b31f022cd50599 Mon Sep 17 00:00:00 2001
+From 8f409758cef055a5934e77fa01b78494deb97d21 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 8 Apr 2025 16:30:11 +0800
 Subject: [PATCH 466/481] fix:enable cpu gov userspace
@@ -37,5 +37,5 @@ index fdbb24bf7834..9cefc6922209 100644
  CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
  CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
 -- 
-2.49.0
+2.50.0
 

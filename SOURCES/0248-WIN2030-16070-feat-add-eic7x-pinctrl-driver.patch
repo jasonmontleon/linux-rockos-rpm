@@ -1,4 +1,4 @@
-From af0786321bcffd35130ff63c39cd0090dc8d9ada Mon Sep 17 00:00:00 2001
+From 6fe19981c6243ac01794f61aa8ddc104fccbd847 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Mon, 2 Sep 2024 16:41:42 +0800
 Subject: [PATCH 248/481] WIN2030-16070:feat:add eic7x pinctrl driver
@@ -3740,5 +3740,5 @@ index c464e6964f26..1a04a041432d 100644
  };
  static struct platform_driver eswin_pinctrl_driver = {
 -- 
-2.49.0
+2.50.0
 

@@ -1,4 +1,4 @@
-From 75a7f5baac17ee4f15058596795c72c02f48c48c Mon Sep 17 00:00:00 2001
+From 9abcfe2750ff52b273a79a95ec41b3871acf93d0 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 9 Apr 2025 16:20:35 +0800
 Subject: [PATCH 468/481] fix:fix dma period size and cnt to fit 24-16-32bit
@@ -36,5 +36,5 @@ index 0603030cc424..d86c5aed4669 100644
  	hw.info |= SNDRV_PCM_INFO_BATCH;
  
 -- 
-2.49.0
+2.50.0
 

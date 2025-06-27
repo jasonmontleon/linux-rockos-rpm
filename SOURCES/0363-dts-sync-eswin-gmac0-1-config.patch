@@ -1,4 +1,4 @@
-From 1a32ee54b04eee16e6d93b382d92697f365fcb6c Mon Sep 17 00:00:00 2001
+From 4f82774de20538388839b9599c6fd5ef367ad027 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 8 Jan 2025 01:41:49 +0800
 Subject: [PATCH 363/481] dts: sync eswin gmac0/1 config
@@ -62,5 +62,5 @@ index b03f4c8c2597..f02a7936cc60 100644
  };
  
 -- 
-2.49.0
+2.50.0
 

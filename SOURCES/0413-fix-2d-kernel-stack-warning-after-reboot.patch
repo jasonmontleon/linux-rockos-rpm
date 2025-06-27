@@ -1,4 +1,4 @@
-From b025d2374854fa3a5b5b3fdfc49f72d4a3749ade Mon Sep 17 00:00:00 2001
+From 09687c5c7af1cae75367dea51054a4000143b687 Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Thu, 13 Feb 2025 11:10:23 +0800
 Subject: [PATCH 413/481] fix(2d):kernel stack warning after reboot
@@ -278,5 +278,5 @@ index 970ea4314919..25f1c2e3b5f9 100644
      }
      return gcvSTATUS_OK;
 -- 
-2.49.0
+2.50.0
 

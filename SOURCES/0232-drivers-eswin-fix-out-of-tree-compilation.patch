@@ -1,4 +1,4 @@
-From bc92ea0811b73540a81ccbb06213c2b8ef91cd18 Mon Sep 17 00:00:00 2001
+From 543755db64a60921fd74993d747fdd93093955fe Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Wed, 20 Nov 2024 15:48:28 +0800
 Subject: [PATCH 232/481] drivers: eswin: fix out-of-tree compilation
@@ -84,5 +84,5 @@ index 326e4316fbd3..aa7ffe338c34 100644
  es_media_ext_drv-objs := es_media_ext_drv_main.o \
  						./chn/dev_channel.o	\
 -- 
-2.49.0
+2.50.0
 

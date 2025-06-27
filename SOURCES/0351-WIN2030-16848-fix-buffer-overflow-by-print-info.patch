@@ -1,4 +1,4 @@
-From 0fa34db002781bb860d8bbe77bb66f6ef5d7dc9d Mon Sep 17 00:00:00 2001
+From 37cf31a36d5a0994070851f1bee2233c34dd83b0 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 23 Dec 2024 17:04:26 +0800
 Subject: [PATCH 351/481] WIN2030-16848:fix:buffer overflow by print info
@@ -26,5 +26,5 @@ index 2bcbe3f48f59..cc232396f842 100644
  	struct device *mydev = noc_device->dev;
  
 -- 
-2.49.0
+2.50.0
 

@@ -1,4 +1,4 @@
-From bdbf438c89f27ea6f0d4b141001761410cb96a03 Mon Sep 17 00:00:00 2001
+From 161af1c9ec21187435ad3eef661864741a751442 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 24 May 2024 13:24:28 +0800
 Subject: [PATCH 030/481] feat:add fan,rtc,wdt,dw-spi,pwm
@@ -1428,5 +1428,5 @@ index 805264c9c65c..39c1ae316ac0 100644
  };
  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
 -- 
-2.49.0
+2.50.0
 

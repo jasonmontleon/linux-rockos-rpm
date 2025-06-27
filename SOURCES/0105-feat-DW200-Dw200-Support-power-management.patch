@@ -1,4 +1,4 @@
-From 6fe9f7a285db3c201a87fe15eda3ace7da35968e Mon Sep 17 00:00:00 2001
+From 94ab97103c4ada9ca1b32fc5a0ca1eb8fc54bfbd Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 17 Jul 2024 10:14:04 +0800
 Subject: [PATCH 105/481] feat(DW200): Dw200 Support power management
@@ -382,5 +382,5 @@ index 2810f0a57d80..7ee5a88a803c 100644
  };
  module_platform_driver(viv_platform_driver);
 -- 
-2.49.0
+2.50.0
 

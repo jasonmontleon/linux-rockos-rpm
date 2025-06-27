@@ -1,4 +1,4 @@
-From 79c6e9a609cb0694ea470cb7a71104bc58152141 Mon Sep 17 00:00:00 2001
+From 578fbae5c4bad63ccb6d27f45c852afba3900aed Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Thu, 2 Jan 2025 10:50:58 +0800
 Subject: [PATCH 372/481] WIN2030-16550:fix:Dewarp pm devfreq bug fix
@@ -219,5 +219,5 @@ index d462277fecc6..dd178b8e361d 100644
  }
  
 -- 
-2.49.0
+2.50.0
 

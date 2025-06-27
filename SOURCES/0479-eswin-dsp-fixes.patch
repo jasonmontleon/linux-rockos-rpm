@@ -1,4 +1,4 @@
-From aabd62c727044f3f3c10c2e763ee8c41192b7512 Mon Sep 17 00:00:00 2001
+From a370547d3f195f93608d0f2424404ea9c80fb46b Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Fri, 21 Feb 2025 03:13:29 -0500
 Subject: [PATCH 479/481] eswin dsp fixes
@@ -67,5 +67,5 @@ index 6797e819176f..68796939f0e9 100644
  static struct proc_dir_entry *proc_es_dsp;
  extern int dsp_log_level;
 -- 
-2.49.0
+2.50.0
 

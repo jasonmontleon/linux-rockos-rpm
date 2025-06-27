@@ -1,4 +1,4 @@
-From 7832ce05f1efc2eb433c4dd11068476a39a8a697 Mon Sep 17 00:00:00 2001
+From 2582dd964a50cccb564a31bb20da4f34b1dccc57 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 14 Apr 2025 21:24:55 +0800
 Subject: [PATCH 473/481] fix:disable cpu 1.4G upper of evb
@@ -53,5 +53,5 @@ index 9631c73e0bd3..4f511e5d7369 100644
  };
 \ No newline at end of file
 -- 
-2.49.0
+2.50.0
 

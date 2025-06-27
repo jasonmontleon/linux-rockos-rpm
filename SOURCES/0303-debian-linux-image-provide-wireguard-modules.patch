@@ -1,4 +1,4 @@
-From d5c98dbb36c2d92d167dbd7909ea91a2cb900a9c Mon Sep 17 00:00:00 2001
+From 8399156f9b1507d19d7d76df69a66bdbfa8f57be Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 14 Oct 2024 16:13:35 +0800
 Subject: [PATCH 303/481] debian: linux-image provide wireguard-modules
@@ -22,5 +22,5 @@ index 5044224cf671..fcbcfa0c3a6a 100755
   This package contains the Linux kernel, modules and corresponding other
   files, version: $version.
 -- 
-2.49.0
+2.50.0
 

@@ -1,4 +1,4 @@
-From 4d7f4d6a80fd58dd8a62877aa9d51a5a19c58ba6 Mon Sep 17 00:00:00 2001
+From 2c73407a9f45c532916f7ef0f86ca38b2d44b719 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Tue, 8 Apr 2025 19:04:09 +0800
 Subject: [PATCH 469/481] feat:turne on NPU perf
@@ -318,5 +318,5 @@ index 2ae719709386..8ea6ebe6768d 100644
  }
  
 -- 
-2.49.0
+2.50.0
 

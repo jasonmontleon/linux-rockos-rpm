@@ -1,4 +1,4 @@
-From 44afb741c97fe5ea23ab25ebb2b2916cbac01dc2 Mon Sep 17 00:00:00 2001
+From ac936b2426eb5116a3194a64a19f830c7b8b065b Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 23 May 2024 13:43:49 +0800
 Subject: [PATCH 028/481] feat:Porting hdmi driver to linux 6.6.
@@ -5397,5 +5397,5 @@ index 6a46baa0737c..85bab1773f38 100644
  	unsigned int disable_cec : 1;
  };
 -- 
-2.49.0
+2.50.0
 

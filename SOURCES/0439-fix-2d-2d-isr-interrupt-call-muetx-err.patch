@@ -1,4 +1,4 @@
-From 67b26bd8e6e4e44e299beab94d0cb113d5749aac Mon Sep 17 00:00:00 2001
+From 8384caec1313c60222e2b9dd9554504f5cd3754b Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Wed, 5 Mar 2025 17:34:40 +0800
 Subject: [PATCH 439/481] <fix>(2d):2d isr interrupt call muetx err
@@ -106,5 +106,5 @@ index 68bcf61c95f0..e661e24e2fb5 100644
  
      case gcvBROADCAST_GPU_IDLE:
 -- 
-2.49.0
+2.50.0
 
