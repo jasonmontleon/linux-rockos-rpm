@@ -1,7 +1,7 @@
-From fc1d54581a058955ca3e6734bc1472261f8d230b Mon Sep 17 00:00:00 2001
+From 27d4f7e42491e4a6d35b5449295d5049e8e07036 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Mon, 27 May 2024 16:19:01 +0800
-Subject: [PATCH 047/481] feat(ISP): Add VI dev to linux 6.6
+Subject: [PATCH 047/485] feat(ISP): Add VI dev to linux 6.6
 
 Changelogs:
 1.Add csi,isp,i2... vi device nodes to evb&evb-a2

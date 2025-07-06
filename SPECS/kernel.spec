@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.95
-%define specversion 6.6.95
+%define specrpmversion 6.6.96
+%define specversion 6.6.96
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.95
+%define tarfile_release 6.6.96
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.95
+%define kabiversion 6.6.96
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1440,14 +1440,18 @@ Patch10470: 0470-fix-revert-dma-fix.patch
 Patch10471: 0471-fix-revert-dma.patch
 Patch10472: 0472-fix-dsp-pm-notifier-problem.patch
 Patch10473: 0473-fix-disable-cpu-1.4G-upper-of-evb.patch
-Patch10474: 0474-header-workarounds.patch
-Patch10475: 0475-stop-triggering-vmlinux-rebuild.patch
-Patch10476: 0476-Add-missing-newline.patch
-Patch10477: 0477-uninvert-the-fan.patch
-Patch10478: 0478-Reduce-crit-threshold-temp-to-85000.patch
-Patch10479: 0479-eswin-dsp-fixes.patch
-Patch10480: 0480-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10481: 0481-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10474: 0474-riscv-module-Optimize-PLT-GOT-entry-counting.patch
+Patch10475: 0475-riscv-module-fix-compilation-error-of-kvrealloc.patch
+Patch10476: 0476-arch-add-ARCH_HAS_KERNEL_FPU_SUPPORT.patch
+Patch10477: 0477-header-workarounds.patch
+Patch10478: 0478-stop-triggering-vmlinux-rebuild.patch
+Patch10479: 0479-Add-missing-newline.patch
+Patch10480: 0480-uninvert-the-fan.patch
+Patch10481: 0481-Reduce-crit-threshold-temp-to-85000.patch
+Patch10482: 0482-eswin-dsp-fixes.patch
+Patch10483: 0483-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10484: 0484-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10485: 0485-Bring-back-1.8GHz-to-STARPro64.patch
 
 
 
@@ -2677,14 +2681,18 @@ ApplyOptionalPatch 0470-fix-revert-dma-fix.patch
 ApplyOptionalPatch 0471-fix-revert-dma.patch
 ApplyOptionalPatch 0472-fix-dsp-pm-notifier-problem.patch
 ApplyOptionalPatch 0473-fix-disable-cpu-1.4G-upper-of-evb.patch
-ApplyOptionalPatch 0474-header-workarounds.patch
-ApplyOptionalPatch 0475-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0476-Add-missing-newline.patch
-ApplyOptionalPatch 0477-uninvert-the-fan.patch
-ApplyOptionalPatch 0478-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0479-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0480-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0481-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0474-riscv-module-Optimize-PLT-GOT-entry-counting.patch
+ApplyOptionalPatch 0475-riscv-module-fix-compilation-error-of-kvrealloc.patch
+ApplyOptionalPatch 0476-arch-add-ARCH_HAS_KERNEL_FPU_SUPPORT.patch
+ApplyOptionalPatch 0477-header-workarounds.patch
+ApplyOptionalPatch 0478-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0479-Add-missing-newline.patch
+ApplyOptionalPatch 0480-uninvert-the-fan.patch
+ApplyOptionalPatch 0481-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0482-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0483-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0484-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0485-Bring-back-1.8GHz-to-STARPro64.patch
 
 
 
@@ -4677,6 +4685,10 @@ fi\
 #
 #
 %changelog
+* Sun Jul 6 2025 Jason Montleon <jason@montleon.com> [6.6.96-200.eswin]
+- Add rockos patches up to Jul 6, 2025
+- Add back 1.8 GHz for StarPro64
+
 * Fri Mar 28 2025 Jason Montleon <jason@montleon.com> [6.6.85-200.eswin]
 - Add rockos patches up to Mar 28, 2025 
 

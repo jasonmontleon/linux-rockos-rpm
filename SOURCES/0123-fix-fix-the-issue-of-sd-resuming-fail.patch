@@ -1,7 +1,7 @@
-From 26ba7a5abf6b1bd2c90967ffd6d4701251c36a21 Mon Sep 17 00:00:00 2001
+From 325c3ce9302dbdf9a3ed705697635e00917c3adf Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Fri, 26 Jul 2024 13:54:16 +0800
-Subject: [PATCH 123/481] fix:fix the issue of sd resuming fail.
+Subject: [PATCH 123/485] fix:fix the issue of sd resuming fail.
 
 Changelogs:
 1.Fix the issue of resuming fail when no sd card plug in.

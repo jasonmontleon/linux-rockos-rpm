@@ -1,7 +1,7 @@
-From 031fe5a6d9aa5439ad1b9f1ff150cffa44dd7921 Mon Sep 17 00:00:00 2001
+From cf5e3d684ead4ee49bd782ba9ae31e8eb1df8094 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 14 Feb 2025 16:48:39 +0800
-Subject: [PATCH 438/481] feat:merge feature-vpu7702 branch
+Subject: [PATCH 438/485] feat:merge feature-vpu7702 branch
 
 Changelogs:
 1. merge feature-vpu7702 branch
@@ -2199,7 +2199,7 @@ index 51c43e0f9b29..9d25640e8525 100644
  
  /*
 diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index e809b6d8bc53..280b7eced73c 100644
+index 1aae81c57b2c..7ee564282545 100644
 --- a/lib/Kconfig.debug
 +++ b/lib/Kconfig.debug
 @@ -35,6 +35,20 @@ config PRINTK_CALLER

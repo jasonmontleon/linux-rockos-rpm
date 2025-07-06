@@ -1,7 +1,7 @@
-From 7a42e515121ef8934122fce210a74dee056306d9 Mon Sep 17 00:00:00 2001
+From 37608be13598d50cbcc91f9cb39c91afa3740b3a Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 26 Nov 2024 14:03:48 +0800
-Subject: [PATCH 292/481] WIN2030-16664:fix:modify machine model of 7702
+Subject: [PATCH 292/485] WIN2030-16664:fix:modify machine model of 7702
 
 Changelogs:
 Modify 7702 EVB DTS model from EIC7700 to EIC7702

@@ -1,7 +1,7 @@
-From 99b7e4f20f8c99a1e98e77f8b8e627bd52d6385e Mon Sep 17 00:00:00 2001
+From 19b32beb633f8ab1b177f88d0bc3a92f7311b89c Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 23 Oct 2024 17:22:11 +0800
-Subject: [PATCH 325/481] WIN2030-16551:feat: npu drv support device frequency
+Subject: [PATCH 325/485] WIN2030-16551:feat: npu drv support device frequency
 
 Changelogs:
 	npu driver add devfreq interface.

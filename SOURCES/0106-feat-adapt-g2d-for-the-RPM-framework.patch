@@ -1,7 +1,7 @@
-From bde1b33a7eb1f1dc37c3c2076fb69f1147a1b523 Mon Sep 17 00:00:00 2001
+From 999da079048e1678571300d58126826d7a18b5fb Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Thu, 18 Jul 2024 17:12:45 +0800
-Subject: [PATCH 106/481] feat:adapt g2d for the RPM framework
+Subject: [PATCH 106/485] feat:adapt g2d for the RPM framework
 
 Changelogs:
 1. adapt the pm_runtime

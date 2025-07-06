@@ -1,8 +1,8 @@
-From 030df2f3ac913a3470e0553be489721665df3f9b Mon Sep 17 00:00:00 2001
+From 1d56d07adc50f481b630698e3d325b44bae2dee9 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Fri, 31 May 2024 08:52:35 +0800
-Subject: [PATCH 041/481] fix :distinguish built-in RTC and PCF RTC
+Subject: [PATCH 041/485] fix :distinguish built-in RTC and PCF RTC
 
 Changelogs:
       Setting aliases for the SoC built-in RTC and the PCF RTC, so

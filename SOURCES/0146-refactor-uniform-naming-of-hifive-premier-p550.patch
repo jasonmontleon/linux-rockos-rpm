@@ -1,7 +1,7 @@
-From 9f22aa72af7ee17c6166bd43c96f3657e1cf7998 Mon Sep 17 00:00:00 2001
+From 59877d5fc84ace6d3c908fac5858c52afca3e59e Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 12 Aug 2024 13:10:39 +0800
-Subject: [PATCH 146/481] refactor:uniform naming of hifive premier p550
+Subject: [PATCH 146/485] refactor:uniform naming of hifive premier p550
 
 Changelogs:
 Unified use of hifive premier p550 dts file

@@ -1,7 +1,7 @@
-From 70a3fc556e9f17cecc6bfc7f93799c62372b8049 Mon Sep 17 00:00:00 2001
+From 933adde8137832c392dd70e515c3a0e4923b7e33 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:13:32 +0800
-Subject: [PATCH 225/481] sync: sync thermal config for win2030
+Subject: [PATCH 225/485] sync: sync thermal config for win2030
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

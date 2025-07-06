@@ -1,7 +1,7 @@
-From 0a958ac040fb41e7cdf075a436ef48b823362d55 Mon Sep 17 00:00:00 2001
+From 8ce459aaeafbd4a22cdd6e85ddf52c524fa23d34 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 18 Oct 2024 13:36:16 +0800
-Subject: [PATCH 196/481] fix:fix sata reset
+Subject: [PATCH 196/485] fix:fix sata reset
 
 Changelogs:
 1.fix sata reset

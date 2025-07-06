@@ -1,7 +1,7 @@
-From 06a072dd45b6593da56c14e7f2ac6f4ffbcdc2d6 Mon Sep 17 00:00:00 2001
+From abe71e4781786b790000999f0185387b004996fb Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 14:43:33 +0800
-Subject: [PATCH 122/481] fix:fix the cpu 100% issue when wait FE idle
+Subject: [PATCH 122/485] fix:fix the cpu 100% issue when wait FE idle
 
 Changelogs:
 1. The waiting FE idle is dead cycle query, it cause cpu 100%. The

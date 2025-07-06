@@ -1,7 +1,7 @@
-From b8d90c66798812e70fbb427d2d0f1c29c5a18fce Mon Sep 17 00:00:00 2001
+From 9e4000734c4afcff8986f0a5f5e37f1b5bb7aef5 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Mon, 9 Sep 2024 14:09:30 +0800
-Subject: [PATCH 253/481] WIN2030-16289:feat:support npu dual die
+Subject: [PATCH 253/485] WIN2030-16289:feat:support npu dual die
 
 Changelogs:
 	support npu dual die

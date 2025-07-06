@@ -1,7 +1,7 @@
-From 185251c536d52fbd8c30e0c4ea20b97ca9d22ef2 Mon Sep 17 00:00:00 2001
+From 034f75021358afe7bc4d233bd0f91fe25982782a Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 7 Mar 2025 00:14:11 +0800
-Subject: [PATCH 427/481] config: net: enable net options for eic7700x
+Subject: [PATCH 427/485] config: net: enable net options for eic7700x
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

@@ -1,7 +1,7 @@
-From 81ce235125252230e84f79d00029a495d65c57fb Mon Sep 17 00:00:00 2001
+From 9e55e30b4b93d69d94faecc02903c1f3980409d9 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 3 Dec 2024 19:35:48 +0800
-Subject: [PATCH 300/481] dts: sync eic7x device tree
+Subject: [PATCH 300/485] dts: sync eic7x device tree
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

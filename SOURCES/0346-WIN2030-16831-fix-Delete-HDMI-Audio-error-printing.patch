@@ -1,7 +1,7 @@
-From 464ca2ade3fa56a7cad716ad8d134d315aaac73e Mon Sep 17 00:00:00 2001
+From 33ef3b4cea1d70d3674b286576cad9bf6affdb57 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 18 Dec 2024 10:59:41 +0800
-Subject: [PATCH 346/481] WIN2030-16831:fix:Delete HDMI Audio error printing.
+Subject: [PATCH 346/485] WIN2030-16831:fix:Delete HDMI Audio error printing.
 
 Changelogs:
 	Error printing during HDMI audio startup on die1.

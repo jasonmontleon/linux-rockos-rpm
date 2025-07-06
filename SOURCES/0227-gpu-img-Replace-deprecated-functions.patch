@@ -1,7 +1,7 @@
-From 534d2938f399870491c4a1ed0d0a5cff1229a7fc Mon Sep 17 00:00:00 2001
+From 5b6ce324827591b0ed29a8af7796b547f5bf8284 Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Tue, 17 Sep 2024 10:18:04 +0000
-Subject: [PATCH 227/481] gpu: img: Replace deprecated functions
+Subject: [PATCH 227/485] gpu: img: Replace deprecated functions
 
 - Use queue_work instead of schedule_work
 - Replaced flush_scheduled_work with flush_workqueue

@@ -1,7 +1,7 @@
-From 23954da6bf0e4af5b5ec78bfaae8643ad6007800 Mon Sep 17 00:00:00 2001
+From 31c85a729b50ae03d0efbeb7bd926b6d75cc48ea Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Tue, 13 Aug 2024 14:44:47 +0800
-Subject: [PATCH 246/481] WIN2030-16132:feat:run on the specify die
+Subject: [PATCH 246/485] WIN2030-16132:feat:run on the specify die
 
 Changelogs:
   1. run on the specify die.

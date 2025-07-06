@@ -1,7 +1,7 @@
-From b215b4b5baa8d3e8dbdfd62c528df855dfd0efbd Mon Sep 17 00:00:00 2001
+From b9ea7d809409e157036f85bb9c547dcf26bafb81 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:35:09 +0800
-Subject: [PATCH 406/481] config: sync from eic7700_defconfig
+Subject: [PATCH 406/485] config: sync from eic7700_defconfig
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

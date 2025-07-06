@@ -1,7 +1,7 @@
-From 9685e71cec41a965b939a39fa0f40418db6999c0 Mon Sep 17 00:00:00 2001
+From e71689846efcd78f58af423f6d946a70b7181b0e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 11 Mar 2025 11:08:49 +0800
-Subject: [PATCH 456/481] fix:npu,dsp,cpu,gpu support IPA
+Subject: [PATCH 456/485] fix:npu,dsp,cpu,gpu support IPA
 
 Changelogs:
 

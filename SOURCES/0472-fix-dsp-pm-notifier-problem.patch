@@ -1,7 +1,7 @@
-From 1c55c67378813520953c4e7059fe340d6aa7ab88 Mon Sep 17 00:00:00 2001
+From 590a4554fca5396b6a9ae29448a1bf9af7b46142 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 11 Apr 2025 10:31:07 +0800
-Subject: [PATCH 472/481] fix: dsp pm notifier problem
+Subject: [PATCH 472/485] fix: dsp pm notifier problem
 
 Changelogs:
 	when dsp drv remove, need unregister dsp pm notifier.

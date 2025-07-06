@@ -1,7 +1,7 @@
-From e1ac9d4c3cfae4833b620479e32e3e2b6231a67a Mon Sep 17 00:00:00 2001
+From cf1cbcb6f763544289064ef56eb17560b2483bf0 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 12 Dec 2024 15:40:07 +0800
-Subject: [PATCH 338/481] WIN2030-16445:fix:fix the issue of no pcm node on
+Subject: [PATCH 338/485] WIN2030-16445:fix:fix the issue of no pcm node on
  die1.
 
 Changelogs:

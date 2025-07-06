@@ -1,7 +1,7 @@
-From cc9dc0d90cb390f3ea26092036f543938b68802d Mon Sep 17 00:00:00 2001
+From 915a3e67ad066e8b65d007cd67e00896be81fcce Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 20 Mar 2025 18:09:24 +0800
-Subject: [PATCH 447/481] fix:board: eic770x: adaptive memory size
+Subject: [PATCH 447/485] fix:board: eic770x: adaptive memory size
 
 Changelogs:
 1. fix bug caused by uboot add  adaptive memory size feature(npu malloc llc memory faile)

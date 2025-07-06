@@ -1,7 +1,7 @@
-From 2b66f9a779cdefbbd0e37fd3a0d83c915c822c5e Mon Sep 17 00:00:00 2001
+From 1da1aa2042a2e176d07c7b6927b12369f3085f1f Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 6 Feb 2025 16:26:16 +0800
-Subject: [PATCH 402/481] WIN2030-16412:feat: Optimize dma channel request
+Subject: [PATCH 402/485] WIN2030-16412:feat: Optimize dma channel request
 
 Changelogs:
 1. Resolved a kernel crash issue that occurs when a large number of tasks are added to a task

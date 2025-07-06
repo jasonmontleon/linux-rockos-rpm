@@ -1,7 +1,7 @@
-From 8399156f9b1507d19d7d76df69a66bdbfa8f57be Mon Sep 17 00:00:00 2001
+From ac370f3a6dc728850213887abb206c4950b3c741 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 14 Oct 2024 16:13:35 +0800
-Subject: [PATCH 303/481] debian: linux-image provide wireguard-modules
+Subject: [PATCH 303/485] debian: linux-image provide wireguard-modules
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/scripts/package/mkdebian b/scripts/package/mkdebian
-index 5044224cf671..fcbcfa0c3a6a 100755
+index c1a36da85e84..420c1e4c2d40 100755
 --- a/scripts/package/mkdebian
 +++ b/scripts/package/mkdebian
 @@ -220,6 +220,7 @@ Homepage: https://www.kernel.org/

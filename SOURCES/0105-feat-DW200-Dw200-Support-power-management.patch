@@ -1,7 +1,7 @@
-From 94ab97103c4ada9ca1b32fc5a0ca1eb8fc54bfbd Mon Sep 17 00:00:00 2001
+From 391c3805fbe297548b16cb0fe1222e6af2cb4558 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 17 Jul 2024 10:14:04 +0800
-Subject: [PATCH 105/481] feat(DW200): Dw200 Support power management
+Subject: [PATCH 105/485] feat(DW200): Dw200 Support power management
 
 Changelogs:
 1. Add generic & runtime power management for dw200.

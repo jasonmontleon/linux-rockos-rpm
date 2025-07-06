@@ -1,7 +1,7 @@
-From 8624ca47910c259407e35b908f5f8bc83cc37e36 Mon Sep 17 00:00:00 2001
+From 6b9c19d9f5c55374f2e94bd8ca3a32c4cce778c3 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 8 Jul 2024 09:24:31 +0800
-Subject: [PATCH 343/481] WIN2030-16812:feat:hdmi support 2880x1800@90 output.
+Subject: [PATCH 343/485] WIN2030-16812:feat:hdmi support 2880x1800@90 output.
 
 Changelogs:
 	hdmi support 2880x1800@90 output.

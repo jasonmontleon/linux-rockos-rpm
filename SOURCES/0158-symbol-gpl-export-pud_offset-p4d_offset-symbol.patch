@@ -1,7 +1,7 @@
-From 7463f6152f240af37c7afafb527f3f8a039ef05b Mon Sep 17 00:00:00 2001
+From dd728c1742b38fe17fffd56864619b6a116c4319 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 7 Aug 2024 18:18:57 +0800
-Subject: [PATCH 158/481] symbol: gpl: export pud_offset/p4d_offset symbol
+Subject: [PATCH 158/485] symbol: gpl: export pud_offset/p4d_offset symbol
 
 export pud_offset/p4d_offset symbol
 

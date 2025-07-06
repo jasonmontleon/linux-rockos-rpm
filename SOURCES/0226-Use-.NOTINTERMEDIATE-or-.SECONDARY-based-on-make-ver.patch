@@ -1,7 +1,7 @@
-From 44813a9386abe57b64602791c01a1c4f2ac2db6f Mon Sep 17 00:00:00 2001
+From 9127e054ab9b9bcb48e928deaec9e275e2c1e005 Mon Sep 17 00:00:00 2001
 From: Jeegar Lakhani <jeegar.lakhani@sifive.com>
 Date: Mon, 26 Aug 2024 22:35:26 -0700
-Subject: [PATCH 226/481] Use .NOTINTERMEDIATE or .SECONDARY based on make
+Subject: [PATCH 226/485] Use .NOTINTERMEDIATE or .SECONDARY based on make
  version
 
 Signed-off-by: Jeegar Lakhani <jeegar.lakhani@sifive.com>

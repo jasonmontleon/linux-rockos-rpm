@@ -1,7 +1,7 @@
-From 3cab6f2766c636f4cb3037ed613d3c37d6f318d7 Mon Sep 17 00:00:00 2001
+From b73a9f0189cb40bc5948256bfd2ab1de8a0925ae Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 12 Dec 2024 10:03:21 +0800
-Subject: [PATCH 336/481] WIN2030-16445:fix:DSP driver add switch for perf
+Subject: [PATCH 336/485] WIN2030-16445:fix:DSP driver add switch for perf
  function.
 
 Changelogs:

@@ -1,7 +1,7 @@
-From 8558aa070f88c30aa9c47af8963a75bcd68a4587 Mon Sep 17 00:00:00 2001
+From 03b8ae325af7bd5b871bd3e98d23d8067ff7eb82 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
-Subject: [PATCH 474/481] header workarounds
+Subject: [PATCH 477/485] header workarounds
 
 ---
  include/uapi/linux/dma_memcp.h      |  3 ++

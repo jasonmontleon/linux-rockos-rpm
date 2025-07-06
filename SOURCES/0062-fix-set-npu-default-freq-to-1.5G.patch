@@ -1,7 +1,7 @@
-From 911df7a5f322bb9e860769135644a132a0d391fe Mon Sep 17 00:00:00 2001
+From dfb1694777faf6fa1c23c5181d509e203169008d Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 2 Jul 2024 20:09:02 +0800
-Subject: [PATCH 062/481] fix:set npu default freq to 1.5G
+Subject: [PATCH 062/485] fix:set npu default freq to 1.5G
 
 Changelogs:
 	set npu default freq to 1.5G and voltage to 1.05v

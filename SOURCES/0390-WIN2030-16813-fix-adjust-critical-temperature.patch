@@ -1,7 +1,7 @@
-From 89b22706f46135b2f99c4d899863dde57ba86c24 Mon Sep 17 00:00:00 2001
+From e87ce5bbdc048f8a8ce41227854b39df4c730e9d Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 22 Jan 2025 14:30:11 +0800
-Subject: [PATCH 390/481] WIN2030-16813:fix:adjust critical temperature
+Subject: [PATCH 390/485] WIN2030-16813:fix:adjust critical temperature
 
 Changelogs:
 Change critical temperature from 88 to 110
