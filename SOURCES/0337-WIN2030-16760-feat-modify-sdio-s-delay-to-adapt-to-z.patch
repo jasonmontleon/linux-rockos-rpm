@@ -1,7 +1,7 @@
-From eecf6cb17c424ffaf8dca0badbca149360551c16 Mon Sep 17 00:00:00 2001
+From ce386f62f36f0a4f10142a35d43224afd187a40d Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 12 Dec 2024 19:06:12 +0800
-Subject: [PATCH 337/485] WIN2030-16760:feat:modify sdio's delay to adapt to
+Subject: [PATCH 337/551] WIN2030-16760:feat:modify sdio's delay to adapt to
  z530.
 
 Changelogs:

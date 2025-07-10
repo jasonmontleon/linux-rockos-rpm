@@ -1,0 +1,29 @@
+From 9c6c726475be5efa3bab8bfba2e78daef3934341 Mon Sep 17 00:00:00 2001
+From: luoxianke <luoxianke@eswincomputing.com>
+Date: Tue, 3 Jun 2025 16:01:34 +0800
+Subject: [PATCH 532/551] feat: d314 isp support
+
+Changelogs:
+1. add d314 isp dts
+
+Signed-off-by: luoxianke <luoxianke@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-d314.dts | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+index 92ce38d3db41..685702bdb4f4 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+@@ -86,7 +86,7 @@ &d0_graphcard2 {
+ };
+ 
+ &isp_0 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &isp_1 {
+-- 
+2.50.0
+

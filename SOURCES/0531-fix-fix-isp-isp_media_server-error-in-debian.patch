@@ -1,0 +1,312 @@
+From b0b9df8d20757140fb9ad7bbc1d678fa5556fac4 Mon Sep 17 00:00:00 2001
+From: shenzhenya <shenzhenya@eswincomputing.com>
+Date: Wed, 28 May 2025 10:41:07 +0800
+Subject: [PATCH 531/551] fix: fix isp isp_media_server error in debian
+
+Changelogs:
+1. modify the order of isp driver insmod(after imx327) only for evb a3
+
+Signed-off-by: shenzhenya <shenzhenya@eswincomputing.com>
+---
+ .../boot/dts/eswin/eic7700-evb-camera.dtsi    |  9 +++--
+ .../eswin/isp/vvcam/isp/vvcam_isp_driver.c    | 28 ++++++++++++-
+ .../isp/vvcam/v4l2/isp/vvcam_isp_driver.c     | 39 +++++++++++++++----
+ .../isp/vvcam/v4l2/video/vvcam_video_driver.c | 33 ++++++++++++++--
+ .../eswin/isp/vvcam/vb/vvcam_vb_driver.c      | 28 ++++++++++++-
+ 5 files changed, 121 insertions(+), 16 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
+index d9551aabd7c9..1aac57abe47a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
+@@ -8,7 +8,7 @@ vvcam_isp_0: vvcam_isp@0 {
+ 		id = <0>;
+ 		status = "okay";
+ 		dma-noncoherent;
+-
++		depends-on = <&imx327_0>;
+ 		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+@@ -64,6 +64,7 @@ vvcam_isp_port0_raw: endpoint {
+ 	vvcam_vb: vvcam-vb@0 {
+ 		compatible = "verisilicon,vb";
+ 		status = "okay";
++		depends-on = <&imx327_0>;
+ 		#size-cells = <2>;
+ 		dma-noncoherent;
+ 		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
+@@ -75,7 +76,7 @@ vvcam_video_0: vvcam_video@0 {
+ 		id = <0>;
+ 		status = "okay";
+ 		#size-cells = <2>;
+-
++		depends-on = <&imx327_0>;
+ 		dma-noncoherent;
+ 		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
+ 		iommus = <&smmu0 WIN2030_SID_ISP0>;
+@@ -310,4 +311,6 @@ axi2dvp_mipi2_in0: endpoint {
+ 	};
+ };
+ 
+-
++&isp_0 {
++	depends-on = <&imx327_0>;
++};
+diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c
+index f573b39d5b01..18b4f1bf789f 100644
+--- a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c
++++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c
+@@ -66,7 +66,9 @@
+ #include <linux/slab.h>
+ #include <linux/mm.h>
+ #include <linux/property.h>
+-
++#include <linux/i2c.h>
++#include <media/v4l2-subdev.h>
++#include <linux/delay.h>
+ #include <linux/iommu.h>
+ #include <linux/mfd/syscon.h>
+ #include <linux/bitfield.h>
+@@ -374,6 +376,30 @@ static int vvcam_isp_probe(struct platform_device *pdev)
+     int ret = 0;
+     struct vvcam_isp_dev *isp_dev;
+     char *ispdev_name;
++    struct device *dev = &pdev->dev;
++    struct device_node *sensor_np;
++    struct device *sensor_dev;
++    struct v4l2_subdev *sd;
++    int wait_time = 0;
++
++    sensor_np = of_parse_phandle(dev->of_node, "depends-on", 0);
++    if (sensor_np)
++    {
++        while (wait_time < 20000) {
++            sensor_dev = bus_find_device_by_of_node(&i2c_bus_type, sensor_np);
++            of_node_put(sensor_np);
++            if (sensor_dev) {
++                sd = dev_get_drvdata(sensor_dev);
++                put_device(sensor_dev);
++                if (sd && sd->v4l2_dev) {
++                    dev_info(dev, "Sensor is ready.\n");
++                    break;
++                }
++            }
++            msleep(1000);
++            wait_time += 1000;
++        }
++    }
+ 
+     isp_dev = devm_kzalloc(&pdev->dev,
+                 sizeof(struct vvcam_isp_dev), GFP_KERNEL);
+diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c
+index f75a632a7463..107cf344a61d 100644
+--- a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c
++++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c
+@@ -71,7 +71,9 @@
+ #include <media/v4l2-fwnode.h>
+ #include <media/v4l2-mediabus.h>
+ #include <media/v4l2-ctrls.h>
+-
++#include <linux/i2c.h>
++#include <linux/delay.h>
++#include <media/v4l2-subdev.h>
+ #include "vvcam_v4l2_common.h"
+ #include "vvcam_isp_driver.h"
+ #include "vvcam_isp_event.h"
+@@ -1276,7 +1278,7 @@ static int vvcam_isp_link_setup(struct media_entity *entity,
+ 		const struct media_pad *local,
+ 		const struct media_pad *remote, u32 flags)
+ {
+-    printk(KERN_ERR "lijun %s %d\n", __func__, __LINE__);
++    printk(KERN_ERR "%s %d\n", __func__, __LINE__);
+ 	return 0;
+ }
+ 
+@@ -1391,12 +1393,12 @@ static int vvcam_isp_async_notifier(struct vvcam_isp_dev *isp_dev)
+ 
+     for (pad = 0; pad < VVCAM_ISP_PAD_NR; pad++) {
+ 
+-        //pr_info("lijun %s, %d pad:%d, isp_dev->pads[pad].flags :%ld\n", __func__, __LINE__, pad, isp_dev->pads[pad].flags);
++        //pr_info("%s, %d pad:%d, isp_dev->pads[pad].flags :%ld\n", __func__, __LINE__, pad, isp_dev->pads[pad].flags);
+ 
+         if (isp_dev->pads[pad].flags != MEDIA_PAD_FL_SINK)
+             continue;
+ 
+-        //pr_info("lijun %s, %d pad:%d, subdev name = %s, fwnode name = %s\n", __func__, __LINE__, pad, isp_dev->sd.name, fwnode_get_name(dev_fwnode(dev)));
++        //pr_info("%s, %d pad:%d, subdev name = %s, fwnode name = %s\n", __func__, __LINE__, pad, isp_dev->sd.name, fwnode_get_name(dev_fwnode(dev)));
+ 
+         ep = fwnode_graph_get_endpoint_by_id(dev_fwnode(dev),
+                                         pad, 0, FWNODE_GRAPH_ENDPOINT_NEXT);
+@@ -1408,10 +1410,10 @@ static int vvcam_isp_async_notifier(struct vvcam_isp_dev *isp_dev)
+             fwnode_handle_put(ep);
+             continue;
+         }
+-		pr_info("lijun %s, %d remote_ep:%s\n", __func__, __LINE__,
++		pr_info("%s, %d remote_ep:%s\n", __func__, __LINE__,
+ 		       fwnode_get_name(remote_ep));
+ 
+-		pr_info("lijun %s, %d ep:%s\n", __func__, __LINE__,
++		pr_info("%s, %d ep:%s\n", __func__, __LINE__,
+ 		       fwnode_get_name(ep));
+ 
+         fwnode_handle_put(remote_ep);
+@@ -1544,7 +1546,30 @@ static int vvcam_isp_probe(struct platform_device *pdev)
+ {
+     struct device *dev = &pdev->dev;
+     struct vvcam_isp_dev *isp_dev;
++    struct device_node *sensor_np;
++    struct device *sensor_dev;
++    struct v4l2_subdev *sd;
+     int ret;
++    int wait_time = 0;
++
++    sensor_np = of_parse_phandle(dev->of_node, "depends-on", 0);
++    if (sensor_np)
++    {
++        while (wait_time < 20000) {
++            sensor_dev = bus_find_device_by_of_node(&i2c_bus_type, sensor_np);
++            of_node_put(sensor_np);
++            if (sensor_dev) {
++                sd = dev_get_drvdata(sensor_dev);
++                put_device(sensor_dev);
++                if (sd && sd->v4l2_dev) {
++                    dev_info(dev, "Sensor is ready.\n");
++                    break;
++                }
++            }
++            msleep(1000);
++            wait_time += 1000;
++        }
++    }
+ 
+     isp_dev = devm_kzalloc(&pdev->dev,
+ 		        sizeof(struct vvcam_isp_dev), GFP_KERNEL);
+@@ -1734,7 +1759,7 @@ static int __init vvcam_isp_init_module(void)
+     }
+ 
+ #ifdef VVCAM_PLATFORM_REGISTER
+-    printk(KERN_ERR "lijun %s %d\n", __func__, __LINE__);
++    printk(KERN_ERR "%s %d\n", __func__, __LINE__);
+     ret = vvcam_isp_platform_device_register();
+     if (ret) {
+ 		platform_driver_unregister(&vvcam_isp_driver);
+diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c
+index a49d7b11955b..b48cd7f5e2a8 100644
+--- a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c
++++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c
+@@ -70,7 +70,9 @@
+ #include <media/v4l2-mc.h>
+ #include <media/videobuf2-dma-contig.h>
+ #include <media/v4l2-fwnode.h>
+-
++#include <linux/i2c.h>
++#include <linux/delay.h>
++#include <media/v4l2-subdev.h>
+ #include "vvcam_video_driver.h"
+ #include "vvcam_video_register.h"
+ #ifdef VVCAM_PLATFORM_REGISTER
+@@ -402,7 +404,7 @@ static int vvcam_video_async_register_subdev(struct vvcam_media_dev *vvcam_mdev)
+ 
+     vvcam_mdev->notifier.ops = &vvcam_video_async_nf_ops;
+ 
+-    printk(KERN_ERR "lijun %s %d\n", __func__, __LINE__);
++    printk(KERN_ERR "%s %d\n", __func__, __LINE__);
+     v4l2_async_nf_init(&vvcam_mdev->notifier, &vvcam_mdev->v4l2_dev);
+ 
+     while (1) {
+@@ -414,10 +416,10 @@ static int vvcam_video_async_register_subdev(struct vvcam_media_dev *vvcam_mdev)
+ 
+ 		remote_ep = fwnode_graph_get_remote_port_parent(ep);
+ 
+-		pr_info("lijun %s, %d remote_ep:%s\n", __func__, __LINE__,
++		pr_info("%s, %d remote_ep:%s\n", __func__, __LINE__,
+ 		       fwnode_get_name(remote_ep));
+ 
+-		pr_info("lijun %s, %d ep:%s\n", __func__, __LINE__,
++		pr_info("%s, %d ep:%s\n", __func__, __LINE__,
+ 		       fwnode_get_name(ep));
+     
+         // asc = vvcam_video_async_nf_add_fwnode_remote(&vvcam_mdev->notifier,
+@@ -614,6 +616,29 @@ static int vvcam_video_probe(struct platform_device *pdev)
+     struct vvcam_media_dev *vvcam_mdev;
+     struct device *parent = pdev->dev.parent;
+     struct eswin_vi_device* es_vi_device;
++    struct device_node *sensor_np;
++    struct device *sensor_dev;
++    struct v4l2_subdev *sd;
++    int wait_time = 0;
++
++    sensor_np = of_parse_phandle(dev->of_node, "depends-on", 0);
++    if (sensor_np)
++    {
++        while (wait_time < 20000) {
++            sensor_dev = bus_find_device_by_of_node(&i2c_bus_type, sensor_np);
++            of_node_put(sensor_np);
++            if (sensor_dev) {
++                sd = dev_get_drvdata(sensor_dev);
++                put_device(sensor_dev);
++                if (sd && sd->v4l2_dev) {
++                    dev_info(dev, "Sensor is ready.\n");
++                    break;
++                }
++            }
++            msleep(1000);
++            wait_time += 1000;
++        }
++    }
+ 
+     vvcam_mdev = devm_kzalloc(dev, sizeof(struct vvcam_media_dev), GFP_KERNEL);
+ 	if (!vvcam_mdev)
+diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c
+index c8483857beb3..cf1b1877c08f 100644
+--- a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c
++++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c
+@@ -65,9 +65,11 @@
+ #include <linux/poll.h>
+ #include <linux/slab.h>
+ #include <linux/mm.h>
++#include <linux/delay.h>
+ #include <linux/dmaengine.h>
+ #include <linux/dma-mapping.h>
+-
++#include <linux/i2c.h>
++#include <media/v4l2-subdev.h>
+ #include "vvcam_vb_driver.h"
+ #include "vvcam_vb.h"
+ #include "vvcam_vb_platform.h"
+@@ -286,7 +288,31 @@ static int vvcam_vb_create_mm_allocator(struct platform_device *pdev,
+ static int vvcam_vb_probe(struct platform_device *pdev)
+ {
+     struct vvcam_vb_dev *vb_dev;
++    struct device *dev = &pdev->dev;
++    struct device_node *sensor_np;
++    struct device *sensor_dev;
++    struct v4l2_subdev *sd;
+     int ret = 0;
++    int wait_time = 0;
++
++    sensor_np = of_parse_phandle(dev->of_node, "depends-on", 0);
++    if (sensor_np)
++    {
++        while (wait_time < 20000) {
++            sensor_dev = bus_find_device_by_of_node(&i2c_bus_type, sensor_np);
++            of_node_put(sensor_np);
++            if (sensor_dev) {
++                sd = dev_get_drvdata(sensor_dev);
++                put_device(sensor_dev);
++                if (sd && sd->v4l2_dev) {
++                    dev_info(dev, "Sensor is ready.\n");
++                    break;
++                }
++            }
++            msleep(1000);
++            wait_time += 1000;
++        }
++    }
+ 
+     vb_dev = devm_kzalloc(&pdev->dev,
+                 sizeof(struct vvcam_vb_dev), GFP_KERNEL);
+-- 
+2.50.0
+

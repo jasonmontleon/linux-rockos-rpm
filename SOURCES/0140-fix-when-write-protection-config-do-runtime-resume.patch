@@ -1,7 +1,7 @@
-From 4f9f18d2bb3e4a2b08b55c38f78fe32c6f544776 Mon Sep 17 00:00:00 2001
+From fb39304e50dd6723f51715fa12b8f67a9c00503c Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 7 Aug 2024 17:01:33 +0800
-Subject: [PATCH 140/485] fix:when write protection config, do runtime resume
+Subject: [PATCH 140/551] fix:when write protection config, do runtime resume
 
 Changelogs:
       when write protection config, do runtime resume.

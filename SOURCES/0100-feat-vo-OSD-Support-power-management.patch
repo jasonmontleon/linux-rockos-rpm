@@ -1,7 +1,7 @@
-From ef3cc28a4029be7a1263632e48e28ff3ff0596be Mon Sep 17 00:00:00 2001
+From f7bad05a55e8c33d28fcb14df2a2b8bbb214dcd8 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Tue, 16 Jul 2024 17:43:26 +0800
-Subject: [PATCH 100/485] feat(vo): OSD Support power management
+Subject: [PATCH 100/551] feat(vo): OSD Support power management
 
 Changelogs:
 1. Add generic power management for vo.

@@ -1,7 +1,7 @@
-From 58b071e61bc89f944c3df2f543a8212f0be2fd93 Mon Sep 17 00:00:00 2001
+From 84b3d0d4ba6b83db23ac082863699b2ce53d754b Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:14 -0800
-Subject: [PATCH 161/485] riscv: Factor out riscv-march-y to a separate
+Subject: [PATCH 161/551] riscv: Factor out riscv-march-y to a separate
  Makefile
 
 Since it is not possible to incrementally add/remove extensions from the

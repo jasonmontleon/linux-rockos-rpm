@@ -1,7 +1,7 @@
-From 5d2d7d2ddd05d43a44409a65db24746966d15c39 Mon Sep 17 00:00:00 2001
+From 3193ae84d114d74b06c27b4ab35a86923f93bf62 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 25 Dec 2024 11:51:07 +0800
-Subject: [PATCH 357/485] WIN2030-16883:fix:npu die1 clock miss
+Subject: [PATCH 357/551] WIN2030-16883:fix:npu die1 clock miss
 
 Changelogs:
 	1. add npu die1 miseed clock

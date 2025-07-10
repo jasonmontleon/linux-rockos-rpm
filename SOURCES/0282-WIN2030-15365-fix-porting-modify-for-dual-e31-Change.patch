@@ -1,7 +1,7 @@
-From efce676a292fb291e4bf487baf646adcf449484c Mon Sep 17 00:00:00 2001
+From f96d7c4d78263fc98015b89331adb5034bb92c25 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Tue, 5 Nov 2024 14:59:26 +0800
-Subject: [PATCH 282/485] WIN2030-15365: fix: porting modify for dual e31
+Subject: [PATCH 282/551] WIN2030-15365: fix: porting modify for dual e31
  Changelogs:
 
 Change-Id: I2d1b7021bb093e96d03fb70bd3f7f172872d9631

@@ -1,7 +1,7 @@
-From fce6e8177a58aae3d4e571cab2bdcc79d58737c5 Mon Sep 17 00:00:00 2001
+From d698f864a20b370a9c056e5b5ad7053bdf6aa8e3 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 13:21:56 +0800
-Subject: [PATCH 381/485] WIN2030-16919:feat:Apply numa early node patch from
+Subject: [PATCH 381/551] WIN2030-16919:feat:Apply numa early node patch from
  upstream
 
 Changelogs:

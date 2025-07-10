@@ -1,7 +1,7 @@
-From 98c7aca0542fb75541cab3b7c65888fe3596f37c Mon Sep 17 00:00:00 2001
+From b705c098ceed8eba5c49ee4649418ee192b1e6c3 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 31 Mar 2025 17:39:31 +0800
-Subject: [PATCH 452/485] fix(vc):opt error log for redup interrupts
+Subject: [PATCH 452/551] fix(vc):opt error log for redup interrupts
 
 Changelogs:
 opt error log for reduplicative interrupts.

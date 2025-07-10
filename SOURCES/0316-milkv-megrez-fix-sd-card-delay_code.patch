@@ -1,7 +1,7 @@
-From 3648c56ce39941cca8369369cf217c448ffd9611 Mon Sep 17 00:00:00 2001
+From 4f954512a6f96191c757a268c0a1172c36ec0165 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Thu, 2 Jan 2025 18:46:26 +0800
-Subject: [PATCH 316/485] milkv-megrez: fix sd card delay_code
+Subject: [PATCH 316/551] milkv-megrez: fix sd card delay_code
 
 Signed-off-by: carbon <carbon@milkv.io>
 ---

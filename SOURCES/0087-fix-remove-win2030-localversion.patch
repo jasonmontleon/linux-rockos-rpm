@@ -1,7 +1,7 @@
-From 14b4d452191755f9cc2e4d7a4e177834e78e8b46 Mon Sep 17 00:00:00 2001
+From 5f65b62b82ff04c27bab2e63fa778c5b97de0034 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 13 Jun 2024 22:21:56 +0800
-Subject: [PATCH 087/485] fix: remove win2030 localversion
+Subject: [PATCH 087/551] fix: remove win2030 localversion
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

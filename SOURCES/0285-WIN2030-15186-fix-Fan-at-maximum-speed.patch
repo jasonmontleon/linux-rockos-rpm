@@ -1,7 +1,7 @@
-From 094dc1a7b80269ff00ff1e6fe8f6b966fa1991c0 Mon Sep 17 00:00:00 2001
+From f28b6879030d5067e588db0ff1efa0cb12ce486e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 21 Nov 2024 15:51:28 +0800
-Subject: [PATCH 285/485] WIN2030-15186:fix:Fan at maximum speed
+Subject: [PATCH 285/551] WIN2030-15186:fix:Fan at maximum speed
 
 Changelogs:
 	Fan at maximum speed

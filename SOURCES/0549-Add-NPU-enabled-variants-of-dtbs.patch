@@ -1,25 +1,25 @@
-From cb64ee0049f9cb5280edafb5ba0f5bcd1b22593f Mon Sep 17 00:00:00 2001
+From d846cea150c9aabc10cd48d8060394d50c007d36 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sun, 23 Feb 2025 13:25:01 -0500
-Subject: [PATCH 484/485] Add NPU enabled variants of dtbs
+Subject: [PATCH 549/551] Add NPU enabled variants of dtbs
 
 ---
  arch/riscv/boot/dts/eswin/Makefile            |   3 +
- .../eswin/eic7700-hifive-premier-p550-npu.dts | 901 ++++++++++++++++
+ .../eswin/eic7700-hifive-premier-p550-npu.dts | 908 ++++++++++++++++
  .../dts/eswin/eic7700-milkv-megrez-npu.dts    | 982 ++++++++++++++++++
- .../eswin/eic7700-pine64-starpro64-npu.dts    | 861 +++++++++++++++
- 4 files changed, 2747 insertions(+)
+ .../eswin/eic7700-pine64-starpro64-npu.dts    | 888 ++++++++++++++++
+ 4 files changed, 2781 insertions(+)
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index a973f47481aa..036fc660debb 100644
+index e2f266a1cba6..5fb6e15f0bbf 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
-@@ -6,6 +6,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
- 							eic7700-hifive-premier-p550.dtb \
+@@ -7,6 +7,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
                                                          eic7700-milkv-megrez.dtb \
+                                                         eic7700-milkv-megrez-nx.dtb \
                                                          eic7700-pine64-starpro64.dtb \
 +							eic7700-hifive-premier-p550-npu.dtb \
 +							eic7700-milkv-megrez-npu.dtb \
@@ -29,10 +29,10 @@ index a973f47481aa..036fc660debb 100644
  							eic7702-evb-a1.dtb\
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 new file mode 100644
-index 000000000000..b8af15d09d1b
+index 000000000000..ae401ec96ddd
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
-@@ -0,0 +1,901 @@
+@@ -0,0 +1,908 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Device Tree file for Eswin EIC7700 SoC.
@@ -64,7 +64,7 @@ index 000000000000..b8af15d09d1b
 +#define CMA_SIZE		0x20000000
 +
 +#include "eswin-win2030-die0-soc.dtsi"
-+// #include "eic7700-dvb-dsi-panel.dtsi"
++//#include "eic7700-dvb-dsi-panel.dtsi"
 +#include "eic7700-pinctrl.dtsi"
 +#include <dt-bindings/interrupt-controller/irq.h>
 +#include <dt-bindings/gpio/gpio.h>
@@ -117,7 +117,7 @@ index 000000000000..b8af15d09d1b
 +			reusable;
 +			size = <0x0 CMA_SIZE>;
 +			alignment = <0x0 0x1000>;
-+			alloc-ranges = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		 	alloc-ranges = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
 +			linux,cma-default;
 +		};
 +
@@ -146,6 +146,19 @@ index 000000000000..b8af15d09d1b
 +			reg = <0x3 0x0 0x1 0x80000000>;
 +			no-map;
 +		};
++
++		dvp2axi_mem: dvp2axi-mem@90000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x90000000 0x0 0x10000000>;
++			no-map;
++		};
++	};
++
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
 +	};
 +};
 +
@@ -425,7 +438,7 @@ index 000000000000..b8af15d09d1b
 +};
 +
 +&isp_0 {
-+	status = "disabled";
++	status = "okay";
 +};
 +
 +&isp_1 {
@@ -434,26 +447,6 @@ index 000000000000..b8af15d09d1b
 +
 +&dewarp {
 +	status = "okay";
-+};
-+
-+&mipi_dphy_rx {
-+	status = "disabled";
-+};
-+
-+&csi_dma0 {
-+	status = "disabled";
-+};
-+
-+&csi_dma1 {
-+	status = "disabled";
-+};
-+
-+&csi2_0 {
-+	status = "disabled";
-+};
-+
-+&csi2_1 {
-+	status = "disabled";
 +};
 +
 +&sdhci_emmc {
@@ -478,8 +471,9 @@ index 000000000000..b8af15d09d1b
 +	enable-data-pullup;
 +	no-sdio;
 +	no-mmc;
-+	disable-wp;
-+	broken-cd;
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio13_default>;
++	cd-gpios = <&porta 13 GPIO_ACTIVE_LOW>;
 +};
 +
 +&sdio1 {
@@ -493,6 +487,7 @@ index 000000000000..b8af15d09d1b
 +	keep-power-in-suspend;
 +	no-sd;
 +	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
 +	aw3155:wifi_aw3155@0 {
 +		compatible = "aml_w1_sdio";
 +		reg = <0x0>;
@@ -503,6 +498,12 @@ index 000000000000..b8af15d09d1b
 +		pinctrl-1 = <&pinctrl_gpio79_default>;
 +		irq-gpios = <&porta 15 GPIO_ACTIVE_HIGH>;
 +		rst-gpios = <&portc 15 GPIO_ACTIVE_HIGH>;
++	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio79_default>;
++		gpio_wl_reg_on = <&portc 15 GPIO_ACTIVE_HIGH>;
 +	};
 +};
 +
@@ -718,10 +719,10 @@ index 000000000000..b8af15d09d1b
 +	status = "disabled";
 +};
 +
-+&d0_i2c5 {
-+	/* PCA9548 */
++/* &d0_i2c5 {
++	// PCA9548
 +	status = "okay";
-+};
++}; */
 +
 +&d0_i2c6 {
 +	/* unused */
@@ -934,6 +935,12 @@ index 000000000000..b8af15d09d1b
 +		clock-latency-ns = <70000>;
 +	};
 +};
++
++&dvp2axi {
++	memory-region = <&dvp2axi_mem>;
++};
++
++#include "eic7700-hifive-premier-p550-camera.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
 new file mode 100644
 index 000000000000..d04b2606d54b
@@ -1924,10 +1931,10 @@ index 000000000000..d04b2606d54b
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 new file mode 100644
-index 000000000000..2860c4b37162
+index 000000000000..f1eaee87ed37
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
-@@ -0,0 +1,861 @@
+@@ -0,0 +1,888 @@
 +// SPDX-License-Identifier: GPL-2.0
 +/*
 + * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
@@ -2394,7 +2401,9 @@ index 000000000000..2860c4b37162
 +&sdhci_emmc {
 +	/* emmc */
 +	status = "okay";
-+	delay_code = <0x17>;
++	/delete-property/ mmc-hs400-1_8v;
++	no-mmc-hs400;
++	delay_code = <0x37>;
 +	drive-impedance-ohm = <50>;
 +	enable-cmd-pullup;
 +	enable-data-pullup;
@@ -2407,7 +2416,7 @@ index 000000000000..2860c4b37162
 +&sdio0 {
 +	/* sd card */
 +	status = "okay";
-+	delay_code = <0x55>;
++	delay_code = <0x70>;
 +	drive-impedance-ohm = <33>;
 +	enable-cmd-pullup;
 +	enable-data-pullup;
@@ -2435,7 +2444,7 @@ index 000000000000..2860c4b37162
 +	rst-gpios = <&portc 30 GPIO_ACTIVE_LOW>;
 +	eswin,rgmiisel = <&pinctrl 0x290 0x3>;
 +	eswin,led-cfgs = <0x6100 0xa40 0x420>;
-+	dly-param-1000m = <0x23232323 0x800c8023 0x0c0c0c0c>;
++	dly-param-1000m = <0x23232323 0x80068023 0x06060606>;
 +	dly-param-100m = <0x50505050 0x803f8050 0x3f3f3f3f>;
 +	dly-param-10m = <0 0 0>;
 +	status = "okay";
@@ -2463,12 +2472,17 @@ index 000000000000..2860c4b37162
 +
 +&d0_usbdrd_dwc3_0 {
 +	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usb0_pwren_default>;
 +	dr_mode = "host";
 +	maximum-speed = "super-speed";
 +};
 +
 +&d0_usbdrd3_1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio43_default>;
 +	status = "okay";
++	hub-rst-gpios = <&portb 11 GPIO_ACTIVE_HIGH>;
 +};
 +
 +&d0_usbdrd_dwc3_1 {
@@ -2782,12 +2796,32 @@ index 000000000000..2860c4b37162
 +	apply_npu_high_freq;
 +};
 +
++&d0_clock {
++	status = "okay";
++	force-1_8ghz;
++};
++
 +&d0_cpu_opp_table {
-+	opp-1600000000 {
-+		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
-+		opp-microvolt = <900000>;
-+		clock-latency-ns = <70000>;
-+	};
++        opp-1500000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1600000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1700000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1700M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1800000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
 +};
 -- 
 2.50.0

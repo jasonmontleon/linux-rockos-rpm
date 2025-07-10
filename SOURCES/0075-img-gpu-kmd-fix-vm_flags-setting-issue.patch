@@ -1,7 +1,7 @@
-From 6fed916e8995d248f92d952e6063ee96a026d930 Mon Sep 17 00:00:00 2001
+From fb64fe4784daced75cd1549b8e4ac1b18c3aac09 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 11:34:07 +0800
-Subject: [PATCH 075/485] img gpu kmd: fix vm_flags setting issue
+Subject: [PATCH 075/551] img gpu kmd: fix vm_flags setting issue
 
 ref: https://gist.github.com/vejeta/9078219f082d2bfd62b08b6eada780e6
 ---

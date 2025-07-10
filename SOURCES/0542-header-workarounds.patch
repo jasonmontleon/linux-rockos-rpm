@@ -1,17 +1,18 @@
-From 03b8ae325af7bd5b871bd3e98d23d8067ff7eb82 Mon Sep 17 00:00:00 2001
+From fc6e73286a887b156a0308de0e58aa0880e45c34 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
-Subject: [PATCH 477/485] header workarounds
+Subject: [PATCH 542/551] header workarounds
 
 ---
  include/uapi/linux/dma_memcp.h      |  3 ++
  include/uapi/linux/es_vb_user.h     |  6 +++-
  include/uapi/linux/eswin-ipc-scpu.h |  5 +++-
+ include/uapi/linux/malloc_dmabuf.h  |  4 ++-
  include/uapi/linux/mmz_vb.h         | 45 +++++++++++++++--------------
- 4 files changed, 36 insertions(+), 23 deletions(-)
+ 5 files changed, 39 insertions(+), 24 deletions(-)
 
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
-index 3cb75a348ba8..3a4247abe26c 100644
+index 30ca7423a39c..aec2723fc4c8 100644
 --- a/include/uapi/linux/dma_memcp.h
 +++ b/include/uapi/linux/dma_memcp.h
 @@ -21,6 +21,9 @@
@@ -68,6 +69,26 @@ index e8fa083a2c7f..a0164b374b13 100644
  	struct dma_allocation_data dma_alloc_info;
  }khandle_dma_allocation_data_t;
  
+diff --git a/include/uapi/linux/malloc_dmabuf.h b/include/uapi/linux/malloc_dmabuf.h
+index bf66ff0230ea..1c5832b43bfd 100644
+--- a/include/uapi/linux/malloc_dmabuf.h
++++ b/include/uapi/linux/malloc_dmabuf.h
+@@ -21,6 +21,8 @@
+  *
+  */
+ 
++typedef _Bool bool;
++
+ #ifndef ES_DMA_MALLOC_DMABUF_H
+ #define ES_DMA_MALLOC_DMABUF_H
+ 
+@@ -50,4 +52,4 @@ struct esw_userptr {
+ #define ESW_CONVERT_USERPTR_TO_DMABUF       _IOWR(ESW_MALLOC_DMABUF_MAGIC, 1, struct esw_userptr)
+ #define ESW_GET_DMABUF_INFO                 _IOWR(ESW_MALLOC_DMABUF_MAGIC, 2, struct esw_userptr)
+ 
+-#endif
+\ No newline at end of file
++#endif
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
 index 27a5f0a94352..5e808bba0e49 100644
 --- a/include/uapi/linux/mmz_vb.h

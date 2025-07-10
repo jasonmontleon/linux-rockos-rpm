@@ -1,7 +1,7 @@
-From 2cbd19cefe739688e632777d85bc08bbb962636d Mon Sep 17 00:00:00 2001
+From 8ebca6b131a6f7b498bf37fa35f0ac0ca9d0ce1e Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:34:08 +0800
-Subject: [PATCH 082/485] configs: enable initrd
+Subject: [PATCH 082/551] configs: enable initrd
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

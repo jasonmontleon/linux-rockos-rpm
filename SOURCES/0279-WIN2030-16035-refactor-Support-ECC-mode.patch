@@ -1,7 +1,7 @@
-From ff58429b4aa27d1746cdcffffe5b5d2fe2516b36 Mon Sep 17 00:00:00 2001
+From 9e3332ba98abacdb87bf9bdbe0b9a94d0b5ed08c Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 5 Nov 2024 10:24:03 +0800
-Subject: [PATCH 279/485] WIN2030-16035:refactor:Support ECC mode
+Subject: [PATCH 279/551] WIN2030-16035:refactor:Support ECC mode
 
 Changelogs:
 In order to support ECC mode during 7702 bringup, reserve hightest 1/8 ddr for ECC

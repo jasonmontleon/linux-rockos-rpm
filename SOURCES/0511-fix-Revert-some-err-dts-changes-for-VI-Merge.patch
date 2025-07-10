@@ -1,0 +1,224 @@
+From 527a259523031aefdbc38e98c424a75a94c372af Mon Sep 17 00:00:00 2001
+From: yufangxian <yufangxian@eswincomputing.com>
+Date: Fri, 16 May 2025 14:42:41 +0800
+Subject: [PATCH 511/551] fix: Revert some err dts changes for VI Merge
+
+Changelogs:
+1. delete one include file in dts which cause hdmi cannot display
+2. revert evb dts change to work round one evb board problem
+3. change some log level
+4. revert some err osm dts changes
+
+Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
+Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  |  3 +--
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |  2 +-
+ arch/riscv/boot/dts/eswin/eic7700-osm.dts     | 16 +++++++++------
+ .../media/platform/eswin/dvp2axi/capture.c    | 20 +++++++++----------
+ 4 files changed, 22 insertions(+), 19 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index 478bd6201176..2b22977cf1aa 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -299,7 +299,7 @@ &d0_lpcpu {
+ };
+ 
+ &pcie {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_npu{
+@@ -811,7 +811,6 @@ mpq8785@10 {
+ 		eswin,regulator_default-microvolt=<1000000>;
+ 		eswin,regulator_label = "supply vdd1", "npu vdd1", "npu current1", "npu temperature1";
+ 		label = "npu_vdd";
+-		status = "okay";
+ 		regulators{
+ 			npu_vcc1:npu_svcc{
+ 				regulator-name="NPU_SVCC";
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 0472c026c77f..b4b58b00518e 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -29,7 +29,7 @@
+ #define CMA_SIZE		0x20000000
+ 
+ #include "eswin-win2030-die0-soc.dtsi"
+-#include "eic7700-dvb-dsi-panel.dtsi"
++//#include "eic7700-dvb-dsi-panel.dtsi"
+ #include "eic7700-pinctrl.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
+index ae1af65fcc40..b0e69d985cb0 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
+@@ -48,8 +48,7 @@ aliases {
+ 		serial0 = &d0_uart0;
+ 		ethernet0 = &d0_gmac0;
+ 		ethernet1 = &d0_gmac1;
+-		rtc0 = &die0_rtc;
+-		rtc1 = &pcf_rtc;
++		rtc0 = &pcf_rtc;
+ 	};
+ 
+ 	chosen {
+@@ -512,6 +511,7 @@ &sdhci_emmc {
+ 	drive-impedance-ohm = <50>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
++	disable-wp;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_emmc_led_control_default>;
+ 	no-sdio;
+@@ -525,6 +525,7 @@ &sdio0 {
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
++	disable-wp;
+ 	no-sdio;
+ 	no-mmc;
+ };
+@@ -596,6 +597,9 @@ &d0_sata {
+ 
+ &d0_usbdrd3_0 {
+ 	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio55_default>;
++	hub-rst-gpios = <&portb 23 GPIO_ACTIVE_HIGH>;
+ };
+ 
+ &d0_usbdrd_dwc3_0 {
+@@ -708,6 +712,7 @@ &d0_mbox7 {
+ 
+ &fan_control {
+ 	status = "okay";
++	eswin,pwm_inverted;
+ };
+ 
+ &d0_i2c0 {
+@@ -737,7 +742,7 @@ d0_tlv320aic3106: tlv320aic3106@1b {
+ 		compatible = "ti,tlv320aic3106";
+ 		reg = <0x1b>;
+ 		status = "okay";
+-		ai3x-ocmv = <2>; /* Common-Mode Voltage 1.65V */
++		ai3x-ocmv = <0>; /* Common-Mode Voltage 1.35V */
+ 		ai3x-micbias-vg = <2>; /* MICBIAS_2_5V */
+ 		#sound-dai-cells = <0>;
+ 		pinctrl-names = "default";
+@@ -754,7 +759,7 @@ d0_codec3106_endpoint: endpoint {
+ 
+ &d0_i2c3 {
+ 	/* unused */
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_i2c4 {
+@@ -809,12 +814,11 @@ npu_vcc1:npu_svcc{
+ 				regulator-min-microamp=<20000000>;
+ 				regulator-max-microamp=<40000000>;
+ 				regulator-ov-protection-microvolt=<1100000>;
+-				regulator-always-on;
+ 			};
+ 		};
+ 	};
+ 	pcf_rtc:rtc@51 {
+-		compatible = "nxp,pcf8563";
++		compatible = "nxp,pcf85063a";
+ 		reg = <0x51>;
+ 	};
+ };
+diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
+index 6df6dd5b0c1c..298f9cd38193 100644
+--- a/drivers/media/platform/eswin/dvp2axi/capture.c
++++ b/drivers/media/platform/eswin/dvp2axi/capture.c
+@@ -843,7 +843,7 @@ static struct v4l2_subdev *get_remote_sensor(struct es_dvp2axi_stream *stream,
+ 
+ 	remote = media_pad_remote_pad_first(local);
+ 	if (!remote) {
+-		v4l2_err(&stream->dvp2axidev->v4l2_dev, "%s: remote pad is null\n",
++		v4l2_dbg(1, es_dvp2axi_debug, &stream->dvp2axidev->v4l2_dev, "%s: remote pad is null\n",
+ 			 __func__);
+ 		return NULL;
+ 	}
+@@ -4839,7 +4839,7 @@ void es_dvp2axi_buf_queue(struct vb2_buffer *vb)
+ 	struct v4l2_pix_format_mplane *pixm = &stream->pixm;
+ 	const struct dvp2axi_output_fmt *fmt = stream->dvp2axi_fmt_out;
+ 	struct es_dvp2axi_hw *hw_dev = stream->dvp2axidev->hw_dev;
+-	struct es_dvp2axi_tools_buffer *tools_buf;
++	struct es_dvp2axi_tools_buffer *tools_buf = NULL;
+ 	struct es_dvp2axi_tools_vdev *tools_vdev = stream->tools_vdev;
+ 	unsigned long flags;
+ 	int i;
+@@ -5262,8 +5262,8 @@ void es_dvp2axi_do_soft_reset(struct es_dvp2axi_device *dev)
+ static void es_dvp2axi_release_rdbk_buf(struct es_dvp2axi_stream *stream)
+ {
+ 	struct es_dvp2axi_device *dev = stream->dvp2axidev;
+-	struct es_dvp2axi_buffer *rdbk_buf;
+-	struct es_dvp2axi_buffer *tmp_buf;
++	struct es_dvp2axi_buffer *rdbk_buf = NULL;
++	struct es_dvp2axi_buffer *tmp_buf = NULL;
+ 	unsigned long flags;
+ 	bool has_added;
+ 	int index = 0;
+@@ -5919,7 +5919,7 @@ int es_dvp2axi_update_sensor_info(struct es_dvp2axi_stream *stream)
+ 
+ 	sensor_sd = get_remote_sensor(stream, NULL);
+ 	if (!sensor_sd) {
+-		v4l2_err(&stream->dvp2axidev->v4l2_dev,
++		v4l2_dbg(1, es_dvp2axi_debug, &stream->dvp2axidev->v4l2_dev,
+ 			 "%s: stream[%d] get remote sensor_sd failed!\n",
+ 			 __func__, stream->id);
+ 		return -ENODEV;
+@@ -5927,7 +5927,7 @@ int es_dvp2axi_update_sensor_info(struct es_dvp2axi_stream *stream)
+ 
+ 	sensor = sd_to_sensor(stream->dvp2axidev, sensor_sd);
+ 	if (!sensor) {
+-		v4l2_err(&stream->dvp2axidev->v4l2_dev,
++		v4l2_dbg(1, es_dvp2axi_debug, &stream->dvp2axidev->v4l2_dev,
+ 			 "%s: stream[%d] get remote sensor failed!\n", __func__,
+ 			 stream->id);
+ 		return -ENODEV;
+@@ -5935,7 +5935,7 @@ int es_dvp2axi_update_sensor_info(struct es_dvp2axi_stream *stream)
+ 	ret = v4l2_subdev_call(sensor->sd, pad, get_mbus_config, 0,
+ 			       &sensor->mbus);
+ 	if (ret && ret != -ENOIOCTLCMD) {
+-		v4l2_err(&stream->dvp2axidev->v4l2_dev,
++		v4l2_dbg(1, es_dvp2axi_debug, &stream->dvp2axidev->v4l2_dev,
+ 			 "%s: get remote %s mbus failed!\n", __func__,
+ 			 sensor->sd->name);
+ 		return ret;
+@@ -6527,7 +6527,7 @@ int es_dvp2axi_do_start_stream(struct es_dvp2axi_stream *stream,
+ 	if (!dev->active_sensor) {
+ 		ret = es_dvp2axi_update_sensor_info(stream);
+ 		if (ret < 0) {
+-			v4l2_err(v4l2_dev, "update sensor info failed %d\n",
++			v4l2_dbg(1, es_dvp2axi_debug,v4l2_dev, "update sensor info failed %d\n",
+ 				 ret);
+ 			goto out;
+ 		}
+@@ -7139,7 +7139,7 @@ static int es_dvp2axi_fh_open(struct file *filp)
+ 	/* Make sure active sensor is valid before .set_fmt() */
+ 	ret = es_dvp2axi_update_sensor_info(stream);
+ 	if (ret < 0) {
+-		v4l2_err(vdev, "update sensor info failed %d\n", ret);
++		v4l2_dbg(1, es_dvp2axi_debug, vdev, "update sensor info failed %d\n", ret);
+ 
+ 		return ret;
+ 	}
+@@ -7708,7 +7708,7 @@ void es_dvp2axi_set_fps(struct es_dvp2axi_stream *stream, struct es_dvp2axi_fps
+ 	if (!stream->dvp2axidev->terminal_sensor.sd) {
+ 		ret = es_dvp2axi_update_sensor_info(stream);
+ 		if (ret) {
+-			v4l2_err(&stream->dvp2axidev->v4l2_dev,
++			v4l2_dbg(1, es_dvp2axi_debug ,&stream->dvp2axidev->v4l2_dev,
+ 				 "%s update sensor info fail\n", __func__);
+ 			return;
+ 		}
+-- 
+2.50.0
+

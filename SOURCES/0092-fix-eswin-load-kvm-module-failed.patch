@@ -1,7 +1,7 @@
-From 92903bee481f5e0b02086d8743eed4e456dcb908 Mon Sep 17 00:00:00 2001
+From bc8a3712251c6b73ef4137bcc013a86615158cfe Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 15 Jul 2024 23:51:22 +0800
-Subject: [PATCH 092/485] fix: eswin: load kvm module failed
+Subject: [PATCH 092/551] fix: eswin: load kvm module failed
 
 riscv_noncoherent_supported should not be called multiple times
 in the sifive_errata_probe function

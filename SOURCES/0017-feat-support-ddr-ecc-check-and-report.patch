@@ -1,7 +1,7 @@
-From cfba9e43c3c347c4c1c3935c3359d440b0ebebe4 Mon Sep 17 00:00:00 2001
+From 02b3c498294d41672a2e0f5820d6f6952e32696f Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 11:01:05 +0800
-Subject: [PATCH 017/485] feat:support ddr ecc check and report
+Subject: [PATCH 017/551] feat:support ddr ecc check and report
 
 Changelogs:
 ---

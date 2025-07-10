@@ -1,0 +1,113 @@
+From 31b47e4ae77ccd3a06f08d0560fe0b4d63d27541 Mon Sep 17 00:00:00 2001
+From: lihuihui <lihuihui@eswincomputing.com>
+Date: Tue, 13 May 2025 14:35:50 +0800
+Subject: [PATCH 508/551] feat:support SOC/CPU up voltage
+
+Changelogs:
+1.config gpio12 for SOC up voltage.
+2.config gpio27 for CPU up voltage.
+3.config i2c10 to read ADS1115 voltage.
+
+Signed-off-by: lihuihui <lihuihui@eswincomputing.com>
+Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts | 36 ++++++++++++++++++----
+ arch/riscv/configs/vpu7702_pcie_defconfig  |  1 +
+ 2 files changed, 31 insertions(+), 6 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index 85080a0dd008..93f413bacac1 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -908,7 +908,7 @@ &d0_aon_i2c0 {
+ 	/* ADC */
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_i2c4_default>;
++	pinctrl-0 = <&pinctrl_i2c10_default>;
+ 	status = "okay";
+ 
+ 	adc@48 {
+@@ -919,25 +919,25 @@ adc@48 {
+ 
+ 		channel@4 {
+ 			reg = <4>;
+-			ti,gain = <1>;
++			ti,gain = <0>;
+ 			ti,datarate = <7>;
+ 		};
+ 
+ 		channel@5 {
+ 			reg = <5>;
+-			ti,gain = <1>;
++			ti,gain = <0>;
+ 			ti,datarate = <7>;
+ 		};
+ 
+ 		channel@6 {
+ 			reg = <6>;
+-			ti,gain = <1>;
++			ti,gain = <0>;
+ 			ti,datarate = <7>;
+ 		};
+ 
+ 		channel@7 {
+ 			reg = <7>;
+-			ti,gain = <1>;
++			ti,gain = <0>;
+ 			ti,datarate = <7>;
+ 		};
+ 	};
+@@ -999,6 +999,28 @@ &timer3 {
+ &pinctrl {
+ 	status = "okay";
+ 
++	pinctrl_gpio12_default: gpio12-default{
++		mux {
++			groups = "gpio12_group";
++			function = "gpio12_func";
++		};
++		conf {
++			groups = "gpio12_group";
++			bias-pull-down = <1>;
++		};
++	};
++
++	pinctrl_gpio27_default: gpio27-default{
++		mux {
++			groups = "gpio27_group";
++			function = "gpio27_func";
++		};
++		conf {
++			groups = "gpio27_group";
++			bias-pull-down = <1>;
++		};
++	};
++
+ 	pinctrl_gpio58_default: gpio58-default {
+ 		mux {
+ 			groups = "gpio58_group";
+@@ -1073,7 +1095,9 @@ gpio111 : mipi dsi resetn(O)
+ &gpio0 {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_gpio58_default
++	pinctrl-0 = <&pinctrl_gpio12_default
++	&pinctrl_gpio27_default
++	&pinctrl_gpio58_default
+ 	&pinctrl_gpio59_default
+ 	&pinctrl_gpio60_default
+ 	&pinctrl_gpio61_default>;
+diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
+index 5744fd7d1796..1585a666d16f 100644
+--- a/arch/riscv/configs/vpu7702_pcie_defconfig
++++ b/arch/riscv/configs/vpu7702_pcie_defconfig
+@@ -850,4 +850,5 @@ CONFIG_VIDEO_ESWIN_VDEC=y
+ CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
+ CONFIG_SENSORS_TMP102=y
+ CONFIG_REGULATOR_TPS549D22=y
++CONFIG_IIO=y
+ CONFIG_TI_ADS1015=y
+-- 
+2.50.0
+

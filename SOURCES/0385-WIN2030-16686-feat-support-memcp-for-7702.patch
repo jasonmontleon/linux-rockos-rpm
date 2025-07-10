@@ -1,7 +1,7 @@
-From e3b890f44b8b5440bd983e807abed6d16a9be7aa Mon Sep 17 00:00:00 2001
+From 67c858abbd4e0042f33b1253aa2f9839eb71086e Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Mon, 13 Jan 2025 10:39:37 +0800
-Subject: [PATCH 385/485] WIN2030-16686:feat:support memcp for 7702
+Subject: [PATCH 385/551] WIN2030-16686:feat:support memcp for 7702
 
 Changelogs:
 1.support memcp compile for 7702

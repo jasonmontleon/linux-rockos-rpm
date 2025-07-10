@@ -1,7 +1,7 @@
-From 5216f2e6cc35eebe988e6461afcb1bedca8151e9 Mon Sep 17 00:00:00 2001
+From 81127d47b0eaeaeab715be031bda9aefc7d3f3ac Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Sat, 31 Aug 2024 12:24:04 +0800
-Subject: [PATCH 164/485] feat:Disable CONFIG_PM
+Subject: [PATCH 164/551] feat:Disable CONFIG_PM
 
 Changelogs:
 1.Deselected CONFIG_PM since the developement of power

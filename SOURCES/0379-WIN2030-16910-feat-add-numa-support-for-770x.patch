@@ -1,7 +1,7 @@
-From 9ebb2a3a2b608d5a50b0ff8ffb36f87debbf100d Mon Sep 17 00:00:00 2001
+From 7d5173418b2e160aa1f704c147672f67d6b9f94e Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Tue, 31 Dec 2024 11:09:30 +0800
-Subject: [PATCH 379/485] WIN2030-16910:feat:add numa support for 770x.
+Subject: [PATCH 379/551] WIN2030-16910:feat:add numa support for 770x.
 
 Changelogs:
 1, add numa support for 770x.

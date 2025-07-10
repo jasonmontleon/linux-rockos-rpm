@@ -1,7 +1,7 @@
-From 30369f7140bc763dadc1a7f628246dbd45747f3f Mon Sep 17 00:00:00 2001
+From 31dd14f398262467f5960b5c29d38d0b415b7ff8 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 10:11:52 +0800
-Subject: [PATCH 111/485] fix(cpu pll): enable cpu low power clk when use it.
+Subject: [PATCH 111/551] fix(cpu pll): enable cpu low power clk when use it.
 
 Changelogs:
     When the CPU switches frequency, it will first switch to the CPU

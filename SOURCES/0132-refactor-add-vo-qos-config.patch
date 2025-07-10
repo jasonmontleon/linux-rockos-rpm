@@ -1,7 +1,7 @@
-From 28cd1acb2044e8db696c167b5c256740ae923fa8 Mon Sep 17 00:00:00 2001
+From cba9239aa3aa0fb0987c693615546e4c2670bca1 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 17 Jun 2024 17:42:34 +0800
-Subject: [PATCH 132/485] refactor:add vo qos config
+Subject: [PATCH 132/551] refactor:add vo qos config
 
 Changelogs:
 Add VO Qos configuration, set to 9, in order to resolve hdmi display tear

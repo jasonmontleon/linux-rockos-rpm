@@ -1,7 +1,7 @@
-From 0433771461d9b23e630f760d14bb06f15004f259 Mon Sep 17 00:00:00 2001
+From da2306a30e977c42bbb843f0bc8aad965cb74547 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 24 Jul 2024 16:21:05 +0800
-Subject: [PATCH 116/485] fix:Fix a fan duty cycle error
+Subject: [PATCH 116/551] fix:Fix a fan duty cycle error
 
 Changelogs:
 	fix the control fan duty clcle is opposite

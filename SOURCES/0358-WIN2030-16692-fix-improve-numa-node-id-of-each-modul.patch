@@ -1,7 +1,7 @@
-From b0b9063498c85d66739915c3425d9bd9e36556fd Mon Sep 17 00:00:00 2001
+From 5d401d852e4e459117131794713df09c2baf246f Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 24 Dec 2024 20:19:31 +0800
-Subject: [PATCH 358/485] WIN2030-16692:fix:improve numa-node-id of each module
+Subject: [PATCH 358/551] WIN2030-16692:fix:improve numa-node-id of each module
 
 Changelogs:
 

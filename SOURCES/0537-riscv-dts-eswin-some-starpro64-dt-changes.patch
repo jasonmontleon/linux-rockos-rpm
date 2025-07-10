@@ -1,0 +1,59 @@
+From 4d69b4bcefbb66679c5eb2d8ebab7120374701f5 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Fri, 13 Jun 2025 14:27:46 +0800
+Subject: [PATCH 537/551] riscv: dts: eswin: some starpro64 dt changes
+
+- manually specify usb pwren pinctrls and hub reset
+- disable hs400 for emmc (hw bug)
+- tune delay_code for emmc/sd
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ .../riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts | 11 +++++++++--
+ 1 file changed, 9 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index 2860c4b37162..4e440aa2f43e 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -464,7 +464,9 @@ &csi2_1 {
+ &sdhci_emmc {
+ 	/* emmc */
+ 	status = "okay";
+-	delay_code = <0x17>;
++	/delete-property/ mmc-hs400-1_8v;
++	no-mmc-hs400;
++	delay_code = <0x37>;
+ 	drive-impedance-ohm = <50>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+@@ -477,7 +479,7 @@ &sdhci_emmc {
+ &sdio0 {
+ 	/* sd card */
+ 	status = "okay";
+-	delay_code = <0x55>;
++	delay_code = <0x70>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+@@ -533,12 +535,17 @@ &d0_usbdrd3_0 {
+ 
+ &d0_usbdrd_dwc3_0 {
+ 	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_usb0_pwren_default>;
+ 	dr_mode = "host";
+ 	maximum-speed = "super-speed";
+ };
+ 
+ &d0_usbdrd3_1 {
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio43_default>;
+ 	status = "okay";
++	hub-rst-gpios = <&portb 11 GPIO_ACTIVE_HIGH>;
+ };
+ 
+ &d0_usbdrd_dwc3_1 {
+-- 
+2.50.0
+

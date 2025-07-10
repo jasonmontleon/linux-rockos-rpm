@@ -1,7 +1,7 @@
-From b2eb4c50b2d94219b13596f491e2df8a13975d88 Mon Sep 17 00:00:00 2001
+From 577c9e95dab984971056995eccf4d0cf5ec8f3aa Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Wed, 9 Apr 2025 07:15:16 +0000
-Subject: [PATCH 475/485] riscv: module: fix compilation error of kvrealloc
+Subject: [PATCH 475/551] riscv: module: fix compilation error of kvrealloc
 
 Backporting the patch "riscv: module: Optimize PLT/GOT entry counting" to kernel 6.6.77
 leads to compilation error. Error below:

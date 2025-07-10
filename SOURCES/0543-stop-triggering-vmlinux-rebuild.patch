@@ -1,34 +1,21 @@
-From 76810dccc45d34ba5e4ace55b8a44c10880b7701 Mon Sep 17 00:00:00 2001
+From 12ecb19ad569409bc190c1885acbdb9516f1f82d Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:03:43 -0500
-Subject: [PATCH 478/485] stop triggering vmlinux rebuild
+Subject: [PATCH 543/551] stop triggering vmlinux rebuild
 
 ---
- drivers/memory/eswin/Makefile            |   4 -
  drivers/memory/eswin/es_dev_buf/Makefile |   4 -
  drivers/memory/eswin/es_proc/Makefile    |   4 -
  include/linux/buddy.h                    | 217 +++++++++++++++++++++++
  include/linux/dsp_dma_buf.h              |  44 +++++
  include/linux/es_proc.h                  |  40 +++++
  include/linux/eswin_memblock.h           |  18 ++
- 7 files changed, 319 insertions(+), 12 deletions(-)
+ 6 files changed, 319 insertions(+), 8 deletions(-)
  create mode 100644 include/linux/buddy.h
  create mode 100644 include/linux/dsp_dma_buf.h
  create mode 100644 include/linux/es_proc.h
  create mode 100644 include/linux/eswin_memblock.h
 
-diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
-index 1d33ac236716..479d12548b55 100644
---- a/drivers/memory/eswin/Makefile
-+++ b/drivers/memory/eswin/Makefile
-@@ -9,7 +9,3 @@ obj-$(CONFIG_ESWIN_RSVMEM_HEAP)			+= es_mmz_vb/
- obj-$(CONFIG_ESWIN_DEV_DMA_BUF)			+= es_dev_buf/
- obj-$(CONFIG_ESWIN_IOMMU_RSV)			+= es_iommu_rsv/
- obj-$(CONFIG_ESWIN_DMA_MEMCP)           += es_dma_memcp/
--
--ES_MEM_HEADER := $(srctree)/drivers/memory/eswin/
--
--COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_MEM_HEADER)/*.h include/linux)
 diff --git a/drivers/memory/eswin/es_dev_buf/Makefile b/drivers/memory/eswin/es_dev_buf/Makefile
 index 854348e41f91..391af838aada 100644
 --- a/drivers/memory/eswin/es_dev_buf/Makefile

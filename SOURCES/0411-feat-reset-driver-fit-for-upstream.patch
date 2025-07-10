@@ -1,7 +1,7 @@
-From 727c5623d89346ad3b2cd6600b3325dfc14702e3 Mon Sep 17 00:00:00 2001
+From 452840c0f9b429266cf6679c1f4653b879d42e16 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 27 Jan 2025 10:54:04 +0800
-Subject: [PATCH 411/485] feat:reset driver fit for upstream
+Subject: [PATCH 411/551] feat:reset driver fit for upstream
 
 Changelogs:
 1.Adapt the code style and naming conventions to meet upstream

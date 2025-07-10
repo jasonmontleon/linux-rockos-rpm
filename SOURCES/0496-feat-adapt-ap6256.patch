@@ -1,0 +1,591 @@
+From 5a92888f31fcf2401e3a8cafb96d3032f6d43104 Mon Sep 17 00:00:00 2001
+From: Xiang Xu <xuxiang@eswincomputing.com>
+Date: Thu, 24 Apr 2025 19:06:56 +0800
+Subject: [PATCH 496/551] feat:adapt ap6256
+
+Changelogs:
+1.adapt ap6256
+
+Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-d314.dts    | 14 +++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  | 13 ++++++++++
+ .../dts/eswin/eic7700-hifive-premier-p550.dts | 13 ++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-osm.dts     | 13 ++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts  | 14 ++++++++++-
+ arch/riscv/boot/dts/eswin/eic7700-z530.dts    | 13 ++++++++++
+ arch/riscv/boot/dts/eswin/eic7702-d560.dts    | 13 ++++++++++
+ .../dts/eswin/eic7702-evb-a1-interleave.dts   | 14 ++++++++++-
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 14 ++++++++++-
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts      | 14 ++++++++++-
+ arch/riscv/configs/eic7700_dbg_defconfig      | 23 ++++++++++++++----
+ arch/riscv/configs/eic7700_defconfig          | 10 ++++++++
+ arch/riscv/configs/eic7702_defconfig          | 24 +++++++++++++++----
+ drivers/net/wireless/ap12275/Kconfig          |  7 ++++++
+ drivers/net/wireless/ap12275/Makefile         |  2 +-
+ 15 files changed, 188 insertions(+), 13 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+index a471f9506b5b..952a03b3d989 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+@@ -26,6 +26,13 @@ / {
+ 	#address-cells = <2>;
+ 	#size-cells = <2>;
+ 	model = "ESWIN 7700D314";
++
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &pcie {
+@@ -108,6 +115,7 @@ &sdio1 {
+ 	keep-power-in-suspend;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw3155:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -119,6 +127,12 @@ aw3155:wifi_aw3155@0 {
+ 		irq-gpios = <&porta 15 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&portc 15 GPIO_ACTIVE_HIGH>;
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-1 = <&pinctrl_gpio79_default>;
++		gpio_wl_reg_on = <&portc 15 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &d0_sata {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index f9ab3c3aaae2..478bd6201176 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -168,6 +168,12 @@ ok_key {
+ 		};
+ 	};
+ 
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ 
+@@ -562,6 +568,7 @@ &sdio1 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw3155:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -572,7 +579,13 @@ aw3155:wifi_aw3155@0 {
+ 		pinctrl-1 = <&pinctrl_gpio34_default>;
+ 		irq-gpios = <&porta 15 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&portb 2 GPIO_ACTIVE_HIGH>;
++	};
+ 
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio34_default>;
++		gpio_wl_reg_on = <&portb 2 GPIO_ACTIVE_HIGH>;
+ 	};
+ };
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 5fd3edb7f1f9..3095384d7279 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -119,6 +119,12 @@ dvp2axi_mem: dvp2axi-mem@90000000 {
+ 		};
+ 	};
+ 
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &d0_clock {
+@@ -445,6 +451,7 @@ &sdio1 {
+ 	keep-power-in-suspend;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw3155:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -456,6 +463,12 @@ aw3155:wifi_aw3155@0 {
+ 		irq-gpios = <&porta 15 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&portc 15 GPIO_ACTIVE_HIGH>;
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio79_default>;
++		gpio_wl_reg_on = <&portc 15 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &d0_gmac0 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
+index f3ec3d0916d3..420ff1e42117 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
+@@ -122,6 +122,12 @@ dvp2axi_mem: dvp2axi-mem@0x90000000 {
+ 			no-map;
+ 		};
+ 	};
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &d0_clock {
+@@ -534,6 +540,7 @@ &sdio1 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw3155:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -546,6 +553,12 @@ aw3155:wifi_aw3155@0 {
+ 		rst-gpios = <&portb 2 GPIO_ACTIVE_HIGH>;
+ 
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio34_default>;
++		gpio_wl_reg_on = <&portb 2 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &d0_gmac0 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+index 0de6f9e259d1..1b7c3cc5dc1d 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+@@ -137,6 +137,12 @@ gpio-26 {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &d0_clock {
+@@ -467,6 +473,7 @@ &sdio1 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw3155:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -477,7 +484,12 @@ aw3155:wifi_aw3155@0 {
+ 		pinctrl-1 = <&pinctrl_gpio34_default>;
+ 		irq-gpios = <&porta 15 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&portb 2 GPIO_ACTIVE_HIGH>;
+-
++	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio34_default>;
++		gpio_wl_reg_on = <&portb 2 GPIO_ACTIVE_HIGH>;
+ 	};
+ };
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
+index 561501459f04..c041cbebc527 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
+@@ -36,6 +36,12 @@ ap_backup {
+ 			gpios = <&porta 26 GPIO_ACTIVE_LOW>;
+ 		};
+ 	};
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &d0_gmac0 {
+@@ -77,6 +83,7 @@ &sdio1 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw3155:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -89,6 +96,12 @@ aw3155:wifi_aw3155@0 {
+ 		rst-gpios = <&portc 15 GPIO_ACTIVE_HIGH>;
+ 
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio79_default>;
++		gpio_wl_reg_on = <&portc 15 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &ssi0 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+index bee85411e33a..93eabee180ca 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+@@ -39,6 +39,12 @@ gpio-111 {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &d0_i2s1 {
+@@ -75,6 +81,7 @@ &d1_sdio0 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw315:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -86,6 +93,12 @@ aw315:wifi_aw3155@0 {
+ 		irq-gpios = <&d1_porta 18 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_die1_gpio13_default>;
++		gpio_wl_reg_on = <&d1_porta 13 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &d0_usbdrd3_1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+index fc07f685c62b..0d9b5d6f68ff 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+@@ -215,7 +215,12 @@ gpio-68 {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
+-
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &D1CACHE {
+@@ -925,6 +930,7 @@ &d1_sdio0 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw315:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -936,6 +942,12 @@ aw315:wifi_aw3155@0 {
+ 		irq-gpios = <&d1_porta 18 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_die1_gpio16_default>;
++		gpio_wl_reg_on = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &sdio1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index caca45ebbc83..f3f80d416c4f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -175,7 +175,12 @@ gpio-68 {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
+-
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &D1CACHE {
+@@ -885,6 +890,7 @@ &d1_sdio0 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw315:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -896,6 +902,12 @@ aw315:wifi_aw3155@0 {
+ 		irq-gpios = <&d1_porta 18 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_die1_gpio16_default>;
++		gpio_wl_reg_on = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &sdio1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index 39435e926c6a..eccb17d2477d 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -175,7 +175,12 @@ gpio-68 {
+ 			linux,default-trigger = "heartbeat";
+ 		};
+ 	};
+-
++	reg_vcc1v8: vcc1v8 {
++		compatible = "regulator-fixed";
++		regulator-name = "vcc1v8";
++		regulator-min-microvolt = <1800000>;
++		regulator-max-microvolt = <1800000>;
++	};
+ };
+ 
+ &D1CACHE {
+@@ -939,6 +944,7 @@ &d1_sdio0 {
+ 	non-removable;
+ 	no-sd;
+ 	no-mmc;
++	vqmmc-supply = <&reg_vcc1v8>;
+ 	aw315:wifi_aw3155@0 {
+ 		compatible = "aml_w1_sdio";
+ 		reg = <0x0>;
+@@ -950,6 +956,12 @@ aw315:wifi_aw3155@0 {
+ 		irq-gpios = <&d1_porta 18 GPIO_ACTIVE_HIGH>;
+ 		rst-gpios = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
+ 	};
++	mdhd_wlan {
++		compatible = "android,bcmdhd_wlan";
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_die1_gpio16_default>;
++		gpio_wl_reg_on = <&d1_porta 16 GPIO_ACTIVE_HIGH>;
++	};
+ };
+ 
+ &sdio1 {
+diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
+index 2788e39f1b35..521ff848073d 100644
+--- a/arch/riscv/configs/eic7700_dbg_defconfig
++++ b/arch/riscv/configs/eic7700_dbg_defconfig
+@@ -286,12 +286,17 @@ CONFIG_NET_CLS_CGROUP=m
+ CONFIG_NET_CLS_ACT=y
+ CONFIG_NETLINK_DIAG=m
+ CONFIG_CGROUP_NET_PRIO=y
+-CONFIG_BT=m
+-CONFIG_BT_RFCOMM=m
+-CONFIG_BT_BNEP=m
++CONFIG_BT=y
++CONFIG_BT_RFCOMM=y
++CONFIG_BT_RFCOMM_TTY=y
++CONFIG_BT_BNEP=y
+ CONFIG_BT_BNEP_MC_FILTER=y
+ CONFIG_BT_BNEP_PROTO_FILTER=y
+-CONFIG_BT_HIDP=m
++CONFIG_BT_HIDP=y
++CONFIG_BT_HS=y
++CONFIG_BT_HCIUART=y
++CONFIG_BT_HCIUART_BCM=y
++CONFIG_BT_HCIUART_RTL=y
+ CONFIG_MCTP=y
+ CONFIG_CFG80211=y
+ CONFIG_CFG80211_WEXT=y
+@@ -429,6 +434,8 @@ CONFIG_SERIO_LIBPS2=y
+ CONFIG_SERIAL_8250=y
+ CONFIG_SERIAL_8250_CONSOLE=y
+ CONFIG_SERIAL_8250_DW=y
++CONFIG_SERIAL_8250_NR_UARTS=5
++CONFIG_SERIAL_8250_RUNTIME_UARTS=5
+ CONFIG_SERIAL_OF_PLATFORM=y
+ CONFIG_SERIAL_EARLYCON_RISCV_SBI=y
+ CONFIG_HVC_RISCV_SBI=y
+@@ -648,6 +655,7 @@ CONFIG_ESWIN_SND_SOC_CODECS=y
+ CONFIG_ESWIN_SND_ES8388_CODEC=y
+ CONFIG_SND_SIMPLE_CARD=y
+ CONFIG_SND_AUDIO_GRAPH_CARD=y
++CONFIG_UHID=y
+ CONFIG_USB_ULPI_BUS=y
+ CONFIG_USB_CONN_GPIO=y
+ CONFIG_USB=y
+@@ -834,3 +842,10 @@ CONFIG_RCU_EQS_DEBUG=y
+ # CONFIG_FTRACE is not set
+ # CONFIG_RUNTIME_TESTING_MENU is not set
+ CONFIG_MEMTEST=y
++CONFIG_BCMDHD=m
++CONFIG_BCMDHD_SDIO_IRQ=y
++CONFIG_REGULATOR=y
++CONFIG_REGULATOR_FIXED_VOLTAGE=y
++CONFIG_BCMDHD_FW_PATH="/lib/firmware/fw_bcm43456c5_ag.bin"
++CONFIG_BCMDHD_NVRAM_PATH="/lib/firmware/nvram_ap6256.txt"
++CONFIG_BCMDHD_CLM_PATH="/lib/firmware/clm_bcm43752a2_ag.blob"
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 90d147a197ec..0dfd89d5a2f7 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -441,6 +441,8 @@ CONFIG_SERIO_LIBPS2=y
+ CONFIG_SERIAL_8250=y
+ CONFIG_SERIAL_8250_CONSOLE=y
+ CONFIG_SERIAL_8250_DW=y
++CONFIG_SERIAL_8250_NR_UARTS=5
++CONFIG_SERIAL_8250_RUNTIME_UARTS=5
+ CONFIG_SERIAL_OF_PLATFORM=y
+ CONFIG_SERIAL_EARLYCON_RISCV_SBI=y
+ CONFIG_HVC_RISCV_SBI=y
+@@ -674,6 +676,7 @@ CONFIG_ESWIN_SND_ES8388_CODEC=y
+ CONFIG_ESWIN_SND_TLV320AIC3106_CODEC=y
+ CONFIG_SND_SIMPLE_CARD=y
+ CONFIG_SND_AUDIO_GRAPH_CARD=y
++CONFIG_UHID=y
+ CONFIG_USB_ULPI_BUS=y
+ CONFIG_USB_CONN_GPIO=y
+ CONFIG_USB=y
+@@ -875,3 +878,10 @@ CONFIG_I2C_MUX_PCA954x=y
+ CONFIG_VIDEO_IMX327=y
+ CONFIG_VIDEO_ESWIN_ISP=m
+ CONFIG_EIC7700_EVB_VI=n
++CONFIG_BCMDHD=m
++CONFIG_BCMDHD_SDIO_IRQ=y
++CONFIG_REGULATOR=y
++CONFIG_REGULATOR_FIXED_VOLTAGE=y
++CONFIG_BCMDHD_FW_PATH="/lib/firmware/fw_bcm43456c5_ag.bin"
++CONFIG_BCMDHD_NVRAM_PATH="/lib/firmware/nvram_ap6256.txt"
++CONFIG_BCMDHD_CLM_PATH="/lib/firmware/clm_bcm43752a2_ag.blob"
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 672443dbefbd..e6a2e0400b91 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -289,12 +289,17 @@ CONFIG_NET_CLS_CGROUP=m
+ CONFIG_NET_CLS_ACT=y
+ CONFIG_NETLINK_DIAG=m
+ CONFIG_CGROUP_NET_PRIO=y
+-CONFIG_BT=m
+-CONFIG_BT_RFCOMM=m
+-CONFIG_BT_BNEP=m
++CONFIG_BT=y
++CONFIG_BT_RFCOMM=y
++CONFIG_BT_RFCOMM_TTY=y
++CONFIG_BT_BNEP=y
+ CONFIG_BT_BNEP_MC_FILTER=y
+ CONFIG_BT_BNEP_PROTO_FILTER=y
+-CONFIG_BT_HIDP=m
++CONFIG_BT_HIDP=y
++CONFIG_BT_HS=y
++CONFIG_BT_HCIUART=y
++CONFIG_BT_HCIUART_BCM=y
++CONFIG_BT_HCIUART_RTL=y
+ CONFIG_MCTP=y
+ CONFIG_CFG80211=y
+ CONFIG_CFG80211_WEXT=y
+@@ -435,9 +440,12 @@ CONFIG_SERIO_LIBPS2=y
+ CONFIG_SERIAL_8250=y
+ CONFIG_SERIAL_8250_CONSOLE=y
+ CONFIG_SERIAL_8250_DW=y
++CONFIG_SERIAL_8250_NR_UARTS=10
++CONFIG_SERIAL_8250_RUNTIME_UARTS=10
+ CONFIG_SERIAL_OF_PLATFORM=y
+ CONFIG_SERIAL_EARLYCON_RISCV_SBI=y
+ CONFIG_HVC_RISCV_SBI=y
++CONFIG_SERIAL_DEV_BUS=y
+ CONFIG_VIRTIO_CONSOLE=y
+ CONFIG_HW_RANDOM=y
+ CONFIG_HW_RANDOM_VIRTIO=y
+@@ -658,6 +666,7 @@ CONFIG_ESWIN_SND_SOC_CODECS=y
+ CONFIG_ESWIN_SND_ES8388_CODEC=y
+ CONFIG_SND_SIMPLE_CARD=y
+ CONFIG_SND_AUDIO_GRAPH_CARD=y
++CONFIG_UHID=y
+ CONFIG_USB_ULPI_BUS=y
+ CONFIG_USB_CONN_GPIO=y
+ CONFIG_USB=y
+@@ -846,3 +855,10 @@ CONFIG_RCU_EQS_DEBUG=y
+ # CONFIG_FTRACE is not set
+ # CONFIG_RUNTIME_TESTING_MENU is not set
+ CONFIG_MEMTEST=y
++CONFIG_BCMDHD=m
++CONFIG_BCMDHD_SDIO_IRQ=y
++CONFIG_REGULATOR=y
++CONFIG_REGULATOR_FIXED_VOLTAGE=y
++CONFIG_BCMDHD_FW_PATH="/lib/firmware/fw_bcm43456c5_ag.bin"
++CONFIG_BCMDHD_NVRAM_PATH="/lib/firmware/nvram_ap6256.txt"
++CONFIG_BCMDHD_CLM_PATH="/lib/firmware/clm_bcm43752a2_ag.blob"
+diff --git a/drivers/net/wireless/ap12275/Kconfig b/drivers/net/wireless/ap12275/Kconfig
+index c33dd6c62333..3ae12151a66c 100644
+--- a/drivers/net/wireless/ap12275/Kconfig
++++ b/drivers/net/wireless/ap12275/Kconfig
+@@ -40,6 +40,13 @@ config BCMDHD_NVRAM_PATH
+ 	help
+ 	  Path to the calibration file.
+ 
++config BCMDHD_CLM_PATH
++	  depends on BCMDHD
++	  string "CLM path"
++	  default "/lib/firmware/clm_bcm43752a2_ag.blob"
++	  help
++		Path to the CLM file.
++
+ config BCMDHD_WEXT
+ 	bool "Enable WEXT support"
+ 	depends on BCMDHD && CFG80211 = n
+diff --git a/drivers/net/wireless/ap12275/Makefile b/drivers/net/wireless/ap12275/Makefile
+index 87dccde52505..7ed068b81d95 100644
+--- a/drivers/net/wireless/ap12275/Makefile
++++ b/drivers/net/wireless/ap12275/Makefile
+@@ -48,7 +48,7 @@ CONFIG_BCMDHD_DEBUG := y
+ #CONFIG_BCMDHD_ADAPTER_INDEX := 0
+ 
+ CONFIG_MACH_PLATFORM := y
+-#CONFIG_BCMDHD_DTS := y
++CONFIG_BCMDHD_DTS := y
+ 
+ DHDCFLAGS = -Wall -Wstrict-prototypes -Wno-date-time                      \
+ 	-Wno-maybe-uninitialized                                              \
+-- 
+2.50.0
+

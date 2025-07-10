@@ -1,7 +1,7 @@
-From 153142ae31243e81326b862459abdfb24a16e382 Mon Sep 17 00:00:00 2001
+From 8c785e72e9c29a6d0699535fe4c3b378808df428 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 11 Apr 2025 14:53:32 +0800
-Subject: [PATCH 471/485] fix:revert dma
+Subject: [PATCH 471/551] fix:revert dma
 
 Changelogs:
 1. es-dma.c

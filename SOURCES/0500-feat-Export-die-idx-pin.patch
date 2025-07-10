@@ -1,0 +1,120 @@
+From e84e42ae22850b49aad08f720737b5695bc07fb4 Mon Sep 17 00:00:00 2001
+From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
+Date: Fri, 18 Apr 2025 09:28:00 +0800
+Subject: [PATCH 500/551] feat: Export die idx pin
+
+Changelogs:
+
+1. Enable GPIO58 to GPIO61 four pins for reading
+   the die index.gpio58-61 belongs to gpiochip544,
+   so it needs to be exported through the following
+   methods
+2. echo 570 > /sys/class/gpio/export
+   echo 571 > /sys/class/gpio/export
+   echo 572 > /sys/class/gpio/export
+   echo 573 > /sys/class/gpio/export
+
+   570 corresponds to GPIO 58
+   571 corresponds to GPIO 59
+   572 corresponds to GPIO 60
+   573 corresponds to GPIO 61
+
+   The above commands export the GPIO sysfs files.
+   Then, use `cat /sys/class/gpio/gpio570/value` to get
+   the corresponding GPIO value, and combine them into
+   a four-bit binary number.
+
+  Note: gpio570 is the least significant bit.
+
+  For example:
+
+  0000 represents SOC 1, Die 0
+  0001 represents SOC 1, Die 1
+  0010 represents SOC 2, Die 0
+  0011 represents SOC 2, Die 1
+
+  And so on.
+
+Signed-off-by: Dongdong Zhang <zhangdongdong@eswincomputing.com>
+Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
+Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts | 54 ++++++++++++++++++++++
+ 1 file changed, 54 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index 0a54b5c27bb6..fd7737b62c61 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -998,6 +998,54 @@ &timer3 {
+ 
+ &pinctrl {
+ 	status = "okay";
++
++	pinctrl_gpio58_default: gpio58-default {
++		mux {
++			groups = "gpio58_group";
++			function = "gpio58_func";
++		};
++		conf {
++			groups = "gpio58_group";
++			input-enable = <1>;
++			bias-pull-down = <0>;
++		};
++	};
++
++	pinctrl_gpio59_default: gpio59-default {
++		mux {
++			groups = "gpio59_group";
++			function = "gpio59_func";
++		};
++		conf {
++			groups = "gpio59_group";
++			input-enable = <1>;
++			bias-pull-down = <0>;
++		};
++	};
++
++	pinctrl_gpio60_default: gpio60-default {
++		mux {
++			groups = "gpio60_group";
++			function = "gpio60_func";
++		};
++		conf {
++			groups = "gpio60_group";
++			input-enable = <1>;
++			bias-pull-down = <0>;
++		};
++	};
++
++	pinctrl_gpio61_default: gpio61-default {
++		mux {
++			groups = "gpio61_group";
++			function = "gpio61_func";
++		};
++		conf {
++			groups = "gpio61_group";
++			input-enable = <1>;
++			bias-pull-down = <0>;
++		};
++	};
+ };
+ 
+ /* GPIO Function Description
+@@ -1024,7 +1072,13 @@ gpio111 : mipi dsi resetn(O)
+ 
+ &gpio0 {
+ 	status = "okay";
++	pinctrl-names = "default";
++	pinctrl-0 = <&pinctrl_gpio58_default
++	&pinctrl_gpio59_default
++	&pinctrl_gpio60_default
++	&pinctrl_gpio61_default>;
+ };
++
+ &dev_llc_d0{
+ 	/* apply_npu_1G_freq; */
+ 	npu-supply=<&npu_vcc1>;
+-- 
+2.50.0
+

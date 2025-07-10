@@ -1,7 +1,7 @@
-From a570b7e5d741a27f5da9794bc7296921779b363f Mon Sep 17 00:00:00 2001
+From ed0a944511d65d75abe68c29e2a9c83b176901ef Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 27 Aug 2024 10:26:01 +0800
-Subject: [PATCH 168/485] style:harmonize device-tree
+Subject: [PATCH 168/551] style:harmonize device-tree
 
 Changelogs:
 We should use a device-tree name that is upstreamable.

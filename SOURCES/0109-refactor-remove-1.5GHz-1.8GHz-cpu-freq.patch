@@ -1,7 +1,7 @@
-From 6728f10b5110c507fd35feb6c742279a779a60f5 Mon Sep 17 00:00:00 2001
+From ad09817927f311a18763190e2607fb5b2e023ba9 Mon Sep 17 00:00:00 2001
 From: chenshuo <chenshuo@eswincomputing.com>
 Date: Tue, 23 Jul 2024 14:38:55 +0800
-Subject: [PATCH 109/485] refactor:remove 1.5GHz~1.8GHz cpu freq
+Subject: [PATCH 109/551] refactor:remove 1.5GHz~1.8GHz cpu freq
 
 Changelogs:
 	remove 1.5GHz~1.8GHz from d0_cpu_opp_table because evb not support dynamic voltage regulation.

@@ -1,7 +1,7 @@
-From 80a0e7b85af76f2226a767f08c87081141afaaee Mon Sep 17 00:00:00 2001
+From 758bc511b3ed5c837c813474028bdf5da52cf7cf Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 9 Apr 2025 16:20:35 +0800
-Subject: [PATCH 468/485] fix:fix dma period size and cnt to fit 24-16-32bit
+Subject: [PATCH 468/551] fix:fix dma period size and cnt to fit 24-16-32bit
 
 Changelogs:
 1. es-dma.c

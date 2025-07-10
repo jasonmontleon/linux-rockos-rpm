@@ -1,7 +1,7 @@
-From 71a55b98b5f972a04f9e7aa013ea2c51d6ec075b Mon Sep 17 00:00:00 2001
+From fe6b1c386fcb26fd8cc7afe664acc83535723050 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 28 Aug 2024 16:01:05 +0800
-Subject: [PATCH 163/485] feat:add eic7700_dbg_defconfig
+Subject: [PATCH 163/551] feat:add eic7700_dbg_defconfig
 
 Changelogs:
     1.enable kgdb

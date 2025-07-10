@@ -1,7 +1,7 @@
-From bc81063fe3b3f0cafc73967f8a300a82ef25a654 Mon Sep 17 00:00:00 2001
+From e51ee0d0fe38f114de31e9acfb72736f70dafd97 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 11 Mar 2025 08:39:04 +0800
-Subject: [PATCH 444/485] fix:disable cca pvt0 and timer1
+Subject: [PATCH 444/551] fix:disable cca pvt0 and timer1
 
 Changelogs:
 1. Disable cca because adjust pmix is replaced by software in lpcpu firmware

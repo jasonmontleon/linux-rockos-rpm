@@ -1,0 +1,34 @@
+From 03db9c63ccaf616c7f842541969afa7bb30f7983 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Fri, 13 Jun 2025 14:28:42 +0800
+Subject: [PATCH 538/551] mmc: sdhci-of-eswin: ignore bogus small delay windows
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ drivers/mmc/host/sdhci-of-eswin.c | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
+index b9881798fc4e..94ab3392cffe 100644
+--- a/drivers/mmc/host/sdhci-of-eswin.c
++++ b/drivers/mmc/host/sdhci-of-eswin.c
+@@ -243,8 +243,14 @@ static int eswin_sdhci_delay_tuning(struct sdhci_host *host, u32 opcode)
+ 		if (ret) {
+ 			host->ops->reset(host, SDHCI_RESET_CMD | SDHCI_RESET_DATA);
+ 			udelay(200);
+-			if (delay_min != -1 && delay_max != -1)
+-				break;
++			if (delay_min != -1 && delay_max != -1) {
++				if (delay_max < 15 && (delay_max - delay_min) < 6) {
++					/* Dropping initial small bogus window */
++					delay_min = delay_max = -1;
++				} else {
++					break;
++				}
++			}
+ 		} else {
+ 			if (delay_min == -1) {
+ 				delay_min = i;
+-- 
+2.50.0
+

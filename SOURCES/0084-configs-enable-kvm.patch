@@ -1,7 +1,7 @@
-From cdf60a4978e5cbe707d36394e5dfd8a10e83eb2a Mon Sep 17 00:00:00 2001
+From b13b07f1f33f38eeb070c1c82588af66585fb10b Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:44:53 +0800
-Subject: [PATCH 084/485] configs: enable kvm
+Subject: [PATCH 084/551] configs: enable kvm
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

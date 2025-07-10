@@ -1,8 +1,8 @@
-From 5e85de989f86407bfd0a3de0ab098ffe2ce5be36 Mon Sep 17 00:00:00 2001
+From a68214ec347bd6bb7a83a9e9093e76be550208e1 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Thu, 27 Jun 2024 15:08:57 +0800
-Subject: [PATCH 064/485] fix:support power managemnt
+Subject: [PATCH 064/551] fix:support power managemnt
 
 Changelogs:
       1.temporarily disable pwm pm function since it will prevent system

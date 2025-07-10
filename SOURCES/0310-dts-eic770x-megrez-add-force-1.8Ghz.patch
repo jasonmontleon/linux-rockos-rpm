@@ -1,7 +1,7 @@
-From c5f3e4b2f25d9552db3acc2287c4156259112d8c Mon Sep 17 00:00:00 2001
+From 3deeabf7bc17d39af49e4073c795bcd3c13bf6a5 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 23:50:58 +0800
-Subject: [PATCH 310/485] dts: eic770x: megrez: add force 1.8Ghz
+Subject: [PATCH 310/551] dts: eic770x: megrez: add force 1.8Ghz
 
 milkv ensures that all chips can pass the 0.9V1.8Ghz test.
 

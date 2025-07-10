@@ -1,7 +1,7 @@
-From b6ca6bad66c8d613ab09201b6a3d042de92b04c5 Mon Sep 17 00:00:00 2001
+From 29454261eed8eb8c9c9d219b9cdba0c578b85383 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 8 Apr 2025 16:30:11 +0800
-Subject: [PATCH 466/485] fix:enable cpu gov userspace
+Subject: [PATCH 466/551] fix:enable cpu gov userspace
 
 Changelogs:
 

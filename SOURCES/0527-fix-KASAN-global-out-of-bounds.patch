@@ -1,0 +1,28 @@
+From a584de5f0c9339dc7c49b42a6a71d01aae85683c Mon Sep 17 00:00:00 2001
+From: yufangxian <yufangxian@eswincomputing.com>
+Date: Thu, 29 May 2025 15:14:32 +0800
+Subject: [PATCH 527/551] fix: KASAN:global out of bounds
+
+Changelogs:
+1. add terminated of_device_id array
+
+Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
+---
+ drivers/media/platform/eswin/dvp2axi/dev.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
+index e49d6957cda1..8024b9d2241b 100644
+--- a/drivers/media/platform/eswin/dvp2axi/dev.c
++++ b/drivers/media/platform/eswin/dvp2axi/dev.c
+@@ -1924,6 +1924,7 @@ static const struct of_device_id es_dvp2axi_plat_of_match[] = {
+ 		.compatible = "eswin,dvp2axi-mipi-lvds",
+ 		.data = &es_dvp2axi_mipi_lvds_match_data,
+ 	},
++	{},
+ };
+ 
+ static void es_dvp2axi_parse_dts(struct es_dvp2axi_device *dvp2axi_dev)
+-- 
+2.50.0
+

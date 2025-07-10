@@ -1,7 +1,7 @@
-From 75fcf98eb544a8f8be0349d4820b5bd601354bae Mon Sep 17 00:00:00 2001
+From a0b9cd13fa24a2dc482a889ea63c536187c9e8da Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 10 Apr 2025 09:56:22 +0800
-Subject: [PATCH 467/485] fix:Resolve the issue of system crashes.
+Subject: [PATCH 467/551] fix:Resolve the issue of system crashes.
 
 Changelogs:
 	Resolve the issue of system crashes caused by DSP driver insmod/uninsomd

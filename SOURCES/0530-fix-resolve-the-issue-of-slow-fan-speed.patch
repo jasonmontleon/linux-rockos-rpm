@@ -1,0 +1,43 @@
+From bf4c5422c3a7a457746917a4aaa435eee16b90c5 Mon Sep 17 00:00:00 2001
+From: weishangjuan <weishangjuan@eswincomputing.com>
+Date: Fri, 23 May 2025 09:47:13 +0800
+Subject: [PATCH 530/551] fix: resolve the issue of slow fan speed
+
+    Changelogs:
+    1. enable the fan control node
+    2. enable the pwm control node
+
+Signed-off-by: weishangjuan <weishangjuan@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-d560.dts | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+index 1bb6616b2a91..29c7fbc030fe 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+@@ -177,6 +177,10 @@ aon_eeprom@50 {
+ 	};
+ };
+ 
++&fan_control {
++	status = "okay";
++};
++
+ &d0_i2c1 {
+ 	/* pin header */
+ 	status = "okay";
+@@ -290,6 +294,10 @@ &d1_timer1 {
+ 	status = "disabled";
+ };
+ 
++&pwm0 {
++	status = "okay";
++};
++
+ &pinctrl {
+ 	status = "okay";
+ 	pinctrl-names = "default";
+-- 
+2.50.0
+

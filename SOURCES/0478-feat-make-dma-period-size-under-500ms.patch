@@ -1,0 +1,44 @@
+From 74996974ee696630fb2b5c99befbb5fad74bd878 Mon Sep 17 00:00:00 2001
+From: zhouliang2 <zhouliang2@eswincomputing.com>
+Date: Wed, 16 Apr 2025 10:19:42 +0800
+Subject: [PATCH 478/551] feat:make dma period size under 500ms
+
+Changelogs:
+1. dma
+
+Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
+---
+ sound/soc/eswin/esw-dma.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
+index 80787986d26d..36f35cf22997 100644
+--- a/sound/soc/eswin/esw-dma.c
++++ b/sound/soc/eswin/esw-dma.c
+@@ -26,9 +26,9 @@
+ #include "esw-i2s.h"
+ #include "esw-dai.h"
+ 
+-#define MAX_PERIOD_SIZE 4096
+-#define MIN_PERIOD_SIZE 512
+-#define MAX_PERIOD_CNT 16
++#define MAX_PERIOD_BYTES 4096
++#define MIN_PERIOD_BYTES 512
++#define MAX_PERIOD_CNT 4
+ #define MIN_PERIOD_CNT 2
+ 
+ static void esw_pcm_dma_complete(void *arg)
+@@ -149,8 +149,8 @@ int esw_pcm_dma_open(struct snd_soc_component *component,
+ 			SNDRV_PCM_INFO_INTERLEAVED;
+ 	hw.periods_min = MIN_PERIOD_CNT;
+ 	hw.periods_max = MAX_PERIOD_CNT;
+-	hw.period_bytes_min = MIN_PERIOD_SIZE;
+-	hw.period_bytes_max = MAX_PERIOD_SIZE;
++	hw.period_bytes_min = MIN_PERIOD_BYTES;
++	hw.period_bytes_max = MAX_PERIOD_BYTES;
+ 	hw.buffer_bytes_max = hw.period_bytes_max * MAX_PERIOD_CNT;
+ 	hw.fifo_size = dma_data->fifo_size;
+ 	hw.info |= SNDRV_PCM_INFO_BATCH;
+-- 
+2.50.0
+

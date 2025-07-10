@@ -1,7 +1,7 @@
-From d97bbadcd0cb10865616a8a10ad45bd2b7b0b10a Mon Sep 17 00:00:00 2001
+From 9636eb9effdc1e718d31de565c00daf0dba59895 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 7 Feb 2025 13:12:01 +0800
-Subject: [PATCH 398/485] WIN2030-16980:fix:Dvb drm virtual debugfs node reg
+Subject: [PATCH 398/551] WIN2030-16980:fix:Dvb drm virtual debugfs node reg
 
 Changelogs:
 change the virtual dev reg for debugfs:

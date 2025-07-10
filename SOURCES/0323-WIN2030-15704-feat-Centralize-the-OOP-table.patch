@@ -1,7 +1,7 @@
-From 38b8222efd508721e2e52e8841a42045c65beeee Mon Sep 17 00:00:00 2001
+From cf754ab13cff0e3ae23f2175913379b75d5be04c Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 28 Oct 2024 13:11:34 +0800
-Subject: [PATCH 323/485] WIN2030-15704:feat:Centralize the OOP table
+Subject: [PATCH 323/551] WIN2030-15704:feat:Centralize the OOP table
 
 Changelogs:
 Centralize the OOP table into the eic770x_ooptable.dtsi file to

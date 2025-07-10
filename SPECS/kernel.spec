@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.96
-%define specversion 6.6.96
+%define specrpmversion 6.6.97
+%define specversion 6.6.97
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.96
+%define tarfile_release 6.6.97
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.96
+%define kabiversion 6.6.97
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1443,15 +1443,81 @@ Patch10473: 0473-fix-disable-cpu-1.4G-upper-of-evb.patch
 Patch10474: 0474-riscv-module-Optimize-PLT-GOT-entry-counting.patch
 Patch10475: 0475-riscv-module-fix-compilation-error-of-kvrealloc.patch
 Patch10476: 0476-arch-add-ARCH_HAS_KERNEL_FPU_SUPPORT.patch
-Patch10477: 0477-header-workarounds.patch
-Patch10478: 0478-stop-triggering-vmlinux-rebuild.patch
-Patch10479: 0479-Add-missing-newline.patch
-Patch10480: 0480-uninvert-the-fan.patch
-Patch10481: 0481-Reduce-crit-threshold-temp-to-85000.patch
-Patch10482: 0482-eswin-dsp-fixes.patch
-Patch10483: 0483-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10484: 0484-Add-NPU-enabled-variants-of-dtbs.patch
-Patch10485: 0485-Bring-back-1.8GHz-to-STARPro64.patch
+Patch10477: 0477-fix-fix-pacmsg-bug.patch
+Patch10478: 0478-feat-make-dma-period-size-under-500ms.patch
+Patch10479: 0479-fix-modify-i2c_ctrlX-mem-region-size-form-64K-to-32K.patch
+Patch10480: 0480-fix-Modify-tps549d22-enable-sequence-of-software-cfg.patch
+Patch10481: 0481-feat-support-eic7702-d560.patch
+Patch10482: 0482-feat-add-DMA-malloc-to-dmabuf-driver.patch
+Patch10483: 0483-feat-dma-memcp-add-sync-and-async-notifier.patch
+Patch10484: 0484-feat-add-memcp-offset-overflow-check.patch
+Patch10485: 0485-fix-add-disable-wp-in-sdio.patch
+Patch10486: 0486-fix-enable-usb2.0-hub.patch
+Patch10487: 0487-feat-adapt-to-vpu7702-smmu-cfg-drv.patch
+Patch10488: 0488-feat-update-dts-for-eic7702_vpu.patch
+Patch10489: 0489-feat-Merge-branch-feature-vi-into-win2030-dev.patch
+Patch10490: 0490-fix-Resolve-the-issue-of-NPU-reset.patch
+Patch10491: 0491-fix-fix-multi-process-npu-ioctl-bug.patch
+Patch10492: 0492-feat-vpu7702-smmu-cfg-modify.patch
+Patch10493: 0493-feat-eth-ETH-tuning-in-EIC7702_D560.patch
+Patch10494: 0494-fix-clear-ecc-interrupt-anytime.patch
+Patch10495: 0495-fix-pcie-check-clk-before-init.patch
+Patch10496: 0496-feat-adapt-ap6256.patch
+Patch10497: 0497-feat-to-support-both-evb-and-televpu.patch
+Patch10498: 0498-fix-fix-evb-vi-catpure-image.patch
+Patch10499: 0499-fix-pcie-tbu-error.patch
+Patch10500: 0500-feat-Export-die-idx-pin.patch
+Patch10501: 0501-feat-add-es-fand-function.patch
+Patch10502: 0502-fix-dvp2axi-kernel-warning.patch
+Patch10503: 0503-fix-modify-the-reading-method-of-rpm.patch
+Patch10504: 0504-feature-Add-kernel-eic7702-d560-interleave-dts.patch
+Patch10505: 0505-fix-NPU-enable-1.5G-performance.patch
+Patch10506: 0506-fix-VPU-model-reading-erro.patch
+Patch10507: 0507-feat-update-memory-for-mmz-and-bar2.patch
+Patch10508: 0508-feat-support-SOC-CPU-up-voltage.patch
+Patch10509: 0509-fix-fix-dc-endpoint-index.patch
+Patch10510: 0510-feat-osm-dts-add-gpio-pinctrl-script.patch
+Patch10511: 0511-fix-Revert-some-err-dts-changes-for-VI-Merge.patch
+Patch10512: 0512-feat-update-escl-linux-dependency.patch
+Patch10513: 0513-feat-sbc-support-i2c-spi.patch
+Patch10514: 0514-feature-Sync-d560-dts-config.patch
+Patch10515: 0515-fix-vpu7702-streamid-problem.patch
+Patch10516: 0516-feat-sbc-vi.patch
+Patch10517: 0517-fix-delete-warning-log.patch
+Patch10518: 0518-style-fix-the-warning-in-DTS.patch
+Patch10519: 0519-fix-sata-downspeed-issue-on-die1-debug.patch
+Patch10520: 0520-feat-Add-SD-card-detect.patch
+Patch10521: 0521-style-fix-the-warning-in-DTS.patch
+Patch10522: 0522-feat-support-dewarp-in-7702.patch
+Patch10523: 0523-fix-fix-sbc-camera-dts-warning-log.patch
+Patch10524: 0524-feat-d314-vi-support.patch
+Patch10525: 0525-fix-fix-system-hang-after-run-isp-and-sample_vps-2.patch
+Patch10526: 0526-feat-remove-v4l2_pm-in-video-open-close.patch
+Patch10527: 0527-fix-KASAN-global-out-of-bounds.patch
+Patch10528: 0528-fix-Fix-d560-interleave-cpufreq-dt-probe-fail-issue.patch
+Patch10529: 0529-fix-solve-guvcview-print-err-log.patch
+Patch10530: 0530-fix-resolve-the-issue-of-slow-fan-speed.patch
+Patch10531: 0531-fix-fix-isp-isp_media_server-error-in-debian.patch
+Patch10532: 0532-feat-d314-isp-support.patch
+Patch10533: 0533-feat-enable-ddr-ecc-for-televpu.patch
+Patch10534: 0534-config-win2030-enable-CONFIG_TASK_IO_ACCOUNTING.patch
+Patch10535: 0535-config-win2030-enable-CONFIG_FUSE_FS.patch
+Patch10536: 0536-dts-add-milkv-megrez-nx.dts.patch
+Patch10537: 0537-riscv-dts-eswin-some-starpro64-dt-changes.patch
+Patch10538: 0538-mmc-sdhci-of-eswin-ignore-bogus-small-delay-windows.patch
+Patch10539: 0539-riscv-configs-enable-Motorcomm-PHY-driver.patch
+Patch10540: 0540-riscv-dts-eswin-starpro64-tweak-GMAC0-RX-delay.patch
+Patch10541: 0541-PCI-eswin-keep-PCIe-alive-at-shutdown.patch
+Patch10542: 0542-header-workarounds.patch
+Patch10543: 0543-stop-triggering-vmlinux-rebuild.patch
+Patch10544: 0544-Add-missing-newline.patch
+Patch10545: 0545-uninvert-the-fan.patch
+Patch10546: 0546-Reduce-crit-threshold-temp-to-85000.patch
+Patch10547: 0547-eswin-dsp-fixes.patch
+Patch10548: 0548-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10549: 0549-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10550: 0550-Bring-back-1.8GHz-to-STARPro64.patch
+Patch10551: 0551-remove-makefile-reference-for-non-existent-directory.patch
 
 
 
@@ -2684,15 +2750,82 @@ ApplyOptionalPatch 0473-fix-disable-cpu-1.4G-upper-of-evb.patch
 ApplyOptionalPatch 0474-riscv-module-Optimize-PLT-GOT-entry-counting.patch
 ApplyOptionalPatch 0475-riscv-module-fix-compilation-error-of-kvrealloc.patch
 ApplyOptionalPatch 0476-arch-add-ARCH_HAS_KERNEL_FPU_SUPPORT.patch
-ApplyOptionalPatch 0477-header-workarounds.patch
-ApplyOptionalPatch 0478-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0479-Add-missing-newline.patch
-ApplyOptionalPatch 0480-uninvert-the-fan.patch
-ApplyOptionalPatch 0481-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0482-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0483-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0484-Add-NPU-enabled-variants-of-dtbs.patch
-ApplyOptionalPatch 0485-Bring-back-1.8GHz-to-STARPro64.patch
+ApplyOptionalPatch 0477-fix-fix-pacmsg-bug.patch
+ApplyOptionalPatch 0478-feat-make-dma-period-size-under-500ms.patch
+ApplyOptionalPatch 0479-fix-modify-i2c_ctrlX-mem-region-size-form-64K-to-32K.patch
+ApplyOptionalPatch 0480-fix-Modify-tps549d22-enable-sequence-of-software-cfg.patch
+ApplyOptionalPatch 0481-feat-support-eic7702-d560.patch
+ApplyOptionalPatch 0482-feat-add-DMA-malloc-to-dmabuf-driver.patch
+ApplyOptionalPatch 0483-feat-dma-memcp-add-sync-and-async-notifier.patch
+ApplyOptionalPatch 0484-feat-add-memcp-offset-overflow-check.patch
+ApplyOptionalPatch 0485-fix-add-disable-wp-in-sdio.patch
+ApplyOptionalPatch 0486-fix-enable-usb2.0-hub.patch
+ApplyOptionalPatch 0487-feat-adapt-to-vpu7702-smmu-cfg-drv.patch
+ApplyOptionalPatch 0488-feat-update-dts-for-eic7702_vpu.patch
+ApplyOptionalPatch 0489-feat-Merge-branch-feature-vi-into-win2030-dev.patch
+ApplyOptionalPatch 0490-fix-Resolve-the-issue-of-NPU-reset.patch
+ApplyOptionalPatch 0491-fix-fix-multi-process-npu-ioctl-bug.patch
+ApplyOptionalPatch 0492-feat-vpu7702-smmu-cfg-modify.patch
+ApplyOptionalPatch 0493-feat-eth-ETH-tuning-in-EIC7702_D560.patch
+ApplyOptionalPatch 0494-fix-clear-ecc-interrupt-anytime.patch
+ApplyOptionalPatch 0495-fix-pcie-check-clk-before-init.patch
+ApplyOptionalPatch 0496-feat-adapt-ap6256.patch
+ApplyOptionalPatch 0497-feat-to-support-both-evb-and-televpu.patch
+ApplyOptionalPatch 0498-fix-fix-evb-vi-catpure-image.patch
+ApplyOptionalPatch 0499-fix-pcie-tbu-error.patch
+ApplyOptionalPatch 0500-feat-Export-die-idx-pin.patch
+ApplyOptionalPatch 0501-feat-add-es-fand-function.patch
+ApplyOptionalPatch 0502-fix-dvp2axi-kernel-warning.patch
+ApplyOptionalPatch 0503-fix-modify-the-reading-method-of-rpm.patch
+ApplyOptionalPatch 0504-feature-Add-kernel-eic7702-d560-interleave-dts.patch
+ApplyOptionalPatch 0505-fix-NPU-enable-1.5G-performance.patch
+ApplyOptionalPatch 0506-fix-VPU-model-reading-erro.patch
+ApplyOptionalPatch 0507-feat-update-memory-for-mmz-and-bar2.patch
+ApplyOptionalPatch 0508-feat-support-SOC-CPU-up-voltage.patch
+ApplyOptionalPatch 0509-fix-fix-dc-endpoint-index.patch
+ApplyOptionalPatch 0510-feat-osm-dts-add-gpio-pinctrl-script.patch
+ApplyOptionalPatch 0511-fix-Revert-some-err-dts-changes-for-VI-Merge.patch
+ApplyOptionalPatch 0512-feat-update-escl-linux-dependency.patch
+ApplyOptionalPatch 0513-feat-sbc-support-i2c-spi.patch
+ApplyOptionalPatch 0514-feature-Sync-d560-dts-config.patch
+ApplyOptionalPatch 0515-fix-vpu7702-streamid-problem.patch
+ApplyOptionalPatch 0516-feat-sbc-vi.patch
+ApplyOptionalPatch 0517-fix-delete-warning-log.patch
+ApplyOptionalPatch 0518-style-fix-the-warning-in-DTS.patch
+ApplyOptionalPatch 0519-fix-sata-downspeed-issue-on-die1-debug.patch
+ApplyOptionalPatch 0520-feat-Add-SD-card-detect.patch
+ApplyOptionalPatch 0521-style-fix-the-warning-in-DTS.patch
+ApplyOptionalPatch 0522-feat-support-dewarp-in-7702.patch
+ApplyOptionalPatch 0523-fix-fix-sbc-camera-dts-warning-log.patch
+ApplyOptionalPatch 0524-feat-d314-vi-support.patch
+ApplyOptionalPatch 0525-fix-fix-system-hang-after-run-isp-and-sample_vps-2.patch
+ApplyOptionalPatch 0526-feat-remove-v4l2_pm-in-video-open-close.patch
+ApplyOptionalPatch 0527-fix-KASAN-global-out-of-bounds.patch
+ApplyOptionalPatch 0528-fix-Fix-d560-interleave-cpufreq-dt-probe-fail-issue.patch
+ApplyOptionalPatch 0529-fix-solve-guvcview-print-err-log.patch
+ApplyOptionalPatch 0530-fix-resolve-the-issue-of-slow-fan-speed.patch
+ApplyOptionalPatch 0531-fix-fix-isp-isp_media_server-error-in-debian.patch
+ApplyOptionalPatch 0532-feat-d314-isp-support.patch
+ApplyOptionalPatch 0533-feat-enable-ddr-ecc-for-televpu.patch
+ApplyOptionalPatch 0534-config-win2030-enable-CONFIG_TASK_IO_ACCOUNTING.patch
+ApplyOptionalPatch 0535-config-win2030-enable-CONFIG_FUSE_FS.patch
+ApplyOptionalPatch 0536-dts-add-milkv-megrez-nx.dts.patch
+ApplyOptionalPatch 0537-riscv-dts-eswin-some-starpro64-dt-changes.patch
+ApplyOptionalPatch 0538-mmc-sdhci-of-eswin-ignore-bogus-small-delay-windows.patch
+ApplyOptionalPatch 0539-riscv-configs-enable-Motorcomm-PHY-driver.patch
+ApplyOptionalPatch 0540-riscv-dts-eswin-starpro64-tweak-GMAC0-RX-delay.patch
+ApplyOptionalPatch 0541-PCI-eswin-keep-PCIe-alive-at-shutdown.patch
+ApplyOptionalPatch 0542-header-workarounds.patch
+ApplyOptionalPatch 0543-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0544-Add-missing-newline.patch
+ApplyOptionalPatch 0545-uninvert-the-fan.patch
+ApplyOptionalPatch 0546-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0547-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0548-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0549-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0550-Bring-back-1.8GHz-to-STARPro64.patch
+ApplyOptionalPatch 0551-remove-makefile-reference-for-non-existent-directory.patch
+
 
 
 

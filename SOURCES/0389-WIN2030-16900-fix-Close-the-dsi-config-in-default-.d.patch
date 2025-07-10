@@ -1,7 +1,7 @@
-From 8704f33f4d0401f762528bce975d27a7db6c4598 Mon Sep 17 00:00:00 2001
+From 06bc0c9854fcb83334fa3f1e72d270ce6c05e8de Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 21 Jan 2025 13:10:51 +0800
-Subject: [PATCH 389/485] WIN2030-16900:fix:Close the dsi config in default
+Subject: [PATCH 389/551] WIN2030-16900:fix:Close the dsi config in default
  .dts
 
 Changelogs:
