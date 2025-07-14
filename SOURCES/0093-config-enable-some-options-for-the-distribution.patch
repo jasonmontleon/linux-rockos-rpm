@@ -1,4 +1,4 @@
-From e234ce87c9e9e1c042fe45829a8e0ddb9bd3d977 Mon Sep 17 00:00:00 2001
+From 0d3c44f484dd1981cd807e71d73ca33a8eb22940 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 22 Jul 2024 17:32:51 +0800
 Subject: [PATCH 093/551] config: enable some options for the distribution
@@ -102,5 +102,5 @@ index c30b74940c05..c9ffac16a286 100644
  # CONFIG_CRYPTO_CTS is not set
  CONFIG_CRYPTO_ECB=m
 -- 
-2.50.0
+2.50.1
 

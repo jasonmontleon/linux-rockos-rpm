@@ -1,4 +1,4 @@
-From 6a409a5e48d7782967f6aae0995a199a898c5b29 Mon Sep 17 00:00:00 2001
+From 88af2779d7705ffe46acee930bc88ac947a83da3 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Mon, 9 Dec 2024 17:50:25 +0800
 Subject: [PATCH 333/551] WIN2030-16760:feat:adapt eth driver to board z530.
@@ -439,5 +439,5 @@ index e3b6c28394b6..6ae7b0ecfb86 100644
  	return 0;
  }
 -- 
-2.50.0
+2.50.1
 

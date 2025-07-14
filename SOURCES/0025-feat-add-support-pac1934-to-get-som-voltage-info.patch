@@ -1,4 +1,4 @@
-From 0ef98b9abc9b76356bebb22addc2226f5c121f7e Mon Sep 17 00:00:00 2001
+From af2bf96897bf3bc8b2c0adc8a09585fec0399faa Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 16:16:05 +0800
 Subject: [PATCH 025/551] feat:add support pac1934 to get som voltage info
@@ -1021,5 +1021,5 @@ index 000000000000..ebad3bde611e
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.50.0
+2.50.1
 

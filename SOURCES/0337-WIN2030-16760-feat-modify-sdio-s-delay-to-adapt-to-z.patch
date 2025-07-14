@@ -1,4 +1,4 @@
-From ce386f62f36f0a4f10142a35d43224afd187a40d Mon Sep 17 00:00:00 2001
+From b9b3706337c2390444c95077bca565a36f8cf31a Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 12 Dec 2024 19:06:12 +0800
 Subject: [PATCH 337/551] WIN2030-16760:feat:modify sdio's delay to adapt to
@@ -36,5 +36,5 @@ index 2926d780b79c..d9dc8a8afd6a 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 -- 
-2.50.0
+2.50.1
 

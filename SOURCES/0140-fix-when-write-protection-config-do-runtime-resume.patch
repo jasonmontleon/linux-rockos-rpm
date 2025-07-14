@@ -1,4 +1,4 @@
-From fb39304e50dd6723f51715fa12b8f67a9c00503c Mon Sep 17 00:00:00 2001
+From a132fda64c3505bebaf7a09b89764cef59abf128 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 7 Aug 2024 17:01:33 +0800
 Subject: [PATCH 140/551] fix:when write protection config, do runtime resume
@@ -32,5 +32,5 @@ index 9d3447538e38..ee28701ab1b8 100644
  
  static ssize_t wp_enable_show(struct device *dev,
 -- 
-2.50.0
+2.50.1
 

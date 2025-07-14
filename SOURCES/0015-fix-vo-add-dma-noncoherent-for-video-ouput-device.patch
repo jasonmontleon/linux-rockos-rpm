@@ -1,4 +1,4 @@
-From 30a32349e2e2b746db36b46238030cd6e13564e4 Mon Sep 17 00:00:00 2001
+From 9ba55c3da28e97fd2c24aa40cb2f3cffdfcd61b2 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Thu, 23 May 2024 13:14:03 +0800
 Subject: [PATCH 015/551] fix(vo): add dma-noncoherent for video ouput device
@@ -35,5 +35,5 @@ index b1b077ceea0e..5a55de6c7b2a 100644
  
          d1_dc: display_control@702c0000 {
 -- 
-2.50.0
+2.50.1
 

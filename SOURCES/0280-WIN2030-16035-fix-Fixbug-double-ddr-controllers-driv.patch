@@ -1,4 +1,4 @@
-From 156b9fb48d22912cd8554def971c7da9c0dd39cc Mon Sep 17 00:00:00 2001
+From 1c4f7c8bfbe7eb93c3d518141f56fa99849b666a Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 6 Nov 2024 15:13:54 +0800
 Subject: [PATCH 280/551] WIN2030-16035:fix:Fixbug double ddr controllers
@@ -109,5 +109,5 @@ index 01447e641fa3..b1b48b5ec94b 100644
  			state.period,state.duty_cycle);
  	ret = pwm_apply_might_sleep(ctl->pwm, &state);
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 9bd7c84cfbd4b9ac2b78881c0b6d0d8dfa79b89f Mon Sep 17 00:00:00 2001
+From b9af932b1f3259b613146079a35b57392a6040b0 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 11 Mar 2025 13:54:20 +0800
 Subject: [PATCH 441/551] fix:modify mpq8785 critical uint and es5340 lable
@@ -156,5 +156,5 @@ index 3787fe244618..994e1068a539 100644
  		}
  		break;
 -- 
-2.50.0
+2.50.1
 

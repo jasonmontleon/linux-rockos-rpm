@@ -1,4 +1,4 @@
-From 46849d3fcfff9f9e9b743577c127a7a7e5ce198b Mon Sep 17 00:00:00 2001
+From 97cdd361cf4c86b65f2d4e75f792fb1175a02062 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Mon, 16 Dec 2024 11:25:50 +0800
 Subject: [PATCH 341/551] WIN2030-16810:fix: npu devfeq bug fix
@@ -113,5 +113,5 @@ index 026a89f803b8..825c432cf2f2 100644
  	if (nvdla_dev->rate != target_rate) {
  		dev_err(dev, "Got wrong frequency, Request %lu, Current %lu.\n", target_rate, nvdla_dev->rate);
 -- 
-2.50.0
+2.50.1
 

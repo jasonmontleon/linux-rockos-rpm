@@ -1,4 +1,4 @@
-From 4d3000c9a5af70b4b3ea4743b4c372546585986f Mon Sep 17 00:00:00 2001
+From d199c1118d8fc478bec1e5fc2698bb2732fcbc9e Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:12:28 +0800
 Subject: [PATCH 215/551] npu: add es5340 support
@@ -964,5 +964,5 @@ index 000000000000..c49fcfbf4dc0
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.50.0
+2.50.1
 

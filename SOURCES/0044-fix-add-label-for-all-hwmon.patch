@@ -1,4 +1,4 @@
-From 17a4650931239353fcaed39a9f8db54a4fcfa318 Mon Sep 17 00:00:00 2001
+From ad9cd0376a799bc486ee0ed0222c539b39367cdc Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 3 Jun 2024 19:00:03 +0800
 Subject: [PATCH 044/551] fix:add label for all hwmon
@@ -215,5 +215,5 @@ index 271a5881d3de..92a708552e52 100644
  		shunt-resistor = <1000>;
  	};
 -- 
-2.50.0
+2.50.1
 

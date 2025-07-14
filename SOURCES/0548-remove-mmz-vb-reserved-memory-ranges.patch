@@ -1,4 +1,4 @@
-From 203a35a422f9f2236d5fb2897b2e7f1aca8c81b9 Mon Sep 17 00:00:00 2001
+From 940871844305c4468604c2ee2304046c8d9ed4d0 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sat, 22 Feb 2025 21:33:23 -0500
 Subject: [PATCH 548/551] remove mmz vb reserved memory ranges
@@ -61,5 +61,5 @@ index 7f71dd33b71f..d0d755be9dc2 100644
  
  	leds {
 -- 
-2.50.0
+2.50.1
 

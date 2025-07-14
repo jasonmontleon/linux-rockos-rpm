@@ -1,4 +1,4 @@
-From bc8a3712251c6b73ef4137bcc013a86615158cfe Mon Sep 17 00:00:00 2001
+From dbcee46d7168627085eb79c642d0c9029cb0d4f4 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 15 Jul 2024 23:51:22 +0800
 Subject: [PATCH 092/551] fix: eswin: load kvm module failed
@@ -76,5 +76,5 @@ index 20dcbd9e76f4..57fac9c2ccba 100644
  
  	for (alt = begin; alt < end; alt++) {
 -- 
-2.50.0
+2.50.1
 

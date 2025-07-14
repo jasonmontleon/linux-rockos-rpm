@@ -1,4 +1,4 @@
-From 8e0f764c72b624168943da6483a4cd09926d34e3 Mon Sep 17 00:00:00 2001
+From e803191387200a072635238f261ad3b9ec6adcc9 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 26 Jun 2024 21:40:08 +0800
 Subject: [PATCH 077/551] chore: dtb_install in /boot
@@ -22,5 +22,5 @@ index d7dd0d04c70c..cbcf14820fb9 100755
  
  	${MAKE} -f ${srctree}/Makefile INSTALL_MOD_PATH="${pdir}" modules_install
 -- 
-2.50.0
+2.50.1
 

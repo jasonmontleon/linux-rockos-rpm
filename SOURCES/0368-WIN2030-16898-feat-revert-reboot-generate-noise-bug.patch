@@ -1,4 +1,4 @@
-From 144609a1878483afafbe88e2d41eafad7013367d Mon Sep 17 00:00:00 2001
+From a1540ab1dffaa608ea94ab99416d75753eb4dbfd Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 27 Dec 2024 17:20:07 +0800
 Subject: [PATCH 368/551] WIN2030-16898:feat:revert reboot generate noise bug
@@ -80,5 +80,5 @@ index 0d40aee31f87..eed2859387b1 100755
  		}
  	}
 -- 
-2.50.0
+2.50.1
 

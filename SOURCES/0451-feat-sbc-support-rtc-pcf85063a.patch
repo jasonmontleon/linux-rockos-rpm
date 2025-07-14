@@ -1,4 +1,4 @@
-From 450e41c2170400afeda8b3efd75b292c89f47189 Mon Sep 17 00:00:00 2001
+From cc2217f680b07ba54fe6d8ee3780e470556c1660 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 19 Mar 2025 16:04:01 +0800
 Subject: [PATCH 451/551] feat:sbc support rtc pcf85063a
@@ -57,5 +57,5 @@ index a31c15f59201..5520be92a830 100644
  CONFIG_RTC_DRV_ESWIN=y
  CONFIG_DMADEVICES=y
 -- 
-2.50.0
+2.50.1
 

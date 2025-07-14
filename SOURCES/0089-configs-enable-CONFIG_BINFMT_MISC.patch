@@ -1,4 +1,4 @@
-From d4f05135edcd6643eb3c33c84ed90060cb9ddad6 Mon Sep 17 00:00:00 2001
+From d80eb817107ba3f9bff25c4b0e49e267bb1a4908 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 14 Jun 2024 13:05:45 +0800
 Subject: [PATCH 089/551] configs: enable CONFIG_BINFMT_MISC
@@ -21,5 +21,5 @@ index 9a186bcd4be7..78c1df17d734 100644
  CONFIG_CMA=y
  CONFIG_NET=y
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 6748042ba389b259dd17186e3c6e66e2d16ea54d Mon Sep 17 00:00:00 2001
+From aae9ca6c0dd5992bc15cacb327a39abfd4681522 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 30 May 2025 11:13:30 +0800
 Subject: [PATCH 523/551] fix: fix sbc-camera dts warning log
@@ -32,5 +32,5 @@ index c34f0ce14190..f75d8d78518c 100644
  		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
  		iommus = <&smmu0 WIN2030_SID_ISP0>;
 -- 
-2.50.0
+2.50.1
 

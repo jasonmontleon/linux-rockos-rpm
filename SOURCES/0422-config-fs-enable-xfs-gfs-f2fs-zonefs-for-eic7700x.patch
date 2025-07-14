@@ -1,4 +1,4 @@
-From 004b8df061a5adf79cdf3d0bf93d326cbd817af8 Mon Sep 17 00:00:00 2001
+From d900d7032138f1f46fa7d60ef3e4760982d40c18 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:09:10 +0800
 Subject: [PATCH 422/551] config: fs: enable xfs/gfs/f2fs/zonefs for eic7700x
@@ -115,5 +115,5 @@ index 8c625a339091..623624112dff 100644
 -CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 7a7a72762c3719cb07eb43c869387d4d812bc382 Mon Sep 17 00:00:00 2001
+From 21d0abb3f46482f4c56dbd856eb47ff9022ff51e Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Mon, 30 Dec 2024 11:09:41 +0800
 Subject: [PATCH 412/551] feat: add npu usage Changelogs:
@@ -323,5 +323,5 @@ index 6679f371b06b..2ae719709386 100644
  			dla_debug("%s, %d unlocked\n", __func__, __LINE__);
  		}
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 2089ce5719f99628afddb55effe9a97f2a10265f Mon Sep 17 00:00:00 2001
+From 28f9919eb470c824aecce2f940f5c5dedfaf27a2 Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Tue, 13 Aug 2024 10:56:29 +0800
 Subject: [PATCH 252/551] WIN2030-15907:feat:audio adaptation for dual die
@@ -559,5 +559,5 @@ index 5774a03a270b..dcb552d2331a 100755
  	if (ret != 0) {
  		dev_err(&pdev->dev, "not able to register dai\n");
 -- 
-2.50.0
+2.50.1
 

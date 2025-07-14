@@ -1,4 +1,4 @@
-From 109d40e274e71adda14186cf5a09409d5e27706b Mon Sep 17 00:00:00 2001
+From 77aeb94b123ef25c50f5e3e7c0a31a6eadc10b9e Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 5 Jul 2024 17:23:03 +0800
 Subject: [PATCH 065/551] fix(es buddy):add spin lock
@@ -40,5 +40,5 @@ index bc0fd6eb6ddb..2c40d1116ad8 100644
  #include "list.h"
  #include <stdio.h>  //printf
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 79d0220a78a639f92a3597eaf3cbe82589173064 Mon Sep 17 00:00:00 2001
+From d50b27a2d8a64d2efd3b7bc3a23d44315af4f64d Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 1 Aug 2024 15:09:50 +0800
 Subject: [PATCH 138/551] feat:change idle defconfig from win2030 to eic7700
@@ -25,5 +25,5 @@ index 24819c7dd1e7..1472511bd299 100644
  CONFIG_KVM=m
  CONFIG_JUMP_LABEL=y
 -- 
-2.50.0
+2.50.1
 

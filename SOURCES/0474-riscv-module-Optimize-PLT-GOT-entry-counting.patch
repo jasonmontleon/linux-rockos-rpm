@@ -1,4 +1,4 @@
-From 024508a00131be1a8140bd308d13b1b23e0869da Mon Sep 17 00:00:00 2001
+From 274ce4319ecae0314906dd315d15be5ab66194ba Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 8 Apr 2025 19:45:16 -0700
 Subject: [PATCH 474/551] riscv: module: Optimize PLT/GOT entry counting
@@ -135,5 +135,5 @@ index e264e59e596e..91d4f0fbd0af 100644
  	mod->arch.plt.shdr->sh_flags = SHF_EXECINSTR | SHF_ALLOC;
  	mod->arch.plt.shdr->sh_addralign = L1_CACHE_BYTES;
 -- 
-2.50.0
+2.50.1
 

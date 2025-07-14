@@ -1,4 +1,4 @@
-From dcf724d1eb0304020968a01ce7d6090fcbceb817 Mon Sep 17 00:00:00 2001
+From 6cc935f7bd41760bca2aac77fc3017bc6ca0aa3b Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 24 Dec 2024 10:29:33 +0800
 Subject: [PATCH 356/551] WIN2030-14758:feat:clk support set default cpu freq
@@ -94,5 +94,5 @@ index ccb7dade5475..93cb6c6c8507 100755
  }
  
 -- 
-2.50.0
+2.50.1
 

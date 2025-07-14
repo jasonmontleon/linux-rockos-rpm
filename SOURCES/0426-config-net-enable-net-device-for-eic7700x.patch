@@ -1,4 +1,4 @@
-From affa71fa7a82bea0770dfbcb60aabb3a5fb07e16 Mon Sep 17 00:00:00 2001
+From f3de0e73505d6e051b69b3556e6fe6d7f3acd41f Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:51:58 +0800
 Subject: [PATCH 426/551] config: net: enable net device for eic7700x
@@ -64,5 +64,5 @@ index 381dec16e843..07ee8a6b05f9 100644
  CONFIG_GPIO_DWAPB=y
  CONFIG_SENSORS_ESWIN_FAN_CONTROL=y
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 1a1c846ccae28fb3a3a45a5ba36668f06a86a6c0 Mon Sep 17 00:00:00 2001
+From 7a4938e58813111f27713dda4588a3c7ddb4a59a Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Tue, 20 May 2025 17:14:45 +0800
 Subject: [PATCH 513/551] feat:sbc support i2c, spi
@@ -96,5 +96,5 @@ index 8dc5eb4c4607..e019b70ecda0 100644
      /* pin header default function for GPIO
         SPI1 (CS0,SCLK,MOSI,MISO,D2,D3,CS1): GPIO 35,36,37,38,39,40,41
 -- 
-2.50.0
+2.50.1
 

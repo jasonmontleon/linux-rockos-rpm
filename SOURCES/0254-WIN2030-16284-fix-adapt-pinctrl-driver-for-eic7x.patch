@@ -1,4 +1,4 @@
-From a90b717c38f369aedd0a69d0a416cdf7bcbfdf48 Mon Sep 17 00:00:00 2001
+From 24467d6e96d813627c01e4a91647e3dd7418d305 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 6 Sep 2024 22:22:09 +0800
 Subject: [PATCH 254/551] WIN2030-16284:fix:adapt pinctrl driver for eic7x
@@ -628,5 +628,5 @@ index 1a04a041432d..3183b0dc424a 100644
  	ESWIN_PINMUX_FUNCTION(clk_spll2_test_out, 7, ESWIN_PINMUX_MASK),
  	ESWIN_PINMUX_FUNCTION(clk_vpll_test_out, 7, ESWIN_PINMUX_MASK),
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 31b47e4ae77ccd3a06f08d0560fe0b4d63d27541 Mon Sep 17 00:00:00 2001
+From 2a66a45e96a451e400f2fddc0203a2db3e66b8f3 Mon Sep 17 00:00:00 2001
 From: lihuihui <lihuihui@eswincomputing.com>
 Date: Tue, 13 May 2025 14:35:50 +0800
 Subject: [PATCH 508/551] feat:support SOC/CPU up voltage
@@ -109,5 +109,5 @@ index 5744fd7d1796..1585a666d16f 100644
 +CONFIG_IIO=y
  CONFIG_TI_ADS1015=y
 -- 
-2.50.0
+2.50.1
 

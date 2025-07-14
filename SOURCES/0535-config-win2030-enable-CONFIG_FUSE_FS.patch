@@ -1,4 +1,4 @@
-From af75ea95787a27bd34fd6d854577bb449ab43ba7 Mon Sep 17 00:00:00 2001
+From ba70dea8ae4ceedbac3b95cc8b05123f5628a399 Mon Sep 17 00:00:00 2001
 From: "Kevin.MX" <zhengjingkun@iscas.ac.cn>
 Date: Wed, 11 Jun 2025 22:04:36 +0800
 Subject: [PATCH 535/551] config: win2030: enable CONFIG_FUSE_FS
@@ -23,5 +23,5 @@ index 383bc4438249..dfe1b886df52 100644
  CONFIG_OVERLAY_FS_REDIRECT_DIR=y
  CONFIG_OVERLAY_FS_INDEX=y
 -- 
-2.50.0
+2.50.1
 

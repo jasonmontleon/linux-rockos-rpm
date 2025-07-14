@@ -1,4 +1,4 @@
-From 0d721d04ea39bf853016fc49c860d5d7c76b54bb Mon Sep 17 00:00:00 2001
+From a80c60ec90127fcadaf8d3d8d3ba398049ca3712 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 21 Jun 2024 15:09:46 +0800
 Subject: [PATCH 059/551] fix:BootSpi contronller check flash status register.
@@ -123,5 +123,5 @@ index 977bc6487e99..1205ce3941ae 100644
  	eswin_bootspi_write(priv, ES_SPI_CSR_08, 0x0);
  	return ret;
 -- 
-2.50.0
+2.50.1
 

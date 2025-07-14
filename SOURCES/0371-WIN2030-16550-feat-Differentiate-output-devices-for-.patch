@@ -1,4 +1,4 @@
-From 58a455efcdd310ca21bc7003294c3a600b975c21 Mon Sep 17 00:00:00 2001
+From 39484144e6dc71a0222103db168820ac169df426 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 17 Dec 2024 14:22:26 +0800
 Subject: [PATCH 371/551] WIN2030-16550:feat:Differentiate output devices for
@@ -1787,5 +1787,5 @@ index 0d69098eddd9..9a35ee8d5810 100644
  		.compatible = "rocktech,rk070er9427",
  		.data = &rocktech_rk070er9427,
 -- 
-2.50.0
+2.50.1
 

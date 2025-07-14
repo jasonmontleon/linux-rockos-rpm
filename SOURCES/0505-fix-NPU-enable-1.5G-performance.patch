@@ -1,4 +1,4 @@
-From 5c53f10d0bed9b613fbc39800825a4c96b9f3b0d Mon Sep 17 00:00:00 2001
+From 2b42b3d3dcb321cf9fcd556701dcbd79a28fb54f Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Mon, 12 May 2025 14:38:20 +0800
 Subject: [PATCH 505/551] fix:NPU enable 1.5G performance
@@ -24,5 +24,5 @@ index 1b7c3cc5dc1d..8dc5eb4c4607 100644
  
  &d0_dsp_subsys {
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From fdec0b8360a203cdcc5d6ef12f9441591ffe69be Mon Sep 17 00:00:00 2001
+From 6315f191bc22529618037e7ab19a3a410be9ee15 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Wed, 28 May 2025 11:00:35 +0800
 Subject: [PATCH 521/551] style:fix the warning in DTS
@@ -48,5 +48,5 @@ index 22f78801825e..47cbe32e5947 100644
  		cpu7_intc: interrupt-controller {
  			#interrupt-cells = <1>;
 -- 
-2.50.0
+2.50.1
 

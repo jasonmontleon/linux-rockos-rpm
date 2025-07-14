@@ -1,4 +1,4 @@
-From f2c699d1046d20d0dc657bde743f19fb914b9e2d Mon Sep 17 00:00:00 2001
+From 69a2db02a92071aa596690d5e344e6686a4af02f Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 30 Jul 2024 15:42:23 +0800
 Subject: [PATCH 127/551] fix(VE): fix var name redefinition
@@ -48,5 +48,5 @@ index b66055e26c3b..09c4195a60af 100644
  }
  
 -- 
-2.50.0
+2.50.1
 

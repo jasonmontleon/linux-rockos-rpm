@@ -1,4 +1,4 @@
-From b5b0c812e7bbd2a5486a64e15a6f88a29b2a169d Mon Sep 17 00:00:00 2001
+From 0e7ded84222f3547b6ff08eeea42791084f7e8e4 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 9 Sep 2024 19:29:58 +0800
 Subject: [PATCH 262/551] WIN2030-16287:feat:support es5340 for npu;modify
@@ -290,5 +290,5 @@ index bb996acd43d9..f0de31f666a0 100644
  CONFIG_MEDIA_SUPPORT=y
  CONFIG_MEDIA_SUPPORT_FILTER=y
 -- 
-2.50.0
+2.50.1
 

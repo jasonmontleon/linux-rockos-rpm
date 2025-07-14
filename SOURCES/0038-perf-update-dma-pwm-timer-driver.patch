@@ -1,4 +1,4 @@
-From ee7fb9acc2d2ff40f56a01ab3827f8f2aa73961d Mon Sep 17 00:00:00 2001
+From 88f348267f133077b06130c1cac4ee707cc6ef9d Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 27 May 2024 18:53:47 +0800
 Subject: [PATCH 038/551] perf:update dma, pwm, timer driver
@@ -1407,5 +1407,5 @@ index c52268d06f7d..98637b5eac8a 100644
  int win2030_tbu_power_by_dev_and_node(struct device *dev, struct device_node *node, bool is_powerUp);
  
 -- 
-2.50.0
+2.50.1
 

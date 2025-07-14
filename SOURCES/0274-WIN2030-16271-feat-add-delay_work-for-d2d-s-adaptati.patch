@@ -1,4 +1,4 @@
-From 9bb8abc23c54ad0b13a5265f5d385570050be11c Mon Sep 17 00:00:00 2001
+From 89b791d2f7d701c02394c03e20bdad7fc79ed04f Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Sun, 29 Sep 2024 11:21:45 +0800
 Subject: [PATCH 274/551] WIN2030-16271:feat:add delay_work for d2d's
@@ -113,5 +113,5 @@ index e237641177b7..2b60e5eb4a6b 100644
  	dev_info(dev, "D2D-%d init OK\n",d2d_dev->numa_id);
  	return 0;
 -- 
-2.50.0
+2.50.1
 

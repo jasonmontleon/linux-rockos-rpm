@@ -1,4 +1,4 @@
-From fcd0662696b743d2228614e4fd73d60c58f7fa07 Mon Sep 17 00:00:00 2001
+From b0b5c799d8654ef17fbe8fadb0e25b0f7a8a0e0d Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 11 Dec 2024 16:52:31 +0800
 Subject: [PATCH 306/551] img: AXM-8-258 not support DRIVER_MODESET
@@ -23,5 +23,5 @@ index 145f40c5b884..f75542490b78 100644
  
  	.load			= NULL,
 -- 
-2.50.0
+2.50.1
 

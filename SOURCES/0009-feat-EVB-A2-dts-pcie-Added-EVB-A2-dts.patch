@@ -1,4 +1,4 @@
-From 844093912c1b7998d13e9736f1b00a00a4f62e07 Mon Sep 17 00:00:00 2001
+From ecb1d74d81c6faea4b1797992385dc9bd46b765c Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Sat, 18 May 2024 11:16:41 +0800
 Subject: [PATCH 009/551] feat(EVB-A2 dts+pcie):Added EVB-A2 dts
@@ -4198,5 +4198,5 @@ index 000000000000..66941cce9dde
 +MODULE_LICENSE("GPL v2");
 \ No newline at end of file
 -- 
-2.50.0
+2.50.1
 

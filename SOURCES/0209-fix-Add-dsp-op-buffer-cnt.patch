@@ -1,4 +1,4 @@
-From ee94331620c988e875b45f063bfef2eba36d728b Mon Sep 17 00:00:00 2001
+From f76aa45a102ab98fa9b83e814ac49f834889b33f Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 28 Oct 2024 19:37:10 +0800
 Subject: [PATCH 209/551] fix:Add dsp op buffer cnt.
@@ -53,5 +53,5 @@ index 7b9c84c14ed3..ad0b3f2105e2 100644
  typedef struct DEVICE_BUFFER_GROUP_S {
      ES_DEV_BUF_S *buffers;
 -- 
-2.50.0
+2.50.1
 

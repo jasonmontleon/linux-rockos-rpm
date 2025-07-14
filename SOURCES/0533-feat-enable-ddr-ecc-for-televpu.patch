@@ -1,4 +1,4 @@
-From e03cfa399174781fef27e745506878ebec6bccba Mon Sep 17 00:00:00 2001
+From 416ed2cb7c82cc3150cf4c77fee95f629bbe032c Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 15 May 2025 16:29:52 +0800
 Subject: [PATCH 533/551] feat:enable ddr ecc for televpu
@@ -39,5 +39,5 @@ index 8f19ec7f1925..3cbfe77eeac1 100644
  		};
  
 -- 
-2.50.0
+2.50.1
 

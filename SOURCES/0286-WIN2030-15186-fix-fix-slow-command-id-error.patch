@@ -1,4 +1,4 @@
-From eeb2334a76e98dcee4ae6950db3ff0aa2412c7ea Mon Sep 17 00:00:00 2001
+From 8e4b11f0ba3fd290bd65052d483ff6e81514c856 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 21 Nov 2024 20:46:12 +0800
 Subject: [PATCH 286/551] WIN2030-15186:fix:fix slow command id error
@@ -25,5 +25,5 @@ index ae2735139729..c0d165a206c3 100644
  #define PAC193X_CMD_DIS_ACT 0x22
  #define PAC193X_CMD_NEG_PWR_ACT 0x23
 -- 
-2.50.0
+2.50.1
 

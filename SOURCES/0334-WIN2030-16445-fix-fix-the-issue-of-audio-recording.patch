@@ -1,4 +1,4 @@
-From 7be4286f1cd3a5ad08d4ee3eef52e7fdd8a1496f Mon Sep 17 00:00:00 2001
+From 3ff72f1b9b8a8f8d1fc342144260727ba034dec2 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 14:32:12 +0800
 Subject: [PATCH 334/551] WIN2030-16445:fix:fix the issue of audio recording.
@@ -90,5 +90,5 @@ index 1ceb706a9f9a..bc05b82f5c79 100644
  		/* Select default capture path ---> phone mic */
  		snd_soc_component_write(component, ES8328_ADCCONTROL2, 0xf0);
 -- 
-2.50.0
+2.50.1
 

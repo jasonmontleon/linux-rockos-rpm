@@ -1,4 +1,4 @@
-From 15461f73f1b55400f6692e698012a80d93e0028c Mon Sep 17 00:00:00 2001
+From 8f0a154201841bb990b493b19ae03173835c07a0 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 17 Apr 2025 16:37:15 +0800
 Subject: [PATCH 480/551] fix:Modify tps549d22 enable sequence of software cfg
@@ -27,5 +27,5 @@ index dd0052525c36..42de6234b289 100644
  	return ret;
  }
 -- 
-2.50.0
+2.50.1
 

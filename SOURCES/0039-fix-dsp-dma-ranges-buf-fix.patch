@@ -1,4 +1,4 @@
-From 5d0c98632d4214ed938a3f14c85672b16ee81ab6 Mon Sep 17 00:00:00 2001
+From eca1148f5e0837a7f1c0c6671aa816a1b6514b46 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 29 May 2024 14:11:20 +0800
 Subject: [PATCH 039/551] fix:dsp dma-ranges buf fix
@@ -99,5 +99,5 @@ index 971b506eaf0b..bbb403cf4776 100644
  				tbus = <WIN2030_TBUID_DSP3>;
  				dma-noncoherent;
 -- 
-2.50.0
+2.50.1
 

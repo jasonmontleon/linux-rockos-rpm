@@ -1,4 +1,4 @@
-From cba9239aa3aa0fb0987c693615546e4c2670bca1 Mon Sep 17 00:00:00 2001
+From c265a1b019de41264ba9bd48c2e2b5c90bab4c19 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 17 Jun 2024 17:42:34 +0800
 Subject: [PATCH 132/551] refactor:add vo qos config
@@ -49,5 +49,5 @@ index 2eddebbd2ddb..ac43c604a2dc 100644
  }
  
 -- 
-2.50.0
+2.50.1
 

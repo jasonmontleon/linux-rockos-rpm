@@ -1,4 +1,4 @@
-From 5a2f40d718aa3f42a1dd8d12e041b06806141cbc Mon Sep 17 00:00:00 2001
+From 79c60d8f3226f5c3ec5d3c0004cfb584716af81e Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 13:50:10 +0800
 Subject: [PATCH 335/551] WIN2030-16445:fix:NPU driver add switch for perf
@@ -42,5 +42,5 @@ index 9e85f48c355b..630aa94bc05f 100644
  ccflags-y += -I$(srctree)/drivers/soc/eswin
  ccflags-y += -I$(srctree)/drivers/memory/eswin/codacache/
 -- 
-2.50.0
+2.50.1
 

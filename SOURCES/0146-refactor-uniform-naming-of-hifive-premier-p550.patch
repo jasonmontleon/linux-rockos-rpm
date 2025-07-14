@@ -1,4 +1,4 @@
-From 66f783b46631eb83ece963af633ef7ff6ce59d5d Mon Sep 17 00:00:00 2001
+From 06093eedb3a3e4b875cbf6a2b17786bcb51ae2c4 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 12 Aug 2024 13:10:39 +0800
 Subject: [PATCH 146/551] refactor:uniform naming of hifive premier p550
@@ -31,5 +31,5 @@ similarity index 100%
 rename from arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 rename to arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 -- 
-2.50.0
+2.50.1
 

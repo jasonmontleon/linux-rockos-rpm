@@ -1,4 +1,4 @@
-From fcf1c110efd5ed33a006d7c1827257a867f40f6e Mon Sep 17 00:00:00 2001
+From d0402421b8f349179885feffd8104bca0655ea2a Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 1 Nov 2024 16:33:03 +0800
 Subject: [PATCH 278/551] WIN2030-16035:refactor:Add numa node id of Die0's cpu
@@ -65,5 +65,5 @@ index a1c618fabcea..64671ff693e3 100644
  			operating-points-v2 = <&d0_cpu_opp_table>;
  			#cooling-cells = <2>;
 -- 
-2.50.0
+2.50.1
 

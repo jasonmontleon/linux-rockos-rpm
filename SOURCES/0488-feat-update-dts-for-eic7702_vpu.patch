@@ -1,4 +1,4 @@
-From 3db769826ccbc602820c656f12336d17f0adffc1 Mon Sep 17 00:00:00 2001
+From a447178445aee61449fe166ad8dc2be9c13c8446 Mon Sep 17 00:00:00 2001
 From: tanshanshan <tanshanshan@eswincomputing.com>
 Date: Sat, 12 Apr 2025 19:36:18 +0800
 Subject: [PATCH 488/551] feat:update dts for eic7702_vpu
@@ -294,5 +294,5 @@ index ca6a63a49950..5744fd7d1796 100644
 +CONFIG_REGULATOR_TPS549D22=y
 +CONFIG_TI_ADS1015=y
 -- 
-2.50.0
+2.50.1
 

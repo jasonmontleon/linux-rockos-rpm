@@ -1,4 +1,4 @@
-From 8c785e72e9c29a6d0699535fe4c3b378808df428 Mon Sep 17 00:00:00 2001
+From 745439b7d9f99e29d77f8c06fda61f17c7fe51da Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 11 Apr 2025 14:53:32 +0800
 Subject: [PATCH 471/551] fix:revert dma
@@ -38,5 +38,5 @@ index 0603030cc424..80787986d26d 100644
  	hw.info |= SNDRV_PCM_INFO_BATCH;
  
 -- 
-2.50.0
+2.50.1
 

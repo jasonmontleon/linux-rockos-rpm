@@ -1,4 +1,4 @@
-From f6fa500e14050edbcbd97fdbf4f5aa40f08a5bca Mon Sep 17 00:00:00 2001
+From da98baa778595f7c69ed4a207d5bf3073c89b315 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 10 Dec 2024 20:12:08 +0800
 Subject: [PATCH 302/551] configs: remove LOCALVERSION for eic7702
@@ -19,5 +19,5 @@ index 830481fffc7e..2f468cfeba8d 100644
  CONFIG_SYSVIPC=y
  CONFIG_POSIX_MQUEUE=y
 -- 
-2.50.0
+2.50.1
 

@@ -1,4 +1,4 @@
-From 5043a45e6c3cf23c08987a2d228b724ff2293e58 Mon Sep 17 00:00:00 2001
+From d1c88acc5a2bd8db398696302d8f1c297928fecb Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 6 Jul 2024 20:04:55 +0800
 Subject: [PATCH 159/551] fix: pwm: eswin: Rename pwm_apply_state() to
@@ -44,5 +44,5 @@ index ea92a0bb9906..24a328da5178 100644
  		dev_err(&pdev->dev, "failed to apply initial PWM state: %d\n",
  			ret);
 -- 
-2.50.0
+2.50.1
 

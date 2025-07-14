@@ -1,4 +1,4 @@
-From 3d9ad02966586134e4317abbeb28ad1f1d74ac7f Mon Sep 17 00:00:00 2001
+From 312310bd540969e65240f00ece2248a6fa52330a Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:15:41 +0800
 Subject: [PATCH 424/551] config: memory: enable zswap
@@ -27,5 +27,5 @@ index ce7255a46970..b1223dff91aa 100644
  CONFIG_CMA=y
  CONFIG_NET=y
 -- 
-2.50.0
+2.50.1
 
