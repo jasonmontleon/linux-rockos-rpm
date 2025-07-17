@@ -1,4 +1,4 @@
-From e1fe9aa301c2efafc754fd5163d0177163fbe9c8 Mon Sep 17 00:00:00 2001
+From dd2881eeec71331785bd7c4422cb23b3a8801341 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 30 May 2024 09:50:56 +0800
 Subject: [PATCH 040/551] refactor:remove useless code in emmc/sd driver.
