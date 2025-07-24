@@ -1,4 +1,4 @@
-From ee96568a95fcbe6f5b870aa9b8441cc2066a5b95 Mon Sep 17 00:00:00 2001
+From af3a9f8c497605f6c52dbab1eb8f5ce023921a5b Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Wed, 5 Mar 2025 17:34:40 +0800
 Subject: [PATCH 439/551] <fix>(2d):2d isr interrupt call muetx err

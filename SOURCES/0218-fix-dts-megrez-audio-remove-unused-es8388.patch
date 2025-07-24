@@ -1,4 +1,4 @@
-From a95fc52297601e4618743510871fd03c680ec742 Mon Sep 17 00:00:00 2001
+From d600a6fa5557cf9aaea5f4945e01696e92edd008 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 2 Nov 2024 22:09:23 +0800
 Subject: [PATCH 218/551] fix: dts: megrez audio: remove unused es8388

@@ -1,4 +1,4 @@
-From 4c2e4132af1297b901aec2fc83381bd4196a3f71 Mon Sep 17 00:00:00 2001
+From 8dbd62da507b397891834cb29e2c0e84ef5e29e9 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Fri, 25 Apr 2025 16:03:12 +0800
 Subject: [PATCH 491/551] fix:fix multi-process npu ioctl bug

@@ -1,4 +1,4 @@
-From 9bf38e07d51d589de2ba825903a78de11bbe2b08 Mon Sep 17 00:00:00 2001
+From 641712d4f16eab4f1f7888cdcce5a185351d0ca2 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 4 Sep 2024 14:56:47 +0800
 Subject: [PATCH 249/551] WIN2030-13899:fix:adapt sdhci driver to eic7702.

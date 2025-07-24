@@ -1,4 +1,4 @@
-From 0643789c23d50a5a992dbaf60aba3b38621f3178 Mon Sep 17 00:00:00 2001
+From 4ead85d999de0aa106755a23c611883d9cd6344a Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Thu, 25 Jul 2024 14:11:01 +0800
 Subject: [PATCH 118/551] fix:check brother core event queue empty when idle

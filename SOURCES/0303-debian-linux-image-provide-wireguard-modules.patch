@@ -1,4 +1,4 @@
-From f3bef72d9b2444a2fcc506214481544a99b8d411 Mon Sep 17 00:00:00 2001
+From 0ce4ec3a7932e815b50c13050f39eef2629d84a3 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 14 Oct 2024 16:13:35 +0800
 Subject: [PATCH 303/551] debian: linux-image provide wireguard-modules
