@@ -1,7 +1,7 @@
-From 34711b5c114dab2012d4bd3bd4d6488315506f13 Mon Sep 17 00:00:00 2001
+From aeb137349049fb838100b9c66abca32049babe82 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 27 Sep 2024 17:11:20 +0800
-Subject: [PATCH 184/551] fix:Resolve DSP SMMU error.
+Subject: [PATCH 184/552] fix:Resolve DSP SMMU error.
 
 Changelogs:
 	Resolve SMMU error reported by DSP driver without fw.

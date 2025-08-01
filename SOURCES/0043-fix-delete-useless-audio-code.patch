@@ -1,7 +1,7 @@
-From 032ba88c7fa85c01521b6b47f65be30d4c3879b0 Mon Sep 17 00:00:00 2001
+From 419c6d64cf7db2fc11a289ded1ca40df9cb51de6 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 3 Jun 2024 14:28:29 +0800
-Subject: [PATCH 043/551] fix:delete useless audio code.
+Subject: [PATCH 043/552] fix:delete useless audio code.
 
 Changelogs:
 	delete useless audio code.

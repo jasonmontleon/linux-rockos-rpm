@@ -1,0 +1,55 @@
+From acf561fec0b6cd7a604ac4d1b42ebbb4d3b6e195 Mon Sep 17 00:00:00 2001
+From: lilijun <lilijun@eswincomputing.com>
+Date: Fri, 7 Feb 2025 13:12:01 +0800
+Subject: [PATCH 397/552] WIN2030-16980:fix:Dvb drm virtual debugfs node reg
+
+Changelogs:
+change the virtual dev reg for debugfs:
+/sys/kernel/debug/dri/0/Virtual-1/enable
+
+Change-Id: I77a5c88e8e8eb4339bd5a9b8c01dc19e9e060717
+Signed-off-by: lilijun <lilijun@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi      | 4 ++--
+ arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 8 ++++----
+ 2 files changed, 6 insertions(+), 6 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
+index 4b5eb4c16220..61514cfcce99 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
+@@ -37,8 +37,8 @@ panel_in: endpoint {
+ &dc {
+ 	status = "okay";
+ 	dc_out: port {
+-		dc_out_dsi: endpoint@2 {
+-			reg = <2>;
++		dc_out_dsi: endpoint@0 {
++			reg = <0>;
+ 			remote-endpoint = <&dsi_input>;
+ 		};
+ 	};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 6c3220cb4737..5e0df61988f5 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -294,12 +294,12 @@ &dc {
+ 	dc_out: port {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		dc_out_dpi: endpoint@0 {
+-			reg = <0>;
++		dc_out_dpi: endpoint@1 {
++			reg = <1>;
+ 			remote-endpoint = <&vd_input>;
+ 		};
+-		dc_out_hdmi: endpoint@1 {
+-			reg = <1>;
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
+ 			remote-endpoint = <&hdmi_in_dc>;
+ 		};
+ 	};
+-- 
+2.50.1
+

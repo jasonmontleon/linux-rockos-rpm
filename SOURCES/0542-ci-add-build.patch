@@ -1,0 +1,185 @@
+From c1afadd749735dca6cef45c77da8cd1dd18d78e0 Mon Sep 17 00:00:00 2001
+From: Han Gao <gaohan@iscas.ac.cn>
+Date: Mon, 18 Nov 2024 03:55:15 +0800
+Subject: [PATCH 542/552] ci: add build
+
+Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ .github/workflows/build.yml        | 76 ++++++++++++++++++++++++++++
+ .github/workflows/native-build.yml | 80 ++++++++++++++++++++++++++++++
+ 2 files changed, 156 insertions(+)
+ create mode 100644 .github/workflows/build.yml
+ create mode 100644 .github/workflows/native-build.yml
+
+diff --git a/.github/workflows/build.yml b/.github/workflows/build.yml
+new file mode 100644
+index 000000000000..bb5b2915c1f8
+--- /dev/null
++++ b/.github/workflows/build.yml
+@@ -0,0 +1,76 @@
++name: rockos-kernel-cross
++
++on:
++  push:
++  pull_request:
++  workflow_dispatch:
++  schedule:
++    - cron: "0 2 * * *"
++
++jobs:
++  build-kernel:
++    strategy:
++      fail-fast: false
++      matrix:
++        include:
++          - name: win2030
++            board: win2030
++
++          - name: eic7702
++            board: eic7702
++
++    runs-on: ubuntu-24.04
++    env:
++      mainline_toolchain: https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/2025.05.16/
++      mainline_toolchain_file_name: riscv64-glibc-ubuntu-24.04-gcc-nightly-2025.05.16-nightly.tar.xz
++      wget_alias: 'wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0'
++      ARCH: riscv
++      KBUILD_BUILD_USER: riscv
++      KBUILD_BUILD_HOST: riscv-builder
++      KDEB_COMPRESS: xz
++      board: ${{ matrix.board }}
++      CROSS_COMPILE: riscv64-unknown-linux-gnu-
++
++    steps:
++      - name: Update Apt Cache
++        run: sudo apt update
++
++      - name: Checkout
++        uses: actions/checkout@v4
++        with:
++          path: kernel
++
++      - name: Install software
++        run: |
++              sudo apt install -y gdisk dosfstools g++-riscv64-linux-gnu build-essential bc \
++                                  libncurses-dev gawk flex bison openssl libssl-dev tree \
++                                  dkms libelf-dev libudev-dev libpci-dev libiberty-dev autoconf \
++                                  device-tree-compiler xz-utils devscripts ccache debhelper asciidoc \
++                                  gcc-riscv64-linux-gnu
++
++      - name: Compile Kernel && Install
++        run: |
++              mkdir -p artifact
++              ${wget_alias} ${mainline_toolchain}/${mainline_toolchain_file_name}
++              tar -xvf ${mainline_toolchain_file_name} -C /opt
++              export PATH="/opt/riscv/bin:$PATH"
++
++              ${CROSS_COMPILE}gcc -v
++              pushd kernel
++                export KDEB_PKGVERSION="$(make kernelversion)-$(date "+%Y.%m.%d.%H.%M")+$(git rev-parse --short HEAD)"
++                make ${board}_defconfig
++                make -j$(nproc) dtbs
++                make -j$(nproc) bindeb-pkg LOCALVERSION="-${board}"
++                sudo cp -v arch/riscv/boot/dts/eswin/*.dtb ../artifact
++                sudo cp -v ../*.deb ../artifact
++              popd
++
++      - name: compress
++        run: tar -zcvf rockos-${{ matrix.name }}.tar.gz artifact
++
++      - name: 'Upload Artifact'
++        uses: actions/upload-artifact@v4
++        with:
++          name: rockos-${{ matrix.name }}.tar.gz
++          path: rockos-${{ matrix.name }}.tar.gz
++          retention-days: 30
+diff --git a/.github/workflows/native-build.yml b/.github/workflows/native-build.yml
+new file mode 100644
+index 000000000000..881379558a09
+--- /dev/null
++++ b/.github/workflows/native-build.yml
+@@ -0,0 +1,80 @@
++name: rockos-kernel-native
++
++on:
++  push:
++  pull_request:
++  workflow_dispatch:
++  schedule:
++    - cron: "0 2 * * *"
++
++env:
++  wget_alias: 'wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0'
++  ARCH: riscv
++  KBUILD_BUILD_USER: builder
++  KBUILD_BUILD_HOST: rockos-riscv-builder
++  KDEB_COMPRESS: none
++  KDEB_CHANGELOG_DIST: unstable
++
++jobs:
++  kernel:
++    strategy:
++      fail-fast: false
++      matrix:
++        include:
++          - name: native-eic7700
++            cross: riscv64-linux-gnu-
++            machine: [ self-hosted, Linux, riscv64, rockos, eswin ]
++            run_image: ghcr.io/revyos/revyos-kernel-builder:riscv64-2025.05.20-plucky
++            board: win2030
++            compiler: riscv64-linux-gnu-gcc-14
++
++          - name: native-eic7702
++            cross: riscv64-linux-gnu-
++            machine: [ self-hosted, Linux, riscv64, rockos, eswin ]
++            run_image: ghcr.io/revyos/revyos-kernel-builder:riscv64-2025.05.20-plucky
++            board: eic7702
++            compiler: riscv64-linux-gnu-gcc-14
++
++    runs-on: ${{ matrix.machine }}
++    container:
++      image: ${{ matrix.run_image }}
++    env:
++      CROSS_COMPILE: ${{ matrix.cross }}
++      board: ${{ matrix.board }}
++      compiler: ${{ matrix.compiler }}
++
++    steps:
++      - name: Checkout kernel
++        uses: actions/checkout@v4
++        with:
++            path: 'kernel'
++
++      - name: Compile Kernel && Install
++        run: |
++              mkdir -p output
++              ${CROSS_COMPILE}gcc -v
++
++              pushd kernel
++                export KDEB_PKGVERSION="$(make kernelversion)-$(date "+%Y.%m.%d.%H.%M")+$(git rev-parse --short HEAD)"
++                make CC="${compiler}" ${board}_defconfig
++
++                make CC="${compiler}" -j64 bindeb-pkg LOCALVERSION="-${board}"
++                make CC="${compiler}" -j64 dtbs
++
++                # Copy deb
++                sudo dcmd cp -v ../*.changes ${GITHUB_WORKSPACE}/output
++
++                # record commit-id
++                git rev-parse HEAD > kernel-commitid
++                sudo cp -v kernel-commitid ${GITHUB_WORKSPACE}/output
++              popd
++
++      - name: compress
++        run: tar -zcvf rockos-${{ matrix.name }}.tar.gz output
++
++      - name: 'Upload Artifact'
++        uses: actions/upload-artifact@v4
++        with:
++          name: rockos-${{ matrix.name }}
++          path: rockos-${{ matrix.name }}.tar.gz
++          retention-days: 30
+-- 
+2.50.1
+

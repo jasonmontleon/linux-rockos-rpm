@@ -1,7 +1,7 @@
-From 47c01bb77d76169467cbcda4284a4defb95656cd Mon Sep 17 00:00:00 2001
+From a40fd01fa1bc87ac6efeae2c18f4e10c3ee67640 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Thu, 15 Aug 2024 10:02:04 +0800
-Subject: [PATCH 152/551] fix(enc):opt log in enc driver
+Subject: [PATCH 152/552] fix(enc):opt log in enc driver
 
 Changelogs:
 	opt log in enc driver.

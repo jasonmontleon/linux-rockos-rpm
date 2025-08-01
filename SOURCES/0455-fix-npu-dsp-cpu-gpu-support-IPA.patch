@@ -1,0 +1,723 @@
+From 56221d378c6f07fa1a7211acc6dfb4a1c5b06544 Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Tue, 11 Mar 2025 11:08:49 +0800
+Subject: [PATCH 455/552] fix:npu,dsp,cpu,gpu support IPA
+
+Changelogs:
+
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ .../boot/dts/eswin/eic770x-opptable.dtsi      | 16 ++++
+ .../boot/dts/eswin/eswin-win2030-arch.dtsi    |  8 +-
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     | 65 ++++++++-----
+ arch/riscv/configs/eic7700_defconfig          | 12 ++-
+ .../services/server/devices/rgxtimecorr.c     |  4 +-
+ .../server/env/linux/pvr_platform_drv.c       | 62 ++++++++++++-
+ .../services/system/eswin_cpu/sysconfig.c     | 93 ++++++++++++++++---
+ .../services/system/eswin_cpu/sysinfo.h       |  5 +-
+ drivers/soc/eswin/ai_driver/dsp/dsp_main.c    | 38 +++++++-
+ .../soc/eswin/ai_driver/dsp/dsp_platform.c    |  3 +-
+ drivers/soc/eswin/ai_driver/npu/npu_main.c    | 35 ++++++-
+ 11 files changed, 288 insertions(+), 53 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
+index c8f0d48745ca..6198424e38d5 100644
+--- a/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
+@@ -225,6 +225,22 @@ opp@1040000000 {
+ 		};
+ 	};
+ 
++	gpu_opp_table: opp-table@gpu {
++		compatible = "operating-points-v2";
++		opp@200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
+ 	vi_opp_table: opp-table@vi {
+ 		compatible = "operating-points-v2";
+ 		opp@800000000 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+index 693a82515c87..98c4689b99a6 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+@@ -87,7 +87,7 @@ cpu_0: cpu@0 {
+ 			clocks = <&d0_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_0>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <324>;
++			dynamic-power-coefficient = <800>;
+ 			cpu-idle-states = <&CPU_RET>;
+ 			cpu0_intc: interrupt-controller {
+ 				#interrupt-cells = <1>;
+@@ -133,7 +133,7 @@ cpu_1: cpu@1 {
+ 			clocks = <&d0_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_1>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <324>;
++			dynamic-power-coefficient = <800>;
+ 			cpu-idle-states = <&CPU_RET>;
+ 			cpu1_intc: interrupt-controller {
+ 				#interrupt-cells = <1>;
+@@ -179,7 +179,7 @@ cpu_2: cpu@2 {
+ 			clocks = <&d0_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_2>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <324>;
++			dynamic-power-coefficient = <800>;
+ 			cpu-idle-states = <&CPU_RET>;
+ 			cpu2_intc: interrupt-controller {
+ 				#interrupt-cells = <1>;
+@@ -225,7 +225,7 @@ cpu_3: cpu@3 {
+ 			clocks = <&d0_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_3>;
+ 			operating-points-v2 = <&d0_cpu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <324>;
++			dynamic-power-coefficient = <800>;
+ 			cpu-idle-states = <&CPU_RET>;
+ 			cpu3_intc: interrupt-controller {
+ 				#interrupt-cells = <1>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index f718ceea26b5..1d365fa5fe09 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -34,53 +34,59 @@ / {
+     compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000","sifive,fu740";
+ 	thermal-zones {
+ 		thermal0 {
+-			polling-delay-passive = <500>; /*ms*/
+-			polling-delay = <5000>; /*ms*/
+-			sustainable-power = <1200>; /*mW*/
++			polling-delay-passive = <100>; /*ms*/
++			polling-delay = <1000>; /*ms*/
++			sustainable-power = <30000>; /*mW*/
+ 			thermal-sensors = <&pvt0>;
+ 
+ 			trips {
+-				/*
++				
+ 				threshold: trip-point0 {
+-					temperature = <60000>;
++					temperature = <90000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 				target: trip-point1 {
+-					temperature = <70000>;
++					temperature = <100000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+-				*/
++				
+ 				crit: trip-point2 {
+-					temperature     = <105000>;
++					temperature     = <110000>;
+ 					hysteresis      = <0>;
+ 					type            = "critical";
+ 				};
+ 			};
+ 
+-			cooling-maps {
+-				/*
++			cooling-maps {				
+ 				map0 {
+ 					trip = <&target>;
+ 					contribution = <1024>;
+ 					cooling-device =
+-						<&cpu_0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++						<&cpu_0 0 10>,
++						<&cpu_1 0 10>,
++						<&cpu_2 0 10>,
++						<&cpu_3 0 10>;
+ 				};
+ 				map1 {
+ 					trip = <&target>;
+-					contribution = <1024>;
++					contribution = <4096>;
+ 					cooling-device = <&d0_npu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 				map2 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device = <&d0_dsp0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++									<&d0_dsp1 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++									<&d0_dsp2 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
++									<&d0_dsp3 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				map3 {
+ 					trip = <&target>;
+ 					contribution = <1024>;
+ 					cooling-device = <&gpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+-				*/
+ 			};
+ 		};
+ 	};
+@@ -506,13 +512,11 @@ d0_npu: eswin-npu@51c00000 {
+ 			resets = <&d0_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+ 			operating-points-v2 = <&npu_opp_table>;
+-
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <16000>; /*TBD*/
+ 			numa-node-id = <0>;
+ 			firmware-name = "eic7700_die0_e31_fw";
+ 			dma-noncoherent;
+-
+-			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <0>; /*TBD*/
+ 		};
+ 
+ 		dev_llc_d0: llc@51c00000 {
+@@ -568,6 +572,8 @@ d0_dsp0:es_dsp@0 {
+ 				clocks = <&d0_clock EIC7700_CLK_DSP_ACLK_0>;
+ 				clock-names = "aclk";
+ 				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d0_mbox4>;
+ 				device-irq = <11
+ 					ESWIN_MAILBOX_DSP_0_TO_U84_REG_BASE
+@@ -599,6 +605,8 @@ d0_dsp1:es_dsp@1 {
+ 				clocks = <&d0_clock EIC7700_CLK_DSP_ACLK_1>;
+ 				clock-names = "aclk";
+ 				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d0_mbox5>;
+ 				device-irq = <13
+ 					ESWIN_MAILBOX_DSP_1_TO_U84_REG_BASE
+@@ -629,6 +637,8 @@ d0_dsp2:es_dsp@2 {
+ 				clocks = <&d0_clock EIC7700_CLK_DSP_ACLK_2>;
+ 				clock-names = "aclk";
+ 				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d0_mbox6>;
+ 				device-irq = <15
+ 					ESWIN_MAILBOX_DSP_2_TO_U84_REG_BASE
+@@ -659,6 +669,8 @@ d0_dsp3:es_dsp@3 {
+ 				clocks = <&d0_clock EIC7700_CLK_DSP_ACLK_3>;
+ 				clock-names = "aclk";
+ 				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d0_mbox7>;
+ 				device-irq = <17
+ 					ESWIN_MAILBOX_DSP_3_TO_U84_REG_BASE
+@@ -730,6 +742,8 @@ gc820: g2d@50140000 {
+ 			recovery = <0>;
+ 			dma-noncoherent;
+ 			operating-points-v2 = <&g2d_opp_table>;
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			numa-node-id = <0>;
+ 		};
+ 
+@@ -753,8 +767,9 @@ gpu0: gpu@51400000 {
+ 			dma-noncoherent;
+ 			numa-node-id = <0>;
+ 
++			operating-points-v2 = <&gpu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <0>; /*TBD*/
++			dynamic-power-coefficient = <4000>; /*TBD*/
+ 		};
+ 
+ 		d0_sata: sata@0x50420000{
+@@ -1006,7 +1021,8 @@ vdec0: video-decoder0@50100000 {
+ 			reset-names = "axi", "cfg", "moncfg", "jd_cfg", "jd_axi", "vd_cfg", "vd_axi";
+ 			eswin,syscfg = <&d0_sys_con 0x0 0x4>;
+ 			operating-points-v2 = <&vdec_opp_table>;
+-
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x200 0x100>;
+ 			vdec-core = <0x800 0xc00>;
+@@ -1055,7 +1071,8 @@ venc0: video-encoder@50110000 {
+ 			reset-names = "axi", "cfg", "moncfg", "je_cfg", "je_axi", "ve_cfg", "ve_axi";
+ 			eswin,syscfg = <&d0_sys_con 0x0 0x4>;
+ 			operating-points-v2 = <&venc_opp_table>;
+-
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x2000 0x7d0>;
+ 			venc-core = <0x1000 0x87c>;
+@@ -2113,6 +2130,8 @@ dewarp: dewarp@51020000 {
+ 			reset-names = "axi", "cfg", "dwe";
+ 
+ 			operating-points-v2 = <&vi_opp_table>;
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			interrupt-parent = <&plic0>;
+ 			interrupts = <26 25>;
+ 			#size-cells = <2>;
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 5520be92a830..fdbb24bf7834 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -37,11 +37,11 @@ CONFIG_RISCV_SBI_V01=y
+ # CONFIG_RISCV_BOOT_SPINWAIT is not set
+ CONFIG_CMDLINE="earlycon=sbi console=ttyS0,115200n8 clk_ignore_unused cma_pernuma=0x2000000 disable_bypass=false firmware_class.path=/lib/firmware/eic7x/"
+ CONFIG_CMDLINE_EXTEND=y
+-# CONFIG_SUSPEND is not set
++CONFIG_SUSPEND=y
+ CONFIG_ENERGY_MODEL=y
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
+-CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
++CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+ CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+@@ -471,6 +471,7 @@ CONFIG_SENSORS_TMP102=y
+ CONFIG_SENSORS_PAC1934=y
+ CONFIG_THERMAL=y
+ CONFIG_THERMAL_STATISTICS=y
++CONFIG_THERMAL_WRITABLE_TRIPS=y
+ CONFIG_THERMAL_DEFAULT_GOV_POWER_ALLOCATOR=y
+ CONFIG_THERMAL_GOV_STEP_WISE=y
+ CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
+@@ -760,7 +761,12 @@ CONFIG_RPMSG_VIRTIO=y
+ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
++CONFIG_PM=y
++CONFIG_PM_SLEEP=y
+ CONFIG_PM_DEVFREQ=y
++CONFIG_DEVFREQ_GOV_USERSPACE=y
++CONFIG_DEVFREQ_GOV_PERFORMANCE=y
++CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
+ CONFIG_PM_DEVFREQ_EVENT=y
+ CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
+ CONFIG_EXTCON=y
+@@ -857,4 +863,4 @@ CONFIG_RCU_EQS_DEBUG=y
+ # CONFIG_RUNTIME_TESTING_MENU is not set
+ CONFIG_MEMTEST=y
+ CONFIG_I2C_MUX=y
+-CONFIG_I2C_MUX_PCA954x=y
+\ No newline at end of file
++CONFIG_I2C_MUX_PCA954x=y
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c b/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c
+index bea5cd1c98ef..669ed230d783 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c
+@@ -464,9 +464,9 @@ static inline IMG_UINT32 _RGXGPUFreqGetIndex(RGX_GPU_DVFS_TABLE *psGpuDVFSTable,
+ 
+ 	i--;
+ 
+-	PVR_DPF((PVR_DBG_ERROR, "GPU frequency table in the driver is full! "
++	/* PVR_DPF((PVR_DBG_ERROR, "GPU frequency table in the driver is full! "
+ 	         "Table size should be increased! Overriding last entry (%u) with %u",
+-	         paui32GPUFrequencies[i], ui32CoreClockSpeed));
++	         paui32GPUFrequencies[i], ui32CoreClockSpeed)); */
+ 
+ 	paui32GPUFrequencies[i] = ui32CoreClockSpeed;
+ 
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c
+index 57e27ebcc1c8..9bffd02fc353 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c
+@@ -61,6 +61,8 @@
+ #include "pvr_drv.h"
+ #include "pvrmodule.h"
+ #include "sysinfo.h"
++#include <linux/devfreq.h>
++#include <linux/pm_opp.h>
+ 
+ 
+ /* This header must always be included last */
+@@ -167,18 +169,76 @@ static void pvr_devices_unregister(void)
+ #endif /* defined(MODULE) && !defined(PVR_LDM_PLATFORM_PRE_REGISTERED) */
+ }
+ 
++#if defined(CONFIG_PM_DEVFREQ)
++
++static void eswin_exit(struct device *dev)
++{
++	;
++}
++
++static int eswin_get_dev_status(struct device *dev,
++				     struct devfreq_dev_status *stat)
++{
++	stat->busy_time = 1024;	
++	stat->total_time = 1024;
++	igpu_devfreq_get_cur_freq(dev,&stat->current_frequency);
++
++	return 0;
++}
++
++/** devfreq profile */
++static struct devfreq_dev_profile igpu_devfreq_profile = {
++	.initial_freq = 800000000,
++	.timer = DEVFREQ_TIMER_DELAYED,
++	.polling_ms = 100, /** Poll every 1000ms to monitor load */
++	.target = igpu_devfreq_target,
++	.get_cur_freq = igpu_devfreq_get_cur_freq,
++	.get_dev_status = eswin_get_dev_status,
++	.exit = eswin_exit,
++	.is_cooling_device = true,
++};
++static struct devfreq_simple_ondemand_data ondemand_data =
++{
++	.upthreshold =80,
++	.downdifferential=10,
++};
++#endif
++
+ static int pvr_probe(struct platform_device *pdev)
+ {
+ 	struct drm_device *ddev;
+ 	int ret;
+-
++#if defined(CONFIG_PM_DEVFREQ)
++	struct devfreq *df;
++#endif
+ 	DRM_DEBUG_DRIVER("device %p\n", &pdev->dev);
+ 
+ 	ddev = drm_dev_alloc(&pvr_drm_platform_driver, &pdev->dev);
+ 	if (IS_ERR(ddev))
+ 		return PTR_ERR(ddev);
+ 
++#if defined(CONFIG_PM_DEVFREQ)
++	/* Add OPP table from device tree */
++	ret = dev_pm_opp_of_add_table(&pdev->dev);
++	if (ret) {
++		dev_err(&pdev->dev,"%s, %d, Failed to add OPP table\n", __func__, __LINE__);
++		goto err_drm_dev_put;
++	}
+ 
++	df = devm_devfreq_add_device(&pdev->dev, &igpu_devfreq_profile, DEVFREQ_GOV_SIMPLE_ONDEMAND, &ondemand_data);
++	if (IS_ERR(df)) {
++		dev_err(&pdev->dev,"%s, %d, add devfreq failed\n", __func__, __LINE__);
++		ret = PTR_ERR(df);
++		goto err_drm_dev_put;
++	};
++
++	/* Register opp_notifier to catch the change of OPP  ????*/
++	ret = devm_devfreq_register_opp_notifier(&pdev->dev, df);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "failed to register opp notifier\n");
++		return ret;
++	}
++#endif
+ 	/*
+ 	 * The load callback, called from drm_dev_register, is deprecated,
+ 	 * because of potential race conditions. Calling the function here,
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+index 0473c1d237b1..6dd85240ea67 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+@@ -1,14 +1,23 @@
+-/*************************************************************************/ /*
+-########################################################################### ###
+-#@File
+-#@Copyright ESWIN
+-#@Auther: Limei<limei@eswin.com>
+-#@Date:2020-04-03
+-#@History:
+-#  ChenShuo 2020-08-21 adapt for zhimo-kernel
+-### ###########################################################################
+-
+-*/ /**************************************************************************/
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN  driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Limei<limei@eswin.com>
++*/
+ 
+ #include "pvrsrv.h"
+ #include "pvrsrv_device.h"
+@@ -339,8 +348,70 @@ void riscv_flush_cache_range(IMG_HANDLE hSysData,
+ 		printk(KERN_ALERT "%s: unhandled eRequestType val=0x%x \n", __func__, eRequestType);
+ 	}
+ }
++PVRSRV_DEVICE_CONFIG *IGPUGetDevConfigByDevNum(IMG_UINT32 ui32DevNum)
++{
++	PVRSRV_DATA *psPVRSRVData = PVRSRVGetPVRSRVData();
++	PVRSRV_DRIVER_MODE eRetMode = DRIVER_MODE_NATIVE;
++	PVRSRV_DEVICE_NODE *psDevNode;
++    PVRSRV_DEVICE_CONFIG *psDevConfig = NULL;
++
++	OSWRLockAcquireRead(psPVRSRVData->hDeviceNodeListLock);
++
++	/* Iterate over all devices. */
++	for (psDevNode = psPVRSRVData->psDeviceNodeList;
++		 psDevNode != NULL;
++		 psDevNode = psDevNode->psNext)
++	{
++		if (psDevNode->sDevId.ui32InternalID == ui32DevNum)
++		{
++			psDevConfig = psDevNode->psDevConfig;
++			break;
++		}
++	}
++
++	OSWRLockReleaseRead(psPVRSRVData->hDeviceNodeListLock);
++
++	return psDevConfig;
++}
++#if defined(CONFIG_PM_DEVFREQ)
++int igpu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags)
++{
++	int ret;
++	IMG_UINT32 rgx_freq=0;
++    PVRSRV_DEVICE_CONFIG *psDevConfig = IGPUGetDevConfigByDevNum(0);
++
++	if(IS_ERR_OR_NULL(psDevConfig))
++	{
++		return 0;
++	}
++	rgx_freq= clk_round_rate(psDevConfig->aclk, *freq);//24M -> 800M
++	if (rgx_freq > 0) {
++		ret = clk_set_rate(psDevConfig->aclk, rgx_freq);
++		if (ret) {
++			dev_err(dev, "failed to set aclk: %d\n", ret);
++			return ret;
++		}
++	}
++	rgx_freq = clk_get_rate(psDevConfig->aclk);
++
++	return 0;
++}
+ 
++int igpu_devfreq_get_cur_freq(struct device *dev, unsigned long *freq)
++{
++    PVRSRV_DEVICE_CONFIG *psDevConfig = IGPUGetDevConfigByDevNum(0);
++	if(IS_ERR_OR_NULL(psDevConfig))
++	{
++		*freq = 800000000;
++	}
++	else
++	{
++		*freq = clk_get_rate(psDevConfig->aclk);
++	}
+ 
++	return 0;
++}
++#endif
+ static PVRSRV_ERROR DeviceConfigCreate(void *pvOSDevice, PVRSRV_DEVICE_CONFIG **ppsDevConfig)
+ {
+ 	PVRSRV_DEVICE_CONFIG *psDevConfig;
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h
+index ec76a48bb4bc..89c8663ab623 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h
++++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h
+@@ -16,6 +16,8 @@
+ #include "config_kernel.h"
+ #endif
+ //#define RGX_ESWIN_PROJECT_V91
++#include "pvrsrv_device.h"
++#include "pvrsrv.h"
+ 
+ #define SYS_RGX_DEV_NAME    "pvrsrvkm"
+ #define EVENT_OBJECT_TIMEOUT_US                  (100000)
+@@ -76,6 +78,7 @@
+ #define WAIT_TRY_COUNT                           (10000)
+ 
+ #define SYS_RGX_OF_COMPATIBLE "img,gpu"
+-
++int igpu_devfreq_get_cur_freq(struct device *dev, unsigned long *freq);
++int igpu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags);
+ #endif	/* !defined(__SYSINFO_H__) */
+ 
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+index c5f6f2a83b12..5ad8b8471f82 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+@@ -3,7 +3,6 @@
+  * ESWIN AI driver
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -908,13 +907,39 @@ static int dsp_devfreq_get_cur_freq(struct device *dev, unsigned long *freq)
+ 	return 0;
+ }
+ 
++static void eswin_exit(struct device *dev)
++{
++	;
++}
++
++static int eswin_get_dev_status(struct device *dev,
++				     struct devfreq_dev_status *stat)
++{
++	struct es_dsp *dsp = dev_get_drvdata(dev);
++	unsigned long rate;
++
++	stat->busy_time = 1024;	
++	stat->total_time = 1024;
++	stat->current_frequency = dsp_get_rate(dsp);
++
++	return 0;
++}
++
+ /* devfreq profile */
+ static struct devfreq_dev_profile dsp_devfreq_profile = {
+ 	.initial_freq = DSP_SUBSYS_HILOAD_CLK,
+ 	.timer = DEVFREQ_TIMER_DELAYED,
+-	.polling_ms = 1000, /* Poll every 1000ms to monitor load */
++	.polling_ms = 100, /* Poll every 1000ms to monitor load */
+ 	.target = dsp_devfreq_target,
+ 	.get_cur_freq = dsp_devfreq_get_cur_freq,
++	.get_dev_status = eswin_get_dev_status,
++	.exit = eswin_exit,
++	.is_cooling_device = true,
++};
++static struct devfreq_simple_ondemand_data ondemand_data =
++{
++	.upthreshold =80,
++	.downdifferential=10,
+ };
+ #endif
+ 
+@@ -1003,11 +1028,18 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
+ 		goto err_dsp_devfreq;
+ 	}
+ 
+-	df = devm_devfreq_add_device(&pdev->dev, &dsp_devfreq_profile, "userspace", NULL);
++	df = devm_devfreq_add_device(&pdev->dev, &dsp_devfreq_profile, DEVFREQ_GOV_SIMPLE_ONDEMAND, &ondemand_data);
+ 	if (IS_ERR(df)) {
+ 		dsp_err("%s, %d, add devfreq failed\n", __func__, __LINE__);
+ 		ret = PTR_ERR(df);
+ 		goto err_dsp_devfreq;
++	};
++
++	/* Register opp_notifier to catch the change of OPP  ????*/
++	ret = devm_devfreq_register_opp_notifier(&pdev->dev, df);
++	if (ret < 0) {
++		dev_err(&pdev->dev, "failed to register opp notifier\n");
++		return ret;
+ 	}
+ #endif
+ 
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+index 45d4821e902b..80f49a3edf8b 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+@@ -3,7 +3,6 @@
+  * ESWIN AI driver
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -337,7 +336,7 @@ int es_dsp_set_rate(struct es_dsp_hw *hw, unsigned long *rate)
+ 			return ret;
+ 		}
+ 	}
+-	dev_info(dsp->dev, "set dev rate to %ldHZ\n", *rate);
++	dev_dbg(dsp->dev, "set dev rate to %ldHZ\n", *rate);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+index 04a8e7b4f77a..24e9c95160fa 100644
+--- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
++++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+@@ -3,7 +3,6 @@
+  * ESWIN AI driver
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -541,13 +540,37 @@ static int npu_devfreq_get_cur_freq(struct device *dev, unsigned long *freq)
+ 	*freq = nvdla_dev->rate;
+ 	return 0;
+ }
++static void eswin_exit(struct device *dev)
++{
++
++}
++
++static int eswin_get_dev_status(struct device *dev,
++				     struct devfreq_dev_status *stat)
++{
++	struct nvdla_device *nvdla_dev = dev_get_drvdata(dev);
++	unsigned long rate;
++	stat->busy_time = 1024;	
++	stat->total_time = 1024;
++	stat->current_frequency = nvdla_dev->rate;
++
++	return 0;
++}
+ 
+ static struct devfreq_dev_profile npu_devfreq_profile = {
+ 	.initial_freq = NPU_CORE_CLK_HIGHEST,
+ 	.timer = DEVFREQ_TIMER_DELAYED,
+-	.polling_ms = 1000,
++	.polling_ms = 100,
+ 	.target = npu_devfreq_target,
+ 	.get_cur_freq = npu_devfreq_get_cur_freq,
++	.get_dev_status = eswin_get_dev_status,
++	.exit = eswin_exit,
++	.is_cooling_device = true,
++};
++static struct devfreq_simple_ondemand_data ondemand_data =
++{
++	.upthreshold =80,
++	.downdifferential=10,
+ };
+ #endif
+ 
+@@ -706,12 +729,18 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 		goto err_init_reset;
+ 	}
+ 	
+-	df = devm_devfreq_add_device(dev, &npu_devfreq_profile, "userspace", NULL);
++	df = devm_devfreq_add_device(dev, &npu_devfreq_profile, DEVFREQ_GOV_SIMPLE_ONDEMAND, &ondemand_data);
+ 	if (IS_ERR(df)) {
+ 		err = PTR_ERR(df);
+ 		dev_err(dev, "%s, %d, Failed to add devfreq device, ret=%d.\n", __func__, __LINE__, err);
+ 		goto err_init_reset;
+ 	}
++	/* Register opp_notifier to catch the change of OPP  ????*/
++	err = devm_devfreq_register_opp_notifier(&pdev->dev, df);
++	if (err < 0) {
++		dev_err(&pdev->dev, "failed to register opp notifier\n");
++		return err;
++	}
+ #endif
+ 
+ 
+-- 
+2.50.1
+

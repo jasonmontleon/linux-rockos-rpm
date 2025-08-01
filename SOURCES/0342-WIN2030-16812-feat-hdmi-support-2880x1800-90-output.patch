@@ -1,0 +1,215 @@
+From 0f15778182880394d6dc715262a3d8ed73094a9e Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Mon, 8 Jul 2024 09:24:31 +0800
+Subject: [PATCH 342/552] WIN2030-16812:feat:hdmi support 2880x1800@90 output.
+
+Changelogs:
+	hdmi support 2880x1800@90 output.
+
+Change-Id: Idd5b68517c9d42f860838dd733f15ff43cc73128
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  8 +++-
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  8 +++-
+ drivers/gpu/drm/eswin/Makefile                |  2 +-
+ drivers/gpu/drm/eswin/dw-hdmi.c               |  5 ++-
+ drivers/gpu/drm/eswin/es_dc.c                 | 38 ++++++++++++++++++-
+ drivers/gpu/drm/eswin/es_dc.h                 |  3 ++
+ .../eswin/{eswin_dw_hdmi.c => es_dw_hdmi.c}   | 12 ++++++
+ 7 files changed, 69 insertions(+), 7 deletions(-)
+ rename drivers/gpu/drm/eswin/{eswin_dw_hdmi.c => es_dw_hdmi.c} (99%)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 05e8a597d225..cf19b169cdc9 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -1790,8 +1790,12 @@ dc: display_control@502c0000 {
+ 			         <&d0_clock WIN2030_CLK_VO_PIXEL_CLK>,
+ 			         <&d0_clock WIN2030_CLK_VO_ACLK>,
+ 			         <&d0_clock WIN2030_SPLL0_FOUT1>,
+-			         <&d0_clock WIN2030_MUX_U_VO_ACLK_ROOT_2MUX1_GFREE>;
+-			clock-names = "cfg_clk", "pix_clk", "axi_clk", "spll0_fout1", "vo_mux";
++			         <&d0_clock WIN2030_MUX_U_VO_ACLK_ROOT_2MUX1_GFREE>,
++					 <&d0_clock WIN2030_MUX_U_VO_PIXEL_ROOT_2MUX1>,
++					 <&d0_clock WIN2030_SPLL2_FOUT2>,
++					 <&d0_clock WIN2030_VPLL_FOUT1>;
++			clock-names = "cfg_clk", "pix_clk", "axi_clk", "spll0_fout1", "vo_mux",
++						  "pix_mux", "spll2_fout2", "vpll_fout1";
+ 			resets = <&d0_reset VO_RST_CTRL SW_VO_AXI_RSTN>,
+ 					 <&d0_reset VO_RST_CTRL SW_VO_CFG_RSTN>,
+ 					 <&d0_reset VO_RST_CTRL SW_VO_DC_RSTN>,
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index d7935bb5ec3b..5f4cbafe5a48 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -1699,8 +1699,12 @@ d1_dc: display_control@702c0000 {
+ 					 <&d1_clock WIN2030_CLK_VO_PIXEL_CLK>,
+ 					 <&d1_clock WIN2030_CLK_VO_ACLK>,
+ 					 <&d1_clock WIN2030_SPLL0_FOUT1>,
+-					 <&d1_clock WIN2030_MUX_U_VO_ACLK_ROOT_2MUX1_GFREE>;
+-			clock-names = "cfg_clk", "pix_clk", "axi_clk", "spll0_fout1", "vo_mux";
++					 <&d1_clock WIN2030_MUX_U_VO_ACLK_ROOT_2MUX1_GFREE>,
++					 <&d1_clock WIN2030_MUX_U_VO_PIXEL_ROOT_2MUX1>,
++					 <&d1_clock WIN2030_SPLL2_FOUT2>,
++					 <&d1_clock WIN2030_VPLL_FOUT1>;
++			clock-names = "cfg_clk", "pix_clk", "axi_clk", "spll0_fout1", "vo_mux",
++						  "pix_mux", "spll2_fout2", "vpll_fout1";
+ 			resets = <&d1_reset VO_RST_CTRL SW_VO_AXI_RSTN>,
+ 					 <&d1_reset VO_RST_CTRL SW_VO_CFG_RSTN>,
+ 					 <&d1_reset VO_RST_CTRL SW_VO_DC_RSTN>,
+diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
+index 09cb7092e2e5..b96f169eedfe 100644
+--- a/drivers/gpu/drm/eswin/Makefile
++++ b/drivers/gpu/drm/eswin/Makefile
+@@ -13,7 +13,7 @@ es_drm-objs := es_dc_hw.o \
+ 
+ es_drm-$(CONFIG_ESWIN_VIRTUAL_DISPLAY) += es_virtual.o
+ es_drm-$(CONFIG_ESWIN_MMU) += es_dc_mmu.o
+-es_drm-$(CONFIG_ESWIN_DW_HDMI) += eswin_dw_hdmi.o dw-hdmi.o
++es_drm-$(CONFIG_ESWIN_DW_HDMI) += es_dw_hdmi.o dw-hdmi.o
+ 
+ es_drm-$(CONFIG_DW_HDMI_I2S_AUDIO) += dw_hdmi_i2s_audio.o
+ es_drm-$(CONFIG_DW_HDMI_CEC) += dw_hdmi_cec.o
+diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
+index 84819ec2eadd..82a3cc3f69aa 100644
+--- a/drivers/gpu/drm/eswin/dw-hdmi.c
++++ b/drivers/gpu/drm/eswin/dw-hdmi.c
+@@ -2549,6 +2549,9 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
+ 		dev_dbg(hdmi->dev, "CEA mode used vic=%d\n", hdmi->vic);
+ 	}
+ 
++	dev_dbg(hdmi->dev, "mode clock:%d, hdisplay:%d, htotal:%d, vdisplay:%d, vtotal:%d\n",
++			mode->clock, mode->hdisplay, mode->htotal, mode->vdisplay, mode->vtotal);
++
+ 	if (hdmi->plat_data->get_enc_out_encoding)
+ 		hdmi->hdmi_data.enc_out_encoding =
+ 			hdmi->plat_data->get_enc_out_encoding(data);
+@@ -3370,7 +3373,7 @@ dw_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
+ 	if (mode->clock != 594000 && mode->clock != 297000 &&
+ 	    mode->clock != 148500 && mode->clock != 108000 &&
+ 	    mode->clock != 74250 && mode->clock != 54000 &&
+-	    mode->clock != 27000) {
++	    mode->clock != 27000 && mode->clock != 513820) {
+ 		return MODE_NOCLOCK;
+ 	}
+ 
+diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
+index daf98bda2105..80538ae9aa9e 100644
+--- a/drivers/gpu/drm/eswin/es_dc.c
++++ b/drivers/gpu/drm/eswin/es_dc.c
+@@ -345,6 +345,7 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
+ 	struct es_crtc_state *crtc_state = to_es_crtc_state(crtc->state);
+ 	struct drm_display_mode *mode = &crtc->state->adjusted_mode;
+ 	struct dc_hw_display display;
++	int ret;
+ 
+ 	display.bus_format = crtc_state->output_fmt;
+ 	display.h_active = mode->hdisplay;
+@@ -373,7 +374,20 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
+ 	es_dc_clk_configs(dev, true);
+ 
+ 	if (dc->pix_clk_rate != mode->clock) {
+-		clk_set_rate(dc->pix_clk, mode->clock * 1000);
++		if (mode->clock == 513820) {
++			ret = clk_set_parent(dc->pix_mux, dc->spll2_fout2);
++			if (ret < 0) {
++				dev_err(dev, "failed to set pix mux parent spll2, err:%d\n", ret);
++			}
++			/* set mode (2880*1800@90hz) clock to 520M */
++			clk_set_rate(dc->pix_clk, 520000000);
++		} else {
++			ret = clk_set_parent(dc->pix_mux, dc->vpll_fout1);
++			if (ret < 0) {
++				dev_err(dev, "failed to set pix mux parent vpll, err:%d\n", ret);
++			}
++			clk_set_rate(dc->pix_clk, mode->clock * 1000);
++		}
+ 		dc->pix_clk_rate = mode->clock;
+ 	}
+ 
+@@ -412,6 +426,10 @@ static bool es_dc_mode_fixup(struct device *dev,
+ 	struct es_dc *dc = dev_get_drvdata(dev);
+ 	long clk_rate;
+ 
++	dev_dbg(dev, "adjust mode clock:%d\n", adjusted_mode->clock);
++	if (adjusted_mode->clock == 513820)
++		return true;
++
+ 	if (dc->pix_clk) {
+ 		clk_rate = clk_round_rate(dc->pix_clk,
+ 					  adjusted_mode->clock * 1000);
+@@ -1083,6 +1101,24 @@ static int dc_probe(struct platform_device *pdev)
+ 		return PTR_ERR(dc->axi_clk);
+ 	}
+ 
++	dc->pix_mux = devm_clk_get_optional(dev, "pix_mux");
++	if (IS_ERR(dc->pix_mux)) {
++		dev_err(dev, "failed to get pix mux clk source\n");
++		return PTR_ERR(dc->pix_mux);
++	}
++
++	dc->spll2_fout2 = devm_clk_get_optional(dev, "spll2_fout2");
++	if (IS_ERR(dc->spll2_fout2)) {
++		dev_err(dev, "failed to get spll2 fout2 clk source\n");
++		return PTR_ERR(dc->spll2_fout2);
++	}
++
++	dc->vpll_fout1 = devm_clk_get_optional(dev, "vpll_fout1");
++	if (IS_ERR(dc->vpll_fout1)) {
++		dev_err(dev, "failed to get vpll fout1 clk source\n");
++		return PTR_ERR(dc->vpll_fout1);
++	}
++
+ 	dc->vo_arst = devm_reset_control_get_optional(dev, "vo_arst");
+ 	if (IS_ERR_OR_NULL(dc->vo_arst)) {
+ 		dev_err(dev, "Failed to vo_arst handle\n");
+diff --git a/drivers/gpu/drm/eswin/es_dc.h b/drivers/gpu/drm/eswin/es_dc.h
+index 89b203eebc98..63c5c8d79aa4 100644
+--- a/drivers/gpu/drm/eswin/es_dc.h
++++ b/drivers/gpu/drm/eswin/es_dc.h
+@@ -47,6 +47,9 @@ struct es_dc {
+ 	struct clk *cfg_clk;
+ 	struct clk *pix_clk;
+ 	struct clk *axi_clk;
++	struct clk *pix_mux;
++	struct clk *spll2_fout2;
++	struct clk *vpll_fout1;
+ 	unsigned int pix_clk_rate; /* in KHz */
+ 
+ 	struct reset_control *vo_arst;
+diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw_hdmi.c
+similarity index 99%
+rename from drivers/gpu/drm/eswin/eswin_dw_hdmi.c
+rename to drivers/gpu/drm/eswin/es_dw_hdmi.c
+index 03c4f9b8cfb9..84f75833aa62 100644
+--- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
++++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
+@@ -151,6 +151,14 @@ static const struct dw_hdmi_mpll_config eswin_mpll_cfg[] = {
+ 			{ 0x2648, 0x020f },
+ 		},
+ 	},
++	{
++		513820000,
++		{
++			{ 0x0640, 0x0005 },
++			{ 0x1658, 0x0019 },
++			{ 0x2648, 0x000f },
++		},
++	},
+ 	{
+ 		594000000,
+ 		{
+@@ -195,6 +203,10 @@ static const struct dw_hdmi_curr_ctrl eswin_cur_ctr[] = {
+ 		297000000,
+ 		{ 0x3041, 0x3182, 0x3100 },
+ 	},
++	{
++		513820000,
++		{ 0x3080, 0x31c0, 0x3100 },
++	},
+ 	{
+ 		594000000,
+ 		{ 0x3080, 0x31c0, 0x3100 },
+-- 
+2.50.1
+

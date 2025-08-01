@@ -1,7 +1,7 @@
-From 0f7a8619db263acd5449f4db34a4cc0a1ee5caea Mon Sep 17 00:00:00 2001
+From 348fdbd9b0c30d72ef48f86e716584522b89c4a6 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 14 Jun 2024 14:54:27 +0800
-Subject: [PATCH 055/551] fix:spi del dma
+Subject: [PATCH 055/552] fix:spi del dma
 
 Changelogs:
 1. spi delete dma

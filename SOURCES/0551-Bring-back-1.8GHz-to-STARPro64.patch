@@ -1,0 +1,53 @@
+From 4381d09a6fc8da7f59118046a2737cd94226998c Mon Sep 17 00:00:00 2001
+From: Yanko Kaneti <yaneti@declera.com>
+Date: Sun, 29 Jun 2025 22:49:20 +0300
+Subject: [PATCH 551/552] Bring back 1.8GHz to STARPro64
+
+Running with this on a V02 revision of the board and its been fine
+---
+ .../dts/eswin/eic7700-pine64-starpro64.dts    | 30 +++++++++++++++----
+ 1 file changed, 25 insertions(+), 5 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index d0d755be9dc2..f717d8e6236c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -853,10 +853,30 @@ &dev_llc_d0{
+ 	apply_npu_high_freq;
+ };
+ 
++&d0_clock {
++	status = "okay";
++	force-1_8ghz;
++};
++
+ &d0_cpu_opp_table {
+-	opp-1600000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
++        opp-1500000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1600000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1700000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1700M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
++        opp-1800000000 {
++                opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
++                opp-microvolt = <900000>;
++                clock-latency-ns = <70000>;
++        };
+ };
+-- 
+2.50.1
+

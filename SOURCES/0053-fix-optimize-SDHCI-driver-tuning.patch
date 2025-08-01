@@ -1,7 +1,7 @@
-From 4cfeb896a147636f01b16260ca77b5d24c31d62a Mon Sep 17 00:00:00 2001
+From b7b64748c4ca3d84e6b088f7da0370b1063ee09c Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 13 Jun 2024 14:55:45 +0800
-Subject: [PATCH 053/551] fix:optimize SDHCI driver tuning.
+Subject: [PATCH 053/552] fix:optimize SDHCI driver tuning.
 
 Changelogs:
 1.rmmove delay tuning in sd driver.

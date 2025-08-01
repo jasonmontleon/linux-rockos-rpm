@@ -1,0 +1,30 @@
+From 925220195b54c61a9379efc6f0b0e2f48f71add0 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Mon, 23 Dec 2024 17:04:26 +0800
+Subject: [PATCH 350/552] WIN2030-16848:fix:buffer overflow by print info
+
+Changelogs:
+Increasing buffer size in order to avoid overflow
+
+Change-Id: I5877537331564c6948560b0d1d56667c2e0645b0
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ drivers/interconnect/eswin/noc.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
+index 2bcbe3f48f59..cc232396f842 100644
+--- a/drivers/interconnect/eswin/noc.c
++++ b/drivers/interconnect/eswin/noc.c
+@@ -515,7 +515,7 @@ static int win2030_noc_get_error(struct win2030_noc_device *noc_device)
+ 	struct win2030_noc_error *noc_err;
+ 	unsigned long flags;
+ 	int i;
+-	char buf[1024] = {'\0'};
++	char buf[2048] = {'\0'};
+ 
+ 	struct device *mydev = noc_device->dev;
+ 
+-- 
+2.50.1
+

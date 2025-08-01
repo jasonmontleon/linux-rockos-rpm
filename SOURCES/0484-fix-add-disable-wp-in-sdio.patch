@@ -1,0 +1,28 @@
+From 4b2f717c0c9d4b38bf11190dbf526b5a43028091 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Tue, 22 Apr 2025 16:24:55 +0800
+Subject: [PATCH 484/552] fix:add disable-wp in sdio
+
+Changelogs:
+Because the sd card write protect pad is reused by other.
+
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-d560.dts | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+index bdedf4253327..33926ca40729 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+@@ -59,6 +59,7 @@ &sdio0 {
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
++	disable-wp;
+ 	no-sdio;
+ 	no-mmc;
+ };
+-- 
+2.50.1
+

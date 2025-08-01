@@ -1,0 +1,28 @@
+From cc7359ad374facb47ed16aec0a53cd5882161a16 Mon Sep 17 00:00:00 2001
+From: yiguo <yiguo@eswincomputing.com>
+Date: Wed, 26 Feb 2025 09:05:52 +0800
+Subject: [PATCH 460/552] feat:adapt dual die model
+
+Changelogs:
+1.adapt dual die model
+
+Signed-off-by: yiguo <yiguo@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/common/hetero_ioctl.h | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
+index 8858e6863ab1..6dff5245a0b8 100644
+--- a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
++++ b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
+@@ -37,6 +37,7 @@ enum {
+     mem_flag_swap,
+     mem_flag_input,
+     mem_flag_output,
++    mem_flag_remote
+ };
+ 
+ /**
+-- 
+2.50.1
+

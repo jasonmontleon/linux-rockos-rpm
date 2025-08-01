@@ -1,7 +1,7 @@
-From 2e74226078263dc19d0540b44134f4cb4f54c3c6 Mon Sep 17 00:00:00 2001
+From 852e1e89b539767b4f3b613ba0096ef8a0648f3e Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 9 Oct 2024 10:13:45 +0800
-Subject: [PATCH 188/551] fix:feature-pm compiliation
+Subject: [PATCH 188/552] fix:feature-pm compiliation
 
 Changelogs:
   1. Since only linux has feature-pm branch, compiling video dec sdk

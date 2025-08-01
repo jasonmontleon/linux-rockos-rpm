@@ -1,0 +1,145 @@
+From 901f6be96360bcea5454bd613e5aedeb53a6498a Mon Sep 17 00:00:00 2001
+From: Xiang Xu <xuxiang@eswincomputing.com>
+Date: Thu, 20 Mar 2025 18:09:24 +0800
+Subject: [PATCH 446/552] fix:board: eic770x: adaptive memory size
+
+Changelogs:
+1. fix bug caused by uboot add  adaptive memory size feature(npu malloc llc memory faile)
+
+Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-d314.dts    |  2 +-
+ arch/riscv/boot/dts/eswin/eic7700-osm.dts     |  8 ++++----
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts  |  8 ++++----
+ arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts |  8 ++++----
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts      | 16 ++++++++--------
+ 5 files changed, 21 insertions(+), 21 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+index 206bd4645c65..a471f9506b5b 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
+@@ -129,7 +129,7 @@ &d0_sata {
+ 
+ &d0_uart1 {
+ 	/* M.2 KEY E */
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_uart2 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
+index f5443a1fe98d..6c45243ba61f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
+@@ -62,15 +62,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+index 26e23d8b17c1..496dd80a4d3c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+@@ -60,15 +60,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
+index 642e6f05311f..4bdb2da8ba3f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
+@@ -63,15 +63,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index a8ac0f6b857c..e4500856aa35 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -64,27 +64,27 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@79000000 {
++	memory@2000000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x79000000 0x0 0x400000>;
++		reg = <0x20 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <1>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@2000000000 {
++	memory@79000000 {
+ 		device_type = "memory";
+-		reg = <0x20 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x79000000 0x0 0x400000>;
+ 		numa-node-id = <1>;
+ 	};
+ 
+-- 
+2.50.1
+

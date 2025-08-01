@@ -1,0 +1,46 @@
+From 5cc02fe129d2597a8c4c2b9d4af542b90c2f6c98 Mon Sep 17 00:00:00 2001
+From: carbon <carbon@milkv.io>
+Date: Fri, 27 Dec 2024 14:46:35 +0800
+Subject: [PATCH 314/552] megrez: support rtc m41t11
+
+The rtc chip used by megrez is pt7c4311.
+It is compatible with m41t11, using the ds1307 driver.
+
+Signed-off-by: carbon <carbon@milkv.io>
+---
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts | 5 +++++
+ arch/riscv/configs/win2030_defconfig               | 2 ++
+ 2 files changed, 7 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index cb35446dd403..1a77bb521dc8 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -763,6 +763,11 @@ pcf_rtc:rtc@51 {
+ 		compatible = "nxp,pcf8563";
+ 		reg = <0x51>;
+ 	};
++
++	rtc_m41t11: m41t11@68 {
++		compatible = "st,m41t11";
++		reg = <0x68>;
++	};
+ };
+ 
+ &d0_aon_i2c1 {
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index f71a973a7da9..477f2406826e 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -754,6 +754,8 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
+ CONFIG_EDAC=y
+ CONFIG_EDAC_ESWIN=y
+ CONFIG_RTC_CLASS=y
++CONFIG_RTC_DRV_DS1307=y
++CONFIG_RTC_DRV_DS1307_CENTURY=y
+ CONFIG_RTC_DRV_PCF8563=y
+ CONFIG_RTC_DRV_ESWIN=y
+ CONFIG_DMADEVICES=y
+-- 
+2.50.1
+

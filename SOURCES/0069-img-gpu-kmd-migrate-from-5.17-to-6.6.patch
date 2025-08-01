@@ -1,7 +1,7 @@
-From 3258855dba6c03082fa369aa35c4f29f6a462f7d Mon Sep 17 00:00:00 2001
+From 19c3c364c991780bce82865068092ddeb024cc22 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 11:15:06 +0800
-Subject: [PATCH 069/551] img gpu kmd: migrate from 5.17 to 6.6
+Subject: [PATCH 069/552] img gpu kmd: migrate from 5.17 to 6.6
 
 * 1.18 initial commit (no compilation)
 ---

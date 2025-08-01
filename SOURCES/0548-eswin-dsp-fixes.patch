@@ -1,0 +1,71 @@
+From 227762dbfc9aa21b505acc03247fc3f75ef8e7d2 Mon Sep 17 00:00:00 2001
+From: Jason Montleon <jason@montleon.com>
+Date: Fri, 21 Feb 2025 03:13:29 -0500
+Subject: [PATCH 548/552] eswin dsp fixes
+
+---
+ drivers/soc/eswin/ai_driver/dsp/dsp_main.c     | 1 +
+ drivers/soc/eswin/ai_driver/dsp/dsp_platform.c | 1 +
+ drivers/soc/eswin/ai_driver/dsp/dsp_platform.h | 4 ++++
+ drivers/soc/eswin/ai_driver/dsp/dsp_proc.c     | 1 +
+ 4 files changed, 7 insertions(+)
+
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+index df24ad88695c..3cd29272e671 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+@@ -59,6 +59,7 @@
+ #include <linux/dma-mapping.h>
+ #include <linux/devfreq.h>
+ #include <linux/pm_opp.h>
++#include <linux/eswin-win2030-sid-cfg.h>
+ 
+ #include <linux/eswin-win2030-sid-cfg.h>
+ #include "eswin-khandle.h"
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+index 80f49a3edf8b..a145d6e05f7b 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+@@ -39,6 +39,7 @@
+ #include <linux/slab.h>
+ #include <linux/iommu.h>
+ #include <linux/es_iommu_rsv.h>
++#include <linux/clk-provider.h>
+ #include "eswin-dsp-subsys.h"
+ 
+ #include "dsp_platform.h"
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
+index 238bddc4c9eb..173a7467076f 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
+@@ -31,11 +31,15 @@ int es_dsp_reboot_core(struct es_dsp_hw *);
+ int es_dsp_enable(struct es_dsp_hw *);
+ void es_dsp_disable(struct es_dsp_hw *);
+ int es_dsp_set_rate(struct es_dsp_hw *, unsigned long *rate);
++int es_dsp_get_rate(struct es_dsp_hw *hw);
+ void es_dsp_reset(struct es_dsp_hw *);
+ void es_dsp_halt(struct es_dsp_hw *);
+ void es_dsp_release(struct es_dsp_hw *);
+ int es_dsp_sync(struct es_dsp *dsp);
+ int es_dsp_load_op(struct es_dsp_hw *, void *op_ptr);
++int es_dsp_map_resource(struct es_dsp *dsp);
++int es_dsp_unmap_resource(struct es_dsp *dsp);
++void es_dsp_put_subsys(struct es_dsp *dsp);
+ 
+ int es_dsp_platform_init(void);
+ int es_dsp_platform_uninit(void);
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
+index 6797e819176f..68796939f0e9 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
+@@ -26,6 +26,7 @@
+ #include <linux/seq_file.h>
+ #include <linux/iommu.h>
+ #include "dsp_main.h"
++#include "dsp_platform.h"
+ 
+ static struct proc_dir_entry *proc_es_dsp;
+ extern int dsp_log_level;
+-- 
+2.50.1
+

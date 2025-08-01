@@ -1,7 +1,7 @@
-From 4e22da8ae43bd555d31adc3877a24a08fd79e06b Mon Sep 17 00:00:00 2001
+From b3ff7c8c5280a2d3418346e943d0d8e030710e4d Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Fri, 22 Nov 2024 10:08:37 +0800
-Subject: [PATCH 293/551] WIN2030-15186:fix:change voltage of 7702 npu to 1.08V
+Subject: [PATCH 293/552] WIN2030-15186:fix:change voltage of 7702 npu to 1.08V
 
 Changelogs:
 	change voltage of 7702 npu to 1.08V

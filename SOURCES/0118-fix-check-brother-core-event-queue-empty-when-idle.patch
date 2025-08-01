@@ -1,7 +1,7 @@
-From 4ead85d999de0aa106755a23c611883d9cd6344a Mon Sep 17 00:00:00 2001
+From 1159b032f0a370a30794c9f5f91ee0bbf921c699 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Thu, 25 Jul 2024 14:11:01 +0800
-Subject: [PATCH 118/551] fix:check brother core event queue empty when idle
+Subject: [PATCH 118/552] fix:check brother core event queue empty when idle
 
 Changelogs:
 1. check brother core event queue empty when try to idle gpu.

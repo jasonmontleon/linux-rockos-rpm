@@ -1,0 +1,57 @@
+From ba93876bf24d3c9516349d30f0ffed5938d3afbe Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Mon, 14 Apr 2025 21:24:55 +0800
+Subject: [PATCH 472/552] fix:disable cpu 1.4G upper of evb
+
+Changelogs:
+1. Delete cpu opp
+
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts | 31 --------------------
+ 1 file changed, 31 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+index 9631c73e0bd3..4f511e5d7369 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
+@@ -22,35 +22,4 @@
+ 
+ / {
+ 	model = "ESWIN EIC7700 EVB A3";
+-};
+-
+-&d0_clock {
+-	status = "okay";
+-	pinctrl-names = "default";
+-	pinctrl-0 = <&pinctrl_gpio95_default>;
+-	cpu-voltage-gpios = <&portc 31 GPIO_ACTIVE_HIGH>;
+-	cpu-default-frequency = <CLK_FREQ_1600M>;
+-};
+-
+-&d0_cpu_opp_table {
+-	opp-1500000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
+-	opp-1600000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
+-	opp-1700000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1700M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
+-	opp-1800000000 {
+-		opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
+-		opp-microvolt = <900000>;
+-		clock-latency-ns = <70000>;
+-	};
+ };
+\ No newline at end of file
+-- 
+2.50.1
+

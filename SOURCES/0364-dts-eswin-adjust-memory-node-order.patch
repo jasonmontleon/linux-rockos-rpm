@@ -1,0 +1,427 @@
+From df2dc27c3b5ea461f24ddad1651acfebc16e9034 Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Sun, 26 Jan 2025 11:00:50 +0800
+Subject: [PATCH 364/552] dts: eswin: adjust memory node order
+
+fdt_fixup_memory in uboot can only update the first /memory
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  |  8 +--
+ arch/riscv/boot/dts/eswin/eic7700-evb.dts     |  8 +--
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |  8 +--
+ .../boot/dts/eswin/eic7700-milkv-megrez.dts   |  8 +--
+ .../dts/eswin/eic7700-pine64-starpro64.dts    |  8 +--
+ .../boot/dts/eswin/eic7700-som260-a1.dtsi     |  8 +--
+ arch/riscv/boot/dts/eswin/eic7700-som314.dtsi |  8 +--
+ .../boot/dts/eswin/eic7702-evb-a1-d0.dts      |  8 +--
+ .../boot/dts/eswin/eic7702-evb-a1-d1.dts      |  8 +--
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 16 +++---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  5 +-
+ arch/riscv/boot/dts/eswin/eswin-win2030.dts   | 52 +++++++++----------
+ 12 files changed, 72 insertions(+), 73 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index 42a2eb700568..38e593b4c97c 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -63,15 +63,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+index 64fac2c5906c..7842d5136303 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+@@ -62,15 +62,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 66f5621a146f..94ea752f5e05 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -59,15 +59,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index bd6120c66ab7..1809b384d0be 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -63,15 +63,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index f02a7936cc60..0d2d03ac73aa 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -51,15 +51,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+index 8975632b0325..ee83ad1ee128 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+@@ -61,15 +61,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+index 79a885bb2c62..2b7360126921 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+@@ -59,15 +59,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+index 0dd1eaa522a4..45fb6aca84c0 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
+@@ -58,15 +58,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+index 0b2d07df055c..453dcea70155 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
+@@ -58,15 +58,15 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 12dbdb1c7418..3b483f2dd6e7 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -64,27 +64,27 @@ cpus {
+ 		timebase-frequency = <RTCCLK_FREQ>;
+ 	};
+ 
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@79000000 {
++	memory@2000000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x79000000 0x0 0x400000>;
++		reg = <0x20 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <1>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@2000000000 {
++	memory@79000000 {
+ 		device_type = "memory";
+-		reg = <0x20 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x79000000 0x0 0x400000>;
+ 		numa-node-id = <1>;
+ 	};
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 88b00f5478cc..b6d4e88e747c 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -32,7 +32,6 @@
+ 
+ / {
+     compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000","sifive,fu740";
+-
+ 	thermal-zones {
+ 		thermal0 {
+ 			polling-delay-passive = <500>; /*ms*/
+@@ -54,7 +53,7 @@ target: trip-point1 {
+ 				};
+ 				*/
+ 				crit: trip-point2 {
+-					temperature     = <88000>;
++					temperature     = <110000>;
+ 					hysteresis      = <0>;
+ 					type            = "critical";
+ 				};
+@@ -724,8 +723,8 @@ gc820: g2d@50140000 {
+ 			contiguous-size = <0xa00000>;
+ 			recovery = <0>;
+ 			dma-noncoherent;
+-			numa-node-id = <0>;
+ 			operating-points-v2 = <&g2d_opp_table>;
++			numa-node-id = <0>;
+ 		};
+ 
+ 		gpu0: gpu@51400000 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
+index 8d9e0e76c350..d35198469b21 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
+@@ -60,6 +60,12 @@ cpus {
+ 	};
+ #if (CHIPLET_NUM == 1)
+ #ifdef MEMMODE_INTERLEAVE
++	memory@4000000000 {
++		device_type = "memory";
++		reg = <0x40 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		numa-node-id = <0>;
++	};
++
+ 	memory@59000000 {
+ 		device_type = "memory";
+ 		reg = <0x0 0x59000000 0x0 0x400000>;
+@@ -72,12 +78,6 @@ memory@79000000 {
+ 		numa-node-id = <1>;
+ 	};
+ 
+-	memory@4000000000 {
+-		device_type = "memory";
+-		reg = <0x40 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+-		numa-node-id = <0>;
+-	};
+-
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -134,15 +134,9 @@ secure_memory_part_1 {
+ 		};
+ 	};
+ #else
+-	memory@59000000 {
+-		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
+-		numa-node-id = <0>;
+-	};
+-
+-	memory@79000000 {
++	memory@2000000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x79000000 0x0 0x400000>;
++		reg = <0x20 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <1>;
+ 	};
+ 
+@@ -152,12 +146,18 @@ memory@80000000 {
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@2000000000 {
++	memory@79000000 {
+ 		device_type = "memory";
+-		reg = <0x20 0x00000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x79000000 0x0 0x400000>;
+ 		numa-node-id = <1>;
+ 	};
+ 
++	memory@59000000 {
++		device_type = "memory";
++		reg = <0x0 0x59000000 0x0 0x400000>;
++		numa-node-id = <0>;
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+@@ -259,15 +259,15 @@ distance-map {
+ 	};
+ #else //CHIPLET_1
+ #if (AVAILABLE_DIE == 0)
+-	memory@59000000 {
++	memory@80000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x59000000 0x0 0x400000>;
++		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+-	memory@80000000 {
++	memory@59000000 {
+ 		device_type = "memory";
+-		reg = <0x0 0x80000000 MEMORY_SIZE_H MEMORY_SIZE_L>;
++		reg = <0x0 0x59000000 0x0 0x400000>;
+ 		numa-node-id = <0>;
+ 	};
+ 
+@@ -335,18 +335,18 @@ reset_test@1e00e000 {
+ 		};
+ 	};
+ #else
+-	memory@79000000 {
+-		device_type = "memory";
+-		reg = <0x0 0x79000000 0x0 0x400000>;
+-		numa-node-id = <1>;
+-	};
+-
+ 	memory@2000000000 {
+ 		device_type = "memory";
+ 		reg = <0x20 0x0 MEMORY_SIZE_H MEMORY_SIZE_L>;
+ 		numa-node-id = <0>;
+ 	};
+ 
++	memory@79000000 {
++		device_type = "memory";
++		reg = <0x0 0x79000000 0x0 0x400000>;
++		numa-node-id = <1>;
++	};
++
+ 	reserved-memory {
+ 		#address-cells = <2>;
+ 		#size-cells = <2>;
+-- 
+2.50.1
+

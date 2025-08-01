@@ -1,0 +1,527 @@
+From 697469a2e8f20ee88046e854f383a5cf3f327693 Mon Sep 17 00:00:00 2001
+From: linmin <linmin@eswincomputing.com>
+Date: Fri, 20 Dec 2024 10:08:03 +0800
+Subject: [PATCH 365/552] WIN2030-14758:feat:L3 cache flush all
+
+Changelogs:
+1.Try to flush the entire L3 Cache as the procedure described at
+  chapter 18.5.2 in eswin_p550mc_d2d_21G3.04.00_v1p12_manual.pdf
+2.An unresolved problem with flush all: loading the zero device
+  of DIE 1 is unable to evict the L3 Cache of DIE1.
+  So, in eic7702-evb-a1.dts and eic7702-evb-a1-interleave.dts,
+  a DDR memory block node named nid_1_zero_device_simu is reserved
+  for replacing the zero device of DIE 1 as a workaround.
+
+Signed-off-by: linmin <linmin@eswincomputing.com>
+Change-Id: Ifed39391d86908bc4ad5008786f05191db5852df
+---
+ .../dts/eswin/eic7702-evb-a1-interleave.dts   |  14 +-
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  |  14 ++
+ .../dts/eswin/eswin-win2030-arch-d2d.dtsi     |   3 +
+ .../boot/dts/eswin/eswin-win2030-arch.dtsi    |   7 +
+ drivers/memory/eswin/es_mmz_vb/mmz_vb.c       |  74 +++++++++-
+ drivers/soc/sifive/sifive_ccache.c            | 137 +++++++++++++++++-
+ include/soc/sifive/sifive_ccache.h            |   1 +
+ include/uapi/linux/mmz_vb.h                   |   1 +
+ 8 files changed, 235 insertions(+), 16 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+index 8e38dc5e7f59..1c0820e01cfb 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
+@@ -178,7 +178,10 @@ d1_dc_reserved: d1_dc_reserved@2260000000 {
+ 		// 	reg = <0x2 0xfffff000 0x0 0x1000>;
+ 		// };
+ 
+-
++		nid_1_zero_device_simu: nid_1_zero_device_simu@2040000000 {
++			no-map;
++			reg = <0x20 0x40000000 0x0 0x400000>;
++		};
+ 		// d1_g2d_4GB_boundary_reserved_4k {
+ 		// 	no-map;
+ 		// 	reg = <0x20 0xfffff000 0x0 0x1000>;
+@@ -215,6 +218,15 @@ gpio-68 {
+ 
+ };
+ 
++&D1CACHE {
++	status = "okay";
++	d1_zero_device: zero-device@3a000000 {
++		compatible = "l3,zero-device";
++		/*reg = <0x0 0x3a000000 0x0 0x400000>;*/
++		memory-region = <&nid_1_zero_device_simu>;
++	};
++};
++
+ &d0_clock {
+ 	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 3b483f2dd6e7..76bb244c3250 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -133,6 +133,11 @@ mmz_nid_0_part_0 {
+ 			no-map;
+ 		};
+ 
++		nid_1_zero_device_simu: nid_1_zero_device_simu@2040000000 {
++			no-map;
++			reg = <0x20 0x40000000 0x0 0x400000>;
++		};
++
+ 		d1_g2d_4GB_boundary_reserved_4k {
+ 			no-map;
+ 			reg = <0x20 0xfffff000 0x0 0x1000>;
+@@ -173,6 +178,15 @@ gpio-68 {
+ 
+ };
+ 
++&D1CACHE {
++	status = "okay";
++	d1_zero_device: zero-device@3a000000 {
++		compatible = "l3,zero-device";
++		/*reg = <0x0 0x3a000000 0x0 0x400000>;*/
++		memory-region = <&nid_1_zero_device_simu>;
++	};
++};
++
+ &d0_clock {
+ 	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
+index 23eb2a5424d3..48f72db0adfa 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
+@@ -309,6 +309,8 @@ d1_bus_err3: bus-error-unit@21703000 {
+ 	};
+ 
+ 	D1CACHE: cache-controller@22010000 {
++		#address-cells = <2>;
++		#size-cells = <2>;
+ 		cache-block-size = <64>;
+ 		cache-level = <3>;
+ 		cache-sets = <4096>;
+@@ -327,6 +329,7 @@ D1CACHE: cache-controller@22010000 {
+ 		sifive,max-master-id = <13>;
+ 		sifive,perfmon-counters = <6>;
+ 		numa-node-id = <1>;
++		ranges;
+ 	};
+ 
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+index 1bcfba13d1a3..9fa246a5898f 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
+@@ -321,6 +321,8 @@ d0_bus_err3: bus-error-unit@hart3 {
+ 			numa-node-id = <0>;
+ 		};
+ 		D0CACHE: cache-controller@2010000 {
++			#address-cells = <2>;
++			#size-cells = <2>;
+ 			cache-block-size = <64>;
+ 			cache-level = <3>;
+ 			cache-sets = <4096>;
+@@ -338,6 +340,11 @@ D0CACHE: cache-controller@2010000 {
+ 			sifive,max-master-id = <13>;
+ 			sifive,perfmon-counters = <6>;
+ 			numa-node-id = <0>;
++			ranges;
++			zero-device@1a000000 {
++				compatible = "l3,zero-device";
++				reg = <0x0 0x1a000000 0x0 0x400000>;
++			};
+ 		};
+ 		L34: debug-controller@0 {
+ 			compatible = "sifive,debug-100", "riscv,debug-100";
+diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
+index 9876cc2fe319..b1f201aeaf88 100644
+--- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
++++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
+@@ -45,6 +45,7 @@
+ #include <uapi/linux/es_vb_user.h>
+ #include <uapi/linux/mmz_vb.h>
+ #include "include/linux/mmz_vb.h"
++#include <soc/sifive/sifive_ccache.h>
+ 
+ MODULE_IMPORT_NS(DMA_BUF);
+ 
+@@ -101,7 +102,7 @@ static int vb_blk_to_pool(struct esVB_BLOCK_TO_POOL_CMD_S *blkToPoolCmd);
+ static int vb_get_blk_offset(struct esVB_GET_BLOCKOFFSET_CMD_S *getBlkOffsetCmd);
+ static int vb_split_dmabuf(struct esVB_SPLIT_DMABUF_CMD_S *splitDmabufCmd);
+ static int vb_get_dmabuf_refcnt(struct esVB_DMABUF_REFCOUNT_CMD_S *getDmabufRefCntCmd);
+-static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd);
++static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd, bool *interleave_p);
+ static int vb_get_dmabuf_size(struct esVB_DMABUF_SIZE_CMD_S *getDmabufSizeCmd);
+ static int mmz_vb_pool_exit(void);
+ static int mmz_vb_init_memory_region(void);
+@@ -854,6 +855,7 @@ static int vb_ioctl_get_dmabuf_refcnt(void __user *user_getDmabufRefCntCmd)
+ static int vb_ioctl_retrieve_mem_node(void __user *user_retrieveMemNodeCmd)
+ {
+ 	int ret = 0;
++	bool interleave;
+ 	struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd;
+ 
+ 	retrieveMemNodeCmd = kzalloc(sizeof(*retrieveMemNodeCmd), GFP_KERNEL);
+@@ -865,7 +867,7 @@ static int vb_ioctl_retrieve_mem_node(void __user *user_retrieveMemNodeCmd)
+ 		goto out_free;
+ 	}
+ 
+-	ret = vb_retrieve_mem_node(retrieveMemNodeCmd);
++	ret = vb_retrieve_mem_node(retrieveMemNodeCmd, &interleave);
+ 	if (ret)
+ 		goto out_free;
+ 
+@@ -1466,6 +1468,50 @@ static int vb_ioctl_uninit_config(void __user *user_cmd)
+ 	return 0;
+ }
+ 
++static int vb_ioctl_flush_all(void __user *user_cmd)
++{
++	int cpuid, hartid;
++#ifdef CONFIG_NUMA
++	bool interleave;
++	struct esVB_RETRIEVE_MEM_NODE_CMD_S retrieveMemNodeCmd;
++	int ret = 0;
++
++	if (copy_from_user(&retrieveMemNodeCmd.fd, user_cmd, sizeof(int))) {
++		return -EFAULT;
++	}
++	retrieveMemNodeCmd.cpu_vaddr = NULL;
++	ret = vb_retrieve_mem_node(&retrieveMemNodeCmd, &interleave);
++	if (ret)
++		return ret;
++
++	if (likely(interleave == false)) {
++		if (retrieveMemNodeCmd.numa_node == 1) {
++			hartid = 4;
++		}
++		else {
++			hartid = 0;
++		}
++
++		cpuid = riscv_hartid_to_cpuid(hartid);
++		smp_call_function_single(cpuid, ccache_flush_all, &hartid, true);
++	}
++	else {
++		hartid = 0;
++		cpuid = riscv_hartid_to_cpuid(hartid);
++		smp_call_function_single(cpuid, ccache_flush_all, &hartid, true);
++
++		hartid = 4;
++		cpuid = riscv_hartid_to_cpuid(hartid);
++		smp_call_function_single(cpuid, ccache_flush_all, &hartid, true);
++	}
++#else
++	cpuid = smp_processor_id();
++	hartid = cpuid_to_hartid_map(cpuid);
++	ccache_flush_all(&hartid);
++#endif
++	return 0;
++}
++
+ static long mmz_vb_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ {
+ 	int ret = 0;
+@@ -1505,6 +1551,8 @@ static long mmz_vb_unlocked_ioctl(struct file *file, unsigned int cmd, unsigned
+ 		return vb_ioctl_retrieve_mem_node(argp);
+ 	case MMZ_VB_IOCTL_DMABUF_SIZE:
+ 		return vb_ioctl_get_dmabuf_size(argp);
++	case MMZ_VB_IOCTL_FLUSH_ALL:
++		return vb_ioctl_flush_all(argp);
+ 	default:
+ 		pr_debug("Invalid IOCTL CMD!!!\n");
+ 		return -EINVAL;
+@@ -1629,8 +1677,8 @@ static int mmz_vb_idr_iterate_show(int id, void *p, void *data)
+ 
+ 	spin_lock(&pool->lock);
+ 	pool_cfg = &pool->poolCfg;
+-	es_seq_printf(s, "\t Uid %d, PoolId %d, blkSize 0x%llx, blkCnt %d, "
+-		"RemapMode %d, mmzName %s, allocated blkCnt %d\n\r", pool->enVbUid,
++	es_seq_printf(s, "\t Uid %-2d, PoolId %-4d, blkSize 0x%08llx, blkCnt %-8d, "
++		"RemapMode %d, mmzName %s, allocated blkCnt %-8d\n\r", pool->enVbUid,
+ 		pool->poolId, pool_cfg->blkSize, pool_cfg->blkCnt,
+ 		pool_cfg->enRemapMode, pool_cfg->mmzName,
+ 		pool_cfg->blkCnt - vb_pool_get_free_block_cnt_unlock(pool));
+@@ -2251,12 +2299,15 @@ static int vb_get_dmabuf_refcnt(struct esVB_DMABUF_REFCOUNT_CMD_S *getDmabufRefC
+ 
+ #define PAGE_IN_SPRAM_DIE0(page) ((page_to_phys(page)>=0x59000000) && (page_to_phys(page)<0x59400000))
+ #define PAGE_IN_SPRAM_DIE1(page) ((page_to_phys(page)>=0x79000000) && (page_to_phys(page)<0x79400000))
+-static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, int *nid)
++static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, int *nid, bool *interleave_p)
+ {
+ 	int ret = 0;
+ 	struct dma_buf_attachment *attach;
+ 	struct sg_table *sgt;
+ 	struct page *page = NULL;
++#ifdef CONFIG_NUMA
++	unsigned long pfn;
++#endif
+ 
+ 	get_dma_buf(dmabuf);
+ 	attach = dma_buf_attach(dmabuf, mmz_vb_dev);
+@@ -2285,6 +2336,13 @@ static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, int *nid)
+ 	else
+ 		*nid = page_to_nid(page);
+ 
++#ifdef CONFIG_NUMA
++	pfn = page_to_pfn(page);
++	if (CHECK_MEMORY_RANGE_OPFUNC(pfn, MEM, INTPART0) || CHECK_MEMORY_RANGE_OPFUNC(pfn, MEM, INTPART1))
++		*interleave_p = true;
++	else
++		*interleave_p = false;
++#endif
+ 	dma_buf_unmap_attachment(attach, sgt, DMA_BIDIRECTIONAL);
+ 	/* detach */
+ 	dma_buf_detach(dmabuf, attach);
+@@ -2295,7 +2353,7 @@ static int do_vb_retrive_mem_node(struct dma_buf *dmabuf, int *nid)
+ 	return ret;
+ }
+ 
+-static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd)
++static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMemNodeCmd, bool *interleave_p)
+ {
+ 	int ret = 0;
+ 	struct dma_buf *dmabuf;
+@@ -2312,7 +2370,7 @@ static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMem
+ 			return PTR_ERR(dmabuf);
+ 		}
+ 
+-		ret = do_vb_retrive_mem_node(dmabuf, &retrieveMemNodeCmd->numa_node);
++		ret = do_vb_retrive_mem_node(dmabuf, &retrieveMemNodeCmd->numa_node, interleave_p);
+ 		/* put dmabuf back */
+ 		dma_buf_put(dmabuf);
+ 	}
+@@ -2332,7 +2390,7 @@ static int vb_retrieve_mem_node(struct esVB_RETRIEVE_MEM_NODE_CMD_S *retrieveMem
+ 			return -EFAULT;
+ 		}
+ 		dmabuf = vma->vm_private_data;
+-		ret = do_vb_retrive_mem_node(dmabuf, &retrieveMemNodeCmd->numa_node);
++		ret = do_vb_retrive_mem_node(dmabuf, &retrieveMemNodeCmd->numa_node, interleave_p);
+ 	}
+ 
+ 	return ret;
+diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
+index f73cda043cbc..55e69e613a25 100644
+--- a/drivers/soc/sifive/sifive_ccache.c
++++ b/drivers/soc/sifive/sifive_ccache.c
+@@ -7,6 +7,7 @@
+  *
+  */
+ #define pr_fmt(fmt) "CCACHE: " fmt
++#include <linux/of_reserved_mem.h>
+ #include <linux/debugfs.h>
+ #include <linux/interrupt.h>
+ #include <linux/of_irq.h>
+@@ -38,12 +39,14 @@
+ #define SIFIVE_CCACHE_MAX_ECCINTR 4
+ #define SIFIVE_CCACHE_FLUSH64 0x200
+ #define SIFIVE_CCACHE_FLUSH64_LINE_LEN 64
++#define SIFIVE_CCACHE_WAYMASK_OFFSET 0x800
+ enum {
+ 	CACHE_NODE_0 = 0,
+ 	CACHE_NODE_1,
+ 	SHARE_CACHE_NODE_NUM,
+ };
+ static void __iomem *ccache_base[SHARE_CACHE_NODE_NUM];
++static void __iomem *zero_device_base[SHARE_CACHE_NODE_NUM] = {NULL};
+ static int g_irq[SHARE_CACHE_NODE_NUM][SIFIVE_CCACHE_MAX_ECCINTR];
+ static struct riscv_cacheinfo_ops ccache_cache_ops;
+ static int level;
+@@ -110,28 +113,28 @@ static void ccache_flush64_range(phys_addr_t paddr, size_t size)
+ 	#endif
+ 		for (line = paddr; line < paddr + size;
+ 		line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
+-			writeq(line, ccache_base[CACHE_NODE_0] + SIFIVE_CCACHE_FLUSH64);
+-			mb();
++			writeq_cpu(line, (ccache_base[CACHE_NODE_0] + SIFIVE_CCACHE_FLUSH64));
+ 		}
++		mb();
+ 	#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC7702_SOC)
+ 	}else if (paddr >= CONFIG_RISCV_DIE1_CACHED_OFFSET && (paddr + size) <= (CONFIG_RISCV_DIE1_CACHED_OFFSET + CONFIG_RISCV_DIE1_MEM_MAX_SIZE)) {
+ 		for (line = paddr; line < paddr + size;
+ 		line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
+-			writeq(line, ccache_base[CACHE_NODE_1] + SIFIVE_CCACHE_FLUSH64);
+-			mb();
++			writeq_cpu(line, (ccache_base[CACHE_NODE_1] + SIFIVE_CCACHE_FLUSH64));
+ 		}
++		mb();
+ 	}
+ 	else if (paddr >= CONFIG_RISCV_INTERLEAVE_CACHED_OFFSET && (paddr + size) <= (CONFIG_RISCV_INTERLEAVE_CACHED_OFFSET + CONFIG_RISCV_INTERLEAVE_MEM_MAX_SIZE)){
+ 		for (line = paddr; line < paddr + size;
+ 		line += SIFIVE_CCACHE_FLUSH64_LINE_LEN) {
+ 			if((!(!(line & 0x40000)))^(!(!(line & 0x100)))) {
+-				writeq(line, ccache_base[CACHE_NODE_1] + SIFIVE_CCACHE_FLUSH64);
++				writeq_cpu(line, (ccache_base[CACHE_NODE_1] + SIFIVE_CCACHE_FLUSH64));
+ 			}
+ 			else {
+-				writeq(line, ccache_base[CACHE_NODE_0] + SIFIVE_CCACHE_FLUSH64);
++				writeq_cpu(line, ccache_base[CACHE_NODE_0] + SIFIVE_CCACHE_FLUSH64);
+ 			}
+-			mb();
+ 		}
++		mb();
+ 	}
+ 	else {
+ 		WARN(1, "Sifive ccache: flush64 out of range: %llx(%lx), skip flush\n",
+@@ -236,6 +239,121 @@ static irqreturn_t ccache_int_handler(int irq, void *device)
+ 	}
+ 	return IRQ_HANDLED;
+ }
++
++#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
++static const struct of_device_id zero_device_id[] = {
++	{ .compatible = "l3,zero-device"},
++	{ /* sentinel */ }
++};
++
++static int zero_device_init(struct device_node *root, int nid)
++{
++	struct device_node *child = NULL;
++	struct device_node *np;
++	const struct of_device_id *match;
++	struct resource res;
++	struct reserved_mem *rmem;
++	int len;
++	int ret = 0;
++
++	for_each_available_child_of_node(root, child) {
++		match = of_match_node(zero_device_id, child);
++		if (match) {
++			if (!of_get_property(child, "reg", &len))
++			{
++				np = of_parse_phandle(child, "memory-region", 0);
++				if (!np)
++					return -ENODEV;
++
++				rmem = of_reserved_mem_lookup(np);
++				if (!rmem)
++					return -ENODEV;
++
++				pr_info("zero_device %s: base 0x%llx, size 0x%llx\n", rmem->name, rmem->base, rmem->size);
++				zero_device_base[nid] = ioremap(rmem->base, rmem->size);
++				if (IS_ERR(zero_device_base[nid])) {
++					pr_err("failed to ioremap zero device\n");
++					of_node_put(child);
++					ret = PTR_ERR(zero_device_base[nid]);
++					break;
++				}
++				pr_debug("ioremp zero_device phys 0x%llx, vaddr 0x%lx\n", rmem->base, (unsigned long)zero_device_base[nid]);
++			}
++			else
++			{
++				if (of_address_to_resource(child, 0, &res)) {
++					of_node_put(child);
++					ret = -ENODEV;
++					pr_err("failed to get zero_device resource\n");
++					break;
++				}
++				pr_info("zero_device resource: start 0x%llx, size 0x%llx\n", res.start, resource_size(&res));
++				zero_device_base[nid] = ioremap(res.start, resource_size(&res));
++				if (IS_ERR(zero_device_base[nid])) {
++					pr_err("failed to ioremap zero device\n");
++					of_node_put(child);
++					ret = PTR_ERR(zero_device_base[nid]);
++					break;
++				}
++				pr_debug("ioremp zero_device phys 0x%llx, vaddr 0x%lx\n", res.start, (unsigned long)zero_device_base[nid]);
++			}
++		}
++	}
++
++	return ret;
++}
++
++#define SIFIVE_CCACHE_SETS	4096
++#define SIFIVE_CCACHE_TAG_SHIFT	(18)
++void ccache_flush_all(void *arg)
++{
++	int hartid, masterid;
++	int nid, wayIdx, i;
++	void __iomem *zero_dev_vaddr;
++	void __iomem *waymaskN_addr;
++	u64 zero_val;
++#if 0
++	int cpuid;
++	cpuid = smp_processor_id();
++	hartid = cpuid_to_hartid_map(cpuid);
++	if (hartid != *(int *)arg) {
++		pr_err("%s:%d, invalid para!!!, hartid:%d, arg:%d\n", __func__, __LINE__,
++			hartid, *(int *)arg);
++	}
++#else
++	hartid = *(int *)arg;
++#endif
++	if (hartid > 3) {
++		masterid = hartid - 4 + 1;
++		nid = 1;
++	}
++	else {
++		masterid = hartid + 1 ;
++		nid = 0;
++	}
++	pr_debug("nid %d, hartid %d, masterid %d\n", nid, hartid, masterid);
++	if (NULL !=zero_device_base[nid]) {
++		waymaskN_addr = ccache_base[nid] + SIFIVE_CCACHE_WAYMASK_OFFSET + (masterid << 3);
++		for (wayIdx = 0; wayIdx < 16; wayIdx++) {
++			/* write WayMaskN to allow evictions from only one way */
++			writel_cpu((1<<wayIdx), waymaskN_addr);
++			mb();
++
++			/* store all the sets in this way*/
++			zero_dev_vaddr = zero_device_base[nid] + (wayIdx << SIFIVE_CCACHE_TAG_SHIFT);
++			for (i = 0; i < SIFIVE_CCACHE_SETS; i++) {
++				zero_val = readq_cpu(zero_dev_vaddr);
++				zero_dev_vaddr += SIFIVE_CCACHE_FLUSH64_LINE_LEN;
++			}
++			mb();
++		}
++		/* restore the wayMaskN register to the original value*/
++		writel_cpu(0xffff, waymaskN_addr);
++		mb();
++	}
++}
++#endif
++
+ static int node_index = 0;
+ static int __init sifive_ccache_init(void)
+ {
+@@ -279,6 +397,11 @@ static int __init sifive_ccache_init(void)
+ 				goto err_free_irq;
+ 			}
+ 		}
++		#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
++		rc = zero_device_init(np, node_index);
++		if (rc)
++			goto err_free_irq;
++		#endif
+ 		of_node_put(np);
+ 		#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
+ 		ccache_way_enable(node_index);
+diff --git a/include/soc/sifive/sifive_ccache.h b/include/soc/sifive/sifive_ccache.h
+index 4d4ed49388a0..022ae61dd309 100644
+--- a/include/soc/sifive/sifive_ccache.h
++++ b/include/soc/sifive/sifive_ccache.h
+@@ -9,6 +9,7 @@
+ 
+ extern int register_sifive_ccache_error_notifier(struct notifier_block *nb);
+ extern int unregister_sifive_ccache_error_notifier(struct notifier_block *nb);
++extern void ccache_flush_all(void *info);
+ 
+ #define SIFIVE_CCACHE_ERR_TYPE_CE 0
+ #define SIFIVE_CCACHE_ERR_TYPE_UE 1
+diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
+index 49ebac96f6e1..1bb76ebb5aa8 100644
+--- a/include/uapi/linux/mmz_vb.h
++++ b/include/uapi/linux/mmz_vb.h
+@@ -171,5 +171,6 @@ typedef struct esVB_DMABUF_SIZE_CMD_S
+ #define MMZ_VB_IOCTL_DMABUF_REFCOUNT	_IOR(MMZ_VB_IOC_MAGIC, 0xc, struct esVB_DMABUF_REFCOUNT_CMD_S)
+ #define MMZ_VB_IOCTL_RETRIEVE_MEM_NODE	_IOR(MMZ_VB_IOC_MAGIC, 0xd, struct esVB_RETRIEVE_MEM_NODE_CMD_S)
+ #define MMZ_VB_IOCTL_DMABUF_SIZE	_IOR(MMZ_VB_IOC_MAGIC, 0xe, struct esVB_DMABUF_SIZE_CMD_S)
++#define MMZ_VB_IOCTL_FLUSH_ALL		_IOW(MMZ_VB_IOC_MAGIC, 0xf, int)
+ 
+ #endif
+-- 
+2.50.1
+

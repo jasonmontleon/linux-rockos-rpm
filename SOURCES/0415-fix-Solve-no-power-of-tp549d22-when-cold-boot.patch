@@ -1,0 +1,74 @@
+From 90265269919b493090d1bde8ba9e891d4c66cdfb Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Mon, 24 Feb 2025 19:33:47 +0800
+Subject: [PATCH 415/552] fix:Solve no power of tp549d22 when cold boot
+
+Changelogs:
+
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts | 6 +++---
+ drivers/regulator/tps549d22-regulator.c  | 5 +++++
+ 2 files changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index f3b13d7ca983..c0dd0416b116 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -460,11 +460,11 @@ &d1_pcie {
+ &d0_npu{
+ 	status = "okay";
+ 	npu-supply=<&d0_npu_vcc>;
++	npu_def_high_vol = <1100000>;
+ };
+ &d1_npu {
+ 	status = "okay";
+ 	npu-supply=<&d1_npu_vcc>;
+-	npu_def_high_vol = <1100000>;
+ };
+ 
+ &d0_dsp_subsys {
+@@ -1340,7 +1340,7 @@ regulators{
+ 			d0_npu_vcc:npu_svcc{
+ 				regulator-name="NPU_SVCC";
+ 				regulator-min-microvolt=<700000>;
+-				regulator-max-microvolt=<1100000>;
++				regulator-max-microvolt=<1120000>;
+ 				regulator-min-microamp=<20000000>;
+ 				regulator-max-microamp=<40000000>;
+ 				regulator-ov-protection-microvolt=<1100000>;
+@@ -1360,7 +1360,7 @@ regulators{
+ 			d1_npu_vcc:npu_svcc{
+ 				regulator-name="NPU_SVCC2";
+ 				regulator-min-microvolt=<700000>;
+-				regulator-max-microvolt=<1100000>;
++				regulator-max-microvolt=<1120000>;
+ 				regulator-min-microamp=<20000000>;
+ 				regulator-max-microamp=<40000000>;
+ 				regulator-ov-protection-microvolt=<1100000>;
+diff --git a/drivers/regulator/tps549d22-regulator.c b/drivers/regulator/tps549d22-regulator.c
+index 1f247c14a50b..dd0052525c36 100644
+--- a/drivers/regulator/tps549d22-regulator.c
++++ b/drivers/regulator/tps549d22-regulator.c
+@@ -38,6 +38,7 @@
+ #include <linux/regulator/of_regulator.h>
+ #include <linux/slab.h>
+ #include <linux/sysfs.h>
++#include <linux/delay.h>
+ 
+ #define TPS549D22_CMD_OPERATION 0x1
+ #define TPS549D22_CMD_ON_OFF_CONFIG 0x2
+@@ -462,6 +463,10 @@ static s32 tps549d22_init_data(struct TPS549D22_DRIVER_DATA *data,
+ 
+ 	tps549d22_set_vout(data, default_voltage);
+ 	tps549d22_write_byte(data, TPS549D22_CMD_ON_OFF_CONFIG, 0xf);
++	ret =  tps549d22_update_byte(data, TPS549D22_CMD_OPERATION,
++								 TPS549D22_MASK_OPERATION_ENABLE,
++								 TPS549D22_MASK_OPERATION_ENABLE);
++	mdelay(20);
+ 	return ret;
+ }
+ 
+-- 
+2.50.1
+

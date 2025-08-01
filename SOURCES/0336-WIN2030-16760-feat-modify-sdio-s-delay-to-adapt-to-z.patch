@@ -1,0 +1,40 @@
+From aaf1e4b40696e34ba81b879601bb72ad3a5b3860 Mon Sep 17 00:00:00 2001
+From: liangshuang <liangshuang@eswincomputing.com>
+Date: Thu, 12 Dec 2024 19:06:12 +0800
+Subject: [PATCH 336/552] WIN2030-16760:feat:modify sdio's delay to adapt to
+ z530.
+
+Changelogs:
+1.modify sdio's delay to adapt to z530
+
+Change-Id: I66206833bc1e7ddc698e845b6b593cdb4b0878eb
+Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-z530.dts | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
+index 2926d780b79c..d9dc8a8afd6a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
+@@ -59,7 +59,7 @@ &pcie {
+ 
+ &sdio0 {
+ 	/* sd card */
+-	delay_code = <0x55>;
++	delay_code = <0x3b>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+@@ -69,7 +69,7 @@ &sdio0 {
+ 
+ &sdio1 {
+ 	/* wifi module */
+-	delay_code = <0x29>;
++	delay_code = <0x32>;
+ 	drive-impedance-ohm = <33>;
+ 	enable-cmd-pullup;
+ 	enable-data-pullup;
+-- 
+2.50.1
+

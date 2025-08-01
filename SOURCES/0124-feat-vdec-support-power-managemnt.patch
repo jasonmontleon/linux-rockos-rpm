@@ -1,7 +1,7 @@
-From 505947d1da4863f0746eb708dc30eddd5aa1d1cb Mon Sep 17 00:00:00 2001
+From 12ca2c56b1016c79b3a1e9c9b39803c4fa804a85 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 18 Jul 2024 13:54:33 +0800
-Subject: [PATCH 124/551] feat:vdec support power managemnt
+Subject: [PATCH 124/552] feat:vdec support power managemnt
 
 Changelogs:
   1. Add generic & runtime power management for vdec & jdec.

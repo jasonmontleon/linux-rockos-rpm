@@ -1,0 +1,27 @@
+From f6e045f1fc82096a2d338a5ce2bde9bebb20994f Mon Sep 17 00:00:00 2001
+From: carbon <carbon@milkv.io>
+Date: Tue, 15 Jul 2025 14:27:52 +0800
+Subject: [PATCH 541/552] riscv: dts: megrez-nx: fix sata act led gpio
+
+Release gpio27 because it will be used by stat act led.
+
+Signed-off-by: carbon <carbon@milkv.io>
+---
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
+index e8e09df6105a..aef0c0a61efd 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
+@@ -935,7 +935,6 @@ &pinctrl_gpio21_default
+ 		&pinctrl_gpio22_default
+ 		&pinctrl_gpio24_default
+ 		&pinctrl_gpio26_default
+-		&pinctrl_gpio27_default
+ 		&pinctrl_gpio35_default
+ 		&pinctrl_gpio36_default
+ 		&pinctrl_gpio37_default
+-- 
+2.50.1
+

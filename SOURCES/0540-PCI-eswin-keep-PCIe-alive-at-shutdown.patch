@@ -1,0 +1,42 @@
+From 93dea7fe79f5e17f0ea4c5dfa857b174135d7fbd Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Tue, 8 Jul 2025 11:37:06 +0800
+Subject: [PATCH 540/552] PCI: eswin: keep PCIe alive at shutdown
+
+Transfer could still happen (especially to external GPU) after calling
+shutdown callback of the PCIe controller, which will hang if we shutdown
+PCIe.
+
+Keep PCIe alive at shutdown to prevent the hang.
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ drivers/pci/controller/dwc/pcie-eswin.c | 7 ++-----
+ 1 file changed, 2 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
+index 9b59531abe9a..de90f5b57971 100644
+--- a/drivers/pci/controller/dwc/pcie-eswin.c
++++ b/drivers/pci/controller/dwc/pcie-eswin.c
+@@ -77,10 +77,7 @@ struct eswin_pcie {
+ 
+ static void eswin_pcie_shutdown(struct platform_device *pdev)
+ {
+-	struct eswin_pcie *pcie = platform_get_drvdata(pdev);
+-
+-	/* Bring down link, so bootloader gets clean state in case of reboot */
+-	reset_control_assert(pcie->perst);
++	/* Do nothing to keep PCIe alive at shutdown */
+ }
+ 
+ static int eswin_pcie_start_link(struct dw_pcie *pci)
+@@ -480,4 +477,4 @@ module_platform_driver(eswin_pcie_driver);
+ MODULE_DEVICE_TABLE(of, eswin_pcie_of_match);
+ MODULE_DESCRIPTION("PCIe host controller driver for ESWIN WIN2030 SoCs");
+ MODULE_AUTHOR("Ning Yu <ningyu@eswincomputing.com>");
+-MODULE_LICENSE("GPL v2");
+\ No newline at end of file
++MODULE_LICENSE("GPL v2");
+-- 
+2.50.1
+

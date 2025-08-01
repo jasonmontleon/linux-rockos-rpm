@@ -1,0 +1,45 @@
+From e76c086f3e38d1907db72f86b7fc6bf59e983efb Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Wed, 18 Dec 2024 10:59:41 +0800
+Subject: [PATCH 345/552] WIN2030-16831:fix:Delete HDMI Audio error printing.
+
+Changelogs:
+	Error printing during HDMI audio startup on die1.
+
+Change-Id: Ic34b952e59ba9b0a066e4d0113809fdd94fcf2e8
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ sound/soc/eswin/esw-i2s.c | 10 ----------
+ 1 file changed, 10 deletions(-)
+
+diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
+index 8fc5a00472d3..9e3648863be6 100755
+--- a/sound/soc/eswin/esw-i2s.c
++++ b/sound/soc/eswin/esw-i2s.c
+@@ -436,10 +436,6 @@ static int i2s_startup(struct snd_pcm_substream *substream,
+ 
+ 	dai_link->trigger_stop = SND_SOC_TRIGGER_ORDER_LDC;
+ 
+-	if (!strcmp(cpu_dai->name, D0_HDMI_DAI_NAME) || !strcmp(cpu_dai->name, D1_HDMI_DAI_NAME)) {
+-		dai_link->playback_only = 1;
+-	}
+-
+ 	return 0;
+ }
+ 
+@@ -890,12 +886,6 @@ static struct snd_soc_dai_driver i2s_dai[8] = {
+ 			.rates = ESW_I2S_RATES,
+ 			.formats = ESW_I2S_FORMATS,
+ 		},
+-		.capture = {
+-			.channels_min = MIN_CHANNEL_NUM,
+-			.channels_max = MAX_CHANNEL_NUM,
+-			.rates = ESW_I2S_RATES,
+-			.formats = ESW_I2S_FORMATS,
+-		},
+ 	},
+ 	{
+ 		.name = "d1-i2s0",
+-- 
+2.50.1
+

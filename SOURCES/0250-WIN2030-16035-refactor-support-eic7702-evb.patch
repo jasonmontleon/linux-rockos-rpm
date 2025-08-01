@@ -1,7 +1,7 @@
-From 27149778f0996a5da37bdfb852e3847ecf9d368b Mon Sep 17 00:00:00 2001
+From 3e97b3c7407e2068e9c3cd3ede6661d160188f6d Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 5 Sep 2024 16:14:07 +0800
-Subject: [PATCH 250/551] WIN2030-16035:refactor:support eic7702 evb
+Subject: [PATCH 250/552] WIN2030-16035:refactor:support eic7702 evb
 
 Changelogs:
 Provide bring up code for eic7702 evb a1

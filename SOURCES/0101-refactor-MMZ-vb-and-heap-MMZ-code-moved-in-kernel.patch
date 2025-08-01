@@ -1,7 +1,7 @@
-From b5fb6d087682de7637345440922f17a21a9b3bd7 Mon Sep 17 00:00:00 2001
+From d9f4a7bccd8b47b0ed2971c8eda706855cf86066 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 19 Jun 2024 16:23:06 +0800
-Subject: [PATCH 101/551] refactor(MMZ vb and heap):MMZ code moved in kernel
+Subject: [PATCH 101/552] refactor(MMZ vb and heap):MMZ code moved in kernel
 
 Changelogs:
 1.Moved es_buddy source code to drivers/memory/eswin/es_buddy

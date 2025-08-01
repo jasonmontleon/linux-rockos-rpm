@@ -1,0 +1,198 @@
+From 11fb6343d593d4d0b96be60bb8e67ff6ed7a61e9 Mon Sep 17 00:00:00 2001
+From: yangwei1 <yangwei1@eswincomputing.com>
+Date: Mon, 17 Mar 2025 19:54:53 +0800
+Subject: [PATCH 445/552] fix:pwm support inverted
+
+Changelogs:
+
+Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
+---
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |  2 +-
+ .../boot/dts/eswin/eic7700-som260-a1.dtsi     |  2 +-
+ arch/riscv/boot/dts/eswin/eic7700-som314.dtsi |  2 +-
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  6 +--
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  6 +--
+ drivers/pwm/pwm-dwc-eswin.c                   | 40 ++++++++++---------
+ 6 files changed, 30 insertions(+), 28 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index e3124c608630..024bd9d6cac8 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -623,7 +623,7 @@ &d0_mbox7 {
+ 
+ &fan_control {
+ 	status = "okay";
+-	eswin,pwm_inverted;
++	pwms = <&pwm0 0 100000 PWM_POLARITY_INVERTED>;
+ };
+ 
+ &d0_i2c0 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+index 8482de2b7a99..e98c77b9e5a0 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
+@@ -598,7 +598,7 @@ &d0_mbox7 {
+ 
+ &fan_control {
+ 	status = "okay";
+-	eswin,pwm_inverted;
++	pwms = <&pwm0 0 100000 PWM_POLARITY_INVERTED>;
+ };
+ 
+ &d0_i2c0 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+index 5d0d8de19f0e..e9c6bb6e261b 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
+@@ -561,7 +561,7 @@ &d0_mbox7 {
+ 
+ &fan_control {
+ 	status = "okay";
+-	eswin,pwm_inverted;
++	pwms = <&pwm0 0 100000 PWM_POLARITY_INVERTED>;
+ };
+ 
+ &d0_i2c0 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index aa7268c54410..f718ceea26b5 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -29,7 +29,7 @@
+ #include <dt-bindings/interconnect/eswin,win2030.h>
+ #include <dt-bindings/power/eswin,eic770x-pmu.h>
+ #include <dt-bindings/thermal/thermal.h>
+-
++#include <dt-bindings/pwm/pwm.h>
+ / {
+     compatible = "sifive,hifive-unmatched-a00", "sifive,fu740-c000","sifive,fu740";
+ 	thermal-zones {
+@@ -1324,7 +1324,7 @@ fan_control: fan_control@50b50000 {
+ 			interrupts = <354>;
+ 			pulses-per-revolution = <2>;
+ 			pwm-minimum-period = <1000>;
+-			pwms = <&pwm0 0 100000>;
++			pwms = <&pwm0 0 100000 0>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&pinctrl_die0_fan_tach_default &pinctrl_die0_pwm0_default>;
+ 			status = "disabled";
+@@ -1575,7 +1575,7 @@ portd: gpio-port@3 {
+ 
+ 		pwm0: pwm@0x50818000 {
+ 			compatible = "eswin,pwm-eswin";
+-			#pwm-cells = <2>;
++			#pwm-cells = <3>;
+ 			reg = <0x0 0x50818000 0x0 0x4000>;
+ 			clock-names = "pclk";
+ 			clocks = <&d0_clock EIC7700_CLK_LSP_TIMER_PCLK>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 474355f36098..3a6fe0d1240c 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -28,7 +28,7 @@
+ #include <dt-bindings/interconnect/eswin,win2030.h>
+ #include <dt-bindings/thermal/thermal.h>
+ #include <dt-bindings/power/eswin,eic770x-pmu.h>
+-
++#include <dt-bindings/pwm/pwm.h>
+ / {
+ 	thermal-zones {
+ 		d1_thermal0 {
+@@ -719,7 +719,7 @@ d1_fan_control: fan_control@70b50000 {
+ 			interrupts = <354>;
+ 			pulses-per-revolution = <1>;
+ 			pwm-minimum-period = <1000>;
+-			pwms = <&d1_pwm0 0 100000>;
++			pwms = <&d1_pwm0 0 100000 0>;
+ 			status = "disabled";
+ 			label = "d1_fan_control";
+ 			numa-node-id = <1>;
+@@ -1244,7 +1244,7 @@ d1_pwm0: pwm@0x70818000 {
+ 			clock-frequency = <200000000>;
+ 			resets = <&d1_reset TIMER_RST_CTRL SW_TIMER_RST_N>;
+ 			reset-names = "pwmrst";
+-			#pwm-cells = <2>;
++			#pwm-cells = <3>;
+ 			pinctrl-names = "default";
+ 			pinctrl-0 = <&d1_pinctrl_pwm0_default &d1_pinctrl_pwm1_default &d1_pinctrl_pwm2_default>;
+ 			status = "disabled";
+diff --git a/drivers/pwm/pwm-dwc-eswin.c b/drivers/pwm/pwm-dwc-eswin.c
+index 1873b8351b0c..23e8b6388264 100644
+--- a/drivers/pwm/pwm-dwc-eswin.c
++++ b/drivers/pwm/pwm-dwc-eswin.c
+@@ -1,19 +1,9 @@
++
+ // SPDX-License-Identifier: GPL-2.0
+ /*
+- * DesignWare PWM Controller driver
+- *
+- * Copyright (C) 2018-2020 Intel Corporation
+- *
+- * Author: Felipe Balbi (Intel)
+- * Author: Jarkko Nikula <jarkko.nikula@linux.intel.com>
+- * Author: Raymond Tan <raymond.tan@intel.com>
+- *
+- * Limitations:
+- * - The hardware cannot generate a 0 % or 100 % duty cycle. Both high and low
+- *   periods are one or more input clock periods long.
++ * ESWIN cipher serivce driver
+  *
+  * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
+- * SPDX-License-Identifier: GPL-2.0
+  *
+  * This program is free software: you can redistribute it and/or modify
+  * it under the terms of the GNU General Public License as published by
+@@ -27,7 +17,7 @@
+  * You should have received a copy of the GNU General Public License
+  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+  *
+- * Author: xuxiang@eswincomputing.com
++ * Authors: xuxiang@eswincomputing.com
+  */
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+@@ -106,8 +96,8 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
+ {
+ 	u64 tmp;
+ 	u32 ctrl;
+-	u32 high;
+-	u32 low;
++	u32 high=0;
++	u32 low=0;
+ 
+ 	/*
+ 	 * Calculate width of low and high period in terms of input clock
+@@ -117,14 +107,26 @@ static int __dwc_pwm_configure_timer(struct dwc_pwm *dwc,
+ 	tmp = DIV_ROUND_CLOSEST_ULL(state->duty_cycle, DWC_CLK_PERIOD_NS);
+ 	if (tmp < 1 || tmp > (1ULL << 32))
+ 		return -ERANGE;
+-	low = tmp - 1;
+-
++	if (pwm->args.polarity== PWM_POLARITY_INVERSED)
++	{
++		high = tmp - 1;
++	}
++	else
++	{
++		low = tmp - 1;
++	}
+ 	tmp = DIV_ROUND_CLOSEST_ULL(state->period - state->duty_cycle,
+ 				    DWC_CLK_PERIOD_NS);
+ 	if (tmp < 1 || tmp > (1ULL << 32))
+ 		return -ERANGE;
+-	high = tmp - 1;
+-
++	if (pwm->args.polarity == PWM_POLARITY_INVERSED)
++	{
++		low = tmp - 1;
++	}
++	else
++	{
++		high = tmp - 1;
++	}
+ 	/*
+ 	 * Specification says timer usage flow is to disable timer, then
+ 	 * program it followed by enable. It also says Load Count is loaded
+-- 
+2.50.1
+

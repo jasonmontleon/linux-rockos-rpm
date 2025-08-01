@@ -1,0 +1,112 @@
+From 82087d317d74d75ec58c5c7909c69742820dfb33 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Tue, 11 Mar 2025 08:39:04 +0800
+Subject: [PATCH 443/552] fix:disable cca pvt0 and timer1
+
+Changelogs:
+1. Disable cca because adjust pmix is replaced by software in lpcpu firmware
+2. Disable pvt0 which is monitored by lpcpu firmware
+3. Disable timer1 which is used by lpcpu firmware
+
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts          | 8 ++++----
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts              | 8 ++++----
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 1 +
+ drivers/soc/eswin/d2d.c                               | 7 ++++---
+ 4 files changed, 13 insertions(+), 11 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 73bf57188e97..18e0104ca2b8 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -1503,10 +1503,10 @@ &d1_pwm0 {
+ };
+ 
+ &pvt0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ &d1_pvt0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &pvt1 {
+@@ -1559,10 +1559,10 @@ &d1_timer0 {
+ };
+ 
+ &timer1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ &d1_timer1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &timer2 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index 65789ee2fc92..93da8eba92f1 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -1526,10 +1526,10 @@ &d1_pwm0 {
+ };
+ 
+ &pvt0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ &d1_pvt0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &pvt1 {
+@@ -1582,10 +1582,10 @@ &d1_timer0 {
+ };
+ 
+ &timer1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ &d1_timer1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &timer2 {
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 0f1cc6970ffd..474355f36098 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -2309,6 +2309,7 @@ d1_numa_sample:numa_sample@1 {
+ 			iommus = <&smmu1 WIN2030_SID_SCPU>;
+ 			numa-node-id = <1>;
+ 			dma-noncoherent;
++			status = "disabled";
+ 		};
+ 
+ 		d1_ddr0: ddr-controller@72300000 {
+diff --git a/drivers/soc/eswin/d2d.c b/drivers/soc/eswin/d2d.c
+index 2b60e5eb4a6b..b9a58bd146da 100644
+--- a/drivers/soc/eswin/d2d.c
++++ b/drivers/soc/eswin/d2d.c
+@@ -203,10 +203,11 @@ static int  d2d_probe(struct platform_device *pdev)
+ 		dev_dbg(&pdev->dev,"registered irq %s, base %d, num %ld\n", d2d_irq_src[i],
+ 			platform_get_irq(pdev, 0), D2D_IRQ_NUMBER);
+ 	}
+-	INIT_DELAYED_WORK(&d2d_dev->delay_work, adaptation_delay_work_fn);
+-	schedule_delayed_work(&d2d_dev->delay_work, msecs_to_jiffies(2 * MSEC_PER_SEC));
++	// TODO: Not need cca in kernel, it executed by lpcpu firmware
++	// INIT_DELAYED_WORK(&d2d_dev->delay_work, adaptation_delay_work_fn);
++	// schedule_delayed_work(&d2d_dev->delay_work, msecs_to_jiffies(2 * MSEC_PER_SEC));
+ 
+-	dev_info(dev, "D2D-%d init OK\n",d2d_dev->numa_id);
++	dev_info(dev, "D2D-%d init OK (without cca)\n",d2d_dev->numa_id);
+ 	return 0;
+ 
+ free_d2d_err_dev:
+-- 
+2.50.1
+

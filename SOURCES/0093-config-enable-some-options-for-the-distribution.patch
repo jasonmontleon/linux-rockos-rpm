@@ -1,7 +1,7 @@
-From cbb3233372373bc23b1793c189c1a6c0495dd41e Mon Sep 17 00:00:00 2001
+From 41a5d5ba51b8d957de6a14df51d68a3145df6e18 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 22 Jul 2024 17:32:51 +0800
-Subject: [PATCH 093/551] config: enable some options for the distribution
+Subject: [PATCH 093/552] config: enable some options for the distribution
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>

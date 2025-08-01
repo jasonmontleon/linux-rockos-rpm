@@ -1,0 +1,193 @@
+From 88876da667b226fb303a78e38eb2dfb4be1444e2 Mon Sep 17 00:00:00 2001
+From: luoshanggui <luoshanggui@eswincomputing.com>
+Date: Fri, 7 Feb 2025 09:44:47 +0800
+Subject: [PATCH 399/552] WIN2030-16409: fix: fixed dsp dmabuf issue
+ Changelogs: relese dsp dmabuf and module refcnt when process exit
+
+Change-Id: I9b103b25ed3b19744d9c231a8350606f30119ddb
+Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c |  6 ++-
+ drivers/soc/eswin/ai_driver/dsp/dsp_main.c  |  1 +
+ drivers/soc/eswin/ai_driver/dsp/dsp_main.h  |  1 +
+ drivers/soc/eswin/ai_driver/dsp/dsp_proc.c  | 45 +++++++++++++++++++++
+ drivers/soc/eswin/ai_driver/npu/dsp.c       | 21 ++++++----
+ 5 files changed, 64 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
+index 0569d1579eba..6b567365de80 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
+@@ -180,6 +180,7 @@ static u32 dsp_get_dma_addr(struct es_dsp *dsp, int fd,
+ 	}
+ 	map_buf->dma_addr = dma_addr;
+ 	map_buf->dmabuf = dmabuf;
++	atomic_add(1, &dsp->dmabuf_mapped_cnt);
+ 	return dma_addr;
+ 
+ err_attach:
+@@ -203,6 +204,7 @@ static void dsp_put_dma_addr(struct es_dsp *dsp, struct dsp_dma_buf *buf)
+ 	dma_buf_put(dmabuf);
+ 	buf->dmabuf = NULL;
+ 	buf->attach = NULL;
++	atomic_sub(1, &dsp->dmabuf_mapped_cnt);
+ }
+ 
+ int dsp_unmap_dmabuf(struct dsp_file *dsp_file, struct dsp_dma_buf **buf,
+@@ -298,10 +300,11 @@ static int dsp_ioctl_set_flat(struct dsp_file *dsp_file, dsp_ioctl_task_s *req,
+ 		dsp_debug("%s, i=%d, new fd=%d, offset=0x%x.\n", __func__, i,
+ 			  (int)req->task.dspBuffers[i].memFd,
+ 			  req->task.dspBuffers[i].offset);
+-
+ 		entry = dsp_get_dma_buf_ex(dsp_file,
+ 					   req->task.dspBuffers[i].memFd);
+ 		if (entry == NULL) {
++			dsp_err("getdmabuf failed curr idx:%d, cfgcnt:%d, incnt:%d\n",i,
++			req->task.bufferCntCfg, req->task.bufferCntInput);
+ 			goto err;
+ 		}
+ 		dma_entry[i] = entry;
+@@ -1043,7 +1046,6 @@ static long dsp_ioctl_multi_tasks_submit(struct file *flip,
+ 		ret = -ENODEV;
+ 		return ret;
+ 	}
+-
+ 	if (req.task_num <= 0) {
+ 		dsp_err("%s, %d, task num below zero, err,\n", __func__,
+ 			__LINE__);
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+index 5a2f3e97d9d8..9cd6a5686515 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+@@ -940,6 +940,7 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
+ 					    sizeof(struct es_dsp_stats));
+ 	dsp->dev = &pdev->dev;
+ 	dsp->rate = DSP_SUBSYS_HILOAD_CLK;
++	atomic_set(&dsp->dmabuf_mapped_cnt,0);
+ 	mutex_init(&dsp->lock);
+ 
+ 	ret = dsp_alloc_hw(pdev, dsp);
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
+index af85e992634f..f98ae647cd7c 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
+@@ -190,6 +190,7 @@ struct es_dsp {
+ 	int op_idx;
+ 	dsp_kmd_perf_t op_perf[MAX_DSP_TASKS];
+ 	dsp_fw_perf_t op_fw_perf[MAX_DSP_TASKS];
++	atomic_t dmabuf_mapped_cnt;
+ };
+ 
+ #define DSP_FIRMWARE_IOVA 0xfe000000
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
+index 54d9169a3515..e21212fecb6b 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
+@@ -376,6 +376,48 @@ static int proc_stats_open(struct inode *inode, struct file *file)
+ 	return ret;
+ }
+ 
++static void print_dma_mapping_info(struct seq_file *m)
++{
++	struct es_dsp *dsp;
++	int die, dspid;
++	struct iommu_domain *domain;
++	dma_addr_t dma_addr,pre_dma_addr;
++	phys_addr_t phys_addr,pre_phys_addr;
++	u32 continue_size = 0;
++	pre_phys_addr = 0;
++	for (die = 0; die < 2; die++) {
++		for (dspid = 0; dspid < 4; dspid++) {
++			dsp = es_proc_get_dsp(die, dspid);
++			if(!dsp) return;
++			domain = iommu_get_domain_for_dev(dsp->dev);
++			if (!domain) {
++				seq_printf(m, "dsp(%d,%d) is not using an IOMMU\n", die, dspid);
++				return;
++			}
++			seq_printf(m, "dmabuf_mapped_cnt :%d\n",
++			           atomic_read(&dsp->dmabuf_mapped_cnt));
++			for (dma_addr = 0; dma_addr < 0xffffffff; dma_addr += PAGE_SIZE) {
++				phys_addr = iommu_iova_to_phys(domain, dma_addr);
++				if (phys_addr !=0 &&  pre_phys_addr==0) { //begin of map
++					pre_dma_addr = dma_addr;
++				}
++				if(phys_addr==0 && pre_phys_addr !=0) { // end of map
++					continue_size = dma_addr - pre_dma_addr;
++					seq_printf(m,  "die%d, dsp%d,IOVA %pa -> %pa, size:%x\n",
++					           die, dspid, &pre_dma_addr, &pre_phys_addr,
++							   continue_size);
++				}
++				if(phys_addr && (dma_addr += PAGE_SIZE) > 0xffffffff) {
++					continue_size = dma_addr - pre_dma_addr;
++					seq_printf(m, "die%d, dsp%d,end IOVA %pa -> %pa, size:%x\n",
++					          die,dspid,&pre_dma_addr, &pre_phys_addr,
++							  continue_size);
++				}
++				pre_phys_addr = phys_addr;
++			}
++		}
++	}
++}
+ static int debug_show(struct seq_file *m, void *p)
+ {
+ 	seq_printf(m, "\n");
+@@ -387,6 +429,9 @@ static int debug_show(struct seq_file *m, void *p)
+ 		   dsp_log_level);
+ 	seq_printf(m, "\n");
+ 
++
++	print_dma_mapping_info(m);
++
+ 	return 0;
+ }
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
+index 5207c17be540..15e43027b1a5 100644
+--- a/drivers/soc/eswin/ai_driver/npu/dsp.c
++++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
+@@ -295,6 +295,7 @@ static int processor_dsp_program(struct win_executor *executor, int idx,
+ 	es_dsp_h2d_msg h2d_msg;
+ 	int i, io_cnt;
+ 	int dev_id = op_type - DLA_KMD_OP_DSP_0;
++	u32 dsp_addr = 0;
+ 
+ 	dsp_op = &op_desc->dsp_op;
+ 	surface = &surf_desc->dsp_surface;
+@@ -339,10 +340,12 @@ static int processor_dsp_program(struct win_executor *executor, int idx,
+ 	for (i = 0; i < dsp_op->buffer_cnt_input; i++) {
+ 		if (dsp_tensor->src_is_io_tensor[i] == invalid_tensor_idx) {
+ 			if (surface->src_data[i].type == DLA_MEM_MC) {
+-				dsp_buffer[dsp_buf_idx + i].addr =
+-					npu_get_dsp_ddr(
+-						executor, dev_id,
+-						surface->src_data[i].address) +
++				dsp_addr = npu_get_dsp_ddr( executor, dev_id,
++						surface->src_data[i].address);
++				if(!dsp_addr) {
++					return -1;
++				}
++				dsp_buffer[dsp_buf_idx + i].addr = dsp_addr +
+ 					surface->src_data[i].offset;
+ 			} else if (surface->src_data[i].type == DLA_MEM_CV) {
+ 				dsp_buffer[dsp_buf_idx + i]
+@@ -378,10 +381,12 @@ static int processor_dsp_program(struct win_executor *executor, int idx,
+ 					"%s, %d, output dst mc, address index=%d.\n",
+ 					__func__, __LINE__,
+ 					surface->dst_data[i].address);
+-				dsp_buffer[dsp_buf_idx + i].addr =
+-					npu_get_dsp_ddr(
+-						executor, dev_id,
+-						surface->dst_data[i].address) +
++				dsp_addr = npu_get_dsp_ddr( executor, dev_id,
++						surface->dst_data[i].address);
++				if(!dsp_addr) {
++					return -1;
++				}
++				dsp_buffer[dsp_buf_idx + i].addr = dsp_addr +
+ 					surface->dst_data[i].offset;
+ 				dla_debug("%s, %d, i=%d, addr=0x%x.\n",
+ 					  __func__, __LINE__, i,
+-- 
+2.50.1
+

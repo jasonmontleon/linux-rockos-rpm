@@ -1,0 +1,37 @@
+From 3c5971bd2e1df8b7a3a3e2c0ddc79b81c9b3d1bd Mon Sep 17 00:00:00 2001
+From: yufangxian <yufangxian@eswincomputing.com>
+Date: Wed, 14 May 2025 18:21:01 +0800
+Subject: [PATCH 508/552] fix: fix dc endpoint index
+
+Changelogs:
+1. fix dc endpoint index changed by last vi merge
+
+Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index 3095384d7279..0472c026c77f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -307,12 +307,12 @@ &dc {
+ 	dc_out: port {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		dc_out_dpi: endpoint@0 {
+-			reg = <0>;
++		dc_out_dpi: endpoint@1 {
++			reg = <1>;
+ 			remote-endpoint = <&vd_input>;
+ 		};
+-		dc_out_hdmi: endpoint@1 {
+-			reg = <1>;
++		dc_out_hdmi: endpoint@2 {
++			reg = <2>;
+ 			remote-endpoint = <&hdmi_in_dc>;
+ 		};
+ 	};
+-- 
+2.50.1
+

@@ -1,0 +1,41 @@
+From 5032dc9f90728e09e534a7125548032df4297d08 Mon Sep 17 00:00:00 2001
+From: Icenowy Zheng <uwu@icenowy.me>
+Date: Thu, 3 Apr 2025 19:16:26 +0800
+Subject: [PATCH 435/552] drm: eswin: clean hwcursor state when enabling the
+ display
+
+When disabling and re-enabling the display, the old hwcursor state may
+stuck because the new display mode does not use the hwcursor plane.
+
+Manually clean it when enabling the display.
+
+Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
+---
+ drivers/gpu/drm/eswin/es_dc.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
+index 7c608e29d25b..799fdd18d5cb 100644
+--- a/drivers/gpu/drm/eswin/es_dc.c
++++ b/drivers/gpu/drm/eswin/es_dc.c
+@@ -345,6 +345,7 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
+ 	struct es_crtc_state *crtc_state = to_es_crtc_state(crtc->state);
+ 	struct drm_display_mode *mode = &crtc->state->adjusted_mode;
+ 	struct dc_hw_display display;
++	struct dc_hw_cursor cursor = { 0 };
+ 	int ret;
+ 
+ 	display.bus_format = crtc_state->output_fmt;
+@@ -406,6 +407,9 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
+ #endif
+ 
+ 	dc_hw_setup_display(&dc->hw, &display);
++
++	cursor.enable = false;
++	dc_hw_update_cursor(&dc->hw, &cursor);
+ }
+ 
+ static void es_dc_disable(struct device *dev)
+-- 
+2.50.1
+

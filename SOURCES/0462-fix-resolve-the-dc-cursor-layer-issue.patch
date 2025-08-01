@@ -1,0 +1,28 @@
+From 6acbe78cc4d8dbd13f48364934f3965e80f41d32 Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Thu, 3 Apr 2025 16:23:23 +0800
+Subject: [PATCH 462/552] fix:resolve the dc cursor layer issue.
+
+Changelogs:
+	resolve the issue of residual shadows in the cursor layer.
+
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ drivers/gpu/drm/eswin/es_dc.c | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
+index 799fdd18d5cb..9ea5560062aa 100644
+--- a/drivers/gpu/drm/eswin/es_dc.c
++++ b/drivers/gpu/drm/eswin/es_dc.c
+@@ -407,7 +407,6 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
+ #endif
+ 
+ 	dc_hw_setup_display(&dc->hw, &display);
+-
+ 	cursor.enable = false;
+ 	dc_hw_update_cursor(&dc->hw, &cursor);
+ }
+-- 
+2.50.1
+

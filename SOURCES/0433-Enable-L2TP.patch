@@ -1,0 +1,28 @@
+From 952131725c787ca74e9131eb1ed83c0a2782498c Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Viktar=20Siarhiej=C4=8Dyk?= <a@gk.lc>
+Date: Mon, 24 Mar 2025 15:43:56 +0300
+Subject: [PATCH 433/552] Enable L2TP.
+
+---
+ arch/riscv/configs/win2030_defconfig | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
+index 0ccf54cecfea..2eff323df5b3 100644
+--- a/arch/riscv/configs/win2030_defconfig
++++ b/arch/riscv/configs/win2030_defconfig
+@@ -540,6 +540,11 @@ CONFIG_TXGBE=m
+ # CONFIG_NET_VENDOR_WIZNET is not set
+ # CONFIG_NET_VENDOR_XILINX is not set
+ CONFIG_REALTEK_PHY=y
++CONFIG_PPP=m
++CONFIG_PPP_BSDCOMP=m
++CONFIG_PPP_DEFLATE=m
++CONFIG_PPP_MPPE=m
++CONFIG_PPPOL2TP=m
+ # CONFIG_WLAN_VENDOR_ADMTEK is not set
+ # CONFIG_WLAN_VENDOR_ATH is not set
+ # CONFIG_WLAN_VENDOR_ATMEL is not set
+-- 
+2.50.1
+

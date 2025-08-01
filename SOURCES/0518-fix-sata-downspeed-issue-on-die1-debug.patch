@@ -1,0 +1,56 @@
+From d410bc8a040ec86e929edfada569a018bbb0d01b Mon Sep 17 00:00:00 2001
+From: ouyanghui <ouyanghui@eswincomputing.com>
+Date: Fri, 23 May 2025 10:53:12 +0800
+Subject: [PATCH 518/552] fix:sata downspeed issue on die1 debug
+
+Changelogs:
+1.sata downspeed issue on die1 debug
+
+Signed-off-by: ouyanghui <ouyanghui@eswincomputing.com>
+---
+ drivers/ata/ahci_eswin.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/ata/ahci_eswin.c b/drivers/ata/ahci_eswin.c
+index 47240248f468..ff22d11488d7 100644
+--- a/drivers/ata/ahci_eswin.c
++++ b/drivers/ata/ahci_eswin.c
+@@ -65,7 +65,7 @@
+ #define SATA_P0_AMPLITUDE_GEN3        (0x73 << 16)
+ #define SATA_P0_PHY_TX_PREEMPH_GEN1   0x05
+ #define SATA_P0_PHY_TX_PREEMPH_GEN2   (0x05 << 8)
+-#define SATA_P0_PHY_TX_PREEMPH_GEN3   (0x23 << 16)
++#define SATA_P0_PHY_TX_PREEMPH_GEN3   (0x08 << 16)
+ #define SATA_MPLL_MULTIPLIER          (0x3c << 16)
+ #define SATA_M_CSYSREQ                BIT(0)
+ #define SATA_S_CSYSREQ                BIT(16)
+@@ -152,7 +152,7 @@ static int eswin_sata_init(struct device *dev)
+     regmap_write(regmap, SATA_AXI_LP_CTRL, (SATA_M_CSYSREQ|SATA_S_CSYSREQ));
+     regmap_write(regmap, SATA_REG_CTRL, (SATA_REF_REPEATCLK_EN|SATA_REF_USE_PAD));
+     regmap_write(regmap, SATA_MPLL_CTRL, SATA_MPLL_MULTIPLIER);
+-    regmap_write(regmap, SATA_RESET_CTRL, 0x0);
++    udelay(20);
+ 
+     return 0;
+ }
+@@ -208,6 +208,8 @@ static int ahci_probe(struct platform_device *pdev)
+     if (IS_ERR(hpriv))
+         return PTR_ERR(hpriv);
+ 
++    eswin_sata_init(dev);  //The PHY parameters need to be modified before resetting
++
+     hpriv->plat_data = plat;
+     ret = eswin_ahci_platform_resets(hpriv, dev);
+ 	if (ret)
+@@ -217,8 +219,6 @@ static int ahci_probe(struct platform_device *pdev)
+ 	if (ret)
+ 		return ret;
+ 
+-    eswin_sata_init(dev);
+-
+     eswin_sata_sid_cfg(dev);
+ 
+     win2030_tbu_power(&pdev->dev, true);
+-- 
+2.50.1
+

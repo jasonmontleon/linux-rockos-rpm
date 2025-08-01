@@ -1,0 +1,127 @@
+From 43fc73e2cafd5b54fe79c31d14b5e045ca2e008b Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Tue, 18 Feb 2025 16:40:28 +0800
+Subject: [PATCH 414/552] feat: modify npu dts voltage
+
+Changelogs:
+	1. in npu dts, use macro for npu voltage set.
+	2. for 7702-evb-a1 and 7702-tb board, need use script to set npu voltage for 1.5G freq to 1.1v
+	3. fixed spram get npu propertiy, need judge the return value.
+
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-tb.dts     |  1 +
+ drivers/memory/eswin/codacache/llc_spram.c   |  6 ++++++
+ drivers/soc/eswin/ai_driver/npu/dla_driver.h |  1 +
+ drivers/soc/eswin/ai_driver/npu/npu_main.c   | 18 ++++++++++++++++--
+ include/linux/eswin_npu.h                    |  6 +-----
+ 5 files changed, 25 insertions(+), 7 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+index e4b6eca92483..f3b13d7ca983 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
+@@ -464,6 +464,7 @@ &d0_npu{
+ &d1_npu {
+ 	status = "okay";
+ 	npu-supply=<&d1_npu_vcc>;
++	npu_def_high_vol = <1100000>;
+ };
+ 
+ &d0_dsp_subsys {
+diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
+index 1a55d0dbcfad..bc26aaa10e00 100644
+--- a/drivers/memory/eswin/codacache/llc_spram.c
++++ b/drivers/memory/eswin/codacache/llc_spram.c
+@@ -771,6 +771,12 @@ static int llc_clk_set_parent(struct platform_device *pdev)
+ 		return -EINVAL;
+ 	np = of_node_get(dev->of_node);
+ 	spram->npu_regulator = devm_regulator_get(dev, "npu");
++
++	if (!spram->npu_regulator) {
++		dev_err(dev, "failed to get npu regulator.\n");
++		return -ENODEV;
++	}
++
+ 	ret = regulator_get_voltage(spram->npu_regulator);
+ 	if (ret < 0)
+ 	{
+diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
+index e9930f432a9b..cce6f8429c80 100644
+--- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
++++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
+@@ -64,6 +64,7 @@ struct nvdla_device {
+ 	uint32_t spram_size;
+ 	void *edma;
+ 	bool perf_stat;
++	u32 npu_def_high_vol;
+ 
+ 	struct reset_control *rstc_e31_core;
+ 	struct clk *e31_core_clk;
+diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+index d55fb1a8dbff..04a8e7b4f77a 100644
+--- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
++++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+@@ -480,6 +480,9 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
+ 	mutex_lock(&nvdla_dev->devfreq_lock);
+ 
+ 	if (target_rate > nvdla_dev->rate) { // rise freq
++		if (nvdla_dev->npu_def_high_vol) {
++			target_volt = nvdla_dev->npu_def_high_vol;
++		}
+ 		ret = regulator_set_voltage(nvdla_dev->npu_regulator, target_volt, target_volt);
+ 		if (ret) {
+ 			dev_err(dev, "Cannot set voltage %lu uV\n", target_volt);
+@@ -588,6 +591,12 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 	}
+ 	nvdla_dev->is_low_freq = of_property_read_bool(pdev->dev.of_node, "apply_npu_1G_freq");
+ 
++	err = of_property_read_u32(pdev->dev.of_node, "npu_def_high_vol", &nvdla_dev->npu_def_high_vol);
++	if (err) {
++		nvdla_dev->npu_def_high_vol = 0;
++		err = 0;
++	}
++
+ 	err = regulator_enable(nvdla_dev->npu_regulator);
+ 	if (err < 0)
+ 	{
+@@ -612,9 +621,14 @@ static int32_t edla_probe(struct platform_device *pdev)
+ 	}
+ 
+ 	if (nvdla_dev->is_low_freq == 0) {
+-                err = regulator_set_voltage(nvdla_dev->npu_regulator, NPU_1P5G_VOLTAGE, NPU_1P5G_VOLTAGE);
++		if (nvdla_dev->npu_def_high_vol) {
++			err = regulator_set_voltage(nvdla_dev->npu_regulator, nvdla_dev->npu_def_high_vol, nvdla_dev->npu_def_high_vol);
++		} else {
++			err = regulator_set_voltage(nvdla_dev->npu_regulator, NPU_1P5G_VOLTAGE, NPU_1P5G_VOLTAGE);
++		}
++
+                 if (err != 0) {
+-                        dla_error("error npu regulator volt:%duV ret:%d.\n", NPU_1P5G_VOLTAGE, err);
++                        dla_error("error npu regulator volt:%duV ret:%d.\n", nvdla_dev->npu_def_high_vol ? : NPU_1P5G_VOLTAGE, err);
+                         goto err_mem0;
+                 }
+                 mdelay(10);
+diff --git a/include/linux/eswin_npu.h b/include/linux/eswin_npu.h
+index 1b226c3dfe17..edf3959e8d64 100644
+--- a/include/linux/eswin_npu.h
++++ b/include/linux/eswin_npu.h
+@@ -22,14 +22,10 @@
+ #define __LINUX_ESWIN_NPU_H
+ 
+ #define NPU_ACLK_RATE		800000000
+-#define NPU_DEFAULT_VOLTAGE 800000  //uV
++#define NPU_DEFAULT_VOLTAGE 900000  //uV
+ #define NPU_LLC_CLK_RATE	800000000   //nvdla
+ #define NPU_CORE_CLK_RATE	1040000000  //npu and e31
+-#ifdef CONFIG_ARCH_ESWIN_EIC7702_SOC
+-#define NPU_1P5G_VOLTAGE    1080000  //uV
+-#else
+ #define NPU_1P5G_VOLTAGE    1050000  //uV
+-#endif
+ #define NPU_LLC_CLK_1P5G_RATE	1188000000    //nvdla
+ #define NPU_CORE_CLK_1P5G_RATE	1500000000  //npu and e31
+ #define NPU_E31_CLK_RATE	1040000000  //llc
+-- 
+2.50.1
+

@@ -1,7 +1,7 @@
-From 02351e9eff8005a949144e029e0dd5239597fd27 Mon Sep 17 00:00:00 2001
+From fbc5221f7bcd915323f7241b0820a46368c0001f Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 10 Jul 2024 09:56:00 +0800
-Subject: [PATCH 068/551] fix:fix the issue of USB 3.0 host halt.
+Subject: [PATCH 068/552] fix:fix the issue of USB 3.0 host halt.
 
 Changelogs:
 disable parkmod of fix the issue of failed copying large files under USB 3.0.

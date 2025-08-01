@@ -1,0 +1,242 @@
+From 7cc26a3ad16c0a9bea8d89d7e07d6efcbf1b8f28 Mon Sep 17 00:00:00 2001
+From: hujiamiao <hujiamiao@eswincomputing.com>
+Date: Thu, 9 Jan 2025 09:44:00 +0800
+Subject: [PATCH 377/552] WIN2030-16686:feat:add dma channel & device filter
+
+Changelogs:
+1.user aon dma channel first
+
+Change-Id: I52cc2459fddc81a660965b7ccc0441aaf2474e25
+Signed-off-by: hujiamiao <hujiamiao@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     | 54 +++++++++---------
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     | 55 ++++++++++---------
+ .../memory/eswin/es_dma_memcp/es_dma_memcp.c  | 38 +++++++++++--
+ 3 files changed, 87 insertions(+), 60 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index cc651302b4a0..720d8b672af2 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -347,33 +347,6 @@ d0_pmu_dsp3: win2030-pmu-controller-port@240 {
+ 			};
+ 		};
+ 
+-		d0_dmac0: dma-controller-hsp@0x50430000 {
+-			compatible = "eswin,eic770x-axi-dma";
+-			reg = <0x0 0x50430000 0x0 0x10000>;
+-			interrupt-parent = <&plic0>;
+-			interrupts = <57>;
+-			#dma-cells = <2>; // change dma-cells value <1> to <2>, to support peripheral selection dma-controller,See the parameter dmas for details;
+-			clocks = <&d0_clock WIN2030_CLK_HSP_DMA0_CLK>,
+-					 <&d0_clock WIN2030_CLK_HSP_DMA0_CLK_TEST>;
+-			clock-names = "core-clk", "cfgr-clk";
+-			resets = <&d0_reset HSPDMA_RST_CTRL SW_HSP_DMA0_RSTN>,
+-				<&d0_reset HSPDMA_RST_CTRL SW_HSP_DMA_PRSTN>;
+-			reset-names = "arst", "prst";
+-			dma-channels = <12>;
+-			snps,dma-masters = <1>;
+-			snps,priority = <0 1 2 3 4 5 6 7 8 9 10 11>;
+-			snps,data-width = <2>;
+-			snps,block-size = <0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000>;
+-			snps,axi-max-burst-len = <16>;
+-			snps,max-msize = <64>;
+-			iommus = <&smmu0 WIN2030_SID_DMA0>;
+-			tbus = <WIN2030_TBUID_DMA0>;
+-			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x104c>;
+-			eswin,syscfg = <&d0_sys_con DMA1_SID_REG_OFFSET 0x370>;
+-			numa-node-id = <0>;
+-			dma-noncoherent;
+-		};
+-
+ 		d0_aon_dmac: dma-controller-aon@0x518c0000 {
+ 			compatible = "eswin,eic770x-axi-dma";
+ 			reg = <0x0 0x518c0000 0x0 0x10000>;
+@@ -403,6 +376,33 @@ d0_aon_dmac: dma-controller-aon@0x518c0000 {
+ 			dma-noncoherent;
+ 		};
+ 
++		d0_dmac0: dma-controller-hsp@0x50430000 {
++			compatible = "eswin,eic770x-axi-dma";
++			reg = <0x0 0x50430000 0x0 0x10000>;
++			interrupt-parent = <&plic0>;
++			interrupts = <57>;
++			#dma-cells = <2>; // change dma-cells value <1> to <2>, to support peripheral selection dma-controller,See the parameter dmas for details;
++			clocks = <&d0_clock WIN2030_CLK_HSP_DMA0_CLK>,
++					 <&d0_clock WIN2030_CLK_HSP_DMA0_CLK_TEST>;
++			clock-names = "core-clk", "cfgr-clk";
++			resets = <&d0_reset HSPDMA_RST_CTRL SW_HSP_DMA0_RSTN>,
++				<&d0_reset HSPDMA_RST_CTRL SW_HSP_DMA_PRSTN>;
++			reset-names = "arst", "prst";
++			dma-channels = <12>;
++			snps,dma-masters = <1>;
++			snps,priority = <0 1 2 3 4 5 6 7 8 9 10 11>;
++			snps,data-width = <2>;
++			snps,block-size = <0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000>;
++			snps,axi-max-burst-len = <16>;
++			snps,max-msize = <64>;
++			iommus = <&smmu0 WIN2030_SID_DMA0>;
++			tbus = <WIN2030_TBUID_DMA0>;
++			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x104c>;
++			eswin,syscfg = <&d0_sys_con DMA1_SID_REG_OFFSET 0x370>;
++			numa-node-id = <0>;
++			dma-noncoherent;
++		};
++
+ 		d0_gmac0: ethernet@50400000 {
+ 			compatible = "eswin,win2030-qos-eth";
+ 			reg = <0x0 0x50400000 0x0 0x10000>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 2eb71e5e8525..96cf2b22d8d5 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -317,33 +317,6 @@ d1_pmu_dsp3: win2030-pmu-controller-port@240 {
+ 			};
+ 		};
+ 
+-		d1_dmac0: dma-controller-hsp@0x70430000 {
+-			compatible = "eswin,eic770x-axi-dma";
+-			reg = <0x0 0x70430000 0x0 0x10000>;
+-			interrupt-parent = <&plic1>;
+-			interrupts = <57>;
+-			#dma-cells = <2>; // change dma-cells value <1> to <2>, to support peripheral selection dma-controller,See the parameter dmas for details;
+-			clocks = <&d1_clock WIN2030_CLK_HSP_DMA0_CLK>,
+-					 <&d1_clock WIN2030_CLK_HSP_DMA0_CLK_TEST>;
+-			clock-names = "core-clk", "cfgr-clk";
+-			resets = <&d1_reset HSPDMA_RST_CTRL SW_HSP_DMA0_RSTN>,
+-				<&d1_reset HSPDMA_RST_CTRL SW_HSP_DMA_PRSTN>;
+-			reset-names = "arst", "prst";
+-			dma-channels = <12>;
+-			snps,dma-masters = <1>;
+-			snps,priority = <0 1 2 3 4 5 6 7 8 9 10 11>;
+-			snps,data-width = <2>;
+-			snps,block-size = <0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000>;
+-			snps,axi-max-burst-len = <16>;
+-			snps,max-msize = <64>;
+-			iommus = <&smmu1 WIN2030_SID_DMA0>;
+-			tbus = <WIN2030_TBUID_DMA0>;
+-			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x104c>;
+-			eswin,syscfg = <&d1_sys_con DMA1_SID_REG_OFFSET 0x370>;
+-			numa-node-id = <1>;
+-			dma-noncoherent;
+-		};
+-
+ 		d1_aon_dmac: dma-controller-aon@0x718c0000 {
+ 			compatible = "eswin,eic770x-axi-dma";
+ 			reg = <0x0 0x718c0000 0x0 0x10000>;
+@@ -372,6 +345,34 @@ d1_aon_dmac: dma-controller-aon@0x718c0000 {
+ 			numa-node-id = <1>;
+ 			dma-noncoherent;
+ 		};
++
++		d1_dmac0: dma-controller-hsp@0x70430000 {
++			compatible = "eswin,eic770x-axi-dma";
++			reg = <0x0 0x70430000 0x0 0x10000>;
++			interrupt-parent = <&plic1>;
++			interrupts = <57>;
++			#dma-cells = <2>; // change dma-cells value <1> to <2>, to support peripheral selection dma-controller,See the parameter dmas for details;
++			clocks = <&d1_clock WIN2030_CLK_HSP_DMA0_CLK>,
++					 <&d1_clock WIN2030_CLK_HSP_DMA0_CLK_TEST>;
++			clock-names = "core-clk", "cfgr-clk";
++			resets = <&d1_reset HSPDMA_RST_CTRL SW_HSP_DMA0_RSTN>,
++				<&d1_reset HSPDMA_RST_CTRL SW_HSP_DMA_PRSTN>;
++			reset-names = "arst", "prst";
++			dma-channels = <12>;
++			snps,dma-masters = <1>;
++			snps,priority = <0 1 2 3 4 5 6 7 8 9 10 11>;
++			snps,data-width = <2>;
++			snps,block-size = <0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000 0x80000>;
++			snps,axi-max-burst-len = <16>;
++			snps,max-msize = <64>;
++			iommus = <&smmu1 WIN2030_SID_DMA0>;
++			tbus = <WIN2030_TBUID_DMA0>;
++			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x104c>;
++			eswin,syscfg = <&d1_sys_con DMA1_SID_REG_OFFSET 0x370>;
++			numa-node-id = <1>;
++			dma-noncoherent;
++		};
++
+ 		noc {
+ 			compatible = "eswin,noc","simple-bus";
+ 			#address-cells = <2>;
+diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
+index 7d0772bf03cd..3eec1aa413f2 100644
+--- a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
++++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
+@@ -69,6 +69,11 @@ struct esw_cmdq_task {
+     struct completion dma_finished;
+ };
+ 
++struct dma_filter_params {
++    unsigned int nid;
++    char dev_name[32];
++};
++
+ #ifdef CONFIG_NUMA
+ static int memcp_attach_dma_buf(struct device *dma_dev, struct esw_memcp_dma_buf_info *buf_info);
+ static int memcp_detach_dma_buf(struct dma_buf_attachment *attach, struct sg_table *sgt);
+@@ -115,34 +120,55 @@ static int esw_memcp_get_mem_nid(struct esw_memcp_dma_buf_info *buf_info)
+ }
+ #endif
+ 
+-static bool filter(struct dma_chan *chan, void *param)
++static bool numa_filter(struct dma_chan *chan, unsigned int param)
+ {
+ #ifdef CONFIG_NUMA
+-    if((*(int *)param) == 2)
+-        return true;
+-    else
+-        return (*(int *)param) == dev_to_node(chan->device->dev);
++    return param == dev_to_node(chan->device->dev);
+ #else
+     return true;
+ #endif
+ }
+ 
++static bool device_name_filter(struct dma_chan *chan, char *param)
++{
++    if (param[0] == '\0')
++        return true;
++
++    const char *dev_name_trimmed = strchr(dev_name(chan->device->dev), '.');
++    if (dev_name_trimmed) {
++        dev_name_trimmed++;
++    } else {
++        return false;
++    }
++
++    return strcmp(dev_name_trimmed, param) == 0;
++}
++
++static bool filter(struct dma_chan *chan, void *param)
++{
++    struct dma_filter_params *params = param;
++    return numa_filter(chan, params->nid) && device_name_filter(chan, params->dev_name);
++}
+ 
+ int esw_memcp_alloc_dma(struct esw_cmdq_task *task)
+ {
+     int ret = 0;
+     dma_cap_mask_t mask;
+     struct dma_chan *dma_ch = NULL;
++    struct dma_filter_params params;
+ 
+     ret = esw_memcp_get_mem_nid(&task->src_buf);
+     if(ret) {
+         return ret;
+     }
+ 
++    strcpy(params.dev_name, "dma-controller-aon");
++    params.nid = task->src_buf.mem_nid;
++
+     dma_cap_zero(mask);
+     dma_cap_set(DMA_MEMCPY, mask);
+ 
+-    dma_ch = dma_request_channel(mask, filter, &task->src_buf.mem_nid);
++    dma_ch = dma_request_channel(mask, filter, &params);
+     if (IS_ERR(dma_ch)) {
+         pr_warn("dma request channel failed, Try using any of them.\n");
+         dma_ch = dma_request_channel(mask, NULL, NULL);
+-- 
+2.50.1
+

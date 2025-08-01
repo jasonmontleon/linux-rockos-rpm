@@ -1,7 +1,7 @@
-From 6011317942a7c57c43a57eb028301db0784c9597 Mon Sep 17 00:00:00 2001
+From f1753c5ec4de0f3a1bed91b012a3e1da0851fddc Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 7 Nov 2024 11:02:15 +0800
-Subject: [PATCH 238/551] feat:sdhci driver add dump_vendor_regs function.
+Subject: [PATCH 238/552] feat:sdhci driver add dump_vendor_regs function.
 
 Changelogs:
 1.sdhci driver add dump_vendor_regs function.

@@ -1,0 +1,172 @@
+From f340f8445f60fb7a82f44d65f7effe4aa1abb843 Mon Sep 17 00:00:00 2001
+From: zouxiaojun <zouxiaojun@eswincomputing.com>
+Date: Tue, 22 Oct 2024 15:15:39 +0800
+Subject: [PATCH 320/552] WIN2030-16515:feat(venc):venc add devfreq support
+
+Changelogs:
+	venc add devfreq support
+
+Change-Id: Ie86964ac46f257d25a91a4a5839be141bc0bb2e2
+Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     | 19 ++++-
+ .../staging/media/eswin/venc/vc8000e_driver.c | 79 +++++++++++++++++++
+ 2 files changed, 97 insertions(+), 1 deletion(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index ab9c07cb01d9..f4466cbb2233 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -103,7 +103,7 @@ opp-1400000000 {
+ 		};
+ 	};
+ 
+-	d0_dsp_opp_table: opp-table {
++	d0_dsp_opp_table: opp-table@dsp {
+ 		compatible = "operating-points-v2";
+ 		opp@600000000 {
+ 			opp-hz = /bits/ 64 <520000000>;
+@@ -150,6 +150,22 @@ opp@200000000 {
+ 		};
+ 	};
+ 
++	d0_venc_opp_table: opp-table@venc {
++		compatible = "operating-points-v2";
++		opp@800000000 {
++			opp-hz = /bits/ 64 <800000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@400000000 {
++			opp-hz = /bits/ 64 <400000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@200000000 {
++			opp-hz = /bits/ 64 <200000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
+ 	thermal-zones {
+ 		thermal0 {
+ 			polling-delay-passive = <500>; /*ms*/
+@@ -1124,6 +1140,7 @@ venc0: video-encoder@50110000 {
+ 					 <&d0_reset VE_RST_CTRL SW_VE_AXI_RSTN>;
+ 			reset-names = "axi", "cfg", "moncfg", "je_cfg", "je_axi", "ve_cfg", "ve_axi";
+ 			eswin,syscfg = <&d0_sys_con 0x0 0x4>;
++			operating-points-v2 = <&d0_venc_opp_table>;
+ 
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x2000 0x7d0>;
+diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
+index 97743c8172cd..0244069626c1 100644
+--- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
++++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
+@@ -15,6 +15,11 @@
+ #include <linux/dma-mapping.h>
+ #include <linux/eswin-win2030-sid-cfg.h>
+ 
++#if defined(CONFIG_PM_DEVFREQ)
++#include <linux/devfreq.h>
++#include <linux/pm_opp.h>
++#endif
++
+ #include "vc8000_driver.h"
+ 
+ #define LOG_TAG  VENC_DEV_NAME ":main"
+@@ -821,12 +826,72 @@ int enc_reset_system(u32 core_id) {
+ }
+ /** end of interface functions*/
+ 
++#if defined(CONFIG_PM_DEVFREQ)
++static int venc_devfreq_target(struct device *dev, unsigned long *freq, u32 flags)
++{
++	int ret;
++	venc_dev_prvdata *prvdata = dev_get_drvdata(dev);
++	venc_clk_rst_t *vcrt = &prvdata->vcrt;
++
++	LOG_DBG("%s:%d, dev = %p, freq = %lu\n", __func__, __LINE__, dev, *freq);
++	*freq = clk_round_rate(vcrt->je_clk, *freq);
++	if (*freq > 0) {
++		ret = clk_set_rate(vcrt->je_clk, *freq);
++		if (ret) {
++			LOG_ERR("Video encoder: failed to set je_clk: %d\n", ret);
++			return ret;
++		}
++		LOG_DBG("VE set je_clk to %ldHZ\n", *freq);
++	} else {
++		LOG_ERR("Video encoder: failed to round rate for je_clk %ld\n", *freq);
++		return -1;
++	}
++
++	*freq = clk_round_rate(vcrt->ve_clk, *freq);
++	if (*freq > 0) {
++		ret = clk_set_rate(vcrt->ve_clk, *freq);
++		if (ret) {
++			LOG_ERR("Video encoder: failed to set ve_clk: %d\n", ret);
++			return ret;
++		}
++		LOG_DBG("VE set ve_clk to %ldHZ\n", *freq);
++	} else {
++		LOG_ERR("Video encoder: failed to round rate for ve_clk %ld\n", *freq);
++		return -1;
++	}
++
++	return 0;
++}
++
++static int venc_devfreq_get_cur_freq(struct device *dev, unsigned long *freq)
++{
++	venc_dev_prvdata *prvdata = dev_get_drvdata(dev);
++	venc_clk_rst_t *vcrt = &prvdata->vcrt;
++
++	*freq = clk_get_rate(vcrt->ve_clk);
++
++	return 0;
++}
++
++/** devfreq profile */
++static struct devfreq_dev_profile venc_devfreq_profile = {
++	.initial_freq = VENC_SYS_CLK_HIGHEST,
++	.timer = DEVFREQ_TIMER_DELAYED,
++	.polling_ms = 1000, /** Poll every 1000ms to monitor load */
++	.target = venc_devfreq_target,
++	.get_cur_freq = venc_devfreq_get_cur_freq,
++};
++#endif /** CONFIG_PM_DEVFREQ*/
++
+ static int hantro_venc_probe(struct platform_device *pdev)
+ {
+ 	static int pdev_count = 0;
+ 	int ret, numa_id, venc_dev_num = 0;
+ 	venc_dev_prvdata *prvdata = devm_kzalloc(&pdev->dev, sizeof(venc_dev_prvdata), GFP_KERNEL);
+ 	venc_clk_rst_t *vcrt = &prvdata->vcrt;
++#if defined(CONFIG_PM_DEVFREQ)
++	struct devfreq *df = NULL;
++#endif
+ 
+ 	venc_dev_num = venc_device_nodes_check();
+ 	if (venc_dev_num <= 0) {
+@@ -842,6 +907,20 @@ static int hantro_venc_probe(struct platform_device *pdev)
+ 
+ 	LOG_INFO("initializing venc, numa id %d\n", numa_id);
+ 
++#if defined(CONFIG_PM_DEVFREQ)
++	/* Add OPP table from device tree */
++	ret = dev_pm_opp_of_add_table(&pdev->dev);
++	if (ret) {
++		LOG_ERR("%s, %d, Failed to add OPP table\n", __func__, __LINE__);
++		return -1;
++	}
++	df = devm_devfreq_add_device(&pdev->dev, &venc_devfreq_profile, "userspace", NULL);
++	if (IS_ERR(df)) {
++		LOG_ERR("%s, %d, add devfreq failed\n", __func__, __LINE__);
++		return -1;
++	}
++#endif /** CONFIG_PM_DEVFREQ*/
++
+ 	if (!numa_id) {
+ 		ret = venc_sys_reset_init(pdev, vcrt);
+ 		if (ret < 0) {
+-- 
+2.50.1
+

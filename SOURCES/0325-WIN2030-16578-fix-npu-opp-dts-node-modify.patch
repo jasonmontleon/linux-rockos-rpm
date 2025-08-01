@@ -1,0 +1,107 @@
+From 980ac02f63e24d7f21aebc968046e51aa31246c5 Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Wed, 30 Oct 2024 11:14:04 +0800
+Subject: [PATCH 325/552] WIN2030-16578:fix:npu opp dts node modify
+
+Changelogs:
+	npu use opp-table node modify in dts
+
+Change-Id: Idcad253f13b5456eb71a5c31c6d5f4dacf667a07
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi   | 12 ++++++++++++
+ .../boot/dts/eswin/eswin-win2030-die0-soc.dtsi    | 14 +-------------
+ .../boot/dts/eswin/eswin-win2030-die1-soc.dtsi    | 15 +--------------
+ 3 files changed, 14 insertions(+), 27 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
+index 9f1da7ec26ce..e6adc2e30072 100644
+--- a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
+@@ -102,6 +102,18 @@ opp@1040000000 {
+ 			opp-microvolt = <800000>;
+ 		};
+ 	};
++	npu_opp_table: opp-table@npu {
++		compatible = "operating-points-v2";
++		opp@1040000000 {
++			opp-hz = /bits/ 64 <1040000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@1500000000 {
++			opp-hz = /bits/ 64 <1500000000>;
++			opp-microvolt = <1050000>;
++		};
++
++	};
+ 
+ 	g2d_opp_table: opp-table@g2d {
+ 		compatible = "operating-points-v2";
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 49dcfe4d8eab..00b59b71b9e7 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -462,18 +462,6 @@ noc {
+ 			ranges;
+ 			#include "eswin-win2030-die0-noc.dtsi"
+ 		};
+-		d0_npu_opp_table: opp-table {
+-			compatible = "operating-points-v2";
+-			opp@1040000000 {
+-				opp-hz = /bits/ 64 <1040000000>;
+-				opp-microvolt = <800000>;
+-			};
+-			opp@1500000000 {
+-				opp-hz = /bits/ 64 <1500000000>;
+-				opp-microvolt = <1050000>;
+-			};
+-
+-		};
+ 
+ 		d0_npu: eswin-npu@51c00000 {
+ 			compatible = "eswin,npu";
+@@ -501,7 +489,7 @@ d0_npu: eswin-npu@51c00000 {
+ 
+ 			resets = <&d0_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+-			operating-points-v2 = <&d0_npu_opp_table>;
++			operating-points-v2 = <&npu_opp_table>;
+ 
+ 			numa-node-id = <0>;
+ 			firmware-name = "eic7700_die0_e31_fw";
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index c1d0a7c28574..d216ce3c784c 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -904,19 +904,6 @@ d1_aon_i2c1: i2c@71838000 {
+ 				interrupt-parent = <&plic1>;
+ 		};
+ 
+-		d1_npu_opp_table: opp-table {
+-			compatible = "operating-points-v2";
+-			opp@1040000000 {
+-				opp-hz = /bits/ 64 <1040000000>;
+-				opp-microvolt = <800000>;
+-			};
+-			opp@1500000000 {
+-				opp-hz = /bits/ 64 <1500000000>;
+-				opp-microvolt = <1050000>;
+-			};
+-
+-		};
+-
+ 		d1_npu: eswin-npu@71c00000 {
+ 			compatible = "eswin,npu";
+ 			reg = <0x0 0x71c00000 0x0 0x400000>;
+@@ -938,7 +925,7 @@ d1_npu: eswin-npu@71c00000 {
+ 
+ 			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+-			operating-points-v2 = <&d1_npu_opp_table>;
++			operating-points-v2 = <&npu_opp_table>;
+ 
+ 			numa-node-id = <1>;
+ 			firmware-name = "eic7700_die1_e31_fw";
+-- 
+2.50.1
+

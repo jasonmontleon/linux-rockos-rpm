@@ -1,0 +1,382 @@
+From 43a9cddadfdc472e9e6a709c16772f77e76c9582 Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Tue, 15 Oct 2024 10:29:01 +0800
+Subject: [PATCH 317/552] WIN2030-15704:feat:Add devfreq support
+
+Changelogs:
+   1.Enable the devfreq feature option in Linux, currently
+supporting only the userspace governor..
+   2.Add devfreq support to the DSP driver.
+
+(cherry picked from commit 3f5440573559c5ea370a77628b7d6b6050781a58,
+feature-pm branch)
+
+Change-Id: Ia6962b76e69472a5b97801878b08721d45dfc797
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  16 ++
+ arch/riscv/configs/eic7700_defconfig          |   1 +
+ drivers/soc/eswin/ai_driver/dsp/dsp_main.c    | 149 +++++++-----------
+ .../soc/eswin/ai_driver/dsp/dsp_platform.c    |  17 +-
+ .../soc/eswin/ai_driver/dsp/dsp_platform.h    |   2 +-
+ .../eswin/ai_driver/dsp/dsp_platform_sim.c    |   2 +-
+ 6 files changed, 87 insertions(+), 100 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 6b5c63f0e5a8..4b65251cccb1 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -103,6 +103,18 @@ opp-1400000000 {
+ 		};
+ 	};
+ 
++	d0_dsp_opp_table: opp-table {
++		compatible = "operating-points-v2";
++		opp@600000000 {
++			opp-hz = /bits/ 64 <520000000>;
++			opp-microvolt = <800000>;
++		};
++		opp@1040000000 {
++			opp-hz = /bits/ 64 <1040000000>;
++			opp-microvolt = <800000>;
++		};
++	};
++
+ 	thermal-zones {
+ 		thermal0 {
+ 			polling-delay-passive = <500>; /*ms*/
+@@ -614,6 +626,7 @@ d0_dsp0:es_dsp@0 {
+ 					0x28120000 0 0x5b120000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_0>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&d0_dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox4>;
+ 				device-irq = <11
+ 					ESWIN_MAILBOX_DSP_0_TO_U84_REG_BASE
+@@ -644,6 +657,7 @@ d0_dsp1:es_dsp@1 {
+ 					0x28120000 0 0x5b160000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_1>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&d0_dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox5>;
+ 				device-irq = <13
+ 					ESWIN_MAILBOX_DSP_1_TO_U84_REG_BASE
+@@ -673,6 +687,7 @@ d0_dsp2:es_dsp@2 {
+ 					0x28120000 0 0x5b1a0000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_2>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&d0_dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox6>;
+ 				device-irq = <15
+ 					ESWIN_MAILBOX_DSP_2_TO_U84_REG_BASE
+@@ -702,6 +717,7 @@ d0_dsp3:es_dsp@3 {
+ 					0x28120000 0 0x5b1e0000 0x20000>;
+ 				clocks = <&d0_clock WIN2030_CLK_DSP_ACLK_3>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&d0_dsp_opp_table>;
+ 				dsp_mbox = <&d0_mbox7>;
+ 				device-irq = <17
+ 					ESWIN_MAILBOX_DSP_3_TO_U84_REG_BASE
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 7c0606ba04d5..e3a7b779ee59 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -755,6 +755,7 @@ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
+ CONFIG_PM_DEVFREQ=y
++CONFIG_PM_DEVFREQ_EVENT=y
+ CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+index b32ffba9dcc8..1a5a1a0d7e16 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
+@@ -58,6 +58,9 @@
+ #include <uapi/asm-generic/siginfo.h>
+ #include <linux/mailbox/eswin-mailbox.h>
+ #include <linux/dma-mapping.h>
++#include <linux/devfreq.h>
++#include <linux/pm_opp.h>
++
+ #include "eswin-khandle.h"
+ 
+ #include "dsp_main.h"
+@@ -682,11 +685,16 @@ static inline void dsp_release(struct es_dsp *dsp)
+ 	es_dsp_release(dsp->hw_arg);
+ }
+ 
+-static inline int dsp_set_rate(struct es_dsp *dsp, unsigned long rate)
++static inline int dsp_set_rate(struct es_dsp *dsp, unsigned long *rate)
+ {
+ 	return es_dsp_set_rate(dsp->hw_arg, rate);
+ }
+ 
++static inline int dsp_get_rate(struct es_dsp *dsp)
++{
++	return es_dsp_get_rate(dsp->hw_arg);
++}
++
+ static int dsp_synchronize(struct es_dsp *dsp)
+ {
+ 	return es_dsp_sync(dsp);
+@@ -852,95 +860,6 @@ int __maybe_unused dsp_runtime_resume(struct device *dev)
+ }
+ EXPORT_SYMBOL(dsp_runtime_resume);
+ 
+-/**
+- * Called when opening rate file
+- * @param inode
+- * @param file
+- * @return
+- */
+-static int dsp_rate_open(struct inode *inode, struct file *file)
+-{
+-	file->private_data = inode->i_private;
+-	return 0;
+-}
+-
+-/**
+- * Called when reading rate file
+- */
+-static ssize_t dsp_rate_read(struct file *flip, char __user *ubuf, size_t cnt,
+-			     loff_t *ppos)
+-{
+-#define RUN_STR_SIZE 11
+-	struct es_dsp *dsp = flip->private_data;
+-	char buf[RUN_STR_SIZE];
+-	int r;
+-
+-	r = snprintf(buf, RUN_STR_SIZE, "%ld\n", dsp->rate);
+-
+-	return simple_read_from_buffer(ubuf, cnt, ppos, buf, r);
+-}
+-/**
+- * Called when writing rate file
+- */
+-static ssize_t dsp_rate_write(struct file *flip, const char __user *ubuf,
+-			      size_t cnt, loff_t *ppos)
+-{
+-#define SIZE_SMALL_BUF 256
+-	struct es_dsp *dsp = flip->private_data;
+-	char buf[SIZE_SMALL_BUF] = { 0 };
+-	unsigned ret;
+-
+-	if (cnt > SIZE_SMALL_BUF)
+-		cnt = SIZE_SMALL_BUF - 1;
+-
+-	if (copy_from_user(&buf, ubuf, cnt))
+-		return -EFAULT;
+-
+-	if (0 == strncmp(buf, "5200000", strlen("5200000"))) {
+-		dsp->rate = DSP_SUBSYS_LOWLOAD_CLK; /* FIXME spinlock? */
+-	} else if (0 == strncmp(buf, "1040000000", strlen("1040000000"))) {
+-		dsp->rate = DSP_SUBSYS_HILOAD_CLK;
+-	} else {
+-		dev_err(dsp->dev, "invalid rate para %s\n", buf);
+-		return -EFAULT;
+-	}
+-	ret = dsp_set_rate(dsp, dsp->rate);
+-	if (0 != ret) {
+-		dev_err(dsp->dev, "failed to set rate to %ldHZ", dsp->rate);
+-	} else {
+-		dev_info(dsp->dev, "set rate to %ldHZ", dsp->rate);
+-	}
+-	*ppos += cnt;
+-
+-	return cnt;
+-}
+-
+-static const struct file_operations dsp_rate_fops = {
+-	.open = dsp_rate_open,
+-	.read = dsp_rate_read,
+-	.write = dsp_rate_write,
+-	.llseek = generic_file_llseek,
+-};
+-static int dsp_debug_init(struct es_dsp *dsp)
+-{
+-	struct dentry *dir, *d;
+-	char name[32];
+-
+-	scnprintf(name, ARRAY_SIZE(name), "dsp_%d", dsp->nodeid);
+-
+-	dir = debugfs_create_dir(name, NULL);
+-	if (IS_ERR(dir))
+-		return PTR_ERR(dir);
+-
+-	d = debugfs_create_file("rate", S_IRUGO | S_IWUSR, dir, dsp,
+-				&dsp_rate_fops);
+-	if (IS_ERR(d))
+-		return PTR_ERR(d);
+-
+-	dsp->debug_dentry = dir;
+-	return 0;
+-}
+-
+ #ifdef CONFIG_OF
+ static const struct of_device_id es_dsp_hw_match[] = {
+ 	{
+@@ -965,13 +884,44 @@ static void dsp_init_prio_array(struct es_dsp *dsp)
+ 	set_bit(DSP_MAX_PRIO, array->bitmap);
+ }
+ 
+-static int32_t  dsp_probe_result = 0;
++/* devfreq target function to set frequency */
++static int dsp_devfreq_target(struct device *dev, unsigned long *freq, u32 flags)
++{
++	struct es_dsp *dsp = dev_get_drvdata(dev);
++
++	return dsp_set_rate(dsp, freq);
++}
++
++static int dsp_devfreq_get_cur_freq(struct device *dev, unsigned long *freq)
++{
++	struct es_dsp *dsp = dev_get_drvdata(dev);
++	unsigned long rate;
++
++	rate = dsp_get_rate(dsp);
++	if (rate <= 0) {
++		dev_err(dsp->dev, "failed to get aclk: %d\n", rate);
++		return rate;
++	}
++	*freq = rate;
++	return 0;
++}
++
++/* devfreq profile */
++static struct devfreq_dev_profile dsp_devfreq_profile = {
++	.initial_freq = DSP_SUBSYS_HILOAD_CLK,
++	.timer = DEVFREQ_TIMER_DELAYED,
++	.polling_ms = 1000, /* Poll every 1000ms to monitor load */
++	.target = dsp_devfreq_target,
++	.get_cur_freq = dsp_devfreq_get_cur_freq,
++};
+ 
++static int32_t  dsp_probe_result = 0;
+ static int es_dsp_hw_probe(struct platform_device *pdev)
+ {
+ 	int ret;
+ 	char nodename[sizeof("es-dsp") + 3 * sizeof(int)];
+ 	struct es_dsp *dsp;
++	struct devfreq *df;
+ 
+ 	dsp = devm_kzalloc(&pdev->dev,
+ 			   sizeof(*dsp) + sizeof(struct es_dsp_stats) +
+@@ -1038,6 +988,20 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
+ 			__LINE__, ret);
+ 		goto err_mbox_clk;
+ 	}
++
++	/* Add OPP table from device tree */
++	ret = dev_pm_opp_of_add_table(&pdev->dev);
++	if (ret) {
++		dsp_err("%s, %d, Failed to add OPP table\n", __func__, __LINE__);
++		goto err_dsp_devfreq;
++	}
++
++	df = devm_devfreq_add_device(&pdev->dev, &dsp_devfreq_profile, "userspace", NULL);
++	if (IS_ERR(df)) {
++		dsp_err("%s, %d, add devfreq failed\n", __func__, __LINE__);
++		goto err_dsp_devfreq;
++	}
++
+ 	ret = es_dsp_clk_enable(dsp);
+ 	if (ret) {
+ 		dsp_err("%s, %d, clock enbale error.\n", __func__, __LINE__,
+@@ -1081,7 +1045,6 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
+ 
+ 	g_es_dsp[dsp->numa_id][dsp->process_id] = dsp;
+ 
+-	dsp_debug_init(dsp);
+ 	pm_runtime_mark_last_busy(dsp->dev);
+ 	pm_runtime_put_autosuspend(dsp->dev);
+ 
+@@ -1100,6 +1063,8 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
+ err_tbu_power:
+ 	es_dsp_clk_disable(dsp);
+ err_dsp_clk:
++	devm_devfreq_remove_device(dsp->dev, df);
++err_dsp_devfreq:
+ 	dsp_disable_mbox_clock(dsp);
+ err_mbox_clk:
+ 	es_dsp_unmap_resource(dsp);
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+index 45c8bda644cc..342bdb20baae 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
+@@ -318,7 +318,7 @@ int es_dsp_clk_enable(struct es_dsp *dsp)
+ 	return 0;
+ }
+ 
+-int es_dsp_set_rate(struct es_dsp_hw *hw, unsigned long rate)
++int es_dsp_set_rate(struct es_dsp_hw *hw, unsigned long *rate)
+ {
+ 	struct es_dsp *dsp = hw->es_dsp;
+ 	int ret;
+@@ -327,18 +327,24 @@ int es_dsp_set_rate(struct es_dsp_hw *hw, unsigned long rate)
+ 		dsp_err("%s %d: failed to get device\n", __func__, __LINE__);
+ 		return -ENXIO;
+ 	}
+-	rate = clk_round_rate(hw->aclk, rate);
+-	if (rate > 0) {
+-		ret = clk_set_rate(hw->aclk, rate);
++
++	*rate = clk_round_rate(hw->aclk, *rate);
++	if (*rate > 0) {
++		ret = clk_set_rate(hw->aclk, *rate);
+ 		if (ret) {
+ 			dev_err(dsp->dev, "failed to set aclk: %d\n", ret);
+ 			return ret;
+ 		}
+ 	}
+-	dev_info(dsp->dev, "set device rate to %ldHZ\n", rate);
++	dev_info(dsp->dev, "set dev rate to %ldHZ\n", *rate);
+ 	return 0;
+ }
+ 
++int es_dsp_get_rate(struct es_dsp_hw *hw)
++{
++	return clk_get_rate(hw->aclk);
++}
++
+ void es_dsp_halt(struct es_dsp_hw *hw)
+ {
+ 	struct es_dsp *dsp = hw->es_dsp;
+@@ -1269,7 +1275,6 @@ int es_dsp_hw_init(struct es_dsp *dsp)
+ 		hw->pts_iova = 0;
+ 		goto err;
+ 	}
+-	es_dsp_set_rate(hw, dsp->rate);
+ 	dev_dbg(dsp->dev, "firmware-name:%s.\n", dsp->firmware_name);
+ 	return 0;
+ err:
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
+index d538a9727242..40740cdfe21e 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
+@@ -30,7 +30,7 @@ int es_dsp_send_irq(struct es_dsp_hw *, dsp_request_t *);
+ int es_dsp_reboot_core(struct es_dsp_hw *);
+ int es_dsp_enable(struct es_dsp_hw *);
+ void es_dsp_disable(struct es_dsp_hw *);
+-int es_dsp_set_rate(struct es_dsp_hw *, unsigned long rate);
++int es_dsp_set_rate(struct es_dsp_hw *, unsigned long *rate);
+ void es_dsp_reset(struct es_dsp_hw *);
+ void es_dsp_halt(struct es_dsp_hw *);
+ void es_dsp_release(struct es_dsp_hw *);
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
+index ea9471381e02..2a7ba4077a99 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
+@@ -262,7 +262,7 @@ void es_dsp_halt(struct es_dsp_hw *hw)
+ void es_dsp_release(struct es_dsp_hw *hw)
+ {
+ }
+-long es_dsp_set_rate(struct es_dsp_hw *hw, unsigned long rate)
++long es_dsp_set_rate(struct es_dsp_hw *hw, unsigned long *rate)
+ {
+ 	return 0;
+ }
+-- 
+2.50.1
+

@@ -1,7 +1,7 @@
-From cb6275a9e659690e8e3bc27ca119d5036f0b8059 Mon Sep 17 00:00:00 2001
+From a65f2d8d839dfc5b628878ee98760eb0c60a15dc Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:12:28 +0800
-Subject: [PATCH 215/551] npu: add es5340 support
+Subject: [PATCH 215/552] npu: add es5340 support
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>

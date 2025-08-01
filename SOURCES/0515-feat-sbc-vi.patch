@@ -1,0 +1,362 @@
+From 0e916330358d3795452c2d4531d64643bea338e3 Mon Sep 17 00:00:00 2001
+From: yufangxian <yufangxian@eswincomputing.com>
+Date: Fri, 23 May 2025 13:32:19 +0800
+Subject: [PATCH 515/552] feat: sbc vi
+
+Changelogs:
+1. add sbc vi dts and change imx219 driver to recognize 4lanes sensor
+
+Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
+---
+ .../boot/dts/eswin/eic7700-sbc-a1-camera.dtsi | 231 ++++++++++++++++++
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts  |  11 +
+ drivers/media/i2c/imx219.c                    |  40 ++-
+ .../platform/eswin/mipi-csi2/dw-csi-plat.c    |   2 -
+ 4 files changed, 260 insertions(+), 24 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
+new file mode 100644
+index 000000000000..c34f0ce14190
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
+@@ -0,0 +1,231 @@
++&vi_subsys {
++	board_compat = "eic7700,dvb_vi";
++	eswin,isp_dvp0_hor = <3280>;
++	eswin,isp_dvp0_ver = <2464>;
++	phy_mode = <2>;
++	vvcam_isp_0: vvcam_isp@0 {
++		compatible = "verisilicon,isp-v4l2";
++		id = <0>;
++		status = "okay";
++		dma-noncoherent;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0>;
++				vvcam_isp_input_port: endpoint@0 {
++					remote-endpoint = <&mipi_csi2_output1>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				vvcam_isp_port0_mp: endpoint {
++					remote-endpoint = <&vvcam_video0>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++				vvcam_isp_port0_sp1: endpoint {
++					remote-endpoint = <&vvcam_video1>;
++				};
++			};
++
++			port@3 {
++				reg = <3>;
++				vvcam_isp_port0_sp2: endpoint {
++					remote-endpoint = <&vvcam_video2>;
++				};
++			};
++
++			port@4 {
++				reg = <4>;
++				vvcam_isp_port0_raw: endpoint {
++					remote-endpoint = <&vvcam_video3>;
++				};
++			};
++		};
++	};
++
++	vvcam_vb: vvcam-vb@0 {
++		compatible = "verisilicon,vb";
++		status = "okay";
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu0 WIN2030_SID_ISP0>;
++	};
++
++	vvcam_video_0: vvcam_video@0 {
++		compatible = "verisilicon,video";
++		id = <0>;
++		status = "okay";
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu0 WIN2030_SID_ISP0>;
++
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			port@0 {
++				reg = <0>;
++				vvcam_video0: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_mp>;
++				};
++			};
++
++			port@1 {
++				reg = <1>;
++				vvcam_video1: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_sp1>;
++				};
++			};
++
++			port@2 {
++				reg = <2>;
++				vvcam_video2: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_sp2>;
++				};
++			};
++
++			port@3 {
++				reg = <3>;
++				vvcam_video3: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_raw>;
++				};
++			};
++		};
++	};
++};
++
++&mipi_csi2_0 {
++	num_lanes = <2>;
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi0_csi2_input: endpoint@0 {
++				remote-endpoint = <&csidphy0_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in0>;
++			};
++		};
++		port@2 {
++			reg = <2>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_output1: endpoint@2 {
++				remote-endpoint = <&vvcam_isp_input_port>;
++			};
++		};
++	};
++};
++
++
++&dvp2axi {
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds {
++	status = "okay";
++	dvp2axi_id = <0>;
++	port@0 {
++		axi2dvp_mipi2_in0: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_output0>;
++		};
++	};
++};
++
++
++&csi2_dphy_hw {
++	lanes = <1 2>;
++	status = "okay";
++};
++
++&csi2_dphy0 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy0_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out0>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy0_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi0_csi2_input>;
++			};
++		};
++	};
++};
++
++
++&d0_i2c3 {
++	/* mipi csi0/csi1 */
++	status = "okay";
++	imx219: imx219@10 {
++			compatible = "sony,imx219";
++			status = "okay";
++			address-cells = <1>;
++			size-cells = <0>;
++			reg = <0x10>;
++
++			pinctrl-names = "default";
++			pinctrl-0 = <&pinctrl_gpio72_default &pinctrl_gpio70_default>;
++			mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;  //gpio72
++			xvs-gpios = <&portc 6 GPIO_ACTIVE_HIGH>;   //gpio70
++			eswin,camera-module-index = <0>;
++			eswin,camera-module-facing = "back";
++			eswin,camera-module-name = "rpi-camera-v2";
++			eswin,camera-module-lens-name = "default";
++
++			port {
++				imx219_out0: endpoint {
++					remote-endpoint = <&mipidphy0_in_ucam0>;
++					data-lanes = <1 2>;
++					link-frequencies = /bits/ 64 <456000000>;
++				};
++			};
++		};
++};
++
++&isp_0 {
++	status = "okay";
++};
++
++&isp_1 {
++	status = "disabled";
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+index e019b70ecda0..a7a2ec2d212f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
+@@ -33,6 +33,7 @@
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
++#include "eic7700-sbc-a1-camera.dtsi"
+ 
+ /* Clock frequency (in Hz) of the PCB crystal for rtcclk */
+ 
+@@ -112,6 +113,12 @@ mmz_nid_0_part_0 {
+ 			reg = <0x3 0x0 0x1 0x80000000>;
+ 			no-map;
+ 		};
++
++		dvp2axi_mem: dvp2axi-mem@90000000 {
++			compatible = "shared-dma-pool";
++			reg = <0x0 0x90000000 0x0 0x10000000>;
++			no-map;
++		};
+ 	};
+ 
+ 	leds {
+@@ -837,3 +844,7 @@ &dev_llc_d0{
+ 	npu-supply=<&npu_vcc1>;
+ 	status = "okay";
+ };
++
++&dvp2axi {
++	memory-region = <&dvp2axi_mem>;
++};
+diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
+index 7caab5a79e65..a2e45b961ec7 100644
+--- a/drivers/media/i2c/imx219.c
++++ b/drivers/media/i2c/imx219.c
+@@ -555,6 +555,10 @@ struct imx219 {
+ 	u32 xclk_freq;
+ 
+ 	struct gpio_desc *reset_gpio;
++	struct gpio_desc *power_en_gpio;
++	struct gpio_desc *mclk_gpio;
++	struct gpio_desc *xvs_gpio;
++
+ 	struct regulator_bulk_data supplies[IMX219_NUM_SUPPLIES];
+ 
+ 	struct v4l2_ctrl_handler ctrl_handler;
+@@ -1516,29 +1520,21 @@ static int imx219_probe(struct i2c_client *client)
+ 	if (imx219_check_hwcfg(dev))
+ 		return -EINVAL;
+ 
+-	// /* Get system clock (xclk) */
+-	// imx219->xclk = devm_clk_get(dev, NULL);
+-	// if (IS_ERR(imx219->xclk)) {
+-	// 	dev_err(dev, "failed to get xclk\n");
+-	// 	return PTR_ERR(imx219->xclk);
+-	// }
+-
+-	// imx219->xclk_freq = clk_get_rate(imx219->xclk);
+-	// if (imx219->xclk_freq != IMX219_XCLK_FREQ) {
+-	// 	dev_err(dev, "xclk frequency not supported: %d Hz\n",
+-	// 		imx219->xclk_freq);
+-	// 	return -EINVAL;
+-	// }
+-
+-	// ret = imx219_get_regulators(imx219);
+-	// if (ret) {
+-	// 	dev_err(dev, "failed to get regulators\n");
+-	// 	return ret;
+-	// }
++	imx219->mclk_gpio = devm_gpiod_get_optional(dev, "mclk-gpios",
++						     GPIOD_OUT_HIGH);
++	if(IS_ERR(imx219->mclk_gpio)) {
++		dev_warn(dev, "4 lanes imx219 sensor neet to config mclk-gpios in dts\n");
++	} else {
++		gpiod_set_value(imx219->mclk_gpio, 1);
++	}
+ 
+-	// /* Request optional enable pin */
+-	// imx219->reset_gpio = devm_gpiod_get_optional(dev, "reset",
+-	// 					     GPIOD_OUT_HIGH);
++	imx219->xvs_gpio = devm_gpiod_get_optional(dev, "xvs-gpios",
++						     GPIOD_OUT_HIGH);
++	if(IS_ERR(imx219->xvs_gpio)) {
++		dev_warn(dev, "optional to config xvs-gpios in dts, default is up\n");
++	} else {
++		gpiod_set_value(imx219->xvs_gpio, 1);
++	}
+ 
+ 	/*
+ 	* The sensor must be powered for imx219_identify_module()
+diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
+index 92dd6fd50039..973ee3ef97bf 100755
+--- a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
++++ b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
+@@ -445,8 +445,6 @@ dw_mipi_csi_parse_dt(struct platform_device *pdev, struct dw_csi *dev)
+ 	if (of_property_read_u32(node, "index", &dev->index))
+ 		dev->index = 0;
+ 
+-	pr_info("%s:%d index %d \n", __func__, __LINE__, dev->index);
+-
+ 	node = of_graph_get_next_endpoint(node, NULL);
+ 	if (!node) {
+ 		dev_err(&pdev->dev, "No port node at %pOF\n",
+-- 
+2.50.1
+

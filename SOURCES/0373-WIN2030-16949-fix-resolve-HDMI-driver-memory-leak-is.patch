@@ -1,0 +1,30 @@
+From d44359ee1fd9b27703a40cfb1e3d131ab346a7ef Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Tue, 7 Jan 2025 17:14:19 +0800
+Subject: [PATCH 373/552] WIN2030-16949:fix:resolve HDMI driver memory leak
+ issue.
+
+Changelogs:
+	resolve HDMI driver memory leak issue.
+
+Change-Id: Ie94e040eed1c01438ecaa20e73d535d3d5411ade
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ drivers/gpu/drm/eswin/dw-hdmi.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
+index 82a3cc3f69aa..4a49bcfbd49f 100644
+--- a/drivers/gpu/drm/eswin/dw-hdmi.c
++++ b/drivers/gpu/drm/eswin/dw-hdmi.c
+@@ -2743,6 +2743,7 @@ static void dw_hdmi_update_power(struct dw_hdmi *hdmi)
+ 			struct edid *edid;
+ 			edid = dw_hdmi_get_edid(hdmi, &hdmi->connector);
+ 			dw_hdmi_poweron(hdmi);
++			kfree(edid);
+ 		}
+ 	}
+ }
+-- 
+2.50.1
+

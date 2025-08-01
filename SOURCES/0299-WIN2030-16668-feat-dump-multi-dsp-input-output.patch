@@ -1,7 +1,7 @@
-From 58bd8f0a9a0f3251d596233bfe47135e4620851e Mon Sep 17 00:00:00 2001
+From a712c2ac6480ca9ba331f662770e8f13494974fc Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Thu, 21 Nov 2024 15:29:04 +0800
-Subject: [PATCH 299/551] WIN2030-16668:feat:dump multi dsp input/output
+Subject: [PATCH 299/552] WIN2030-16668:feat:dump multi dsp input/output
 
 Changelogs:
 1. debug.c for ai driver

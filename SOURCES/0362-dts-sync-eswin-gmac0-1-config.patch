@@ -1,0 +1,66 @@
+From adb5b8f4fe22276f961808e8ec0dd5c7f53eeb91 Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Wed, 8 Jan 2025 01:41:49 +0800
+Subject: [PATCH 362/552] dts: sync eswin gmac0/1 config
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts     | 8 ++++++--
+ arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts | 8 ++++++--
+ 2 files changed, 12 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 58fe3d635616..bd6120c66ab7 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -479,7 +479,9 @@ &d0_gmac0 {
+ 	rst-gpios = <&portc 30 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x290 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x23232323 0x800c8023 0x0c0c0c0c>;
++	dly-param-100m = <0x50505050 0x803f8050 0x3f3f3f3f>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+@@ -489,7 +491,9 @@ &d0_gmac1 {
+ 	rst-gpios = <&porta 16 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x294 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x25252525 0x80268025 0x26262626>;
++	dly-param-100m = <0x48484848 0x80588048 0x58585858>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index b03f4c8c2597..f02a7936cc60 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -445,7 +445,9 @@ &d0_gmac0 {
+ 	rst-gpios = <&portc 30 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x290 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x23232323 0x800c8023 0x0c0c0c0c>;
++	dly-param-100m = <0x50505050 0x803f8050 0x3f3f3f3f>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+@@ -455,7 +457,9 @@ &d0_gmac1 {
+ 	rst-gpios = <&porta 16 GPIO_ACTIVE_LOW>;
+ 	eswin,rgmiisel = <&pinctrl 0x294 0x3>;
+ 	eswin,led-cfgs = <0x6100 0xa40 0x420>;
+-
++	dly-param-1000m = <0x25252525 0x80268025 0x26262626>;
++	dly-param-100m = <0x48484848 0x80588048 0x58585858>;
++	dly-param-10m = <0 0 0>;
+ 	status = "okay";
+ };
+ 
+-- 
+2.50.1
+

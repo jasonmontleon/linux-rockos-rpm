@@ -1,0 +1,31 @@
+From e6dcada24723590a7781b743da83905793e4c655 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Thu, 17 Apr 2025 16:37:15 +0800
+Subject: [PATCH 479/552] fix:Modify tps549d22 enable sequence of software cfg
+
+Changelogs:
+
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ drivers/regulator/tps549d22-regulator.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/regulator/tps549d22-regulator.c b/drivers/regulator/tps549d22-regulator.c
+index dd0052525c36..42de6234b289 100644
+--- a/drivers/regulator/tps549d22-regulator.c
++++ b/drivers/regulator/tps549d22-regulator.c
+@@ -462,10 +462,10 @@ static s32 tps549d22_init_data(struct TPS549D22_DRIVER_DATA *data,
+ 			tps549d22_regulator_desc.n_voltages);
+ 
+ 	tps549d22_set_vout(data, default_voltage);
+-	tps549d22_write_byte(data, TPS549D22_CMD_ON_OFF_CONFIG, 0xf);
+ 	ret =  tps549d22_update_byte(data, TPS549D22_CMD_OPERATION,
+ 								 TPS549D22_MASK_OPERATION_ENABLE,
+ 								 TPS549D22_MASK_OPERATION_ENABLE);
++	tps549d22_write_byte(data, TPS549D22_CMD_ON_OFF_CONFIG, 0xf);
+ 	mdelay(20);
+ 	return ret;
+ }
+-- 
+2.50.1
+

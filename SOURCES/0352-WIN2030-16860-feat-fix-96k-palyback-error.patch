@@ -1,0 +1,35 @@
+From e4b7d1565694db3cfcf169ebdadd8099176d87ed Mon Sep 17 00:00:00 2001
+From: zhouliang2 <zhouliang2@eswincomputing.com>
+Date: Mon, 23 Dec 2024 20:02:31 +0800
+Subject: [PATCH 352/552] WIN2030-16860:feat:fix 96k palyback error
+
+Changelogs:
+1. es8328.c
+
+Change-Id: Ia67974c4f95485c8326803d64c2da2bbac1e4224
+Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
+---
+ sound/soc/codecs/eswin/es8328.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
+index bc05b82f5c79..77f225e11a2d 100644
+--- a/sound/soc/codecs/eswin/es8328.c
++++ b/sound/soc/codecs/eswin/es8328.c
+@@ -794,6 +794,13 @@ static int es8328_hw_params(struct snd_pcm_substream *substream,
+ 				ES8328_ADCCONTROL4_ADCWL_MASK,
+ 				wl << ES8328_ADCCONTROL4_ADCWL_SHIFT);
+ 
++	if (params_rate(params) <= 48000) {
++		snd_soc_component_update_bits(component, reg, ES8328_DACCONTROL2_DOUBLESPEED, 0);
++	} else {
++		snd_soc_component_update_bits(component, reg,
++			ES8328_DACCONTROL2_DOUBLESPEED, ES8328_DACCONTROL2_DOUBLESPEED);
++	}
++
+ 	return snd_soc_component_update_bits(component, reg, ES8328_RATEMASK, ratio);
+ }
+ 
+-- 
+2.50.1
+

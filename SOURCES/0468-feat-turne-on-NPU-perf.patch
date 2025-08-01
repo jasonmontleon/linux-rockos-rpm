@@ -1,0 +1,322 @@
+From 4bece4b055e34f0691406f0b588008e254b16a18 Mon Sep 17 00:00:00 2001
+From: chenyangxi <chenyangxi@eswincomputing.com>
+Date: Tue, 8 Apr 2025 19:04:09 +0800
+Subject: [PATCH 468/552] feat:turne on NPU perf
+
+Changelogs:
+    turne on npu perf in driver
+
+Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
+---
+ .../soc/eswin/ai_driver/common/hetero_ipc.h   |  2 -
+ .../soc/eswin/ai_driver/common/hetero_perf.h  |  5 ---
+ drivers/soc/eswin/ai_driver/npu/Makefile      |  6 +--
+ drivers/soc/eswin/ai_driver/npu/dla_log.c     |  5 +--
+ drivers/soc/eswin/ai_driver/npu/engine.c      | 15 +-------
+ .../eswin/ai_driver/npu/internal_interface.h  |  1 -
+ drivers/soc/eswin/ai_driver/npu/nvdla_proc.c  | 37 +++++++++++--------
+ .../soc/eswin/ai_driver/npu/user_context.c    | 17 ++++++---
+ 8 files changed, 38 insertions(+), 50 deletions(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
+index 667e13996be3..898b71346aae 100644
+--- a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
++++ b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
+@@ -235,9 +235,7 @@ typedef struct _host_node {
+     /**
+      * @brief Specifies the model statistics data.
+      */
+-#if NPU_PERF_STATS > 1
+     model_stat_t model_stat[NUM_TIKTOK];
+-#endif
+ } host_node_t;
+ 
+ typedef struct _dsp_node {
+diff --git a/drivers/soc/eswin/ai_driver/common/hetero_perf.h b/drivers/soc/eswin/ai_driver/common/hetero_perf.h
+index 5e96bcc4f760..20f0ecf3a03a 100644
+--- a/drivers/soc/eswin/ai_driver/common/hetero_perf.h
++++ b/drivers/soc/eswin/ai_driver/common/hetero_perf.h
+@@ -26,11 +26,6 @@
+ #include "hetero_env.h"
+ #include "hetero_types.h"
+ 
+-#define NPU_PERF_STATS_DEBUG 0
+-#define NPU_PERF_STATS_RELEASE 1
+-#define NPU_PERF_STATS_ALL 2
+-#define NPU_PERF_STATS_HW 3
+-
+ #define OPERATOR_NAME_MAXLEN 128
+ 
+ typedef struct _npu_model_perf {
+diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
+index 630aa94bc05f..31e513ce5ed8 100644
+--- a/drivers/soc/eswin/ai_driver/npu/Makefile
++++ b/drivers/soc/eswin/ai_driver/npu/Makefile
+@@ -1,11 +1,8 @@
+-﻿NPU_PERF_STATS ?= 0
++﻿
+ LOG_LEVEL ?= 0
+ NPU_DEV_SIM ?= 0
+ SMALL_PEC_MAT ?= 0
+ 
+-ifeq ($(CONFIG_NPU_PERF),y)
+-	NPU_PERF_STATS = 2
+-endif
+ ccflags-y += -I$(src)
+ ccflags-y += -I$(srctree)/drivers/soc/eswin
+ ccflags-y += -I$(srctree)/drivers/memory/eswin/codacache/
+@@ -20,7 +17,6 @@ ccflags-y += -DENABLE_PROGRAM_CORE=$(ENABLE_PROGRAM_CORE)
+ ccflags-y += -DDUAL_DIE=$(DUAL_DIE)
+ ccflags-y += -DSMALL_PEC_MAT=$(SMALL_PEC_MAT)
+ ccflags-y += -DNPU_DRV_SUPPORT_DSP=$(NPU_DSP_MODULE)
+-ccflags-y += -DNPU_PERF_STATS=$(NPU_PERF_STATS)
+ ccflags-y += -DNPU_DBG
+ #ccflags-y += -DCONV_DUMP
+ ccflags-y += -DLOG_LEVEL=$(LOG_LEVEL)
+diff --git a/drivers/soc/eswin/ai_driver/npu/dla_log.c b/drivers/soc/eswin/ai_driver/npu/dla_log.c
+index a215530f5d55..590b75280a87 100644
+--- a/drivers/soc/eswin/ai_driver/npu/dla_log.c
++++ b/drivers/soc/eswin/ai_driver/npu/dla_log.c
+@@ -29,9 +29,7 @@
+ #include "dla_log.h"
+ 
+ /*/sys/module/npu/parameters/*/
+-#if NPU_PERF_STATS
+-int npu_debug_control = NPU_PRINT_ERROR;
+-#else
++
+ #if LOG_LEVEL == 0
+ int npu_debug_control = NPU_PRINT_ERROR;
+ #elif LOG_LEVEL == 1
+@@ -41,7 +39,6 @@ int npu_debug_control = NPU_PRINT_INFO;
+ #else
+ int npu_debug_control = NPU_PRINT_DETAIL;
+ #endif
+-#endif
+ 
+ int loop_buf_enable = 0;
+ module_param(loop_buf_enable, int, 0644);
+diff --git a/drivers/soc/eswin/ai_driver/npu/engine.c b/drivers/soc/eswin/ai_driver/npu/engine.c
+index f9950ef478c6..fa165ac48a2f 100644
+--- a/drivers/soc/eswin/ai_driver/npu/engine.c
++++ b/drivers/soc/eswin/ai_driver/npu/engine.c
+@@ -557,15 +557,7 @@ int win_engine_init(struct nvdla_device *nvdla_dev, void **arg_engine)
+ 		devm_kfree(&nvdla_dev->pdev->dev, engine);
+ 		return -ENOMEM;
+ 	}
+-#if NPU_PERF_STATS > 1
+-	engine->perf_data_buf =
+-		devm_kzalloc(&nvdla_dev->pdev->dev, sizeof(npu_e31_perf_t) * MAX_OP_NUM, GFP_KERNEL);
+-	if (engine->perf_data_buf == NULL) {
+-		devm_kfree(&nvdla_dev->pdev->dev, engine->is_event_source_done[0]);
+-		devm_kfree(&nvdla_dev->pdev->dev, engine);
+-		return -ENOMEM;
+-	}
+-#endif
++
+ 	ret = npu_init_ipc(nvdla_dev);
+ #if (NPU_DEV_SIM == NPU_REAL_ENV)
+ 	if (ret) {
+@@ -668,10 +660,7 @@ void win_engine_destroy(struct nvdla_device *nvdla_dev)
+ 			devm_kfree(&nvdla_dev->pdev->dev, engine->is_event_source_done[0]);
+ 			engine->is_event_source_done[0] = NULL;
+ 		}
+-		if (engine->perf_data_buf != NULL) {
+-			devm_kfree(&nvdla_dev->pdev->dev, engine->perf_data_buf);
+-			engine->perf_data_buf = NULL;
+-		}
++
+ 		devm_kfree(&nvdla_dev->pdev->dev, engine);
+ 		engine = NULL;
+ 	}
+diff --git a/drivers/soc/eswin/ai_driver/npu/internal_interface.h b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
+index b215769d3249..e5b14e5fb7d5 100644
+--- a/drivers/soc/eswin/ai_driver/npu/internal_interface.h
++++ b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
+@@ -180,7 +180,6 @@ struct win_engine {
+ 	/* Next executor to use, Protected by executor_lock */
+ 	spinlock_t executor_lock;
+ 	bool perf_switch;
+-	void *perf_data_buf;
+ 	struct timer_list timer[NUM_TIKTOK];
+ 	atomic_t is_sending;
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
+index 6ed17e6af550..4bbbb3942e1b 100644
+--- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
++++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
+@@ -37,7 +37,6 @@ static spinlock_t proc_lock[2];
+ static host_node_t *g_host_node[2] = { NULL };
+ static wait_queue_head_t g_perf_wait_list[2];
+ static u32 g_stat_titok[2] = { -1 };
+-static u32 g_die_perf[2] = { 0 };
+ 
+ void handle_perf_switch(struct nvdla_device *ndev, bool enable)
+ {
+@@ -55,14 +54,14 @@ void handle_perf_switch(struct nvdla_device *ndev, bool enable)
+ 		memset(op_num[ndev->numa_id], 0, sizeof(u16) * NUM_OP_TYPE);
+ 		g_host_node[ndev->numa_id] = NULL;
+ 		g_stat_titok[ndev->numa_id] = -1;
++
+ 		dla_debug("perf switch to off.\n");
+ 	}
+ 	spin_unlock_irqrestore(&proc_lock[ndev->numa_id], flags);
+ }
+ 
+-int get_perf_data(struct nvdla_device *ndev)
++int get_perf_data(struct nvdla_device *ndev, void *buf)
+ {
+-#if NPU_PERF_STATS > 1
+ 	int j, k;
+ 	int tiktok = -1;
+ 	npu_e31_perf_t *op_stats;
+@@ -83,6 +82,7 @@ int get_perf_data(struct nvdla_device *ndev)
+ 	}
+ 
+ 	spin_lock_irqsave(&proc_lock[numa_id], flags);
++
+ 	tiktok = g_stat_titok[numa_id];
+ 	op_stats = g_host_node[numa_id]->model_stat[tiktok].op_stats;
+ 	for (j = 0; j < NUM_OP_TYPE; j++) {
+@@ -92,13 +92,12 @@ int get_perf_data(struct nvdla_device *ndev)
+ 		}
+ 	}
+ 	dla_debug("get tiktok=%u perf data.\n", tiktok);
+-	memcpy((npu_e31_perf_t *)engine->perf_data_buf, op_stats,
+-	       sizeof(npu_e31_perf_t) * MAX_OP_NUM);
++	memcpy(buf, op_stats, sizeof(npu_e31_perf_t) * MAX_OP_NUM);
+ 	g_stat_titok[numa_id] = -1;
+ 	memset(g_host_node[numa_id]->model_stat[tiktok].op_stats, 0,
+ 	       sizeof(npu_e31_perf_t) * MAX_OP_NUM);
+ 	spin_unlock_irqrestore(&proc_lock[numa_id], flags);
+-#endif
++
+ 	return 0;
+ }
+ 
+@@ -148,7 +147,6 @@ void refresh_op_statistic(struct win_executor *executor,
+ 	total_op_num[numa_id] = executor->total_op_num;
+ 	g_host_node[numa_id] = engine->host_node;
+ 	g_stat_titok[numa_id] = tiktok;
+-	g_die_perf[numa_id] = 1;
+ 	dla_debug("refresh tiktok=%u perf data done.\n", tiktok);
+ 	spin_unlock_irqrestore(&proc_lock[numa_id], flags);
+ 	wake_up_interruptible(&g_perf_wait_list[numa_id]);
+@@ -209,11 +207,10 @@ static int npu_stat_show(struct seq_file *m, void *p)
+ 
+ static int npu_info_show(struct seq_file *m, void *p)
+ {
+-#if NPU_PERF_STATS > 1
+ 	int i, j, k;
+-	int tiktok;
+ 	npu_e31_perf_t *op_stat;
+ 	s16 op_idx;
++	unsigned long flags;
+ 
+ 	if (g_perf == 0) {
+ 		seq_printf(
+@@ -222,6 +219,12 @@ static int npu_info_show(struct seq_file *m, void *p)
+ 		return 0;
+ 	}
+ 
++	op_stat = vmalloc(sizeof(npu_e31_perf_t) * MAX_OP_NUM);
++	if (NULL == op_stat) {
++		dla_error("proc malloc npu perf buf error.\n");
++		return -ENOMEM;
++	}
++
+ 	seq_printf(
+ 		m,
+ 		"--------------------NPU PERF STATISTIC BEGIN--------------------\n");
+@@ -229,16 +232,20 @@ static int npu_info_show(struct seq_file *m, void *p)
+ 	seq_printf(m, "\t%-4s\t %-4s\t %-4s\t %-8s\t %-10s\t %-10s\t %-10s\n",
+ 		   "Die", "OpNum", "OpIndex", "OpType", "StartCycle",
+ 		   "EndCycle", "Elapsed(ns)");
++
+ 	for (i = 0; i < 2; i++) {
+ 		u32 start = 0xffffffff, end = 0;
+ 
+-		if (!g_die_perf[i]) {
++		spin_lock_irqsave(&proc_lock[i], flags);
++		if ((NULL == g_host_node[i]) || (-1 == g_stat_titok[i])) {
++			spin_unlock_irqrestore(&proc_lock[i], flags);
+ 			continue;
+ 		}
+ 
+-		spin_lock(&proc_lock[i]);
+-		tiktok = g_stat_titok[i];
+-		op_stat = g_host_node[i]->model_stat[tiktok].op_stats;
++		memcpy(op_stat, g_host_node[i]->model_stat[g_stat_titok[i]].op_stats,
++			sizeof(npu_e31_perf_t) * MAX_OP_NUM);
++		spin_unlock_irqrestore(&proc_lock[i], flags);
++
+ 		for (j = 0; j < NUM_OP_TYPE; j++) {
+ 			for (k = 0; k < op_num[i][j]; k++) {
+ 				op_idx = g_cfg_seq[i][j][k];
+@@ -260,13 +267,13 @@ static int npu_info_show(struct seq_file *m, void *p)
+ 							.OpEvalStartCycle);
+ 			}
+ 		}
+-		spin_unlock(&proc_lock[i]);
+ 		seq_printf(m, "\n");
+ 	}
+ 	seq_printf(
+ 		m,
+ 		"--------------------NPU PERF STATISTIC END--------------------\n");
+-#endif
++
++	vfree(op_stat);
+ 	return 0;
+ }
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
+index 2ae719709386..8ea6ebe6768d 100644
+--- a/drivers/soc/eswin/ai_driver/npu/user_context.c
++++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
+@@ -39,7 +39,7 @@
+ #include "hetero_arch.h"
+ #include "hetero_host.h"
+ extern void handle_perf_switch(struct nvdla_device *ndev, bool enable);
+-extern int get_perf_data(struct nvdla_device *ndev);
++extern int get_perf_data(struct nvdla_device *ndev, void *buf);
+ 
+ static int setup_model_task(struct user_model *model)
+ {
+@@ -696,23 +696,30 @@ static int send_perf_data_to_usr(struct nvdla_device *nvdla_dev,
+ 				 struct win_ioctl_args *win_arg)
+ {
+ 	struct win_engine *engine;
++	void *buf = NULL;
+ 	int ret;
+ 
+ 	engine = (struct win_engine *)nvdla_dev->win_engine;
+ 
+-	ret = get_perf_data(nvdla_dev);
++	buf = vmalloc(sizeof(npu_e31_perf_t) * MAX_OP_NUM);
++	if (NULL == buf) {
++		dla_error("malloc npu perf buf error.\n");
++		return -ENOMEM;
++	}
++
++	ret = get_perf_data(nvdla_dev, buf);
+ 	if (ret)
+ 		goto fail;
+ 
+-	if (copy_to_user((void __user *)(win_arg->data), engine->perf_data_buf,
+-			 sizeof(npu_e31_perf_t) * MAX_OP_NUM)) {
++	if (copy_to_user((void __user *)(win_arg->data), buf,
++	                sizeof(npu_e31_perf_t) * MAX_OP_NUM)) {
+ 		dla_error("err:bad user data address.\n");
+ 		ret = -EFAULT;
+ 		goto fail;
+ 	}
+ 
+ fail:
+-
++	vfree(buf);
+ 	return ret;
+ }
+ 
+-- 
+2.50.1
+

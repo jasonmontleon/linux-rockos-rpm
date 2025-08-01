@@ -1,7 +1,7 @@
-From 7032e65864edb7cbc960ae1ed5b51e1c69899a8f Mon Sep 17 00:00:00 2001
+From b0719116b471c2e59513458608d32b8d947c1d64 Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
-Subject: [PATCH 157/551] Merge patch series "membarrier: riscv: Core
+Subject: [PATCH 157/552] Merge patch series "membarrier: riscv: Core
  serializing command"
 
 RISC-V was lacking a membarrier implementation for the store/fetch

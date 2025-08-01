@@ -1,7 +1,7 @@
-From 8b58186844a8c2e847f57d79492bb7a5590a0ad2 Mon Sep 17 00:00:00 2001
+From a22b23030697afcd041e4707e8e3acec1be21739 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 8 Aug 2024 19:28:10 +0800
-Subject: [PATCH 142/551] feat:Deselect CONFIG_PM
+Subject: [PATCH 142/552] feat:Deselect CONFIG_PM
 
 Changelogs:
 1.Deselect CONFIG_PM as default

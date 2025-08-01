@@ -1,7 +1,7 @@
-From ae33eaf10c1f80a04e20e6cd5764a4d3f8b37114 Mon Sep 17 00:00:00 2001
+From 7a59c3e85794d6ea482c6307a9e02fab95083f05 Mon Sep 17 00:00:00 2001
 From: Eric Lin <eric.lin@sifive.com>
 Date: Tue, 16 Jul 2024 10:32:03 +0000
-Subject: [PATCH 214/551] perf vendor events riscv: Add SiFive P550 events
+Subject: [PATCH 214/552] perf vendor events riscv: Add SiFive P550 events
 
 The SiFive Performance P550 core features an out-of-order
 microarchitecture which exposes the same PMU events as Bullet,

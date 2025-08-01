@@ -1,0 +1,1529 @@
+From 84a4b9cdba06036066cab5df25e224f37c7620c3 Mon Sep 17 00:00:00 2001
+From: huangyifeng <huangyifeng@eswincomputing.com>
+Date: Wed, 5 Feb 2025 16:51:09 +0800
+Subject: [PATCH 409/552] feature:Add eic770x OTP driver
+
+Changelogs:
+In some cases, it may be necessary to read OTP information from user
+space in Linux. Therefore, an OTP driver has been added, which mainly
+includes two functions:
+
+1.Reading a specific OTP field. Usage:
+First, run:
+     echo <field name> > /sys/kernel/debug/eswin_otp/read_field
+Then, read the value:
+     cat /sys/kernel/debug/eswin_otp/read_field
+
+2.Reading a specific OTP bit. Usage:
+First, run:
+    echo <bit offset> > /sys/kernel/debug/eswin_otp/read_bit
+Then, read the value:
+    cat /sys/kernel/debug/eswin_otp/read_bit
+
+Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
+---
+ drivers/soc/eswin/Kconfig           |   7 +
+ drivers/soc/eswin/Makefile          |   3 +-
+ drivers/soc/eswin/otp_debugfs.c     | 243 ++++++++
+ drivers/soc/eswin/otp_eic770x.c     | 857 ++++++++++++++++++++++++++++
+ drivers/soc/eswin/otp_eic770x.h     |  90 +++
+ drivers/soc/eswin/otp_map_eic770x.h | 246 ++++++++
+ 6 files changed, 1445 insertions(+), 1 deletion(-)
+ create mode 100644 drivers/soc/eswin/otp_debugfs.c
+ create mode 100644 drivers/soc/eswin/otp_eic770x.c
+ create mode 100644 drivers/soc/eswin/otp_eic770x.h
+ create mode 100644 drivers/soc/eswin/otp_map_eic770x.h
+
+diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
+index ed45c8ff1d8b..cf0b6ca3f31c 100644
+--- a/drivers/soc/eswin/Kconfig
++++ b/drivers/soc/eswin/Kconfig
+@@ -25,4 +25,11 @@ config EIC7X_D2D
+     help
+         This is interrputs status of D2D which includes error interrupts.
+ 
++config EIC770X_OTP
++    tristate "Eswin EIC770X OTP driver"
++	default y
++    help
++       This driver provides access to the One-Time Programmable (OTP)
++       memory on the Eswin EIC770X platform via debugfs.
++       If unsure, say N.
+ endif
+diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
+index 07df48f987ec..820463ed596a 100644
+--- a/drivers/soc/eswin/Makefile
++++ b/drivers/soc/eswin/Makefile
+@@ -1,5 +1,6 @@
+ obj-$(CONFIG_ESWIN_KHANDLE) += eswin-khandle.o
+ obj-$(CONFIG_ESWIN_DSP_SUBSYS) += dsp_subsys.o
++obj-$(CONFIG_EIC770X_OTP) += otp_debugfs.o otp_eic770x.o
+ obj-y += ai_driver/
+ obj-$(CONFIG_SUSPEND) += pm_eic770x.o
+-obj-$(CONFIG_EIC7X_D2D) += d2d.o 
+\ No newline at end of file
++obj-$(CONFIG_EIC7X_D2D) += d2d.o
+\ No newline at end of file
+diff --git a/drivers/soc/eswin/otp_debugfs.c b/drivers/soc/eswin/otp_debugfs.c
+new file mode 100644
+index 000000000000..09e29a638304
+--- /dev/null
++++ b/drivers/soc/eswin/otp_debugfs.c
+@@ -0,0 +1,243 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN OTP debugfs Driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
++ */
++
++#include <linux/module.h>
++#include <linux/kernel.h>
++#include <linux/fs.h>
++#include <linux/seq_file.h>
++#include <linux/debugfs.h>
++#include <linux/slab.h>
++#include <linux/uaccess.h>
++#include "otp_eic770x.h"
++
++#define OTP_DEBUGFS_DIR		"eswin_otp"
++#define FIELD_NAME_MAX_LEN	  32
++
++static struct dentry *otp_debugfs_dir;
++static char user_field_name[FIELD_NAME_MAX_LEN] = {0};
++
++/* Function to read a specific OTP bit */
++static int eswin_otp_read_bit(int bit_addr, uint8_t *bit_data)
++{
++	int byte_addr;
++	unsigned int mask;
++	uint8_t byte_data;
++	int ret;
++
++	byte_addr = bit_addr / 8;
++	mask = 1 << (bit_addr % 8);
++
++	ret = otp_read_data(&byte_data, byte_addr, 1, 0);
++	if (ret != 0) {
++		pr_err("Failed to read OTP bit at addr %d\n", byte_addr);
++		return ret;
++	}
++
++	*bit_data = (byte_data & mask) >> (bit_addr % 8);
++	return 0;
++}
++
++/* Function to read a specific OTP field */
++static void eswin_otp_read_field(struct seq_file *m, const char *field_name, uint8_t *buffer, int buf_size)
++{
++	int field;
++	const struct OTP_MAP_ITEM *map = NULL;
++	int ret;
++	int i;
++
++	if (0 == field_name[0]) {
++		seq_printf(m, "please echo <field name> to /sys/kernel/debug/eswin_otp/read_field first, legal field name include:\n");
++		for (i = OTP_RSA_PUBLIC_KEY; i <= OTP_DFT_INFORMATION; i++) {
++			seq_printf(m, "%-12s%-52s%-s","","", otp_map_eic770x[i].name);
++			if (otp_map_eic770x[i].enxor) {
++				seq_printf(m, "(4bit XOR)");
++			}
++			seq_printf(m, "\n");
++		}
++		return;
++	}
++	for (field = OTP_RSA_PUBLIC_KEY; field <= OTP_DFT_INFORMATION; field++) {
++		map = &otp_map_eic770x[field];
++		if (!strcmp(field_name, map->name)) {
++			break;
++		}
++	}
++	if (field > OTP_DFT_INFORMATION) {
++		seq_printf(m, "field name %s is illegal, legal field name include:\n", field_name);
++		for (i = OTP_RSA_PUBLIC_KEY; i <= OTP_DFT_INFORMATION; i++) {
++			seq_printf(m, "%-12s%-52s%-s","","", otp_map_eic770x[i].name);
++			if (otp_map_eic770x[i].enxor) {
++				seq_printf(m, "(4bit XOR)");
++			}
++			seq_printf(m, "\n");
++		}
++		return;
++	}
++
++	if (buf_size < map->otp_size) {
++		pr_err("Buffer too small for OTP field: %s\n", field_name);
++		return;
++	}
++
++	memset(buffer, 0, map->otp_size);
++	ret = get_otp_value(buffer, field, map->otp_size, map->enxor);
++	if (ret) {
++		pr_err("Failed to read OTP value, ret %d\n", ret);
++		return;
++	}
++
++	seq_printf(m, "Field: %s\n", field_name);
++	for (i = 0; i < map->otp_size; i++) {
++		seq_printf(m, "  0x%02X ", buffer[i]);
++		if ((i + 1) % 16 == 0)
++			seq_putc(m, '\n');
++	}
++	seq_putc(m, '\n');
++	return;
++}
++
++/* seq_file show function for reading OTP field */
++static int otp_read_field_show(struct seq_file *m, void *v)
++{
++	uint8_t *buffer;
++	const int buffer_size = 256;
++
++	buffer = kmalloc(buffer_size, GFP_KERNEL);
++	if (!buffer) {
++		seq_puts(m, "Memory allocation failed\n");
++		return -ENOMEM;
++	}
++	eswin_otp_read_field(m, user_field_name, buffer, buffer_size);
++	kfree(buffer);
++	memset(user_field_name, 0, FIELD_NAME_MAX_LEN);
++	return 0;
++}
++
++static int otp_read_field_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, otp_read_field_show, NULL);
++}
++
++/* Allow users to write the field name they want to read */
++static ssize_t otp_read_field_write(struct file *file, const char __user *user_buf,
++					size_t count, loff_t *ppos)
++{
++	if (count >= FIELD_NAME_MAX_LEN)
++		return -EINVAL;
++
++	if (copy_from_user(user_field_name, user_buf, count))
++		return -EFAULT;
++
++	user_field_name[count - 1] = '\0';	/* Ensure null termination */
++	return count;
++}
++
++static const struct file_operations otp_read_field_fops = {
++	.open		= otp_read_field_open,
++	.read		= seq_read,
++	.write		= otp_read_field_write,
++	.llseek		= seq_lseek,
++	.release	= single_release,
++};
++
++static int bit_addr = -1;
++
++/* seq_file show function for reading OTP bit */
++static int otp_read_bit_show(struct seq_file *m, void *v)
++{
++	uint8_t bit_data;
++
++	if (bit_addr == -1) {
++		seq_puts(m, "Please echo <bit offset> to /sys/kernel/debug/eswin_otp/read_bit first!\n");
++	} else {
++		if (eswin_otp_read_bit(bit_addr, &bit_data) < 0)
++			return -EFAULT;
++
++		seq_printf(m, "OTP Bit [%d]: %d\n", bit_addr, bit_data);
++		bit_addr = -1;
++	}
++
++	return 0;
++}
++
++/* Open function for seq_file */
++static int otp_read_bit_open(struct inode *inode, struct file *file)
++{
++	return single_open(file, otp_read_bit_show, NULL);
++}
++
++/* Write function to allow users to write a bit address */
++static ssize_t otp_read_bit_write(struct file *file, const char __user *user_buf,
++				  size_t count, loff_t *ppos)
++{
++	char buf[32];
++
++	if (copy_from_user(buf, user_buf, min(count, sizeof(buf) - 1)))
++		return -EFAULT;
++
++	buf[min(count, sizeof(buf) - 1)] = '\0';
++	if (kstrtoint(buf, 10, &bit_addr) < 0)
++		return -EINVAL;
++
++	return count;
++}
++
++/* File operations using seq_file */
++static const struct file_operations otp_read_bit_fops = {
++	.owner   = THIS_MODULE,
++	.open    = otp_read_bit_open,
++	.read    = seq_read,
++	.write   = otp_read_bit_write,
++	.llseek  = seq_lseek,
++	.release = single_release,
++};
++
++/* Initialize debugfs */
++static int __init otp_debugfs_init(void)
++{
++	otp_debugfs_dir = debugfs_create_dir(OTP_DEBUGFS_DIR, NULL);
++	if (!otp_debugfs_dir) {
++		pr_err("Failed to create OTP debugfs directory\n");
++		return -ENOMEM;
++	}
++
++	debugfs_create_file("read_field", 0666, otp_debugfs_dir, NULL, &otp_read_field_fops);
++	debugfs_create_file("read_bit", 0666, otp_debugfs_dir, NULL, &otp_read_bit_fops);
++
++	pr_info("ESWIN OTP debugfs initialized\n");
++	return 0;
++}
++
++/* Cleanup debugfs */
++static void __exit otp_debugfs_exit(void)
++{
++	debugfs_remove_recursive(otp_debugfs_dir);
++	pr_info("ESWIN OTP debugfs removed\n");
++}
++
++module_init(otp_debugfs_init);
++module_exit(otp_debugfs_exit);
++
++MODULE_AUTHOR("huangyifeng<huangyifeng@eswincomputing.com>");
++MODULE_LICENSE("GPL v2");
++MODULE_DESCRIPTION("ESWIN OTP Linux DebugFS Driver");
++MODULE_VERSION("1.0");
+diff --git a/drivers/soc/eswin/otp_eic770x.c b/drivers/soc/eswin/otp_eic770x.c
+new file mode 100644
+index 000000000000..b69624011e89
+--- /dev/null
++++ b/drivers/soc/eswin/otp_eic770x.c
+@@ -0,0 +1,857 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN OTP driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: Huangyifeng <huangifeng@eswincomputing.com>
++ */
++
++/**
++ * Include files
++ */
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN EIC770x SOC OTP  Driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
++ */
++#include <linux/io.h>
++#include <linux/slab.h>
++#include <linux/types.h>
++#include "otp_eic770x.h"
++
++void __iomem *crypto_otpc_io_base = NULL;
++
++const struct OTP_MAP_ITEM otp_map_eic770x[] = {
++	{ OTP_RSA_PUBLIC_KEY, OTP_RSA_PUBLIC_KEY_ADDR, OTP_RSA_PUBLIC_KEY_SIZE,
++		"rsa_public_key", 0 },
++
++	{ OTP_EXPONENT, OTP_EXPONENT_ADDR, OTP_EXPONENT_SIZE,
++		"exponent", 0 },
++
++	{ OTP_MEMORY_TO_MEMORY_SECRET_KEY, OTP_MEMORY_TO_MEMORY_SECRET_KEY_ADDR,
++		OTP_MEMORY_TO_MEMORY_SECRET_KEY_SIZE,
++		"memory_to_memory_secret_key", 0 },
++
++	{ OTP_BOOT_IMAGE_DECRYPTION_KEY, OTP_BOOT_IMAGE_DECRYPTION_KEY_ADDR,
++		OTP_BOOT_IMAGE_DECRYPTION_KEY_SIZE,
++		"boot_image_decryption_key", 0 },
++
++	{ OTP_WHOLE_MEMORY_ENCRYPTION_KEY, OTP_WHOLE_MEMORY_ENCRYPTION_KEY_ADDR,
++		OTP_WHOLE_MEMORY_ENCRYPTION_KEY_SIZE,
++		"whole_memory_encryption_key", 0 },
++
++	{ OTP_SECRET_KEY_ARRAY, OTP_SECRET_KEY_ARRAY_ADDR,
++		OTP_SECRET_KEY_ARRAY_SIZE,
++		"secret_key_array", 0 },
++
++	{ OTP_ECDSA_256BIT_KEY_X, OTP_ECDSA_256BIT_KEY_X_ADDR,
++		OTP_ECDSA_256BIT_KEY_X_SIZE,
++		"ecdsa_256bit_key_x", 0 },
++
++	{ OTP_ECDSA_256BIT_KEY_Y, OTP_ECDSA_256BIT_KEY_Y_ADDR,
++		OTP_ECDSA_256BIT_KEY_Y_SIZE,
++		"ecdsa_256bit_key_y", 0 },
++
++	{ OTP_ECDSA_256BIT_KEY_Z, OTP_ECDSA_256BIT_KEY_Z_ADDR,
++		OTP_ECDSA_256BIT_KEY_Z_SIZE,
++		"ecdsa_256bit_key_z", 0 },
++
++	{ OTP_PUBLIC_CERTIFICATION, OTP_PUBLIC_CERTIFICATION_ADDR,
++		OTP_PUBLIC_CERTIFICATION_SIZE,
++		"public_certification", 0},
++
++	{ OTP_DEVICE_PRIVATE_KEY, OTP_DEVICE_PRIVATE_KEY_ADDR,
++		OTP_DEVICE_PRIVATE_KEY_SIZE,
++		"device_private_key", 0 },
++
++	{ OTP_PASSWORD_FOR_DEBUGGING, OTP_PASSWORD_FOR_DEBUGGING_ADDR,
++		OTP_PASSWORD_FOR_DEBUGGING_SIZE,
++		"password_for_debugging", 0 },
++
++	{ OTP_SECURITY_ENABLE_CONTROL, OTP_SECURITY_ENABLE_CONTROL_ADDR,
++		OTP_SECURITY_ENABLE_CONTROL_SIZE,
++		"security_enable_control", 1 },
++
++	{ OTP_WHOLE_OTP_PROGRAMMING_DISABLE, OTP_WHOLE_OTP_PROGRAMMING_DISABLE_ADDR,
++		OTP_WHOLE_OTP_PROGRAMMING_DISABLE_SIZE,
++		"whole_programming_disable", 1 },
++
++	{ OTP_OTP_PAD_ACCESS_DISABLE, OTP_OTP_PAD_ACCESS_DISABLE_ADDR,
++		OTP_OTP_PAD_ACCESS_DISABLE_SIZE,
++		"pad_access_disable", 1 },
++
++	{ OTP_DEV_MOD, OTP_DEV_MODE_ADDR, OTP_DEV_MODE_SIZE,
++		"dev_mod", 1 },
++
++	{ OTP_MARKET_ID, OTP_MARKET_ID_ADDR, OTP_MARKET_ID_SIZE,
++		"market_id", 1 },
++
++	{ OTP_DEVICE_ID, OTP_DEVICE_ID_ADDR, OTP_DEVICE_ID_SIZE,
++		"device_id", 1 },
++
++	{ OTP_FUNCTIONAL_FEATURE_LIST, OTP_FUNCTIONAL_FEATURE_LIST_ADDR,
++		OTP_FUNCTIONAL_FEATURE_LIST_SIZE,
++		"functional_feature_list", 1 },
++
++	{ OTP_SECURITY_FEATURE_LIST, OTP_SECURITY_FEATURE_LIST_ADDR,
++		OTP_SECURITY_FEATURE_LIST_SIZE,
++		"security_feature_list", 1 },
++
++	{ OTP_UNIQUE_CHIP_ID, OTP_UNIQUE_CHIP_ID_ADDR, OTP_UNIQUE_CHIP_ID_SIZE,
++		"unique_chip_id", 0 },
++
++	{ OTP_NUMBER_OF_DIE, OTP_NUMBER_OF_DIE_ADDR, OTP_NUMBER_OF_DIE_SIZE,
++		"number_of_die", 0},
++
++	{ OTP_DIE_ORDINAL, OTP_DIE_ORDINAL_ADDR, OTP_DIE_ORDINAL_SIZE,
++		"die_ordinal", 0 },
++
++	{ OTP_DFT_INFORMATION, OTP_DFT_INFORMATION_ADDR, OTP_DFT_INFORMATION_SIZE,
++		"dft_information", 0 }
++};
++
++static u32 otp_read32(u64 index)
++{
++	u64 index_x;
++	u32 index_y;
++	u32 value1 = 0, value2 = 0;
++
++	/* Align index_x to a 4-byte boundary */
++	index_x = (index & ~0x3);
++	/* Get the byte offset within the 32-bit word */
++	index_y = index & 0x3;
++
++	/* If the index is already 4-byte aligned, read directly */
++	if (index_y == 0) {
++		return readl((void __iomem *)index_x);
++	} else {
++		/* Read two consecutive 32-bit values */
++		value1 = readl((void __iomem *)index_x);
++		value2 = readl((void __iomem *)(index_x + 4));
++
++		/* Shift and merge to extract the required 32-bit value */
++		value1 = value1 >> (index_y * 8);
++		value2 = value2 << ((4 - index_y) * 8);
++
++		return value1 | value2;
++	}
++}
++
++static void otp_write32(u64 index, u32 value)
++{
++	u64 index_x;
++	u32 index_y;
++	u32 value1 = 0, value2 = 0;
++
++	/* Align index_x to a 4-byte boundary */
++	index_x = (index & ~0x3);
++	/* Get the byte offset within the 32-bit word */
++	index_y = index & 0x3;
++
++	/* If the index is already 4-byte aligned, write directly */
++	if (index_y == 0) {
++		writel(value, (void __iomem *)index_x);
++	} else {
++		/* Read the first 32-bit word and modify the relevant bytes */
++		value1 = readl((void __iomem *)index_x);
++		value1 &= (0xFFFFFFFF >> (8 * (4 - index_y)));  /* Preserve existing higher bytes */
++		value2 = value << (8 * index_y);
++		value1 |= value2;
++		writel(value1, (void __iomem *)index_x);
++
++		/* Read the second 32-bit word and modify the relevant bytes */
++		value1 = readl((void __iomem *)(index_x + 4));
++		value1 &= (0xFFFFFFFF << (8 * index_y));  /* Preserve existing lower bytes */
++		value2 = value >> (8 * (4 - index_y));
++		value1 |= value2;
++		writel(value1, (void __iomem *)(index_x + 4));
++	}
++}
++
++/**
++ * otp init
++ */
++static s32 otp_init(void)
++{
++	u32           val0, val1, val2;
++	u32           i;
++	u32           count = 15000;
++	CHIP_CTRL_T    *p_chip_ctrl;
++	OTP_GLB_CTRL_T *p_otp_glb_ctrl;
++	OTP_STATUS_T   *p_otp_status;
++
++	p_chip_ctrl = (CHIP_CTRL_T *)(&val0);
++	p_otp_glb_ctrl = (OTP_GLB_CTRL_T *)(&val1);
++	p_otp_status = (OTP_STATUS_T *)(&val2);
++
++	if (!crypto_otpc_io_base) {
++		crypto_otpc_io_base = ioremap(CRYPTO_OTPC_BASE, 0x1000);
++	}
++	val0 = readl((void __iomem *)REG_OTPC_CHIP_CTRL);
++	if (p_chip_ctrl->por_otprd_done) {
++		writel(1, (void __iomem *)REG_OTPC_GLB_CTRL);
++	} else {
++		return ERR_OTP;
++	}
++	/* if init_otp is 1, init is not required, then return */
++	val1 = readl((void __iomem *)REG_OTPC_GLB_CTRL);
++	if (p_otp_glb_ctrl->init_otp)
++		return ERR_OK;
++
++	/* if init_otp is 0, set init_otp to 1, circular query init_done */
++	p_otp_glb_ctrl->init_otp = 1;
++	writel(val1, (void __iomem *)REG_OTPC_GLB_CTRL);
++
++	val2 = readl((void __iomem *)REG_OTPC_STATUS);
++	if (p_otp_status->otp_init_done)
++		return ERR_OK;
++
++	for (i = 0; i < count; i++) {
++		val1 = readl((void __iomem *)REG_OTPC_GLB_CTRL);
++		if (p_otp_glb_ctrl->init_otp)
++			break;
++	}
++
++	/* circular query init_done */
++	val2 = readl((void __iomem *)REG_OTPC_STATUS);
++	if (p_otp_status->otp_init_done)
++		return ERR_OK;
++
++	for (i = 0; i < count; i++) {
++		val2 = readl((void __iomem *)REG_OTPC_STATUS);
++		if (p_otp_status->otp_init_done)
++			break;
++	}
++	if (p_otp_status->otp_init_done)
++		return ERR_OK;
++
++	return ERR_OTP;
++}
++
++/**
++ * read idle status
++ */
++static s32 otp_read_status(void)
++{
++	u32         val;
++	u32         i;
++	u32         count = 15000;
++	OTP_STATUS_T *p_otp_status;
++	p_otp_status = (OTP_STATUS_T *)(&val);
++
++	val = readl((void __iomem *)REG_OTPC_STATUS);
++	if (!p_otp_status->otp_busy)
++		return ERR_OK;
++
++	for (i = 0; i < count; i++) {
++		val = otp_read32(REG_OTPC_STATUS);
++		if (!p_otp_status->otp_busy)
++			break;
++	}
++	if (!p_otp_status->otp_busy)
++		return ERR_OK;
++	return ERR_OTP;
++}
++
++/**
++ * Set otp read data parameter
++ * addr : otp memory address of read data
++ * len  : data size, the size must be no more than 128 byte
++ * enxor: enable or disable 4bitxor1bit
++ */
++static s32 otp_set_rd_para(u16 addr, u8 len, u8 enxor)
++{
++	u32           val;
++	RD_ADDR_SIZE_T *p_rd_addr_size;
++
++	if (len > MAX_OTP_READ_LEN)
++		return ERR_OTP;
++
++	p_rd_addr_size = (RD_ADDR_SIZE_T *)(&val);
++	val = otp_read32(REG_OTPC_RD_ADDR_SIZE);
++
++	p_rd_addr_size->rd_base_addr = addr;
++	p_rd_addr_size->rd_length    = len;
++	if (enxor) {
++		p_rd_addr_size->rd_4bitxor1bit_en = 1;
++	} else
++		p_rd_addr_size->rd_4bitxor1bit_en = 0;
++
++	otp_write32(REG_OTPC_RD_ADDR_SIZE, val);
++	val = otp_read32(REG_OTPC_RD_ADDR_SIZE);
++
++	return ERR_OK;
++}
++
++/**
++ * Configure the start word when reading data
++ */
++s32 otp_set_rd_start_word(void)
++{
++	otp_write32(REG_OTPC_CMD_WORD, RD_START_WORD);
++	return ERR_OK;
++}
++
++/**
++ * Query read done
++ */
++static s32 otp_query_rd_done(void)
++{
++	u32            val;
++	u32            i;
++	u32            count = 15000;
++	OTP_OP_STATUS_T *p_otp_op_status;
++
++	p_otp_op_status = (OTP_OP_STATUS_T *)(&val);
++	val             = otp_read32(REG_OTPC_OP_STATUS);
++
++	for (i = 0; i < count; i++) {
++		val = otp_read32(REG_OTPC_OP_STATUS);
++		if (p_otp_op_status->rdone_st)
++			break;
++	}
++	if (p_otp_op_status->rdone_st)
++		return ERR_OK;
++	return ERR_OTP;
++}
++
++/**
++ * Clear read done
++ */
++static s32 clear_rd_done(void)
++{
++	u32 val;
++	CLEAR_STATUS_INT_T *p_clr_status_int;
++
++	p_clr_status_int = (CLEAR_STATUS_INT_T *)(&val);
++	val = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++
++	p_clr_status_int->clr_rdone = 1;
++	otp_write32(REG_OTPC_CLEAR_STATUS_INT, val);
++	val = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++	if (p_clr_status_int->clr_rdone)
++		return ERR_OK;
++	return ERR_OTP;
++}
++
++/**
++ * Clear write done
++ */
++static s32 clear_wr_done(void)
++{
++	u32               val;
++	CLEAR_STATUS_INT_T *p_clr_status_int;
++
++	p_clr_status_int = (CLEAR_STATUS_INT_T *)(&val);
++	val              = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++
++	p_clr_status_int->clr_wrdone = 1;
++	otp_write32(REG_OTPC_CLEAR_STATUS_INT, val);
++	val = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++	if (p_clr_status_int->clr_wrdone)
++		return ERR_OK;
++	return ERR_OTP;
++}
++
++/**
++ * Clear pgmlock done
++
++s32 clear_pgmlock_done()
++{
++    u32               val;
++    CLEAR_STATUS_INT_T *p_clr_status_int;
++
++    p_clr_status_int = (CLEAR_STATUS_INT_T *)(&val);
++    val              = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++
++    p_clr_status_int->clr_pgmlock = 1;
++    otp_write32(REG_OTPC_CLEAR_STATUS_INT, val);
++    val = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++    if (p_clr_status_int->clr_pgmlock)
++        return ERR_OK;
++    return ERR_OTP;
++}
++*/
++/**
++ * Clear write fail
++ */
++static s32 clear_wr_fail(void)
++{
++	u32               val;
++	CLEAR_STATUS_INT_T *p_clr_status_int;
++
++	p_clr_status_int = (CLEAR_STATUS_INT_T *)(&val);
++	val              = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++
++	p_clr_status_int->clr_wrfail = 1;
++	otp_write32(REG_OTPC_CLEAR_STATUS_INT, val);
++	val = otp_read32(REG_OTPC_CLEAR_STATUS_INT);
++	if (p_clr_status_int->clr_wrfail)
++		return ERR_OK;
++	return ERR_OTP;
++}
++
++/**
++ * Clear readbuf
++ */
++static s32 clean_readbuf(void)
++{
++	u32 val;
++	OTP_GLB_CTRL_T *p_otp_glb_ctrl;
++
++	p_otp_glb_ctrl = (OTP_GLB_CTRL_T *)(&val);
++	val = otp_read32(REG_OTPC_GLB_CTRL);
++
++	if (p_otp_glb_ctrl->clean_readbuf) {
++		p_otp_glb_ctrl->clean_readbuf = 0;
++		otp_write32(REG_OTPC_GLB_CTRL, val);
++		return ERR_OK;
++	}
++	p_otp_glb_ctrl->clean_readbuf = 1;
++	otp_write32(REG_OTPC_GLB_CTRL, val);
++
++	p_otp_glb_ctrl->clean_readbuf = 0;
++	otp_write32(REG_OTPC_GLB_CTRL, val);
++	return ERR_OK;
++}
++
++/**
++ * read lock status
++ */
++static s32 otp_read_lock(void)
++{
++	u32 val;
++	OTP_STATUS_T *p_otp_status;
++
++	p_otp_status = (OTP_STATUS_T *)(&val);
++	val = otp_read32(REG_OTPC_STATUS);
++
++	if (p_otp_status->otp_bit_lock)
++		return ERR_OTP;
++
++	if (p_otp_status->otp_pgm_lock)
++		return ERR_OTP;
++
++	return ERR_OK;
++}
++
++/**
++ * Set otp write data parameter
++ * addr    : otp memory address of write data
++ * bit_mask: the bit_mask corresponds to the bits of the written data,
++ *           1-writable, 0-not writable
++ * data    : write data one byte at a time
++ * np2_num : the pulse num default is 0x2
++ */
++static s32 otp_set_wr_para(u16 addr, u8 bit_mask, u8 data, u8 np2_num)
++{
++	u64 val0, val1;
++	NP_PULSE_NUM_T *p_np_pulse_num;
++	WR_DATA_MASK_T *p_wr_data_mask;
++
++	p_np_pulse_num = (NP_PULSE_NUM_T *)(&val0);
++	val0 = otp_read32(REG_OTPC_NP_PULSE_NUM);
++	p_wr_data_mask = (WR_DATA_MASK_T *)(&val1);
++	val1 = otp_read32(REG_OTPC_WR_DATA_MASK);
++	p_np_pulse_num->np2_num = np2_num;
++
++	if (Default_np2_num != (int)p_np_pulse_num->np2_num)
++		otp_write32(REG_OTPC_NP_PULSE_NUM, (u32)val0);
++
++	p_wr_data_mask->wr_addr  = addr;
++	p_wr_data_mask->wr_data  = data;
++	p_wr_data_mask->wr_biten = bit_mask;
++	otp_write32(REG_OTPC_WR_DATA_MASK, (u32)val1);
++	return ERR_OK;
++}
++
++/**
++ * Configure the start word when writing data
++ */
++static s32 otp_set_wr_start_word(void)
++{
++	otp_write32(REG_OTPC_CMD_WORD, WR_START_WORD);
++	return ERR_OK;
++}
++
++/**
++ * Query write done
++ */
++static s32 otp_query_wr_done(u8 *wrfail_st)
++{
++	u32 val;
++	u32 i;
++	u32 count = 15000;
++	OTP_OP_STATUS_T *p_otp_op_status;
++
++	p_otp_op_status = (OTP_OP_STATUS_T *)(&val);
++	val = otp_read32(REG_OTPC_OP_STATUS);
++
++	if (NULL != wrfail_st)
++		*wrfail_st = p_otp_op_status->wrfail_st;
++
++	for (i = 0; i < count; i++) {
++		val = otp_read32(REG_OTPC_OP_STATUS);
++		if (p_otp_op_status->wrdone_st)
++			break;
++	}
++
++	if (p_otp_op_status->wrdone_st)
++		return ERR_OK;
++
++	return ERR_OTP;
++}
++
++/**
++* otp read data interface
++* data : the addr to put into readbuf
++* index : the addr to read data
++* size : otp read data size at one time
++* enxor : enable or disable 4bitxor1bit, 1-enbale, 0-disable
++* return: read data success or fail, 0-success, other-fail
++*/
++s32 otp_read_data(u8 *data, u32 index, u32 size, u8 enxor)
++{
++	s32 ret = ERR_OK;
++	u32 i, k;
++	u32 dw_len;
++	u32 count;
++	u32 val;
++	u32 remainder;
++	u32 dw_total_len = 0;
++	u32 repeat = 1000;
++	u16 rd_addr;
++	u8 *p_buf;
++
++	RD_PACKET_T *p_rd_packet;
++
++	if (NULL == data) {
++		pr_err("otp_read_data pointer of data is NULL, failed.\r\n");
++		return ERR_OTP;
++	}
++
++	if (0 == size) {
++		pr_err("otp_read_data size of data is 0, failed.\r\n");
++		return ERR_OTP;
++	}
++
++	count = (u32)(size / MAX_OTP_READ_LEN);
++	remainder = (u32)(size % MAX_OTP_READ_LEN);
++
++	rd_addr = (u16)index;
++	p_buf = data;
++
++	p_rd_packet = (RD_PACKET_T *)(&val);
++
++	for (k = 0; k < count; k++) {
++		ret = otp_init();
++		if (ERR_OK != ret) {
++			pr_err("otp_read_data, otp_init(k=%d) failed.\r\n", k);
++			return ret;
++		}
++
++		ret = otp_read_status();
++		if (ERR_OK != ret) {
++			pr_err("otp_read_data, otp_read_status(k=%d), failed.\r\n", k);
++			return ret;
++		}
++
++		ret = otp_set_rd_para(rd_addr, MAX_OTP_READ_LEN, enxor);
++		if (ERR_OK != ret) {
++			pr_err("otp_read_data(k=%d), otp_set_rd_para rd_addr=0x%x,MAX_OTP_READ_LEN,xor=%d, failed.\r\n",
++				k, rd_addr, enxor);
++			clean_readbuf();
++			return ret;
++		}
++
++		otp_set_rd_start_word();
++		ret = otp_query_rd_done();
++
++		if (ERR_OK != ret) {
++			pr_err("otp_read_data(k=%d), otp_query_rd_done, failed.\r\n", k);
++			clean_readbuf();
++			return ERR_OTP;
++		}
++
++		dw_len = 0;
++		for (i = 0; i < repeat; i++) {
++			val = otp_read32(REG_OTPC_RD_PACKET);
++
++			if (!p_rd_packet->rd_valid) {
++				continue;
++			}
++			*(p_buf + i) = p_rd_packet->rd_data;
++			dw_len++;
++			if (MAX_OTP_READ_LEN == dw_len)
++				break;
++			if (p_rd_packet->rd_last)
++				break;
++		}
++
++		if (MAX_OTP_READ_LEN != dw_len) {
++			pr_err("otp_read_data(k=%d), dw_len=%d, failed.\r\n", k, dw_len);
++			clean_readbuf();
++			clear_rd_done();
++			return ERR_OTP;
++		}
++
++		if (!p_rd_packet->rd_last) {
++			pr_err( "otp_read_data(k=%d), p_rd_packet->rd_last=0, failed.\r\n", k);
++			clean_readbuf();
++			clear_rd_done();
++			return ERR_OTP;
++		}
++		p_buf += MAX_OTP_READ_LEN;
++		rd_addr += MAX_OTP_READ_LEN;
++		dw_total_len += MAX_OTP_READ_LEN;
++		clean_readbuf();
++		clear_rd_done();
++	}
++
++	if (0 == remainder) {
++		if (!p_rd_packet->rd_last || size != dw_total_len) {
++			pr_err( "otp_read_data, size=%d,p_rd_packet->rd_last is %d and totalLen=%d, failed.\r\n",
++				size, p_rd_packet->rd_last, dw_total_len);
++			clean_readbuf();
++			clear_rd_done();
++			return ERR_OTP;
++		}
++		clean_readbuf();
++		clear_rd_done();
++		return ERR_OK;
++	}
++	ret = otp_init();
++	if (ERR_OK != ret) {
++		pr_err("otp_read_data, otp_init(remainder=%d) failed.\r\n", remainder);
++		return ret;
++	}
++
++	ret = otp_read_status();
++	if (ERR_OK != ret) {
++		pr_err("otp_read_data, otp_read_status(remainder=%d), failed.\r\n", remainder);
++		return ret;
++	}
++
++	ret = otp_set_rd_para(rd_addr, remainder, enxor);
++	if (ERR_OK != ret) {
++		pr_err( "otp_read_data,otp_set_rd_para addr=0x%x,remainder=%d,xor=%d,failed.\r\n", rd_addr, remainder, enxor);
++		clean_readbuf();
++		clear_rd_done();
++		return ret;
++	}
++
++	otp_set_rd_start_word();
++
++	ret = otp_query_rd_done();
++	if (ERR_OK != ret) {
++		pr_err("otp_read_data,otp_query_rd_done(remainder=%d),failed.\r\n", remainder);
++		clean_readbuf();
++		return ERR_OTP;
++	}
++
++	dw_len = 0;
++	for (i = 0; i < repeat; i++) {
++		val = otp_read32(REG_OTPC_RD_PACKET);
++		if (!p_rd_packet->rd_valid) {
++			continue;
++		}
++		*(p_buf + i) = p_rd_packet->rd_data;
++		dw_len++;
++		if (remainder == dw_len)
++			break;
++		if (p_rd_packet->rd_last)
++			break;
++	}
++
++	if (!p_rd_packet->rd_last) {
++		pr_err("otp_read_data(remainder=%d):p_rd_packet->rd_last is 0,failed.\r\n", remainder);
++		clean_readbuf();
++		clear_rd_done();
++		return ERR_OTP;
++	}
++
++	if (remainder != dw_len) {
++		pr_err("otp_read_data(remainder=%d):dw_len=%d,failed.\r\n", remainder, dw_len);
++		clean_readbuf();
++		clear_rd_done();
++		return ERR_OTP;
++	}
++
++	dw_total_len += remainder;
++
++	if (size != dw_total_len) {
++		pr_err("otp_read_data, size=%d and totalLen=%d, failed.\r\n", size, dw_total_len);
++		clean_readbuf();
++		clear_rd_done();
++		return ERR_OTP;
++	}
++	clean_readbuf();
++	clear_rd_done();
++	return ERR_OK;
++}
++
++/**
++ * otp write data interface
++ * addr   : the addr to write data
++ * data   : data to be written
++ * bit_mask: the bit_mask corresponds to the bits of the written data, 1-writable, 0-not writable
++ * return : write data success or fail, 0-success, other-fail
++ */
++s32 otp_write_data(u32 addr, u8 data, u8 bit_mask)
++{
++	s32 ret = ERR_OK;
++	u32 i;
++	u32 count = 1000;
++	u16 wr_addr;
++	u8 wrfail_st;
++
++	wr_addr = (u16)addr;
++	ret = otp_init();
++	if (ERR_OK != ret) {
++		pr_err("otp_write_data addr=0x%x, otp_init return not 0, failed.\r\n", addr);
++		return ret;
++	}
++
++	ret = otp_read_status();
++	if (ERR_OK != ret) {
++		pr_err("otp_write_data addr=0x%x, otp_read_status return not 0, failed.\r\n", addr);
++		return ret;
++	}
++
++	ret = otp_read_lock();
++	if (ERR_OK != ret) {
++		pr_err("otp_write_data addr=0x%x, otp_read_lock return not 0, failed.\r\n", addr);
++		return ERR_OTP;
++	}
++
++	for (i = 0; i < count; i++) {
++		otp_set_wr_para(wr_addr, bit_mask, data, Default_np2_num);
++		otp_set_wr_start_word();
++		ret = otp_query_wr_done(&wrfail_st);
++		if (ERR_OK != ret) {
++			pr_err("otp_write_data addr=0x%x, otp_query_wr_done failed.\r\n", addr);
++			return ERR_OTP;
++		}
++
++		if (wrfail_st != 0) {
++			bit_mask = wrfail_st;
++		} else {
++			break;
++		}
++	}
++	clear_wr_done();
++	clear_wr_fail();
++	return ERR_OK;
++}
++
++/**
++ * @brief  Get data from OTP
++ * @param [out] *data: addr of the data reading from otp
++ *              when enxor=1,the data is 4bitxor1bit result, the valid data size
++ *              is quarter of the input size.
++ *              when enxor=0,the valid data size is the input size.
++ * @param [in] otp_id: id of the data filed in otp
++ * @param [in] size: byte size of the data reading from otp.
++ * @param [in] enxor: enable 4bitxor1bit read.
++ *                   0 --- disable
++ *                   1 --- enable
++ * @return
++ *  - ERR_OK if no error.
++ *  - errorcode if error occur
++ */
++s32 get_otp_value(u8 *data, int otp_id, u32 size, u8 enxor)
++{
++	s32 ret = ERR_OK;
++	u32 address;
++	u32 item_size;
++	u32 rd_size;
++	u32 i, j;
++	int map_element_num;
++	u8 *rd_buff;
++
++	rd_size = size;
++	map_element_num = MAX_OTP_ITEM_NUM;
++
++	if (enxor) {
++		if (size != 1 && (size & 0x3) != 0)
++			return ERR_OTP_LEN;
++	}
++
++	if (otp_id >= map_element_num || NULL == data)
++		return ERR_OTP;
++
++	address = otp_map_eic770x[otp_id].otp_addr;
++	item_size = otp_map_eic770x[otp_id].otp_size;
++
++	if (rd_size > item_size)
++		return -EINVAL;
++
++	rd_buff = (u8 *)kmalloc(size, GFP_KERNEL);
++	if (!rd_buff)
++		return -ENOMEM;
++
++	memset(rd_buff, 0, size);
++	ret = otp_read_data(rd_buff, address, rd_size, enxor);
++	if (enxor && size >= 4) {
++		u8 tmp;
++		for (i = 0, j = 0; i < size; i = i + 4, j++) {
++			/*
++				otp.py generate the data in little endian
++				X86 is big endian, so change the btye order here.
++			*/
++			SWAP(rd_buff[i], rd_buff[i + 3]);
++			SWAP(rd_buff[i + 1], rd_buff[i + 2]);
++			tmp = 0x80 & rd_buff[i] << 3;
++			tmp += 0x40 & rd_buff[i] << 6;
++			tmp += 0x20 & rd_buff[i + 1] << 1;
++			tmp += 0x10 & rd_buff[i + 1] << 4;
++			tmp += 0x08 & rd_buff[i + 2] >> 1;
++			tmp += 0x04 & rd_buff[i + 2] << 2;
++			tmp += 0x02 & rd_buff[i + 3] >> 3;
++			tmp += 0x01 & rd_buff[i + 3];
++			data[j] = tmp;
++			/*
++			pr_err("i = %d\r\n", i);
++			pr_err("data before 4bitTo1bit = %02x %02x %02x %02x\r\n",
++				rd_buff[i], rd_buff[i + 1], rd_buff[i + 2],
++				rd_buff[i + 3]);
++			pr_err("data after 4bitTo1bit = %x\r\n", tmp);
++			*/
++		}
++	} else {
++		memcpy(data, rd_buff, size);
++	}
++	kfree(rd_buff);
++	return ret;
++}
++
+diff --git a/drivers/soc/eswin/otp_eic770x.h b/drivers/soc/eswin/otp_eic770x.h
+new file mode 100644
+index 000000000000..a6280839c05b
+--- /dev/null
++++ b/drivers/soc/eswin/otp_eic770x.h
+@@ -0,0 +1,90 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN OTP Driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
++ */
++
++#ifndef __OTP_EIC770X_H__
++#define __OTP_EIC770X_H__
++
++#include <asm/types.h>
++#include "otp_map_eic770x.h"
++
++#define ERR_OK 0
++#define ERR_OTP  -1
++#define ERR_OTP_LEN (ERR_OTP + 2)
++
++#define DEV_MODE     0x00
++#define DEV_MODE_BIT 0x01
++
++typedef struct {
++	u8 en_hevc_encode : 1;
++	u8 en_hevc_decode : 1;
++	u8 en_avc_encode  : 1;
++	u8 en_avc_decode  : 1;
++	u8 reserved0      : 4;
++
++	u8 reserved1;
++	u8 reserved2;
++	u8 reserved3;
++} FUNC_FEATURE_LIST_T;
++
++typedef struct {
++	u8 size_rsakey  : 1;
++	u8 size_m2mkey  : 1;
++	u8 size_bootkey : 1;
++	u8 whl_memkey   : 1;
++	u8 ecdsa_key    : 1;
++	u8 hdcp_key     : 1;
++	u8 dbg_pwd      : 1;
++	u8 scpu_fw_key  : 1;
++
++	u8 reserved1;
++	u8 reserved2;
++	u8 reserved3;
++} SEC_FEATURE_LIST_T;
++
++typedef struct {
++	FUNC_FEATURE_LIST_T func_list;
++	SEC_FEATURE_LIST_T  sec_list;
++	u8 dev_mode;
++} OTP_FEATURE_T;
++
++#ifndef SWAP
++/**
++ * @def SWAP
++ * @brief Swap two variables.
++ */
++#define SWAP(a, b)  \
++    {               \
++        (a) ^= b;   \
++        (b) ^= (a); \
++        (a) ^= (b); \
++    }
++#endif /* SWAP */
++
++extern OTP_FEATURE_T otp_feature;
++
++extern const struct OTP_MAP_ITEM otp_map_eic770x[];
++
++extern s32 otp_read_data(u8 *data, u32 index, u32 size, u8 enxor);
++extern s32 otp_write_data(u32 addr, u8 data, u8 bit_mask);
++extern s32 get_otp_value(u8 *data, s32 otp_id, u32 size, u8 enxor);
++extern s32 otp_pgmlock(void);
++#endif /*__OTP_EIC770X_H__*/
+diff --git a/drivers/soc/eswin/otp_map_eic770x.h b/drivers/soc/eswin/otp_map_eic770x.h
+new file mode 100644
+index 000000000000..1a21cad10532
+--- /dev/null
++++ b/drivers/soc/eswin/otp_map_eic770x.h
+@@ -0,0 +1,246 @@
++// SPDX-License-Identifier: GPL-2.0
++/*
++ * ESWIN OTP Driver
++ *
++ * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
++ * SPDX-License-Identifier: GPL-2.0
++ *
++ * This program is free software: you can redistribute it and/or modify
++ * it under the terms of the GNU General Public License as published by
++ * the Free Software Foundation, version 2.
++ *
++ * This program is distributed in the hope that it will be useful,
++ * but WITHOUT ANY WARRANTY; without even the implied warranty of
++ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
++ * GNU General Public License for more details.
++ *
++ * You should have received a copy of the GNU General Public License
++ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
++ *
++ * Authors: HuangYiFeng<huangyifeng@eswincomputing.com>
++ */
++
++#ifndef __OTP_MAP_EIC770X_H__
++#define __OTP_MAP_EIC770X_H__
++
++#include <asm/types.h>
++
++extern void __iomem *crypto_otpc_io_base;
++
++#define CRYPTO_OTPC_BASE    0x51B40000ul
++#define OTPC_CHIP_CTRL      (crypto_otpc_io_base + 0x3C)
++#define OTP_BASE  (0)
++#define OTPC_BASE ((uint64_t)crypto_otpc_io_base)
++
++/* OTP Memory Size 16K Byte(128K bit) */
++#define OTP_SIZE         2048
++#define OTP_MAPPING_SIZE 16384
++
++#define OTP_RSA_PUBLIC_KEY_ADDR                (OTP_BASE + 0x0)
++#define OTP_RSA_PUBLIC_KEY_SIZE                (256)
++#define OTP_EXPONENT_ADDR                      (OTP_BASE + 0x200)
++#define OTP_EXPONENT_SIZE                      (4)
++#define OTP_MEMORY_TO_MEMORY_SECRET_KEY_ADDR   (OTP_BASE + 0x210)
++#define OTP_MEMORY_TO_MEMORY_SECRET_KEY_SIZE   (16)
++#define OTP_BOOT_IMAGE_DECRYPTION_KEY_ADDR     (OTP_BASE + 0x230)
++#define OTP_BOOT_IMAGE_DECRYPTION_KEY_SIZE     (16)
++#define OTP_WHOLE_MEMORY_ENCRYPTION_KEY_ADDR   (OTP_BASE + 0x250)
++#define OTP_WHOLE_MEMORY_ENCRYPTION_KEY_SIZE   (16)
++#define OTP_SECRET_KEY_ARRAY_ADDR              (OTP_BASE + 0x26a)
++#define OTP_SECRET_KEY_ARRAY_SIZE              (256)
++#define OTP_ECDSA_256BIT_KEY_X_ADDR            (OTP_BASE + 0x36a)
++#define OTP_ECDSA_256BIT_KEY_X_SIZE            (32)
++#define OTP_ECDSA_256BIT_KEY_Y_ADDR            (OTP_BASE + 0x38a)
++#define OTP_ECDSA_256BIT_KEY_Y_SIZE            (32)
++#define OTP_ECDSA_256BIT_KEY_Z_ADDR            (OTP_BASE + 0x3aa)
++#define OTP_ECDSA_256BIT_KEY_Z_SIZE            (32)
++#define OTP_PUBLIC_CERTIFICATION_ADDR          (OTP_BASE + 0x3ca)
++#define OTP_PUBLIC_CERTIFICATION_SIZE          (522)
++#define OTP_DEVICE_PRIVATE_KEY_ADDR            (OTP_BASE + 0x5d4)
++#define OTP_DEVICE_PRIVATE_KEY_SIZE            (340)
++#define OTP_PASSWORD_FOR_DEBUGGING_ADDR        (OTP_BASE + 0x728)
++#define OTP_PASSWORD_FOR_DEBUGGING_SIZE        (16)
++#define OTP_RESERVED_FOR_OTHER_KEYS_ADDR       (OTP_BASE + 0x738)
++#define OTP_SECURITY_ENABLE_CONTROL_ADDR       (OTP_BASE + 0x800)
++#define OTP_SECURITY_ENABLE_CONTROL_SIZE       (1)
++#define OTP_WHOLE_OTP_PROGRAMMING_DISABLE_ADDR (OTP_BASE + 0x801)
++#define OTP_WHOLE_OTP_PROGRAMMING_DISABLE_SIZE (1)
++#define OTP_OTP_PAD_ACCESS_DISABLE_ADDR        (OTP_BASE + 0x802)
++#define OTP_OTP_PAD_ACCESS_DISABLE_SIZE        (1)
++#define OTP_DEV_MODE_ADDR                      (OTP_BASE + 0x803)
++#define OTP_DEV_MODE_SIZE                      (1)
++#define OTP_MARKET_ID_ADDR                     (OTP_BASE + 0x80c)
++#define OTP_MARKET_ID_SIZE                     (32)
++#define OTP_DEVICE_ID_ADDR                     (OTP_BASE + 0x82c)
++#define OTP_DEVICE_ID_SIZE                     (32)
++#define OTP_FUNCTIONAL_FEATURE_LIST_ADDR       (OTP_BASE + 0x84c)
++#define OTP_FUNCTIONAL_FEATURE_LIST_SIZE       (16)
++#define OTP_SECURITY_FEATURE_LIST_ADDR         (OTP_BASE + 0x85c)
++#define OTP_SECURITY_FEATURE_LIST_SIZE         (16)
++#define OTP_UNIQUE_CHIP_ID_ADDR                (OTP_BASE + 0xc00)
++#define OTP_UNIQUE_CHIP_ID_SIZE                (16)
++#define OTP_NUMBER_OF_DIE_ADDR                 (OTP_BASE + 0xc10)
++#define OTP_NUMBER_OF_DIE_SIZE                 (1)
++#define OTP_DIE_ORDINAL_ADDR                   (OTP_BASE + 0xc11)
++#define OTP_DIE_ORDINAL_SIZE                   (1)
++#define OTP_DFT_INFORMATION_ADDR               (OTP_BASE + 0xc80)
++#define OTP_DFT_INFORMATION_SIZE               (256)
++
++enum {
++	OTP_RSA_PUBLIC_KEY                = 0,
++	OTP_EXPONENT                      = 1,
++	OTP_MEMORY_TO_MEMORY_SECRET_KEY   = 2,
++	OTP_BOOT_IMAGE_DECRYPTION_KEY     = 3,
++	OTP_WHOLE_MEMORY_ENCRYPTION_KEY   = 4,
++	OTP_SECRET_KEY_ARRAY              = 5,
++	OTP_ECDSA_256BIT_KEY_X            = 6,
++	OTP_ECDSA_256BIT_KEY_Y            = 7,
++	OTP_ECDSA_256BIT_KEY_Z            = 8,
++	OTP_PUBLIC_CERTIFICATION          = 9,
++	OTP_DEVICE_PRIVATE_KEY            = 10,
++	OTP_PASSWORD_FOR_DEBUGGING        = 11,
++	OTP_SECURITY_ENABLE_CONTROL       = 12,
++	OTP_WHOLE_OTP_PROGRAMMING_DISABLE = 13,
++	OTP_OTP_PAD_ACCESS_DISABLE        = 14,
++	OTP_DEV_MOD                       = 15,
++	OTP_MARKET_ID                     = 16,
++	OTP_DEVICE_ID                     = 17,
++	OTP_FUNCTIONAL_FEATURE_LIST       = 18,
++	OTP_SECURITY_FEATURE_LIST         = 19,
++	OTP_UNIQUE_CHIP_ID                = 20,
++	OTP_NUMBER_OF_DIE                 = 21,
++	OTP_DIE_ORDINAL                   = 22,
++	OTP_DFT_INFORMATION               = 23,
++	MAX_OTP_ITEM_NUM,
++};
++
++struct OTP_MAP_ITEM {
++	s32 otp_id;
++	s32 otp_addr;
++	s32 otp_size;
++	char *name;
++	u8 enxor;
++};
++
++/* OTPC Register */
++#define REG_OTPC_RD_ADDR_SIZE     (OTPC_BASE + 0x14)
++#define REG_OTPC_RD_PACKET        (OTPC_BASE + 0x18)
++#define REG_OTPC_OP_STATUS        (OTPC_BASE + 0x1c)
++#define REG_OTPC_CLEAR_STATUS_INT (OTPC_BASE + 0x20)
++#define REG_OTPC_GLB_CTRL         (OTPC_BASE + 0x30)
++#define REG_OTPC_CMD_WORD         (OTPC_BASE + 0x34)
++#define REG_OTPC_STATUS           (OTPC_BASE + 0x38)
++#define REG_OTPC_CHIP_CTRL        (OTPC_BASE + 0X3C)
++#define REG_OTPC_NP_PULSE_NUM     (OTPC_BASE + 0x40)
++#define REG_OTPC_WR_DATA_MASK     (OTPC_BASE + 0x44)
++
++#define RD_START_WORD      0x6ACCACC6
++#define WR_START_WORD      0x9ACCACC9
++#define PGMLOCK_START_WORD 0x10C610C6
++#define Default_np2_num    0x02
++#define MAX_OTP_READ_LEN   128
++
++typedef struct {
++	u16 rd_base_addr      : 16; /* 0-15 */
++	u8  rd_length         : 8;  /* 16-23 */
++	u8  rd_4bitxor1bit_en : 1;  /* 24 */
++	u8  reserved0         : 7;  /* 25-31 */
++} RD_ADDR_SIZE_T;
++
++typedef struct {
++	u8 rd_data   : 8; /* 0-7 */
++	u8 rd_last   : 1; /* 8 */
++	u8 reserved0 : 3; /* 9-11 */
++	u8 rd_valid  : 1; /* 12 */
++	u8 reserved1 : 3; /* 13-15 */
++	u8 reserved2;
++	u8 reserved3;
++} RD_PACKET_T;
++
++typedef struct {
++	u8 wrfail_st  : 8; /* 0-7 */
++	u8 wrdone_st  : 1; /* 8 */
++	u8 pgmlock_st : 1; /* 9 */
++	u8 rdone_st   : 1; /* 10 */
++	u8 reserved0  : 5; /* 11-15 */
++	u8 reserved1;
++	u8 reserved2;
++} OTP_OP_STATUS_T;
++
++typedef struct {
++	u8 clr_rdone   : 1; /* 0 */
++	u8 clr_wrdone  : 1; /* 1 */
++	u8 clr_wrfail  : 1; /* 2 */
++	u8 clr_pgmlock : 1; /* 3 */
++	u8 reserved0   : 4; /* 4-7 */
++	u8 reserved1;
++	u8 reserved2;
++	u8 reserved3;
++} CLEAR_STATUS_INT_T;
++
++typedef struct {
++	u8 init_otp           : 1; /* 0 */
++	u8 reserved0          : 1; /* 1 */
++	u8 pgmlock_en         : 1; /* 2 */
++	u8 clean_readbuf      : 1; /* 3 */
++	u8 wrdone_int_en      : 1; /* 4 */
++	u8 rdone_int_en       : 1; /* 5 */
++	u8 pgmlock_done_inten : 1; /* 6 */
++	u8 clear_dut          : 1; /* 7 */
++	u8 jtag2apb_acc       : 1; /* 8 */
++	u8 progfail_int_en    : 1; /* 9 */
++	u8 reserved1          : 6; /* 10-15 */
++	u8 reserved2;
++	u8 reserved3;
++} OTP_GLB_CTRL_T;
++
++
++typedef struct {
++	u8 otp_busy      : 1; /* 0 */
++	u8 otp_pgm_lock  : 1; /* 1 */
++	u8 otp_bit_lock  : 1; /* 2 */
++	u8 otp_init_done : 1; /* 3 */
++	u8 reserved0     : 4; /* 4-7 */
++	u8 reserved1;
++	u8 reserved2;
++	u8 reserved3;
++} OTP_STATUS_T;
++
++typedef struct {
++	u8  die_num              : 8; /* 0-7 */
++	u8  die_ordinal          : 8; /* 8-15 */
++	u8  por_otprd_done       : 1; /* 16 */
++	u8  secure_mode          : 1; /* 17 */
++	u8  scpu_jtag_disable    : 1; /* 18 */
++	u8  otp_padacc_disable   : 1; /* 19 */
++	u8  otp_jtag2apb_disable : 2; /* 20-21 */
++	u16 reserved;
++} CHIP_CTRL_T;
++
++typedef struct {
++	u8 np1_num     : 2; /* 0-1 */
++	u8 reserved0   : 2; /* 2-3 */
++	u8 np2_num     : 6; /* 4-9 */
++	u8 reserved1   : 2; /* 10-11 */
++	u8 cap_d0_mode : 1; /* 12 */
++	u8 reserved2   : 3; /* 13-15 */
++	u8 reserved3;
++	u8 reserved4;
++} NP_PULSE_NUM_T;
++
++typedef struct {
++	u8  wr_data  : 8;  /* 0-7 */
++	u8  wr_biten : 8;  /* 8-15 */
++	u16 wr_addr  : 16; /* 16-31 */
++} WR_DATA_MASK_T;
++
++typedef enum {
++	OFFSET_DIE_NUM,
++	OFFSET_DIE_ORDINAL       = 8,
++	OFFSET_POR_OPTRD_DONE    = 16,
++	OFFSET_SECURE_MODE       = 17,
++	OFFSET_SCPU_JTAG_DISABLE = 18,
++	OFFSET_PADACC_DISABLE    = 19,
++	OFFSET_JTAG2APB_DISABLE  = 20,
++} CHIP_CTRL_OFFSET_T;
++#endif /* __OTP_MAP_EIC770X_H__ */
+-- 
+2.50.1
+

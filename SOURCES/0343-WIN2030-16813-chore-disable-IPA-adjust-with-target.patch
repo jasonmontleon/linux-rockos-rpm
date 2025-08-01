@@ -1,0 +1,124 @@
+From ed0d1e45fe0e3a4e91ecbba5d60f6d7f65dd5248 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Mon, 16 Dec 2024 17:00:09 +0800
+Subject: [PATCH 343/552] WIN2030-16813:chore:disable IPA adjust with target
+
+Changelogs:
+Disable IPA adjust from soc dtsi
+
+Change-Id: I8440ce20ac07f52ecc990b741661f93a59a6f907
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ .../boot/dts/eswin/eswin-win2030-die0-soc.dtsi     | 14 +++++++++-----
+ .../boot/dts/eswin/eswin-win2030-die1-soc.dtsi     | 14 +++++++++-----
+ 2 files changed, 18 insertions(+), 10 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index cf19b169cdc9..2e72cf2fd61c 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -41,9 +41,10 @@ thermal0 {
+ 			thermal-sensors = <&pvt0>;
+ 
+ 			trips {
++				/*
+ 				threshold: trip-point0 {
+-					temperature = <60000>; /* DC*1000 */
+-					hysteresis = <1000>; /* DC*1000 */
++					temperature = <60000>;
++					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 				target: trip-point1 {
+@@ -51,14 +52,16 @@ target: trip-point1 {
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
++				*/
+ 				crit: trip-point2 {
+-					temperature     = <110000>;
++					temperature     = <88000>;
+ 					hysteresis      = <0>;
+ 					type            = "critical";
+ 				};
+ 			};
+ 
+ 			cooling-maps {
++				/*
+ 				map0 {
+ 					trip = <&target>;
+ 					contribution = <1024>;
+@@ -70,14 +73,15 @@ map0 {
+ 				};
+ 				map1 {
+ 					trip = <&target>;
+-					contribution = <1024>; /*TBD*/
++					contribution = <1024>;
+ 					cooling-device = <&d0_npu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 				map2 {
+ 					trip = <&target>;
+-					contribution = <1024>; /*TBD*/
++					contribution = <1024>;
+ 					cooling-device = <&gpu0 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
++				*/
+ 			};
+ 		};
+ 	};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 5f4cbafe5a48..65146bf6141a 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -38,9 +38,10 @@ d1_thermal0 {
+ 			thermal-sensors = <&d1_pvt0>;
+ 
+ 			trips {
++				/*
+ 				d1_threshold: trip-point0 {
+-					temperature = <60000>; /* DC*1000 */
+-					hysteresis = <1000>; /* DC*1000 */
++					temperature = <60000>;
++					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 				d1_target: trip-point1 {
+@@ -48,14 +49,16 @@ d1_target: trip-point1 {
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
++				*/
+ 				d1_crit: trip-point2 {
+-					temperature     = <110000>;
++					temperature     = <88000>;
+ 					hysteresis      = <0>;
+ 					type            = "critical";
+ 				};
+ 			};
+ 
+ 			cooling-maps {
++				/*
+ 				map0 {
+ 					trip = <&d1_target>;
+ 					contribution = <1024>;
+@@ -67,14 +70,15 @@ map0 {
+ 				};
+ 				map1 {
+ 					trip = <&d1_target>;
+-					contribution = <1024>; /*TBD*/
++					contribution = <1024>;
+ 					cooling-device = <&d1_npu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
+ 				map2 {
+ 					trip = <&d1_target>;
+-					contribution = <1024>; /*TBD*/
++					contribution = <1024>;
+ 					cooling-device = <&d1_gpu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
++				*/
+ 			};
+ 		};
+ 	};
+-- 
+2.50.1
+

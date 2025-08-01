@@ -1,0 +1,46 @@
+From b60c69fe8a6fe273482fc1d787c9eb728e25595a Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Wed, 25 Dec 2024 11:51:07 +0800
+Subject: [PATCH 356/552] WIN2030-16883:fix:npu die1 clock miss
+
+Changelogs:
+	1. add npu die1 miseed clock
+
+Change-Id: Ieec0e1ac0214a3811ed5a295db39263a505c527f
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index a15a50825f39..b7405c6d6e49 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -913,7 +913,7 @@ d1_npu: eswin-npu@71c00000 {
+ 			reg = <0x0 0x71c00000 0x0 0x400000>;
+ 			interrupt-parent = <&plic1>;
+ 			interrupts = <387 16>;
+-			spram-region = <&npu1_reserved>;
++			/* spram-region = <&npu1_reserved>;*/
+ 			#size-cells = <2>;
+ 			dma-ranges = <0x1 0x0 0x0 0xc0000000 0x1ff 0x0>;
+ 			iommus = <&smmu1 WIN2030_SID_NPU_DMA>;
+@@ -924,8 +924,13 @@ d1_npu: eswin-npu@71c00000 {
+ 			clocks = <&d1_clock WIN2030_CLK_NPU_ACLK>,
+ 					<&d1_clock WIN2030_CLK_NPU_CFG_CLK>,
+ 					<&d1_clock WIN2030_CLK_NPU_CLK>,
+-					<&d1_clock WIN2030_CLK_NPU_E31_CLK>;
+-			clock-names = "aclk", "cfg_clk", "core_clk", "e31_core_clk";
++					<&d1_clock WIN2030_CLK_NPU_E31_CLK>,
++					<&d1_clock WIN2030_MUX_U_NPU_CORE_3MUX1_GFREE>,
++					<&d1_clock WIN2030_SPLL2_FOUT2>,
++					<&d1_clock WIN2030_SPLL1_FOUT1>;
++
++			clock-names = "aclk", "cfg_clk", "core_clk", "e31_core_clk", "mux_u_npu_core_3mux1_gfree", "fixed_rate_clk_spll2_fout2",
++					"fixed_rate_clk_spll1_fout1";
+ 
+ 			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+-- 
+2.50.1
+

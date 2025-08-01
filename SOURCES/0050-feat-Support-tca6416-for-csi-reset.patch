@@ -1,7 +1,7 @@
-From d8725230fc77cb92c0c22812a6e89416ee22a4df Mon Sep 17 00:00:00 2001
+From 2dfad597a4ad068b083e35c06201123d56c8726c Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Thu, 13 Jun 2024 14:17:37 +0800
-Subject: [PATCH 050/551] feat:Support tca6416 for csi reset
+Subject: [PATCH 050/552] feat:Support tca6416 for csi reset
 
 Changelogs:
 1.Enable tca6416 gpio expaner
