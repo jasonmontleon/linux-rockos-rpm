@@ -1,6 +1,8 @@
-# EIC7700 kernel
-This repo contains source for an EIC7700 Fedora kernel.
+# ESWIN kernel
+This repo contains build artifacts for Fedora kernels.
 
 Patches are generated from https://github.com/jmontleon/linux-rockos
 
-The source is generated with a command like: `export ver=6.6.78; mv linux linux-${ver}; tar --exclude-vcs -Jcvf ~/linux-${ver}.tar.xz linux-${ver}; mv linux-${ver} linux`
+For stable kernels with ESWIN patches see [jmontleon/linux-eswin-rpm](https://github.com/jmontleon/linux-eswin-rpm)
+
+Upstream source is located at [rockos-riscv/rockos-kernel](https://github.com/rockos-riscv/rockos-kernel)
