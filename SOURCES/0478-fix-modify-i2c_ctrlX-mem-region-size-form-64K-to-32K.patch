@@ -1,7 +1,7 @@
-From 89d0a70d0cc7122ff554786aed9f583174bc9a2c Mon Sep 17 00:00:00 2001
+From 259ae15e4da18d5b65521e8bc92e54d8586b6246 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 17 Apr 2025 16:04:08 +0800
-Subject: [PATCH 478/552] fix:modify i2c_ctrlX mem region size form 64K to 32K
+Subject: [PATCH 478/654] fix:modify i2c_ctrlX mem region size form 64K to 32K
 
 Changelogs:
 

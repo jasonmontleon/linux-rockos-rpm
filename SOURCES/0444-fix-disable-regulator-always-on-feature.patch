@@ -1,7 +1,7 @@
-From 2d8882cb587ae30c9e07523a8f445701371da27a Mon Sep 17 00:00:00 2001
+From f2d65838ef5e66fbad96714cc0696bc227989591 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 17 Mar 2025 17:46:39 +0800
-Subject: [PATCH 444/552] fix:disable regulator-always-on feature
+Subject: [PATCH 444/654] fix:disable regulator-always-on feature
 
 Changelogs:
 Delete regulator-always-on in all dts

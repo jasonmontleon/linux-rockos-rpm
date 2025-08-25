@@ -1,7 +1,7 @@
-From 2681e128d9447a4c6b742b0ba84d39fb60719ba5 Mon Sep 17 00:00:00 2001
+From acd05c922c3911f82a4492d0323c3b20c8e43358 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 10 Jan 2025 18:58:10 +0800
-Subject: [PATCH 395/552] WIN2030-14758:perf:Improve GPU mmu operation and
+Subject: [PATCH 395/654] WIN2030-14758:perf:Improve GPU mmu operation and
  schedule domain
 
 Changelogs:
@@ -960,10 +960,10 @@ index a0357b43d914..110497d4d5af 100644
          PRINT_INFO("cycle_elapsed:%lld---%%\%lld.%2lld, %s\n",
              m_perf_i->cycles_elapased, (100*m_perf_i->cycles_elapased)/total_cycles,
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index fcf84390cf9f..1144f3f1f902 100644
+index 5f0b82502b2c..2593c05d02c3 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
-@@ -8431,6 +8431,7 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
+@@ -8430,6 +8430,7 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)
  	put_task_struct(p);
  	return retval;
  }

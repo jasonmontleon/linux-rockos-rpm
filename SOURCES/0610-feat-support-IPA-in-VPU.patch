@@ -1,0 +1,400 @@
+From 583b4ee2b5aacc9dc88984aa39ca6b2f9e6d7f27 Mon Sep 17 00:00:00 2001
+From: zhouliang1 <zhouliang1@eswincomputing.com>
+Date: Fri, 4 Jul 2025 17:10:14 +0800
+Subject: [PATCH 610/654] feat:support IPA in VPU
+
+Changelogs:
+1.update defconfig to support IPA in VPU7702
+2.update power_status of d0_pmu_vi and
+d0_pmu_vo to be 0
+3.disable usb and ssi0
+
+Signed-off-by: zhouliang1 <zhouliang1@eswincomputing.com>
+Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts | 70 +++++++++++++++++--
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts    | 70 +++++++++++++++++--
+ arch/riscv/configs/vpu7702_evb_defconfig      | 21 +++++-
+ arch/riscv/configs/vpu7702_pcie_a2_defconfig  | 21 +++++-
+ arch/riscv/configs/vpu7702_pcie_defconfig     | 21 +++++-
+ 5 files changed, 190 insertions(+), 13 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
+index c21cb0f225ac..db3f39182aec 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
+@@ -253,6 +253,59 @@ ok_key {
+ 	};
+ };
+ 
++/ {
++	thermal-zones {
++		thermal0 {
++			trips {
++				threshold: trip-point0 {
++					temperature = <65000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++				target: trip-point1 {
++					temperature = <75000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++				crit: trip-point2 {
++					temperature     = <95000>;
++					hysteresis      = <0>;
++					type            = "critical";
++				};
++			};
++
++			cooling-maps {
++				/*
++				map0 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device =
++						<&cpu_0 0 10>,
++						<&cpu_1 0 10>,
++						<&cpu_2 0 10>,
++						<&cpu_3 0 10>;
++				};
++				map1 {
++					trip = <&target>;
++					contribution = <4096>;
++					cooling-device = <&g2d_opp_table THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				map2 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device = <&venc_opp_table THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				map3 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device = <&vdec_opp_table THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				*/
++			};
++		};
++	};
++};
++
+ &d0_clock {
+ 	status = "okay";
+ };
+@@ -263,6 +316,13 @@ &d0_reset {
+ 
+ &d0_pmu {
+ 	status = "okay";
++
++	d0_pmu_vi: win2030-pmu-controller-port@80 {
++		power_status = <0>;
++	};
++	d0_pmu_vo: win2030-pmu-controller-port@c0 {
++		power_status = <0>;
++	};
+ };
+ 
+ &ddr0 {
+@@ -670,21 +730,21 @@ &d0_sata {
+ };
+ 
+ &d0_usbdrd3_0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_usbdrd_dwc3_0 {
+-	status = "okay";
++	status = "disabled";
+ 	dr_mode = "host";
+ 	maximum-speed = "super-speed";
+ };
+ 
+ &d0_usbdrd3_1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_usbdrd_dwc3_1 {
+-	status = "okay";
++	status = "disabled";
+ 	dr_mode = "host";
+ 	maximum-speed = "super-speed";
+ };
+@@ -724,7 +784,7 @@ &d0_uart4 {
+ 
+ &ssi0 {
+ 	/* spi flash */
+-	status = "okay";
++	status = "disabled";
+ 	num-cs = <2>;
+ 	spi-flash@0 {
+ 		compatible = "winbond,w25q128fw",
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index 30aa28ee5b0e..91bd3ce4b44f 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -253,6 +253,59 @@ ok_key {
+ 	};
+ };
+ 
++/ {
++	thermal-zones {
++		thermal0 {
++			trips {
++				threshold: trip-point0 {
++					temperature = <65000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++				target: trip-point1 {
++					temperature = <75000>;
++					hysteresis = <1000>;
++					type = "passive";
++				};
++				crit: trip-point2 {
++					temperature     = <95000>;
++					hysteresis      = <0>;
++					type            = "critical";
++				};
++			};
++
++			cooling-maps {
++				/*
++				map0 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device =
++						<&cpu_0 0 10>,
++						<&cpu_1 0 10>,
++						<&cpu_2 0 10>,
++						<&cpu_3 0 10>;
++				};
++				map1 {
++					trip = <&target>;
++					contribution = <4096>;
++					cooling-device = <&g2d_opp_table THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				map2 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device = <&venc_opp_table THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				map3 {
++					trip = <&target>;
++					contribution = <1024>;
++					cooling-device = <&vdec_opp_table THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++				};
++				*/
++			};
++		};
++	};
++};
++
+ &d0_clock {
+ 	status = "okay";
+ };
+@@ -263,6 +316,13 @@ &d0_reset {
+ 
+ &d0_pmu {
+ 	status = "okay";
++
++	d0_pmu_vi: win2030-pmu-controller-port@80 {
++		power_status = <0>;
++	};
++	d0_pmu_vo: win2030-pmu-controller-port@c0 {
++		power_status = <0>;
++	};
+ };
+ 
+ &ddr0 {
+@@ -670,21 +730,21 @@ &d0_sata {
+ };
+ 
+ &d0_usbdrd3_0 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_usbdrd_dwc3_0 {
+-	status = "okay";
++	status = "disabled";
+ 	dr_mode = "host";
+ 	maximum-speed = "super-speed";
+ };
+ 
+ &d0_usbdrd3_1 {
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_usbdrd_dwc3_1 {
+-	status = "okay";
++	status = "disabled";
+ 	dr_mode = "host";
+ 	maximum-speed = "super-speed";
+ };
+@@ -724,7 +784,7 @@ &d0_uart4 {
+ 
+ &ssi0 {
+ 	/* spi flash */
+-	status = "okay";
++	status = "disabled";
+ 	num-cs = <2>;
+ 	spi-flash@0 {
+ 		compatible = "winbond,w25q128fw",
+diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
+index bd2d85a0e7cb..36756a8dfd50 100644
+--- a/arch/riscv/configs/vpu7702_evb_defconfig
++++ b/arch/riscv/configs/vpu7702_evb_defconfig
+@@ -39,11 +39,14 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
+ CONFIG_CMDLINE_EXTEND=y
+ CONFIG_PM_DEBUG=y
+ CONFIG_PM_ADVANCED_DEBUG=y
++CONFIG_SUSPEND=y
++CONFIG_ENERGY_MODEL=y
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
+-CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
++CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
++CONFIG_CPU_FREQ_GOV_USERSPACE=y
+ CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+ CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+ CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
+@@ -464,6 +467,15 @@ CONFIG_SENSORS_ESWIN_FAN_CONTROL=y
+ CONFIG_SENSORS_ESWIN_PVT=y
+ CONFIG_SENSORS_INA2XX=y
+ CONFIG_SENSORS_PAC1934=y
++CONFIG_THERMAL=y
++CONFIG_THERMAL_STATISTICS=y
++CONFIG_THERMAL_WRITABLE_TRIPS=y
++CONFIG_THERMAL_DEFAULT_GOV_POWER_ALLOCATOR=y
++CONFIG_THERMAL_GOV_STEP_WISE=y
++CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
++CONFIG_CPU_THERMAL=y
++CONFIG_DEVFREQ_THERMAL=y
++CONFIG_THERMAL_EMULATION=y
+ CONFIG_WATCHDOG=y
+ CONFIG_DW_WATCHDOG=y
+ CONFIG_REGULATOR=y
+@@ -741,6 +753,13 @@ CONFIG_RPMSG_VIRTIO=y
+ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
++CONFIG_PM=y
++CONFIG_PM_SLEEP=y
++CONFIG_PM_DEVFREQ=y
++CONFIG_DEVFREQ_GOV_USERSPACE=y
++CONFIG_DEVFREQ_GOV_PERFORMANCE=y
++CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
++CONFIG_PM_DEVFREQ_EVENT=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+ CONFIG_ESWIN_BUDDY=y
+diff --git a/arch/riscv/configs/vpu7702_pcie_a2_defconfig b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
+index aeee72205a4e..e70e59a4fb41 100644
+--- a/arch/riscv/configs/vpu7702_pcie_a2_defconfig
++++ b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
+@@ -39,11 +39,14 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
+ CONFIG_CMDLINE_EXTEND=y
+ CONFIG_PM_DEBUG=y
+ CONFIG_PM_ADVANCED_DEBUG=y
++CONFIG_SUSPEND=y
++CONFIG_ENERGY_MODEL=y
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
+-CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
++CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
++CONFIG_CPU_FREQ_GOV_USERSPACE=y
+ CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+ CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+ CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
+@@ -463,6 +466,15 @@ CONFIG_SENSORS_ESWIN_FAN_CONTROL=y
+ CONFIG_SENSORS_ESWIN_PVT=y
+ CONFIG_SENSORS_INA2XX=y
+ CONFIG_SENSORS_PAC1934=y
++CONFIG_THERMAL=y
++CONFIG_THERMAL_STATISTICS=y
++CONFIG_THERMAL_WRITABLE_TRIPS=y
++CONFIG_THERMAL_DEFAULT_GOV_POWER_ALLOCATOR=y
++CONFIG_THERMAL_GOV_STEP_WISE=y
++CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
++CONFIG_CPU_THERMAL=y
++CONFIG_DEVFREQ_THERMAL=y
++CONFIG_THERMAL_EMULATION=y
+ CONFIG_WATCHDOG=y
+ CONFIG_DW_WATCHDOG=y
+ CONFIG_REGULATOR=y
+@@ -741,6 +753,13 @@ CONFIG_RPMSG_VIRTIO=y
+ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
++CONFIG_PM=y
++CONFIG_PM_SLEEP=y
++CONFIG_PM_DEVFREQ=y
++CONFIG_DEVFREQ_GOV_USERSPACE=y
++CONFIG_DEVFREQ_GOV_PERFORMANCE=y
++CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
++CONFIG_PM_DEVFREQ_EVENT=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+ CONFIG_ESWIN_BUDDY=y
+diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
+index eb06fee59706..45b98b871a63 100644
+--- a/arch/riscv/configs/vpu7702_pcie_defconfig
++++ b/arch/riscv/configs/vpu7702_pcie_defconfig
+@@ -39,11 +39,14 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
+ CONFIG_CMDLINE_EXTEND=y
+ CONFIG_PM_DEBUG=y
+ CONFIG_PM_ADVANCED_DEBUG=y
++CONFIG_SUSPEND=y
++CONFIG_ENERGY_MODEL=y
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
+-CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
++CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
++CONFIG_CPU_FREQ_GOV_USERSPACE=y
+ CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+ CONFIG_CPU_FREQ_GOV_CONSERVATIVE=y
+ CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y
+@@ -463,6 +466,15 @@ CONFIG_SENSORS_ESWIN_FAN_CONTROL=y
+ CONFIG_SENSORS_ESWIN_PVT=y
+ CONFIG_SENSORS_INA2XX=y
+ CONFIG_SENSORS_PAC1934=y
++CONFIG_THERMAL=y
++CONFIG_THERMAL_STATISTICS=y
++CONFIG_THERMAL_WRITABLE_TRIPS=y
++CONFIG_THERMAL_DEFAULT_GOV_POWER_ALLOCATOR=y
++CONFIG_THERMAL_GOV_STEP_WISE=y
++CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
++CONFIG_CPU_THERMAL=y
++CONFIG_DEVFREQ_THERMAL=y
++CONFIG_THERMAL_EMULATION=y
+ CONFIG_WATCHDOG=y
+ CONFIG_DW_WATCHDOG=y
+ CONFIG_REGULATOR=y
+@@ -740,6 +752,13 @@ CONFIG_RPMSG_VIRTIO=y
+ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
++CONFIG_PM=y
++CONFIG_PM_SLEEP=y
++CONFIG_PM_DEVFREQ=y
++CONFIG_DEVFREQ_GOV_USERSPACE=y
++CONFIG_DEVFREQ_GOV_PERFORMANCE=y
++CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
++CONFIG_PM_DEVFREQ_EVENT=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+ CONFIG_ESWIN_BUDDY=y
+-- 
+2.50.1
+

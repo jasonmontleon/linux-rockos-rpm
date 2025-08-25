@@ -1,0 +1,48 @@
+From 31852cd67ce66ec4d544d67505c184646ae6a808 Mon Sep 17 00:00:00 2001
+From: fanxiaping <fanxiaping@eswincomputing.com>
+Date: Fri, 11 Jul 2025 15:57:11 +0800
+Subject: [PATCH 617/654] fix fix MIPI DSI reboot panic
+
+Changelogs: disabled hdmi, HDMI shut down add NULL verify
+Signed-off-by: fanxiaping <fanxiaping@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts |  4 ++++
+ drivers/gpu/drm/eswin/es_dw_hdmi.c                | 10 ++++++++++
+ 2 files changed, 14 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
+index d04f39408a67..51db3caaa956 100755
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
+@@ -133,3 +133,7 @@ reg_display: regulator@45 {
+ 	};
+ };
+ 
++&dw_hdmi {
++        status = "disabled";
++};
++
+diff --git a/drivers/gpu/drm/eswin/es_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw_hdmi.c
+index ae389aca75eb..99bc87ad8e23 100644
+--- a/drivers/gpu/drm/eswin/es_dw_hdmi.c
++++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
+@@ -964,6 +964,16 @@ static void dw_hdmi_eswin_shutdown(struct platform_device *pdev)
+ {
+ 	struct eswin_hdmi *hdmi = dev_get_drvdata(&pdev->dev);
+ 
++	if(hdmi == NULL)
++	{
++		pr_err("no hdmi!!!\n");
++		return;
++	}
++	if(hdmi->hdmi == NULL)
++	{
++		pr_err("no hdmi->hdmi!!!\n");
++		return;
++	}
+ 	dw_hdmi_suspend(hdmi->hdmi);
+ }
+ 
+-- 
+2.50.1
+

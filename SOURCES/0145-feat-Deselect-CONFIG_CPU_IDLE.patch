@@ -1,7 +1,7 @@
-From b3ee44ae4f4d617258a9197f726629878d4497f8 Mon Sep 17 00:00:00 2001
+From 20e019fc4c7680d8d99c551585bfbeb2578a32af Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 9 Aug 2024 16:16:21 +0800
-Subject: [PATCH 145/552] feat:Deselect CONFIG_CPU_IDLE
+Subject: [PATCH 145/654] feat:Deselect CONFIG_CPU_IDLE
 
 Changelogs:
 1.Do not select CONFIG_CPU_IDLE, keep CONFIG_PM be selected.

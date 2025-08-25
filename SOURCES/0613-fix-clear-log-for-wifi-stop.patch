@@ -1,0 +1,43 @@
+From 238f2e59c576fbf63221eb0312600f485323d0f5 Mon Sep 17 00:00:00 2001
+From: wangjinlong <wangjinlong@eswincomputing.com>
+Date: Tue, 8 Jul 2025 10:07:34 +0800
+Subject: [PATCH 613/654] fix: clear log for wifi stop
+
+Changelogs:
+1. clear driver log for wlan0 stop
+
+Signed-off-by: wangjinlong <wangjinlong@eswincomputing.com>
+---
+ drivers/net/wireless/ap12275/dhd_linux.c   | 2 +-
+ drivers/net/wireless/ap12275/wl_cfg80211.c | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/net/wireless/ap12275/dhd_linux.c b/drivers/net/wireless/ap12275/dhd_linux.c
+index fea959ba921d..37c3bd9c6b2b 100644
+--- a/drivers/net/wireless/ap12275/dhd_linux.c
++++ b/drivers/net/wireless/ap12275/dhd_linux.c
+@@ -6514,7 +6514,7 @@ dhd_stop(struct net_device *net)
+ 		dhd_if_t *ifp;
+ 		wl_cfg80211_down(net);
+ 
+-		DHD_ERROR(("%s: making dhdpub up FALSE\n", __FUNCTION__));
++		DHD_INFO(("%s: making dhdpub up FALSE\n", __FUNCTION__));
+ #ifdef WL_CFG80211
+ 		/* Disable Runtime PM before interface down */
+ 		DHD_STOP_RPM_TIMER(&dhd->pub);
+diff --git a/drivers/net/wireless/ap12275/wl_cfg80211.c b/drivers/net/wireless/ap12275/wl_cfg80211.c
+index 2012dee635af..73eee17dd2ab 100644
+--- a/drivers/net/wireless/ap12275/wl_cfg80211.c
++++ b/drivers/net/wireless/ap12275/wl_cfg80211.c
+@@ -9133,7 +9133,7 @@ wl_cfg80211_dump_station(struct wiphy *wiphy, struct net_device *ndev,
+ 		err = wldev_ioctl_get(ndev, WLC_GET_ASSOCLIST,
+ 			assoc_maclist, sizeof(cfg->assoclist));
+ 		if (err < 0) {
+-			WL_ERR(("WLC_GET_ASSOCLIST error %d\n", err));
++			WL_DBG(("WLC_GET_ASSOCLIST error %d\n", err));
+ 			cfg->assoclist.count = 0;
+ 			return -EOPNOTSUPP;
+ 		}
+-- 
+2.50.1
+

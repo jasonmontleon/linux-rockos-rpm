@@ -1,7 +1,7 @@
-From 4c8f8d4e13f6b94fef9c674666c3081f614a01be Mon Sep 17 00:00:00 2001
+From 2721bdda194723f5ff995a72d352ffcaedf09efa Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 10 Feb 2025 18:26:41 +0800
-Subject: [PATCH 402/552] fix:power down all tbus at start up
+Subject: [PATCH 402/654] fix:power down all tbus at start up
 
 Changelogs:
 1.Some of the tbus is on by default when SoC is powered up.

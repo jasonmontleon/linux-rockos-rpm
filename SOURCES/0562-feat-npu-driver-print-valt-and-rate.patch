@@ -1,0 +1,39 @@
+From 9496b1feba2807e535ef9ea1341c336ec247dfb0 Mon Sep 17 00:00:00 2001
+From: chenyangxi <chenyangxi@eswincomputing.com>
+Date: Fri, 13 Jun 2025 14:41:23 +0800
+Subject: [PATCH 562/654] feat:npu driver print valt and rate
+
+Changelogs:
+	When NPU frequency and voltage are adjusted, the driver print voltage and frequency setting information
+
+Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/npu/npu_main.c | 5 +++--
+ 1 file changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+index 24e9c95160fa..e0099786ac87 100644
+--- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
++++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
+@@ -521,6 +521,7 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
+ 	nvdla_dev->rate = target_rate;
+ 	nvdla_dev->volt = target_volt;
+ 	mutex_unlock(&nvdla_dev->devfreq_lock);
++	dev_info(dev, "Set voltage %lu uV, frequency %lu.\n", target_volt, target_rate);
+ 	return 0;
+ 
+ err_rate:
+@@ -549,8 +550,8 @@ static int eswin_get_dev_status(struct device *dev,
+ 				     struct devfreq_dev_status *stat)
+ {
+ 	struct nvdla_device *nvdla_dev = dev_get_drvdata(dev);
+-	unsigned long rate;
+-	stat->busy_time = 1024;	
++
++	stat->busy_time = 1024;
+ 	stat->total_time = 1024;
+ 	stat->current_frequency = nvdla_dev->rate;
+ 
+-- 
+2.50.1
+

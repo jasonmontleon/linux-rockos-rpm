@@ -1,7 +1,7 @@
-From 8832eb2c48538956f1c265ab8d1c2b49b5765d9a Mon Sep 17 00:00:00 2001
+From 5daa81e1ec6c54be822aa0ad79b7cf4b86d81792 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 27 May 2024 18:53:47 +0800
-Subject: [PATCH 038/552] perf:update dma, pwm, timer driver
+Subject: [PATCH 038/654] perf:update dma, pwm, timer driver
 
 Changelogs:
 1. Optimizing dma drivers

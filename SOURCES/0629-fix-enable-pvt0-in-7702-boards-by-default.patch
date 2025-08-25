@@ -1,0 +1,94 @@
+From 1cab3a987ad0064ca413ce5c2dc827eb49526908 Mon Sep 17 00:00:00 2001
+From: ningyu <ningyu@eswincomputing.com>
+Date: Fri, 13 Jun 2025 09:14:53 +0800
+Subject: [PATCH 629/654] fix:enable pvt0 in 7702 boards by default
+
+Changelogs:
+Use dummy pvt0 in 7702 boards because pvt0 is used by lpcpu
+
+Signed-off-by: ningyu <ningyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts    | 7 -------
+ arch/riscv/boot/dts/eswin/eic7702-d560.dts               | 7 -------
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts             | 8 ++++++--
+ arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi | 4 ++++
+ 4 files changed, 10 insertions(+), 16 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
+index f60641e6664c..ee7b89eb368f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
+@@ -245,13 +245,6 @@ &d1_i2c9 {
+ 	/* pin header */
+ };
+ 
+-&pvt0 {
+-	status = "disabled";
+-};
+-&d1_pvt0 {
+-	status = "disabled";
+-};
+-
+ &wdt0 {
+ 	status = "disabled";
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+index a31f359283ed..190cc76df82a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
+@@ -257,13 +257,6 @@ &d1_i2c9 {
+ 	/* pin header */
+ };
+ 
+-&pvt0 {
+-	status = "disabled";
+-};
+-&d1_pvt0 {
+-	status = "disabled";
+-};
+-
+ &wdt0 {
+ 	status = "disabled";
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 9ffd69cd107d..f5cd7bf83afe 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -1500,10 +1500,14 @@ &d1_pwm0 {
+ };
+ 
+ &pvt0 {
+-	status = "disabled";
++	status = "okay";
++	compatible = "eswin,eswin-dummy-pvt-cpu";
++	eswin,syscon = <&d0_sys_con 0x0668>;
+ };
+ &d1_pvt0 {
+-	status = "disabled";
++	status = "okay";
++	compatible = "eswin,eswin-dummy-pvt-cpu";
++	eswin,syscon = <&d1_sys_con 0x0668>;
+ };
+ 
+ &pvt1 {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
+index c99a7f59c2e1..1f684879fe10 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
+@@ -1369,9 +1369,13 @@ &d1_pwm0 {
+ 
+ &pvt0 {
+ 	status = "okay";
++	compatible = "eswin,eswin-dummy-pvt-cpu";
++	eswin,syscon = <&d0_sys_con 0x0668>;
+ };
+ &d1_pvt0 {
+ 	status = "okay";
++	compatible = "eswin,eswin-dummy-pvt-cpu";
++	eswin,syscon = <&d1_sys_con 0x0668>;
+ };
+ 
+ &pvt1 {
+-- 
+2.50.1
+

@@ -1,0 +1,54 @@
+From 477507c9fc2893ddfca563969731d984b8a322e9 Mon Sep 17 00:00:00 2001
+From: lei <leizhilin@eswincomputing.com>
+Date: Mon, 14 Jul 2025 20:58:02 +0800
+Subject: [PATCH 627/654] fix(2d):process stuck,cherry-pick 164de56 from pm
+
+Changelogs:
+Problem cause:
+          CPU hibernation 2D is in wait signal state, the system returns the error code
+      gcvSTATUS_INTERRUPTED, 2D driver direct return leads to the current task is not executed,
+      no interrupt report resulting in the user process has been waiting for the end of the
+      driver settings and stuck;
+Solution:
+          When the semaphore does not wake up, use the timeout exit mechanism, so that the
+     register state is normally detected, to ensure the normal execution of the current task.
+
+(merge from pm by recommi)
+
+Signed-off-by: lei <leizhilin@eswincomputing.com>
+---
+ .../arch/gc_hal_kernel_hardware_waitlink_fe.c       | 13 ++++++++++++-
+ 1 file changed, 12 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
+index 52907911bf20..377ac7d0acad 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
++++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
+@@ -1125,12 +1125,23 @@ gckWLFE_Execute(gckHARDWARE Hardware, gctADDRESS Address, gctUINT32 Bytes)
+ 
+     if (command->feType == gcvHW_FE_END) {
+         gctUINT idle = 0;
++        gctUINT try_cnt = 0;
++        gceSTATUS ret;
+         /* Make sure FE is idle. */
+         do {
+             gcmkVERIFY_OK(gckOS_ReadRegisterEx(Hardware->os, Hardware->kernel,
+                                                0x00004, &idle));
+             if (idle != 0x7FFFFFFF) {
+-                gcmkONERROR(gckOS_WaitSignal(Hardware->os, Hardware->feIdleSignal, gcvTRUE, gcdGPU_2D_TIMEOUT));
++                ret = gckOS_WaitSignal(Hardware->os, Hardware->feIdleSignal, gcvTRUE, gcdGPU_2D_TIMEOUT);
++                if (ret != gcvSTATUS_OK) {
++                    if (try_cnt++ < 5) {
++                        hae_print("core: %d, addr:(0x%llx)0x%llx ret: %d, try: %d",
++                            Hardware->core, Hardware->lastExecuteAddress, Address, ret, try_cnt);
++                    } else {
++                        hae_print("core: %d, addr:(0x%llx)0x%llx ret: %d, wait sig timeout!", Hardware->core, Hardware->lastExecuteAddress, Address, ret);
++                        return ret;
++                    }
++                }
+             }
+         } while (idle != 0x7FFFFFFF);
+     }
+-- 
+2.50.1
+

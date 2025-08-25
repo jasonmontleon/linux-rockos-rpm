@@ -1,7 +1,7 @@
-From 97e7db2bfb4b9f7d6221eb71300a0d1840833546 Mon Sep 17 00:00:00 2001
+From dd9d944df256953ade8b5676fc4635567fd16f0e Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:33:00 +0800
-Subject: [PATCH 360/552] npu: sync 1230 eswin code
+Subject: [PATCH 360/654] npu: sync 1230 eswin code
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

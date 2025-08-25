@@ -1,7 +1,7 @@
-From 14e1d7e1d9119247e624ebaf7d3f40eb209bde9b Mon Sep 17 00:00:00 2001
+From e8bffaac5e13e1e5f3bab369028764189e08aeae Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 19 Dec 2024 09:36:02 +0800
-Subject: [PATCH 346/552] WIN2030-16760:feat:adapt eth dly params to 7702
+Subject: [PATCH 346/654] WIN2030-16760:feat:adapt eth dly params to 7702
  interleave dts.
 
 Changelogs:

@@ -1,0 +1,30 @@
+From 3ec77017f40eab3dd10a00366a20da5d106bb1c8 Mon Sep 17 00:00:00 2001
+From: yufangxian <yufangxian@eswincomputing.com>
+Date: Tue, 15 Jul 2025 16:33:18 +0800
+Subject: [PATCH 634/654] fix: fix no dewarp dev node
+
+Changelogs:
+1. eic7702 die1 dewarp dts add opp table
+
+Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 6a419ddbc324..c2c51545ae2a 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -2206,6 +2206,9 @@ d1_dewarp: dewarp@71020000 {
+ 						 <&d1_reset VI_RST_CTRL SW_VI_DWE_RSTN>;
+ 				reset-names = "axi", "cfg", "dwe";
+ 
++				operating-points-v2 = <&vi_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				interrupt-parent = <&plic1>;
+ 				interrupts = <26 25>;
+ 				#size-cells = <2>;
+-- 
+2.50.1
+

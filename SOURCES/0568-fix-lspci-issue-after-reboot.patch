@@ -1,0 +1,43 @@
+From afc78d407c5146b8b3f35cf06a75d097353f0645 Mon Sep 17 00:00:00 2001
+From: zhouliang1 <zhouliang1@eswincomputing.com>
+Date: Thu, 19 Jun 2025 09:38:05 +0800
+Subject: [PATCH 568/654] fix:lspci issue after reboot
+
+Changelogs:
+1.fix lspci issue after insmod and rebooting host
+
+Signed-off-by: zhouliang1 <zhouliang1@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts | 2 +-
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
+index 0dad82e8e581..4217d1712555 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
+@@ -840,7 +840,7 @@ ina226@44 {
+ 
+ &d0_i2c1 {
+ 	/* NPU Power Control */
+-	status = "okay";
++	status = "disabled";
+ 	tps549d22@10 {
+ 		compatible = "ti,tps549d22";
+ 		reg = <0x10>;
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index 30aa28ee5b0e..59ec21fbda7b 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -840,7 +840,7 @@ ina226@44 {
+ 
+ &d0_i2c1 {
+ 	/* NPU Power Control */
+-	status = "okay";
++	status = "disabled";
+ 	tps549d22@10 {
+ 		compatible = "ti,tps549d22";
+ 		reg = <0x10>;
+-- 
+2.50.1
+

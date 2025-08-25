@@ -1,7 +1,7 @@
-From 5195378d3b6898ab1c8f888c0a7636dc8bb6c949 Mon Sep 17 00:00:00 2001
+From 00666d61af0df06de55b31b8c7f5790932f319e7 Mon Sep 17 00:00:00 2001
 From: zhang dongdong <zhangdongdong@eswincomputing.com>
 Date: Wed, 2 Apr 2025 11:21:03 +0800
-Subject: [PATCH 463/552] Revert "feature:add 7702vpu dts"
+Subject: [PATCH 463/654] Revert "feature:add 7702vpu dts"
 
 This reverts commit 9be0b484e225279eceb53c379a19239d931a8ccd.
 

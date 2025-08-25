@@ -1,0 +1,305 @@
+From 46c747af18ac11eb651820da9f3c97bbd6b0c202 Mon Sep 17 00:00:00 2001
+From: Min Lin <linmin@eswincomputing.com>
+Date: Thu, 12 Jun 2025 15:47:52 +0800
+Subject: [PATCH 567/654] chore:Make es_proc as common interfaces
+
+Changelogs:
+1.To make es_proc interfaces for other eswin modules, rename parent dir name
+  from 'umap' to 'eswin', i.e. the parent dir is /proc/eswin
+2.Add 'umode_t mode' parameter when creating proc filesystem node.
+
+Signed-off-by: Min Lin <linmin@eswincomputing.com>
+---
+ drivers/memory/eswin/es_mmz_vb/mmz_vb.c       |   2 +-
+ drivers/memory/eswin/es_proc/es_proc.c        | 131 +++++++++---------
+ .../eswin/es_proc/include/linux/es_proc.h     |  19 ++-
+ 3 files changed, 81 insertions(+), 71 deletions(-)
+
+diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
+index dfbfa2783c8c..76f440b124d9 100644
+--- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
++++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
+@@ -1711,7 +1711,7 @@ void mmz_vb_vb_dbg_init(void)
+ {
+ 	es_proc_entry_t *proc = NULL;
+ 
+-	proc = es_create_proc_entry(PROC_ENTRY_VB, NULL);
++	proc = es_create_proc_entry(PROC_ENTRY_VB, 0666, NULL);
+ 
+ 	if (proc == NULL) {
+ 		vb_err("Kernel: Register vb proc failed!\n");
+diff --git a/drivers/memory/eswin/es_proc/es_proc.c b/drivers/memory/eswin/es_proc/es_proc.c
+index b0eb521b247c..4e7f2bca6e10 100644
+--- a/drivers/memory/eswin/es_proc/es_proc.c
++++ b/drivers/memory/eswin/es_proc/es_proc.c
+@@ -27,7 +27,7 @@ static int es_seq_show(struct seq_file *s, void *p)
+ 	es_proc_entry_t sentry;
+ 
+ 	if (oldsentry == NULL) {
+-		pr_err("%s %d- parameter invalid!\n", __func__,__LINE__);
++		pr_err("parameter invalid!\n");
+ 		return -1;
+ 	}
+ 	memset(&sentry, 0, sizeof(es_proc_entry_t));
+@@ -68,132 +68,135 @@ static const struct proc_ops es_proc_ops = {
+ 	.proc_release = single_release
+ };
+ 
+-es_proc_entry_t *es_create_proc(const char *name, es_proc_entry_t *parent)
++es_proc_entry_t *es_create_proc(const char *name, umode_t mode, es_proc_entry_t *parent)
+ {
+ 	struct proc_dir_entry *entry = NULL;
+ 	es_proc_entry_t *sentry = NULL;
+ 
+ 	sentry = kzalloc(sizeof(struct es_proc_dir_entry), GFP_KERNEL);
+ 	if (sentry == NULL) {
+-		pr_err("%s %d - kmalloc failed!\n",__func__,__LINE__);
++		pr_err("kmalloc failed!\n");
+ 		return NULL;
+ 	}
+ 
+ 	strncpy(sentry->name, name, sizeof(sentry->name) - 1);
+-
++	pr_debug("create file %s with mode %o\n", name, (unsigned)mode);
+ 	if (parent == NULL) {
+-		entry = proc_create_data(name, 0, NULL, &es_proc_ops, sentry);
++		entry = proc_create_data(name, mode, NULL, &es_proc_ops, sentry);
+ 	} else {
+-		entry = proc_create_data(name, 0, parent->proc_dir_entry, &es_proc_ops, sentry);
++		entry = proc_create_data(name, mode, parent->proc_dir_entry, &es_proc_ops, sentry);
+ 	}
+ 	if (entry == NULL) {
+-		pr_err("%s %d - create_proc_entry failed!\n",__func__,__LINE__);
++		pr_err("create_proc_entry failed!\n");
+ 		kfree(sentry);
+ 		sentry = NULL;
+ 		return NULL;
+ 	}
+ 	sentry->proc_dir_entry = entry;
+ 	sentry->open = NULL;
++	sentry->parent = parent;
+ 
+ 	list_add_tail(&(sentry->node), &list);
+ 	return sentry;
+ }
+ 
+-void es_remove_proc(const char *name, es_proc_entry_t *parent)
++es_proc_entry_t *es_create_proc_entry(const char *name, umode_t mode,
++					  es_proc_entry_t *parent)
+ {
+-	struct es_proc_dir_entry *sproc = NULL;
++	/* If NULL, create entry under the eswin dir, otherwise under the specified parent*/
++	if (parent == NULL)
++		parent = proc_entry;
+ 
+-	if (name == NULL) {
+-		pr_err("%s %d - parameter invalid!\n",__func__,__LINE__);
+-		return;
+-	}
+-	if (parent != NULL) {
+-		remove_proc_entry(name, parent->proc_dir_entry);
+-	} else {
+-		remove_proc_entry(name, NULL);
+-	}
+-	list_for_each_entry(sproc, &list, node) {
+-		if (strncmp(sproc->name, name, sizeof(sproc->name)) == 0) {
+-			list_del(&(sproc->node));
+-			break;
+-		}
+-	}
+-	if (sproc != NULL) {
+-		kfree(sproc);
+-	}
++	return es_create_proc(name, mode, parent);
+ }
++EXPORT_SYMBOL(es_create_proc_entry);
+ 
+-es_proc_entry_t *es_create_proc_entry(const char *name,
+-					  es_proc_entry_t *parent)
++void _es_remove_proc_entry(const char *name, es_proc_entry_t *parent)
+ {
+-	parent = proc_entry;
+-
+-	return es_create_proc(name, parent);
++    struct es_proc_dir_entry *sproc, *tmp;
++    struct es_proc_dir_entry *child, *child_tmp;
++	bool remove = false;
++
++    if (name == NULL) {
++        pr_err("parameter invalid!\n");
++        return;
++    }
++
++    list_for_each_entry_safe(sproc, tmp, &list, node) {
++        if (strncmp(sproc->name, name, sizeof(sproc->name)) == 0) {
++
++            list_for_each_entry(child, &list, node) {
++                if (child->parent == sproc) {
++					// some node's parent point to target entry, do not remove.
++					pr_err("Error: directory %s is not empty!\n", name);
++					return;
++                }
++            }
++
++			// remove
++			remove = true;
++            remove_proc_entry(name, parent == NULL ? NULL : parent->proc_dir_entry);
++            list_del(&sproc->node);
++            kfree(sproc);
++            break;
++        }
++    }
++	if (remove)
++		pr_debug("entry %s with parent=%s removed\n", name, parent ? parent->name : "eswin");
++	else
++		pr_err("entry %s with parent=%s not found\n", name, parent ? parent->name : "eswin");
+ }
+-EXPORT_SYMBOL(es_create_proc_entry);
+ 
+ void es_remove_proc_entry(const char *name, es_proc_entry_t *parent)
+ {
+-	parent = proc_entry;
+-	es_remove_proc(name, parent);
+-	return;
++	/* If NULL, remove entry under the eswin dir, otherwise under the specified parent*/
++    if (parent == NULL)
++        parent = proc_entry;
++
++	return _es_remove_proc_entry(name, parent);
+ }
+ EXPORT_SYMBOL(es_remove_proc_entry);
+ 
+-es_proc_entry_t *es_proc_mkdir(const char *name, es_proc_entry_t *parent)
++es_proc_entry_t *_es_proc_mkdir(const char *name, umode_t mode, es_proc_entry_t *parent)
+ {
+ 	struct proc_dir_entry *proc = NULL;
+ 	struct es_proc_dir_entry *sproc = NULL;
+ 
+ 	sproc = kzalloc(sizeof(struct es_proc_dir_entry), GFP_KERNEL);
+ 	if (sproc == NULL) {
+-		pr_err("%s %d - kmalloc failed!\n",__func__,__LINE__);
++		pr_err("kmalloc failed!\n");
+ 		return NULL;
+ 	}
+ 
+ 	strncpy(sproc->name, name, sizeof(sproc->name) - 1);
+ 
+ 	if (parent != NULL) {
+-		proc = proc_mkdir_data(name, 0, parent->proc_dir_entry, sproc);
++		proc = proc_mkdir_data(name, mode, parent->proc_dir_entry, sproc);
+ 	} else {
+-		proc = proc_mkdir_data(name, 0, NULL, sproc);
++		proc = proc_mkdir_data(name, mode, NULL, sproc);
+ 	}
+ 	if (proc == NULL) {
+-		pr_err("%s %d - proc_mkdir failed!\n",__func__,__LINE__);
++		pr_err("proc_mkdir failed!\n");
+ 		kfree(sproc);
+ 		sproc = NULL;
+ 		return NULL;
+ 	}
+ 	sproc->proc_dir_entry = proc;
++	sproc->parent = parent;
+ 
+ 	list_add_tail(&(sproc->node), &list);
+ 	return sproc;
+ }
+-EXPORT_SYMBOL(es_proc_mkdir);
+ 
+-void es_remove_proc_root(const char *name, es_proc_entry_t *parent)
++es_proc_entry_t *es_proc_mkdir(const char *name, umode_t mode, es_proc_entry_t *parent)
+ {
+-	struct es_proc_dir_entry *sproc = NULL;
++	/* If NULL, create entry under the eswin dir, otherwise under the specified parent*/
++	if (parent == NULL)
++		parent = proc_entry;
+ 
+-	if (name == NULL) {
+-		pr_err("%s %d - parameter invalid!\n",__func__,__LINE__);
+-		return;
+-	}
+-	if (parent != NULL) {
+-		remove_proc_entry(name, parent->proc_dir_entry);
+-	} else {
+-		remove_proc_entry(name, NULL);
+-	}
+-	list_for_each_entry(sproc, &list, node) {
+-		if (strncmp(sproc->name, name, sizeof(sproc->name)) == 0) {
+-			list_del(&(sproc->node));
+-			break;
+-		}
+-	}
+-	if (sproc != NULL) {
+-		kfree(sproc);
+-	}
++	return  _es_proc_mkdir(name, mode, parent);
+ }
++EXPORT_SYMBOL(es_proc_mkdir);
+ 
+ int es_seq_printf(es_proc_entry_t *entry, const char *fmt, ...)
+ {
+@@ -212,7 +215,7 @@ EXPORT_SYMBOL(es_seq_printf);
+ static int __init es_proc_init(void)
+ {
+ 	INIT_LIST_HEAD(&list);
+-	proc_entry = es_proc_mkdir("umap", NULL);
++	proc_entry = _es_proc_mkdir("eswin", 0755, NULL);
+ 	if (proc_entry == NULL) {
+ 		pr_err("init, proc mkdir error!\n");
+ 		return -EPERM;
+@@ -222,7 +225,7 @@ static int __init es_proc_init(void)
+ 
+ static void __exit es_proc_exit(void)
+ {
+-	es_remove_proc_root("umap", NULL);
++	_es_remove_proc_entry("eswin", NULL);
+ }
+ 
+ module_init(es_proc_init);
+diff --git a/drivers/memory/eswin/es_proc/include/linux/es_proc.h b/drivers/memory/eswin/es_proc/include/linux/es_proc.h
+index 65c73460e11b..255db4cd2508 100644
+--- a/drivers/memory/eswin/es_proc/include/linux/es_proc.h
++++ b/drivers/memory/eswin/es_proc/include/linux/es_proc.h
+@@ -10,16 +10,23 @@
+ 
+ #ifndef __ES_PROC__
+ #define __ES_PROC__
++#include <linux/types.h>
++#include <linux/list.h>
+ 
+-#define PROC_ENTRY_VI "vi"
+-#define PROC_ENTRY_VO "vo"
+-#define PROC_ENTRY_VB "vb"
+-#define PROC_ENTRY_ISP "isp"
++#define PROC_ENTRY_VI		"vi"
++#define PROC_ENTRY_VO		"vo"
++#define PROC_ENTRY_VB		"vb"
++#define PROC_ENTRY_ISP		"isp"
++#define PROC_ENTRY_VDEC		"vdec"
++#define PROC_ENTRY_VENC		"venc"
++#define PROC_ENTRY_HAE		"hae"
++#define PROC_ENTRY_DEWARP 	"dewarp"
+ 
+ // proc
+ typedef struct es_proc_dir_entry {
+ 	char name[50];
+ 	void *proc_dir_entry;
++	struct es_proc_dir_entry *parent;
+ 	int (*open)(struct es_proc_dir_entry *entry);
+ 	int (*read)(struct es_proc_dir_entry *entry);
+ 	int (*write)(struct es_proc_dir_entry *entry, const char *buf,
+@@ -29,9 +36,9 @@ typedef struct es_proc_dir_entry {
+ 	struct list_head node;
+ } es_proc_entry_t;
+ 
+-extern es_proc_entry_t *es_create_proc_entry(const char *name,
++extern es_proc_entry_t *es_create_proc_entry(const char *name, umode_t mode,
+ 					es_proc_entry_t *parent);
+-extern es_proc_entry_t *es_proc_mkdir(const char *name,
++extern es_proc_entry_t *es_proc_mkdir(const char *name, umode_t mode,
+ 					es_proc_entry_t *parent);
+ extern void es_remove_proc_entry(const char *name, es_proc_entry_t *parent);
+ extern int es_seq_printf(es_proc_entry_t *entry, const char *fmt, ...)
+-- 
+2.50.1
+

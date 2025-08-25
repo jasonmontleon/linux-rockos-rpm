@@ -1,7 +1,7 @@
-From f97588f5d493ddcffdc2470652f2406eb68bab37 Mon Sep 17 00:00:00 2001
+From 6df91ccfe519dacd7498ef50e28783f087092ce9 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 11 Sep 2024 13:58:01 +0800
-Subject: [PATCH 261/552] WIN2030-16098:fix:Drm driver add component failed
+Subject: [PATCH 261/654] WIN2030-16098:fix:Drm driver add component failed
  issue
 
 Changelogs:

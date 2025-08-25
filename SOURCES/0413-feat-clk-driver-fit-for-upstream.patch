@@ -1,7 +1,7 @@
-From bea36187bd19a81e07cc0b85ad66237b12e59468 Mon Sep 17 00:00:00 2001
+From c0080916bbadee75394bab53d7795422e8b8cdbd Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 14 Feb 2025 15:15:18 +0800
-Subject: [PATCH 413/552] feat:clk driver fit for upstream
+Subject: [PATCH 413/654] feat:clk driver fit for upstream
 
 Changelogs:
        1.rename 770x to 7700 in reset driver

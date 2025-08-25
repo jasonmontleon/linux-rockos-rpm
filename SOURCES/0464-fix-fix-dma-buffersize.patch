@@ -1,7 +1,7 @@
-From 09deca43d2297c405ff8b59011a2fde542286d1d Mon Sep 17 00:00:00 2001
+From 7c9bc0a1081172399c2610e695ec42f8f4a73623 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Tue, 8 Apr 2025 15:14:28 +0800
-Subject: [PATCH 464/552] fix:fix dma buffersize
+Subject: [PATCH 464/654] fix:fix dma buffersize
 
 Changelogs:
 1. es-dma.c

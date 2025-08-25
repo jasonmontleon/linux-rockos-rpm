@@ -1,7 +1,7 @@
-From ae8a55d70538779af0245ebf80d20f9f1511c7c1 Mon Sep 17 00:00:00 2001
+From 3b15795ea0fae13460f074038539c91934f619f6 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 18 Apr 2025 11:04:35 +0800
-Subject: [PATCH 480/552] feat:support eic7702 d560
+Subject: [PATCH 480/654] feat:support eic7702 d560
 
 Changelogs:
 1. Add eic7702-d560.dts

@@ -1,7 +1,7 @@
-From 65cc266a37be15cac16d24f46e9baf7d9b0fe163 Mon Sep 17 00:00:00 2001
+From a5cadc80558f4d6a211bc2783727fe45e0d82a4b Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 24 Apr 2025 15:43:26 +0800
-Subject: [PATCH 489/552] fix:Resolve the issue of NPU reset.
+Subject: [PATCH 489/654] fix:Resolve the issue of NPU reset.
 
 Changelogs:
 	Running the model after NPU reset causes SMMU SYNC timeout.

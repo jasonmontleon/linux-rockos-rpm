@@ -1,7 +1,7 @@
-From b4ece220e498426b405363746dacd3a3bf8515ee Mon Sep 17 00:00:00 2001
+From ee2b88ca95b74307975008129ed1b358b060c44a Mon Sep 17 00:00:00 2001
 From: luoxianke <luoxianke@eswincomputing.com>
 Date: Wed, 28 May 2025 14:29:45 +0800
-Subject: [PATCH 528/552] fix:solve guvcview print err log
+Subject: [PATCH 528/654] fix:solve guvcview print err log
 
 Changelogs: delete nouse log
 

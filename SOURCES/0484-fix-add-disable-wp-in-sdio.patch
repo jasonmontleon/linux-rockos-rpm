@@ -1,7 +1,7 @@
-From 4b2f717c0c9d4b38bf11190dbf526b5a43028091 Mon Sep 17 00:00:00 2001
+From 97bd916a8b24a7f1dba45467d43df25f7becc468 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 22 Apr 2025 16:24:55 +0800
-Subject: [PATCH 484/552] fix:add disable-wp in sdio
+Subject: [PATCH 484/654] fix:add disable-wp in sdio
 
 Changelogs:
 Because the sd card write protect pad is reused by other.

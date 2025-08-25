@@ -1,7 +1,7 @@
-From 95036a8df603a1802375806022552cb8be5bee49 Mon Sep 17 00:00:00 2001
+From 8512077dcf82b83cb2f560da956639952244c019 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 24 May 2024 13:59:55 +0800
-Subject: [PATCH 032/552] refactor:khandle, dsp subsys drv
+Subject: [PATCH 032/654] refactor:khandle, dsp subsys drv
 
 Changelogs:
     adaptor khandle, dsp subsys drv for linux-6.6

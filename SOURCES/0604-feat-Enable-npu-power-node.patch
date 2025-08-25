@@ -1,0 +1,43 @@
+From fe548143533f1564ea4b808f24a629bb971f4fe1 Mon Sep 17 00:00:00 2001
+From: taohaitao <taohaitao@eswincomputing.com>
+Date: Sat, 5 Jul 2025 18:05:56 +0800
+Subject: [PATCH 604/654] feat:Enable npu power node.
+
+Changelogs:
+Enable npu power node.
+
+Signed-off-by: taohaitao <taohaitao@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts | 2 +-
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts    | 2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
+index cdc86bcf6b30..c21cb0f225ac 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
+@@ -840,7 +840,7 @@ ina226@44 {
+ 
+ &d0_i2c1 {
+ 	/* NPU Power Control */
+-	status = "disabled";
++	status = "okay";
+ 	tps549d22@10 {
+ 		compatible = "ti,tps549d22";
+ 		reg = <0x10>;
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index 59ec21fbda7b..30aa28ee5b0e 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -840,7 +840,7 @@ ina226@44 {
+ 
+ &d0_i2c1 {
+ 	/* NPU Power Control */
+-	status = "disabled";
++	status = "okay";
+ 	tps549d22@10 {
+ 		compatible = "ti,tps549d22";
+ 		reg = <0x10>;
+-- 
+2.50.1
+

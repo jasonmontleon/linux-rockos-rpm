@@ -1,0 +1,56 @@
+From 02abd12bc3178c88d197a4969a2ac8cccf4b7a25 Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Tue, 1 Jul 2025 15:18:58 +0800
+Subject: [PATCH 603/654] fix:Add multi batch frame rate statistics.
+
+Changelogs:
+	Add multi batch frame rate statistics.
+
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/common/hetero_ioctl.h | 1 +
+ drivers/soc/eswin/ai_driver/npu/parse_dep.c       | 2 +-
+ drivers/soc/eswin/ai_driver/npu/scheduler.c       | 2 +-
+ 3 files changed, 3 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
+index 6dff5245a0b8..89bfbef6a808 100644
+--- a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
++++ b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
+@@ -280,6 +280,7 @@ typedef struct _modelShmDesc {
+     uint16_t kmdSubModelId;     // kmd submodel id
+     uint32_t kmdNetworkAddrId;  // kmd network address index in model
+     int32_t dspFd[DSP_MAX_CORE_NUM];
++    int32_t batch_num;
+     addrListDesc_t addrList;  // model address list
+ } modelShmDesc_t;
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/parse_dep.c b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
+index 5a09746e08dc..c097ef2af355 100644
+--- a/drivers/soc/eswin/ai_driver/npu/parse_dep.c
++++ b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
+@@ -230,7 +230,7 @@ static void dependency_consumer2producer(struct win_executor *executor,
+ 		    task->op_desc[i].event_op.submodel_type == E31)
+ 		{
+ 			npu_info->peer_type = E31;
+-			dla_debug("e31 event op:%d,depcnt:%d,peer_type:%d\n", i,
++			dla_debug("e31 event op:%d,depcnt:%d,peer_type:%lld\n", i,
+ 			           dependency_count[i], npu_info->peer_type);
+ 		}
+ 
+diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
+index a29b0532de8a..6dfca2a5c0fc 100644
+--- a/drivers/soc/eswin/ai_driver/npu/scheduler.c
++++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
+@@ -309,7 +309,7 @@ void mbx_irq_frame_done(struct win_engine *priv, u32 tiktok, u32 stat)
+ 	             &ndev->total_hwexec_time);
+ 	npu_frame_done_process(f);
+ 
+-	atomic64_add(1, &ndev->total_frame_done);
++	atomic64_add(model->model_shm->batch_num, &ndev->total_frame_done);
+ 	last_state = atomic_fetch_and(~NPU_RT_MUTX_FRAME_DONE,
+ 				      &model->uctx->lock_status);
+ 	if (last_state == NPU_RT_MUTX_FRAME_DONE) {
+-- 
+2.50.1
+

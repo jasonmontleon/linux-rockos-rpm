@@ -1,7 +1,7 @@
-From 1f77dbe04b4e457d5299895c2f3f1aa7dfb720b4 Mon Sep 17 00:00:00 2001
+From 473d6d9c58121a74b557899cf8a47b45f8c94289 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 30 May 2025 11:13:30 +0800
-Subject: [PATCH 522/552] fix: fix sbc-camera dts warning log
+Subject: [PATCH 522/654] fix: fix sbc-camera dts warning log
 
 Changelogs:
 1. add size-cell in camera dts

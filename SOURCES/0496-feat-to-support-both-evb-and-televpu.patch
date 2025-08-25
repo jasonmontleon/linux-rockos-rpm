@@ -1,7 +1,7 @@
-From ecc4dc49a22a5346da1ab63a853a9d375526e59c Mon Sep 17 00:00:00 2001
+From 03d33209c74325e4d32976c32d549dce54f1785d Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Wed, 30 Apr 2025 19:55:01 +0800
-Subject: [PATCH 496/552] feat:to support both evb and televpu
+Subject: [PATCH 496/654] feat:to support both evb and televpu
 
 Changelogs:
 1. use different files to support both evb and

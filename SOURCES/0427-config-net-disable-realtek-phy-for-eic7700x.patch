@@ -1,7 +1,7 @@
-From b81618e8fed30c77ecbac5225790a50a7209aa89 Mon Sep 17 00:00:00 2001
+From bd7a1b8fbe5a2b389248c6070e3369818f47b5d6 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:07:39 +0800
-Subject: [PATCH 427/552] config: net: disable realtek phy for eic7700x
+Subject: [PATCH 427/654] config: net: disable realtek phy for eic7700x
 
 disable realtek PHY, not working after turning it on
 

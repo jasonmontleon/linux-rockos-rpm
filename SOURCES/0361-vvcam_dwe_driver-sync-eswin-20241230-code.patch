@@ -1,7 +1,7 @@
-From 49e0d8b7c36b5d0f55f788d55ae3dd5081aef714 Mon Sep 17 00:00:00 2001
+From 0402846fcdef74e209acb7e281928710a16681dc Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:34:21 +0800
-Subject: [PATCH 361/552] vvcam_dwe_driver: sync eswin 20241230 code
+Subject: [PATCH 361/654] vvcam_dwe_driver: sync eswin 20241230 code
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

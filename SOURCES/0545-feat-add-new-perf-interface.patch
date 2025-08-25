@@ -1,0 +1,96 @@
+From ccc3be9c3a3f076252d5aaefa4def0b8683484e0 Mon Sep 17 00:00:00 2001
+From: zhuxuefei <zhuxuefei@eswincomputing.com>
+Date: Thu, 10 Apr 2025 17:41:02 +0800
+Subject: [PATCH 545/654] feat:add new perf interface
+
+    Changelogs:
+    1. add perf data interface to current opertator
+
+Signed-off-by: zhuxuefei <zhuxuefei@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c   | 35 +++++++++++++++++++
+ .../soc/eswin/ai_driver/dsp/dsp_ioctl_if.h    |  2 +-
+ drivers/soc/eswin/ai_driver/dsp/dsp_main.h    |  1 +
+ 3 files changed, 37 insertions(+), 1 deletion(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
+index 1cc31a98eb58..e9bcdae06212 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
+@@ -1024,6 +1024,37 @@ static long dsp_ioctl_get_fw_perf_data(struct file *flip, dsp_fw_perf_t *data)
+ 	return ret;
+ }
+ 
++static long dsp_ioctl_get_cur_op_perf_data(struct file *flip, dsp_fw_perf_t *data)
++{
++	int ret = 0;
++
++	struct dsp_file *dsp_file = flip->private_data;
++	struct es_dsp *dsp = dsp_file->dsp;
++	es_dsp_perf_info perf_info;
++
++	get_dsp_perf_info(&perf_info, 0, 0);
++
++	dsp->op_cur_perf.Die = 0;
++	dsp->op_cur_perf.CoreId = perf_info.core_id;
++	dsp->op_cur_perf.OpIndex = perf_info.op_index;
++	dsp->op_cur_perf.OpType = perf_info.op_type;
++	dsp->op_cur_perf.OpStartCycle = perf_info.flat1_start_time;
++	dsp->op_cur_perf.OpPrepareStartCycle = perf_info.prepare_start_time;
++	dsp->op_cur_perf.OpPrepareEndCycle = perf_info.prepare_end_time;
++	dsp->op_cur_perf.OpEvalStartCycle = perf_info.eval_start_time;
++	dsp->op_cur_perf.OpEvalEndCycle = perf_info.eval_end_time;
++	dsp->op_cur_perf.OpNotifyStartCycle = perf_info.notify_start_time;
++	dsp->op_cur_perf.OpEndCycle = perf_info.flat1_end_time;
++
++	if (copy_to_user(data, &dsp->op_cur_perf, sizeof(dsp_fw_perf_t))) {
++		dsp_err("copy cur perf data to user err.\n");
++		ret = -EINVAL;
++	}
++	dsp_debug("get dsp%u hardware cur perf data done.\n", perf_info.op_index);
++
++	return ret;
++}
++
+ static long dsp_ioctl_multi_tasks_submit(struct file *flip,
+ 					 dsp_ioctl_task_s __user *arg)
+ {
+@@ -1175,6 +1206,10 @@ static long dsp_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
+ 		retval = dsp_ioctl_get_fw_perf_data(
+ 			flip, (dsp_fw_perf_t __user *)arg);
+ 		break;
++	case DSP_IOCTL_GET_CUR_OP_PERF_DATA:
++		retval = dsp_ioctl_get_cur_op_perf_data(
++			flip, (dsp_fw_perf_t __user *)arg);
++		break;
+ 	default:
+ 		retval = es_dsp_hw_ioctl(flip, cmd, arg);
+ 		break;
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
+index 31cb775d5173..b7b565d04018 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
+@@ -52,7 +52,7 @@
+ #define DSP_IOCTL_GET_PERF_DATA _IO(ES_DSP_IOCTL_MAGIC, 23)
+ #define DSP_IOCTL_GET_FW_PERF_DATA _IO(ES_DSP_IOCTL_MAGIC, 24)
+ #define DSP_IOCTL_SUBMIT_TSKS_ASYNC _IO(ES_DSP_IOCTL_MAGIC, 25)
+-
++#define DSP_IOCTL_GET_CUR_OP_PERF_DATA _IO(ES_DSP_IOCTL_MAGIC, 26)
+ typedef struct dsp_ioctl_pre_dma_t {
+     ES_DEV_BUF_S desc;
+ } __attribute__((packed)) dsp_ioctl_pre_dma_s;
+diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
+index 99aab26af20f..b225e2287ff4 100644
+--- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
++++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
+@@ -190,6 +190,7 @@ struct es_dsp {
+ 	int op_idx;
+ 	dsp_kmd_perf_t op_perf[MAX_DSP_TASKS];
+ 	dsp_fw_perf_t op_fw_perf[MAX_DSP_TASKS];
++	dsp_fw_perf_t op_cur_perf;
+ 	atomic_t dmabuf_mapped_cnt;
+ #if defined(CONFIG_PM_DEVFREQ)
+ 	struct devfreq *df;
+-- 
+2.50.1
+

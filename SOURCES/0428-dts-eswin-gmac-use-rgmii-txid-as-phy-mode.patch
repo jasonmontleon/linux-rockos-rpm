@@ -1,7 +1,7 @@
-From 888c868bf21edcb8aafa4e524196b31cd9e0e924 Mon Sep 17 00:00:00 2001
+From a01299618cb317f6f8858e20a7f541913c29e557 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:14:19 +0800
-Subject: [PATCH 428/552] dts: eswin: gmac: use rgmii-txid as phy mode
+Subject: [PATCH 428/654] dts: eswin: gmac: use rgmii-txid as phy mode
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

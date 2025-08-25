@@ -1,7 +1,7 @@
-From 86f6ce0b63b21b3887804d5a40585f4222b63ea3 Mon Sep 17 00:00:00 2001
+From 82b1dd8768548b53649fa417e9693ee076bdf747 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 3 Jun 2024 19:00:03 +0800
-Subject: [PATCH 044/552] fix:add label for all hwmon
+Subject: [PATCH 044/654] fix:add label for all hwmon
 
 Changelogs:
 	ina226,pac1934,sic451,npq8785,pvt,fan control

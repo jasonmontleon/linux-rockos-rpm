@@ -1,0 +1,78 @@
+From 8bff429b0075efe443eaee86a43556d62c6c646f Mon Sep 17 00:00:00 2001
+From: Han Gao <rabenda.cn@gmail.com>
+Date: Tue, 12 Aug 2025 23:01:14 +0800
+Subject: [PATCH 637/654] dts: sync ramoops for megrez/nx/star64pro
+
+Signed-off-by: Han Gao <rabenda.cn@gmail.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts  | 9 +++++++--
+ arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts     | 9 +++++++--
+ arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts | 9 +++++++--
+ 3 files changed, 21 insertions(+), 6 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
+index aef0c0a61efd..f65925c4b0a3 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
+@@ -94,9 +94,14 @@ npu0_reserved: sprammemory@59000000 {
+ 			reg = <0x0 0x59000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+index 44909d48079b..614e8f708b6d 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
+@@ -94,9 +94,14 @@ npu0_reserved: sprammemory@59000000 {
+ 			reg = <0x0 0x59000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+index 7f71dd33b71f..57fc6dcc6bb0 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
+@@ -82,9 +82,14 @@ npu0_reserved: sprammemory@59000000 {
+ 			reg = <0x0 0x59000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+-- 
+2.50.1
+

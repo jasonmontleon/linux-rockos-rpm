@@ -1,7 +1,7 @@
-From 9113668066b9fb78dbc44d66c2bc9cc67f9ce1be Mon Sep 17 00:00:00 2001
+From e27fa0f50410a0df434ebac64317d973e8bf12c5 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 28 Feb 2025 15:42:16 +0800
-Subject: [PATCH 419/552] fix: do not print message when failed mem
+Subject: [PATCH 419/654] fix: do not print message when failed mem
 
 Changelogs:
 	when kzalloc mem failed, do not print kernel memssage.

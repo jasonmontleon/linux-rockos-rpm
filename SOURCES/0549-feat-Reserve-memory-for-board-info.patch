@@ -1,0 +1,47 @@
+From ec51cf2c86ae60f99ce9b6e0eebe047e204e5de1 Mon Sep 17 00:00:00 2001
+From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
+Date: Wed, 11 Jun 2025 17:24:27 +0800
+Subject: [PATCH 549/654] feat:Reserve memory for board info
+
+Changelogs:
+
+1. Add bd_table node in the device tree,
+   and reserve a piece of memory for board version.
+
+Signed-off-by: Dongdong Zhang <zhangdongdong@eswincomputing.com>
+Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts | 13 +++++++++----
+ 1 file changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index f9b1608c91d4..372a533eaba3 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -165,14 +165,19 @@ version_table:version_table@104413000 {
+ 			no-map;
+ 		};
+ 
++		bd_table:bd_table@104414000 {
++			reg = <0x1 0x4414000 0 0x1000>;
++			no-map;
++		};
++
+ 		share_memory {
+ 			compatible = "eswin,shm";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+-			phys-base = <0x1 0x4414000>;
+-			virt-base = <0x1 0x4414000>;
+-			shm-size = <0xbbea000>;
+-			reg = <0x1 0x4414000 0 0xbbea000>;
++			phys-base = <0x1 0x4415000>;
++			virt-base = <0x1 0x4415000>;
++			shm-size = <0xbbeb000>;
++			reg = <0x1 0x4415000 0 0xbbeb000>;
+ 		};
+ 
+ 	};
+-- 
+2.50.1
+

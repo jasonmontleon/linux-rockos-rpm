@@ -1,7 +1,7 @@
-From cd8e3b56ae54813f107a8ff1ceb40887e1f5a3b8 Mon Sep 17 00:00:00 2001
+From f9d1e4ffc1e438a2c999f3cd439cd395f6fc1a5e Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 23 Dec 2024 20:17:49 +0800
-Subject: [PATCH 351/552] WIN2030-16797:fix:Resolve the issue of abnormal stack
+Subject: [PATCH 351/654] WIN2030-16797:fix:Resolve the issue of abnormal stack
  in audio.
 
 Changelogs:

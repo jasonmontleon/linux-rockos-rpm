@@ -1,7 +1,7 @@
-From de0a636d65bf1ba1b8009980928d78be0b559138 Mon Sep 17 00:00:00 2001
+From b33a8bfce5adb63518b851f9abc3791e4b01fe35 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Thu, 29 May 2025 15:14:32 +0800
-Subject: [PATCH 526/552] fix: KASAN:global out of bounds
+Subject: [PATCH 526/654] fix: KASAN:global out of bounds
 
 Changelogs:
 1. add terminated of_device_id array

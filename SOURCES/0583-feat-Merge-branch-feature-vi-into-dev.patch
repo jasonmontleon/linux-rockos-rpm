@@ -1,0 +1,6021 @@
+From c385260e27bac2308007bb6d2d074cc2d2e30e63 Mon Sep 17 00:00:00 2001
+From: congyuyang <congyuyang@eswincomputing.com>
+Date: Mon, 16 Jun 2025 17:18:27 +0800
+Subject: [PATCH 583/654] feat:Merge branch 'feature-vi' into dev
+
+Changelogs:
+1. Merge branch 'feature-vi' into dev
+2. fix sometime no data dump when mutli chn run at same time
+3. default open all camera channel
+
+Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
+Signed-off-by: sunying <sunying@eswincomputing.com>
+Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
+---
+ .../boot/dts/eswin/eic7700-d314-camera.dtsi   |  429 ++++-
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi |   14 +-
+ .../boot/dts/eswin/eic7700-evb-camera.dtsi    |  296 +++-
+ .../eic7700-hifive-premier-p550-camera.dtsi   |  431 ++++-
+ .../dts/eswin/eic7700-hifive-premier-p550.dts |   14 +-
+ .../boot/dts/eswin/eic7700-osm-camera.dtsi    |  398 +++--
+ .../boot/dts/eswin/eic7700-sbc-a1-camera.dtsi |  123 +-
+ arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi |    3 +-
+ .../dts/eswin/eic7702-d560-die0-camera.dtsi   |  353 ++++
+ .../dts/eswin/eic7702-d560-die1-camera.dtsi   |  353 ++++
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  137 +-
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     |  625 +++++--
+ drivers/media/i2c/imx219.c                    | 1448 +++++++++--------
+ 13 files changed, 3377 insertions(+), 1247 deletions(-)
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
+ create mode 100644 arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
+index cd2e87461fb7..a2ecef0ec3c8 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
+@@ -1,4 +1,8 @@
+ &vi_subsys {
++	board_compat = "eic7700,dvb_vi";
++	eswin,isp_dvp0_hor = <3280>;
++	eswin,isp_dvp0_ver = <2464>;
++	phy_mode = <5>; //5: 6x2lanes, 2: 3x4lanes
+     vvcam_isp_0: vvcam_isp@0 {
+         compatible = "verisilicon,isp-v4l2";
+         id = <0>;
+@@ -14,7 +18,7 @@ port@0 {
+ 				#size-cells = <0>;
+ 				reg = <0>;
+ 				vvcam_isp_input_port: endpoint@0 {
+-					remote-endpoint = <&mipi2_csi2_output1>;
++					remote-endpoint = <&mipi_csi2_0_output2>;
+ 				};
+ 			};
+ 
+@@ -101,12 +105,281 @@ vvcam_video3: endpoint {
+     };
+ };
+ 
++&d0_i2c5 {
++	status = "okay";
++	/* i2c-sda-hold-time-ns = <1000>; */
++	/* clock-frequency = <0x186a0>; */
++
++	i2c-mux@70 {
++		/*compatible = "ti,tca9548"; */
++		compatible = "nxp,pca9548";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x70>;
++
++		i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x0>;
++
++			camera_imx219: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_gpio72_default>;
++				mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++				xvs-gpios = <&portc 6 GPIO_ACTIVE_HIGH>;
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out0: endpoint {
++						remote-endpoint = <&mipidphy0_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++
++		i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x1>;
++
++			camera_imx219_1: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out1: endpoint {
++						remote-endpoint = <&mipidphy1_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++
++		i2c@2 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x2>;
++
++			camera_imx219_2: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out2: endpoint {
++						remote-endpoint = <&mipidphy2_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++		
++		i2c@3 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x3>;
++
++			camera_imx219_3: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out3: endpoint {
++						remote-endpoint = <&mipidphy3_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++
++	};
++};
++
++
++&csi2_dphy_hw {
++	lanes = <1 2>;
++	status = "okay";
++};
++
++&csi2_dphy0 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy0_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out0>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy0_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_0_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw1 {
++	lanes = <1 2>;
++	status = "okay";
++};
++&csi2_dphy1 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy1_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out1>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
++			csidphy1_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_1_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw2 {
++	lanes = <1 2>;
++	status = "okay";
++};
++&csi2_dphy2 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out2>;
++				data-lanes = <1 2>;
++			};
++		};
+ 
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
++			csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_2_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw3 {
++	lanes = <1 2>;
++	status = "okay";
++};
++&csi2_dphy3 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy3_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out3>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy3_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_3_input>;
++			};
++		};
++	};
++};
+ 
+ &mipi_csi2_0 {
+-	data-lanes = <1 2>;
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+@@ -117,7 +390,7 @@ port@0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_input: endpoint@0 {
++			mipi_csi2_0_input: endpoint@0 {
+ 				remote-endpoint = <&csidphy0_out>;
+ 			};
+ 		};
+@@ -127,16 +400,17 @@ port@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_output0: endpoint@1 {
++			mipi_csi2_0_output0: endpoint@1 {
+ 				remote-endpoint = <&axi2dvp_mipi2_in0>;
+ 			};
+ 		};
++		
+ 		port@2 {
+ 			reg = <2>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_output1: endpoint@2 {
++			mipi_csi2_0_output2: endpoint@2 {
+ 				remote-endpoint = <&vvcam_isp_input_port>;
+ 			};
+ 		};
+@@ -144,24 +418,40 @@ mipi2_csi2_output1: endpoint@2 {
+ };
+ 
+ 
+-&dvp2axi {
++&mipi_csi2_1 {
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+-};
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
+ 
+-&dvp2axi_mipi_lvds {
+-	status = "okay";
+-	port@0 {
+-		axi2dvp_mipi2_in0: endpoint@0 {
+-			remote-endpoint = <&mipi2_csi2_output0>;
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_1_input: endpoint@0 {
++				remote-endpoint = <&csidphy1_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_1_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in1>;
++			};
+ 		};
+ 	};
+ };
+ 
+-&csi2_dphy_hw {
+-	status = "okay";
+-};
+ 
+-&csi2_dphy0 {
++&mipi_csi2_2 {
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+@@ -172,10 +462,8 @@ port@0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipidphy0_in_ucam0: endpoint@1 {
+-				reg = <1>;
+-				remote-endpoint = <&imx219_out0>;
+-				data-lanes = <1 2>;
++			mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&csidphy2_out>;
+ 			};
+ 		};
+ 
+@@ -184,63 +472,98 @@ port@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			csidphy0_out: endpoint@0 {
+-				reg = <0>;
+-				remote-endpoint = <&mipi2_csi2_input>;
++			mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in2>;
+ 			};
+ 		};
++
++		
+ 	};
+ };
+ 
+ 
+-
+-&d0_i2c5 {
++&mipi_csi2_3 {
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+-	/* i2c-sda-hold-time-ns = <1000>; */
+-	/* clock-frequency = <0x186a0>; */
+-
+-	i2c-mux@70 {
+-		/*compatible = "ti,tca9548"; */
+-		compatible = "nxp,pca9548";
++	ports {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		reg = <0x70>;
+ 
+-		i2c@0 {
++		port@0 {
++			reg = <0>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			reg = <0x0>;
+-
+-			camera_imx219: camera-imx219@10 {
+-				status = "okay";
+-				compatible = "sony,imx219";
+-				reg = <0x10>;
+ 
+-				//clocks = <&clk_cam_24m>;
+-				//clock-names = "xvclk";
++			mipi_csi2_3_input: endpoint@0 {
++				remote-endpoint = <&csidphy3_out>;
++			};
++		};
+ 
+-				eswin,camera-module-index = <0>;
+-				eswin,camera-module-facing = "back";
+-				eswin,camera-module-name = "rpi-camera-v2";
+-				eswin,camera-module-lens-name = "default";
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
+-				port {
+-					imx219_out0: endpoint {
+-						remote-endpoint = <&mipidphy0_in_ucam0>;
+-						data-lanes = <1 2>;
+-						link-frequencies = /bits/ 64 <456000000>;
+-					};
+-				};
++			mipi_csi2_3_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in3>;
+ 			};
+ 		};
+ 	};
+ };
+ 
+ 
++&dvp2axi {
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds {
++	status = "okay";
++	dvp2axi_id = <0>;
++	port@0 {
++		axi2dvp_mipi2_in0: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_0_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds1 {
++	status = "okay";
++	dvp2axi_id = <1>;
++
++	port@0 {
++		axi2dvp_mipi2_in1: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_1_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds2 {
++	status = "okay";
++	dvp2axi_id = <2>;
++
++	port@0 {
++		axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_2_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds3 {
++	status = "okay";
++	dvp2axi_id = <3>;
++
++	port@0 {
++		axi2dvp_mipi2_in3: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_3_output0>;
++		};
++	};
++};
++
+ &isp_0 {
+ 	status = "okay";
+ };
+ 
+ &isp_1 {
+-	status = "disabled";
++	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
+index 94418bd3cad8..a6bc1ae50b9e 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
+@@ -122,12 +122,6 @@ mmz_nid_0_part_0 {
+ 			reg = <0x3 0x0 0x1 0x80000000>;
+ 			no-map;
+ 		};
+-		
+-		dvp2axi_mem: dvp2axi-mem@90000000 {
+-			compatible = "shared-dma-pool";
+-			reg = <0x0 0x90000000 0x0 0x10000000>;
+-			no-map;
+-		};
+ 	};
+ 
+ 
+@@ -911,10 +905,4 @@ &dev_llc_d0{
+ 	/* apply_npu_1G_freq; */
+ 	npu-supply=<&npu_vcc1>;
+ 	status = "okay";
+-};
+-
+-&dvp2axi {
+-	memory-region = <&dvp2axi_mem>;
+-};
+-
+-//#include "eic7700-evb-camera.dtsi"
++};
+\ No newline at end of file
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
+index 1aac57abe47a..c4dc49598f39 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
+@@ -1,8 +1,11 @@
+ // #include "eswin-win2030-die0-soc.dtsi"
+ #include <dt-bindings/gpio/gpio.h>
+ #include <dt-bindings/input/input.h>
+-//&SOC {
+ &vi_subsys {
++	board_compat = "eic7700,evb_vi";
++	eswin,isp_dvp0_hor = <1920>;
++	eswin,isp_dvp0_ver = <1080>;
++	phy_mode = <2>; //5: 6x2lanes, 2: 3x4lanes
+ 	vvcam_isp_0: vvcam_isp@0 {
+ 		compatible = "verisilicon,isp-v4l2";
+ 		id = <0>;
+@@ -19,7 +22,7 @@ port@0 {
+ 				reg = <0>;
+ 				vvcam_isp_input_port: endpoint@0 {
+ 					reg = <0>;
+-					remote-endpoint = <&mipi2_csi2_output1>;
++					remote-endpoint = <&mipi_csi2_output1>;
+ 				};
+ 			};
+ 
+@@ -122,39 +125,10 @@ vvcam_video3: endpoint {
+ 		};
+ 	};
+ };
+-//};
+-
+-
+-// &d0_i2c8 {
+-// 	/* io extended for mipi csi */
+-// 	status = "okay";
+-// 	tca6416_0: gpio@20 {
+-// 		compatible = "ti,tca6416";
+-// 		reg = <0x20>;
+-// 		gpio-controller; /* IRQ not connected */
+-// 		#gpio-cells = <2>;
+-// 		gpio-line-names = "MIPI_CSI0_PWDN", "MIPI_CSI0_RESET", "MIPI_CSI1_FBC", "MIPI_CSI1_ENB",
+-// 				"MIPI_CSI1_RESET", "MIPI_CSI1_PWDN", "FREX_GP0", "",
+-// 				"MIPI_CSI0_ENB", "MIPI_CSI0_FBC", "FREX_GP2", "MIPI_CSI2_FBC",
+-// 				"MIPI_CSI2_ENB", "FREX_GP1", "MIPI_CSI2_RESET", "MIPI_CSI2_PWDN";
+-// 	};
+-// 	tca6416_1: gpio@21 {
+-// 		compatible = "ti,tca6416";
+-// 		reg = <0x21>;
+-// 		gpio-controller;
+-// 		#gpio-cells = <2>;
+-// 		/* IRQ not connected */
+-// 		gpio-line-names = "MIPI_CSI3_PWDN", "MIPI_CSI3_RESET", "MIPI_CSI3_ENB", "MIPI_CSI3_FBC",
+-// 				"MIPI_CSI4_PWDN", "MIPI_CSI4_RESET", "MIPI_CSI4_ENB", "MIPI_CSI4_FBC",
+-// 				"MIPI_CSI5_FBC", "MIPI_CSI5_ENB", "MIPI_CSI5_RESET", "MIPI_CSI5_PWDN",
+-// 				"", "", "", "";
+-// 	};
+-// };
+ 
+ &d0_i2c3 {
+ 	/* mipi csi0/csi1 */
+ 	status = "okay";
+-
+ 	imx327_0: imx327@36 {
+ 			compatible = "sony,imx327";
+ 			status = "okay";
+@@ -175,19 +149,86 @@ imx327_0: imx327@36 {
+ 			// pwdn-gpios = <&portd 6 GPIO_ACTIVE_HIGH>; // GPIO number 0 for MIPI_CSI0_PWDN
+ 			//pinctrl-names = "default";
+ 			//pinctrl-0 = <&cif_clkout>;
+-
+ 			port {
+ 				imx327_out0: endpoint {
+ 					// remote-endpoint = <&mipi_in_ucam0>;
+ 					remote-endpoint = <&mipidphy0_in_ucam0>;
+-					data-lanes = <1 2>;
++					data-lanes = <1 2 3 4>;
+ 					link-frequencies = /bits/ 64 <445500000>;
+ 				};
+ 			};
+ 		};
+ };
+ 
++&d0_i2c4 {
++	/* mipi csi2/csi3 */
++	status = "okay";
++	imx327_2: imx327@36 {
++			compatible = "sony,imx327";
++			status = "okay";
++			address-cells = <1>;
++			size-cells = <0>;
++			#reg = <0x0 0x36 0x0 0x0>;
++			reg = <0x36>;
++			clocks = <&d0_clock EIC7700_CLK_VI_SHUTTER_0>; 
++			clock-frequency = <37125000>;
++			#assigned-clocks = <&d0_clock EIC7700_CLK_VI_SHUTTER_0>;
++			assigned-clock-rates = <37125000>;
++			clock-names = "xvclk";
++			/* Reset and power down GPIOs controlled by tca6416_0 */
++			reset-gpios = <&tca6416_0 1 GPIO_ACTIVE_HIGH>;  // GPIO number 1 for MIPI_CSI0_RESET
++			pwdn-gpios = <&tca6416_0 0 GPIO_ACTIVE_HIGH>; // GPIO number 0 for MIPI_CSI0_PWDN
++			enable-gpios = <&tca6416_0 7 GPIO_ACTIVE_HIGH>;
++			// reset-gpios = <&portd 1 GPIO_ACTIVE_HIGH>;  // GPIO number 1 for MIPI_CSI0_RESET
++			// pwdn-gpios = <&portd 6 GPIO_ACTIVE_HIGH>; // GPIO number 0 for MIPI_CSI0_PWDN
++			//pinctrl-names = "default";
++			//pinctrl-0 = <&cif_clkout>;
++			
++			port {
++				imx327_out2: endpoint {
++					// remote-endpoint = <&mipi_in_ucam0>;
++					remote-endpoint = <&mipidphy2_in_ucam0>;
++					data-lanes = <1 2 3 4>;
++					link-frequencies = /bits/ 64 <445500000>;
++				};
++			};
++		};
++};
+ 
++&d0_i2c5 {
++	/* mipi csi4/csi5 */
++	status = "okay";
++	imx327_4: imx327@36 {
++			compatible = "sony,imx327";
++			status = "okay";
++			address-cells = <1>;
++			size-cells = <0>;
++			#reg = <0x0 0x36 0x0 0x0>;
++			reg = <0x36>;
++			clocks = <&d0_clock EIC7700_CLK_VI_SHUTTER_0>; 
++			clock-frequency = <37125000>;
++			#assigned-clocks = <&d0_clock EIC7700_CLK_VI_SHUTTER_0>;
++			assigned-clock-rates = <37125000>;
++			clock-names = "xvclk";
++			/* Reset and power down GPIOs controlled by tca6416_0 */
++			reset-gpios = <&tca6416_0 1 GPIO_ACTIVE_HIGH>;  // GPIO number 1 for MIPI_CSI0_RESET
++			pwdn-gpios = <&tca6416_0 0 GPIO_ACTIVE_HIGH>; // GPIO number 0 for MIPI_CSI0_PWDN
++			enable-gpios = <&tca6416_0 7 GPIO_ACTIVE_HIGH>;
++			// reset-gpios = <&portd 1 GPIO_ACTIVE_HIGH>;  // GPIO number 1 for MIPI_CSI0_RESET
++			// pwdn-gpios = <&portd 6 GPIO_ACTIVE_HIGH>; // GPIO number 0 for MIPI_CSI0_PWDN
++			//pinctrl-names = "default";
++			//pinctrl-0 = <&cif_clkout>;
++			
++			port {
++				imx327_out4: endpoint {
++					// remote-endpoint = <&mipi_in_ucam0>;
++					remote-endpoint = <&mipidphy4_in_ucam0>;
++					data-lanes = <1 2 3 4>;
++					link-frequencies = /bits/ 64 <445500000>;
++				};
++			};
++		};
++};
+ 
+ &d0_i2c8 {
+ 	/* io extended for mipi csi */
+@@ -221,6 +262,7 @@ tca6416_1: gpio@21 {
+ };
+ 
+ &csi2_dphy_hw {
++	lanes = <1 2 3 4>;
+ 	status = "okay";
+ };
+ 
+@@ -246,24 +288,96 @@ port@1 {
+ 			#size-cells = <0>;
+ 
+ 			csidphy0_out: endpoint {
+-				remote-endpoint = <&mipi2_csi2_input>;
++				remote-endpoint = <&mipi_csi2_input>;
+ 			};
+ 		};
+ 
+ 	};
+ };
+ 
+-&mipi_csi2_0 {
++&csi2_dphy_hw2 {
++	lanes = <1 2 3 4>;
++	status = "okay";
++};
++&csi2_dphy2 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx327_out2>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_2_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw4 {
++	lanes = <1 2 3 4>;
++	status = "okay";
++};
++&csi2_dphy4 {
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+ 
+ 		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy4_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx327_out4>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
++
++			csidphy4_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_4_input>;
++			};
++		};
++	};
++};
++
++&mipi_csi2_0 {
++	status = "okay";
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;	
+ 			reg = <0>;
+-			mipi2_csi2_input: endpoint {
++			mipi_csi2_input: endpoint {
+ 				remote-endpoint = <&csidphy0_out>;
+ 				data-lanes = <1 2>;
+ 			};
+@@ -273,7 +387,7 @@ port@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <1>;
+-			mipi2_csi2_output: endpoint {
++			mipi_csi2_output: endpoint {
+ 				remote-endpoint = <&axi2dvp_mipi2_in0>;
+ 			};
+ 		};
+@@ -282,13 +396,74 @@ port@2 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 			reg = <2>;
+-			mipi2_csi2_output1: endpoint {
++			mipi_csi2_output1: endpoint {
+ 				remote-endpoint = <&vvcam_isp_input_port>;
+ 			};
+ 		};
+ 	};
+ };
+ 
++&mipi_csi2_2 {
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&csidphy2_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in2>;
++			};
++		};
++	};
++};
++
++
++&mipi_csi2_4 {
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_4_input: endpoint@0 {
++				remote-endpoint = <&csidphy4_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_4_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in4>;
++			};
++		};
++	};
++};
++
+ 
+ 
+ &dvp2axi {
+@@ -297,6 +472,7 @@ &dvp2axi {
+ 
+ &dvp2axi_mipi_lvds {
+ 	status = "okay";
++	dvp2axi_id = <0>;
+ 	ports{
+ 		#address-cells = <1>;
+         #size-cells = <0>;
+@@ -305,12 +481,54 @@ port@0 {
+         	#size-cells = <0>;
+ 			reg = <0>;
+ 			axi2dvp_mipi2_in0: endpoint {
+-				remote-endpoint = <&mipi2_csi2_output>;
++				remote-endpoint = <&mipi_csi2_output>;
+ 			};
+ 		};
+ 	};
+ };
+ 
++&dvp2axi_mipi_lvds1 {
++	dvp2axi_id = <1>;
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds2 {
++	status = "okay";
++	dvp2axi_id = <2>;
++	port@0 {
++		axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_2_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds3 {
++	dvp2axi_id = <3>;
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds4 {
++	dvp2axi_id = <4>;
++	status = "okay";
++	port@0 {
++		axi2dvp_mipi2_in4: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_4_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds5 {
++	dvp2axi_id = <5>;
++	status = "disabled";
++};
++
+ &isp_0 {
++	status = "okay";
+ 	depends-on = <&imx327_0>;
+ };
++
++&isp_1 {
++	status = "okay";
++};
++
++
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
+index 876f3652b8b3..a2ecef0ec3c8 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
+@@ -1,10 +1,14 @@
+ &vi_subsys {
++	board_compat = "eic7700,dvb_vi";
++	eswin,isp_dvp0_hor = <3280>;
++	eswin,isp_dvp0_ver = <2464>;
++	phy_mode = <5>; //5: 6x2lanes, 2: 3x4lanes
+     vvcam_isp_0: vvcam_isp@0 {
+         compatible = "verisilicon,isp-v4l2";
+         id = <0>;
+         status = "okay";
+ 		dma-noncoherent;
+-
++		
+         ports {
+             #address-cells = <1>;
+             #size-cells = <0>;
+@@ -14,7 +18,7 @@ port@0 {
+ 				#size-cells = <0>;
+ 				reg = <0>;
+ 				vvcam_isp_input_port: endpoint@0 {
+-					remote-endpoint = <&mipi2_csi2_output1>;
++					remote-endpoint = <&mipi_csi2_0_output2>;
+ 				};
+ 			};
+ 
+@@ -101,12 +105,281 @@ vvcam_video3: endpoint {
+     };
+ };
+ 
++&d0_i2c5 {
++	status = "okay";
++	/* i2c-sda-hold-time-ns = <1000>; */
++	/* clock-frequency = <0x186a0>; */
++
++	i2c-mux@70 {
++		/*compatible = "ti,tca9548"; */
++		compatible = "nxp,pca9548";
++		#address-cells = <1>;
++		#size-cells = <0>;
++		reg = <0x70>;
++
++		i2c@0 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x0>;
++
++			camera_imx219: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++				pinctrl-names = "default";
++				pinctrl-0 = <&pinctrl_gpio72_default>;
++				mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++				xvs-gpios = <&portc 6 GPIO_ACTIVE_HIGH>;
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out0: endpoint {
++						remote-endpoint = <&mipidphy0_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++
++		i2c@1 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x1>;
++
++			camera_imx219_1: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out1: endpoint {
++						remote-endpoint = <&mipidphy1_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++
++		i2c@2 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x2>;
++
++			camera_imx219_2: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out2: endpoint {
++						remote-endpoint = <&mipidphy2_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++		
++		i2c@3 {
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0x3>;
++
++			camera_imx219_3: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				port {
++					imx219_out3: endpoint {
++						remote-endpoint = <&mipidphy3_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++		};
++
++	};
++};
++
++
++&csi2_dphy_hw {
++	lanes = <1 2>;
++	status = "okay";
++};
++
++&csi2_dphy0 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy0_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out0>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy0_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_0_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw1 {
++	lanes = <1 2>;
++	status = "okay";
++};
++&csi2_dphy1 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy1_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out1>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy1_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_1_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw2 {
++	lanes = <1 2>;
++	status = "okay";
++};
++&csi2_dphy2 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out2>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_2_input>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw3 {
++	lanes = <1 2>;
++	status = "okay";
++};
++&csi2_dphy3 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
++			mipidphy3_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out3>;
++				data-lanes = <1 2>;
++			};
++		};
+ 
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
++			csidphy3_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_3_input>;
++			};
++		};
++	};
++};
+ 
+ &mipi_csi2_0 {
+-	data-lanes = <1 2>;
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+@@ -117,7 +390,7 @@ port@0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_input: endpoint@0 {
++			mipi_csi2_0_input: endpoint@0 {
+ 				remote-endpoint = <&csidphy0_out>;
+ 			};
+ 		};
+@@ -127,16 +400,17 @@ port@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_output0: endpoint@1 {
++			mipi_csi2_0_output0: endpoint@1 {
+ 				remote-endpoint = <&axi2dvp_mipi2_in0>;
+ 			};
+ 		};
++		
+ 		port@2 {
+ 			reg = <2>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_output1: endpoint@2 {
++			mipi_csi2_0_output2: endpoint@2 {
+ 				remote-endpoint = <&vvcam_isp_input_port>;
+ 			};
+ 		};
+@@ -144,24 +418,40 @@ mipi2_csi2_output1: endpoint@2 {
+ };
+ 
+ 
+-&dvp2axi {
++&mipi_csi2_1 {
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+-};
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
+ 
+-&dvp2axi_mipi_lvds {
+-	status = "okay";
+-	port@0 {
+-		axi2dvp_mipi2_in0: endpoint@0 {
+-			remote-endpoint = <&mipi2_csi2_output0>;
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_1_input: endpoint@0 {
++				remote-endpoint = <&csidphy1_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_1_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in1>;
++			};
+ 		};
+ 	};
+ };
+ 
+-&csi2_dphy_hw {
+-	status = "okay";
+-};
+ 
+-&csi2_dphy0 {
++&mipi_csi2_2 {
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+@@ -172,10 +462,8 @@ port@0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipidphy0_in_ucam0: endpoint@1 {
+-				reg = <1>;
+-				remote-endpoint = <&imx219_out0>;
+-				data-lanes = <1 2>;
++			mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&csidphy2_out>;
+ 			};
+ 		};
+ 
+@@ -184,63 +472,98 @@ port@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			csidphy0_out: endpoint@0 {
+-				reg = <0>;
+-				remote-endpoint = <&mipi2_csi2_input>;
++			mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in2>;
+ 			};
+ 		};
++
++		
+ 	};
+ };
+ 
+ 
+-
+-&d0_i2c5 {
++&mipi_csi2_3 {
++	num_lanes = <2>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+-	/* i2c-sda-hold-time-ns = <1000>; */
+-	/* clock-frequency = <0x186a0>; */
+-
+-	i2c-mux@70 {
+-		/*compatible = "ti,tca9548"; */
+-		compatible = "nxp,pca9548";
++	ports {
+ 		#address-cells = <1>;
+ 		#size-cells = <0>;
+-		reg = <0x70>;
+ 
+-		i2c@0 {
++		port@0 {
++			reg = <0>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+-			reg = <0x0>;
+-
+-			camera_imx219: camera-imx219@10 {
+-				status = "okay";
+-				compatible = "sony,imx219";
+-				reg = <0x10>;
+ 
+-				//clocks = <&clk_cam_24m>;
+-				//clock-names = "xvclk";
++			mipi_csi2_3_input: endpoint@0 {
++				remote-endpoint = <&csidphy3_out>;
++			};
++		};
+ 
+-				eswin,camera-module-index = <0>;
+-				eswin,camera-module-facing = "back";
+-				eswin,camera-module-name = "rpi-camera-v2";
+-				eswin,camera-module-lens-name = "default";
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
+-				port {
+-					imx219_out0: endpoint {
+-						remote-endpoint = <&mipidphy0_in_ucam0>;
+-						data-lanes = <1 2>;
+-						link-frequencies = /bits/ 64 <456000000>;
+-					};
+-				};
++			mipi_csi2_3_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in3>;
+ 			};
+ 		};
+ 	};
+ };
+ 
+ 
++&dvp2axi {
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds {
++	status = "okay";
++	dvp2axi_id = <0>;
++	port@0 {
++		axi2dvp_mipi2_in0: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_0_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds1 {
++	status = "okay";
++	dvp2axi_id = <1>;
++
++	port@0 {
++		axi2dvp_mipi2_in1: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_1_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds2 {
++	status = "okay";
++	dvp2axi_id = <2>;
++
++	port@0 {
++		axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_2_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds3 {
++	status = "okay";
++	dvp2axi_id = <3>;
++
++	port@0 {
++		axi2dvp_mipi2_in3: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_3_output0>;
++		};
++	};
++};
++
+ &isp_0 {
+ 	status = "okay";
+ };
+ 
+ &isp_1 {
+-	status = "disabled";
++	status = "okay";
+ };
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+index ae401ec96ddd..3b273020075a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
+@@ -33,6 +33,7 @@
+ #include "eic7700-pinctrl.dtsi"
+ #include <dt-bindings/interrupt-controller/irq.h>
+ #include <dt-bindings/gpio/gpio.h>
++#include "eic7700-hifive-premier-p550-camera.dtsi"
+ 
+ /* Clock frequency (in Hz) of the PCB crystal for rtcclk */
+ 
+@@ -111,12 +112,6 @@ mmz_nid_0_part_0 {
+ 			reg = <0x3 0x0 0x1 0x80000000>;
+ 			no-map;
+ 		};
+-
+-		dvp2axi_mem: dvp2axi-mem@90000000 {
+-			compatible = "shared-dma-pool";
+-			reg = <0x0 0x90000000 0x0 0x10000000>;
+-			no-map;
+-		};
+ 	};
+ 
+ 	reg_vcc1v8: vcc1v8 {
+@@ -125,6 +120,7 @@ reg_vcc1v8: vcc1v8 {
+ 		regulator-min-microvolt = <1800000>;
+ 		regulator-max-microvolt = <1800000>;
+ 	};
++
+ };
+ 
+ &d0_clock {
+@@ -900,9 +896,3 @@ opp-1800000000 {
+ 		clock-latency-ns = <70000>;
+ 	};
+ };
+-
+-&dvp2axi {
+-	memory-region = <&dvp2axi_mem>;
+-};
+-
+-#include "eic7700-hifive-premier-p550-camera.dtsi"
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
+index ce42246ba09f..0580f139021a 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
+@@ -1,161 +1,143 @@
+ &vi_subsys {
+-    vvcam_isp_0: vvcam_isp@0 {
+-        compatible = "verisilicon,isp-v4l2";
+-        id = <0>;
+-        status = "disabled";
+-
+-        ports {
+-            #address-cells = <1>;
+-            #size-cells = <0>;
++	board_compat = "eic7700,dvb_vi";
++	eswin,isp_dvp0_hor = <3280>;
++	eswin,isp_dvp0_ver = <2464>;
++	phy_mode = <2>; //5: 6x2lanes, 2: 3x4lanes
++	vvcam_isp_0: vvcam_isp@0 {
++		compatible = "verisilicon,isp-v4l2";
++		id = <0>;
++		status = "okay";
++		dma-noncoherent;
++		ports {
++			#address-cells = <1>;
++			#size-cells = <0>;
+ 
+ 			port@0 {
+ 				#address-cells = <1>;
+ 				#size-cells = <0>;
+ 				reg = <0>;
+ 				vvcam_isp_input_port: endpoint@0 {
+-					remote-endpoint = <&mipi2_csi2_output1>;
++					remote-endpoint = <&mipi_csi2_output1>;
+ 				};
+ 			};
+ 
+-            port@1 {
+-                reg = <1>;
+-                vvcam_isp_port0_mp: endpoint {
+-                    remote-endpoint = <&vvcam_video0>;
+-                };
+-            };
+-
+-            port@2 {
+-                reg = <2>;
+-                vvcam_isp_port0_sp1: endpoint {
+-                    remote-endpoint = <&vvcam_video1>;
+-                };
+-            };
+-
+-            port@3 {
+-                reg = <3>;
+-                vvcam_isp_port0_sp2: endpoint {
+-                    remote-endpoint = <&vvcam_video2>;
+-                };
+-            };
+-
+-            port@4 {
+-                reg = <4>;
+-                vvcam_isp_port0_raw: endpoint {
+-                    remote-endpoint = <&vvcam_video3>;
+-                };
+-            };
+-        };
+-    };
+-
+-    vvcam_video_0: vvcam_video@0 {
+-        compatible = "verisilicon,video";
+-        id = <0>;
+-        status = "okay";
+-
+-        ports {
+-            #address-cells = <1>;
+-            #size-cells = <0>;
+-
+-            port@0 {
+-                reg = <0>;
+-                vvcam_video0: endpoint {
+-                    remote-endpoint = <&vvcam_isp_port0_mp>;
+-                };
+-            };
+-
+-            port@1 {
+-                reg = <1>;
+-                vvcam_video1: endpoint {
+-                    remote-endpoint = <&vvcam_isp_port0_sp1>;
+-                };
+-            };
+-
+-            port@2 {
+-                reg = <2>;
+-                vvcam_video2: endpoint {
+-                    remote-endpoint = <&vvcam_isp_port0_sp2>;
+-                };
+-            };
+-
+-            port@3 {
+-                reg = <3>;
+-                vvcam_video3: endpoint {
+-                    remote-endpoint = <&vvcam_isp_port0_raw>;
+-                };
+-            };
+-        };
+-    };
+-};
++			port@1 {
++				reg = <1>;
++				vvcam_isp_port0_mp: endpoint {
++					remote-endpoint = <&vvcam_video0>;
++				};
++			};
+ 
++			port@2 {
++				reg = <2>;
++				vvcam_isp_port0_sp1: endpoint {
++					remote-endpoint = <&vvcam_video1>;
++				};
++			};
+ 
+-&d0_i2c1 {
+-	status = "okay";
+-		camera_imx219: camera-imx219@10 {
+-			status = "okay";
+-			compatible = "sony,imx219";
+-			reg = <0x10>;
+-			pinctrl-names = "default";
+-			pinctrl-0 = <&pinctrl_gpio9_default &pinctrl_gpio10_default>;
+-			gpio9-gpios = <&porta 9 GPIO_ACTIVE_HIGH>;
+-			gpio10-gpios = <&porta 10 GPIO_ACTIVE_HIGH>;
+-			//clocks = <&clk_cam_24m>;
+-			//clock-names = "xvclk";
+-
+-			eswin,camera-module-index = <0>;
+-			eswin,camera-module-facing = "back";
+-			eswin,camera-module-name = "rpi-camera-v2";
+-			eswin,camera-module-lens-name = "default";
+-
+-			port {
+-				imx219_out0: endpoint {
+-					remote-endpoint = <&mipidphy0_in_ucam0>;
+-					data-lanes = <1 2>;
+-					link-frequencies = /bits/ 64 <456000000>;
++			port@3 {
++				reg = <3>;
++				vvcam_isp_port0_sp2: endpoint {
++					remote-endpoint = <&vvcam_video2>;
++				};
++			};
++
++			port@4 {
++				reg = <4>;
++				vvcam_isp_port0_raw: endpoint {
++					remote-endpoint = <&vvcam_video3>;
+ 				};
+ 			};
+ 		};
+-};
++	};
+ 
+-&csi2_dphy_hw {
+-	status = "okay";
+-};
++	vvcam_vb: vvcam-vb@0 {
++		compatible = "verisilicon,vb";
++		status = "okay";
++		#size-cells = <2>;
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu0 WIN2030_SID_ISP0>;
++	};
+ 
+-&csi2_dphy0 {
+-	status = "okay";
+-	ports {
+-		#address-cells = <1>;
+-		#size-cells = <0>;
++	vvcam_video_0: vvcam_video@0 {
++		compatible = "verisilicon,video";
++		id = <0>;
++		status = "okay";
++		#size-cells = <2>;
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu0 WIN2030_SID_ISP0>;
+ 
+-		port@0 {
+-			reg = <0>;
++		ports {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipidphy0_in_ucam0: endpoint@1 {
++			port@0 {
++				reg = <0>;
++				vvcam_video0: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_mp>;
++				};
++			};
++
++			port@1 {
+ 				reg = <1>;
+-				remote-endpoint = <&imx219_out0>;
+-				data-lanes = <1 2>;
++				vvcam_video1: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_sp1>;
++				};
+ 			};
+-		};
+ 
+-		port@1 {
+-			reg = <1>;
+-			#address-cells = <1>;
+-			#size-cells = <0>;
++			port@2 {
++				reg = <2>;
++				vvcam_video2: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_sp2>;
++				};
++			};
+ 
+-			csidphy0_out: endpoint@0 {
+-				reg = <0>;
+-				remote-endpoint = <&mipi2_csi2_input>;
++			port@3 {
++				reg = <3>;
++				vvcam_video3: endpoint {
++					remote-endpoint = <&vvcam_isp_port0_raw>;
++				};
+ 			};
+ 		};
+ 	};
+ };
+ 
+-&csi2_dphy1 {
++&dvp2axi {
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds {
++	status = "okay";
++	dvp2axi_id = <0>;
++	port@0 {
++		axi2dvp_mipi2_in0: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_output0>;
++		};
++	};
++};
++
++&dvp2axi_mipi_lvds1 {
++	status = "disabled";
++	dvp2axi_id = <1>;
++};
++
++&dvp2axi_mipi_lvds2 {
+ 	status = "disabled";
++	dvp2axi_id = <2>;
++	port@0 {
++		axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_2_output0>;
++		};
++	};
+ };
+ 
++
++
+ &mipi_csi2_0 {
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+@@ -166,8 +148,7 @@ port@0 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_input: endpoint@0 {
+-				reg = <0>;
++			mipi0_csi2_input: endpoint@0 {
+ 				remote-endpoint = <&csidphy0_out>;
+ 			};
+ 		};
+@@ -177,62 +158,187 @@ port@1 {
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_output: endpoint@1 {
+-				reg = <1>;
++			mipi_csi2_output0: endpoint@1 {
+ 				remote-endpoint = <&axi2dvp_mipi2_in0>;
+ 			};
+ 		};
+-
+ 		port@2 {
+ 			reg = <2>;
+ 			#address-cells = <1>;
+ 			#size-cells = <0>;
+ 
+-			mipi2_csi2_output1: endpoint@2 {
+-				reg = <2>;
++			mipi_csi2_output1: endpoint@2 {
+ 				remote-endpoint = <&vvcam_isp_input_port>;
+ 			};
+ 		};
+ 	};
+ };
+ 
+-&dvp2axi {
++&mipi_csi2_2 {
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
++	status = "disabled";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&csidphy2_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in2>;
++			};
++		};
++	};
++};
++
++
++
++
++&csi2_dphy_hw {
++	lanes = <1 2 3 4>;
+ 	status = "okay";
+ };
+ 
+-&dvp2axi_mipi_lvds {
++&csi2_dphy0 {
+ 	status = "okay";
+-	port {
+-		axi2dvp_mipi2_in0: endpoint {
+-			remote-endpoint = <&mipi2_csi2_output>;
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy0_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out0>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy0_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi0_csi2_input>;
++			};
+ 		};
+ 	};
+ };
+ 
+-&mipi_dphy_rx {
++&csi2_dphy_hw2 {
++	lanes = <1 2 3 4>;
+ 	status = "disabled";
+ };
+ 
+-&csi_dma0 {
++&csi2_dphy2 {
+ 	status = "disabled";
+-};
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
+ 
+-&csi_dma1 {
+-	status = "disabled";
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out2>;
++				data-lanes = <1 2 3 4>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_2_input>;
++			};
++		};
++	};
+ };
+ 
+-&csi2_0 {
+-	status = "disabled";
++&d0_i2c1 {
++	status = "okay";
++	imx219_0: imx219@10 {
++		compatible = "sony,imx219";
++		status = "okay";
++		address-cells = <1>;
++		size-cells = <0>;
++		reg = <0x10>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio72_default &pinctrl_gpio70_default>;
++		mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++		xvs-gpios = <&portc 6 GPIO_ACTIVE_HIGH>;
++
++		eswin,camera-module-index = <0>;
++		eswin,camera-module-facing = "back";
++		eswin,camera-module-name = "rpi-camera-v2";
++		eswin,camera-module-lens-name = "default";
++
++		port {
++			imx219_out0: endpoint {
++				remote-endpoint = <&mipidphy0_in_ucam0>;
++				data-lanes = <1 2 3 4>;
++				link-frequencies = /bits/ 64 <364000000>;
++			};
++		};
++	};
+ };
+ 
+-&csi2_1 {
++&d0_aon_i2c0 {
+ 	status = "disabled";
++	imx219_1: imx219@10 {
++		compatible = "sony,imx219";
++		status = "disabled";
++		address-cells = <1>;
++		size-cells = <0>;
++		reg = <0x10>;
++
++		pinctrl-names = "default";
++		pinctrl-0 = <&pinctrl_gpio78_default>;
++		mclk-gpios = <&portc 14 GPIO_ACTIVE_HIGH>;
++
++		eswin,camera-module-index = <0>;
++		eswin,camera-module-facing = "back";
++		eswin,camera-module-name = "rpi-camera-v2";
++		eswin,camera-module-lens-name = "default";
++
++		port {
++			imx219_out2: endpoint {
++				remote-endpoint = <&mipidphy2_in_ucam0>;
++				data-lanes = <1 2 3 4>;
++				link-frequencies = /bits/ 64 <364000000>;
++			};
++		};
++	};
+ };
+ 
+ &isp_0 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &isp_1 {
+ 	status = "disabled";
+-};
+\ No newline at end of file
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
+index f75d8d78518c..095958061da5 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
+@@ -2,7 +2,7 @@ &vi_subsys {
+ 	board_compat = "eic7700,dvb_vi";
+ 	eswin,isp_dvp0_hor = <3280>;
+ 	eswin,isp_dvp0_ver = <2464>;
+-	phy_mode = <2>;
++	phy_mode = <2>; //5: 6x2lanes, 2: 3x4lanes
+ 	vvcam_isp_0: vvcam_isp@0 {
+ 		compatible = "verisilicon,isp-v4l2";
+ 		id = <0>;
+@@ -105,7 +105,8 @@ vvcam_video3: endpoint {
+ };
+ 
+ &mipi_csi2_0 {
+-	num_lanes = <2>;
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
+ 	status = "okay";
+ 	ports {
+ 		#address-cells = <1>;
+@@ -142,6 +143,36 @@ mipi_csi2_output1: endpoint@2 {
+ 	};
+ };
+ 
++&mipi_csi2_2 {
++	num_lanes = <4>;
++	snps,en-ppi-width = <1>; // 1: 16-bit, 0: 8-bit
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&csidphy2_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in2>;
++			};
++		};
++	};
++};
++
+ 
+ &dvp2axi {
+ 	status = "okay";
+@@ -157,9 +188,24 @@ axi2dvp_mipi2_in0: endpoint@0 {
+ 	};
+ };
+ 
++&dvp2axi_mipi_lvds1 {
++	status = "okay";
++	dvp2axi_id = <1>;
++};
++
++&dvp2axi_mipi_lvds2 {
++	status = "okay";
++	dvp2axi_id = <2>;
++	port@0 {
++		axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_2_output0>;
++		};
++	};
++};
++
+ 
+ &csi2_dphy_hw {
+-	lanes = <1 2>;
++	lanes = <1 2 3 4>;
+ 	status = "okay";
+ };
+ 
+@@ -177,7 +223,6 @@ port@0 {
+ 			mipidphy0_in_ucam0: endpoint@0 {
+ 				reg = <0>;
+ 				remote-endpoint = <&imx219_out0>;
+-				data-lanes = <1 2>;
+ 			};
+ 		};
+ 
+@@ -194,11 +239,71 @@ csidphy0_out: endpoint@1 {
+ 	};
+ };
+ 
++&csi2_dphy_hw2 {
++	lanes = <1 2 3 4>;
++	status = "okay";
++};
++
++&csi2_dphy2 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out2>;
++				data-lanes = <1 2 3 4>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_2_input>;
++			};
++		};
++	};
++};
++
++&d0_i2c2 {
++	/* mipi csi2/csi3 */
++	status = "okay";
++	imx219_0: imx219@10 {
++			compatible = "sony,imx219";
++			status = "okay";
++			address-cells = <1>;
++			size-cells = <0>;
++			reg = <0x10>;
++			mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++			eswin,camera-module-index = <0>;
++			eswin,camera-module-facing = "back";
++			eswin,camera-module-name = "rpi-camera-v2";
++			eswin,camera-module-lens-name = "default";
++
++			port {
++				imx219_out2: endpoint {
++					remote-endpoint = <&mipidphy2_in_ucam0>;
++					data-lanes = <1 2 3 4>;
++					link-frequencies = /bits/ 64 <364000000>;
++				};
++			};
++		};
++};
+ 
+ &d0_i2c3 {
+ 	/* mipi csi0/csi1 */
+ 	status = "okay";
+-	imx219: imx219@10 {
++	imx219_1: imx219@10 {
+ 			compatible = "sony,imx219";
+ 			status = "okay";
+ 			address-cells = <1>;
+@@ -206,9 +311,7 @@ imx219: imx219@10 {
+ 			reg = <0x10>;
+ 
+ 			pinctrl-names = "default";
+-			pinctrl-0 = <&pinctrl_gpio72_default &pinctrl_gpio70_default>;
+-			mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;  //gpio72
+-			xvs-gpios = <&portc 6 GPIO_ACTIVE_HIGH>;   //gpio70
++			mclk-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
+ 			eswin,camera-module-index = <0>;
+ 			eswin,camera-module-facing = "back";
+ 			eswin,camera-module-name = "rpi-camera-v2";
+@@ -217,8 +320,8 @@ imx219: imx219@10 {
+ 			port {
+ 				imx219_out0: endpoint {
+ 					remote-endpoint = <&mipidphy0_in_ucam0>;
+-					data-lanes = <1 2>;
+-					link-frequencies = /bits/ 64 <456000000>;
++					data-lanes = <1 2 3 4>;
++					link-frequencies = /bits/ 64 <364000000>;
+ 				};
+ 			};
+ 		};
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
+index 153998c57c1a..07ac38f43b40 100755
+--- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
+@@ -745,7 +745,8 @@ &pinctrl {
+ 	pinctrl-0 = <&pinctrl_gpio1_default &pinctrl_gpio2_default &pinctrl_gpio3_default &pinctrl_gpio4_default
+ 			&pinctrl_gpio5_default &pinctrl_gpio6_default &pinctrl_gpio7_default &pinctrl_gpio8_default
+ 			&pinctrl_gpio9_default &pinctrl_gpio10_default &pinctrl_gpio17_default &pinctrl_gpio27_default
+-			&pinctrl_gpio64_default	&pinctrl_gpio65_default &pinctrl_gpio66_default &pinctrl_gpio67_default >;
++			&pinctrl_gpio64_default	&pinctrl_gpio65_default &pinctrl_gpio66_default &pinctrl_gpio67_default
++			&pinctrl_gpio72_default >;
+ 
+     /* pin header default function for GPIO
+        SPI1 (CS0,SCLK,MOSI,MISO,D2,D3,CS1): GPIO 35,36,37,38,39,40,41
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
+new file mode 100644
+index 000000000000..8609a01c11c1
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
+@@ -0,0 +1,353 @@
++&vi_subsys {
++	board_compat = "eic7700,dvb_vi";
++	eswin,isp_dvp0_hor = <3280>;
++	eswin,isp_dvp0_ver = <2464>;
++    vvcam_isp_0: vvcam_isp@0 {
++        compatible = "verisilicon,isp-v4l2";
++        id = <0>;
++        status = "okay";
++		dma-noncoherent;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++			port@0 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0>;
++				vvcam_isp_input_port: endpoint@0 {
++					remote-endpoint = <&mipi2_csi2_output1>;
++				};
++			};
++
++            port@1 {
++                reg = <1>;
++                vvcam_isp_port0_mp: endpoint {
++                    remote-endpoint = <&vvcam_video0>;
++                };
++            };
++
++            port@2 {
++                reg = <2>;
++                vvcam_isp_port0_sp1: endpoint {
++                    remote-endpoint = <&vvcam_video1>;
++                };
++            };
++
++            port@3 {
++                reg = <3>;
++                vvcam_isp_port0_sp2: endpoint {
++                    remote-endpoint = <&vvcam_video2>;
++                };
++            };
++
++            port@4 {
++                reg = <4>;
++                vvcam_isp_port0_raw: endpoint {
++                    remote-endpoint = <&vvcam_video3>;
++                };
++            };
++        };
++    };
++
++	vvcam_vb: vvcam-vb@0 {
++		compatible = "verisilicon,vb";
++		status = "okay";
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu0 WIN2030_SID_ISP0>;
++	};
++
++    vvcam_video_0: vvcam_video@0 {
++        compatible = "verisilicon,video";
++        id = <0>;
++        status = "okay";
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu0 WIN2030_SID_ISP0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                vvcam_video0: endpoint {
++                    remote-endpoint = <&vvcam_isp_port0_mp>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                vvcam_video1: endpoint {
++                    remote-endpoint = <&vvcam_isp_port0_sp1>;
++                };
++            };
++
++            port@2 {
++                reg = <2>;
++                vvcam_video2: endpoint {
++                    remote-endpoint = <&vvcam_isp_port0_sp2>;
++                };
++            };
++
++            port@3 {
++                reg = <3>;
++                vvcam_video3: endpoint {
++                    remote-endpoint = <&vvcam_isp_port0_raw>;
++                };
++            };
++        };
++    };
++};
++
++
++
++
++
++&mipi_csi2_0 {
++	data-lanes = <1 2>;
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi2_csi2_input: endpoint@0 {
++				remote-endpoint = <&csidphy0_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi2_csi2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in0>;
++			};
++		};
++		port@2 {
++			reg = <2>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi2_csi2_output1: endpoint@2 {
++				remote-endpoint = <&vvcam_isp_input_port>;
++			};
++		};
++	};
++};
++
++
++&dvp2axi {
++	status = "okay";
++};
++
++&dvp2axi_mipi_lvds {
++	status = "okay";
++	port@0 {
++		axi2dvp_mipi2_in0: endpoint@0 {
++			remote-endpoint = <&mipi2_csi2_output0>;
++		};
++	};
++};
++
++&csi2_dphy_hw {
++	status = "okay";
++};
++
++&csi2_dphy0 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy0_in_ucam0: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&imx219_out0>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy0_out: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&mipi2_csi2_input>;
++			};
++		};
++	};
++};
++
++
++
++&d0_i2c3 {
++	status = "okay";
++
++
++	/* i2c-sda-hold-time-ns = <1000>; */
++	/* clock-frequency = <0x186a0>; */
++			camera_imx219: camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++                eswin,board-type = "d560";
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				power-en-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++				power-level-gpios = <&d1_porta 21 GPIO_ACTIVE_HIGH>;
++				mclk-en-gpios = <&portc 14 GPIO_ACTIVE_HIGH>;
++
++				port {
++					imx219_out0: endpoint {
++						remote-endpoint = <&mipidphy0_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++};
++
++&d0_i2c4 {
++	status = "okay";
++	/* d0 csi2-3 */
++
++			camera_imx219_1: camera-imx219-1@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				power-en-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++				power-level-gpios = <&d1_porta 21 GPIO_ACTIVE_HIGH>;
++				mclk-en-gpios = <&portc 14 GPIO_ACTIVE_HIGH>;
++
++				port {
++					imx219_out2: endpoint {
++						remote-endpoint = <&mipidphy2_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++};
++
++
++&mipi_csi2_2 {
++	data-lanes = <1 2>;
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&csidphy2_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&axi2dvp_mipi2_in2>;
++			};
++		};
++	};
++};
++
++&csi2_dphy_hw2 {
++	status = "okay";
++};
++&csi2_dphy2 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&imx219_out2>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&mipi_csi2_2_input>;
++			};
++		};
++	};
++};
++
++
++
++&dvp2axi_mipi_lvds1 {
++	status = "okay";
++	dvp2axi_id = <1>;
++};
++
++&dvp2axi_mipi_lvds2 {
++	status = "okay";
++	dvp2axi_id = <2>;
++
++	port@0 {
++		axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&mipi_csi2_2_output0>;
++		};
++	};
++};
++
++
++
++&isp_0 {
++	status = "okay";
++};
++
++&isp_1 {
++	status = "disabled";
++};
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
+new file mode 100644
+index 000000000000..366d7f52b4a0
+--- /dev/null
++++ b/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
+@@ -0,0 +1,353 @@
++&d1_vi_subsys {
++	board_compat = "eic7700,dvb_vi";
++	eswin,isp_dvp0_hor = <3280>;
++	eswin,isp_dvp0_ver = <2464>;
++    d1_vvcam_isp_0: d1-vvcam_isp@0 {
++        compatible = "verisilicon,isp-v4l2";
++        id = <0>;
++        status = "okay";
++		dma-noncoherent;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++			port@0 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				reg = <0>;
++				d1_vvcam_isp_input_port: endpoint@0 {
++					remote-endpoint = <&d1_mipi2_csi2_output1>;
++				};
++			};
++
++            port@1 {
++                reg = <1>;
++                d1_vvcam_isp_port0_mp: endpoint {
++                    remote-endpoint = <&d1_vvcam_video0>;
++                };
++            };
++
++            port@2 {
++                reg = <2>;
++                d1_vvcam_isp_port0_sp1: endpoint {
++                    remote-endpoint = <&d1_vvcam_video1>;
++                };
++            };
++
++            port@3 {
++                reg = <3>;
++                d1_vvcam_isp_port0_sp2: endpoint {
++                    remote-endpoint = <&d1_vvcam_video2>;
++                };
++            };
++
++            port@4 {
++                reg = <4>;
++                d1_vvcam_isp_port0_raw: endpoint {
++                    remote-endpoint = <&d1_vvcam_video3>;
++                };
++            };
++        };
++    };
++
++	d1_vvcam_vb: d1-vvcam-vb@0 {
++		compatible = "verisilicon,vb";
++		status = "okay";
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu1 WIN2030_SID_ISP0>;
++	};
++
++    d1_vvcam_video_0: d1-vvcam_video@0 {
++        compatible = "verisilicon,video";
++        id = <0>;
++        status = "okay";
++		dma-noncoherent;
++		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++		iommus = <&smmu1 WIN2030_SID_ISP0>;
++
++        ports {
++            #address-cells = <1>;
++            #size-cells = <0>;
++
++            port@0 {
++                reg = <0>;
++                d1_vvcam_video0: endpoint {
++                    remote-endpoint = <&d1_vvcam_isp_port0_mp>;
++                };
++            };
++
++            port@1 {
++                reg = <1>;
++                d1_vvcam_video1: endpoint {
++                    remote-endpoint = <&d1_vvcam_isp_port0_sp1>;
++                };
++            };
++
++            port@2 {
++                reg = <2>;
++                d1_vvcam_video2: endpoint {
++                    remote-endpoint = <&d1_vvcam_isp_port0_sp2>;
++                };
++            };
++
++            port@3 {
++                reg = <3>;
++                d1_vvcam_video3: endpoint {
++                    remote-endpoint = <&d1_vvcam_isp_port0_raw>;
++                };
++            };
++        };
++    };
++};
++
++
++
++
++
++&d1_mipi_csi2_0 {
++	data-lanes = <1 2>;
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipi2_csi2_input: endpoint@0 {
++				remote-endpoint = <&d1_csidphy0_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipi2_csi2_output0: endpoint@1 {
++				remote-endpoint = <&d1_axi2dvp_mipi2_in0>;
++			};
++		};
++		port@2 {
++			reg = <2>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipi2_csi2_output1: endpoint@2 {
++				remote-endpoint = <&d1_vvcam_isp_input_port>;
++			};
++		};
++	};
++};
++
++
++&d1_dvp2axi {
++	status = "okay";
++};
++
++&d1_dvp2axi_mipi_lvds {
++	status = "okay";
++	port@0 {
++		d1_axi2dvp_mipi2_in0: endpoint@0 {
++			remote-endpoint = <&d1_mipi2_csi2_output0>;
++		};
++	};
++};
++
++&d1_csi2_dphy_hw {
++	status = "okay";
++};
++
++&d1_csi2_dphy0 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipidphy0_in_ucam0: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&d1_imx219_out0>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_csidphy0_out: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&d1_mipi2_csi2_input>;
++			};
++		};
++	};
++};
++
++
++
++&d1_i2c3 {
++	status = "okay";
++
++
++	/* i2c-sda-hold-time-ns = <1000>; */
++	/* clock-frequency = <0x186a0>; */
++			d1_camera_imx219: d1-camera-imx219@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++                eswin,board-type = "d560";
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				power-en-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++				power-level-gpios = <&d1_porta 21 GPIO_ACTIVE_HIGH>;
++				mclk-en-gpios = <&portc 14 GPIO_ACTIVE_HIGH>;
++				port {
++					d1_imx219_out0: endpoint {
++						remote-endpoint = <&d1_mipidphy0_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++};
++
++&d1_i2c4 {
++	status = "okay";
++	/* d0 csi2-3 */
++
++			d1_camera_imx219_1: d1-camera-imx219-1@10 {
++				status = "okay";
++				compatible = "sony,imx219";
++				reg = <0x10>;
++
++				//clocks = <&clk_cam_24m>;
++				//clock-names = "xvclk";
++
++                eswin,board-type = "d560";
++				eswin,camera-module-index = <0>;
++				eswin,camera-module-facing = "back";
++				eswin,camera-module-name = "rpi-camera-v2";
++				eswin,camera-module-lens-name = "default";
++
++				power-en-gpios = <&portc 8 GPIO_ACTIVE_HIGH>;
++				power-level-gpios = <&d1_porta 21 GPIO_ACTIVE_HIGH>;
++				mclk-en-gpios = <&portc 14 GPIO_ACTIVE_HIGH>;
++
++				port {
++					d1_imx219_out2: endpoint {
++						remote-endpoint = <&d1_mipidphy2_in_ucam0>;
++						data-lanes = <1 2>;
++						link-frequencies = /bits/ 64 <456000000>;
++					};
++				};
++			};
++};
++
++
++&d1_mipi_csi2_2 {
++	data-lanes = <1 2>;
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipi_csi2_2_input: endpoint@0 {
++				remote-endpoint = <&d1_csidphy2_out>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipi_csi2_2_output0: endpoint@1 {
++				remote-endpoint = <&d1_axi2dvp_mipi2_in2>;
++			};
++		};
++	};
++};
++
++&d1_csi2_dphy_hw2 {
++	status = "okay";
++};
++&d1_csi2_dphy2 {
++	status = "okay";
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_mipidphy2_in_ucam0: endpoint@0 {
++				reg = <0>;
++				remote-endpoint = <&d1_imx219_out2>;
++				data-lanes = <1 2>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			#address-cells = <1>;
++			#size-cells = <0>;
++
++			d1_csidphy2_out: endpoint@1 {
++				reg = <1>;
++				remote-endpoint = <&d1_mipi_csi2_2_input>;
++			};
++		};
++	};
++};
++
++
++
++&d1_dvp2axi_mipi_lvds1 {
++	status = "okay";
++	dvp2axi_id = <1>;
++};
++
++&d1_dvp2axi_mipi_lvds2 {
++	status = "okay";
++	dvp2axi_id = <2>;
++
++	port@0 {
++		d1_axi2dvp_mipi2_in2: endpoint@0 {
++			remote-endpoint = <&d1_mipi_csi2_2_output0>;
++		};
++	};
++};
++
++
++
++&d1_isp_0 {
++	status = "okay";
++};
++
++&d1_isp_1 {
++	status = "disabled";
++};
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 5f27110b940b..ccef04665433 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -2068,23 +2068,22 @@ vi_subsys: vi-subsys@51000000 {
+ 						<&d0_clock EIC7700_SPLL0_FOUT1>,
+ 						<&d0_clock EIC7700_VPLL_FOUT1>;
+ 			clock-names = "aclk", "cfg_clk", "isp_aclk", "dvp_clk", "phy_cfg",
+-						"phy_escclk", "sht0", "sht1", "sht2", "sht3", "sht4",
+-						"sht5", "aclk_mux", "dvp_mux", "isp_mux", "spll0_fout1", "vpll_fout1";
++							"phy_escclk", "sht0", "sht1", "sht2", "sht3", "sht4",
++							"sht5", "aclk_mux", "dvp_mux", "isp_mux", "spll0_fout1", "vpll_fout1";
+ 			resets = <&d0_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
+-					 <&d0_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
+-					 <&d0_reset ISP0_RST_CTRL SW_VI_ISP0_RSTN>,
+-					 <&d0_reset ISP1_RST_CTRL SW_VI_ISP1_RSTN>,
+-					 <&d0_reset DVP_RST_CTRL SW_VI_DVP_RSTN>,
+-					 <&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_0>,
+-					 <&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_1>,
+-					 <&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_2>,
+-					 <&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_3>,
+-					 <&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_4>,
+-					 <&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_5>;
++						<&d0_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
++						<&d0_reset ISP0_RST_CTRL SW_VI_ISP0_RSTN>,
++						<&d0_reset ISP1_RST_CTRL SW_VI_ISP1_RSTN>,
++						<&d0_reset DVP_RST_CTRL SW_VI_DVP_RSTN>,
++						<&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_0>,
++						<&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_1>,
++						<&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_2>,
++						<&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_3>,
++						<&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_4>,
++						<&d0_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_5>;
+ 			reset-names = "axi", "cfg", "isp0", "isp1", "dvp", "sht0", "sht1", "sht2", "sht3", "sht4", "sht5";
+ 			tbus = <WIN2030_TBUID_DW>;
+ 			numa-node-id = <0>;
+-
+ 			ranges;
+ 			status = "okay";
+ 			
+@@ -2200,12 +2199,16 @@ dvp2axi: dvp2axi@51034000 {
+ 				reg-names = "dvp2axi_regs";
+ 				interrupt-parent = <&plic0>;
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+-				eswin,vi_top_csr = <&vi_top_csr>;
++				eswin,vi_top_csr = <&vi_top_csr 0x100c>;
+ 				interrupts = <368 369 370 371 372 373 374 375>;
+ 				interrupt-names = "dvp0_frame_int", "dvp1_frame_int", "dvp2_frame_int",
+ 									"dvp3_frame_int", "dvp4_frame_int", "dvp5_frame_int",
+ 									"dvp2axi_error_int","dvp2axi_afull_int";
+ 				dma-noncoherent;
++				numa-node-id = <0>;
++				#size-cells = <2>;
++				dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++				iommus = <&smmu0 WIN2030_SID_DW>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -2214,7 +2217,6 @@ dvp2axi_mipi_lvds: dvp2axi_mipi_lvds {
+ 				eswin,hw = <&dvp2axi>;
+ 				status = "disabled";
+ 			};
+-			
+ 			dvp2axi_mipi_lvds1: dvp2axi_mipi_lvds1 {
+ 				compatible = "eswin,dvp2axi-mipi-lvds";
+ 				eswin,hw = <&dvp2axi>;
+@@ -2227,6 +2229,24 @@ dvp2axi_mipi_lvds2: dvp2axi_mipi_lvds2 {
+ 				status = "disabled";
+ 			};
+ 			
++			dvp2axi_mipi_lvds3: dvp2axi_mipi_lvds3 {
++				compatible = "eswin,dvp2axi-mipi-lvds";
++				eswin,hw = <&dvp2axi>;
++				status = "disabled";
++			};
++
++			dvp2axi_mipi_lvds4: dvp2axi_mipi_lvds4 {
++				compatible = "eswin,dvp2axi-mipi-lvds";
++				eswin,hw = <&dvp2axi>;
++				status = "disabled";
++			};
++
++			dvp2axi_mipi_lvds5: dvp2axi_mipi_lvds5 {
++				compatible = "eswin,dvp2axi-mipi-lvds";
++				eswin,hw = <&dvp2axi>;
++				status = "disabled";
++			};
++
+ 			mipi_csi2_0: mipi-csi2-0@51050000 {
+ 				#address-cells = <2>;
+ 				#size-cells = <2>;
+@@ -2235,11 +2255,15 @@ mipi_csi2_0: mipi-csi2-0@51050000 {
+ 				reg-names = "csihost_regs";
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+ 				eswin,vi_top_csr = <&vi_top_csr>;
+-				//eswin,hw = <&mipi_csi2_hw>;
+ 				interrupt-parent = <&plic0>;
+ 				interrupts = <29>;
+ 				interrupt-names = "csi-intr1";
+ 				index = <0>;
++
++				ipi2_en = <0>;/* for virtual channel */
++				ipi2_vcid = <0>;/* virtual channel id */
++				ipi3_en = <0>;
++				ipi3_vcid = <0>;
+ 				status = "disabled";
+ 			};
+ 
+@@ -2251,7 +2275,6 @@ mipi_csi2_1: mipi-csi2-1@51060000 {
+ 				reg-names = "csihost_regs";
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+ 				eswin,vi_top_csr = <&vi_top_csr>;
+-				//eswin,hw = <&mipi_csi2_hw>;
+ 				interrupt-parent = <&plic0>;
+ 				interrupts = <30>;
+ 				interrupt-names = "csi-intr1";
+@@ -2267,7 +2290,6 @@ mipi_csi2_2: mipi-csi2-2@51070000 {
+ 				reg-names = "csihost_regs";
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+ 				eswin,vi_top_csr = <&vi_top_csr>;
+-				//eswin,hw = <&mipi_csi2_hw>;
+ 				interrupt-parent = <&plic0>;
+ 				interrupts = <31>;
+ 				interrupt-names = "csi-intr1";
+@@ -2283,7 +2305,6 @@ mipi_csi2_3: mipi-csi2-3@51080000 {
+ 				reg-names = "csihost_regs";
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+ 				eswin,vi_top_csr = <&vi_top_csr>;
+-				//eswin,hw = <&mipi_csi2_hw>;
+ 				interrupt-parent = <&plic0>;
+ 				interrupts = <32>;
+ 				interrupt-names = "csi-intr1";
+@@ -2299,7 +2320,6 @@ mipi_csi2_4: mipi-csi2-4@51090000 {
+ 				reg-names = "csihost_regs";
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+ 				eswin,vi_top_csr = <&vi_top_csr>;
+-				//eswin,hw = <&mipi_csi2_hw>;
+ 				interrupt-parent = <&plic0>;
+ 				interrupts = <33>;
+ 				interrupt-names = "csi-intr1";
+@@ -2315,7 +2335,6 @@ mipi_csi2_5: mipi-csi2-5@510a0000 {
+ 				reg-names = "csihost_regs";
+ 				eswin,syscrg_csr = <&d0_sys_crg>;
+ 				eswin,vi_top_csr = <&vi_top_csr>;
+-				//eswin,hw = <&mipi_csi2_hw>;
+ 				interrupt-parent = <&plic0>;
+ 				interrupts = <34>;
+ 				interrupt-names = "csi-intr1";
+@@ -2326,23 +2345,16 @@ mipi_csi2_5: mipi-csi2-5@510a0000 {
+ 			csi2_dphy_hw: csi2-dphy-hw@510c0000 {
+ 				compatible = "eswin,eic770x-csi2-dphy-hw";
+ 				reg = <0x0 0x510c0000 0x0 0x20000>;
+-				//clocks = <&cru PCLK_MIPICSIPHY>;
+-				//clock-names = "pclk";
+-				//eswin,grf = <&grf>;
+ 				phy_cfg = <0x510d8000>;
+-				// eswin,mipi_csi2_hw = <&mipi_csi2_hw>;
+ 				csi_base = <0x51050000>;
++				combine_phy = <0x510e0000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			csi2_dphy_hw1: csi2-dphy-hw1@510e0000 {
+ 				compatible = "eswin,eic770x-csi2-dphy-hw";
+ 				reg = <0x0 0x510e0000 0x0 0x20000>;
+-				//clocks = <&cru PCLK_MIPICSIPHY>;
+-				//clock-names = "pclk";
+-				//eswin,grf = <&grf>;
+ 				phy_cfg = <0x510f8000>;
+-				// eswin,mipi_csi2_hw = <&mipi_csi2_hw>;
+ 				csi_base = <0x51060000>;
+ 				status = "disabled";
+ 			};
+@@ -2350,36 +2362,79 @@ csi2_dphy_hw1: csi2-dphy-hw1@510e0000 {
+ 			csi2_dphy_hw2: csi2-dphy-hw2@51100000 {
+ 				compatible = "eswin,eic770x-csi2-dphy-hw";
+ 				reg = <0x0 0x51100000 0x0 0x20000>;
+-				//clocks = <&cru PCLK_MIPICSIPHY>;
+-				//clock-names = "pclk";
+-				//eswin,grf = <&grf>;
+-				phy_cfg = <0x51180000>;
+-				// eswin,mipi_csi2_hw = <&mipi_csi2_hw>;
++				phy_cfg = <0x51118000>;
+ 				csi_base = <0x51070000>;
++				combine_phy = <0x51120000>;
++				status = "disabled";
++			};
++
++			csi2_dphy_hw3: csi2-dphy-hw3@51120000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x51120000 0x0 0x20000>;
++				phy_cfg = <0x51138000>;
++				csi_base = <0x51080000>;
++				status = "disabled";
++			};
++
++			csi2_dphy_hw4: csi2-dphy-hw4@51140000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x51140000 0x0 0x20000>;
++				phy_cfg = <0x51158000>;
++				csi_base = <0x51090000>;
++				combine_phy = <0x51160000>;
++				status = "disabled";
++			};
++
++			csi2_dphy_hw5: csi2-dphy-hw5@51160000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x51160000 0x0 0x20000>;
++				phy_cfg = <0x51178000>;
++				csi_base = <0x510a0000>;
+ 				status = "disabled";
+ 			};
+ 
+ 			csi2_dphy0: csi2-dphy0 {
+ 				compatible = "eswin,eic770x-csi2-dphy";
+-				eswin,hw = <&csi2_dphy_hw>, <&csi2_dphy_hw1>,<&csi2_dphy_hw2>;
++				eswin,hw = <&csi2_dphy_hw>;
+ 				index = <0>;
+ 				status = "disabled";
+ 			};
+ 			
+ 			csi2_dphy1: csi2-dphy1 {
+ 				compatible = "eswin,eic770x-csi2-dphy";
+-				eswin,hw = <&csi2_dphy_hw>, <&csi2_dphy_hw1>,<&csi2_dphy_hw2>;
++				eswin,hw = <&csi2_dphy_hw1>;
+ 				index = <1>;
+ 				status = "disabled";
+ 			};
+ 
+ 			csi2_dphy2: csi2-dphy2 {
+ 				compatible = "eswin,eic770x-csi2-dphy";
+-				eswin,hw =  <&csi2_dphy_hw>, <&csi2_dphy_hw1>,<&csi2_dphy_hw2>;
++				eswin,hw = <&csi2_dphy_hw2>;
+ 				index = <2>;
+ 				status = "disabled";
+ 			};
+ 
++			csi2_dphy3: csi2-dphy3 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&csi2_dphy_hw3>;
++				index = <3>;
++				status = "disabled";
++			};
++
++			csi2_dphy4: csi2-dphy4 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&csi2_dphy_hw4>;
++				index = <4>;
++				status = "disabled";
++			};
++
++			csi2_dphy5: csi2-dphy5 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&csi2_dphy_hw5>;
++				index = <5>;
++				status = "disabled";
++			};
++
+ 			mipi_dphy_rx: dphy@510c0000 {
+ 				compatible = "snps,dw-dphy-rx";
+ 				#phy-cells = <1>;
+@@ -2439,10 +2494,6 @@ csi2_0: csi2@51050000 {
+ 				/*phys = <&mipi_dphy_rx 1>;*/
+ 				numa-node-id = <0>;
+ 
+-				/* MIPI CONFIG */
+-				snps,en-ppi-width = <0>;/* 0: ppi8, 1: ppi16 */
+-				snps,en-phy-mode = <0>;/* 0: D-PHY, 1: C-PHY */
+-
+ 				ipi2_en = <0>;/* for virtual channel */
+ 				ipi2_vcid = <0>;/* virtual channel id */
+ 				ipi3_en = <0>;
+@@ -2486,10 +2537,6 @@ csi2_1: csi2@51060000 {
+ 				/*phys = <&mipi_dphy_rx 1>;*/
+ 				numa-node-id = <0>;
+ 
+-				/* MIPI CONFIG */
+-				snps,en-ppi-width = <0>;/* 0: ppi8, 1: ppi16 */
+-				snps,en-phy-mode = <0>;/* 0: D-PHY, 1: C-PHY */
+-
+ 				ipi2_en = <0>;/* for virtual channel */
+ 				ipi2_vcid = <0>;/* virtual channel id */
+ 				ipi3_en = <0>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index 610cddc7a6d9..7113ea183e86 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -2076,9 +2076,13 @@ d1_usbdrd_dwc3_1: dwc3@70490000 {
+ 				dma-noncoherent;
+ 			};
+ 		};
+-
+-		d1_vi_top_csr: vi_common_top_csr@0x71030000 {
+-			compatible = "esw,vi-common-csr", "syscon";
++		d1_vi_subsys: d1-vi-subsys@71000000 {
++			#address-cells = <2>;
++			#size-cells = <2>;
++			compatible = "esw,vi_subsys";
++			reg = <0x0 0x71000000 0x0 0x200000>, <0x0 0x71030000 0x0 0x2000>;
++			eswin,syscrg_csr = <&d1_sys_crg>;
++			eswin,vitop_csr = <&d1_vi_top_csr>;
+ 			clocks = <&d1_clock EIC7700_CLK_VI_ACLK>,
+ 					 <&d1_clock EIC7700_CLK_VI_CFG_CLK>,
+ 					 <&d1_clock EIC7700_CLK_VI_DIG_ISP_CLK>,
+@@ -2097,8 +2101,8 @@ d1_vi_top_csr: vi_common_top_csr@0x71030000 {
+ 					 <&d1_clock EIC7700_SPLL0_FOUT1>,
+ 					 <&d1_clock EIC7700_VPLL_FOUT1>;
+ 			clock-names = "aclk", "cfg_clk", "isp_aclk", "dvp_clk", "phy_cfg",
+-						  "phy_escclk", "sht0", "sht1", "sht2", "sht3", "sht4",
+-						  "sht5", "aclk_mux", "dvp_mux", "isp_mux", "spll0_fout1", "vpll_fout1";
++							"phy_escclk", "sht0", "sht1", "sht2", "sht3", "sht4",
++							"sht5", "aclk_mux", "dvp_mux", "isp_mux", "spll0_fout1", "vpll_fout1";
+ 			resets = <&d1_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
+ 					 <&d1_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
+ 					 <&d1_reset ISP0_RST_CTRL SW_VI_ISP0_RSTN>,
+@@ -2111,204 +2115,481 @@ d1_vi_top_csr: vi_common_top_csr@0x71030000 {
+ 					 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_4>,
+ 					 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_5>;
+ 			reset-names = "axi", "cfg", "isp0", "isp1", "dvp", "sht0", "sht1", "sht2", "sht3", "sht4", "sht5";
+-
+-			id = <0>;
+-			#size-cells = <2>;
+-			reg = <0x0 0x71030000 0x0 0x10000>;
++			tbus = <WIN2030_TBUID_DW>;
+ 			numa-node-id = <1>;
+-		};
++			ranges;
++			status = "okay";
++
++			d1_vi_top_csr: vi_common_top_csr@0x71030000 {
++				compatible = "esw,vi-common-csr", "syscon";
++				clocks = <&d1_clock EIC7700_CLK_VI_ACLK>,
++						 <&d1_clock EIC7700_CLK_VI_CFG_CLK>,
++						 <&d1_clock EIC7700_CLK_VI_DIG_ISP_CLK>,
++						 <&d1_clock EIC7700_CLK_VI_DVP_CLK>,
++						 <&d1_clock EIC7700_CLK_VI_PHY_CFG>,
++						 <&d1_clock EIC7700_CLK_VI_PHY_TXCLKESC>,
++						 <&d1_clock EIC7700_CLK_VI_SHUTTER_0>,
++						 <&d1_clock EIC7700_CLK_VI_SHUTTER_1>,
++						 <&d1_clock EIC7700_CLK_VI_SHUTTER_2>,
++						 <&d1_clock EIC7700_CLK_VI_SHUTTER_3>,
++						 <&d1_clock EIC7700_CLK_VI_SHUTTER_4>,
++						 <&d1_clock EIC7700_CLK_VI_SHUTTER_5>,
++						 <&d1_clock EIC7700_MUX_U_VI_ACLK_ROOT_2MUX1_GFREE>,
++						 <&d1_clock EIC7700_MUX_U_VI_DVP_ROOT_2MUX1_GFREE>,
++						 <&d1_clock EIC7700_MUX_U_VI_DIG_ISP_ROOT_2MUX1_GFREE>,
++						 <&d1_clock EIC7700_SPLL0_FOUT1>,
++						 <&d1_clock EIC7700_VPLL_FOUT1>;
++				clock-names = "aclk", "cfg_clk", "isp_aclk", "dvp_clk", "phy_cfg",
++							"phy_escclk", "sht0", "sht1", "sht2", "sht3", "sht4",
++							"sht5", "aclk_mux", "dvp_mux", "isp_mux", "spll0_fout1", "vpll_fout1";
++				resets = <&d1_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
++						 <&d1_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
++						 <&d1_reset ISP0_RST_CTRL SW_VI_ISP0_RSTN>,
++						 <&d1_reset ISP1_RST_CTRL SW_VI_ISP1_RSTN>,
++						 <&d1_reset DVP_RST_CTRL SW_VI_DVP_RSTN>,
++						 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_0>,
++						 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_1>,
++						 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_2>,
++						 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_3>,
++						 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_4>,
++						 <&d1_reset SHUTTER_RST_CTRL SW_VI_SHUTTER_RSTN_5>;
++				reset-names = "axi", "cfg", "isp0", "isp1", "dvp", "sht0", "sht1", "sht2", "sht3", "sht4", "sht5";
++
++				id = <0>;
++				#size-cells = <2>;
++				reg = <0x0 0x71030000 0x0 0x10000>;
++				numa-node-id = <1>;
++			};
+ 
+-		d1_isp_0: isp@0x71000000 {
+-			compatible = "esw,win2030-isp";
+-			reg = <0x0 0x71000000 0x0 0x10000>;
+-			interrupts = <21 19 20>;
+-			interrupt-parent = <&plic1>;
+-			id = <0>;
+-			#size-cells = <2>;
+-			dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
+-			iommus = <&smmu1 WIN2030_SID_ISP0>;
+-			eswin,vi_top_csr = <&d1_vi_top_csr 0x1000>;
+-			numa-node-id = <1>;
+-			dma-noncoherent;
+-		};
++			d1_isp_0: isp@0x71000000 {
++				compatible = "esw,win2030-isp";
++				reg = <0x0 0x71000000 0x0 0x10000>;
++				interrupts = <21 19 20>;
++				interrupt-parent = <&plic1>;
++				id = <0>;
++				#size-cells = <2>;
++				dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++				iommus = <&smmu1 WIN2030_SID_ISP0>;
++				eswin,vi_top_csr = <&d1_vi_top_csr 0x1000>;
++				numa-node-id = <1>;
++				dma-noncoherent;
++			};
+ 
+-		d1_isp_1: isp@0x71010000 {
+-			compatible = "esw,win2030-isp";
+-			reg = <0x0 0x71010000 0x0 0x10000>;
+-			interrupts = <24 22 23>;
+-			interrupt-parent = <&plic1>;
+-			id = <1>;
+-			#size-cells = <2>;
+-			dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
+-			iommus = <&smmu1 WIN2030_SID_ISP1>;
+-			eswin,vi_top_csr = <&d1_vi_top_csr 0x1004>;
+-			numa-node-id = <1>;
+-			dma-noncoherent;
+-		};
++			d1_isp_1: isp@0x71010000 {
++				compatible = "esw,win2030-isp";
++				reg = <0x0 0x71010000 0x0 0x10000>;
++				interrupts = <24 22 23>;
++				interrupt-parent = <&plic1>;
++				id = <1>;
++				#size-cells = <2>;
++				dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++				iommus = <&smmu1 WIN2030_SID_ISP1>;
++				eswin,vi_top_csr = <&d1_vi_top_csr 0x1004>;
++				numa-node-id = <1>;
++				dma-noncoherent;
++			};
+ 
+-		d1_dewarp: dewarp@71020000 {
+-			compatible = "eswin,dewarp";
+-			clocks = <&d1_clock EIC7700_CLK_VI_ACLK>,
+-					 <&d1_clock EIC7700_CLK_VI_CFG_CLK>,
+-					 <&d1_clock EIC7700_CLK_VI_DIG_DW_CLK>,
+-					 <&d1_clock EIC7700_MUX_U_VI_ACLK_ROOT_2MUX1_GFREE>,
+-					 <&d1_clock EIC7700_MUX_U_VI_DW_ROOT_2MUX1>,
+-					 <&d1_clock EIC7700_SPLL0_FOUT1>,
+-					 <&d1_clock EIC7700_VPLL_FOUT1>;
+-			clock-names = "aclk", "cfg_clk", "dw_aclk", "aclk_mux", "dw_mux", "spll0_fout1", "vpll_fout1";
+-			resets = <&d1_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
+-					 <&d1_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
+-					 <&d1_reset VI_RST_CTRL SW_VI_DWE_RSTN>;
+-			reset-names = "axi", "cfg", "dwe";
++			d1_dewarp: dewarp@71020000 {
++				compatible = "eswin,dewarp";
++				clocks = <&d1_clock EIC7700_CLK_VI_ACLK>,
++						<&d1_clock EIC7700_CLK_VI_CFG_CLK>,
++						<&d1_clock EIC7700_CLK_VI_DIG_DW_CLK>,
++						<&d1_clock EIC7700_MUX_U_VI_ACLK_ROOT_2MUX1_GFREE>,
++						<&d1_clock EIC7700_MUX_U_VI_DW_ROOT_2MUX1>,
++						<&d1_clock EIC7700_SPLL0_FOUT1>,
++						<&d1_clock EIC7700_VPLL_FOUT1>;
++				clock-names = "aclk", "cfg_clk", "dw_aclk", "aclk_mux", "dw_mux", "spll0_fout1", "vpll_fout1";
++				resets = <&d1_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
++						 <&d1_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
++						 <&d1_reset VI_RST_CTRL SW_VI_DWE_RSTN>;
++				reset-names = "axi", "cfg", "dwe";
+ 
+-			interrupt-parent = <&plic1>;
+-			interrupts = <26 25>;
+-			#size-cells = <2>;
+-			dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
+-			iommus = <&smmu1 WIN2030_SID_DW>;
+-			tbus = <WIN2030_TBUID_DW>;
+-			eswin,vi_top_csr = <&d1_vi_top_csr 0x1008>;
+-			reg = <0x0 0x71020000 0x0 0xc00>, <0x0 0x71020c00 0x0 0x120>;
+-			numa-node-id = <1>;
+-			dma-noncoherent;
+-		};
++				interrupt-parent = <&plic1>;
++				interrupts = <26 25>;
++				#size-cells = <2>;
++				dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++				iommus = <&smmu1 WIN2030_SID_DW>;
++				tbus = <WIN2030_TBUID_DW>;
++				eswin,vi_top_csr = <&d1_vi_top_csr 0x1008>;
++				reg = <0x0 0x71020000 0x0 0xc00>, <0x0 0x71020c00 0x0 0x120>;
++				numa-node-id = <1>;
++				dma-noncoherent;
++			};
+ 
+-		d1_mipi_dphy_rx: dphy@710c0000 {
+-			compatible = "snps,dw-dphy-rx";
+-			#phy-cells = <1>;
+-			bus-width = <8>;
+-			snps,dphy-frequency = <300000>;
+-			snps,phy_type = <8>;
+-			reg = <0x0 0x710c0000 0x0 0x20000>;
+-			numa-node-id = <1>;
+-		};
++			d1_dvp2axi: d1-dvp2axi@71034000 {
++				compatible = "eswin,dvp2axi";
++				reg = <0x0 0x71034000 0x0 0x8000>;
++				reg-names = "dvp2axi_regs";
++				interrupt-parent = <&plic1>;
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr 0x100c>;
++				interrupts = <368 369 370 371 372 373 374 375>;
++				interrupt-names = "dvp0_frame_int", "dvp1_frame_int", "dvp2_frame_int",
++									"dvp3_frame_int", "dvp4_frame_int", "dvp5_frame_int",
++									"dvp2axi_error_int","dvp2axi_afull_int";
++				dma-noncoherent;
++				numa-node-id = <1>;
++				dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
++				iommus = <&smmu1 WIN2030_SID_DW>;
++				tbus = <WIN2030_TBUID_DW>;
++				status = "disabled";
++			};
+ 
+-		d1_csi_dma0: csidma@0x72048000 {
+-			compatible = "eswin,csi-video";
+-			interrupt-parent = <&plic1>;
+-			interrupts = <29>;
+-			reg = <0x0 0x72048000 0x0 0x1000>;
+-			numa-node-id = <1>;
++			d1_dvp2axi_mipi_lvds: d1-dvp2axi_mipi_lvds {
++				compatible = "eswin,dvp2axi-mipi-lvds_d1";
++				eswin,hw = <&d1_dvp2axi>;
++				status = "disabled";
++			};
+ 
+-			port {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
++			d1_dvp2axi_mipi_lvds1: d1-dvp2axi_mipi_lvds1 {
++				compatible = "eswin,dvp2axi-mipi-lvds_d1";
++				eswin,hw = <&d1_dvp2axi>;
++				status = "disabled";
++			};
+ 
+-				d1_csi_dmar_0: endpoint@0 {
+-					reg = <0>;
+-					bus-type = <4>;
+-					remote-endpoint = <&d1_csi2_dma_0_3>;
+-				};
++			d1_dvp2axi_mipi_lvds2: d1-dvp2axi_mipi_lvds2 {
++				compatible = "eswin,dvp2axi-mipi-lvds_d1";
++				eswin,hw = <&d1_dvp2axi>;
++				status = "disabled";
+ 			};
+-		};
+ 
+-		d1_csi_dma1: csidma@0x72058000 {
+-			compatible = "eswin,csi-video";
+-			interrupt-parent = <&plic1>;
+-			interrupts = <30>;
+-			reg = <0x0 0x72058000 0x0 0x1000>;
+-			numa-node-id = <1>;
++			d1_dvp2axi_mipi_lvds3: d1-dvp2axi_mipi_lvds3 {
++				compatible = "eswin,dvp2axi-mipi-lvds_d1";
++				eswin,hw = <&d1_dvp2axi>;
++				status = "disabled";
++			};
+ 
+-			port {
+-				#address-cells = <1>;
+-				#size-cells = <0>;
++			d1_dvp2axi_mipi_lvds4: d1-dvp2axi_mipi_lvds4 {
++				compatible = "eswin,dvp2axi-mipi-lvds_d1";
++				eswin,hw = <&d1_dvp2axi>;
++				status = "disabled";
++			};
+ 
+-				d1_csi_dmar_1: endpoint@0 {
+-					reg = <0>;
+-					bus-type = <4>;
+-					remote-endpoint = <&d1_csi2_dma_1_3>;
+-				};
++			d1_dvp2axi_mipi_lvds5: d1-dvp2axi_mipi_lvds5 {
++				compatible = "eswin,dvp2axi-mipi-lvds_d1";
++				eswin,hw = <&d1_dvp2axi>;
++				status = "disabled";
+ 			};
+-		};
+ 
+-		d1_csi2_0: csi2@71050000 {
+-			compatible = "snps,dw-csi";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			interrupt-parent = <&plic1>;
+-			interrupts = <29>;
+-			snps,output-type = <0>;
+-			reg = <0x0 0x71050000 0x0 0x1000>;
+-			/*phys = <&mipi_dphy_rx 1>;*/
+-			numa-node-id = <1>;
++			d1_mipi_csi2_0: d1-mipi-csi2-0@71050000 {
++				#address-cells = <2>;
++				#size-cells = <2>;
++				compatible = "eswin,eic770x-mipi-csi2";
++				reg = <0x0 0x71050000 0x0 0x10000>;
++				reg-names = "csihost_regs";
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr>;
++				interrupt-parent = <&plic1>;
++				interrupts = <29>;
++				interrupt-names = "csi-intr1";
++				index = <0>;
++
++				ipi2_en = <0>;/* for virtual channel */
++				ipi2_vcid = <0>;/* virtual channel id */
++				ipi3_en = <0>;
++				ipi3_vcid = <0>;
++				status = "disabled";
++			};
++
++			d1_mipi_csi2_1: d1-mipi-csi2-1@71060000 {
++				#address-cells = <2>;
++				#size-cells = <2>;
++				compatible = "eswin,eic770x-mipi-csi2";
++				reg = <0x0 0x71060000 0x0 0x10000>;
++				reg-names = "csihost_regs";
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr>;
++				interrupt-parent = <&plic1>;
++				interrupts = <30>;
++				interrupt-names = "csi-intr1";
++				index = <1>;
++				status = "disabled";
++			};
++
++			d1_mipi_csi2_2: d1-mipi-csi2-2@71070000 {
++				#address-cells = <2>;
++				#size-cells = <2>;
++				compatible = "eswin,eic770x-mipi-csi2";
++				reg = <0x0 0x71070000 0x0 0x10000>;
++				reg-names = "csihost_regs";
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr>;
++				interrupt-parent = <&plic1>;
++				interrupts = <31>;
++				interrupt-names = "csi-intr1";
++				index = <2>;
++				status = "disabled";
++			};
+ 
+-			/* MIPI CONFIG */
+-			snps,en-ppi-width = <0>;/* 0: ppi8, 1: ppi16 */
+-			snps,en-phy-mode = <0>;/* 0: D-PHY, 1: C-PHY */
++			d1_mipi_csi2_3: d1-mipi-csi2-3@71080000 {
++				#address-cells = <2>;
++				#size-cells = <2>;
++				compatible = "eswin,eic770x-mipi-csi2";
++				reg = <0x0 0x71080000 0x0 0x10000>;
++				reg-names = "csihost_regs";
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr>;
++				interrupt-parent = <&plic1>;
++				interrupts = <32>;
++				interrupt-names = "csi-intr1";
++				index = <3>;
++				status = "disabled";
++			};
+ 
+-			ipi2_en = <0>;/* for virtual channel */
+-			ipi2_vcid = <0>;/* virtual channel id */
+-			ipi3_en = <0>;
+-			ipi3_vcid = <0>;
++			d1_mipi_csi2_4: d1-mipi-csi2-4@71090000 {
++				#address-cells = <2>;
++				#size-cells = <2>;
++				compatible = "eswin,eic770x-mipi-csi2";
++				reg = <0x0 0x71090000 0x0 0x10000>;
++				reg-names = "csihost_regs";
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr>;
++				interrupt-parent = <&plic1>;
++				interrupts = <33>;
++				interrupt-names = "csi-intr1";
++				index = <4>;
++				status = "disabled";
++			};
+ 
+-			#ifdef MIPI_CSI2_IMX290_ENBALE
+-			port@1 {
+-				reg = <1>;
+-				d1_csi2_0_1: endpoint {
+-					bus-type = <4>;
+-					clock-lanes = <0>;
+-					#ifdef MIPI_CSI2_2LINE_ENABLE
+-					data-lanes = <1 2>;
+-					#else
+-					data-lanes = <1 2 3 4>;
+-					#endif
+-					//remote-endpoint = <&imx290_csi2>;
+-				};
++			d1_mipi_csi2_5: d1-mipi-csi2-5@710a0000 {
++				#address-cells = <2>;
++				#size-cells = <2>;
++				compatible = "eswin,eic770x-mipi-csi2";
++				reg = <0x0 0x710a0000 0x0 0x10000>;
++				reg-names = "csihost_regs";
++				eswin,syscrg_csr = <&d1_sys_crg>;
++				eswin,vi_top_csr = <&d1_vi_top_csr>;
++				interrupt-parent = <&plic1>;
++				interrupts = <34>;
++				interrupt-names = "csi-intr1";
++				index = <5>;
++				status = "disabled";
+ 			};
+-			#endif
+ 
+-			port@2 {
+-				reg = <2>;
+-				d1_csi2_dma_0_3: endpoint {
+-					bus-type = <5>;
+-					remote-endpoint = <&d1_csi_dmar_0>;
++			d1_csi2_dphy_hw: d1-csi2-dphy-hw@710c0000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x710c0000 0x0 0x20000>;
++				phy_cfg = <0x710d8000>;
++				csi_base = <0x71050000>;
++				combine_phy = <0x710e0000>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy_hw1: d1-csi2-dphy-hw1@710e0000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x710e0000 0x0 0x20000>;
++				phy_cfg = <0x710f8000>;
++				csi_base = <0x71060000>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy_hw2: d1-csi2-dphy-hw2@71100000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x71100000 0x0 0x20000>;
++				phy_cfg = <0x71118000>;
++				csi_base = <0x71070000>;
++				combine_phy = <0x71120000>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy_hw3: d1-csi2-dphy-hw3@71120000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x71120000 0x0 0x20000>;
++				phy_cfg = <0x71138000>;
++				csi_base = <0x71080000>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy_hw4: d1-csi2-dphy-hw4@71140000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x71140000 0x0 0x20000>;
++				phy_cfg = <0x71158000>;
++				csi_base = <0x71090000>;
++				combine_phy = <0x71160000>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy_hw5: d1-csi2-dphy-hw5@71160000 {
++				compatible = "eswin,eic770x-csi2-dphy-hw";
++				reg = <0x0 0x71160000 0x0 0x20000>;
++				phy_cfg = <0x71178000>;
++				csi_base = <0x710a0000>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy0: d1-csi2-dphy0 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&d1_csi2_dphy_hw>;
++				index = <0>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy1: d1-csi2-dphy1 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&d1_csi2_dphy_hw1>;
++				index = <1>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy2: d1-csi2-dphy2 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&d1_csi2_dphy_hw2>;
++				index = <2>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy3: d1-csi2-dphy3 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&d1_csi2_dphy_hw3>;
++				index = <3>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy4: d1-csi2-dphy4 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&d1_csi2_dphy_hw4>;
++				index = <4>;
++				status = "disabled";
++			};
++
++			d1_csi2_dphy5: d1-csi2-dphy5 {
++				compatible = "eswin,eic770x-csi2-dphy";
++				eswin,hw = <&d1_csi2_dphy_hw5>;
++				index = <5>;
++				status = "disabled";
++			};
++
++
++			d1_mipi_dphy_rx: dphy@710c0000 {
++				compatible = "snps,dw-dphy-rx";
++				#phy-cells = <1>;
++				bus-width = <8>;
++				snps,dphy-frequency = <300000>;
++				snps,phy_type = <8>;
++				reg = <0x0 0x710c0000 0x0 0x20000>;
++				numa-node-id = <1>;
++			};
++
++			d1_csi_dma0: csidma@0x72048000 {
++				compatible = "eswin,csi-video";
++				interrupt-parent = <&plic1>;
++				interrupts = <29>;
++				reg = <0x0 0x72048000 0x0 0x1000>;
++				numa-node-id = <1>;
++
++				port {
++					#address-cells = <1>;
++					#size-cells = <0>;
++
++					d1_csi_dmar_0: endpoint@0 {
++						reg = <0>;
++						bus-type = <4>;
++						remote-endpoint = <&d1_csi2_dma_0_3>;
++					};
+ 				};
+ 			};
+-		};
+ 
+-		d1_csi2_1: csi2@71060000 {
+-			compatible = "snps,dw-csi";
+-			#address-cells = <1>;
+-			#size-cells = <0>;
+-			interrupt-parent = <&plic1>;
+-			interrupts = <30>;
+-			snps,output-type = <0>;
+-			reg = <0x0 0x71060000 0x0 0x1000>;
+-			/*phys = <&mipi_dphy_rx 1>;*/
+-			numa-node-id = <1>;
++			d1_csi_dma1: csidma@0x72058000 {
++				compatible = "eswin,csi-video";
++				interrupt-parent = <&plic1>;
++				interrupts = <30>;
++				reg = <0x0 0x72058000 0x0 0x1000>;
++				numa-node-id = <1>;
+ 
+-			/* MIPI CONFIG */
+-			snps,en-ppi-width = <0>;/* 0: ppi8, 1: ppi16 */
+-			snps,en-phy-mode = <0>;/* 0: D-PHY, 1: C-PHY */
++				port {
++					#address-cells = <1>;
++					#size-cells = <0>;
+ 
+-			ipi2_en = <0>;/* for virtual channel */
+-			ipi2_vcid = <0>;/* virtual channel id */
+-			ipi3_en = <0>;
+-			ipi3_vcid = <0>;
++					d1_csi_dmar_1: endpoint@0 {
++						reg = <0>;
++						bus-type = <4>;
++						remote-endpoint = <&d1_csi2_dma_1_3>;
++					};
++				};
++			};
+ 
+-			#ifdef MIPI_CSI2_IMX290_ENBALE
+-			port@1 {
+-				reg = <1>;
+-				d1_csi2_1_1: endpoint {
+-					bus-type = <4>;
+-					clock-lanes = <0>;
+-					#ifdef MIPI_CSI2_2LINE_ENABLE
+-					data-lanes = <1 2>;
+-					#else
+-					data-lanes = <1 2 3 4>;
+-					#endif
+-					//remote-endpoint = <&imx290_csi2>;
++			d1_csi2_0: csi2@71050000 {
++				compatible = "snps,dw-csi";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupt-parent = <&plic1>;
++				interrupts = <29>;
++				snps,output-type = <0>;
++				reg = <0x0 0x71050000 0x0 0x1000>;
++				/*phys = <&mipi_dphy_rx 1>;*/
++				numa-node-id = <1>;
++
++				ipi2_en = <0>;/* for virtual channel */
++				ipi2_vcid = <0>;/* virtual channel id */
++				ipi3_en = <0>;
++				ipi3_vcid = <0>;
++
++				#ifdef MIPI_CSI2_IMX290_ENBALE
++				port@1 {
++					reg = <1>;
++					d1_csi2_0_1: endpoint {
++						bus-type = <4>;
++						clock-lanes = <0>;
++						#ifdef MIPI_CSI2_2LINE_ENABLE
++						data-lanes = <1 2>;
++						#else
++						data-lanes = <1 2 3 4>;
++						#endif
++						//remote-endpoint = <&imx290_csi2>;
++					};
++				};
++				#endif
++
++				port@2 {
++					reg = <2>;
++					d1_csi2_dma_0_3: endpoint {
++						bus-type = <5>;
++						remote-endpoint = <&d1_csi_dmar_0>;
++					};
+ 				};
+ 			};
+-			#endif
+ 
+-			port@2 {
+-				reg = <2>;
+-				d1_csi2_dma_1_3: endpoint {
+-					bus-type = <5>;
+-					remote-endpoint = <&d1_csi_dmar_1>;
++			d1_csi2_1: csi2@71060000 {
++				compatible = "snps,dw-csi";
++				#address-cells = <1>;
++				#size-cells = <0>;
++				interrupt-parent = <&plic1>;
++				interrupts = <30>;
++				snps,output-type = <0>;
++				reg = <0x0 0x71060000 0x0 0x1000>;
++				/*phys = <&mipi_dphy_rx 1>;*/
++				numa-node-id = <1>;
++
++				ipi2_en = <0>;/* for virtual channel */
++				ipi2_vcid = <0>;/* virtual channel id */
++				ipi3_en = <0>;
++				ipi3_vcid = <0>;
++
++				#ifdef MIPI_CSI2_IMX290_ENBALE
++				port@1 {
++					reg = <1>;
++					d1_csi2_1_1: endpoint {
++						bus-type = <4>;
++						clock-lanes = <0>;
++						#ifdef MIPI_CSI2_2LINE_ENABLE
++						data-lanes = <1 2>;
++						#else
++						data-lanes = <1 2 3 4>;
++						#endif
++						//remote-endpoint = <&imx290_csi2>;
++					};
++				};
++				#endif
++
++				port@2 {
++					reg = <2>;
++					d1_csi2_dma_1_3: endpoint {
++						bus-type = <5>;
++						remote-endpoint = <&d1_csi_dmar_1>;
++					};
+ 				};
+ 			};
++
+ 		};
+ 
+ 		d1_dc_test: dctest@702c0000 {
+diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
+index a2e45b961ec7..5184683432c8 100644
+--- a/drivers/media/i2c/imx219.c
++++ b/drivers/media/i2c/imx219.c
+@@ -12,7 +12,7 @@
+  * Flip handling taken from the Sony IMX319 driver.
+  * Copyright (C) 2018 Intel Corporation
+  *
+-*/
++ */
+ 
+ #include <linux/clk.h>
+ #include <linux/delay.h>
+@@ -21,27 +21,13 @@
+ #include <linux/module.h>
+ #include <linux/pm_runtime.h>
+ #include <linux/regulator/consumer.h>
++
++#include <media/v4l2-cci.h>
+ #include <media/v4l2-ctrls.h>
+ #include <media/v4l2-device.h>
+ #include <media/v4l2-event.h>
+ #include <media/v4l2-fwnode.h>
+ #include <media/v4l2-mediabus.h>
+-#include <asm/unaligned.h>
+-
+-#define ENABLE_DEBUG_MSG
+-
+-#ifdef ENABLE_DEBUG_MSG
+-#define DPRINTK(args...)		printk(KERN_INFO args);
+-#else
+-#define DPRINTK(args...)
+-#endif
+-
+-#define IMX219_REG_VALUE_08BIT 1
+-#define IMX219_REG_VALUE_16BIT 2
+-
+-#define IMX219_REG_MODE_SELECT 0x0100
+-#define IMX219_MODE_STANDBY 0x00
+-#define IMX219_MODE_STREAMING 0x01
+ 
+ /* Chip ID */
+ #define IMX219_REG_CHIP_ID		CCI_REG16(0x0000)
+@@ -99,8 +85,10 @@
+ #define IMX219_FLL_STEP			1
+ #define IMX219_FLL_DEFAULT		0x0c98
+ 
+-/* HBLANK control - read only */
+-#define IMX219_PPL_DEFAULT		3448
++/* HBLANK control range */
++#define IMX219_PPL_MIN			3448
++#define IMX219_PPL_MAX			0x7ff0
++#define IMX219_REG_HTS			CCI_REG16(0x0162)
+ 
+ #define IMX219_REG_LINE_LENGTH_A	CCI_REG16(0x0162)
+ #define IMX219_REG_X_ADD_STA_A		CCI_REG16(0x0164)
+@@ -116,8 +104,8 @@
+ /* Binning  Mode */
+ #define IMX219_REG_BINNING_MODE		CCI_REG16(0x0174)
+ #define IMX219_BINNING_NONE		0x0000
+-#define IMX219_BINNING_2X2		0x0101
+-#define IMX219_BINNING_2X2_ANALOG	0x0303
++#define IMX219_BINNING_2X2_NORMAL	0x0101
++#define IMX219_BINNING_2X2_SPECIAL	0x0303
+ 
+ #define IMX219_REG_CSI_DATA_FORMAT_A	CCI_REG16(0x018c)
+ 
+@@ -154,89 +142,29 @@
+ 
+ #define IMX219_REG_TP_WINDOW_WIDTH	CCI_REG16(0x0624)
+ #define IMX219_REG_TP_WINDOW_HEIGHT	CCI_REG16(0x0626)
+-#define IMX219_REG_CHIP_ID 0x0000
+-#define IMX219_CHIP_ID 0x0219
+ 
+ /* External clock frequency is 24.0M */
+-#define IMX219_XCLK_FREQ 24000000
+-
+-/* Pixel rate is fixed at 182.4M for all the modes */
+-#define IMX219_PIXEL_RATE 182400000
+-
+-#define IMX219_DEFAULT_LINK_FREQ 456000000
+-
+-/* V_TIMING internal */
+-#define IMX219_REG_VTS 0x0160
+-#define IMX219_VTS_15FPS 0x0dc6
+-#define IMX219_VTS_30FPS_1080P 0x06e3
+-#define IMX219_VTS_30FPS_BINNED 0x06e3
+-#define IMX219_VTS_30FPS_640x480 0x06e3
+-#define IMX219_VTS_MAX 0xffff
+-
+-#define IMX219_VBLANK_MIN 4
+-
+-/*Frame Length Line*/
+-#define IMX219_FLL_MIN 0x08a6
+-#define IMX219_FLL_MAX 0xffff
+-#define IMX219_FLL_STEP 1
+-#define IMX219_FLL_DEFAULT 0x0c98
+-
+-/* HBLANK control - read only */
+-#define IMX219_PPL_DEFAULT 3448
+-
+-/* Exposure control */
+-#define IMX219_REG_EXPOSURE 0x015a
+-#define IMX219_EXPOSURE_MIN 4
+-#define IMX219_EXPOSURE_STEP 1
+-// #define IMX219_EXPOSURE_DEFAULT 0x640
+-#define IMX219_EXPOSURE_DEFAULT 0x44c0
+-#define IMX219_EXPOSURE_MAX 65535
+-
+-/* Analog gain control */
+-#define IMX219_REG_ANALOG_GAIN 0x0157
+-#define IMX219_ANA_GAIN_MIN 0
+-#define IMX219_ANA_GAIN_MAX 232
+-#define IMX219_ANA_GAIN_STEP 1
+-#define IMX219_ANA_GAIN_DEFAULT 0x0
++#define IMX219_XCLK_FREQ		24000000
+ 
+-/* Digital gain control */
+-#define IMX219_REG_DIGITAL_GAIN 0x0158
+-#define IMX219_DGTL_GAIN_MIN 0x0100
+-#define IMX219_DGTL_GAIN_MAX 0x0fff
+-#define IMX219_DGTL_GAIN_DEFAULT 0x0100
+-#define IMX219_DGTL_GAIN_STEP 1
+-
+-#define IMX219_REG_ORIENTATION 0x0172
++/* Pixel rate is fixed for all the modes */
++#define IMX219_PIXEL_RATE		182400000
++#define IMX219_PIXEL_RATE_4LANE		281600000
+ 
+-/* Test Pattern Control */
+-#define IMX219_REG_TEST_PATTERN 0x0600
+-#define IMX219_TEST_PATTERN_DISABLE 0
+-#define IMX219_TEST_PATTERN_SOLID_COLOR 1
+-#define IMX219_TEST_PATTERN_COLOR_BARS 2
+-#define IMX219_TEST_PATTERN_GREY_COLOR 3
+-#define IMX219_TEST_PATTERN_PN9 4
+-
+-/* Test pattern colour components */
+-#define IMX219_REG_TESTP_RED 0x0602
+-#define IMX219_REG_TESTP_GREENR 0x0604
+-#define IMX219_REG_TESTP_BLUE 0x0606
+-#define IMX219_REG_TESTP_GREENB 0x0608
+-#define IMX219_TESTP_COLOUR_MIN 0
+-#define IMX219_TESTP_COLOUR_MAX 0x03ff
+-#define IMX219_TESTP_COLOUR_STEP 1
+-#define IMX219_TESTP_RED_DEFAULT IMX219_TESTP_COLOUR_MAX
+-#define IMX219_TESTP_GREENR_DEFAULT 0
+-#define IMX219_TESTP_BLUE_DEFAULT 0
+-#define IMX219_TESTP_GREENB_DEFAULT 0
++#define IMX219_DEFAULT_LINK_FREQ	456000000
++#define IMX219_DEFAULT_LINK_FREQ_4LANE_UNSUPPORTED	363000000
++#define IMX219_DEFAULT_LINK_FREQ_4LANE	364000000
+ 
+ /* IMX219 native and active pixel array size. */
+-#define IMX219_NATIVE_WIDTH 3296U
+-#define IMX219_NATIVE_HEIGHT 2480U
++#define IMX219_NATIVE_WIDTH		3296U
++#define IMX219_NATIVE_HEIGHT		2480U
++#define IMX219_PIXEL_ARRAY_LEFT		0U
++#define IMX219_PIXEL_ARRAY_TOP		0U
++#define IMX219_PIXEL_ARRAY_WIDTH	3280U
++#define IMX219_PIXEL_ARRAY_HEIGHT	2464U
+ 
+-#define IMX219_PIXEL_ARRAY_LEFT 0U
+-#define IMX219_PIXEL_ARRAY_TOP 0U
+-#define IMX219_PIXEL_ARRAY_WIDTH 3280U
+-#define IMX219_PIXEL_ARRAY_HEIGHT 2464U
++/* Embedded metadata stream structure */
++#define IMX219_EMBEDDED_LINE_WIDTH 16384
++#define IMX219_NUM_EMBEDDED_LINES 1
+ 
+ 
+ #define IMX219_AGAIN_TABLE 233
+@@ -277,6 +205,24 @@ static int imx219_again_table[IMX219_AGAIN_TABLE] =
+ 	2056
+ };
+ 
++enum pad_types {
++	IMAGE_PAD,
++	METADATA_PAD,
++	NUM_PADS
++};
++
++enum binning_mode {
++	BINNING_NONE,
++	BINNING_NORMAL_2x2,
++	BINNING_SPECIAL_2x2,
++};
++
++enum binning_bit_depths {
++	BINNING_IDX_8_BIT,
++	BINNING_IDX_10_BIT,
++	BINNING_IDX_MAX
++};
++
+ struct imx219_reg {
+ 	u16 address;
+ 	u8 val;
+@@ -284,7 +230,7 @@ struct imx219_reg {
+ 
+ struct imx219_reg_list {
+ 	unsigned int num_of_regs;
+-	const struct imx219_reg *regs;
++	const struct cci_reg_sequence *regs;
+ };
+ 
+ /* Mode : resolution and related config&values */
+@@ -302,183 +248,217 @@ struct imx219_mode {
+ 
+ 	/* Default register values */
+ 	struct imx219_reg_list reg_list;
++
++	/* binning mode based on format code */
++	enum binning_mode binning[BINNING_IDX_MAX];
++};
++
++static const struct cci_reg_sequence imx219_common_regs[] = {
++	{ IMX219_REG_MODE_SELECT, 0x00 },	/* Mode Select */
++
++	/* To Access Addresses 3000-5fff, send the following commands */
++	{ CCI_REG8(0x30eb), 0x05 },
++	{ CCI_REG8(0x30eb), 0x0c },
++	{ CCI_REG8(0x300a), 0xff },
++	{ CCI_REG8(0x300b), 0xff },
++	{ CCI_REG8(0x30eb), 0x05 },
++	{ CCI_REG8(0x30eb), 0x09 },
++
++	/* Undocumented registers */
++	{ CCI_REG8(0x455e), 0x00 },
++	{ CCI_REG8(0x471e), 0x4b },
++	{ CCI_REG8(0x4767), 0x0f },
++	{ CCI_REG8(0x4750), 0x14 },
++	{ CCI_REG8(0x4540), 0x00 },
++	{ CCI_REG8(0x47b4), 0x14 },
++	{ CCI_REG8(0x4713), 0x30 },
++	{ CCI_REG8(0x478b), 0x10 },
++	{ CCI_REG8(0x478f), 0x10 },
++	{ CCI_REG8(0x4793), 0x10 },
++	{ CCI_REG8(0x4797), 0x0e },
++	{ CCI_REG8(0x479b), 0x0e },
++
++	/* Frame Bank Register Group "A" */
++	{ IMX219_REG_LINE_LENGTH_A, 3448 },
++	{ IMX219_REG_X_ODD_INC_A, 1 },
++	{ IMX219_REG_Y_ODD_INC_A, 1 },
++
++	/* Output setup registers */
++	{ IMX219_REG_DPHY_CTRL, IMX219_DPHY_CTRL_TIMING_AUTO },
++	{ IMX219_REG_EXCK_FREQ, IMX219_EXCK_FREQ(IMX219_XCLK_FREQ / 1000000) },
+ };
+ 
+ /*
+-* Register sets lifted off the i2C interface from the Raspberry Pi firmware
+-* driver.
+-* 3280x2464 = mode 2, 1920x1080 = mode 1, 1640x1232 = mode 4, 640x480 = mode 7.
+-*/
+-static const struct imx219_reg mode_3280x2464_regs[] = {
+-	{ 0x0100, 0x00 }, { 0x30eb, 0x0c }, { 0x30eb, 0x05 }, { 0x300a, 0xff },
+-	{ 0x300b, 0xff }, { 0x30eb, 0x05 }, { 0x30eb, 0x09 }, { 0x0114, 0x01 },
+-	{ 0x0128, 0x00 }, { 0x012a, 0x18 }, { 0x012b, 0x00 }, { 0x0164, 0x00 },
+-	{ 0x0165, 0x00 }, { 0x0166, 0x0c }, { 0x0167, 0xcf }, { 0x0168, 0x00 },
+-	{ 0x0169, 0x00 }, { 0x016a, 0x09 }, { 0x016b, 0x9f }, { 0x016c, 0x0c },
+-	{ 0x016d, 0xd0 }, { 0x016e, 0x09 }, { 0x016f, 0xa0 }, { 0x0170, 0x01 },
+-	{ 0x0171, 0x01 }, { 0x0174, 0x00 }, { 0x0175, 0x00 }, { 0x0301, 0x05 },
+-	{ 0x0303, 0x01 }, { 0x0304, 0x03 }, { 0x0305, 0x03 }, { 0x0306, 0x00 },
+-	{ 0x0307, 0x39 }, { 0x030b, 0x01 }, { 0x030c, 0x00 }, { 0x030d, 0x72 },
+-	{ 0x0624, 0x0c }, { 0x0625, 0xd0 }, { 0x0626, 0x09 }, { 0x0627, 0xa0 },
+-	{ 0x455e, 0x00 }, { 0x471e, 0x4b }, { 0x4767, 0x0f }, { 0x4750, 0x14 },
+-	{ 0x4540, 0x00 }, { 0x47b4, 0x14 }, { 0x4713, 0x30 }, { 0x478b, 0x10 },
+-	{ 0x478f, 0x10 }, { 0x4793, 0x10 }, { 0x4797, 0x0e }, { 0x479b, 0x0e },
+-	{ 0x0162, 0x0d }, { 0x0163, 0x78 },
++ * Register sets lifted off the i2C interface from the Raspberry Pi firmware
++ * driver.
++ * 3280x2464 = mode 2, 1920x1080 = mode 1, 1640x1232 = mode 4, 640x480 = mode 7.
++ */
++static const struct cci_reg_sequence mode_3280x2464_regs[] = {
++	{ IMX219_REG_X_ADD_STA_A, 0 },
++	{ IMX219_REG_X_ADD_END_A, 3279 },
++	{ IMX219_REG_Y_ADD_STA_A, 0 },
++	{ IMX219_REG_Y_ADD_END_A, 2463 },
++	{ IMX219_REG_X_OUTPUT_SIZE, 3280 },
++	{ IMX219_REG_Y_OUTPUT_SIZE, 2464 },
++	{ IMX219_REG_TP_WINDOW_WIDTH, 3280 },
++	{ IMX219_REG_TP_WINDOW_HEIGHT, 2464 },
++};
++
++static const struct cci_reg_sequence mode_1920_1080_regs[] = {
++	{ IMX219_REG_X_ADD_STA_A, 680 },
++	{ IMX219_REG_X_ADD_END_A, 2599 },
++	{ IMX219_REG_Y_ADD_STA_A, 692 },
++	{ IMX219_REG_Y_ADD_END_A, 1771 },
++	{ IMX219_REG_X_OUTPUT_SIZE, 1920 },
++	{ IMX219_REG_Y_OUTPUT_SIZE, 1080 },
++	{ IMX219_REG_TP_WINDOW_WIDTH, 1920 },
++	{ IMX219_REG_TP_WINDOW_HEIGHT, 1080 },
+ };
+ 
+-static const struct imx219_reg mode_1920_1080_regs[] = {
+-	{ 0x0100, 0x00 }, { 0x30eb, 0x05 }, { 0x30eb, 0x0c }, { 0x300a, 0xff },
+-	{ 0x300b, 0xff }, { 0x30eb, 0x05 }, { 0x30eb, 0x09 }, { 0x0114, 0x01 },
+-	{ 0x0128, 0x00 }, { 0x012a, 0x18 }, { 0x012b, 0x00 }, { 0x0162, 0x0d },
+-	{ 0x0163, 0x78 }, { 0x0164, 0x02 }, { 0x0165, 0xa8 }, { 0x0166, 0x0a },
+-	{ 0x0167, 0x27 }, { 0x0168, 0x02 }, { 0x0169, 0xb4 }, { 0x016a, 0x06 },
+-	{ 0x016b, 0xeb }, { 0x016c, 0x07 }, { 0x016d, 0x80 }, { 0x016e, 0x04 },
+-	{ 0x016f, 0x38 }, { 0x0170, 0x01 }, { 0x0171, 0x01 }, { 0x0174, 0x00 },
+-	{ 0x0175, 0x00 }, { 0x0301, 0x05 }, { 0x0303, 0x01 }, { 0x0304, 0x03 },
+-	{ 0x0305, 0x03 }, { 0x0306, 0x00 }, { 0x0307, 0x39 }, { 0x030b, 0x01 },
+-	{ 0x030c, 0x00 }, { 0x030d, 0x72 }, { 0x0624, 0x07 }, { 0x0625, 0x80 },
+-	{ 0x0626, 0x04 }, { 0x0627, 0x38 }, { 0x455e, 0x00 }, { 0x471e, 0x4b },
+-	{ 0x4767, 0x0f }, { 0x4750, 0x14 }, { 0x4540, 0x00 }, { 0x47b4, 0x14 },
+-	{ 0x4713, 0x30 }, { 0x478b, 0x10 }, { 0x478f, 0x10 }, { 0x4793, 0x10 },
+-	{ 0x4797, 0x0e }, { 0x479b, 0x0e },
++static const struct cci_reg_sequence mode_1640_1232_regs[] = {
++	{ IMX219_REG_X_ADD_STA_A, 0 },
++	{ IMX219_REG_X_ADD_END_A, 3279 },
++	{ IMX219_REG_Y_ADD_STA_A, 0 },
++	{ IMX219_REG_Y_ADD_END_A, 2463 },
++	{ IMX219_REG_X_OUTPUT_SIZE, 1640 },
++	{ IMX219_REG_Y_OUTPUT_SIZE, 1232 },
++	{ IMX219_REG_TP_WINDOW_WIDTH, 1640 },
++	{ IMX219_REG_TP_WINDOW_HEIGHT, 1232 },
+ };
+ 
+-static const struct imx219_reg mode_1640_1232_regs[] = {
+-	{ 0x0100, 0x00 }, { 0x30eb, 0x0c }, { 0x30eb, 0x05 }, { 0x300a, 0xff },
+-	{ 0x300b, 0xff }, { 0x30eb, 0x05 }, { 0x30eb, 0x09 }, { 0x0114, 0x01 },
+-	{ 0x0128, 0x00 }, { 0x012a, 0x18 }, { 0x012b, 0x00 }, { 0x0164, 0x00 },
+-	{ 0x0165, 0x00 }, { 0x0166, 0x0c }, { 0x0167, 0xcf }, { 0x0168, 0x00 },
+-	{ 0x0169, 0x00 }, { 0x016a, 0x09 }, { 0x016b, 0x9f }, { 0x016c, 0x06 },
+-	{ 0x016d, 0x68 }, { 0x016e, 0x04 }, { 0x016f, 0xd0 }, { 0x0170, 0x01 },
+-	{ 0x0171, 0x01 }, { 0x0174, 0x01 }, { 0x0175, 0x01 }, { 0x0301, 0x05 },
+-	{ 0x0303, 0x01 }, { 0x0304, 0x03 }, { 0x0305, 0x03 }, { 0x0306, 0x00 },
+-	{ 0x0307, 0x39 }, { 0x030b, 0x01 }, { 0x030c, 0x00 }, { 0x030d, 0x72 },
+-	{ 0x0624, 0x06 }, { 0x0625, 0x68 }, { 0x0626, 0x04 }, { 0x0627, 0xd0 },
+-	{ 0x455e, 0x00 }, { 0x471e, 0x4b }, { 0x4767, 0x0f }, { 0x4750, 0x14 },
+-	{ 0x4540, 0x00 }, { 0x47b4, 0x14 }, { 0x4713, 0x30 }, { 0x478b, 0x10 },
+-	{ 0x478f, 0x10 }, { 0x4793, 0x10 }, { 0x4797, 0x0e }, { 0x479b, 0x0e },
+-	{ 0x0162, 0x0d }, { 0x0163, 0x78 },
++static const struct cci_reg_sequence mode_640_480_regs[] = {
++	{ IMX219_REG_X_ADD_STA_A, 1000 },
++	{ IMX219_REG_X_ADD_END_A, 2279 },
++	{ IMX219_REG_Y_ADD_STA_A, 752 },
++	{ IMX219_REG_Y_ADD_END_A, 1711 },
++	{ IMX219_REG_X_OUTPUT_SIZE, 640 },
++	{ IMX219_REG_Y_OUTPUT_SIZE, 480 },
++	{ IMX219_REG_TP_WINDOW_WIDTH, 1640 },
++	{ IMX219_REG_TP_WINDOW_HEIGHT, 1232 },
+ };
+ 
+-static const struct imx219_reg mode_640_480_regs[] = {
+-	{ 0x0100, 0x00 }, { 0x30eb, 0x05 }, { 0x30eb, 0x0c }, { 0x300a, 0xff },
+-	{ 0x300b, 0xff }, { 0x30eb, 0x05 }, { 0x30eb, 0x09 }, { 0x0114, 0x01 },
+-	{ 0x0128, 0x00 }, { 0x012a, 0x18 }, { 0x012b, 0x00 }, { 0x0162, 0x0d },
+-	{ 0x0163, 0x78 }, { 0x0164, 0x03 }, { 0x0165, 0xe8 }, { 0x0166, 0x08 },
+-	{ 0x0167, 0xe7 }, { 0x0168, 0x02 }, { 0x0169, 0xf0 }, { 0x016a, 0x06 },
+-	{ 0x016b, 0xaf }, { 0x016c, 0x02 }, { 0x016d, 0x80 }, { 0x016e, 0x01 },
+-	{ 0x016f, 0xe0 }, { 0x0170, 0x01 }, { 0x0171, 0x01 }, { 0x0174, 0x03 },
+-	{ 0x0175, 0x03 }, { 0x0301, 0x05 }, { 0x0303, 0x01 }, { 0x0304, 0x03 },
+-	{ 0x0305, 0x03 }, { 0x0306, 0x00 }, { 0x0307, 0x39 }, { 0x030b, 0x01 },
+-	{ 0x030c, 0x00 }, { 0x030d, 0x72 }, { 0x0624, 0x06 }, { 0x0625, 0x68 },
+-	{ 0x0626, 0x04 }, { 0x0627, 0xd0 }, { 0x455e, 0x00 }, { 0x471e, 0x4b },
+-	{ 0x4767, 0x0f }, { 0x4750, 0x14 }, { 0x4540, 0x00 }, { 0x47b4, 0x14 },
+-	{ 0x4713, 0x30 }, { 0x478b, 0x10 }, { 0x478f, 0x10 }, { 0x4793, 0x10 },
+-	{ 0x4797, 0x0e }, { 0x479b, 0x0e },
++static const struct cci_reg_sequence raw8_framefmt_regs[] = {
++	{ IMX219_REG_CSI_DATA_FORMAT_A, 0x0808 },
++	{ IMX219_REG_OPPXCK_DIV, 8 },
+ };
+ 
+-static const struct imx219_reg raw8_framefmt_regs[] = {
+-	{ 0x018c, 0x08 },
+-	{ 0x018d, 0x08 },
+-	{ 0x0309, 0x08 },
++static const struct cci_reg_sequence raw10_framefmt_regs[] = {
++	{ IMX219_REG_CSI_DATA_FORMAT_A, 0x0a0a },
++	{ IMX219_REG_OPPXCK_DIV, 10 },
+ };
+ 
+-static const struct imx219_reg raw10_framefmt_regs[] = {
+-	{ 0x018c, 0x0a },
+-	{ 0x018d, 0x0a },
+-	{ 0x0309, 0x0a },
++static const struct cci_reg_sequence imx219_2lane_regs[] = {
++	/* PLL Clock Table */
++	{ IMX219_REG_VTPXCK_DIV, 5 },
++	{ IMX219_REG_VTSYCK_DIV, 1 },
++	{ IMX219_REG_PREPLLCK_VT_DIV, 3 },	/* 0x03 = AUTO set */
++	{ IMX219_REG_PREPLLCK_OP_DIV, 3 },	/* 0x03 = AUTO set */
++	{ IMX219_REG_PLL_VT_MPY, 57 },
++	{ IMX219_REG_OPSYCK_DIV, 1 },
++	{ IMX219_REG_PLL_OP_MPY, 114 },
++
++	/* 2-Lane CSI Mode */
++	{ IMX219_REG_CSI_LANE_MODE, IMX219_CSI_2_LANE_MODE },
++};
++
++static const struct cci_reg_sequence imx219_4lane_regs[] = {
++	/* PLL Clock Table */
++	{ IMX219_REG_VTPXCK_DIV, 5 },
++	{ IMX219_REG_VTSYCK_DIV, 1 },
++	{ IMX219_REG_PREPLLCK_VT_DIV, 3 },	/* 0x03 = AUTO set */
++	{ IMX219_REG_PREPLLCK_OP_DIV, 3 },	/* 0x03 = AUTO set */
++	{ IMX219_REG_PLL_VT_MPY, 88 },
++	{ IMX219_REG_OPSYCK_DIV, 1 },
++	{ IMX219_REG_PLL_OP_MPY, 91 },
++
++	/* 4-Lane CSI Mode */
++	{ IMX219_REG_CSI_LANE_MODE, IMX219_CSI_4_LANE_MODE },
+ };
+ 
+ static const s64 imx219_link_freq_menu[] = {
+ 	IMX219_DEFAULT_LINK_FREQ,
+ };
+ 
+-static const char *const imx219_test_pattern_menu[] = {
+-	"Disabled", "Color Bars", "Solid Color", "Grey Color Bars", "PN9"
++static const s64 imx219_link_freq_4lane_menu[] = {
++	IMX219_DEFAULT_LINK_FREQ_4LANE,
++};
++
++static const char * const imx219_test_pattern_menu[] = {
++	"Disabled",
++	"Color Bars",
++	"Solid Color",
++	"Grey Color Bars",
++	"PN9"
+ };
+ 
+ static const int imx219_test_pattern_val[] = {
+-	IMX219_TEST_PATTERN_DISABLE,	 IMX219_TEST_PATTERN_COLOR_BARS,
+-	IMX219_TEST_PATTERN_SOLID_COLOR, IMX219_TEST_PATTERN_GREY_COLOR,
++	IMX219_TEST_PATTERN_DISABLE,
++	IMX219_TEST_PATTERN_COLOR_BARS,
++	IMX219_TEST_PATTERN_SOLID_COLOR,
++	IMX219_TEST_PATTERN_GREY_COLOR,
+ 	IMX219_TEST_PATTERN_PN9,
+ };
+ 
+ /* regulator supplies */
+-static const char *const imx219_supply_name[] = {
++static const char * const imx219_supply_name[] = {
+ 	/* Supplies can be enabled in any order */
+-	"VANA", /* Analog (2.8V) supply */
+-	"VDIG", /* Digital Core (1.8V) supply */
+-	"VDDL", /* IF (1.2V) supply */
++	"VANA",  /* Analog (2.8V) supply */
++	"VDIG",  /* Digital Core (1.8V) supply */
++	"VDDL",  /* IF (1.2V) supply */
+ };
+ 
+ #define IMX219_NUM_SUPPLIES ARRAY_SIZE(imx219_supply_name)
+ 
+ /*
+-* The supported formats.
+-* This table MUST contain 4 entries per format, to cover the various flip
+-* combinations in the order
+-* - no flip
+-* - h flip
+-* - v flip
+-* - h&v flips
+-*/
+-static const u32 codes[] = {
+-	MEDIA_BUS_FMT_SRGGB10_1X10, MEDIA_BUS_FMT_SGRBG10_1X10,
+-	MEDIA_BUS_FMT_SGBRG10_1X10, MEDIA_BUS_FMT_SBGGR10_1X10,
+-
+-	MEDIA_BUS_FMT_SRGGB8_1X8,   MEDIA_BUS_FMT_SGRBG8_1X8,
+-	MEDIA_BUS_FMT_SGBRG8_1X8,   MEDIA_BUS_FMT_SBGGR8_1X8,
+-
+-	// MEDIA_BUS_FMT_YVYU8_2X8,
+-	// MEDIA_BUS_FMT_YVYU10_2X10,
+-	// MEDIA_BUS_FMT_RGB888_1X24,
++ * The supported formats.
++ * This table MUST contain 4 entries per format, to cover the various flip
++ * combinations in the order
++ * - no flip
++ * - h flip
++ * - v flip
++ * - h&v flips
++ */
++static const u32 imx219_mbus_formats[] = {
++	MEDIA_BUS_FMT_SRGGB10_1X10,
++	MEDIA_BUS_FMT_SGRBG10_1X10,
++	MEDIA_BUS_FMT_SGBRG10_1X10,
++	MEDIA_BUS_FMT_SBGGR10_1X10,
++
++	MEDIA_BUS_FMT_SRGGB8_1X8,
++	MEDIA_BUS_FMT_SGRBG8_1X8,
++	MEDIA_BUS_FMT_SGBRG8_1X8,
++	MEDIA_BUS_FMT_SBGGR8_1X8,
+ };
+ 
+ /*
+-* Initialisation delay between XCLR low->high and the moment when the sensor
+-* can start capture (i.e. can leave software stanby) must be not less than:
+-*   t4 + max(t5, t6 + <time to initialize the sensor register over I2C>)
+-* where
+-*   t4 is fixed, and is max 200uS,
+-*   t5 is fixed, and is 6000uS,
+-*   t6 depends on the sensor external clock, and is max 32000 clock periods.
+-* As per sensor datasheet, the external clock must be from 6MHz to 27MHz.
+-* So for any acceptable external clock t6 is always within the range of
+-* 1185 to 5333 uS, and is always less than t5.
+-* For this reason this is always safe to wait (t4 + t5) = 6200 uS, then
+-* initialize the sensor over I2C, and then exit the software standby.
+-*
+-* This start-up time can be optimized a bit more, if we start the writes
+-* over I2C after (t4+t6), but before (t4+t5) expires. But then sensor
+-* initialization over I2C may complete before (t4+t5) expires, and we must
+-* ensure that capture is not started before (t4+t5).
+-*
+-* This delay doesn't account for the power supply startup time. If needed,
+-* this should be taken care of via the regulator framework. E.g. in the
+-* case of DT for regulator-fixed one should define the startup-delay-us
+-* property.
+-*/
+-#define IMX219_XCLR_MIN_DELAY_US 6200
+-#define IMX219_XCLR_DELAY_RANGE_US 1000
++ * Initialisation delay between XCLR low->high and the moment when the sensor
++ * can start capture (i.e. can leave software stanby) must be not less than:
++ *   t4 + max(t5, t6 + <time to initialize the sensor register over I2C>)
++ * where
++ *   t4 is fixed, and is max 200uS,
++ *   t5 is fixed, and is 6000uS,
++ *   t6 depends on the sensor external clock, and is max 32000 clock periods.
++ * As per sensor datasheet, the external clock must be from 6MHz to 27MHz.
++ * So for any acceptable external clock t6 is always within the range of
++ * 1185 to 5333 uS, and is always less than t5.
++ * For this reason this is always safe to wait (t4 + t5) = 6200 uS, then
++ * initialize the sensor over I2C, and then exit the software standby.
++ *
++ * This start-up time can be optimized a bit more, if we start the writes
++ * over I2C after (t4+t6), but before (t4+t5) expires. But then sensor
++ * initialization over I2C may complete before (t4+t5) expires, and we must
++ * ensure that capture is not started before (t4+t5).
++ *
++ * This delay doesn't account for the power supply startup time. If needed,
++ * this should be taken care of via the regulator framework. E.g. in the
++ * case of DT for regulator-fixed one should define the startup-delay-us
++ * property.
++ */
++#define IMX219_XCLR_MIN_DELAY_US	6200
++#define IMX219_XCLR_DELAY_RANGE_US	1000
+ 
+ /* Mode configs */
+ static const struct imx219_mode supported_modes[] = {
+-	// {
+-	// 	/* 640x480 30fps mode */
+-	// 	.width = 640,
+-	// 	.height = 480,
+-	// 	.crop = {
+-	// 		.left = 0,
+-	// 		.top = 0,
+-	// 		.width = 640,
+-	// 		.height = 480
+-	// 	},
+-	// 	.vts_def = IMX219_VTS_30FPS_640x480,
+-	// 	.reg_list = {
+-	// 		.num_of_regs = ARRAY_SIZE(mode_640_480_regs),
+-	// 		.regs = mode_640_480_regs,
+-	// 	},
+-	// },
+ 	{
+ 		/* 8MPix 15fps mode */
+ 		.width = 3280,
+@@ -494,6 +474,10 @@ static const struct imx219_mode supported_modes[] = {
+ 			.num_of_regs = ARRAY_SIZE(mode_3280x2464_regs),
+ 			.regs = mode_3280x2464_regs,
+ 		},
++		.binning = {
++			[BINNING_IDX_8_BIT] = BINNING_NONE,
++			[BINNING_IDX_10_BIT] = BINNING_NONE,
++		},
+ 	},
+ 	{
+ 		/* 1080P 30fps cropped */
+@@ -510,6 +494,10 @@ static const struct imx219_mode supported_modes[] = {
+ 			.num_of_regs = ARRAY_SIZE(mode_1920_1080_regs),
+ 			.regs = mode_1920_1080_regs,
+ 		},
++		.binning = {
++			[BINNING_IDX_8_BIT] = BINNING_NONE,
++			[BINNING_IDX_10_BIT] = BINNING_NONE,
++		},
+ 	},
+ 	{
+ 		/* 2x2 binned 30fps mode */
+@@ -526,6 +514,10 @@ static const struct imx219_mode supported_modes[] = {
+ 			.num_of_regs = ARRAY_SIZE(mode_1640_1232_regs),
+ 			.regs = mode_1640_1232_regs,
+ 		},
++		.binning = {
++			[BINNING_IDX_8_BIT] = BINNING_SPECIAL_2x2,
++			[BINNING_IDX_10_BIT] = BINNING_NORMAL_2x2,
++		},
+ 	},
+ 	{
+ 		/* 640x480 30fps mode */
+@@ -542,22 +534,25 @@ static const struct imx219_mode supported_modes[] = {
+ 			.num_of_regs = ARRAY_SIZE(mode_640_480_regs),
+ 			.regs = mode_640_480_regs,
+ 		},
++		.binning = {
++			[BINNING_IDX_8_BIT] = BINNING_SPECIAL_2x2,
++			[BINNING_IDX_10_BIT] = BINNING_SPECIAL_2x2,
++		},
+ 	},
+ };
+ 
+ struct imx219 {
+ 	struct v4l2_subdev sd;
+-	struct media_pad pad;
+-
+-	struct v4l2_mbus_framefmt fmt;
++	struct media_pad pad[NUM_PADS];
+ 
++	struct regmap *regmap;
+ 	struct clk *xclk; /* system clock to IMX219 */
+ 	u32 xclk_freq;
+ 
+ 	struct gpio_desc *reset_gpio;
+-	struct gpio_desc *power_en_gpio;
+ 	struct gpio_desc *mclk_gpio;
+-	struct gpio_desc *xvs_gpio;
++	struct gpio_desc *power_en_gpio;
++	struct gpio_desc *power_level_gpio;
+ 
+ 	struct regulator_bulk_data supplies[IMX219_NUM_SUPPLIES];
+ 
+@@ -574,14 +569,10 @@ struct imx219 {
+ 	/* Current mode */
+ 	const struct imx219_mode *mode;
+ 
+-	/*
+-	* Mutex for serialized access:
+-	* Protect sensor module set pad format and start/stop streaming safely.
+-	*/
+-	struct mutex mutex;
+-
+ 	/* Streaming on/off */
+ 	bool streaming;
++
++	u8 lanes;
+ };
+ 
+ static inline struct imx219 *to_imx219(struct v4l2_subdev *_sd)
+@@ -589,115 +580,71 @@ static inline struct imx219 *to_imx219(struct v4l2_subdev *_sd)
+ 	return container_of(_sd, struct imx219, sd);
+ }
+ 
+-/* Read registers up to 2 at a time */
+-static int imx219_read_reg(struct imx219 *imx219, u16 reg, u32 len, u32 *val)
++/* Get bayer order based on flip setting. */
++static u32 imx219_get_format_code(struct imx219 *imx219, u32 code)
+ {
+-	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
+-	struct i2c_msg msgs[2];
+-	u8 addr_buf[2] = { reg >> 8, reg & 0xff };
+-	u8 data_buf[4] = {
+-		0,
+-	};
+-	int ret;
+-
+-	if (len > 4)
+-		return -EINVAL;
+-
+-	/* Write register address */
+-	msgs[0].addr = client->addr;
+-	msgs[0].flags = 0;
+-	msgs[0].len = ARRAY_SIZE(addr_buf);
+-	msgs[0].buf = addr_buf;
++	unsigned int i;
+ 
+-	/* Read data from register */
+-	msgs[1].addr = client->addr;
+-	msgs[1].flags = I2C_M_RD;
+-	msgs[1].len = len;
+-	msgs[1].buf = &data_buf[4 - len];
++	for (i = 0; i < ARRAY_SIZE(imx219_mbus_formats); i++)
++		if (imx219_mbus_formats[i] == code)
++			break;
+ 
+-	ret = i2c_transfer(client->adapter, msgs, ARRAY_SIZE(msgs));
+-	if (ret != ARRAY_SIZE(msgs))
+-		return -EIO;
++	if (i >= ARRAY_SIZE(imx219_mbus_formats))
++		i = 0;
+ 
+-	*val = get_unaligned_be32(data_buf);
++	i = (i & ~3) | (imx219->vflip->val ? 2 : 0) |
++	    (imx219->hflip->val ? 1 : 0);
+ 
+-	return 0;
++	return imx219_mbus_formats[i];
+ }
+ 
+-/* Write registers up to 2 at a time */
+-static int imx219_write_reg(struct imx219 *imx219, u16 reg, u32 len, u32 val)
++static int imx219_resolve_binning(struct imx219 *imx219,
++				  const struct v4l2_mbus_framefmt *format,
++				  enum binning_mode *binning)
+ {
+-	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
+-	u8 buf[6];
++	u32 fmt;
+ 
+-	if (len > 4)
+-		return -EINVAL;
++	if (format)
++		fmt = format->code;
++	else
++		fmt = MEDIA_BUS_FMT_SRGGB10_1X10;
+ 
+-	put_unaligned_be16(reg, buf);
+-	put_unaligned_be32(val << (8 * (4 - len)), buf + 2);
+-	if (i2c_master_send(client, buf, len + 2) != len + 2)
+-		return -EIO;
++	switch (fmt) {
++	case MEDIA_BUS_FMT_SRGGB8_1X8:
++	case MEDIA_BUS_FMT_SGRBG8_1X8:
++	case MEDIA_BUS_FMT_SGBRG8_1X8:
++	case MEDIA_BUS_FMT_SBGGR8_1X8:
++		*binning = imx219->mode->binning[BINNING_IDX_8_BIT];
++		return 0;
+ 
+-	return 0;
++	case MEDIA_BUS_FMT_SRGGB10_1X10:
++	case MEDIA_BUS_FMT_SGRBG10_1X10:
++	case MEDIA_BUS_FMT_SGBRG10_1X10:
++	case MEDIA_BUS_FMT_SBGGR10_1X10:
++		*binning = imx219->mode->binning[BINNING_IDX_10_BIT];
++		return 0;
++	}
++	return -EINVAL;
+ }
+ 
+-/* Write a list of registers */
+-static int imx219_write_regs(struct imx219 *imx219,
+-				const struct imx219_reg *regs, u32 len)
++static int imx219_get_rate_factor(struct imx219 *imx219,
++				  const struct v4l2_mbus_framefmt *format)
+ {
+-	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
+-	unsigned int i;
++	enum binning_mode binning = BINNING_NONE;
+ 	int ret;
+ 
+-	for (i = 0; i < len; i++) {
+-		ret = imx219_write_reg(imx219, regs[i].address, 1, regs[i].val);
+-		if (ret) {
+-			dev_err_ratelimited(
+-				&client->dev,
+-				"Failed to write reg 0x%4.4x. error = %d\n",
+-				regs[i].address, ret);
++	ret = imx219_resolve_binning(imx219, format, &binning);
++	if (ret < 0)
++		return ret;
+ 
+-			return ret;
+-		}
++	switch (binning) {
++	case BINNING_NONE:
++	case BINNING_NORMAL_2x2:
++		return 1;
++	case BINNING_SPECIAL_2x2:
++		return 2;
+ 	}
+-
+-	return 0;
+-}
+-
+-/* Get bayer order based on flip setting. */
+-static u32 imx219_get_format_code(struct imx219 *imx219, u32 code)
+-{
+-	unsigned int i;
+-
+-	lockdep_assert_held(&imx219->mutex);
+-
+-	for (i = 0; i < ARRAY_SIZE(codes); i++)
+-		if (codes[i] == code)
+-			break;
+-
+-	if (i >= ARRAY_SIZE(codes))
+-		i = 0;
+-
+-	i = (i & ~3) | (imx219->vflip->val ? 2 : 0) |
+-		(imx219->hflip->val ? 1 : 0);
+-	DPRINTK("imx219.c imx219_get_format_code codes[i] = 0x%x \n", codes[i]);
+-	return codes[i];
+-}
+-
+-static void imx219_set_default_format(struct imx219 *imx219)
+-{
+-	struct v4l2_mbus_framefmt *fmt;
+-
+-	fmt = &imx219->fmt;
+-	fmt->code = MEDIA_BUS_FMT_SRGGB10_1X10;
+-	fmt->colorspace = V4L2_COLORSPACE_SRGB;
+-	fmt->ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(fmt->colorspace);
+-	fmt->quantization = V4L2_MAP_QUANTIZATION_DEFAULT(true, fmt->colorspace,
+-							fmt->ycbcr_enc);
+-	fmt->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(fmt->colorspace);
+-	fmt->width = supported_modes[0].width;
+-	fmt->height = supported_modes[0].height;
+-	fmt->field = V4L2_FIELD_NONE;
++	return -EINVAL;
+ }
+ 
+ static void get_again_in_table(int value, int *again)
+@@ -714,40 +661,16 @@ static void get_again_in_table(int value, int *again)
+ 	}
+ }
+ 
+-static int imx219_open(struct v4l2_subdev *sd, struct v4l2_subdev_fh *fh)
+-{
+-	struct imx219 *imx219 = to_imx219(sd);
+-	struct v4l2_mbus_framefmt *try_fmt =
+-		v4l2_subdev_get_try_format(sd, fh->state, 0);
+-	struct v4l2_rect *try_crop;
+-
+-	mutex_lock(&imx219->mutex);
+-
+-	/* Initialize try_fmt */
+-	try_fmt->width = supported_modes[0].width;
+-	try_fmt->height = supported_modes[0].height;
+-	try_fmt->code =
+-		imx219_get_format_code(imx219, MEDIA_BUS_FMT_SRGGB10_1X10);
+-	try_fmt->field = V4L2_FIELD_NONE;
+-
+-	/* Initialize try_crop rectangle. */
+-	try_crop = v4l2_subdev_get_try_crop(sd, fh->state, 0);
+-	try_crop->top = IMX219_PIXEL_ARRAY_TOP;
+-	try_crop->left = IMX219_PIXEL_ARRAY_LEFT;
+-	try_crop->width = IMX219_PIXEL_ARRAY_WIDTH;
+-	try_crop->height = IMX219_PIXEL_ARRAY_HEIGHT;
+-
+-	mutex_unlock(&imx219->mutex);
+-
+-	return 0;
+-}
+-
+ static int imx219_set_ctrl(struct v4l2_ctrl *ctrl)
+ {
+ 	struct imx219 *imx219 =
+ 		container_of(ctrl->handler, struct imx219, ctrl_handler);
+ 	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
+-	int ret;
++	int ret = 0;
++	const struct v4l2_mbus_framefmt *format;
++	struct v4l2_subdev_state *state;
++	int rate_factor;
++	int again = 0;
+ 
+ 	if (ctrl->id == V4L2_CID_VBLANK) {
+ 		int exposure_max, exposure_def;
+@@ -755,77 +678,79 @@ static int imx219_set_ctrl(struct v4l2_ctrl *ctrl)
+ 		/* Update max exposure while meeting expected vblanking */
+ 		exposure_max = imx219->mode->height + ctrl->val - 4;
+ 		exposure_def = (exposure_max < IMX219_EXPOSURE_DEFAULT) ?
+-					exposure_max :
+-					IMX219_EXPOSURE_DEFAULT;
++			exposure_max : IMX219_EXPOSURE_DEFAULT;
+ 		__v4l2_ctrl_modify_range(imx219->exposure,
+-					imx219->exposure->minimum,
+-					exposure_max, imx219->exposure->step,
+-					exposure_def);
++					 imx219->exposure->minimum,
++					 exposure_max, imx219->exposure->step,
++					 exposure_def);
+ 	}
+ 
+ 	/*
+-	* Applying V4L2 control value only happens
+-	* when power is up for streaming
+-	*/
++	 * Applying V4L2 control value only happens
++	 * when power is up for streaming
++	 */
+ 	if (pm_runtime_get_if_in_use(&client->dev) == 0)
+ 		return 0;
+ 
++	state = v4l2_subdev_get_locked_active_state(&imx219->sd);
++	format = v4l2_subdev_get_pad_format(&imx219->sd, state, 0);
++	rate_factor = imx219_get_rate_factor(imx219, format);
++
+ 	switch (ctrl->id) {
+ 	case V4L2_CID_ANALOGUE_GAIN:
+-		ret = imx219_write_reg(imx219, IMX219_REG_ANALOG_GAIN,
+-					IMX219_REG_VALUE_08BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_ANALOG_GAIN,
++			  ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_NOTIFY_GAINS:
+-		int again = 0;
+ 		get_again_in_table(ctrl->val, &again);
+-		// printk("imx219 set db = %d, gain = %d\n", ctrl->val, again);
+-		ret = imx219_write_reg(imx219, IMX219_REG_ANALOG_GAIN,
+-					IMX219_REG_VALUE_08BIT, again);
++		cci_write(imx219->regmap, IMX219_REG_ANALOG_GAIN,
++			  again, &ret);
+ 		break;
+ 	case V4L2_CID_EXPOSURE:
+-		ret = imx219_write_reg(imx219, IMX219_REG_EXPOSURE,
+-					IMX219_REG_VALUE_16BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_EXPOSURE,
++			  ctrl->val / rate_factor, &ret);
+ 		break;
+ 	case V4L2_CID_DIGITAL_GAIN:
+-		ret = imx219_write_reg(imx219, IMX219_REG_DIGITAL_GAIN,
+-					IMX219_REG_VALUE_16BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_DIGITAL_GAIN,
++			  ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_TEST_PATTERN:
+-		ret = imx219_write_reg(imx219, IMX219_REG_TEST_PATTERN,
+-					IMX219_REG_VALUE_16BIT,
+-					imx219_test_pattern_val[ctrl->val]);
++		cci_write(imx219->regmap, IMX219_REG_TEST_PATTERN,
++			  imx219_test_pattern_val[ctrl->val], &ret);
+ 		break;
+ 	case V4L2_CID_HFLIP:
+ 	case V4L2_CID_VFLIP:
+-		ret = imx219_write_reg(imx219, IMX219_REG_ORIENTATION, 1,
+-					imx219->hflip->val | imx219->vflip->val
+-									<< 1);
++		cci_write(imx219->regmap, IMX219_REG_ORIENTATION,
++			  imx219->hflip->val | imx219->vflip->val << 1, &ret);
+ 		break;
+ 	case V4L2_CID_VBLANK:
+-		ret = imx219_write_reg(imx219, IMX219_REG_VTS,
+-					IMX219_REG_VALUE_16BIT,
+-					imx219->mode->height + ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_VTS,
++			  (imx219->mode->height + ctrl->val) / rate_factor, &ret);
++		break;
++	case V4L2_CID_HBLANK:
++		cci_write(imx219->regmap, IMX219_REG_HTS,
++			  imx219->mode->width + ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_TEST_PATTERN_RED:
+-		ret = imx219_write_reg(imx219, IMX219_REG_TESTP_RED,
+-					IMX219_REG_VALUE_16BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_TESTP_RED,
++			  ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_TEST_PATTERN_GREENR:
+-		ret = imx219_write_reg(imx219, IMX219_REG_TESTP_GREENR,
+-					IMX219_REG_VALUE_16BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_TESTP_GREENR,
++			  ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_TEST_PATTERN_BLUE:
+-		ret = imx219_write_reg(imx219, IMX219_REG_TESTP_BLUE,
+-					IMX219_REG_VALUE_16BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_TESTP_BLUE,
++			  ctrl->val, &ret);
+ 		break;
+ 	case V4L2_CID_TEST_PATTERN_GREENB:
+-		ret = imx219_write_reg(imx219, IMX219_REG_TESTP_GREENB,
+-					IMX219_REG_VALUE_16BIT, ctrl->val);
++		cci_write(imx219->regmap, IMX219_REG_TESTP_GREENB,
++			  ctrl->val, &ret);
+ 		break;
+ 	default:
+ 		dev_info(&client->dev,
+-			"ctrl(id:0x%x,val:0x%x) is not handled\n", ctrl->id,
+-			ctrl->val);
++			 "ctrl(id:0x%x,val:0x%x) is not handled\n",
++			 ctrl->id, ctrl->val);
+ 		ret = -EINVAL;
+ 		break;
+ 	}
+@@ -839,194 +764,231 @@ static const struct v4l2_ctrl_ops imx219_ctrl_ops = {
+ 	.s_ctrl = imx219_set_ctrl,
+ };
+ 
+-static int imx219_enum_mbus_code(struct v4l2_subdev *sd,
+-				struct v4l2_subdev_state *sd_state,
+-				struct v4l2_subdev_mbus_code_enum *code)
++static void imx219_update_pad_format(struct imx219 *imx219,
++				     const struct imx219_mode *mode,
++				     struct v4l2_mbus_framefmt *fmt, u32 code)
+ {
+-	struct imx219 *imx219 = to_imx219(sd);
+-
+-	if (code->index >= (ARRAY_SIZE(codes) / 4))
+-		return -EINVAL;
++	/* Bayer order varies with flips */
++	fmt->code = imx219_get_format_code(imx219, code);
++	fmt->width = mode->width;
++	fmt->height = mode->height;
++	fmt->field = V4L2_FIELD_NONE;
++	fmt->colorspace = V4L2_COLORSPACE_RAW;
++	fmt->quantization = V4L2_QUANTIZATION_FULL_RANGE;
++	fmt->xfer_func = V4L2_XFER_FUNC_NONE;
++}
+ 
+-	mutex_lock(&imx219->mutex);
+-	code->code = imx219_get_format_code(imx219, codes[code->index * 4]);
+-	mutex_unlock(&imx219->mutex);
++static int imx219_init_cfg(struct v4l2_subdev *sd,
++			   struct v4l2_subdev_state *state)
++{
++	struct imx219 *imx219 = to_imx219(sd);
++	struct v4l2_mbus_framefmt *format;
++	struct v4l2_rect *crop;
++
++	/* Initialize the format. */
++	format = v4l2_subdev_get_pad_format(sd, state, 0);
++	imx219_update_pad_format(imx219, &supported_modes[0], format,
++				 MEDIA_BUS_FMT_SRGGB10_1X10);
++
++	/* Initialize the crop rectangle. */
++	crop = v4l2_subdev_get_pad_crop(sd, state, 0);
++	crop->top = IMX219_PIXEL_ARRAY_TOP;
++	crop->left = IMX219_PIXEL_ARRAY_LEFT;
++	crop->width = IMX219_PIXEL_ARRAY_WIDTH;
++	crop->height = IMX219_PIXEL_ARRAY_HEIGHT;
++
++	/* Initialize try_fmt for the embedded metadata pad */
++	// format = v4l2_subdev_get_pad_format(sd, state, 1);
++	// format->code = MEDIA_BUS_FMT_SENSOR_DATA;
++	// format->width = IMX219_EMBEDDED_LINE_WIDTH;
++	// format->height = IMX219_NUM_EMBEDDED_LINES;
++	// format->field = V4L2_FIELD_NONE;
+ 
+ 	return 0;
+ }
+ 
+-static int imx219_enum_frame_size(struct v4l2_subdev *sd,
+-				struct v4l2_subdev_state *sd_state,
+-				struct v4l2_subdev_frame_size_enum *fse)
++static int imx219_enum_mbus_code(struct v4l2_subdev *sd,
++				 struct v4l2_subdev_state *sd_state,
++				 struct v4l2_subdev_mbus_code_enum *code)
+ {
+ 	struct imx219 *imx219 = to_imx219(sd);
+-	u32 code;
+ 
+-	if (fse->index >= ARRAY_SIZE(supported_modes))
++	if (code->pad >= NUM_PADS)
+ 		return -EINVAL;
+ 
+-	mutex_lock(&imx219->mutex);
+-	code = imx219_get_format_code(imx219, fse->code);
+-	mutex_unlock(&imx219->mutex);
+-	if (fse->code != code)
+-		return -EINVAL;
++	if (code->pad == IMAGE_PAD) {
++		if (code->index >= (ARRAY_SIZE(imx219_mbus_formats) / 4))
++			return -EINVAL;
+ 
+-	fse->min_width = supported_modes[fse->index].width;
+-	fse->max_width = fse->min_width;
+-	fse->min_height = supported_modes[fse->index].height;
+-	fse->max_height = fse->min_height;
++		code->code = imx219_get_format_code(imx219, imx219_mbus_formats[code->index * 4]);
++	} else {
++		if (code->index > 0)
++			return -EINVAL;
++
++		// code->code = MEDIA_BUS_FMT_SENSOR_DATA;
++	}
+ 
+ 	return 0;
+ }
+ 
+-static void imx219_reset_colorspace(struct v4l2_mbus_framefmt *fmt)
++static int imx219_enum_frame_size(struct v4l2_subdev *sd,
++				  struct v4l2_subdev_state *sd_state,
++				  struct v4l2_subdev_frame_size_enum *fse)
+ {
+-	fmt->colorspace = V4L2_COLORSPACE_SRGB;
+-	fmt->ycbcr_enc = V4L2_MAP_YCBCR_ENC_DEFAULT(fmt->colorspace);
+-	fmt->quantization = V4L2_MAP_QUANTIZATION_DEFAULT(true, fmt->colorspace,
+-							fmt->ycbcr_enc);
+-	fmt->xfer_func = V4L2_MAP_XFER_FUNC_DEFAULT(fmt->colorspace);
+-}
++	struct imx219 *imx219 = to_imx219(sd);
++	u32 code;
+ 
+-static void imx219_update_pad_format(struct imx219 *imx219,
+-					const struct imx219_mode *mode,
+-					struct v4l2_subdev_format *fmt)
+-{
+-	fmt->format.width = mode->width;
+-	fmt->format.height = mode->height;
+-	fmt->format.field = V4L2_FIELD_NONE;
+-	imx219_reset_colorspace(&fmt->format);
+-}
++	if (fse->pad >= NUM_PADS)
++		return -EINVAL;
+ 
+-static int __imx219_get_pad_format(struct imx219 *imx219,
+-				struct v4l2_subdev_state *sd_state,
+-				struct v4l2_subdev_format *fmt)
+-{
+-	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+-		struct v4l2_mbus_framefmt *try_fmt = v4l2_subdev_get_try_format(
+-			&imx219->sd, sd_state, fmt->pad);
+-		/* update the code which could change due to vflip or hflip: */
+-		try_fmt->code = imx219_get_format_code(imx219, try_fmt->code);
+-		fmt->format = *try_fmt;
+-	} else {
+-		imx219_update_pad_format(imx219, imx219->mode, fmt);
+-		fmt->format.code =
+-			imx219_get_format_code(imx219, imx219->fmt.code);
++	if (fse->pad == IMAGE_PAD) {
++		if (fse->index >= ARRAY_SIZE(supported_modes))
++			return -EINVAL;
++
++		code = imx219_get_format_code(imx219, fse->code);
++		if (fse->code != code)
++			return -EINVAL;
++
++		fse->min_width = supported_modes[fse->index].width;
++		fse->max_width = fse->min_width;
++		fse->min_height = supported_modes[fse->index].height;
++		fse->max_height = fse->min_height;
+ 	}
++	// } else {
++	// 	if (fse->code != MEDIA_BUS_FMT_SENSOR_DATA || fse->index > 0)
++	// 		return -EINVAL;
++
++	// 	fse->min_width = IMX219_EMBEDDED_LINE_WIDTH;
++	// 	fse->max_width = fse->min_width;
++	// 	fse->min_height = IMX219_NUM_EMBEDDED_LINES;
++	// 	fse->max_height = fse->min_height;
++	// }
+ 
+ 	return 0;
+ }
+ 
+-static int imx219_get_pad_format(struct v4l2_subdev *sd,
+-				struct v4l2_subdev_state *sd_state,
+-				struct v4l2_subdev_format *fmt)
++static unsigned long imx219_get_pixel_rate(struct imx219 *imx219,
++					   const struct v4l2_mbus_framefmt *format)
+ {
+-	struct imx219 *imx219 = to_imx219(sd);
+-	int ret;
+-
+-	mutex_lock(&imx219->mutex);
+-	ret = __imx219_get_pad_format(imx219, sd_state, fmt);
+-	mutex_unlock(&imx219->mutex);
+-
+-	return ret;
++	return ((imx219->lanes == 2) ? IMX219_PIXEL_RATE :
++		IMX219_PIXEL_RATE_4LANE) * imx219_get_rate_factor(imx219, format);
+ }
+ 
+ static int imx219_set_pad_format(struct v4l2_subdev *sd,
+-				struct v4l2_subdev_state *sd_state,
+-				struct v4l2_subdev_format *fmt)
++				 struct v4l2_subdev_state *sd_state,
++				 struct v4l2_subdev_format *fmt)
+ {
+ 	struct imx219 *imx219 = to_imx219(sd);
+ 	const struct imx219_mode *mode;
+-	struct v4l2_mbus_framefmt *framefmt;
+-	int exposure_max, exposure_def, hblank;
+-	unsigned int i;
+-
+-	mutex_lock(&imx219->mutex);
++	int exposure_max, exposure_def, hblank, pixel_rate;
++	struct v4l2_mbus_framefmt *format;
++	struct v4l2_rect *crop;
+ 
+-	for (i = 0; i < ARRAY_SIZE(codes); i++)
+-		if (codes[i] == fmt->format.code)
+-			break;
+-	if (i >= ARRAY_SIZE(codes))
+-		i = 0;
++	if (fmt->pad >= NUM_PADS)
++		return -EINVAL;
+ 
+-	/* Bayer order varies with flips */
+-	fmt->format.code = imx219_get_format_code(imx219, codes[i]);
+-
+-	mode = v4l2_find_nearest_size(supported_modes,
+-					ARRAY_SIZE(supported_modes), width,
+-					height, fmt->format.width,
+-					fmt->format.height);
+-	imx219_update_pad_format(imx219, mode, fmt);
+-	if (fmt->which == V4L2_SUBDEV_FORMAT_TRY) {
+-		framefmt = v4l2_subdev_get_try_format(sd, sd_state, fmt->pad);
+-		*framefmt = fmt->format;
+-	} else if (imx219->mode != mode ||
+-		imx219->fmt.code != fmt->format.code) {
+-		imx219->fmt = fmt->format;
+-		imx219->mode = mode;
+-		/* Update limits and set FPS to default */
+-		__v4l2_ctrl_modify_range(imx219->vblank, IMX219_VBLANK_MIN,
+-					IMX219_VTS_MAX - mode->height, 1,
+-					mode->vts_def - mode->height);
+-		__v4l2_ctrl_s_ctrl(imx219->vblank,
+-				mode->vts_def - mode->height);
+-		/* Update max exposure while meeting expected vblanking */
+-		exposure_max = mode->vts_def - 4;
+-		exposure_def = (exposure_max < IMX219_EXPOSURE_DEFAULT) ?
+-					exposure_max :
+-					IMX219_EXPOSURE_DEFAULT;
+-		__v4l2_ctrl_modify_range(imx219->exposure,
+-					imx219->exposure->minimum,
+-					exposure_max, imx219->exposure->step,
+-					exposure_def);
+-		/*
+-		* Currently PPL is fixed to IMX219_PPL_DEFAULT, so hblank
+-		* depends on mode->width only, and is not changeble in any
+-		* way other than changing the mode.
+-		*/
+-		hblank = IMX219_PPL_DEFAULT - mode->width;
+-		__v4l2_ctrl_modify_range(imx219->hblank, hblank, hblank, 1,
+-					hblank);
++	if (fmt->pad == IMAGE_PAD) {
++		mode = v4l2_find_nearest_size(supported_modes,
++					      ARRAY_SIZE(supported_modes),
++					      width, height,
++					      fmt->format.width, fmt->format.height);
++
++		imx219_update_pad_format(imx219, mode, &fmt->format, fmt->format.code);
++
++		format = v4l2_subdev_get_pad_format(sd, sd_state, 0);
++		crop = v4l2_subdev_get_pad_crop(sd, sd_state, 0);
++		
++		*format = fmt->format;
++		*crop = mode->crop;
++
++		if (fmt->which == V4L2_SUBDEV_FORMAT_ACTIVE) {
++			u32 prev_hts = imx219->mode->width + imx219->hblank->val;
++
++			imx219->mode = mode;
++			/* Update limits and set FPS to default */
++			__v4l2_ctrl_modify_range(imx219->vblank, IMX219_VBLANK_MIN,
++						 IMX219_VTS_MAX - mode->height, 1,
++						 mode->vts_def - mode->height);
++			__v4l2_ctrl_s_ctrl(imx219->vblank,
++					   mode->vts_def - mode->height);
++			/* Update max exposure while meeting expected vblanking */
++			exposure_max = mode->vts_def - 4;
++			exposure_def = (exposure_max < IMX219_EXPOSURE_DEFAULT) ?
++				exposure_max : IMX219_EXPOSURE_DEFAULT;
++			__v4l2_ctrl_modify_range(imx219->exposure,
++						 imx219->exposure->minimum,
++						 exposure_max, imx219->exposure->step,
++						 exposure_def);
++			/*
++			 * Retain PPL setting from previous mode so that the
++			 * line time does not change on a mode change.
++			 * Limits have to be recomputed as the controls define
++			 * the blanking only, so PPL values need to have the
++			 * mode width subtracted.
++			 */
++			hblank = prev_hts - mode->width;
++			__v4l2_ctrl_modify_range(imx219->hblank,
++						 IMX219_PPL_MIN - mode->width,
++						 IMX219_PPL_MAX - mode->width,
++						 1, IMX219_PPL_MIN - mode->width);
++			__v4l2_ctrl_s_ctrl(imx219->hblank, hblank);
++
++			/* Scale the pixel rate based on the mode specific factor */
++			pixel_rate = imx219_get_pixel_rate(imx219, &fmt->format);
++			__v4l2_ctrl_modify_range(imx219->pixel_rate, pixel_rate,
++						 pixel_rate, 1, pixel_rate);
++		}
++	} else {
++		format = v4l2_subdev_get_pad_format(sd, sd_state, 1);
++		/* Don't allow the embedded data format to be changed */
++		fmt->format = *format;
+ 	}
+ 
+-	mutex_unlock(&imx219->mutex);
+-
+ 	return 0;
+ }
+ 
+-static int imx219_set_framefmt(struct imx219 *imx219)
++static int imx219_set_framefmt(struct imx219 *imx219,
++			       const struct v4l2_mbus_framefmt *format)
+ {
+-	switch (imx219->fmt.code) {
++	switch (format->code) {
+ 	case MEDIA_BUS_FMT_SRGGB8_1X8:
+ 	case MEDIA_BUS_FMT_SGRBG8_1X8:
+ 	case MEDIA_BUS_FMT_SGBRG8_1X8:
+ 	case MEDIA_BUS_FMT_SBGGR8_1X8:
+-		return imx219_write_regs(imx219, raw8_framefmt_regs,
+-					ARRAY_SIZE(raw8_framefmt_regs));
++		return cci_multi_reg_write(imx219->regmap, raw8_framefmt_regs,
++					   ARRAY_SIZE(raw8_framefmt_regs), NULL);
+ 
+ 	case MEDIA_BUS_FMT_SRGGB10_1X10:
+ 	case MEDIA_BUS_FMT_SGRBG10_1X10:
+ 	case MEDIA_BUS_FMT_SGBRG10_1X10:
+ 	case MEDIA_BUS_FMT_SBGGR10_1X10:
+-		return imx219_write_regs(imx219, raw10_framefmt_regs,
+-					ARRAY_SIZE(raw10_framefmt_regs));
++		return cci_multi_reg_write(imx219->regmap, raw10_framefmt_regs,
++					   ARRAY_SIZE(raw10_framefmt_regs), NULL);
+ 	}
+ 
+ 	return -EINVAL;
+ }
+ 
+-static const struct v4l2_rect *
+-__imx219_get_pad_crop(struct imx219 *imx219, struct v4l2_subdev_state *sd_state,
+-			unsigned int pad, enum v4l2_subdev_format_whence which)
++static int imx219_set_binning(struct imx219 *imx219,
++			      const struct v4l2_mbus_framefmt *format)
+ {
+-	switch (which) {
+-	case V4L2_SUBDEV_FORMAT_TRY:
+-		return v4l2_subdev_get_try_crop(&imx219->sd, sd_state, pad);
+-	case V4L2_SUBDEV_FORMAT_ACTIVE:
+-		return &imx219->mode->crop;
++	enum binning_mode binning = BINNING_NONE;
++
++	imx219_resolve_binning(imx219, format, &binning);
++
++	switch (binning) {
++	case BINNING_NONE:
++		return cci_write(imx219->regmap, IMX219_REG_BINNING_MODE,
++				 IMX219_BINNING_NONE, NULL);
++	case BINNING_NORMAL_2x2:
++		return cci_write(imx219->regmap, IMX219_REG_BINNING_MODE,
++				 IMX219_BINNING_2X2_NORMAL, NULL);
++	case BINNING_SPECIAL_2x2:
++		return cci_write(imx219->regmap, IMX219_REG_BINNING_MODE,
++				 IMX219_BINNING_2X2_SPECIAL, NULL);
+ 	}
+ 
+-	return NULL;
++	return -EINVAL;
+ }
+ 
+ static int imx219_get_selection(struct v4l2_subdev *sd,
+@@ -1035,13 +997,7 @@ static int imx219_get_selection(struct v4l2_subdev *sd,
+ {
+ 	switch (sel->target) {
+ 	case V4L2_SEL_TGT_CROP: {
+-		struct imx219 *imx219 = to_imx219(sd);
+-
+-		mutex_lock(&imx219->mutex);
+-		sel->r = *__imx219_get_pad_crop(imx219, sd_state, sel->pad,
+-						sel->which);
+-		mutex_unlock(&imx219->mutex);
+-
++		sel->r = *v4l2_subdev_get_pad_crop(sd, sd_state, 0);
+ 		return 0;
+ 	}
+ 
+@@ -1066,40 +1022,83 @@ static int imx219_get_selection(struct v4l2_subdev *sd,
+ 	return -EINVAL;
+ }
+ 
+-static int imx219_start_streaming(struct imx219 *imx219)
++static int imx219_get_mbus_config(struct v4l2_subdev *sd, unsigned int pad,
++				struct v4l2_mbus_config *cfg)
++{
++	struct imx219 *imx219 = to_imx219(sd);
++	cfg->type = V4L2_MBUS_CSI2_DPHY;
++	cfg->bus.mipi_csi2.num_data_lanes = imx219->lanes;
++	return 0;
++}
++
++static int imx219_configure_lanes(struct imx219 *imx219)
++{
++	/* Write the appropriate PLL settings for the number of MIPI lanes */
++	return cci_multi_reg_write(imx219->regmap,
++				  imx219->lanes == 2 ? imx219_2lane_regs : imx219_4lane_regs,
++				  imx219->lanes == 2 ? ARRAY_SIZE(imx219_2lane_regs) :
++				  ARRAY_SIZE(imx219_4lane_regs), NULL);
++};
++
++static int imx219_start_streaming(struct imx219 *imx219,
++				  struct v4l2_subdev_state *state)
+ {
+ 	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
++	const struct v4l2_mbus_framefmt *format;
+ 	const struct imx219_reg_list *reg_list;
+ 	int ret;
+ 
+-	pr_info("imx219_start_streaming\n");
+ 	ret = pm_runtime_resume_and_get(&client->dev);
+ 	if (ret < 0)
+ 		return ret;
+ 
++	/* Send all registers that are common to all modes */
++	ret = cci_multi_reg_write(imx219->regmap, imx219_common_regs,
++				  ARRAY_SIZE(imx219_common_regs), NULL);
++	if (ret) {
++		dev_err(&client->dev, "%s failed to send mfg header\n", __func__);
++		goto err_rpm_put;
++	}
++
++	/* Configure two or four Lane mode */
++	ret = imx219_configure_lanes(imx219);
++	if (ret) {
++		dev_err(&client->dev, "%s failed to configure lanes\n", __func__);
++		goto err_rpm_put;
++	}
++
+ 	/* Apply default values of current mode */
+ 	reg_list = &imx219->mode->reg_list;
+-	ret = imx219_write_regs(imx219, reg_list->regs, reg_list->num_of_regs);
++	ret = cci_multi_reg_write(imx219->regmap, reg_list->regs,
++				  reg_list->num_of_regs, NULL);
+ 	if (ret) {
+ 		dev_err(&client->dev, "%s failed to set mode\n", __func__);
+ 		goto err_rpm_put;
+ 	}
+ 
+-	ret = imx219_set_framefmt(imx219);
++	format = v4l2_subdev_get_pad_format(&imx219->sd, state, 0);
++	ret = imx219_set_framefmt(imx219, format);
+ 	if (ret) {
+ 		dev_err(&client->dev, "%s failed to set frame format: %d\n",
+ 			__func__, ret);
+ 		goto err_rpm_put;
+ 	}
+ 
++	ret = imx219_set_binning(imx219, format);
++	if (ret) {
++		dev_err(&client->dev, "%s failed to set binning: %d\n",
++			__func__, ret);
++		goto err_rpm_put;
++	}
++
+ 	/* Apply customized values from user */
+-	ret = __v4l2_ctrl_handler_setup(imx219->sd.ctrl_handler);
++	ret =  __v4l2_ctrl_handler_setup(imx219->sd.ctrl_handler);
+ 	if (ret)
+ 		goto err_rpm_put;
+ 
+ 	/* set stream on register */
+-	ret = imx219_write_reg(imx219, IMX219_REG_MODE_SELECT,
+-				IMX219_REG_VALUE_08BIT, IMX219_MODE_STREAMING);
++	ret = cci_write(imx219->regmap, IMX219_REG_MODE_SELECT,
++			IMX219_MODE_STREAMING, NULL);
+ 	if (ret)
+ 		goto err_rpm_put;
+ 
+@@ -1120,8 +1119,8 @@ static void imx219_stop_streaming(struct imx219 *imx219)
+ 	int ret;
+ 
+ 	/* set stream off register */
+-	ret = imx219_write_reg(imx219, IMX219_REG_MODE_SELECT,
+-				IMX219_REG_VALUE_08BIT, IMX219_MODE_STANDBY);
++	ret = cci_write(imx219->regmap, IMX219_REG_MODE_SELECT,
++			IMX219_MODE_STANDBY, NULL);
+ 	if (ret)
+ 		dev_err(&client->dev, "%s failed to set stream\n", __func__);
+ 
+@@ -1134,42 +1133,37 @@ static void imx219_stop_streaming(struct imx219 *imx219)
+ static int imx219_set_stream(struct v4l2_subdev *sd, int enable)
+ {
+ 	struct imx219 *imx219 = to_imx219(sd);
++	struct v4l2_subdev_state *state;
+ 	int ret = 0;
+ 
+-	mutex_lock(&imx219->mutex);
+-	if (imx219->streaming == enable) {
+-		mutex_unlock(&imx219->mutex);
+-		return 0;
+-	}
++	state = v4l2_subdev_lock_and_get_active_state(sd);
++
++	if (imx219->streaming == enable)
++		goto unlock;
+ 
+ 	if (enable) {
+ 		/*
+-		* Apply default & customized values
+-		* and then start streaming.
+-		*/
+-		ret = imx219_start_streaming(imx219);
++		 * Apply default & customized values
++		 * and then start streaming.
++		 */
++		ret = imx219_start_streaming(imx219, state);
+ 		if (ret)
+-			goto err_unlock;
++			goto unlock;
+ 	} else {
+ 		imx219_stop_streaming(imx219);
+ 	}
+ 
+ 	imx219->streaming = enable;
+ 
+-	mutex_unlock(&imx219->mutex);
+-
+-	return ret;
+-
+-err_unlock:
+-	mutex_unlock(&imx219->mutex);
+-
++unlock:
++	v4l2_subdev_unlock_state(state);
+ 	return ret;
+ }
+ 
+ /* Power/clock management functions */
+ static int imx219_power_on(struct device *dev)
+ {
+-	// struct v4l2_subdev *sd = dev_get_drvdata(dev);
++	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	// struct imx219 *imx219 = to_imx219(sd);
+ 	int ret;
+ 
+@@ -1190,7 +1184,7 @@ static int imx219_power_on(struct device *dev)
+ 
+ 	// gpiod_set_value_cansleep(imx219->reset_gpio, 1);
+ 	usleep_range(IMX219_XCLR_MIN_DELAY_US,
+-			IMX219_XCLR_MIN_DELAY_US + IMX219_XCLR_DELAY_RANGE_US);
++		     IMX219_XCLR_MIN_DELAY_US + IMX219_XCLR_DELAY_RANGE_US);
+ 
+ 	return 0;
+ 
+@@ -1227,10 +1221,13 @@ static int __maybe_unused imx219_resume(struct device *dev)
+ {
+ 	struct v4l2_subdev *sd = dev_get_drvdata(dev);
+ 	struct imx219 *imx219 = to_imx219(sd);
++	struct v4l2_subdev_state *state;
+ 	int ret;
+ 
+ 	if (imx219->streaming) {
+-		ret = imx219_start_streaming(imx219);
++		state = v4l2_subdev_lock_and_get_active_state(sd);
++		ret = imx219_start_streaming(imx219, state);
++		v4l2_subdev_unlock_state(state);
+ 		if (ret)
+ 			goto error;
+ 	}
+@@ -1244,8 +1241,7 @@ static int __maybe_unused imx219_resume(struct device *dev)
+ 	return ret;
+ }
+ 
+-#if 0
+-static int imx219_get_regulators(struct imx219 *imx219)
++static int __maybe_unused imx219_get_regulators(struct imx219 *imx219)
+ {
+ 	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
+ 	unsigned int i;
+@@ -1253,20 +1249,19 @@ static int imx219_get_regulators(struct imx219 *imx219)
+ 	for (i = 0; i < IMX219_NUM_SUPPLIES; i++)
+ 		imx219->supplies[i].supply = imx219_supply_name[i];
+ 
+-	return devm_regulator_bulk_get(&client->dev, IMX219_NUM_SUPPLIES,
+-					imx219->supplies);
++	return devm_regulator_bulk_get(&client->dev,
++				       IMX219_NUM_SUPPLIES,
++				       imx219->supplies);
+ }
+-#endif
+ 
+ /* Verify chip ID */
+ static int imx219_identify_module(struct imx219 *imx219)
+ {
+ 	struct i2c_client *client = v4l2_get_subdevdata(&imx219->sd);
+ 	int ret;
+-	u32 val;
++	u64 val;
+ 
+-	ret = imx219_read_reg(imx219, IMX219_REG_CHIP_ID,
+-				IMX219_REG_VALUE_16BIT, &val);
++	ret = cci_read(imx219->regmap, IMX219_REG_CHIP_ID, &val, NULL);
+ 	if (ret) {
+ 		dev_err(&client->dev, "failed to read chip id %x\n",
+ 			IMX219_CHIP_ID);
+@@ -1274,32 +1269,11 @@ static int imx219_identify_module(struct imx219 *imx219)
+ 	}
+ 
+ 	if (val != IMX219_CHIP_ID) {
+-		dev_err(&client->dev, "chip id mismatch: %x!=%x\n",
++		dev_err(&client->dev, "chip id mismatch: %x!=%llx\n",
+ 			IMX219_CHIP_ID, val);
+ 		return -EIO;
+ 	}
+ 
+-	dev_info(&client->dev, "chip id %x=%x\n", IMX219_CHIP_ID, val);
+-	return 0;
+-}
+-
+-/* Request bus settings on camera side */
+-static int imx219_get_mbus_config(struct v4l2_subdev *sd, unsigned int pad,
+-				struct v4l2_mbus_config *cfg)
+-{
+-	// struct i2c_client *client = v4l2_get_subdevdata(sd);
+-	// u8 comj, comf;
+-	// int ret;
+-	cfg->type = V4L2_MBUS_CSI2_DPHY;
+-	cfg->bus.mipi_csi2.num_data_lanes = 2;
+-	return 0;
+-}
+-
+-static int imx219_g_frame_interval(struct v4l2_subdev *subdev,
+-				struct v4l2_subdev_frame_interval *fival)
+-{
+-	fival->interval.numerator = 1;
+-	fival->interval.denominator = 30;
+ 	return 0;
+ }
+ 
+@@ -1310,13 +1284,12 @@ static const struct v4l2_subdev_core_ops imx219_core_ops = {
+ 
+ static const struct v4l2_subdev_video_ops imx219_video_ops = {
+ 	.s_stream = imx219_set_stream,
+-	.g_frame_interval = imx219_g_frame_interval,
+-	.s_frame_interval = imx219_g_frame_interval,
+ };
+ 
+ static const struct v4l2_subdev_pad_ops imx219_pad_ops = {
++	.init_cfg = imx219_init_cfg,
+ 	.enum_mbus_code = imx219_enum_mbus_code,
+-	.get_fmt = imx219_get_pad_format,
++	.get_fmt = v4l2_subdev_get_fmt,
+ 	.set_fmt = imx219_set_pad_format,
+ 	.get_selection = imx219_get_selection,
+ 	.enum_frame_size = imx219_enum_frame_size,
+@@ -1329,9 +1302,6 @@ static const struct v4l2_subdev_ops imx219_subdev_ops = {
+ 	.pad = &imx219_pad_ops,
+ };
+ 
+-static const struct v4l2_subdev_internal_ops imx219_internal_ops = {
+-	.open = imx219_open,
+-};
+ 
+ /* Initialize control handlers */
+ static int imx219_init_controls(struct imx219 *imx219)
+@@ -1340,7 +1310,7 @@ static int imx219_init_controls(struct imx219 *imx219)
+ 	struct v4l2_ctrl_handler *ctrl_hdlr;
+ 	unsigned int height = imx219->mode->height;
+ 	struct v4l2_fwnode_device_properties props;
+-	int exposure_max, exposure_def, hblank;
++	int exposure_max, exposure_def, hblank, pixel_rate;
+ 	int i, ret;
+ 
+ 	ctrl_hdlr = &imx219->ctrl_handler;
+@@ -1348,87 +1318,87 @@ static int imx219_init_controls(struct imx219 *imx219)
+ 	if (ret)
+ 		return ret;
+ 
+-	mutex_init(&imx219->mutex);
+-	ctrl_hdlr->lock = &imx219->mutex;
+-
+-	/* By default, PIXEL_RATE is read only */
+-	imx219->pixel_rate = v4l2_ctrl_new_std(
+-		ctrl_hdlr, &imx219_ctrl_ops, V4L2_CID_PIXEL_RATE,
+-		IMX219_PIXEL_RATE, IMX219_PIXEL_RATE, 1, IMX219_PIXEL_RATE);
+-
+ 	v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops, V4L2_CID_NOTIFY_GAINS,
+ 			imx219_again_table[0], imx219_again_table[IMX219_AGAIN_TABLE - 1],
+ 			IMX219_ANA_GAIN_STEP, imx219_again_table[0]);
+-	imx219->link_freq = v4l2_ctrl_new_int_menu(
+-		ctrl_hdlr, &imx219_ctrl_ops, V4L2_CID_LINK_FREQ,
+-		ARRAY_SIZE(imx219_link_freq_menu) - 1, 0,
+-		imx219_link_freq_menu);
++
++	/* By default, PIXEL_RATE is read only */
++	pixel_rate = imx219_get_pixel_rate(imx219, NULL);
++	imx219->pixel_rate = v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
++					       V4L2_CID_PIXEL_RATE,
++					       pixel_rate, pixel_rate, 1,
++					       pixel_rate);
++
++	imx219->link_freq =
++		v4l2_ctrl_new_int_menu(ctrl_hdlr, &imx219_ctrl_ops,
++				       V4L2_CID_LINK_FREQ,
++				       ARRAY_SIZE(imx219_link_freq_menu) - 1, 0,
++				       (imx219->lanes == 2) ? imx219_link_freq_menu :
++				       imx219_link_freq_4lane_menu);
+ 	if (imx219->link_freq)
+ 		imx219->link_freq->flags |= V4L2_CTRL_FLAG_READ_ONLY;
+ 
+ 	/* Initial vblank/hblank/exposure parameters based on current mode */
+ 	imx219->vblank = v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
+-					V4L2_CID_VBLANK, IMX219_VBLANK_MIN,
+-					IMX219_VTS_MAX - height, 1,
+-					imx219->mode->vts_def - height);
+-	hblank = IMX219_PPL_DEFAULT - imx219->mode->width;
++					   V4L2_CID_VBLANK, IMX219_VBLANK_MIN,
++					   IMX219_VTS_MAX - height, 1,
++					   imx219->mode->vts_def - height);
++	hblank = IMX219_PPL_MIN - imx219->mode->width;
+ 	imx219->hblank = v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
+-					V4L2_CID_HBLANK, hblank, hblank, 1,
+-					hblank);
+-	if (imx219->hblank)
+-		imx219->hblank->flags |= V4L2_CTRL_FLAG_READ_ONLY;
++					   V4L2_CID_HBLANK, hblank,
++					   IMX219_PPL_MIN - imx219->mode->width,
++					   1, hblank);
+ 	exposure_max = imx219->mode->vts_def - 4;
+ 	exposure_def = (exposure_max < IMX219_EXPOSURE_DEFAULT) ?
+-				exposure_max :
+-				IMX219_EXPOSURE_DEFAULT;
++		exposure_max : IMX219_EXPOSURE_DEFAULT;
+ 	imx219->exposure = v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
+-						V4L2_CID_EXPOSURE,
+-						IMX219_EXPOSURE_MIN, exposure_max,
+-						IMX219_EXPOSURE_STEP,
+-						exposure_def);
++					     V4L2_CID_EXPOSURE,
++					     IMX219_EXPOSURE_MIN, exposure_max,
++					     IMX219_EXPOSURE_STEP,
++					     exposure_def);
+ 
+ 	v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops, V4L2_CID_ANALOGUE_GAIN,
+-			IMX219_ANA_GAIN_MIN, IMX219_ANA_GAIN_MAX,
+-			IMX219_ANA_GAIN_STEP, IMX219_ANA_GAIN_DEFAULT);
++			  IMX219_ANA_GAIN_MIN, IMX219_ANA_GAIN_MAX,
++			  IMX219_ANA_GAIN_STEP, IMX219_ANA_GAIN_DEFAULT);
+ 
+ 	v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops, V4L2_CID_DIGITAL_GAIN,
+-			IMX219_DGTL_GAIN_MIN, IMX219_DGTL_GAIN_MAX,
+-			IMX219_DGTL_GAIN_STEP, IMX219_DGTL_GAIN_DEFAULT);
++			  IMX219_DGTL_GAIN_MIN, IMX219_DGTL_GAIN_MAX,
++			  IMX219_DGTL_GAIN_STEP, IMX219_DGTL_GAIN_DEFAULT);
+ 
+ 	imx219->hflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
+-					V4L2_CID_HFLIP, 0, 1, 1, 0);
++					  V4L2_CID_HFLIP, 0, 1, 1, 0);
+ 	if (imx219->hflip)
+ 		imx219->hflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+ 
+ 	imx219->vflip = v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
+-					V4L2_CID_VFLIP, 0, 1, 1, 0);
++					  V4L2_CID_VFLIP, 0, 1, 1, 0);
+ 	if (imx219->vflip)
+ 		imx219->vflip->flags |= V4L2_CTRL_FLAG_MODIFY_LAYOUT;
+ 
+ 	v4l2_ctrl_new_std_menu_items(ctrl_hdlr, &imx219_ctrl_ops,
+-					V4L2_CID_TEST_PATTERN,
+-					ARRAY_SIZE(imx219_test_pattern_menu) - 1,
+-					0, 0, imx219_test_pattern_menu);
++				     V4L2_CID_TEST_PATTERN,
++				     ARRAY_SIZE(imx219_test_pattern_menu) - 1,
++				     0, 0, imx219_test_pattern_menu);
+ 	for (i = 0; i < 4; i++) {
+ 		/*
+-		* The assumption is that
+-		* V4L2_CID_TEST_PATTERN_GREENR == V4L2_CID_TEST_PATTERN_RED + 1
+-		* V4L2_CID_TEST_PATTERN_BLUE   == V4L2_CID_TEST_PATTERN_RED + 2
+-		* V4L2_CID_TEST_PATTERN_GREENB == V4L2_CID_TEST_PATTERN_RED + 3
+-		*/
++		 * The assumption is that
++		 * V4L2_CID_TEST_PATTERN_GREENR == V4L2_CID_TEST_PATTERN_RED + 1
++		 * V4L2_CID_TEST_PATTERN_BLUE   == V4L2_CID_TEST_PATTERN_RED + 2
++		 * V4L2_CID_TEST_PATTERN_GREENB == V4L2_CID_TEST_PATTERN_RED + 3
++		 */
+ 		v4l2_ctrl_new_std(ctrl_hdlr, &imx219_ctrl_ops,
+-				V4L2_CID_TEST_PATTERN_RED + i,
+-				IMX219_TESTP_COLOUR_MIN,
+-				IMX219_TESTP_COLOUR_MAX,
+-				IMX219_TESTP_COLOUR_STEP,
+-				IMX219_TESTP_COLOUR_MAX);
++				  V4L2_CID_TEST_PATTERN_RED + i,
++				  IMX219_TESTP_COLOUR_MIN,
++				  IMX219_TESTP_COLOUR_MAX,
++				  IMX219_TESTP_COLOUR_STEP,
++				  IMX219_TESTP_COLOUR_MAX);
+ 		/* The "Solid color" pattern is white by default */
+ 	}
+ 
+ 	if (ctrl_hdlr->error) {
+ 		ret = ctrl_hdlr->error;
+-		dev_err(&client->dev, "%s control init failed (%d)\n", __func__,
+-			ret);
++		dev_err(&client->dev, "%s control init failed (%d)\n",
++			__func__, ret);
+ 		goto error;
+ 	}
+ 
+@@ -1437,7 +1407,7 @@ static int imx219_init_controls(struct imx219 *imx219)
+ 		goto error;
+ 
+ 	ret = v4l2_ctrl_new_fwnode_properties(ctrl_hdlr, &imx219_ctrl_ops,
+-						&props);
++					      &props);
+ 	if (ret)
+ 		goto error;
+ 
+@@ -1447,7 +1417,6 @@ static int imx219_init_controls(struct imx219 *imx219)
+ 
+ error:
+ 	v4l2_ctrl_handler_free(ctrl_hdlr);
+-	mutex_destroy(&imx219->mutex);
+ 
+ 	return ret;
+ }
+@@ -1455,15 +1424,16 @@ static int imx219_init_controls(struct imx219 *imx219)
+ static void imx219_free_controls(struct imx219 *imx219)
+ {
+ 	v4l2_ctrl_handler_free(imx219->sd.ctrl_handler);
+-	mutex_destroy(&imx219->mutex);
+ }
+ 
+-static int imx219_check_hwcfg(struct device *dev)
++static int imx219_check_hwcfg(struct device *dev, struct imx219 *imx219)
+ {
+ 	struct fwnode_handle *endpoint;
+-	struct v4l2_fwnode_endpoint ep_cfg = { .bus_type =
+-							V4L2_MBUS_CSI2_DPHY };
++	struct v4l2_fwnode_endpoint ep_cfg = {
++		.bus_type = V4L2_MBUS_CSI2_DPHY
++	};
+ 	int ret = -EINVAL;
++	bool link_frequency_valid = false;
+ 
+ 	endpoint = fwnode_graph_get_next_endpoint(dev_fwnode(dev), NULL);
+ 	if (!endpoint) {
+@@ -1477,21 +1447,46 @@ static int imx219_check_hwcfg(struct device *dev)
+ 	}
+ 
+ 	/* Check the number of MIPI CSI2 data lanes */
+-	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2) {
+-		dev_err(dev, "only 2 data lanes are currently supported\n");
++	if (ep_cfg.bus.mipi_csi2.num_data_lanes != 2 &&
++	    ep_cfg.bus.mipi_csi2.num_data_lanes != 4) {
++		dev_err(dev, "only 2 or 4 data lanes are currently supported\n");
+ 		goto error_out;
+ 	}
+-
++	imx219->lanes = ep_cfg.bus.mipi_csi2.num_data_lanes;
++	dev_info(dev, "MIPI CSI2 data lanes: %d\n", imx219->lanes);
+ 	/* Check the link frequency set in device tree */
+ 	if (!ep_cfg.nr_of_link_frequencies) {
+ 		dev_err(dev, "link-frequency property not found in DT\n");
+ 		goto error_out;
+ 	}
+ 
+-	if (ep_cfg.nr_of_link_frequencies != 1 ||
+-		ep_cfg.link_frequencies[0] != IMX219_DEFAULT_LINK_FREQ) {
+-		dev_err(dev, "Link frequency not supported: %lld\n",
+-			ep_cfg.link_frequencies[0]);
++	if (ep_cfg.nr_of_link_frequencies == 1) {
++		switch (imx219->lanes) {
++		case 2:
++			if (ep_cfg.link_frequencies[0] ==
++						IMX219_DEFAULT_LINK_FREQ)
++				link_frequency_valid = true;
++			break;
++		case 4:
++			if (ep_cfg.link_frequencies[0] ==
++						IMX219_DEFAULT_LINK_FREQ_4LANE)
++				link_frequency_valid = true;
++			else if (ep_cfg.link_frequencies[0] ==
++				   IMX219_DEFAULT_LINK_FREQ_4LANE_UNSUPPORTED) {
++				dev_warn(dev, "Link frequency of %d not supported, but has been incorrectly advertised previously\n",
++					 IMX219_DEFAULT_LINK_FREQ_4LANE_UNSUPPORTED);
++				dev_warn(dev, "Using link frequency of %d\n",
++					 IMX219_DEFAULT_LINK_FREQ_4LANE);
++				link_frequency_valid = true;
++			}
++			break;
++		}
++	}
++
++	if (!link_frequency_valid) {
++		dev_err_probe(dev, -EINVAL,
++			      "Link frequency not supported: %lld\n",
++			      ep_cfg.link_frequencies[0]);
+ 		goto error_out;
+ 	}
+ 
+@@ -1508,6 +1503,7 @@ static int imx219_probe(struct i2c_client *client)
+ {
+ 	struct device *dev = &client->dev;
+ 	struct imx219 *imx219;
++	const char *board_type;
+ 	int ret;
+ 
+ 	imx219 = devm_kzalloc(&client->dev, sizeof(*imx219), GFP_KERNEL);
+@@ -1517,23 +1513,62 @@ static int imx219_probe(struct i2c_client *client)
+ 	v4l2_i2c_subdev_init(&imx219->sd, client, &imx219_subdev_ops);
+ 
+ 	/* Check the hardware configuration in device tree */
+-	if (imx219_check_hwcfg(dev))
++	if (imx219_check_hwcfg(dev, imx219))
+ 		return -EINVAL;
+ 
++	imx219->regmap = devm_cci_regmap_init_i2c(client, 16);
++	if (IS_ERR(imx219->regmap)) {
++		ret = PTR_ERR(imx219->regmap);
++		dev_err(dev, "failed to initialize CCI: %d\n", ret);
++		return ret;
++	}
++
++	// /* Get system clock (xclk) */
++	// imx219->xclk = devm_clk_get(dev, NULL);
++	// if (IS_ERR(imx219->xclk)) {
++	// 	dev_err(dev, "failed to get xclk\n");
++	// 	return PTR_ERR(imx219->xclk);
++	// }
++
+ 	imx219->mclk_gpio = devm_gpiod_get_optional(dev, "mclk-gpios",
+-						     GPIOD_OUT_HIGH);
+-	if(IS_ERR(imx219->mclk_gpio)) {
+-		dev_warn(dev, "4 lanes imx219 sensor neet to config mclk-gpios in dts\n");
++	 					     GPIOD_OUT_HIGH);
++	if (IS_ERR(imx219->mclk_gpio)) {
++		dev_dbg(dev, "failed to get mclk-gpios\n");
+ 	} else {
+ 		gpiod_set_value(imx219->mclk_gpio, 1);
+ 	}
+ 
+-	imx219->xvs_gpio = devm_gpiod_get_optional(dev, "xvs-gpios",
+-						     GPIOD_OUT_HIGH);
+-	if(IS_ERR(imx219->xvs_gpio)) {
+-		dev_warn(dev, "optional to config xvs-gpios in dts, default is up\n");
+-	} else {
+-		gpiod_set_value(imx219->xvs_gpio, 1);
++	/* For the D560 board, raise the GPIO21 operation */
++	ret = of_property_read_string(dev->of_node, "eswin,board-type", &board_type);
++	if (ret || strcmp(board_type, "d560") != 0) {
++		dev_info(dev, "Non-d560 board, skip GPIO operations\n");
++		board_type = NULL;
++	}
++
++	if (board_type) {
++		imx219->power_en_gpio = devm_gpiod_get_optional(dev, "power-en", GPIOD_OUT_LOW);
++		imx219->power_level_gpio = devm_gpiod_get_optional(dev, "power-level", GPIOD_OUT_LOW);
++		imx219->mclk_gpio = devm_gpiod_get_optional(dev, "mclk-en", GPIOD_OUT_LOW);
++
++		if (IS_ERR(imx219->power_en_gpio)) {
++			ret = PTR_ERR(imx219->power_en_gpio);
++			dev_err(dev, "get power-en GPIO failed\n");
++			return ret;
++		}
++		if (IS_ERR(imx219->power_level_gpio)) {
++			ret = PTR_ERR(imx219->power_level_gpio);
++			dev_err(dev, "get power-level GPIO failed\n");
++			return ret;
++		}
++		if (IS_ERR(imx219->mclk_gpio)) {
++			ret = PTR_ERR(imx219->mclk_gpio);
++			dev_err(dev, "get mclk-en GPIO failed\n");
++			return ret;
++		}
++
++		gpiod_set_value_cansleep(imx219->power_en_gpio, 1);
++		gpiod_set_value_cansleep(imx219->power_level_gpio, 1);
++		gpiod_set_value_cansleep(imx219->mclk_gpio, 1);
+ 	}
+ 
+ 	/*
+@@ -1552,20 +1587,22 @@ static int imx219_probe(struct i2c_client *client)
+ 	imx219->mode = &supported_modes[0];
+ 
+ 	/* sensor doesn't enter LP-11 state upon power up until and unless
+-	* streaming is started, so upon power up switch the modes to:
+-	* streaming -> standby
+-	*/
+-	ret = imx219_write_reg(imx219, IMX219_REG_MODE_SELECT,
+-				IMX219_REG_VALUE_08BIT, IMX219_MODE_STREAMING);
++	 * streaming is started, so upon power up switch the modes to:
++	 * streaming -> standby
++	 */
++	ret = cci_write(imx219->regmap, IMX219_REG_MODE_SELECT,
++			IMX219_MODE_STREAMING, NULL);
+ 	if (ret < 0)
+ 		goto error_power_off;
++
+ 	usleep_range(100, 110);
+ 
+ 	/* put sensor back to standby mode */
+-	ret = imx219_write_reg(imx219, IMX219_REG_MODE_SELECT,
+-				IMX219_REG_VALUE_08BIT, IMX219_MODE_STANDBY);
++	ret = cci_write(imx219->regmap, IMX219_REG_MODE_SELECT,
++			IMX219_MODE_STANDBY, NULL);
+ 	if (ret < 0)
+ 		goto error_power_off;
++
+ 	usleep_range(100, 110);
+ 
+ 	ret = imx219_init_controls(imx219);
+@@ -1573,37 +1610,42 @@ static int imx219_probe(struct i2c_client *client)
+ 		goto error_power_off;
+ 
+ 	/* Initialize subdev */
+-	imx219->sd.internal_ops = &imx219_internal_ops;
+ 	imx219->sd.flags |= V4L2_SUBDEV_FL_HAS_DEVNODE |
+-				V4L2_SUBDEV_FL_HAS_EVENTS;
++			    V4L2_SUBDEV_FL_HAS_EVENTS;
+ 	imx219->sd.entity.function = MEDIA_ENT_F_CAM_SENSOR;
+ 
+ 	/* Initialize source pad */
+-	imx219->pad.flags = MEDIA_PAD_FL_SOURCE;
+-
+-	/* Initialize default format */
+-	imx219_set_default_format(imx219);
++	imx219->pad[IMAGE_PAD].flags = MEDIA_PAD_FL_SOURCE;
++	imx219->pad[METADATA_PAD].flags = MEDIA_PAD_FL_SOURCE;
+ 
+-	ret = media_entity_pads_init(&imx219->sd.entity, 1, &imx219->pad);
++	ret = media_entity_pads_init(&imx219->sd.entity, NUM_PADS, imx219->pad);
+ 	if (ret) {
+ 		dev_err(dev, "failed to init entity pads: %d\n", ret);
+ 		goto error_handler_free;
+ 	}
+ 
+-	pm_runtime_set_active(dev);
+-	pm_runtime_enable(dev);
++	imx219->sd.state_lock = imx219->ctrl_handler.lock;
++	ret = v4l2_subdev_init_finalize(&imx219->sd);
++	if (ret < 0) {
++		dev_err(dev, "subdev init error: %d\n", ret);
++		goto error_media_entity;
++	}
+ 
+ 	ret = v4l2_async_register_subdev_sensor(&imx219->sd);
+ 	if (ret < 0) {
+ 		dev_err(dev, "failed to register sensor sub-device: %d\n", ret);
+-		goto error_media_entity;
++		goto error_subdev_cleanup;
+ 	}
+ 
++	pm_runtime_set_active(dev);
++	pm_runtime_enable(dev);
+ 	pm_runtime_idle(dev);
+ 
+-	dev_info(dev, "imx219 probe success\n");
+ 	return 0;
+ 
++error_subdev_cleanup:
++	v4l2_subdev_cleanup(&imx219->sd);
++
+ error_media_entity:
+ 	pm_runtime_disable(dev);
+ 	pm_runtime_set_suspended(dev);
+@@ -1624,6 +1666,7 @@ static void imx219_remove(struct i2c_client *client)
+ 	struct imx219 *imx219 = to_imx219(sd);
+ 
+ 	v4l2_async_unregister_subdev(sd);
++	v4l2_subdev_cleanup(sd);
+ 	media_entity_cleanup(&sd->entity);
+ 	imx219_free_controls(imx219);
+ 
+@@ -1634,14 +1677,15 @@ static void imx219_remove(struct i2c_client *client)
+ 	}
+ }
+ 
+-static const struct of_device_id imx219_dt_ids[] = { { .compatible =
+-								"sony,imx219" },
+-							{ /* sentinel */ } };
++static const struct of_device_id imx219_dt_ids[] = {
++	{ .compatible = "sony,imx219" },
++	{ /* sentinel */ }
++};
+ MODULE_DEVICE_TABLE(of, imx219_dt_ids);
+ 
+ static const struct dev_pm_ops imx219_pm_ops = {
+ 	SET_SYSTEM_SLEEP_PM_OPS(imx219_suspend, imx219_resume)
+-		SET_RUNTIME_PM_OPS(imx219_power_off, imx219_power_on, NULL)
++	SET_RUNTIME_PM_OPS(imx219_power_off, imx219_power_on, NULL)
+ };
+ 
+ static struct i2c_driver imx219_i2c_driver = {
+-- 
+2.50.1
+

@@ -1,7 +1,7 @@
-From da6f002980bc9ba62733237ca1f13ab66bf413d4 Mon Sep 17 00:00:00 2001
+From e1c0017b3a2bb39d4da4a2c26b022ffabcebe452 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 8 Apr 2025 19:45:16 -0700
-Subject: [PATCH 473/552] riscv: module: Optimize PLT/GOT entry counting
+Subject: [PATCH 473/654] riscv: module: Optimize PLT/GOT entry counting
 
 perf reports that 99.63% of the cycles from `modprobe amdgpu` are spent
 inside module_frob_arch_sections(). This is because amdgpu.ko contains

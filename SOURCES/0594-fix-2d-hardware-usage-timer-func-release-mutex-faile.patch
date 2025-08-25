@@ -1,0 +1,58 @@
+From b00c17512bfd67d4137d46e52526031a1d8f4136 Mon Sep 17 00:00:00 2001
+From: lei <leizhilin@eswincomputing.com>
+Date: Wed, 2 Jul 2025 14:00:27 +0800
+Subject: [PATCH 594/654] fix(2d): hardware usage timer func release mutex
+ failed
+
+Changelogs:
+    1.fix acquire mutex return value err judgement;
+    2.optimize mutex release flow, only release mutex once, not use flag;
+    3.problem cause by commit: http://10.10.130.10:8080/c/win2030/linux-6.6/+/22885
+
+Signed-off-by: lei <leizhilin@eswincomputing.com>
+---
+ .../hae/hal/kernel/arch/gc_hal_kernel_hardware.c  | 15 +++++----------
+ 1 file changed, 5 insertions(+), 10 deletions(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
+index 78ebbed1cb00..c9c0812f1061 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
++++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
+@@ -686,15 +686,15 @@ _PowerStateTimerFunc(gctPOINTER Data)
+ 
+ static gceSTATUS threadCheckHardwareUsage(gckHARDWARE hardware)
+ {
+-    gctBOOL powerMutexAcquired = gcvFALSE;
+     gceSTATUS status = gcvSTATUS_OK;
+     gceCHIPPOWERSTATE power = gcvPOWER_INVALID;
+ 
+-    gcmkVERIFY_OK(gckOS_AcquireMutex(hardware->os, hardware->powerMutex, 0));
+-    powerMutexAcquired = gcvTRUE;
++    status = gckOS_AcquireMutex(hardware->os, hardware->powerMutex, 0);
++    if (status != gcvSTATUS_OK) {
++        return gcvSTATUS_INVALID_REQUEST;
++    }
+ 
+     gcmkONERROR(gckHARDWARE_QueryPowerStateUnlocked(hardware, &power));
+-
+     /* exit when power not on and clear cycle info */
+     if (power != gcvPOWER_ON) {
+         hardware->totalCycle = 0;
+@@ -715,13 +715,8 @@ static gceSTATUS threadCheckHardwareUsage(gckHARDWARE hardware)
+ 
+     gcmkONERROR(gckHARDWARE_CleanCycleCount(hardware));
+ 
+-    gcmkVERIFY_OK(gckOS_ReleaseMutex(hardware->os, hardware->powerMutex));
+-    powerMutexAcquired = gcvFALSE;
+-
+ OnError:
+-    if (powerMutexAcquired == gcvTRUE) {
+-        gcmkVERIFY_OK(gckOS_ReleaseMutex(hardware->os, hardware->powerMutex));
+-    }
++    gcmkVERIFY_OK(gckOS_ReleaseMutex(hardware->os, hardware->powerMutex));
+ 
+     return status;
+ }
+-- 
+2.50.1
+

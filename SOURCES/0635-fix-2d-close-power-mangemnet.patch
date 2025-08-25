@@ -1,0 +1,34 @@
+From 0c365b305f971c134029e2464ef9aa186d6b281d Mon Sep 17 00:00:00 2001
+From: lei <leizhilin@eswincomputing.com>
+Date: Wed, 16 Jul 2025 13:47:57 +0800
+Subject: [PATCH 635/654] fix(2d):close power mangemnet
+
+Changelogs:
+
+1.to solve WIN2030-17448, need sync 2d pm modify to master;
+2.after sync relative modify http://10.10.130.10:8080/q/topic:%22hae+merge+pm+to+dev%22+(status:open%20OR%20status:merged),
+  gpu and wifi rcu stall happens, suspect 2d modify may have effect;
+
+soulution: keep powerManagement to off again to disable 2d power mangement;
+
+Signed-off-by: lei zhilin <leizhilin@eswincomputing.com>
+---
+ .../eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h     | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
+index 22f6ebe226a6..dcc6b0558a33 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
+@@ -305,7 +305,7 @@ static int compression = -1;
+ module_param(compression, int, 0644);
+ MODULE_PARM_DESC(compression, "Disable compression if set it to 0, enabled by default");
+ 
+-static int powerManagement = 1;
++static int powerManagement = 0;
+ module_param(powerManagement, int, 0644);
+ MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
+ 
+-- 
+2.50.1
+

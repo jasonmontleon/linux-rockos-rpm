@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.101
-%define specversion 6.6.101
+%define specrpmversion 6.6.102
+%define specversion 6.6.102
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.101
+%define tarfile_release 6.6.102
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.101
+%define kabiversion 6.6.102
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1509,16 +1509,118 @@ Patch10539: 0539-riscv-dts-eswin-starpro64-tweak-GMAC0-RX-delay.patch
 Patch10540: 0540-PCI-eswin-keep-PCIe-alive-at-shutdown.patch
 Patch10541: 0541-riscv-dts-megrez-nx-fix-sata-act-led-gpio.patch
 Patch10542: 0542-ci-add-build.patch
-Patch10543: 0543-header-workarounds.patch
-Patch10544: 0544-stop-triggering-vmlinux-rebuild.patch
-Patch10545: 0545-Add-missing-newline.patch
-Patch10546: 0546-uninvert-the-fan.patch
-Patch10547: 0547-Reduce-crit-threshold-temp-to-85000.patch
-Patch10548: 0548-eswin-dsp-fixes.patch
-Patch10549: 0549-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10550: 0550-Add-NPU-enabled-variants-of-dtbs.patch
-Patch10551: 0551-Bring-back-1.8GHz-to-STARPro64.patch
-Patch10552: 0552-remove-makefile-reference-for-non-existent-directory.patch
+Patch10543: 0543-fix-fix-ubuntu-up-warning-and-terminal-lag.patch
+Patch10544: 0544-fix-disable-sdio1-by-default-for-eic7700-sbc-a1-boar.patch
+Patch10545: 0545-feat-add-new-perf-interface.patch
+Patch10546: 0546-feat-update-dts-for-eic7702_pcie.patch
+Patch10547: 0547-feat-Reserve-memory-for-version-info.patch
+Patch10548: 0548-fix-fix-SBC-MIPI-spupport-MP-test.patch
+Patch10549: 0549-feat-Reserve-memory-for-board-info.patch
+Patch10550: 0550-feature-Enable-pstore-feature.patch
+Patch10551: 0551-fix-Fix-invalid-GPIO-for-D560-gmac.patch
+Patch10552: 0552-feat-add-vpu7702_pcie_factory.dts.patch
+Patch10553: 0553-feat-use-dev_dbg-to-print-the-uart-noc-err-log.patch
+Patch10554: 0554-fix-adapt-d560-audio-input.patch
+Patch10555: 0555-feat-Reserve-memory-for-bd-info.patch
+Patch10556: 0556-feat-to-support-vpu7702-pcie-A2-card.patch
+Patch10557: 0557-fix-fix-modify-SBC-MIPI-path.patch
+Patch10558: 0558-feat-vpu-set-npu-freq-to-1G.patch
+Patch10559: 0559-feat-Enable-lpcpu-fw-load-for-vpu7702.patch
+Patch10560: 0560-fix-Open-2d-node.patch
+Patch10561: 0561-fix-using-algorithms-to-filter.patch
+Patch10562: 0562-feat-npu-driver-print-valt-and-rate.patch
+Patch10563: 0563-fix-fix-lpcpu-dump-failed-Changelogs-1.-fix-lpcpu-du.patch
+Patch10564: 0564-fix-modify-model-name.patch
+Patch10565: 0565-fix-modify-the-reference-temperature.patch
+Patch10566: 0566-feat-support-eic7700-fccsp-evb-a1.patch
+Patch10567: 0567-chore-Make-es_proc-as-common-interfaces.patch
+Patch10568: 0568-fix-lspci-issue-after-reboot.patch
+Patch10569: 0569-feat-revert-lpcpu-modifications.patch
+Patch10570: 0570-feat-Display-LOGO-during-kernel-bootup.patch
+Patch10571: 0571-chore-fix-es_porc-builtin-issue.patch
+Patch10572: 0572-feat-2d-add-hardware-load-statistics-with-proc-show.patch
+Patch10573: 0573-fix-fix-EVB-MIPI-spupport-MP-test.patch
+Patch10574: 0574-fix-usb-dwc3-eswin-Fix-section-mismatch.patch
+Patch10575: 0575-fix-drivers-sound-eswin-Add-mutex-in-module_exit.patch
+Patch10576: 0576-fix-smmu-lockdep_assert_held-error-in-groups.patch
+Patch10577: 0577-feature-Fix-kexec-job-depend-on-proc-iomem-reserved.patch
+Patch10578: 0578-feature-Add-CONFIG_KEXEC-and-SYSRQ-config.patch
+Patch10579: 0579-feat-Add-statistics-of-NPU-frame-rate.patch
+Patch10580: 0580-fix-modify-temperature-to-65-75-105.patch
+Patch10581: 0581-fix-pvt0-label-info-inaccurate.patch
+Patch10582: 0582-feature-Remove-CONFIG_DEBUG_INFO.patch
+Patch10583: 0583-feat-Merge-branch-feature-vi-into-dev.patch
+Patch10584: 0584-fix-remove-DRIVER_MODSET-flag-from-img.patch
+Patch10585: 0585-fix-enable-npu-and-dsp-in-dts-Changelogs.patch
+Patch10586: 0586-fix-dmabuf-dma_resv-lock-was-not-held.patch
+Patch10587: 0587-fix-fix-vi-0630.patch
+Patch10588: 0588-feature-Add-kdb-config-and-ftrace-config.patch
+Patch10589: 0589-perf-Optimize-CPU-voltage-and-cpufreq-control.patch
+Patch10590: 0590-feat-add-aicard-feature-Changelogs.patch
+Patch10591: 0591-fix-vpu-pcie-streamid-problem.patch
+Patch10592: 0592-fix-eic7700-cpu-voltage-and-cpufreq-control-failed.patch
+Patch10593: 0593-feat-Update-vpu7702-pcie-a2.dts.patch
+Patch10594: 0594-fix-2d-hardware-usage-timer-func-release-mutex-faile.patch
+Patch10595: 0595-fix-fix-nid-check-bug-in-flush_all.patch
+Patch10596: 0596-chore-move-es_proc.h-to-commom-dir.patch
+Patch10597: 0597-fix-check-d2d-recovery-status.patch
+Patch10598: 0598-fix-fix-smmu-print-level.patch
+Patch10599: 0599-fix-disable-wifi-by-default.patch
+Patch10600: 0600-feature-Support-trigger-kdump-when-rcu-stall.patch
+Patch10601: 0601-fix-clear-log-for-ap6256.patch
+Patch10602: 0602-fix-vdec-fix-dead-lock-issue-for-vdec-driver.patch
+Patch10603: 0603-fix-Add-multi-batch-frame-rate-statistics.patch
+Patch10604: 0604-feat-Enable-npu-power-node.patch
+Patch10605: 0605-fix-fix-no-dewarp-devnode-on-7702.patch
+Patch10606: 0606-fix-cpufreq-switch-failed.patch
+Patch10607: 0607-feat-Support-ESWIN-s-TRNG.patch
+Patch10608: 0608-feat-support-fccsp-evb-mipi-csi.patch
+Patch10609: 0609-fix-fix-some-vi-warning-in-0630.patch
+Patch10610: 0610-feat-support-IPA-in-VPU.patch
+Patch10611: 0611-feat-support-eswin-s-hwrng.patch
+Patch10612: 0612-feat-support-fccsp-evb-mipi-csi.patch
+Patch10613: 0613-fix-clear-log-for-wifi-stop.patch
+Patch10614: 0614-feature-Add-reset-trigger-kdump-driver.patch
+Patch10615: 0615-feature-Sync-config-from-eic7700_defconfig.patch
+Patch10616: 0616-feature-Enable-pstore-feature-on-all-eic7700-eic7702.patch
+Patch10617: 0617-fix-fix-MIPI-DSI-reboot-panic.patch
+Patch10618: 0618-fix-add-dmabuf_helper-params-check.patch
+Patch10619: 0619-fix-Dual-die-rng-register.patch
+Patch10620: 0620-perf-dsiable-d2d-driver.patch
+Patch10621: 0621-feat-Refactor-PACMSG.patch
+Patch10622: 0622-fix-venc-venc-run-in-D1-cause-system-hang.patch
+Patch10623: 0623-fix-fusb303b-mutex-lock-used-before-initialization.patch
+Patch10624: 0624-fix-2d-kernel-stack-on-d2d-cherry-pick-4559ee5-from-.patch
+Patch10625: 0625-fix-2d-suspend-failed-cherry-pick-0284684-from-pm.patch
+Patch10626: 0626-fix-2d-power-off-delay-cherry-pick-c81694e-from-pm.patch
+Patch10627: 0627-fix-2d-process-stuck-cherry-pick-164de56-from-pm.patch
+Patch10628: 0628-feat-implement-cpu-read-data-from-lpcpu.patch
+Patch10629: 0629-fix-enable-pvt0-in-7702-boards-by-default.patch
+Patch10630: 0630-fix-d2d-support-thermal.patch
+Patch10631: 0631-fix-disabled-isp-for-feature-not-ready.patch
+Patch10632: 0632-fix-disabled-isp-for-feature-not-ready.patch
+Patch10633: 0633-feat-new-board-u2-evb.patch
+Patch10634: 0634-fix-fix-no-dewarp-dev-node.patch
+Patch10635: 0635-fix-2d-close-power-mangemnet.patch
+Patch10636: 0636-fix-Enable-sdio1-by-default-for-eic7700-sbc-a1-board.patch
+Patch10637: 0637-dts-sync-ramoops-for-megrez-nx-star64pro.patch
+Patch10638: 0638-config-sync-eic7700-config.patch
+Patch10639: 0639-UPSTREAM-riscv-mm-Use-hint-address-in-mmap-if-availa.patch
+Patch10640: 0640-UPSTREAM-selftests-riscv-Generalize-mm-selftests.patch
+Patch10641: 0641-UPSTREAM-docs-riscv-Define-behavior-of-mmap.patch
+Patch10642: 0642-UPSTREAM-riscv-mm-Do-not-restrict-mmap-address-based.patch
+Patch10643: 0643-UPSTREAM-riscv-selftests-Remove-mmap-hint-address-ch.patch
+Patch10644: 0644-UPSTREAM-Revert-RISC-V-mm-Document-mmap-changes.patch
+Patch10645: 0645-header-workarounds.patch
+Patch10646: 0646-stop-triggering-vmlinux-rebuild.patch
+Patch10647: 0647-Add-missing-newline.patch
+Patch10648: 0648-uninvert-the-fan.patch
+Patch10649: 0649-Reduce-crit-threshold-temp-to-85000.patch
+Patch10650: 0650-eswin-dsp-fixes.patch
+Patch10651: 0651-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10652: 0652-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10653: 0653-Bring-back-1.8GHz-to-STARPro64.patch
+Patch10654: 0654-remove-makefile-reference-for-non-existent-directory.patch
 
 
 
@@ -2817,16 +2919,118 @@ ApplyOptionalPatch 0539-riscv-dts-eswin-starpro64-tweak-GMAC0-RX-delay.patch
 ApplyOptionalPatch 0540-PCI-eswin-keep-PCIe-alive-at-shutdown.patch
 ApplyOptionalPatch 0541-riscv-dts-megrez-nx-fix-sata-act-led-gpio.patch
 ApplyOptionalPatch 0542-ci-add-build.patch
-ApplyOptionalPatch 0543-header-workarounds.patch
-ApplyOptionalPatch 0544-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0545-Add-missing-newline.patch
-ApplyOptionalPatch 0546-uninvert-the-fan.patch
-ApplyOptionalPatch 0547-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0548-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0549-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0550-Add-NPU-enabled-variants-of-dtbs.patch
-ApplyOptionalPatch 0551-Bring-back-1.8GHz-to-STARPro64.patch
-ApplyOptionalPatch 0552-remove-makefile-reference-for-non-existent-directory.patch
+ApplyOptionalPatch 0543-fix-fix-ubuntu-up-warning-and-terminal-lag.patch
+ApplyOptionalPatch 0544-fix-disable-sdio1-by-default-for-eic7700-sbc-a1-boar.patch
+ApplyOptionalPatch 0545-feat-add-new-perf-interface.patch
+ApplyOptionalPatch 0546-feat-update-dts-for-eic7702_pcie.patch
+ApplyOptionalPatch 0547-feat-Reserve-memory-for-version-info.patch
+ApplyOptionalPatch 0548-fix-fix-SBC-MIPI-spupport-MP-test.patch
+ApplyOptionalPatch 0549-feat-Reserve-memory-for-board-info.patch
+ApplyOptionalPatch 0550-feature-Enable-pstore-feature.patch
+ApplyOptionalPatch 0551-fix-Fix-invalid-GPIO-for-D560-gmac.patch
+ApplyOptionalPatch 0552-feat-add-vpu7702_pcie_factory.dts.patch
+ApplyOptionalPatch 0553-feat-use-dev_dbg-to-print-the-uart-noc-err-log.patch
+ApplyOptionalPatch 0554-fix-adapt-d560-audio-input.patch
+ApplyOptionalPatch 0555-feat-Reserve-memory-for-bd-info.patch
+ApplyOptionalPatch 0556-feat-to-support-vpu7702-pcie-A2-card.patch
+ApplyOptionalPatch 0557-fix-fix-modify-SBC-MIPI-path.patch
+ApplyOptionalPatch 0558-feat-vpu-set-npu-freq-to-1G.patch
+ApplyOptionalPatch 0559-feat-Enable-lpcpu-fw-load-for-vpu7702.patch
+ApplyOptionalPatch 0560-fix-Open-2d-node.patch
+ApplyOptionalPatch 0561-fix-using-algorithms-to-filter.patch
+ApplyOptionalPatch 0562-feat-npu-driver-print-valt-and-rate.patch
+ApplyOptionalPatch 0563-fix-fix-lpcpu-dump-failed-Changelogs-1.-fix-lpcpu-du.patch
+ApplyOptionalPatch 0564-fix-modify-model-name.patch
+ApplyOptionalPatch 0565-fix-modify-the-reference-temperature.patch
+ApplyOptionalPatch 0566-feat-support-eic7700-fccsp-evb-a1.patch
+ApplyOptionalPatch 0567-chore-Make-es_proc-as-common-interfaces.patch
+ApplyOptionalPatch 0568-fix-lspci-issue-after-reboot.patch
+ApplyOptionalPatch 0569-feat-revert-lpcpu-modifications.patch
+ApplyOptionalPatch 0570-feat-Display-LOGO-during-kernel-bootup.patch
+ApplyOptionalPatch 0571-chore-fix-es_porc-builtin-issue.patch
+ApplyOptionalPatch 0572-feat-2d-add-hardware-load-statistics-with-proc-show.patch
+ApplyOptionalPatch 0573-fix-fix-EVB-MIPI-spupport-MP-test.patch
+ApplyOptionalPatch 0574-fix-usb-dwc3-eswin-Fix-section-mismatch.patch
+ApplyOptionalPatch 0575-fix-drivers-sound-eswin-Add-mutex-in-module_exit.patch
+ApplyOptionalPatch 0576-fix-smmu-lockdep_assert_held-error-in-groups.patch
+ApplyOptionalPatch 0577-feature-Fix-kexec-job-depend-on-proc-iomem-reserved.patch
+ApplyOptionalPatch 0578-feature-Add-CONFIG_KEXEC-and-SYSRQ-config.patch
+ApplyOptionalPatch 0579-feat-Add-statistics-of-NPU-frame-rate.patch
+ApplyOptionalPatch 0580-fix-modify-temperature-to-65-75-105.patch
+ApplyOptionalPatch 0581-fix-pvt0-label-info-inaccurate.patch
+ApplyOptionalPatch 0582-feature-Remove-CONFIG_DEBUG_INFO.patch
+ApplyOptionalPatch 0583-feat-Merge-branch-feature-vi-into-dev.patch
+ApplyOptionalPatch 0584-fix-remove-DRIVER_MODSET-flag-from-img.patch
+ApplyOptionalPatch 0585-fix-enable-npu-and-dsp-in-dts-Changelogs.patch
+ApplyOptionalPatch 0586-fix-dmabuf-dma_resv-lock-was-not-held.patch
+ApplyOptionalPatch 0587-fix-fix-vi-0630.patch
+ApplyOptionalPatch 0588-feature-Add-kdb-config-and-ftrace-config.patch
+ApplyOptionalPatch 0589-perf-Optimize-CPU-voltage-and-cpufreq-control.patch
+ApplyOptionalPatch 0590-feat-add-aicard-feature-Changelogs.patch
+ApplyOptionalPatch 0591-fix-vpu-pcie-streamid-problem.patch
+ApplyOptionalPatch 0592-fix-eic7700-cpu-voltage-and-cpufreq-control-failed.patch
+ApplyOptionalPatch 0593-feat-Update-vpu7702-pcie-a2.dts.patch
+ApplyOptionalPatch 0594-fix-2d-hardware-usage-timer-func-release-mutex-faile.patch
+ApplyOptionalPatch 0595-fix-fix-nid-check-bug-in-flush_all.patch
+ApplyOptionalPatch 0596-chore-move-es_proc.h-to-commom-dir.patch
+ApplyOptionalPatch 0597-fix-check-d2d-recovery-status.patch
+ApplyOptionalPatch 0598-fix-fix-smmu-print-level.patch
+ApplyOptionalPatch 0599-fix-disable-wifi-by-default.patch
+ApplyOptionalPatch 0600-feature-Support-trigger-kdump-when-rcu-stall.patch
+ApplyOptionalPatch 0601-fix-clear-log-for-ap6256.patch
+ApplyOptionalPatch 0602-fix-vdec-fix-dead-lock-issue-for-vdec-driver.patch
+ApplyOptionalPatch 0603-fix-Add-multi-batch-frame-rate-statistics.patch
+ApplyOptionalPatch 0604-feat-Enable-npu-power-node.patch
+ApplyOptionalPatch 0605-fix-fix-no-dewarp-devnode-on-7702.patch
+ApplyOptionalPatch 0606-fix-cpufreq-switch-failed.patch
+ApplyOptionalPatch 0607-feat-Support-ESWIN-s-TRNG.patch
+ApplyOptionalPatch 0608-feat-support-fccsp-evb-mipi-csi.patch
+ApplyOptionalPatch 0609-fix-fix-some-vi-warning-in-0630.patch
+ApplyOptionalPatch 0610-feat-support-IPA-in-VPU.patch
+ApplyOptionalPatch 0611-feat-support-eswin-s-hwrng.patch
+ApplyOptionalPatch 0612-feat-support-fccsp-evb-mipi-csi.patch
+ApplyOptionalPatch 0613-fix-clear-log-for-wifi-stop.patch
+ApplyOptionalPatch 0614-feature-Add-reset-trigger-kdump-driver.patch
+ApplyOptionalPatch 0615-feature-Sync-config-from-eic7700_defconfig.patch
+ApplyOptionalPatch 0616-feature-Enable-pstore-feature-on-all-eic7700-eic7702.patch
+ApplyOptionalPatch 0617-fix-fix-MIPI-DSI-reboot-panic.patch
+ApplyOptionalPatch 0618-fix-add-dmabuf_helper-params-check.patch
+ApplyOptionalPatch 0619-fix-Dual-die-rng-register.patch
+ApplyOptionalPatch 0620-perf-dsiable-d2d-driver.patch
+ApplyOptionalPatch 0621-feat-Refactor-PACMSG.patch
+ApplyOptionalPatch 0622-fix-venc-venc-run-in-D1-cause-system-hang.patch
+ApplyOptionalPatch 0623-fix-fusb303b-mutex-lock-used-before-initialization.patch
+ApplyOptionalPatch 0624-fix-2d-kernel-stack-on-d2d-cherry-pick-4559ee5-from-.patch
+ApplyOptionalPatch 0625-fix-2d-suspend-failed-cherry-pick-0284684-from-pm.patch
+ApplyOptionalPatch 0626-fix-2d-power-off-delay-cherry-pick-c81694e-from-pm.patch
+ApplyOptionalPatch 0627-fix-2d-process-stuck-cherry-pick-164de56-from-pm.patch
+ApplyOptionalPatch 0628-feat-implement-cpu-read-data-from-lpcpu.patch
+ApplyOptionalPatch 0629-fix-enable-pvt0-in-7702-boards-by-default.patch
+ApplyOptionalPatch 0630-fix-d2d-support-thermal.patch
+ApplyOptionalPatch 0631-fix-disabled-isp-for-feature-not-ready.patch
+ApplyOptionalPatch 0632-fix-disabled-isp-for-feature-not-ready.patch
+ApplyOptionalPatch 0633-feat-new-board-u2-evb.patch
+ApplyOptionalPatch 0634-fix-fix-no-dewarp-dev-node.patch
+ApplyOptionalPatch 0635-fix-2d-close-power-mangemnet.patch
+ApplyOptionalPatch 0636-fix-Enable-sdio1-by-default-for-eic7700-sbc-a1-board.patch
+ApplyOptionalPatch 0637-dts-sync-ramoops-for-megrez-nx-star64pro.patch
+ApplyOptionalPatch 0638-config-sync-eic7700-config.patch
+ApplyOptionalPatch 0639-UPSTREAM-riscv-mm-Use-hint-address-in-mmap-if-availa.patch
+ApplyOptionalPatch 0640-UPSTREAM-selftests-riscv-Generalize-mm-selftests.patch
+ApplyOptionalPatch 0641-UPSTREAM-docs-riscv-Define-behavior-of-mmap.patch
+ApplyOptionalPatch 0642-UPSTREAM-riscv-mm-Do-not-restrict-mmap-address-based.patch
+ApplyOptionalPatch 0643-UPSTREAM-riscv-selftests-Remove-mmap-hint-address-ch.patch
+ApplyOptionalPatch 0644-UPSTREAM-Revert-RISC-V-mm-Document-mmap-changes.patch
+ApplyOptionalPatch 0645-header-workarounds.patch
+ApplyOptionalPatch 0646-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0647-Add-missing-newline.patch
+ApplyOptionalPatch 0648-uninvert-the-fan.patch
+ApplyOptionalPatch 0649-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0650-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0651-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0652-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0653-Bring-back-1.8GHz-to-STARPro64.patch
+ApplyOptionalPatch 0654-remove-makefile-reference-for-non-existent-directory.patch
 
 
 

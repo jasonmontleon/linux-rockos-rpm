@@ -1,7 +1,7 @@
-From 9c8a719a7feff97c95082a0076234f73cab3c867 Mon Sep 17 00:00:00 2001
+From 5e1483c666dd8bdbc6a64c7788f82d8725115d41 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 30 Oct 2024 10:16:39 +0800
-Subject: [PATCH 276/552] WIN2030-16576:feat:npu drv support dual die move to
+Subject: [PATCH 276/654] WIN2030-16576:feat:npu drv support dual die move to
  linux kernel
 
 Changelogs:

@@ -1,7 +1,7 @@
-From cd1bcd7586afcc83c311aa84e33938ff7151f4ea Mon Sep 17 00:00:00 2001
+From 6087caae0128889522b49d16ddfe78e86a0f56d4 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 7 May 2025 17:33:03 +0800
-Subject: [PATCH 498/552] fix: pcie tbu error
+Subject: [PATCH 498/654] fix: pcie tbu error
 
 Changelogs:
 1. pcie tbu error

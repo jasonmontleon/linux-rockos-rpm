@@ -1,0 +1,59 @@
+From 9ed28874248ba68d03d763cbff6f4728869574a4 Mon Sep 17 00:00:00 2001
+From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
+Date: Tue, 17 Jun 2025 15:06:57 +0800
+Subject: [PATCH 578/654] feature: Add CONFIG_KEXEC and SYSRQ config
+
+Changelogs:
+1. Add CONFIG_KEXEC and SYSRQ config
+
+Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
+---
+ arch/riscv/configs/eic7700_defconfig | 3 +++
+ arch/riscv/configs/eic7702_defconfig | 3 +++
+ 2 files changed, 6 insertions(+)
+
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 8166eb144e00..8b6396856ff8 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -29,6 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
+ CONFIG_EXPERT=y
+ # CONFIG_SYSFS_SYSCALL is not set
+ CONFIG_PERF_EVENTS=y
++CONFIG_KEXEC=y
+ CONFIG_SOC_ESWIN=y
+ CONFIG_SOC_VIRT=y
+ CONFIG_SMP=y
+@@ -866,6 +867,8 @@ CONFIG_CONSOLE_LOGLEVEL_QUIET=7
+ CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
+ CONFIG_DYNAMIC_DEBUG=y
+ CONFIG_DEBUG_FS=y
++CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
++CONFIG_MAGIC_SYSRQ=y
+ CONFIG_DEBUG_PAGEALLOC=y
+ CONFIG_SCHED_STACK_END_CHECK=y
+ CONFIG_DEBUG_VM=y
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 4fcedf262fd2..9e9ddbbf21aa 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -30,6 +30,7 @@ CONFIG_BLK_DEV_INITRD=y
+ CONFIG_EXPERT=y
+ # CONFIG_SYSFS_SYSCALL is not set
+ CONFIG_PERF_EVENTS=y
++CONFIG_KEXEC=y
+ CONFIG_SOC_ESWIN=y
+ CONFIG_SOC_VIRT=y
+ CONFIG_SMP=y
+@@ -847,6 +848,8 @@ CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
+ CONFIG_CONSOLE_LOGLEVEL_QUIET=7
+ CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
+ CONFIG_DYNAMIC_DEBUG=y
++CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT=y
++CONFIG_MAGIC_SYSRQ=y
+ CONFIG_DEBUG_PAGEALLOC=y
+ CONFIG_SCHED_STACK_END_CHECK=y
+ CONFIG_DEBUG_VM=y
+-- 
+2.50.1
+

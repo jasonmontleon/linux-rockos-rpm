@@ -1,7 +1,7 @@
-From e9d56650bbec61ab4ef56d3eb87f836d1f097977 Mon Sep 17 00:00:00 2001
+From 982319cce31713d548e7d37d86ab9b45a93d834f Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 9 Sep 2024 10:29:47 +0800
-Subject: [PATCH 171/552] fix:Synchronize configuration from eic7700_defconfig
+Subject: [PATCH 171/654] fix:Synchronize configuration from eic7700_defconfig
 
 Changelogs:
      Synchronize feature configuration from eic7700_defconfig to

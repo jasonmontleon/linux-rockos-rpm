@@ -1,0 +1,59 @@
+From 034897fbf54fd8e2a5da9b49ace3d76e5f55a0db Mon Sep 17 00:00:00 2001
+From: denglei <denglei@eswincomputing.com>
+Date: Tue, 24 Jun 2025 09:29:59 +0800
+Subject: [PATCH 579/654] feat:Add statistics of NPU frame rate.
+
+Changelogs:
+	Add statistics of NPU frame rate.
+
+Signed-off-by: denglei <denglei@eswincomputing.com>
+---
+ drivers/soc/eswin/ai_driver/npu/dla_driver.h | 1 +
+ drivers/soc/eswin/ai_driver/npu/nvdla_proc.c | 5 +++--
+ drivers/soc/eswin/ai_driver/npu/scheduler.c  | 2 ++
+ 3 files changed, 6 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
+index cce6f8429c80..af24cc0516ce 100644
+--- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
++++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
+@@ -100,6 +100,7 @@ struct nvdla_device {
+ 	atomic64_t total_lock_time;
+ 	atomic64_t start_hwexec_time;
+ 	atomic64_t total_hwexec_time;
++	atomic64_t total_frame_done;
+ };
+ 
+ void dla_reg_write(struct nvdla_device *dev, uint32_t addr, uint32_t value);
+diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
+index 4bbbb3942e1b..cde3203bc649 100644
+--- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
++++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
+@@ -199,8 +199,9 @@ static int npu_stat_show(struct seq_file *m, void *p)
+ 		if(atomic64_read(&ndev->start_lock_time) > atomic64_read(&ndev->end_lock_time)){
+ 			start_stat_time = atomic64_read(&ndev->start_lock_time);
+ 		}
+-		seq_printf(m, "npu%d %llu %llu %llu\n",i, start_stat_time,
+-		           atomic64_read(&ndev->total_lock_time), atomic64_read(&ndev->total_hwexec_time));
++		seq_printf(m, "npu%d %llu %llu %llu %llu\n",i, start_stat_time,
++		           atomic64_read(&ndev->total_lock_time), atomic64_read(&ndev->total_hwexec_time),
++				   atomic64_read(&ndev->total_frame_done));
+ 	}
+ 	return 0;
+ }
+diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
+index bb7316a6a66d..a29b0532de8a 100644
+--- a/drivers/soc/eswin/ai_driver/npu/scheduler.c
++++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
+@@ -308,6 +308,8 @@ void mbx_irq_frame_done(struct win_engine *priv, u32 tiktok, u32 stat)
+ 	atomic64_add(ktime_get_real_ns() - atomic64_read(&ndev->start_hwexec_time),
+ 	             &ndev->total_hwexec_time);
+ 	npu_frame_done_process(f);
++
++	atomic64_add(1, &ndev->total_frame_done);
+ 	last_state = atomic_fetch_and(~NPU_RT_MUTX_FRAME_DONE,
+ 				      &model->uctx->lock_status);
+ 	if (last_state == NPU_RT_MUTX_FRAME_DONE) {
+-- 
+2.50.1
+

@@ -1,7 +1,7 @@
-From 068f47310a7d72e084344ce2baffb5012fefad72 Mon Sep 17 00:00:00 2001
+From 7d86cbca50ba293c39bbf970774f1e65d0ac8ef1 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 24 Jan 2025 17:02:26 +0800
-Subject: [PATCH 391/552] WIN2030-14758:feat:Dump tbu attached device list
+Subject: [PATCH 391/654] WIN2030-14758:feat:Dump tbu attached device list
 
 Changelogs:
 1.Dump tbu attaced device list and the refcnt for better debugging

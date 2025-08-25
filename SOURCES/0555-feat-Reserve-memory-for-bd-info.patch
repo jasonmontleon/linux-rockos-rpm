@@ -1,0 +1,62 @@
+From a1223f4e58c1f8afe15ae9bd8c9b618d188dfa0f Mon Sep 17 00:00:00 2001
+From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
+Date: Fri, 13 Jun 2025 14:34:45 +0800
+Subject: [PATCH 555/654] feat:Reserve memory for bd info
+
+Changelogs:
+
+1. Add version_table and  bd_table node in the device tree,
+   and reserve a piece of memory for version info and
+   board version.
+
+Signed-off-by: Dongdong Zhang <zhangdongdong@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-evb.dts | 23 ++++++++++++++++-------
+ 1 file changed, 16 insertions(+), 7 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
+index 0b21ee68c452..40a64648d88f 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
+@@ -157,7 +157,17 @@ ipcm_vdev0buffer:vdev0buffer@100412000 {
+ 		};
+ 
+ 		rsc_table0:rsc_table0@104412000 {
+-			reg = <0x1 0x4412000 0 0x100>;
++			reg = <0x1 0x4412000 0 0x1000>;
++			no-map;
++		};
++
++		version_table:version_table@104413000 {
++			reg = <0x1 0x4413000 0 0x1000>;
++			no-map;
++		};
++
++		bd_table:bd_table@104414000 {
++			reg = <0x1 0x4414000 0 0x1000>;
+ 			no-map;
+ 		};
+ 
+@@ -165,14 +175,13 @@ share_memory {
+ 			compatible = "eswin,shm";
+ 			#address-cells = <2>;
+ 			#size-cells = <2>;
+-
+-			phys-base = <0x1 0x4412100>;
+-			virt-base = <0x1 0x4412100>;
+-			shm-size = <0xbbedf00>;
+-			reg = <0x1 0x4412100 0 0xbbedf00>;
+-			no-map;
++			phys-base = <0x1 0x4415000>;
++			virt-base = <0x1 0x4415000>;
++			shm-size = <0xbbeb000>;
++			reg = <0x1 0x4415000 0 0xbbeb000>;
+ 		};
+ 
++
+ 	};
+ 
+ 	soc {
+-- 
+2.50.1
+

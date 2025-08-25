@@ -1,7 +1,7 @@
-From d582dd978dcf5c15c9b1445e373599cb5ea9f438 Mon Sep 17 00:00:00 2001
+From eabba31166aa45e7cf4e0881bb05ec7c682a2ea7 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 23 Apr 2025 14:40:47 +0800
-Subject: [PATCH 485/552] fix:enable usb2.0 hub
+Subject: [PATCH 485/654] fix:enable usb2.0 hub
 
 Changelogs:
 Set usb load switch to provide voltage

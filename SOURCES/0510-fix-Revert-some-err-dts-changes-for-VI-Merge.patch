@@ -1,7 +1,7 @@
-From 1412bb457836b766bb539dec958661cbbe18cd0c Mon Sep 17 00:00:00 2001
+From 284521984e1f03656d22ec8dc167f28f5e294dcd Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 16 May 2025 14:42:41 +0800
-Subject: [PATCH 510/552] fix: Revert some err dts changes for VI Merge
+Subject: [PATCH 510/654] fix: Revert some err dts changes for VI Merge
 
 Changelogs:
 1. delete one include file in dts which cause hdmi cannot display

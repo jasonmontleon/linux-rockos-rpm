@@ -1,0 +1,28 @@
+From 761a93772dc87f6302f7c9a9a81fb980de8dd706 Mon Sep 17 00:00:00 2001
+From: Min Lin <linmin@eswincomputing.com>
+Date: Mon, 23 Jun 2025 10:10:18 +0800
+Subject: [PATCH 575/654] fix:drivers: sound: eswin: Add mutex in module_exit
+
+Changelogs:
+1.Add mutex_unlock in audio_proc_module_exit()
+
+Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
+---
+ sound/soc/eswin/esw-audio-proc.c | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
+index f21e269af657..276356c57e8d 100644
+--- a/sound/soc/eswin/esw-audio-proc.c
++++ b/sound/soc/eswin/esw-audio-proc.c
+@@ -477,6 +477,7 @@ void audio_proc_module_exit(void)
+ 	mutex_lock(&audio_proc_lock);
+ 
+ 	if (g_proc_uninitialized) {
++		mutex_unlock(&audio_proc_lock);
+ 		return;
+ 	}
+ 
+-- 
+2.50.1
+

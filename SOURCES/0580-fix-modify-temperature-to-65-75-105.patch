@@ -1,0 +1,265 @@
+From 69e1d488b8524bf1a04535b2ff8267e83417097c Mon Sep 17 00:00:00 2001
+From: wangguosheng <wangguosheng@eswincomputing.com>
+Date: Tue, 24 Jun 2025 10:40:42 +0800
+Subject: [PATCH 580/654] fix:modify temperature to 65-75-105
+
+Changelogs:
+1. change the temperature parameter of thermal zone to 65-75-105
+
+Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
+---
+ .../dts/eswin/eswin-win2030-arch-d2d.dtsi     |  4 ++
+ .../dts/eswin/eswin-win2030-die0-soc.dtsi     |  9 ++--
+ .../dts/eswin/eswin-win2030-die1-soc.dtsi     | 53 +++++++++++++------
+ 3 files changed, 44 insertions(+), 22 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
+index 47cbe32e5947..df4b8dac0ec1 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
+@@ -109,6 +109,7 @@ cpu_4: cpu@4 {
+ 		clocks = <&d1_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_0>;
+ 		operating-points-v2 = <&d1_cpu_opp_table>;
+ 		#cooling-cells = <2>;
++		dynamic-power-coefficient = <800>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu4_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+@@ -158,6 +159,7 @@ cpu_5: cpu@5 {
+ 		clocks = <&d1_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_1>;
+ 		operating-points-v2 = <&d1_cpu_opp_table>;
+ 		#cooling-cells = <2>;
++		dynamic-power-coefficient = <800>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu5_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+@@ -206,6 +208,7 @@ cpu_6: cpu@6 {
+ 		clocks = <&d1_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_2>;
+ 		operating-points-v2 = <&d1_cpu_opp_table>;
+ 		#cooling-cells = <2>;
++		dynamic-power-coefficient = <800>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu6_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+@@ -254,6 +257,7 @@ cpu_7: cpu@7 {
+ 		clocks = <&d1_clock EIC7700_CLK_CPU_EXT_SRC_CORE_CLK_3>;
+ 		operating-points-v2 = <&d1_cpu_opp_table>;
+ 		#cooling-cells = <2>;
++		dynamic-power-coefficient = <800>;
+ 		cpu-idle-states = <&CPU_RET>;
+ 		cpu7_intc: interrupt-controller {
+ 			#interrupt-cells = <1>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+index 9d132f6e4284..5f27110b940b 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
+@@ -40,18 +40,16 @@ thermal0 {
+ 			thermal-sensors = <&pvt0>;
+ 
+ 			trips {
+-				
+ 				threshold: trip-point0 {
+-					temperature = <90000>;
++					temperature = <65000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 				target: trip-point1 {
+-					temperature = <100000>;
++					temperature = <75000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+-				
+ 				crit: trip-point2 {
+ 					temperature     = <105000>;
+ 					hysteresis      = <0>;
+@@ -59,7 +57,7 @@ crit: trip-point2 {
+ 				};
+ 			};
+ 
+-			cooling-maps {				
++			cooling-maps {
+ 				map0 {
+ 					trip = <&target>;
+ 					contribution = <1024>;
+@@ -1326,6 +1324,7 @@ pvt1: pvt@0x52360000 {
+ 			reg = <0x0 0x52360000 0x0 0x20000>;
+ 			interrupts = <350>;
+ 			interrupt-parent = <&plic0>;
++			#thermal-sensor-cells = <0>;
+ 			status = "disabled";
+ 			label = "pvt1";
+ 			numa-node-id = <0>;
+diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+index ec38ce8bf5d8..610cddc7a6d9 100644
+--- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
++++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
+@@ -32,24 +32,22 @@
+ / {
+ 	thermal-zones {
+ 		d1_thermal0 {
+-			polling-delay-passive = <500>; /*ms*/
+-			polling-delay = <5000>; /*ms*/
+-			sustainable-power = <1200>; /*mW*/
++			polling-delay-passive = <100>; /*ms*/
++			polling-delay = <1000>; /*ms*/
++			sustainable-power = <30000>; /*mW*/
+ 			thermal-sensors = <&d1_pvt0>;
+ 
+ 			trips {
+-				/*
+ 				d1_threshold: trip-point0 {
+-					temperature = <60000>;
++					temperature = <65000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+ 				d1_target: trip-point1 {
+-					temperature = <70000>;
++					temperature = <75000>;
+ 					hysteresis = <1000>;
+ 					type = "passive";
+ 				};
+-				*/
+ 				d1_crit: trip-point2 {
+ 					temperature     = <105000>;
+ 					hysteresis      = <0>;
+@@ -58,21 +56,21 @@ d1_crit: trip-point2 {
+ 			};
+ 
+ 			cooling-maps {
+-				/*
+ 				map0 {
+ 					trip = <&d1_target>;
+ 					contribution = <1024>;
+ 					cooling-device =
+-						<&cpu_4 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_5 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_6 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>,
+-						<&cpu_7 THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
++						<&cpu_4 0 10>,
++						<&cpu_5 0 10>,
++						<&cpu_6 0 10>,
++						<&cpu_7 0 10>;
+ 				};
+ 				map1 {
+ 					trip = <&d1_target>;
+ 					contribution = <1024>;
+ 					cooling-device = <&d1_npu THERMAL_NO_LIMIT THERMAL_NO_LIMIT>;
+ 				};
++				/*
+ 				map2 {
+ 					trip = <&d1_target>;
+ 					contribution = <1024>;
+@@ -403,7 +401,9 @@ vdec1: video-decoder1@70100000 {
+ 					 <&d1_reset VD_RST_CTRL SW_VD_AXI_RSTN>;
+ 			reset-names = "axi", "cfg", "moncfg", "jd_cfg", "jd_axi", "vd_cfg", "vd_axi";
+ 			eswin,syscfg = <&d1_sys_con 0x0 0x4>;
+-
++			operating-points-v2 = <&vdec_opp_table>;
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x200 0x100>;
+ 			vdec-core = <0x800 0xc00>;
+@@ -451,7 +451,9 @@ venc1: video-encoder@70110000 {
+ 					 <&d1_reset VE_RST_CTRL SW_VE_AXI_RSTN>;
+ 			reset-names = "axi", "cfg", "moncfg", "je_cfg", "je_axi", "ve_cfg", "ve_axi";
+ 			eswin,syscfg = <&d1_sys_con 0x0 0x4>;
+-
++			operating-points-v2 = <&venc_opp_table>;
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			vcmd-core = <0 0x6c>;
+ 			axife-core = <0x2000 0x7d0>;
+ 			venc-core = <0x1000 0x87c>;
+@@ -702,6 +704,7 @@ d1_pvt1: pvt@0x72360000 {
+ 			reg = <0x0 0x72360000 0x0 0x20000>;
+ 			interrupts = <350>;
+ 			interrupt-parent = <&plic1>;
++			#thermal-sensor-cells = <0>;
+ 			status = "disabled";
+ 			label = "d1_pvt1";
+ 			numa-node-id = <1>;
+@@ -972,14 +975,14 @@ d1_npu: eswin-npu@71c00000 {
+ 
+ 			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
+ 			reset-names = "e31_core";
+-			operating-points-v2 = <&npu_opp_table>;
+ 
+ 			numa-node-id = <1>;
+ 			firmware-name = "eic7700_die1_e31_fw";
+ 			dma-noncoherent;
+ 
++			operating-points-v2 = <&npu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <0>; /*TBD*/
++			dynamic-power-coefficient = <16000>; /*TBD*/
+ 		};
+ 
+ 		d1_llc_dev: llc@71c00000 {
+@@ -1026,8 +1029,9 @@ d1_gpu: gpu@71400000 {
+ 			dma-noncoherent;
+ 			numa-node-id = <1>;
+ 
++			operating-points-v2 = <&gpu_opp_table>;
+ 			#cooling-cells = <2>;
+-			dynamic-power-coefficient = <0>; /*TBD*/
++			dynamic-power-coefficient = <4000>; /*TBD*/
+ 		};
+ 
+ 		d1_sata: sata@0x70420000 {
+@@ -1354,6 +1358,9 @@ d1_dsp0:es_dsp@0 {
+ 					0x28120000 0 0x7b120000 0x20000>;
+ 				clocks = <&d1_clock EIC7700_CLK_DSP_ACLK_0>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d1_mbox4>;
+ 				device-irq = <11
+ 					(ESWIN_MAILBOX_DSP_0_TO_U84_REG_BASE + 0x20000000)
+@@ -1383,6 +1390,9 @@ d1_dsp1:es_dsp@1 {
+ 					0x28120000 0 0x7b160000 0x20000>;
+ 				clocks = <&d1_clock EIC7700_CLK_DSP_ACLK_1>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d1_mbox5>;
+ 				device-irq = <13
+ 					(ESWIN_MAILBOX_DSP_1_TO_U84_REG_BASE + 0x20000000)
+@@ -1412,6 +1422,9 @@ d1_dsp2:es_dsp@2 {
+ 					0x28120000 0 0x7b1a0000 0x20000>;
+ 				clocks = <&d1_clock EIC7700_CLK_DSP_ACLK_2>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d1_mbox6>;
+ 				device-irq = <15
+ 					(ESWIN_MAILBOX_DSP_2_TO_U84_REG_BASE + 0x20000000)
+@@ -1441,6 +1454,9 @@ d1_dsp3:es_dsp@3 {
+ 					0x28120000 0 0x7b1e0000 0x20000>;
+ 				clocks = <&d1_clock EIC7700_CLK_DSP_ACLK_3>;
+ 				clock-names = "aclk";
++				operating-points-v2 = <&dsp_opp_table>;
++				#cooling-cells = <2>;
++				dynamic-power-coefficient = <1000>; /*TBD*/
+ 				dsp_mbox = <&d1_mbox7>;
+ 				device-irq = <17
+ 					(ESWIN_MAILBOX_DSP_3_TO_U84_REG_BASE + 0x20000000)
+@@ -1933,6 +1949,9 @@ d1_gc820: g2d@70140000 {
+ 			contiguous-size = <0xa00000>;
+ 			recovery = <0>;
+ 			dma-noncoherent;
++			operating-points-v2 = <&g2d_opp_table>;
++			#cooling-cells = <2>;
++			dynamic-power-coefficient = <1000>; /*TBD*/
+ 			numa-node-id = <1>;
+ 		};
+ 
+-- 
+2.50.1
+

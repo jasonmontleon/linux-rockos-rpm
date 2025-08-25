@@ -1,0 +1,52 @@
+From f83666c9f7278913fb68250d05a66fe8a0588408 Mon Sep 17 00:00:00 2001
+From: Min Lin <linmin@eswincomputing.com>
+Date: Mon, 23 Jun 2025 10:45:57 +0800
+Subject: [PATCH 576/654] fix(smmu):lockdep_assert_held error in groups
+
+Changelogs:
+1.lockdep_assert_held(&smmu->smmu_groups_mutex); was called when smmu had
+  not yet been assigned.
+
+Signed-off-by: Min Lin <linmin@eswincomputing.com>
+---
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 9 +++++----
+ 1 file changed, 5 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index f287afb2b46e..0afb2507c882 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -2889,13 +2889,14 @@ static struct iommu_group *arm_smmu_group_lookup(struct device *dev)
+ 	struct arm_smmu_group *smmu_group;
+ 	u32 sid;
+ 
+-	lockdep_assert_held(&smmu->smmu_groups_mutex);
+ 	if (!master)
+-		return NULL;
++		return ERR_PTR(-EFAULT);
++
++	smmu = master->smmu;
++	lockdep_assert_held(&smmu->smmu_groups_mutex);
+ 
+ 	/* pick the first sid, since only one sid for each device is allowed */
+ 	sid = fwspec->ids[0];
+-	smmu = master->smmu;
+ 
+ 	node = smmu->smmu_groups.rb_node;
+ 	while (node) {
+@@ -2920,11 +2921,11 @@ static struct arm_smmu_group *arm_smmu_insert_to_group_lookup(struct device *dev
+ 	struct arm_smmu_group *new_smmu_group, *cur_smmu_group;
+ 	struct rb_node **new_node, *parent_node = NULL;
+ 
+-	lockdep_assert_held(&smmu->smmu_groups_mutex);
+ 	if (!master)
+ 		return ERR_PTR(-EFAULT);
+ 
+ 	smmu = master->smmu;
++	lockdep_assert_held(&smmu->smmu_groups_mutex);
+ 
+ 	new_smmu_group = kzalloc(sizeof(*new_smmu_group), GFP_KERNEL);
+ 	if (!new_smmu_group)
+-- 
+2.50.1
+

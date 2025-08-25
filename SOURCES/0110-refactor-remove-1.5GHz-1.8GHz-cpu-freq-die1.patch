@@ -1,7 +1,7 @@
-From 7c89b889e6e339124298ff2ae4232922abd49537 Mon Sep 17 00:00:00 2001
+From 1bb656b14d3616cf4075d1f6f90913c64899f32e Mon Sep 17 00:00:00 2001
 From: chenshuo <chenshuo@eswincomputing.com>
 Date: Tue, 23 Jul 2024 15:23:14 +0800
-Subject: [PATCH 110/552] refactor:remove 1.5GHz~1.8GHz cpu freq(die1)
+Subject: [PATCH 110/654] refactor:remove 1.5GHz~1.8GHz cpu freq(die1)
 
 Changelogs:
 	remove 1.5GHz~1.8GHz from d1_cpu_opp_table as d0.

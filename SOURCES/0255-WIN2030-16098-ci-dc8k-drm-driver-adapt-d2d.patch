@@ -1,7 +1,7 @@
-From aeb489b27a6e4a6e06f3fd2ef92b6af5a0fc4c9f Mon Sep 17 00:00:00 2001
+From d7df5250d5bac6d138bbfc031d4c3852dbfcee3d Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 21 Aug 2024 14:55:51 +0800
-Subject: [PATCH 255/552] WIN2030-16098:ci:dc8k drm driver adapt d2d
+Subject: [PATCH 255/654] WIN2030-16098:ci:dc8k drm driver adapt d2d
 
 Changelogs:
 1. The DRM driver supports 2 devices and distinguishes dies based on the IDs in the device tree.

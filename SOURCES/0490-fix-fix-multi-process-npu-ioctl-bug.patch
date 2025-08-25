@@ -1,7 +1,7 @@
-From bac3de853c25913ed18f5bce194e3acd6daa38c0 Mon Sep 17 00:00:00 2001
+From 3b116054b2b440de820ee6b1b9949cff23120930 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Fri, 25 Apr 2025 16:03:12 +0800
-Subject: [PATCH 490/552] fix:fix multi-process npu ioctl bug
+Subject: [PATCH 490/654] fix:fix multi-process npu ioctl bug
 
 Changelogs:
 	process exits, driver returns exception

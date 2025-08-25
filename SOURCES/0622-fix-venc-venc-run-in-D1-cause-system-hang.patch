@@ -1,0 +1,143 @@
+From 0b0eaef5b0aaf82aa34dd80085dc3a1a89d5c8f2 Mon Sep 17 00:00:00 2001
+From: zouxiaojun <zouxiaojun@eswincomputing.com>
+Date: Mon, 14 Jul 2025 09:35:34 +0800
+Subject: [PATCH 622/654] fix(venc):venc run in D1 cause system hang
+
+Changelogs:
+Rootcause: The venc driver will not initialize and enable the clock
+during the second probe (D1 probe), which results in some clock record
+information not being correctly placed in pdev private_data;
+During D1 resume, the aclk information cannot be correctly obtained
+from pdev private_data, which results in the failure of clock enable;
+
+Solution:At each venc driver probe, clock initialization and clock
+enable are performed.
+
+Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
+---
+ drivers/staging/media/eswin/vdec/hantro_dec.c | 20 -------
+ .../staging/media/eswin/venc/vc8000e_driver.c | 59 ++++++-------------
+ 2 files changed, 19 insertions(+), 60 deletions(-)
+
+diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
+index 780b2561ab20..73df40a642a6 100644
+--- a/drivers/staging/media/eswin/vdec/hantro_dec.c
++++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
+@@ -3933,23 +3933,6 @@ static int vdec_smmu_dynm_sid_init(struct platform_device *pdev, int numa_id)
+ }
+ #endif
+ 
+-/* Temporary using this func to do crg init for d1 */
+-int d1_clk_reset_init(void)
+-{
+-	void __iomem *d1_crg_reg = NULL;
+-
+-	d1_crg_reg = ioremap(0x71828000, 0x1000);
+-	writel(0x80000020, (d1_crg_reg + 0x1c4));
+-	writel(0x30003f, (d1_crg_reg + 0x1d0));
+-	writel(0x80000020, (d1_crg_reg + 0x1d8));
+-	writel(0x80000020, (d1_crg_reg + 0x1dc));
+-	writel(0x7, (d1_crg_reg + 0x458));
+-	writel(0x3, (d1_crg_reg + 0x45c));
+-	writel(0x3, (d1_crg_reg + 0x464));
+-
+-	return 0;
+-}
+-
+ #if defined(CONFIG_PM_DEVFREQ)
+ static int vdec_devfreq_target(struct device *dev, unsigned long *freq, u32 flags)
+ {
+@@ -4074,10 +4057,7 @@ static int hantro_vdec_probe(struct platform_device *pdev)
+ 	if (!numa_id)
+ 		platformdev = pdev;
+ 	else
+-	{
+ 		platformdev_d1 = pdev;
+-		d1_clk_reset_init();
+-	}
+ 
+ 	if (vdec_trans_device_nodes(pdev, numa_id)) {
+ 		LOG_ERR("Translates video decoder dts to subsys failed");
+diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
+index d241fb9096bf..9b024aaaab99 100644
+--- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
++++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
+@@ -624,23 +624,6 @@ static int venc_smmu_dynm_sid_init(struct platform_device *pdev, u16 module_type
+ }
+ #endif /** end of SUPPORT_DMA_HEAP*/
+ 
+-/* Temporary using this func to do crg init for d1 */
+-static int venc_d1_clk_reset_init(void)
+-{
+-	void __iomem *d1_crg_reg = NULL;
+-
+-	d1_crg_reg = ioremap(0x71828000, 0x1000);
+-	writel(0x80000020, (d1_crg_reg + 0x1c4));
+-	writel(0x30003f, (d1_crg_reg + 0x1d0));
+-	writel(0x80000020, (d1_crg_reg + 0x1d4));
+-	writel(0x80000020, (d1_crg_reg + 0x1e0));
+-	writel(0x7, (d1_crg_reg + 0x458));
+-	writel(0x3, (d1_crg_reg + 0x460));
+-	writel(0x3, (d1_crg_reg + 0x468));
+-
+-	return 0;
+-}
+-
+ static int enc_reset_core(struct device *dev, u16 module_type)
+ {
+ 	venc_dev_prvdata *prvdata = dev_get_drvdata(dev);
+@@ -941,32 +924,28 @@ static int hantro_venc_probe(struct platform_device *pdev)
+ 	}
+ #endif /** CONFIG_PM_DEVFREQ*/
+ 
+-	if (!numa_id) {
+-		ret = venc_sys_reset_init(pdev, vcrt);
+-		if (ret < 0) {
+-			LOG_ERR("venc: reset initialization failed");
+-			return -1;
+-		}
++	ret = venc_sys_reset_init(pdev, vcrt);
++	if (ret < 0) {
++		LOG_ERR("venc: reset initialization failed");
++		return -1;
++	}
+ 
+-		ret = venc_sys_clk_init(pdev, vcrt);
+-		if (ret < 0) {
+-			LOG_ERR("venc: clk init failed");
+-			return -1;
+-		}
++	ret = venc_sys_clk_init(pdev, vcrt);
++	if (ret < 0) {
++		LOG_ERR("venc: clk init failed");
++		return -1;
++	}
+ 
+-		ret = venc_sys_clk_enable(vcrt);
+-		if (ret < 0) {
+-			LOG_ERR("venc: clk enable failed");
+-			return -1;
+-		}
++	ret = venc_sys_clk_enable(vcrt);
++	if (ret < 0) {
++		LOG_ERR("venc: clk enable failed");
++		return -1;
++	}
+ 
+-		ret = venc_sys_reset_release(vcrt);
+-		if (ret < 0) {
+-			LOG_ERR("venc: reset release failed");
+-			return -1;
+-		}
+-	} else {
+-		venc_d1_clk_reset_init();
++	ret = venc_sys_reset_release(vcrt);
++	if (ret < 0) {
++		LOG_ERR("venc: reset release failed");
++		return -1;
+ 	}
+ 
+ 	ret = venc_trans_device_nodes(pdev, numa_id);
+-- 
+2.50.1
+

@@ -1,7 +1,7 @@
-From 4bba9952f8cbae7cc1420b51270b4fee45aefdc0 Mon Sep 17 00:00:00 2001
+From 0731c9ff39772eddc3c8356f96a8fe3e7d0cb713 Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Tue, 21 May 2024 09:32:04 +0800
-Subject: [PATCH 018/552] feat:Porting eswin audio to 6.6 kernel
+Subject: [PATCH 018/654] feat:Porting eswin audio to 6.6 kernel
 
 Changelogs:
 1. Porting eswin audio to 6.6 kernel.

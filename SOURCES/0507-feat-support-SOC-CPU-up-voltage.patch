@@ -1,7 +1,7 @@
-From e0b7809b1bd51bb131cde463e44859fcd543c627 Mon Sep 17 00:00:00 2001
+From 7f77fc1d14f2a473578c9eed3c6940c782485fdb Mon Sep 17 00:00:00 2001
 From: lihuihui <lihuihui@eswincomputing.com>
 Date: Tue, 13 May 2025 14:35:50 +0800
-Subject: [PATCH 507/552] feat:support SOC/CPU up voltage
+Subject: [PATCH 507/654] feat:support SOC/CPU up voltage
 
 Changelogs:
 1.config gpio12 for SOC up voltage.

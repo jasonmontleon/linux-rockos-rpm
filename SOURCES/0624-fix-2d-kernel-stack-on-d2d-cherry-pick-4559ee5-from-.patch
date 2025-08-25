@@ -1,0 +1,223 @@
+From 3a60aa61d04c69c47cda52426c677434669f4b2d Mon Sep 17 00:00:00 2001
+From: lei zhilin <leizhilin@eswincomputing.com>
+Date: Tue, 15 Apr 2025 15:37:32 +0800
+Subject: [PATCH 624/654] fix(2d):kernel stack on d2d,cherry-pick 4559ee5 from
+ pm
+
+Changelogs:
+    1.Problem cause: hae in d2d will use dev_pm_domain_attach_by_id attach
+      domain by self, but system will manage it, cause attach failed, ret
+      value not zero but call dev_pm_domain_detach cause null pointer dereference.
+
+    2.Solutions:
+      1) delete dev_pm_domain_attach_by_id call by hae;
+      2) delete power_dev, use dev direct;
+      3) reopen powerManagement, case WIN2030-16724 will solve later, this func will patch release to deepcomputing;
+
+Signed-off-by: lei zhilin <leizhilin@eswincomputing.com>
+(cherry picked from commit 4559ee52990ca8dca5b6cf685010fddba855ad68)
+---
+ .../eswin/hae/hal/kernel/inc/gc_hal_base.h    |  3 +
+ .../os/linux/kernel/gc_hal_kernel_parameter.h |  2 +-
+ .../eswin/gc_hal_kernel_platform_win2030.c    | 85 ++++++++-----------
+ 3 files changed, 39 insertions(+), 51 deletions(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
+index 2af1f18c7754..986d2f046527 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
++++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
+@@ -2906,6 +2906,9 @@ gcoOS_ProfileDB(IN gctCONST_STRING Function, IN OUT gctBOOL_PTR Initialized);
+ #define gcmOPT_POINTER(ptr)            (((ptr) == gcvNULL) ? gcvNULL : *(ptr))
+ #define gcmOPT_STRING(ptr)             (((ptr) == gcvNULL) ? "(nil)" : (ptr))
+ 
++#define hae_print(fmt, ...) \
++    printk("[%s:%d] "fmt"\n", __func__, __LINE__, ##__VA_ARGS__)
++
+ void
+ gckOS_Print(IN gctCONST_STRING Message, ...) CHECK_PRINTF_FORMAT(1, 2);
+ 
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
+index dcc6b0558a33..22f6ebe226a6 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
+@@ -305,7 +305,7 @@ static int compression = -1;
+ module_param(compression, int, 0644);
+ MODULE_PARM_DESC(compression, "Disable compression if set it to 0, enabled by default");
+ 
+-static int powerManagement = 0;
++static int powerManagement = 1;
+ module_param(powerManagement, int, 0644);
+ MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
+ 
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
+index 25f1c2e3b5f9..d0bdc1a449e7 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
+@@ -183,7 +183,6 @@ static const int nc_of_rsts = gcmCOUNTOF(rst_names);
+ 
+ struct gpu_power_domain {
+     int num_domains;
+-    struct device **power_dev;
+     struct clk *clks[gcdDEVICE_COUNT][gcvCLKS_COUNT];
+     struct device *dev[gcdDEVICE_COUNT];
+     struct devfreq *df[gcdDEVICE_COUNT];
+@@ -302,6 +301,9 @@ gceSTATUS
+ _set_clock(gcsPLATFORM *Platform, gctUINT32 DevIndex, gceCORE GPU, gctBOOL Enable)
+ {
+     int j;
++
++    // hae_print("idx: %d, core: %d, en: %d", DevIndex, GPU, Enable);
++
+     if (Enable) {
+         for (j = 0; j < nc_of_clks; j++) {
+             if (gpd.clks[DevIndex][j]) {
+@@ -322,22 +324,18 @@ _set_clock(gcsPLATFORM *Platform, gctUINT32 DevIndex, gceCORE GPU, gctBOOL Enabl
+ gceSTATUS
+ _set_power(gcsPLATFORM *Platform, gctUINT32 DevIndex, gceCORE GPU, gctBOOL Enable)
+ {
+-    int num_domains = gpd.num_domains;
+-    if (num_domains > 1) {
+-        struct device *sub_dev = gpd.power_dev[DevIndex];
++    // hae_print("idx: %d, dev: %p, core: %d, power: %d", DevIndex, gpd.dev[DevIndex], GPU, Enable);
+ 
+-        if (Enable)
+-            pm_runtime_get_sync(sub_dev);
+-        else
+-            pm_runtime_put(sub_dev);
++    if (!gpd.dev[DevIndex]) {
++        return gcvSTATUS_INVALID_ADDRESS;
+     }
+ 
+-    if (num_domains == 1) {
+-        if (Enable)
+-            pm_runtime_get_sync(&Platform->device->dev);
+-        else
+-            pm_runtime_put(&Platform->device->dev);
++    if (Enable) {
++        pm_runtime_get_sync(gpd.dev[DevIndex]);
++    } else {
++        pm_runtime_put(gpd.dev[DevIndex]);
+     }
++
+     return gcvSTATUS_OK;
+ }
+ 
+@@ -345,6 +343,8 @@ static int gpu_remove_power_domains(struct platform_device *pdev)
+ {
+     int i = 0, j = 0;
+ 
++    hae_print("num_domains: %d", gpd.num_domains);
++
+     for (i = 0; i < gpd.num_domains; i++) {
+         for (j = 0; j < nc_of_clks; j++) {
+             if (gpd.clks[i][j]) {
+@@ -352,9 +352,9 @@ static int gpu_remove_power_domains(struct platform_device *pdev)
+             }
+         }
+ 
+-        if (gpd.power_dev) {
+-            pm_runtime_disable(gpd.power_dev[i]);
+-            dev_pm_domain_detach(gpd.power_dev[i], true);
++        if (gpd.dev[i]) {
++            hae_print("pm runtime dev[%d]: %p disable.", i, gpd.dev[i]);
++            pm_runtime_disable(gpd.dev[i]);
+         }
+ #if defined(CONFIG_PM_DEVFREQ)
+         if (gpd.df[i]) {
+@@ -363,19 +363,14 @@ static int gpu_remove_power_domains(struct platform_device *pdev)
+ #endif
+     }
+ 
+-    if (gpd.num_domains == 1) {
+-        pm_runtime_disable(&pdev->dev);
+-    }
+-
+-    return 0;
++    return gcvSTATUS_OK;
+ }
+ 
+ static int gpu_add_power_domains(struct platform_device *pdev, gcsMODULE_PARAMETERS *params)
+ {
+-    struct device *dev = &pdev->dev;
+     int i, j = 0;
+     int num_domains = 0;
+-    int ret = 0;
++    int ret = -1;
+ #if defined(CONFIG_PM_DEVFREQ)
+     struct devfreq *df;
+ #endif
+@@ -385,54 +380,44 @@ static int gpu_add_power_domains(struct platform_device *pdev, gcsMODULE_PARAMET
+     num_domains = (gpu_device.devs[0] != gcvNULL) + (gpu_device.devs[1] != gcvNULL);
+     gpd.num_domains = num_domains;
+ 
+-    /* If the num of domains is less than 2, the domain will be attached automatically */
+-    if (num_domains > 1) {
+-        gpd.power_dev = devm_kcalloc(dev, num_domains, sizeof(struct device *), GFP_KERNEL);
+-        if (!gpd.power_dev)
+-            return -ENOMEM;
+-    }
+-
++    hae_print("num_domains: %d", num_domains);
+     for (i = 0; i < num_domains; i++) {
+-#if defined(CONFIG_PM_DEVFREQ)
+         gpd.dev[i] = gpu_device.devs[i];
+-
++        if (!gpd.dev[i]) {
++            continue;
++        }
++#if defined(CONFIG_PM_DEVFREQ)
++        hae_print("add dev opp table[%d]: %p", i, gpd.dev[i]);
+         if (dev_pm_opp_of_add_table(gpd.dev[i])) {
+-            gcmkPRINT("%s, %d, Failed to add OPP table", __func__, __LINE__);
+-            return gcvSTATUS_INVALID_OBJECT;
++            ret = gcvSTATUS_INVALID_OBJECT;
++            hae_print("Failed to add OPP table");
++            goto error;
+         }
+         df = devm_devfreq_add_device(gpd.dev[i], &g2d_devfreq_profile, "userspace", NULL);
+         if (IS_ERR(df)) {
+-            gcmkPRINT("%s, %d, add devfreq failed", __func__, __LINE__);
+-            return gcvSTATUS_INVALID_OBJECT;
++            ret = PTR_ERR(df);
++            hae_print("add devfreq failed");
++            goto error;
+         }
+         gpd.df[i] = df;
+ #endif
+-        if (gpd.power_dev) {
+-            gpd.power_dev[i] = dev_pm_domain_attach_by_id(gpu_device.devs[i], i);
+-            if (IS_ERR(gpd.power_dev[i]))
+-                goto error;
+-        }
+ 
+         for (j = 0; j < nc_of_clks; j++) {
+             gpd.clks[i][j] = devm_clk_get(gpu_device.devs[i], clk_names[j]);
+             if (IS_ERR(gpd.clks[i][j])) {
+                 ret = PTR_ERR(gpd.clks[i][j]);
+-                dev_err(dev, "failed to get die-%d:%s clock: %d\n", i, clk_names[j], ret);
++                hae_print("failed to get die-%d:%s clock: %d", i, clk_names[j], ret);
+                 goto error;
+             }
+         }
+-    }
++        hae_print("pm runtime enable dev[%d]: %p", i, gpd.dev[i]);
+ 
+-    if (num_domains == 1)
+-        pm_runtime_enable(&pdev->dev);
++        pm_runtime_enable(gpd.dev[i]);
++    }
+ 
+-    return 0;
++    return gcvSTATUS_OK;
+ 
+ error:
+-    for (i = 0; i < num_domains; i++) {
+-        if (gpd.power_dev[i])
+-            dev_pm_domain_detach(gpd.power_dev[i], true);
+-    }
+     return ret;
+ }
+ 
+-- 
+2.50.1
+

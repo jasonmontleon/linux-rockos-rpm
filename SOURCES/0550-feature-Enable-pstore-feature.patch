@@ -1,0 +1,137 @@
+From 8c8293349f7f890685fedeccb10ce89a987104e9 Mon Sep 17 00:00:00 2001
+From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
+Date: Tue, 10 Jun 2025 16:02:54 +0800
+Subject: [PATCH 550/654] feature: Enable pstore feature
+
+Changelogs:
+1. Enable pstore feature
+
+Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts  | 9 +++++++--
+ arch/riscv/boot/dts/eswin/eic7700-evb.dts     | 9 +++++++--
+ arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts  | 9 +++++++--
+ arch/riscv/boot/dts/eswin/eic7702-som560.dtsi | 9 +++++++--
+ arch/riscv/configs/eic7700_defconfig          | 5 +++++
+ arch/riscv/configs/eic7702_defconfig          | 5 +++++
+ 6 files changed, 38 insertions(+), 8 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+index 850a81a1ff8f..910a463d3e8f 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
+@@ -97,9 +97,14 @@ npu0_reserved: sprammemory@59000000 {
+ 			reg = <0x0 0x59000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+index 616c36cfc3c6..6a21f7ff0c43 100644
+--- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
++++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
+@@ -93,9 +93,14 @@ npu0_reserved: sprammemory@59000000 {
+ 			reg = <0x0 0x59000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+index 8743d53b5fff..f02ba7ae04d5 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
++++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
+@@ -112,9 +112,14 @@ npu1_reserved: sprammemory@79000000 {
+ 			reg = <0x0 0x79000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
+index 1c1a11ff2ee7..12ef6270c441 100644
+--- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
++++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
+@@ -111,9 +111,14 @@ npu1_reserved: sprammemory@79000000 {
+ 			reg = <0x0 0x79000000 0x0 0x400000>;
+ 		};
+ 
+-		g2d_4GB_boundary_reserved_4k {
++		ramoops@fff00000 {
++			compatible = "ramoops";
++			reg = <0x0 0xfff00000 0x0 0x100000>;
++			console-size = <0x40000>;
++			record-size = <0x40000>;
++			ftrace-size = <0x40000>;
++			pmsg-size = <0x40000>;
+ 			no-map;
+-			reg = <0x0 0xfffff000 0x0 0x1000>;
+ 		};
+ 
+ 		g2d_8GB_boundary_reserved_4k {
+diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
+index 75f59b5ee2b1..a0eb704642c5 100644
+--- a/arch/riscv/configs/eic7700_defconfig
++++ b/arch/riscv/configs/eic7700_defconfig
+@@ -822,6 +822,11 @@ CONFIG_SQUASHFS_LZ4=y
+ CONFIG_SQUASHFS_LZO=y
+ CONFIG_SQUASHFS_XZ=y
+ CONFIG_SQUASHFS_ZSTD=y
++CONFIG_PSTORE=y
++CONFIG_PSTORE_CONSOLE=y
++CONFIG_PSTORE_PMSG=y
++CONFIG_PSTORE_FTRACE=y
++CONFIG_PSTORE_RAM=y
+ CONFIG_NFS_FS=y
+ CONFIG_NFS_V3_ACL=y
+ CONFIG_NFS_V4=y
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index af10604c71d3..48d08ffb7203 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -799,6 +799,11 @@ CONFIG_SQUASHFS_LZ4=y
+ CONFIG_SQUASHFS_LZO=y
+ CONFIG_SQUASHFS_XZ=y
+ CONFIG_SQUASHFS_ZSTD=y
++CONFIG_PSTORE=y
++CONFIG_PSTORE_CONSOLE=y
++CONFIG_PSTORE_PMSG=y
++CONFIG_PSTORE_FTRACE=y
++CONFIG_PSTORE_RAM=y
+ CONFIG_NFS_FS=y
+ CONFIG_NFS_V3_ACL=y
+ CONFIG_NFS_V4=y
+-- 
+2.50.1
+

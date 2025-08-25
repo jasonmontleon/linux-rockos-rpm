@@ -1,0 +1,60 @@
+From cf023320a6af079d90ceeb01307ac92403590a36 Mon Sep 17 00:00:00 2001
+From: luoshanggui <luoshanggui@eswincomputing.com>
+Date: Wed, 18 Jun 2025 15:10:18 +0800
+Subject: [PATCH 585/654] fix : enable npu and dsp in dts Changelogs:
+
+Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702-pcie.dts | 14 +++++++-------
+ 1 file changed, 7 insertions(+), 7 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+index 59ec21fbda7b..c82d35f115ad 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
+@@ -375,29 +375,29 @@ &pcie {
+ };
+ 
+ &d0_npu{
+-	status = "disabled";
++	status = "okay";
+ 	apply_npu_1G_freq;
+ 	npu-supply=<&npu_vcc1>;
+ };
+ 
+ &d0_dsp_subsys {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp0 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp1 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp2 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &d0_dsp3 {
+-	status = "disabled";
++	status = "okay";
+ };
+ 
+ &gpu0 {
+@@ -1112,5 +1112,5 @@ &pinctrl_gpio60_default
+ &dev_llc_d0{
+ 	/* apply_npu_1G_freq; */
+ 	npu-supply=<&npu_vcc1>;
+-	status = "disabled";
++	status = "okay";
+ };
+-- 
+2.50.1
+

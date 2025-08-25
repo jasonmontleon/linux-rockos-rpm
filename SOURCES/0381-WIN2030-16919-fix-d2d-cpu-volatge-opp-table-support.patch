@@ -1,7 +1,7 @@
-From a5a55f4041e20cd566288126730a3a3d7f7785a0 Mon Sep 17 00:00:00 2001
+From 08348c649b5351f9ee885e1266b3e8a54524aae5 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 10:55:39 +0800
-Subject: [PATCH 381/552] WIN2030-16919:fix:d2d cpu volatge & opp table support
+Subject: [PATCH 381/654] WIN2030-16919:fix:d2d cpu volatge & opp table support
 
 Changelogs:
 1.The clocks of Die0 and Die1 have two separate sets of registers,

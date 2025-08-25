@@ -1,7 +1,7 @@
-From c5a8010b6590933e23c1a188bca38db86f506a85 Mon Sep 17 00:00:00 2001
+From ca1e318572e550b6f133113b1e83137e4b37834d Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 18 Mar 2025 15:17:45 +0800
-Subject: [PATCH 448/552] fix:Fix cnoc npu timeout problem.
+Subject: [PATCH 448/654] fix:Fix cnoc npu timeout problem.
 
 Changelogs:
 On boards using the MPQ8785 as the NPU PMIC, performing continuous

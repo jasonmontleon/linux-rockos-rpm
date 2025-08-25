@@ -1,7 +1,7 @@
-From 5032dc9f90728e09e534a7125548032df4297d08 Mon Sep 17 00:00:00 2001
+From 6991ed2d4d72b077cc024e97aae24da82669afd6 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 19:16:26 +0800
-Subject: [PATCH 435/552] drm: eswin: clean hwcursor state when enabling the
+Subject: [PATCH 435/654] drm: eswin: clean hwcursor state when enabling the
  display
 
 When disabling and re-enabling the display, the old hwcursor state may

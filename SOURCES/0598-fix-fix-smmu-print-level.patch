@@ -1,0 +1,32 @@
+From 2dbe34c1a16f768a69a90451775a2f1dc40009e8 Mon Sep 17 00:00:00 2001
+From: donghuawei <donghuawei@eswincomputing.com>
+Date: Thu, 3 Jul 2025 16:44:41 +0800
+Subject: [PATCH 598/654] fix: fix smmu print level
+
+Changelogs:
+	rollback smmu event printk level.
+
+Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
+---
+ drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+index 39691049512d..b06aee3686b3 100644
+--- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
++++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
+@@ -1700,9 +1700,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+ 			if (!ret || !__ratelimit(&rs))
+ 				continue;
+ 
+-			printk("event 0x%02x received:\n", id);
++			dev_dbg(smmu->dev, "event 0x%02x received:\n", id);
+ 			for (i = 0; i < ARRAY_SIZE(evt); ++i)
+-				printk("\t0x%016llx\n",
++				dev_dbg(smmu->dev, "\t0x%016llx\n",
+ 					 (unsigned long long)evt[i]);
+ 
+ 			cond_resched();
+-- 
+2.50.1
+

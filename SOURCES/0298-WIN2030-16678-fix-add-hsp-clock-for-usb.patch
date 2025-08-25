@@ -1,7 +1,7 @@
-From 37cc856ea4ed2aa7b3d816dc5826e28fa20bf927 Mon Sep 17 00:00:00 2001
+From 5b05f20541dd46b62d5d41dc286289074a02c2a2 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 28 Nov 2024 10:41:03 +0800
-Subject: [PATCH 298/552] WIN2030-16678:fix:add hsp clock for usb
+Subject: [PATCH 298/654] WIN2030-16678:fix:add hsp clock for usb
 
 Changelogs:
 	if no this clock,the usb control will not work

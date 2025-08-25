@@ -1,7 +1,7 @@
-From 35c30500830507806b6b0e7bbc2e2bb26d591299 Mon Sep 17 00:00:00 2001
+From ecc462302ab2b45d6543353de442a19062d4d9c8 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 23 Dec 2024 00:30:51 +0800
-Subject: [PATCH 310/552] megrez: add disable-wp/broken-cd in sdio
+Subject: [PATCH 310/654] megrez: add disable-wp/broken-cd in sdio
 
 Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 ---

@@ -1,7 +1,7 @@
-From 10732d0901e0c16b02b565ad6888f33518376359 Mon Sep 17 00:00:00 2001
+From e2206afecd35e6e6da727c18ce9b166a450b46fe Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Viktar=20Siarhiej=C4=8Dyk?= <a@gk.lc>
 Date: Sun, 23 Mar 2025 14:59:46 +0300
-Subject: [PATCH 432/552] Add modules required to run strongswan as per
+Subject: [PATCH 432/654] Add modules required to run strongswan as per
  https://docs.strongswan.org/docs/latest/install/kernelModules.html
 
 ---

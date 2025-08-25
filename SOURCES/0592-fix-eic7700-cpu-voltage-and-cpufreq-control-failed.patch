@@ -1,0 +1,46 @@
+From 617e5454298140ce1d840efdfc53e4aa1aa0fb9a Mon Sep 17 00:00:00 2001
+From: Xiang Xu <xuxiang@eswincomputing.com>
+Date: Wed, 2 Jul 2025 09:43:31 +0800
+Subject: [PATCH 592/654] fix: eic7700 cpu voltage and cpufreq control failed
+
+Changelogs:
+1.  eic7700 cpu voltage and cpufreq control faild
+
+Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
+---
+ drivers/clk/eswin/clk.c | 11 ++++++++---
+ 1 file changed, 8 insertions(+), 3 deletions(-)
+
+diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
+index 18ece1f2da59..c4dc231f62d8 100644
+--- a/drivers/clk/eswin/clk.c
++++ b/drivers/clk/eswin/clk.c
+@@ -381,9 +381,11 @@ static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
+ 			return -EPERM;
+ 		}
+ 		mutex_lock(&lock);
+-		g_cpu_info.cpu_freqhz[clk->numa_id] = rate;
+-		rate = g_cpu_info.cpu_freqhz[0] > g_cpu_info.cpu_freqhz[1] ? 
++		if (clk->numa_id >= 0) {
++			g_cpu_info.cpu_freqhz[clk->numa_id] = rate;
++			rate = g_cpu_info.cpu_freqhz[0] > g_cpu_info.cpu_freqhz[1] ? 
+ 				g_cpu_info.cpu_freqhz[0] : g_cpu_info.cpu_freqhz[1];
++		}
+ 		/*
+ 		 * The CPU clock has now switched to the LP_PLL,
+ 		 * so we can adjust the CPU's supply voltage
+@@ -682,7 +684,10 @@ void eswin_clk_register_pll(struct eswin_pll_clock *clks, int nums,
+ 	mutex_lock(&lock);
+ 	if (g_cpu_info.cpu_no_boost_1_6ghz)
+ 		g_cpu_info.cpu_no_boost_1_6ghz = true == cpu_no_boost_1_6ghz;
+-	g_cpu_info.cpu_freqhz[data->numa_id] = CLK_FREQ_1400M;
++
++	if(data->numa_id >= 0)
++		g_cpu_info.cpu_freqhz[data->numa_id] = CLK_FREQ_1400M;
++
+ 	mutex_unlock(&lock);
+ 
+ 	for (i = 0; i < nums; i++) {
+-- 
+2.50.1
+

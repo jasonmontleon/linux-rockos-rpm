@@ -1,7 +1,7 @@
-From c709b65137559e4f79918d1c36d4d4670f244ff6 Mon Sep 17 00:00:00 2001
+From 8ffb899ad19be7afac461f6832654aea5acd3406 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 24 Oct 2024 10:36:41 +0800
-Subject: [PATCH 201/552] feat:NOC driver adapt to bandwidth test.
+Subject: [PATCH 201/654] feat:NOC driver adapt to bandwidth test.
 
 Changelogs:
 1. In dts, bandwidth measurement is not filtered

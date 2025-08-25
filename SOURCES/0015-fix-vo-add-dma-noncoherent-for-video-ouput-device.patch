@@ -1,7 +1,7 @@
-From 354e739fffc9af3496b266c6b4a8eae015444406 Mon Sep 17 00:00:00 2001
+From f66bbab99b7c1685ed3386d2cc6ae4c872871c4e Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Thu, 23 May 2024 13:14:03 +0800
-Subject: [PATCH 015/552] fix(vo): add dma-noncoherent for video ouput device
+Subject: [PATCH 015/654] fix(vo): add dma-noncoherent for video ouput device
 
 Changelogs:
 1. Fix display corruption by adding dma-noncoherent dts proporty

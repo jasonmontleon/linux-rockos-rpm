@@ -1,0 +1,37 @@
+From 00a71234c94dd41f0e74de7715aa382623304058 Mon Sep 17 00:00:00 2001
+From: hehuan1 <hehuan1@eswincomputing.com>
+Date: Mon, 16 Jun 2025 14:01:19 +0800
+Subject: [PATCH 581/654] fix: pvt0 label info inaccurate
+
+    Changelogs:
+    pvt0 label info inaccurate
+
+Signed-off-by: hehuan1 <hehuan1@eswincomputing.com>
+---
+ drivers/hwmon/eswin_pvt.c | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/drivers/hwmon/eswin_pvt.c b/drivers/hwmon/eswin_pvt.c
+index fd8dec5db85e..f4842c96bbb2 100644
+--- a/drivers/hwmon/eswin_pvt.c
++++ b/drivers/hwmon/eswin_pvt.c
+@@ -51,11 +51,11 @@
+  * and the thresholds bit fields.
+  */
+ static const struct pvt_sensor_info pvt_info_cpu[] = {
+-	PVT_SENSOR_INFO(0, "CPU Core Temperature", hwmon_temp, TEMP, TTHRES),
+-	PVT_SENSOR_INFO(0, "CPU Core Voltage", hwmon_in, VOLT, VTHRES),
+-	PVT_SENSOR_INFO(1, "CPU Core Low-Vt", hwmon_in, LVT, LTHRES),
+-	PVT_SENSOR_INFO(2, "CPU Core UltraLow-Vt", hwmon_in, ULVT, ULTHRES),
+-	PVT_SENSOR_INFO(3, "CPU Core Standard-Vt", hwmon_in, SVT, STHRES),
++	PVT_SENSOR_INFO(0, "SoC Temperature", hwmon_temp, TEMP, TTHRES),
++	PVT_SENSOR_INFO(0, "SoC Voltage", hwmon_in, VOLT, VTHRES),
++	PVT_SENSOR_INFO(1, "SoC Low-Vt", hwmon_in, LVT, LTHRES),
++	PVT_SENSOR_INFO(2, "SoC UltraLow-Vt", hwmon_in, ULVT, ULTHRES),
++	PVT_SENSOR_INFO(3, "SoC Standard-Vt", hwmon_in, SVT, STHRES),
+ };
+ 
+ static const struct pvt_sensor_info pvt_info_ddr[] = {
+-- 
+2.50.1
+

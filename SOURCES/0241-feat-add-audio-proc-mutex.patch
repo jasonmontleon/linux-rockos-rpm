@@ -1,7 +1,7 @@
-From 07a46b1f5316c766f1c451f794410aae948ae53f Mon Sep 17 00:00:00 2001
+From 36a5d9363a0ea761738c9d03c00c9b2d5565d2c1 Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Fri, 8 Nov 2024 14:56:51 +0800
-Subject: [PATCH 241/552] feat:add audio proc mutex.
+Subject: [PATCH 241/654] feat:add audio proc mutex.
 
 Changelogs:
 add audio proc mutex.

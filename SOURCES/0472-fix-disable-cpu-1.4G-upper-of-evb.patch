@@ -1,7 +1,7 @@
-From ba93876bf24d3c9516349d30f0ffed5938d3afbe Mon Sep 17 00:00:00 2001
+From 1a34c17b9f1478ab9e1622556689895c360bcec6 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 14 Apr 2025 21:24:55 +0800
-Subject: [PATCH 472/552] fix:disable cpu 1.4G upper of evb
+Subject: [PATCH 472/654] fix:disable cpu 1.4G upper of evb
 
 Changelogs:
 1. Delete cpu opp

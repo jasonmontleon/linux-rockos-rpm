@@ -1,7 +1,7 @@
-From 4afe3a23c329eb0ecefc49ff5976ca68214ec719 Mon Sep 17 00:00:00 2001
+From 825797c3cbfaf0f37a04fcc9a99f9e0522d446af Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Mon, 2 Sep 2024 16:41:42 +0800
-Subject: [PATCH 248/552] WIN2030-16070:feat:add eic7x pinctrl driver
+Subject: [PATCH 248/654] WIN2030-16070:feat:add eic7x pinctrl driver
 
 Changelogs:
 	1. add eic7x pinctrl driver

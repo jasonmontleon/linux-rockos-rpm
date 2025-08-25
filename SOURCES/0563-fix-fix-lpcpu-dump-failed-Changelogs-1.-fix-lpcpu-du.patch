@@ -1,0 +1,63 @@
+From 3690bdbd9bf277e39cf1464b557990e2df0e766d Mon Sep 17 00:00:00 2001
+From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
+Date: Mon, 16 Jun 2025 15:07:27 +0800
+Subject: [PATCH 563/654] fix:fix lpcpu dump failed Changelogs: 1. fix lpcpu
+ dump failed
+
+Signed-off-by: yuzaiqiang <yuzaiqiang@eswincomputing.com>
+---
+ arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts | 10 +++++-----
+ 1 file changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
+index 2661819c021c..c0ae9e0f4518 100644
+--- a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
++++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
+@@ -827,7 +827,7 @@ &fan_control {
+ 
+ &d0_i2c0 {
+ 	/* PS_PMBUS */
+-	status = "okay";
++	status = "disabled";
+ 	i2c-sda-hold-time-ns = <0x40>;
+ 	ina226@44 {
+ 		compatible = "ti,ina226";
+@@ -861,7 +861,7 @@ npu_vcc1:npu_svcc{
+ 
+ &d0_i2c2 {
+ 	/* Temperature Sensor */
+-	status = "okay";
++	status = "disabled";
+ 	tmp102@48 {
+ 		compatible = "ti,tmp102";
+ 		reg = <0x48>;
+@@ -872,7 +872,7 @@ tmp102@48 {
+ 
+ &d0_i2c3 {
+ 	/* mipi csi0/csi1 */
+-	status = "okay";
++	status = "disabled";
+ };
+ 
+ &d0_i2c4 {
+@@ -882,7 +882,7 @@ &d0_i2c4 {
+ 
+ &d0_i2c5 {
+ 	/* AT24C02C EEPROM */
+-	status = "okay";
++	status = "disabled";
+ 	eswin,syscfg = <&d0_sys_con 0x3C0 16>;
+ 	eeprom@50 {
+ 		compatible = "atmel,24c02";
+@@ -915,7 +915,7 @@ &d0_aon_i2c0 {
+ 	clock-frequency = <400000>;
+ 	pinctrl-names = "default";
+ 	pinctrl-0 = <&pinctrl_i2c10_default>;
+-	status = "okay";
++	status = "disabled";
+ 
+ 	adc@48 {
+ 		compatible = "ti,ads1115";
+-- 
+2.50.1
+

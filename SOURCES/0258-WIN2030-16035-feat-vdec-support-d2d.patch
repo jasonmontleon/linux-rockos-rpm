@@ -1,7 +1,7 @@
-From 273476d4743c683c3bd1850faaf06836f0a1cc94 Mon Sep 17 00:00:00 2001
+From aaa92b10fa3b4473770bb93c84bf81db6d9d323d Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Mon, 9 Sep 2024 17:40:19 +0800
-Subject: [PATCH 258/552] WIN2030-16035:feat:vdec support d2d
+Subject: [PATCH 258/654] WIN2030-16035:feat:vdec support d2d
 
 Changelogs:
   1. vdec support d2d feature.

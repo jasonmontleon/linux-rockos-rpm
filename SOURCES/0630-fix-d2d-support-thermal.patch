@@ -1,0 +1,64 @@
+From 79dbe03da8d8c08bc53cdbf3e6621f88dfe95bda Mon Sep 17 00:00:00 2001
+From: wangguosheng <wangguosheng@eswincomputing.com>
+Date: Mon, 14 Jul 2025 18:01:21 +0800
+Subject: [PATCH 630/654] fix:d2d support thermal
+
+Changelogs:
+1. d2d support thermal
+
+Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
+---
+ arch/riscv/configs/eic7702_defconfig | 21 ++++++++++++++++++++-
+ 1 file changed, 20 insertions(+), 1 deletion(-)
+
+diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
+index 0637f2b612f6..32b36f7a820b 100644
+--- a/arch/riscv/configs/eic7702_defconfig
++++ b/arch/riscv/configs/eic7702_defconfig
+@@ -42,9 +42,12 @@ CONFIG_RISCV_SBI_V01=y
+ # CONFIG_RISCV_BOOT_SPINWAIT is not set
+ CONFIG_CMDLINE="earlycon=sbi console=ttyS0,115200n8 clk_ignore_unused cma_pernuma=0x20000000 disable_bypass=false firmware_class.path=/lib/firmware/eic7x/"
+ CONFIG_CMDLINE_EXTEND=y
+-# CONFIG_SUSPEND is not set
++CONFIG_SUSPEND=y
++CONFIG_ENERGY_MODEL=y
+ CONFIG_CPU_FREQ=y
+ CONFIG_CPU_FREQ_STAT=y
++CONFIG_CPU_FREQ_DEFAULT_GOV_PERFORMANCE=y
++CONFIG_CPU_FREQ_GOV_PERFORMANCE=y
+ CONFIG_CPU_FREQ_GOV_POWERSAVE=y
+ CONFIG_CPU_FREQ_GOV_USERSPACE=y
+ CONFIG_CPU_FREQ_GOV_ONDEMAND=y
+@@ -474,6 +477,15 @@ CONFIG_SENSORS_ESWIN_DUMMY_PVT=y
+ CONFIG_SENSORS_INA2XX=y
+ CONFIG_SENSORS_TMP102=y
+ CONFIG_SENSORS_PAC1934=y
++CONFIG_THERMAL=y
++CONFIG_THERMAL_STATISTICS=y
++CONFIG_THERMAL_WRITABLE_TRIPS=y
++CONFIG_THERMAL_DEFAULT_GOV_POWER_ALLOCATOR=y
++CONFIG_THERMAL_GOV_STEP_WISE=y
++CONFIG_THERMAL_GOV_POWER_ALLOCATOR=y
++CONFIG_CPU_THERMAL=y
++CONFIG_DEVFREQ_THERMAL=y
++CONFIG_THERMAL_EMULATION=y
+ CONFIG_WATCHDOG=y
+ CONFIG_DW_WATCHDOG=y
+ CONFIG_REGULATOR=y
+@@ -769,6 +781,13 @@ CONFIG_ARCH_ESWIN_EIC7702_SOC=y
+ CONFIG_ESWIN_DSP=m
+ CONFIG_ESWIN_NPU=m
+ CONFIG_EIC7X_D2D=y
++CONFIG_PM=y
++CONFIG_PM_SLEEP=y
++CONFIG_PM_DEVFREQ=y
++CONFIG_DEVFREQ_GOV_USERSPACE=y
++CONFIG_DEVFREQ_GOV_PERFORMANCE=y
++CONFIG_DEVFREQ_GOV_SIMPLE_ONDEMAND=y
++CONFIG_PM_DEVFREQ_EVENT=y
+ CONFIG_EXTCON=y
+ CONFIG_MEMORY=y
+ CONFIG_ESWIN_BUDDY=y
+-- 
+2.50.1
+

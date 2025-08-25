@@ -1,7 +1,7 @@
-From 2c5ce3a694738916145200e4365541e72b58f4cc Mon Sep 17 00:00:00 2001
+From 063c18e728a42566c5f5635129af0294e9527223 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 3 Dec 2024 14:21:54 +0800
-Subject: [PATCH 329/552] WIN2030-14758:feat:Add API for remapping malloc
+Subject: [PATCH 329/654] WIN2030-14758:feat:Add API for remapping malloc
  buffer
 
 Changelogs:

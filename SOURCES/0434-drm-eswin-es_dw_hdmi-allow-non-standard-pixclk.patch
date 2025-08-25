@@ -1,7 +1,7 @@
-From d38fc8012de0e0f3f425be762b00a13efc2f4263 Mon Sep 17 00:00:00 2001
+From 2b5a1850d00843cd195e4a7f5813c301d08f9edb Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 21 Mar 2025 16:04:18 +0800
-Subject: [PATCH 434/552] drm: eswin: es_dw_hdmi: allow non-standard pixclk
+Subject: [PATCH 434/654] drm: eswin: es_dw_hdmi: allow non-standard pixclk
 
 The mode_valid function currently only allows pixel clocks that exactly
 matches existing configurations.

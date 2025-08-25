@@ -1,7 +1,7 @@
-From e920669609a416ebf68f2bd87fbee503612c8210 Mon Sep 17 00:00:00 2001
+From 2e8d1c7077738f95c703e64e263f3285fa23b783 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Jun 2025 14:30:55 +0800
-Subject: [PATCH 538/552] riscv: configs: enable Motorcomm PHY driver
+Subject: [PATCH 538/654] riscv: configs: enable Motorcomm PHY driver
 
 StarPro64 uses Motorcomm YT8531 PHYs.
 

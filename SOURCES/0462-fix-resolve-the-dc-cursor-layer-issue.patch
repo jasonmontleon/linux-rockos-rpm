@@ -1,7 +1,7 @@
-From 6acbe78cc4d8dbd13f48364934f3965e80f41d32 Mon Sep 17 00:00:00 2001
+From 1ae3286c885db066c42d654d12a37c06f2e5bdb1 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 3 Apr 2025 16:23:23 +0800
-Subject: [PATCH 462/552] fix:resolve the dc cursor layer issue.
+Subject: [PATCH 462/654] fix:resolve the dc cursor layer issue.
 
 Changelogs:
 	resolve the issue of residual shadows in the cursor layer.

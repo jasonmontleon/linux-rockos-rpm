@@ -1,0 +1,176 @@
+From 3bda970e82c82b1006627e979bad8316a3e79f17 Mon Sep 17 00:00:00 2001
+From: lei <leizhilin@eswincomputing.com>
+Date: Mon, 9 Jun 2025 14:24:29 +0800
+Subject: [PATCH 572/654] feat(2d):add hardware load statistics with proc show
+
+Changelogs:
+    1.use timer to measure hardware load every 1s;
+    2.if power is not POWER_ON, clear reg info;
+    3.add proc show for load info;
+
+Signed-off-by: lei <leizhilin@eswincomputing.com>
+---
+ .../hal/kernel/arch/gc_hal_kernel_hardware.c  | 66 +++++++++++++++++++
+ .../hal/kernel/arch/gc_hal_kernel_hardware.h  |  7 +-
+ .../os/linux/kernel/gc_hal_kernel_device.c    | 15 ++++-
+ 3 files changed, 86 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
+index 0cd8c0ab4dae..78ebbed1cb00 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
++++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
+@@ -684,6 +684,59 @@ _PowerStateTimerFunc(gctPOINTER Data)
+ }
+ #endif
+ 
++static gceSTATUS threadCheckHardwareUsage(gckHARDWARE hardware)
++{
++    gctBOOL powerMutexAcquired = gcvFALSE;
++    gceSTATUS status = gcvSTATUS_OK;
++    gceCHIPPOWERSTATE power = gcvPOWER_INVALID;
++
++    gcmkVERIFY_OK(gckOS_AcquireMutex(hardware->os, hardware->powerMutex, 0));
++    powerMutexAcquired = gcvTRUE;
++
++    gcmkONERROR(gckHARDWARE_QueryPowerStateUnlocked(hardware, &power));
++
++    /* exit when power not on and clear cycle info */
++    if (power != gcvPOWER_ON) {
++        hardware->totalCycle = 0;
++        hardware->totalIdleCycle = 0;
++        hardware->load = 0;
++        goto OnError;
++    }
++
++    gcmkONERROR(gckHARDWARE_QueryCycleCount(hardware, &hardware->totalCycle, &hardware->totalIdleCycle));
++
++    if (hardware->totalIdleCycle) {
++        hardware->load = (gctUINT32)(
++            (gctUINT64)(hardware->totalCycle - hardware->totalIdleCycle) * 100 / hardware->totalCycle);
++    }
++
++    // printk("core: %d, time: %u, total: %u, idle: %u, load: %u%%\n", hardware->core, now_time / 1000,
++    //     hardware->totalCycle, hardware->totalIdleCycle, hardware->load);
++
++    gcmkONERROR(gckHARDWARE_CleanCycleCount(hardware));
++
++    gcmkVERIFY_OK(gckOS_ReleaseMutex(hardware->os, hardware->powerMutex));
++    powerMutexAcquired = gcvFALSE;
++
++OnError:
++    if (powerMutexAcquired == gcvTRUE) {
++        gcmkVERIFY_OK(gckOS_ReleaseMutex(hardware->os, hardware->powerMutex));
++    }
++
++    return status;
++}
++
++static void _HardwareUsageTimerFunc(gctPOINTER Data)
++{
++    gckHARDWARE hardware = (gckHARDWARE)Data;
++
++    threadCheckHardwareUsage(hardware);
++
++    gckOS_StartTimer(hardware->os, hardware->hardwareLoadTimer, HARDWARE_USAGE_MEASURE_TIME_MS);
++
++    return;
++}
++
+ static gceSTATUS
+ _VerifyDMA(gckOS Os,
+            gckHARDWARE Hardware,
+@@ -2097,6 +2150,12 @@ gckHARDWARE_Construct(gckOS Os, gckKERNEL Kernel, gckHARDWARE *Hardware)
+                                     &hardware->powerStateTimer));
+ #endif
+ 
++    gcmkVERIFY_OK(gckOS_CreateTimer(Os, _HardwareUsageTimerFunc,
++                                    (gctPOINTER)hardware,
++                                    &hardware->hardwareLoadTimer));
++
++    gckOS_StartTimer(Os, hardware->hardwareLoadTimer, HARDWARE_USAGE_MEASURE_TIME_MS);
++
+     for (i = 0; i < gcvENGINE_GPU_ENGINE_COUNT; i++) {
+         gcmkONERROR(gckOS_AtomConstruct(Os,
+                                         &hardware->pageTableDirty[i]));
+@@ -2173,6 +2232,11 @@ gckHARDWARE_Construct(gckOS Os, gckKERNEL Kernel, gckHARDWARE *Hardware)
+         }
+ #endif
+ 
++        if (hardware->hardwareLoadTimer != gcvNULL) {
++            gcmkVERIFY_OK(gckOS_StopTimer(Os, hardware->hardwareLoadTimer));
++            gcmkVERIFY_OK(gckOS_DestroyTimer(Os, hardware->hardwareLoadTimer));
++        }
++
+         for (i = 0; i < gcvENGINE_GPU_ENGINE_COUNT; i++) {
+             if (hardware->pageTableDirty[i] != gcvNULL)
+                 gcmkVERIFY_OK(gckOS_AtomDestroy(Os, hardware->pageTableDirty[i]));
+@@ -2310,6 +2374,8 @@ gckHARDWARE_Destroy(gckHARDWARE Hardware)
+     gcmkVERIFY_OK(gckOS_StopTimer(Hardware->os, Hardware->powerStateTimer));
+     gcmkVERIFY_OK(gckOS_DestroyTimer(Hardware->os, Hardware->powerStateTimer));
+ #endif
++    gcmkVERIFY_OK(gckOS_StopTimer(Hardware->os, Hardware->hardwareLoadTimer));
++    gcmkVERIFY_OK(gckOS_DestroyTimer(Hardware->os, Hardware->hardwareLoadTimer));
+ 
+     for (i = 0; i < gcvENGINE_GPU_ENGINE_COUNT; i++)
+         gcmkVERIFY_OK(gckOS_AtomDestroy(Hardware->os, Hardware->pageTableDirty[i]));
+diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
+index 878241b4b49b..40a8772331e0 100644
+--- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
++++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
+@@ -64,7 +64,7 @@ extern "C" {
+ #endif
+ 
+ #define EVENT_ID_INVALIDATE_PIPE 29
+-
++#define HARDWARE_USAGE_MEASURE_TIME_MS 1000
+ #define gcmSEMAPHORESTALL(buffer)                                                                       \
+     do {                                                                                                \
+         /* Arm the PE-FE Semaphore. */                                                                  \
+@@ -251,6 +251,11 @@ struct _gckHARDWARE {
+     gctBOOL                     largeVA;
+ 
+     gctSIGNAL                   feIdleSignal;
++
++    gctPOINTER                  hardwareLoadTimer;
++    gctUINT32                   totalCycle;
++    gctUINT32                   totalIdleCycle;
++    gctUINT32                   load;
+ };
+ 
+ gceSTATUS
+diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
+index 9699a7b40d14..67e66b773423 100644
+--- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
++++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
+@@ -549,7 +549,19 @@ gc_load_show(void *m, void *data)
+                     load[i] = (hi_total_cycle_count[i] - hi_total_idle_cycle_count[i]) * 100 / hi_total_cycle_count[i];
+ 
+                 len += fs_printf(ptr, "core      : %d\n", i);
+-                len += fs_printf(ptr + len, "load      : %d%%\n", load[i]);
++                len += fs_printf(ptr + len, "load          : %d%%\n", load[i]);
++                len += fs_printf(ptr + len, "\n");
++            }
++        }
++    }
++
++    for (i = gcvCORE_2D; i <= gcvCORE_2D1; i++) {
++        if (device->kernels[i]) {
++            if (device->kernels[i]->hardware) {
++                gckHARDWARE Hardware = device->kernels[i]->hardware;
++                len += fs_printf(ptr,       "core        : %d\n", i);
++                len += fs_printf(ptr + len, "pooling_ms  : %d\n", HARDWARE_USAGE_MEASURE_TIME_MS);
++                len += fs_printf(ptr + len, "curr_load   : %u%%\n", Hardware->load);
+                 len += fs_printf(ptr + len, "\n");
+             }
+         }
+@@ -2452,6 +2464,7 @@ threadRoutine(void *ctxt)
+ 
+             return 0;
+         }
++
+         gckOS_Signal(kernel->os, kernel->hardware->feIdleSignal, gcvTRUE);
+ 
+         gckKERNEL_Notify(kernel, gcvNOTIFY_INTERRUPT);
+-- 
+2.50.1
+

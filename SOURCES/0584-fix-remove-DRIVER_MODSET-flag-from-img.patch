@@ -1,0 +1,48 @@
+From cb357bc304f5b5cb2b0c2d779e705b45d04404dd Mon Sep 17 00:00:00 2001
+From: zhang yizhong <zhangyizhong@eswincomputing.com>
+Date: Wed, 25 Jun 2025 13:30:30 +0800
+Subject: [PATCH 584/654] fix:remove DRIVER_MODSET flag from img.
+
+Changelogs:
+1. remove DRIVER_MODSET flag from img drm feature. On win2030,
+Display driver has drm feature of DRIVER_MODSET. Indeed, IMG
+GPU driver cannot do modeset. Mutter failed to run wayland
+mode without this change.
+
+Signed-off-by: zhangyizhong <zhangyizhong@eswincomputing.com>
+---
+ .../img/img-volcanic/services/system/eswin_cpu/sysconfig.c    | 4 +---
+ 1 file changed, 1 insertion(+), 3 deletions(-)
+
+diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+index 6dd85240ea67..2f250b946a7a 100644
+--- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
++++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
+@@ -262,7 +262,6 @@ void SysDevDeInit(PVRSRV_DEVICE_CONFIG *psDevConfig)
+ {
+         int ret;
+ 
+-        printk(KERN_WARNING "eswin zdbg1107 %s\n", __func__);
+ 	PhysHeapsDestroy(psDevConfig->pasPhysHeaps);
+ 
+ 	/* eswin, assert the reset */
+@@ -468,7 +467,6 @@ static PVRSRV_ERROR DeviceConfigCreate(void *pvOSDevice, PVRSRV_DEVICE_CONFIG **
+ 
+ 	// get gpu clk, it is supposed to be 800MHz
+ 	rgx_freq = clk_get_rate(psDevConfig->aclk);
+-	printk(KERN_ALERT "%s:%d, zdbg1107 eswin print : read back aclk  %dHZ \n", __func__, __LINE__, rgx_freq);
+ 
+ 	ret = clk_prepare_enable(psDevConfig->aclk);
+ 	if (ret)
+@@ -509,7 +507,7 @@ static PVRSRV_ERROR DeviceConfigCreate(void *pvOSDevice, PVRSRV_DEVICE_CONFIG **
+ 		printk(KERN_ALERT "eswin print %s: failed to enable gray_clk\n", __func__);
+ 		return ret;
+ 	}
+-	printk(KERN_ALERT "eswin print %s: gpu clk enable ok\n", __func__);
++	printk(KERN_ALERT "esgpu 20250625 %s: gpu clk enable ok\n", __func__);
+ 	clk_disable_unprepare(psDevConfig->aclk);
+ 	clk_disable_unprepare(psDevConfig->cfg_clk);
+ 	clk_disable_unprepare(psDevConfig->gray_clk);
+-- 
+2.50.1
+

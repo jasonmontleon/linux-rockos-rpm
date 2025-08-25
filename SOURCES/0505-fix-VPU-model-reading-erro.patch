@@ -1,7 +1,7 @@
-From e3fb754da7199cff1439d89cb69c88cbbc4c1c66 Mon Sep 17 00:00:00 2001
+From 60c637e702fbd86d76eb304f219ee9d798bebe18 Mon Sep 17 00:00:00 2001
 From: zhaodonghui <zhaodonghui@eswincomputing.com>
 Date: Mon, 12 May 2025 17:42:25 +0800
-Subject: [PATCH 505/552] fix:VPU model reading erro
+Subject: [PATCH 505/654] fix:VPU model reading erro
 
 Changelogs:
 1. The model info can indicate the VPU card and distinguish

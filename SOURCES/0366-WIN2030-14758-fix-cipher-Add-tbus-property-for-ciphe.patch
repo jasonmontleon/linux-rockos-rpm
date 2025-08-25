@@ -1,7 +1,7 @@
-From a7a7a33741f70506b5ae6012f3268d6cf736bf43 Mon Sep 17 00:00:00 2001
+From a22fb5b5c861ed2d1a50291e70582cd49c975967 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 30 Dec 2024 10:38:49 +0800
-Subject: [PATCH 366/552] WIN2030-14758:fix(cipher):Add tbus property for
+Subject: [PATCH 366/654] WIN2030-14758:fix(cipher):Add tbus property for
  cipher in die1 dts
 
 Changelogs:

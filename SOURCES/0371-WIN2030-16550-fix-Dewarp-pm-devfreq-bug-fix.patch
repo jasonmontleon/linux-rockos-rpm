@@ -1,7 +1,7 @@
-From 76d69448d4497d74911b995c56e0f6cf7643e105 Mon Sep 17 00:00:00 2001
+From 7fd4d9e75469cb2f5b85f71f286312b8ef2b5707 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Thu, 2 Jan 2025 10:50:58 +0800
-Subject: [PATCH 371/552] WIN2030-16550:fix:Dewarp pm devfreq bug fix
+Subject: [PATCH 371/654] WIN2030-16550:fix:Dewarp pm devfreq bug fix
 
 Changelogs:
 	dewarp pm devfreq bug fix when not set CONFIG_PM_DEVFREQ
