@@ -1,4 +1,4 @@
-From 238f2e59c576fbf63221eb0312600f485323d0f5 Mon Sep 17 00:00:00 2001
+From 751a6dafc92f9cb0e531e4ecc5e13b5f5fd430c1 Mon Sep 17 00:00:00 2001
 From: wangjinlong <wangjinlong@eswincomputing.com>
 Date: Tue, 8 Jul 2025 10:07:34 +0800
 Subject: [PATCH 613/654] fix: clear log for wifi stop
@@ -39,5 +39,5 @@ index 2012dee635af..73eee17dd2ab 100644
  			return -EOPNOTSUPP;
  		}
 -- 
-2.50.1
+2.51.0
 

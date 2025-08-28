@@ -1,4 +1,4 @@
-From 1358e6e69e96afd4acf5399fece0199bbea05af5 Mon Sep 17 00:00:00 2001
+From d730011f2aed072fa00835bf94b9934da445e543 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Thu, 27 Feb 2025 09:03:07 +0800
 Subject: [PATCH 461/654] feat : add e31 event op Changelogs:
@@ -87,5 +87,5 @@ index acdbe89ac814..5a09746e08dc 100644
  		npu_info->depcnt = dependency_count[i];
  		pcer_cnt[pcer]++;
 -- 
-2.50.1
+2.51.0
 

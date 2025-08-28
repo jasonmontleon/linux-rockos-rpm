@@ -1,4 +1,4 @@
-From fe85f51757bc0503e710bc2018d85ba6d34d4c73 Mon Sep 17 00:00:00 2001
+From eb5dd33681bdfb646ff01f009f5c960bfcd037e1 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:35:09 +0800
 Subject: [PATCH 405/654] config: sync from eic7700_defconfig
@@ -79,5 +79,5 @@ index 6af7ca38d0c9..9e2a3c4483ce 100644
 +CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 -- 
-2.50.1
+2.51.0
 

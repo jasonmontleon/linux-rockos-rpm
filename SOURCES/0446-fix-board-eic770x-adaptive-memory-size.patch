@@ -1,4 +1,4 @@
-From 0b86e49a43d3ac92a017b629e6fd5c5289c912d7 Mon Sep 17 00:00:00 2001
+From 8486b575dd79e6f966ba6d65e14c10a7fb7cdbd6 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 20 Mar 2025 18:09:24 +0800
 Subject: [PATCH 446/654] fix:board: eic770x: adaptive memory size
@@ -141,5 +141,5 @@ index a8ac0f6b857c..e4500856aa35 100644
  	};
  
 -- 
-2.50.1
+2.51.0
 

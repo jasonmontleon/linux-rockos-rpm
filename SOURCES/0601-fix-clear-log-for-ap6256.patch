@@ -1,4 +1,4 @@
-From 39b854d639b63e7bba733972d2cf01241d66abaf Mon Sep 17 00:00:00 2001
+From 36c3171b14f407518a7c726922ef97145d955257 Mon Sep 17 00:00:00 2001
 From: wangjinlong <wangjinlong@eswincomputing.com>
 Date: Wed, 2 Jul 2025 15:12:04 +0800
 Subject: [PATCH 601/654] fix: clear log for ap6256
@@ -1573,5 +1573,5 @@ index e061b342c51d..0f5175e40141 100644
  	}
  
 -- 
-2.50.1
+2.51.0
 

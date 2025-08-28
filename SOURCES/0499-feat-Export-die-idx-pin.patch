@@ -1,4 +1,4 @@
-From 673c559004b3e1619748d4850b0e783c0e4e7d96 Mon Sep 17 00:00:00 2001
+From cc32f8a0f4198b438102eac1ac4dce49aca22282 Mon Sep 17 00:00:00 2001
 From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
 Date: Fri, 18 Apr 2025 09:28:00 +0800
 Subject: [PATCH 499/654] feat: Export die idx pin
@@ -116,5 +116,5 @@ index 0a54b5c27bb6..fd7737b62c61 100644
  	/* apply_npu_1G_freq; */
  	npu-supply=<&npu_vcc1>;
 -- 
-2.50.1
+2.51.0
 

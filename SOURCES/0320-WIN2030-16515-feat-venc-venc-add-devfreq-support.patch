@@ -1,4 +1,4 @@
-From 8f5352fc3b45255f6ec227a84b8f22627f9be370 Mon Sep 17 00:00:00 2001
+From eb970ca5355789601ede0ae7d3c9257db1d93405 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 22 Oct 2024 15:15:39 +0800
 Subject: [PATCH 320/654] WIN2030-16515:feat(venc):venc add devfreq support
@@ -168,5 +168,5 @@ index 97743c8172cd..0244069626c1 100644
  		ret = venc_sys_reset_init(pdev, vcrt);
  		if (ret < 0) {
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From 111a8d267570d0a4650c6decef884fe820bcedd9 Mon Sep 17 00:00:00 2001
+From 3a8f332f78af67fad7c676e7111db79caa6d8318 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Sat, 31 Aug 2024 12:24:04 +0800
 Subject: [PATCH 164/654] feat:Disable CONFIG_PM
@@ -41,5 +41,5 @@ index 585d21eb8e08..b87608ed3c65 100644
  CONFIG_PRINTK_TIME=y
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
 -- 
-2.50.1
+2.51.0
 

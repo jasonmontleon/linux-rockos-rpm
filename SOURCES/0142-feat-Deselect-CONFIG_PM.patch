@@ -1,4 +1,4 @@
-From 1ae626013c407bf94122a9cdc66b9ee226f6ffd8 Mon Sep 17 00:00:00 2001
+From 68fb9f00131198bffa50ae18db25dcaecd3f43f1 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 8 Aug 2024 19:28:10 +0800
 Subject: [PATCH 142/654] feat:Deselect CONFIG_PM
@@ -409,5 +409,5 @@ index 1472511bd299..1e00c6863ffd 100644
 -CONFIG_VIDEO_ESWIN_VDEC=y
 -CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 -- 
-2.50.1
+2.51.0
 

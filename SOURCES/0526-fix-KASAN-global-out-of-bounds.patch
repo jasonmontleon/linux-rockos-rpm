@@ -1,4 +1,4 @@
-From b33a8bfce5adb63518b851f9abc3791e4b01fe35 Mon Sep 17 00:00:00 2001
+From bd0a29006ceb79527541cc1863b6847df8e91a34 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Thu, 29 May 2025 15:14:32 +0800
 Subject: [PATCH 526/654] fix: KASAN:global out of bounds
@@ -24,5 +24,5 @@ index e49d6957cda1..8024b9d2241b 100644
  
  static void es_dvp2axi_parse_dts(struct es_dvp2axi_device *dvp2axi_dev)
 -- 
-2.50.1
+2.51.0
 

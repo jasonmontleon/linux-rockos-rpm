@@ -1,4 +1,4 @@
-From b9161fb5579b0c31329e2f2cfa4021e03d308c12 Mon Sep 17 00:00:00 2001
+From 7074fa7f952557be535aa7d01ca0306863d4fb75 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 24 Apr 2025 19:06:56 +0800
 Subject: [PATCH 495/654] feat:adapt ap6256
@@ -587,5 +587,5 @@ index 87dccde52505..7ed068b81d95 100644
  DHDCFLAGS = -Wall -Wstrict-prototypes -Wno-date-time                      \
  	-Wno-maybe-uninitialized                                              \
 -- 
-2.50.1
+2.51.0
 

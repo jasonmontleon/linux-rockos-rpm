@@ -1,4 +1,4 @@
-From 58ccf3b89c3d4cb400e26ec9d45598c41eda3c4a Mon Sep 17 00:00:00 2001
+From 0faf90ee33add1fe319e12eb6bfbb5b9b786fc90 Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Wed, 12 Mar 2025 15:28:49 +0800
 Subject: [PATCH 441/654] feat:support capture for osm codec
@@ -84,5 +84,5 @@ index e829b0110363..18329fc835d7 100644
  
  static void aic3x_configure_ocmv(struct device *dev, struct aic3x_priv *aic3x)
 -- 
-2.50.1
+2.51.0
 

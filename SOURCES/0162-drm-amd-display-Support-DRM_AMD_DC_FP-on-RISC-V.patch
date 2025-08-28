@@ -1,4 +1,4 @@
-From e912bfd925103bfa558e1391887c2dadb3449686 Mon Sep 17 00:00:00 2001
+From ecc369d47ee66722901057e777d1e688dcc9c51f Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:15 -0800
 Subject: [PATCH 162/654] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
@@ -81,5 +81,5 @@ index 0ba9a7997d56..96f7110e8e41 100644
  ifneq ($(call gcc-min-version, 70100),y)
  IS_OLD_GCC = 1
 -- 
-2.50.1
+2.51.0
 

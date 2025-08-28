@@ -1,4 +1,4 @@
-From 5da012110a7cb53fc5b9e95071e7148a7dfb32d3 Mon Sep 17 00:00:00 2001
+From e06a4e16c6b0b80cf1dce7cce5aeb31a4d2ab906 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 4 Jul 2024 17:28:16 +0800
 Subject: [PATCH 095/654] fix:bootspi support power managemnt
@@ -325,5 +325,5 @@ index 1205ce3941ae..9d3447538e38 100644
  };
  module_platform_driver(eswin_bootspi_driver);
 -- 
-2.50.1
+2.51.0
 

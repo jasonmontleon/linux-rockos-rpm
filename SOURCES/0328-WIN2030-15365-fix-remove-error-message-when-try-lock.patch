@@ -1,4 +1,4 @@
-From b0383eb629223b5d32c94873372475f1ee236e78 Mon Sep 17 00:00:00 2001
+From 920e706e221f03b4c927d7d77314bc2cd3ffab1d Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Wed, 27 Nov 2024 15:58:57 +0800
 Subject: [PATCH 328/654] WIN2030-15365: fix : remove error message when try
@@ -66,5 +66,5 @@ index 47dadc142fed..6679f371b06b 100644
  		break;
  	case ES_NPU_IOCTL_HETERO_CMD:
 -- 
-2.50.1
+2.51.0
 

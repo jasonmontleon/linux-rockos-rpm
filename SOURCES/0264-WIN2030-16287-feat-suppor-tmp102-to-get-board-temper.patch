@@ -1,4 +1,4 @@
-From e30aa62e66e615731fd06653e8dd55bc346eb989 Mon Sep 17 00:00:00 2001
+From f24c20393f6dee4473802fd2427151b8e7bb6087 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 12 Sep 2024 09:18:33 +0800
 Subject: [PATCH 264/654] WIN2030-16287:feat:suppor tmp102 to get board
@@ -75,5 +75,5 @@ index f0de31f666a0..1e9388335206 100644
  CONFIG_WATCHDOG=y
  CONFIG_DW_WATCHDOG=y
 -- 
-2.50.1
+2.51.0
 

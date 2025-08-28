@@ -1,4 +1,4 @@
-From b1d97c21943a3381af27ad40fc78b4b1c3dde4b3 Mon Sep 17 00:00:00 2001
+From f50f94f376d0c037844916b81345d68c1ff89c36 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 5 Feb 2025 16:51:09 +0800
 Subject: [PATCH 409/654] feature:Add eic770x OTP driver
@@ -1525,5 +1525,5 @@ index 000000000000..1a21cad10532
 +} CHIP_CTRL_OFFSET_T;
 +#endif /* __OTP_MAP_EIC770X_H__ */
 -- 
-2.50.1
+2.51.0
 

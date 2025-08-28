@@ -1,4 +1,4 @@
-From 9ed1f83fb80af80bcd0046046cac90ef179f67b3 Mon Sep 17 00:00:00 2001
+From c584771715596f7d60d2c6728428a21b50ca46b5 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 29 Apr 2024 08:59:44 +0800
 Subject: [PATCH 027/654] fix(IOMMU):Add ARCH_HAS_TEARDOWN_DMA_OPS
@@ -43,5 +43,5 @@ index d78b8c3f72a8..f10259ca60ae 100644
  menu "ESWIN EIC770X SoC Family Selection"
  	depends on ARCH_ESWIN_EIC770X_SOC_FAMILY
 -- 
-2.50.1
+2.51.0
 

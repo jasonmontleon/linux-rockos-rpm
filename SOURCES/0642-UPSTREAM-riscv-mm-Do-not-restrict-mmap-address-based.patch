@@ -1,4 +1,4 @@
-From 82528237288af4464eeb007d471530bf6fa71edf Mon Sep 17 00:00:00 2001
+From 67d0950ddff8b911d62933101c07545ba94209d1 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:47 -0700
 Subject: [PATCH 642/654] UPSTREAM: riscv: mm: Do not restrict mmap address
@@ -58,5 +58,5 @@ index 990271e8724e..590e6d1cde70 100644
  
  #ifdef CONFIG_64BIT
 -- 
-2.50.1
+2.51.0
 

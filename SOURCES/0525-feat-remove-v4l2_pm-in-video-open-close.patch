@@ -1,4 +1,4 @@
-From 6c6b3bbce08518b48a2ba98b348a37a9b2b9975c Mon Sep 17 00:00:00 2001
+From d21904a6a41b1129be24f8beeb112df921e9790c Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 28 May 2025 15:34:42 +0800
 Subject: [PATCH 525/654] feat: remove v4l2_pm in video open/close
@@ -62,5 +62,5 @@ index 298f9cd38193..c697cbc975cc 100644
  	if (dvp2axidev->sditf_cnt > 1) {
  		for (i = 0; i < dvp2axidev->sditf_cnt; i++) {
 -- 
-2.50.1
+2.51.0
 

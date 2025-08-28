@@ -1,4 +1,4 @@
-From 69e1d488b8524bf1a04535b2ff8267e83417097c Mon Sep 17 00:00:00 2001
+From 7d0fe1e271f210e39ef152732628846975087825 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 24 Jun 2025 10:40:42 +0800
 Subject: [PATCH 580/654] fix:modify temperature to 65-75-105
@@ -261,5 +261,5 @@ index ec38ce8bf5d8..610cddc7a6d9 100644
  		};
  
 -- 
-2.50.1
+2.51.0
 

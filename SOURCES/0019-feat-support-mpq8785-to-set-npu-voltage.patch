@@ -1,4 +1,4 @@
-From cc93b55f21b4b7ec9d80a281457b46ad894ddf2a Mon Sep 17 00:00:00 2001
+From ad99547aec2b1ec4784961464aec1c89c6b918d7 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 15:15:28 +0800
 Subject: [PATCH 019/654] feat:support mpq8785 to set npu voltage
@@ -1334,5 +1334,5 @@ index 000000000000..60c48ae47d31
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.50.1
+2.51.0
 

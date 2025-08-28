@@ -1,4 +1,4 @@
-From 3ba17f8faa4075a6f2b1cf4d9a7eaa871a735b19 Mon Sep 17 00:00:00 2001
+From 4714fe54b2b5be8335987a4c7f55d4b43c667c33 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 8 Oct 2024 16:36:27 +0800
 Subject: [PATCH 190/654] feat:NPU & DSP driver port.
@@ -552,5 +552,5 @@ index 29de4587ff04..3602d3c9a0f6 100644
  ccflags-y += -I$(srctree)/drivers/memory/eswin/es_dev_buf/include/linux
  
 -- 
-2.50.1
+2.51.0
 

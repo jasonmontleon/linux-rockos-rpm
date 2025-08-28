@@ -1,4 +1,4 @@
-From 0c365b305f971c134029e2464ef9aa186d6b281d Mon Sep 17 00:00:00 2001
+From c223756f5478d47e1b78229c62deacb0afe72566 Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Wed, 16 Jul 2025 13:47:57 +0800
 Subject: [PATCH 635/654] fix(2d):close power mangemnet
@@ -30,5 +30,5 @@ index 22f6ebe226a6..dcc6b0558a33 100644
  MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
  
 -- 
-2.50.1
+2.51.0
 

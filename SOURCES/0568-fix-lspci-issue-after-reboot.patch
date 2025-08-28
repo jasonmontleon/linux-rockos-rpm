@@ -1,4 +1,4 @@
-From afc78d407c5146b8b3f35cf06a75d097353f0645 Mon Sep 17 00:00:00 2001
+From a9a5ed8f8cbd60406eb426e84c33474503741c8a Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 19 Jun 2025 09:38:05 +0800
 Subject: [PATCH 568/654] fix:lspci issue after reboot
@@ -39,5 +39,5 @@ index 30aa28ee5b0e..59ec21fbda7b 100644
  		compatible = "ti,tps549d22";
  		reg = <0x10>;
 -- 
-2.50.1
+2.51.0
 

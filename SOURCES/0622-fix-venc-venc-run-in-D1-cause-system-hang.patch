@@ -1,4 +1,4 @@
-From 0b0eaef5b0aaf82aa34dd80085dc3a1a89d5c8f2 Mon Sep 17 00:00:00 2001
+From 1929cb6ae0e1aebae5fb7ea9cc2dd3a98f30322d Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 14 Jul 2025 09:35:34 +0800
 Subject: [PATCH 622/654] fix(venc):venc run in D1 cause system hang
@@ -139,5 +139,5 @@ index d241fb9096bf..9b024aaaab99 100644
  
  	ret = venc_trans_device_nodes(pdev, numa_id);
 -- 
-2.50.1
+2.51.0
 

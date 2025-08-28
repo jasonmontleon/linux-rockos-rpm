@@ -1,4 +1,4 @@
-From 7d86cbca50ba293c39bbf970774f1e65d0ac8ef1 Mon Sep 17 00:00:00 2001
+From 9a27892c9ff426d8ff7abaf473f4a23c00bdd384 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 24 Jan 2025 17:02:26 +0800
 Subject: [PATCH 391/654] WIN2030-14758:feat:Dump tbu attached device list
@@ -519,5 +519,5 @@ index 98637b5eac8a..40f0ba5749a8 100644
 +void print_tcu_node_status(const char *call_name, int call_line, int nid);
  #endif
 -- 
-2.50.1
+2.51.0
 

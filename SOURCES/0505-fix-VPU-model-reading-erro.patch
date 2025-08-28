@@ -1,4 +1,4 @@
-From 60c637e702fbd86d76eb304f219ee9d798bebe18 Mon Sep 17 00:00:00 2001
+From 1ebb3fc4c7875f80a3ca29b90e9016157b56ec9f Mon Sep 17 00:00:00 2001
 From: zhaodonghui <zhaodonghui@eswincomputing.com>
 Date: Mon, 12 May 2025 17:42:25 +0800
 Subject: [PATCH 505/654] fix:VPU model reading erro
@@ -1087,5 +1087,5 @@ index fd7737b62c61..03f548efbc80 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 -- 
-2.50.1
+2.51.0
 

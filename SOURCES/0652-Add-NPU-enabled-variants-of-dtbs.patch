@@ -1,4 +1,4 @@
-From 875d0799aac644cc1b690dca818d5055c171d265 Mon Sep 17 00:00:00 2001
+From 4be7c2d7c4ef3b54627910df5072e4d9ca0ab9f5 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sun, 23 Feb 2025 13:25:01 -0500
 Subject: [PATCH 652/654] Add NPU enabled variants of dtbs
@@ -2808,5 +2808,5 @@ index 000000000000..57fc6dcc6bb0
 +	};
 +};
 -- 
-2.50.1
+2.51.0
 

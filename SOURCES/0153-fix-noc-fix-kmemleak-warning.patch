@@ -1,4 +1,4 @@
-From 6a3d56a3f73d842c2398c7818d6bc13e820566aa Mon Sep 17 00:00:00 2001
+From 8701a7331fd167113eb0c8b0a1d49bb127141859 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 16 Aug 2024 16:17:38 +0800
 Subject: [PATCH 153/654] fix(noc):fix kmemleak warning
@@ -38,5 +38,5 @@ index c694e34115ea..6c58a90c54fe 100644
  	list_add_tail(&sbm->link, &win2030_noc_ctrl.sbm_link);
  	return 0;
 -- 
-2.50.1
+2.51.0
 

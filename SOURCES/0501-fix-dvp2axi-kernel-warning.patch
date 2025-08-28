@@ -1,4 +1,4 @@
-From bc798d2163353aa5b714d430b132d0b41d4f3146 Mon Sep 17 00:00:00 2001
+From 0e67672e045f3a0921092295926d98e34f88592d Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 9 May 2025 09:46:58 +0800
 Subject: [PATCH 501/654] fix: dvp2axi kernel warning
@@ -1643,5 +1643,5 @@ index b6096c905575..cb8951e5517d 100644
  		return -ENODEV;
  	sensor = sd_to_sensor(dphy, sensor_sd);
 -- 
-2.50.1
+2.51.0
 

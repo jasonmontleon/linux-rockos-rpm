@@ -1,4 +1,4 @@
-From c40d7ead37164a45b32325bbf7963e1503abd1cf Mon Sep 17 00:00:00 2001
+From fc94975987be420b2dd9df0a7a0e0150d86d493c Mon Sep 17 00:00:00 2001
 From: zhangdongchuan <zhangdongchuan@eswincomputing.com>
 Date: Tue, 8 Jul 2025 08:32:18 +0800
 Subject: [PATCH 621/654] feat: Refactor PACMSG
@@ -306,5 +306,5 @@ index 7ee564282545..1aae81c57b2c 100644
  	bool "Show build ID information in stacktraces"
  	depends on PRINTK
 -- 
-2.50.1
+2.51.0
 

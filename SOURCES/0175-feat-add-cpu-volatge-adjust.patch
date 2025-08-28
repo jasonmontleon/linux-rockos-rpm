@@ -1,4 +1,4 @@
-From 07e25ad0abdf8043c5e8e25c0865a80c4fc65ac6 Mon Sep 17 00:00:00 2001
+From 9d8ff54d569692f5dcc48dc5372a5a4e285e9a3d Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 29 Aug 2024 16:17:29 +0800
 Subject: [PATCH 175/654] feat:add cpu volatge adjust
@@ -219,5 +219,5 @@ index c5906c420769..95e222d5194c 100755
  
  struct eswin_clock_data *eswin_clk_init(struct platform_device *, int);
 -- 
-2.50.1
+2.51.0
 

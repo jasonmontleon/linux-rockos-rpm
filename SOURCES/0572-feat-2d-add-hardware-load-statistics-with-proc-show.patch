@@ -1,4 +1,4 @@
-From 3bda970e82c82b1006627e979bad8316a3e79f17 Mon Sep 17 00:00:00 2001
+From e550ef2806c8f91bc151a4cc3236e11ad4c2811c Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Mon, 9 Jun 2025 14:24:29 +0800
 Subject: [PATCH 572/654] feat(2d):add hardware load statistics with proc show
@@ -172,5 +172,5 @@ index 9699a7b40d14..67e66b773423 100644
  
          gckKERNEL_Notify(kernel, gcvNOTIFY_INTERRUPT);
 -- 
-2.50.1
+2.51.0
 

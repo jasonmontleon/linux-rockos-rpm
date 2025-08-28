@@ -1,4 +1,4 @@
-From 435988543f44d62b08fa7c5e5b519ad268721398 Mon Sep 17 00:00:00 2001
+From c9c7f622a37a71e47fe4d3030c65a756d1f46b38 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 24 May 2024 10:47:11 +0800
 Subject: [PATCH 024/654] feat:sata driver to linux 6.6.
@@ -26,12 +26,12 @@ index 0c9b6e662ed4..f57a7581943b 100644
  # CONFIG_NET_VENDOR_ALACRITECH is not set
  # CONFIG_NET_VENDOR_AMAZON is not set
 diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
-index 42b51c9812a0..fcc935629d93 100644
+index 188707d2970e..0f9cdda96215 100644
 --- a/drivers/ata/Kconfig
 +++ b/drivers/ata/Kconfig
-@@ -136,6 +136,15 @@ config SATA_MOBILE_LPM_POLICY
- 	  Note "Minimum power" is known to cause issues, including disk
- 	  corruption, with some disks and should not be used.
+@@ -153,6 +153,15 @@ config SATA_MOBILE_LPM_POLICY
+ 	  Excluding the value 0, higher values represent policies with higher
+ 	  power savings.
  
 +config AHCI_ESWIN
 +	tristate "Eswin AHCI SATA support"
@@ -406,5 +406,5 @@ index 000000000000..d9495dfe9887
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.50.1
+2.51.0
 

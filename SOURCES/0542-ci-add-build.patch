@@ -1,4 +1,4 @@
-From b8985e49e13fd02132a6dd481dc6dcab99b92334 Mon Sep 17 00:00:00 2001
+From 56cfdb52154e5a6c3e006de906d23ca87c26986e Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 18 Nov 2024 03:55:15 +0800
 Subject: [PATCH 542/654] ci: add build
@@ -181,5 +181,5 @@ index 000000000000..881379558a09
 +          path: rockos-${{ matrix.name }}.tar.gz
 +          retention-days: 30
 -- 
-2.50.1
+2.51.0
 

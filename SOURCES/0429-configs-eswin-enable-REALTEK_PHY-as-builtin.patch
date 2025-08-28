@@ -1,4 +1,4 @@
-From f140cf7114fd72713cdd3a6b3f3b607a4e53ec7b Mon Sep 17 00:00:00 2001
+From 0e59bba4964f8c8012e9e012de8191a9ea32f017 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:15:45 +0800
 Subject: [PATCH 429/654] configs: eswin: enable REALTEK_PHY as builtin
@@ -21,5 +21,5 @@ index db1039b3d49a..4e586f315d0a 100644
  # CONFIG_WLAN_VENDOR_ATH is not set
  # CONFIG_WLAN_VENDOR_ATMEL is not set
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From faaa0fee112887cbbd495b5a61e7d6134e0e0eaf Mon Sep 17 00:00:00 2001
+From 83db7778954838a9191bb13a4f50f1ce677ea770 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 22 Apr 2024 15:15:55 +0800
 Subject: [PATCH 007/654] feat(eswin pinctrl):Added eswin pinctrl related
@@ -1433,5 +1433,5 @@ index 000000000000..c464e6964f26
 +MODULE_AUTHOR("luyulin@eswincomputing.com");
 +MODULE_LICENSE("GPL");
 -- 
-2.50.1
+2.51.0
 

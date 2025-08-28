@@ -1,4 +1,4 @@
-From e6222151453d3a505696f6ad7ffda98b68ce7ddf Mon Sep 17 00:00:00 2001
+From bfb557fb206aa0cc763a685bcef361f87090a9d5 Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 11 Jul 2025 17:00:57 +0800
 Subject: [PATCH 619/654] fix: Dual die rng register
@@ -145,5 +145,5 @@ index bd339c496476..e8fa083a2c7f 100644
  #define SCPU_IOC_ALLOCATE_MEM_BY_DRIVER_WITH_DMA_HEAP	_IOWR(SCPU_IOC_MAGIC, 0x1, struct dmabuf_bank_info)
  #define SCPU_IOC_FREE_MEM_BY_DRIVER_WITH_DMA_HEAP	_IOWR(SCPU_IOC_MAGIC, 0x2, struct dmabuf_bank_info)
 -- 
-2.50.1
+2.51.0
 

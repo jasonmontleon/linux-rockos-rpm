@@ -1,4 +1,4 @@
-From d5b932a21d6e9b105832f420b36dc636f3c642ed Mon Sep 17 00:00:00 2001
+From 33d58f7fa15f5f6caa70cc8005154153b42e4133 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 2 Oct 2024 01:14:19 +0800
 Subject: [PATCH 213/654] config: enable landlock
@@ -22,5 +22,5 @@ index 3f122dd04f2f..801434d707a2 100644
  CONFIG_LSM="landlock,lockdown,yama,integrity,apparmor"
  CONFIG_CRYPTO_CBC=m
 -- 
-2.50.1
+2.51.0
 

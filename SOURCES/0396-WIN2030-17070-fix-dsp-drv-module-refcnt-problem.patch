@@ -1,4 +1,4 @@
-From 4860cf3000d8029ee31b1877a2120cceac7a8671 Mon Sep 17 00:00:00 2001
+From 5083c5d126fca1b2df398b973e2510d807ebce16 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Thu, 6 Feb 2025 16:01:28 +0800
 Subject: [PATCH 396/654] WIN2030-17070:fix:dsp drv module refcnt problem
@@ -108,5 +108,5 @@ index 60e9a2ea5a04..0569d1579eba 100644
  }
  static long dsp_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
 -- 
-2.50.1
+2.51.0
 

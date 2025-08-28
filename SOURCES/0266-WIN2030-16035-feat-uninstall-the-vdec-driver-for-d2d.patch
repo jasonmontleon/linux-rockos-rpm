@@ -1,4 +1,4 @@
-From 1c7655e7cbfb72633c30ded5741521bed0bb70bc Mon Sep 17 00:00:00 2001
+From bffc9c247595761641ea08cbef31c905bedeb0af Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 12 Sep 2024 17:53:11 +0800
 Subject: [PATCH 266/654] WIN2030-16035:feat:uninstall the vdec driver for d2d
@@ -210,5 +210,5 @@ index 17a82a6169b0..92e777d40369 100644
  int hantrovcmd_wait_core_idle(u32 core_id, long timeout);
  struct platform_device *vdec_get_platform_device(u32 core_id);
 -- 
-2.50.1
+2.51.0
 

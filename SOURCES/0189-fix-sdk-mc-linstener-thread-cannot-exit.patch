@@ -1,4 +1,4 @@
-From b9434175184abb573462684c3aa41f2fd08d1ef1 Mon Sep 17 00:00:00 2001
+From 9e3fcaa018c33486bde5551dc7565ab5756ac1f4 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Fri, 11 Oct 2024 09:37:19 +0800
 Subject: [PATCH 189/654] fix:sdk mc linstener thread cannot exit
@@ -152,5 +152,5 @@ index 80b75ffc9d78..7fd375c41006 100644
  			return IRQ_HANDLED;
  		}
 -- 
-2.50.1
+2.51.0
 

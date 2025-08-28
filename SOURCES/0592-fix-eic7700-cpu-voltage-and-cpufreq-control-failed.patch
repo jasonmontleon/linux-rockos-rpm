@@ -1,4 +1,4 @@
-From 617e5454298140ce1d840efdfc53e4aa1aa0fb9a Mon Sep 17 00:00:00 2001
+From 068fe97d289a42dae80044e88fcd9a3706345258 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 2 Jul 2025 09:43:31 +0800
 Subject: [PATCH 592/654] fix: eic7700 cpu voltage and cpufreq control failed
@@ -42,5 +42,5 @@ index 18ece1f2da59..c4dc231f62d8 100644
  
  	for (i = 0; i < nums; i++) {
 -- 
-2.50.1
+2.51.0
 

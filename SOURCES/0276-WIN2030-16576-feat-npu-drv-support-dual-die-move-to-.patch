@@ -1,4 +1,4 @@
-From 5e1483c666dd8bdbc6a64c7788f82d8725115d41 Mon Sep 17 00:00:00 2001
+From e2131e4fb1ef4f29f2f81c04c1c857f7e73fa0f2 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 30 Oct 2024 10:16:39 +0800
 Subject: [PATCH 276/654] WIN2030-16576:feat:npu drv support dual die move to
@@ -716,5 +716,5 @@ index a1b4d007cef4..47dadc142fed 100644
  	}
  	dla_debug("destory_npu_dev!\n");
 -- 
-2.50.1
+2.51.0
 

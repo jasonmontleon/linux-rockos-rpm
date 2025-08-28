@@ -1,4 +1,4 @@
-From 8c8293349f7f890685fedeccb10ce89a987104e9 Mon Sep 17 00:00:00 2001
+From db1e3ac145f5cc01173b1d4c20e01dc985c9c6bf Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 10 Jun 2025 16:02:54 +0800
 Subject: [PATCH 550/654] feature: Enable pstore feature
@@ -133,5 +133,5 @@ index af10604c71d3..48d08ffb7203 100644
  CONFIG_NFS_V3_ACL=y
  CONFIG_NFS_V4=y
 -- 
-2.50.1
+2.51.0
 

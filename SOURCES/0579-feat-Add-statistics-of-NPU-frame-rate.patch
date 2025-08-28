@@ -1,4 +1,4 @@
-From 034897fbf54fd8e2a5da9b49ace3d76e5f55a0db Mon Sep 17 00:00:00 2001
+From cfd0581494f4afa92db6b4d547231e0e4ab2ba69 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 24 Jun 2025 09:29:59 +0800
 Subject: [PATCH 579/654] feat:Add statistics of NPU frame rate.
@@ -55,5 +55,5 @@ index bb7316a6a66d..a29b0532de8a 100644
  				      &model->uctx->lock_status);
  	if (last_state == NPU_RT_MUTX_FRAME_DONE) {
 -- 
-2.50.1
+2.51.0
 

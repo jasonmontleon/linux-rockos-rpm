@@ -1,4 +1,4 @@
-From ccbb5cea3ffed974c88edf158c36756f479c707e Mon Sep 17 00:00:00 2001
+From 1e72a4dc87db2dec69774e7948414550abca4c0a Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 16 Oct 2024 16:46:21 +0800
 Subject: [PATCH 195/654] feat:support IPA thermal control
@@ -299,5 +299,5 @@ index 7b44f5b89fa1..cbc638479e46 100644
  			dev_dbg(dev, "EM: OPP:%lu is inefficient\n",
  				table[i].frequency);
 -- 
-2.50.1
+2.51.0
 

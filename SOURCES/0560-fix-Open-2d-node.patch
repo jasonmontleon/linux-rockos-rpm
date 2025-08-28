@@ -1,4 +1,4 @@
-From db6797955c2a6d01328c6182bebe2ebcae1c27ca Mon Sep 17 00:00:00 2001
+From 54e5fc680150a28019fdcba3f83c86581e4ef35d Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Sun, 15 Jun 2025 10:47:13 +0800
 Subject: [PATCH 560/654] fix:Open 2d node.
@@ -25,5 +25,5 @@ index 22a63047b779..30aa28ee5b0e 100644
  
  &vdec0 {
 -- 
-2.50.1
+2.51.0
 

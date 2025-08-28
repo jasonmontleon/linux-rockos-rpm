@@ -1,4 +1,4 @@
-From a22fb5b5c861ed2d1a50291e70582cd49c975967 Mon Sep 17 00:00:00 2001
+From 7361d4c7cfa0eb153b67095eda8600710cb4b88a Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 30 Dec 2024 10:38:49 +0800
 Subject: [PATCH 366/654] WIN2030-14758:fix(cipher):Add tbus property for
@@ -26,5 +26,5 @@ index 454427d67f0c..46a70eb15886 100644
  						   <&d1_sys_con CRYPT_SID_REG_OFFSET 0>;
  			mboxes = <&d1_mbox0 0>;
 -- 
-2.50.1
+2.51.0
 

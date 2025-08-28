@@ -1,4 +1,4 @@
-From 34d9ef3423ffda1d76998b7f150b8d451d596444 Mon Sep 17 00:00:00 2001
+From d289ffc2b73862aeeeb1093e7c0a148a5c0180c4 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:13:32 +0800
 Subject: [PATCH 225/654] sync: sync thermal config for win2030
@@ -45,5 +45,5 @@ index 043710150877..fe6b5b7f98ef 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.50.1
+2.51.0
 

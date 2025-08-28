@@ -1,4 +1,4 @@
-From b2b18dce94a1d923f2da1dafedb19652de33b0d6 Mon Sep 17 00:00:00 2001
+From 221910b2873dd1d41b201fdf74d66bf6bfb2b606 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 21 Feb 2025 17:35:41 +0800
 Subject: [PATCH 439/654] feat:support osm dts
@@ -3317,5 +3317,5 @@ index 000000000000..4cd5da8dfc82
 +
 +#endif /* _AIC3X_H */
 -- 
-2.50.1
+2.51.0
 

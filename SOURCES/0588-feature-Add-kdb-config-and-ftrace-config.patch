@@ -1,4 +1,4 @@
-From 823d4c2e36a9bb2372dd881e1bffbd5e12e89c98 Mon Sep 17 00:00:00 2001
+From 42206ee8e6fd36ad6dfcf63b3a05593f44e54764 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Thu, 26 Jun 2025 17:45:11 +0800
 Subject: [PATCH 588/654] feature: Add kdb config and ftrace config
@@ -82,5 +82,5 @@ index caf1d0cba4cb..174f6aac9374 100644
  CONFIG_MEMTEST=y
  CONFIG_BCMDHD=m
 -- 
-2.50.1
+2.51.0
 

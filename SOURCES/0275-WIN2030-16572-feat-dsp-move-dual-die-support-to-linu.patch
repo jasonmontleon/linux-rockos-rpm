@@ -1,4 +1,4 @@
-From 320d2e115a2381591630c87f1086f0abd71b4e75 Mon Sep 17 00:00:00 2001
+From 86db3f54cda045713966365d7260253683910bd4 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 29 Oct 2024 16:23:18 +0800
 Subject: [PATCH 275/654] WIN2030-16572:feat: dsp move dual die support to
@@ -159,5 +159,5 @@ index 83c309dcae5a..45c8bda644cc 100644
  	if (ret != 0) {
  		dev_err(dsp->dev, "iommu map dsp pts phy error.\n");
 -- 
-2.50.1
+2.51.0
 

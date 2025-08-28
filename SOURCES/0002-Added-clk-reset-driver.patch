@@ -1,4 +1,4 @@
-From b116ed4274154e8b88712a34bc6e967be31eaed2 Mon Sep 17 00:00:00 2001
+From cc987daf7301cfb6ff31877ff6b70c216c04abd6 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 11 Mar 2024 18:50:41 +0800
 Subject: [PATCH 002/654] Added clk & reset driver
@@ -2891,7 +2891,7 @@ index 000000000000..a330e7339382
 +MODULE_AUTHOR("Shunli Wang <wangshunli@cambricon.com>");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index ccd59ddd7610..cab4e8002205 100644
+index 9f25eb3aec25..5f714eb0a914 100644
 --- a/drivers/reset/Kconfig
 +++ b/drivers/reset/Kconfig
 @@ -319,6 +319,12 @@ config RESET_ZYNQ
@@ -3194,5 +3194,5 @@ index 000000000000..9ad472bca433
 +}
 +arch_initcall(win2030_reset_init);
 -- 
-2.50.1
+2.51.0
 

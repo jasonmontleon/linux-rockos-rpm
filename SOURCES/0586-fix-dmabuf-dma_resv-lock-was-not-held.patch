@@ -1,4 +1,4 @@
-From f81459cc1deb9143dba7af0aa80a245910554460 Mon Sep 17 00:00:00 2001
+From 317faf5af332e90a4637060131d5599fc90f3f70 Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Fri, 27 Jun 2025 10:22:09 +0800
 Subject: [PATCH 586/654] fix:dmabuf dma_resv lock was not held
@@ -323,5 +323,5 @@ index 28b07d9b1431..4836c62ab6ac 100644
      dma_buf_detach(buf_desc->dmabuf, buf_desc->attachment);
  
 -- 
-2.50.1
+2.51.0
 

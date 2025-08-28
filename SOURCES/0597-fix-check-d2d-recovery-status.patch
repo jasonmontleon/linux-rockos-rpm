@@ -1,4 +1,4 @@
-From a33994a41a3be510a957aa2f1abe9792fb376d7e Mon Sep 17 00:00:00 2001
+From 27fdecb1fa01840bbcfdcbd4f596e43fafa105e3 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 1 Jul 2025 21:03:30 +0800
 Subject: [PATCH 597/654] fix:check d2d recovery status
@@ -189,5 +189,5 @@ index 3db082bdd542..9cdaf32f1ea8 100644
  	ctl->clk = devm_clk_get(&pdev->dev, "pclk");
  	if (IS_ERR(ctl->clk)) {
 -- 
-2.50.1
+2.51.0
 

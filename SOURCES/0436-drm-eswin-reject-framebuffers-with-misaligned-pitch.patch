@@ -1,4 +1,4 @@
-From a4943dbbd5fb061c2d3189185e13fbc641e7b762 Mon Sep 17 00:00:00 2001
+From ff2f1d435f2984ab178fb941b879cfff1da2a2c0 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 22:20:04 +0800
 Subject: [PATCH 436/654] drm: eswin: reject framebuffers with misaligned pitch
@@ -38,5 +38,5 @@ index 93b97db5cb73..e2e01ac5fa3f 100644
  }
  
 -- 
-2.50.1
+2.51.0
 

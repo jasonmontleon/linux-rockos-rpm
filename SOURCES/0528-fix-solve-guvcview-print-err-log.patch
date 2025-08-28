@@ -1,4 +1,4 @@
-From ee2b88ca95b74307975008129ed1b358b060c44a Mon Sep 17 00:00:00 2001
+From caee1e7389212db4cc5b00d1e4a8f8b5119f4da7 Mon Sep 17 00:00:00 2001
 From: luoxianke <luoxianke@eswincomputing.com>
 Date: Wed, 28 May 2025 14:29:45 +0800
 Subject: [PATCH 528/654] fix:solve guvcview print err log
@@ -36,5 +36,5 @@ index e3a7160eb1c3..d926dc00e8a4 100644
      }
  
 -- 
-2.50.1
+2.51.0
 

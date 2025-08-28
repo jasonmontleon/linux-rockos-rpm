@@ -1,4 +1,4 @@
-From bda6ad256fbef1f5ea2f43909459c75b915b17a3 Mon Sep 17 00:00:00 2001
+From 37607c8cf82c1dc020a9365f755cd150ea471a68 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 13:21:56 +0800
 Subject: [PATCH 380/654] WIN2030-16919:feat:Apply numa early node patch from
@@ -78,5 +78,5 @@ index c787e94cc898..01c1cb38456f 100644
  
  	pr_notice("Kernel command line: %s\n", saved_command_line);
 -- 
-2.50.1
+2.51.0
 

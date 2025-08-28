@@ -1,4 +1,4 @@
-From ce666d0952a6e62b0507e1b1e2f146ecdaffc260 Mon Sep 17 00:00:00 2001
+From 3376247157360212aba3e55fe721969d98ba56f8 Mon Sep 17 00:00:00 2001
 From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
 Date: Thu, 22 Aug 2024 17:33:25 +0800
 Subject: [PATCH 251/654] WIN2030-16122: feat: e31 support dual die Changelogs:
@@ -35,5 +35,5 @@ index e9fe4bc75031..2e4419128df6 100644
  
  			#cooling-cells = <2>;
 -- 
-2.50.1
+2.51.0
 

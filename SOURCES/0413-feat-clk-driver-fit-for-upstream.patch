@@ -1,4 +1,4 @@
-From c0080916bbadee75394bab53d7795422e8b8cdbd Mon Sep 17 00:00:00 2001
+From 87d72703b78a839cf25d3935766ecefc98611f45 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 14 Feb 2025 15:15:18 +0800
 Subject: [PATCH 413/654] feat:clk driver fit for upstream
@@ -9796,7 +9796,7 @@ index 09f44434f854..5a2de002017c 100644
  	help
  	  Say Y here if you want PCIe controller support for the ESWIN.
 diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 7a895a05cef8..8ec599eabfab 100644
+index 6017c11332cb..ba98c6bb4725 100644
 --- a/drivers/reset/Kconfig
 +++ b/drivers/reset/Kconfig
 @@ -322,9 +322,12 @@ source "drivers/reset/starfive/Kconfig"
@@ -12174,5 +12174,5 @@ index e544fa4da748..000000000000
 -
 -#endif /*endif __DT_ESWIN_EIC770X_RESET_H__*/
 -- 
-2.50.1
+2.51.0
 

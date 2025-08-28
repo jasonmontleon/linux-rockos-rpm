@@ -1,4 +1,4 @@
-From af2adbcd935b989b8374155784e0ec0cd5c24b3c Mon Sep 17 00:00:00 2001
+From 260cfddd8228c4b1d6fa61b7321e9ca2031e20ee Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 7 Mar 2025 00:14:11 +0800
 Subject: [PATCH 426/654] config: net: enable net options for eic7700x
@@ -92,5 +92,5 @@ index 07ee8a6b05f9..33c92223468f 100644
  CONFIG_EDAC_ESWIN=y
  CONFIG_RTC_CLASS=y
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From d77c1ab0e65699219f05b58607abda7be2a615fa Mon Sep 17 00:00:00 2001
+From 7c2c9fd8aea8a9433558de403946495fa3112f3b Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 30 Jul 2024 19:16:18 +0800
 Subject: [PATCH 130/654] fix:use timer 500ms to try gpu idle
@@ -84,5 +84,5 @@ index 882b453ec897..c210a5237740 100644
      /* End of event handling. */
      Event->notifyState = -1;
 -- 
-2.50.1
+2.51.0
 

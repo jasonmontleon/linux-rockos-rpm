@@ -1,4 +1,4 @@
-From 989342039c1b2c77f632007596eb973815d3dadb Mon Sep 17 00:00:00 2001
+From 4c1e41688f35d2ff6ee4851609f2ec8a10d6f2e0 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 31 Mar 2025 17:39:31 +0800
 Subject: [PATCH 451/654] fix(vc):opt error log for redup interrupts
@@ -39,5 +39,5 @@ index 0686cc8dbd04..39829260fa5d 100644
  			return IRQ_HANDLED;
  		}
 -- 
-2.50.1
+2.51.0
 

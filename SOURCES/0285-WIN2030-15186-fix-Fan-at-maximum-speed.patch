@@ -1,4 +1,4 @@
-From 37a15321fefb0c1d76afbaa8a5b72b690e542a0d Mon Sep 17 00:00:00 2001
+From 9317ef49460b793fa21bb6ae98c9dbf574e4d476 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 21 Nov 2024 15:51:28 +0800
 Subject: [PATCH 285/654] WIN2030-15186:fix:Fan at maximum speed
@@ -60,5 +60,5 @@ index b1b48b5ec94b..5e39c7b49eb5 100644
  			state.period,state.duty_cycle);
  	ret = pwm_apply_might_sleep(ctl->pwm, &state);
 -- 
-2.50.1
+2.51.0
 

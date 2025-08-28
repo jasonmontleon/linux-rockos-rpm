@@ -1,4 +1,4 @@
-From 4cdf642ad632a7f770bc71d0c26a40e6689c9bb2 Mon Sep 17 00:00:00 2001
+From 282434f96eaec12ba9b697a083f00584890a6bad Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:00 -0800
 Subject: [PATCH 639/654] UPSTREAM: riscv: mm: Use hint address in mmap if
@@ -87,5 +87,5 @@ index 4f6af8c6cfa0..990271e8724e 100644
  #define DEFAULT_MAP_WINDOW	TASK_SIZE
  #define STACK_TOP_MAX		TASK_SIZE
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From a3e8cdb1b9127742d048786b38e99391f50d0643 Mon Sep 17 00:00:00 2001
+From e0aef0e473df790adca7f0dad4b0a96c402b078e Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 22 May 2024 14:27:49 +0800
 Subject: [PATCH 029/654] feat(DRM): Add DSI support for linux 6.6
@@ -1899,5 +1899,5 @@ index 000000000000..96ae0171f379
 +#endif //_ES_PANEL_H__
 \ No newline at end of file
 -- 
-2.50.1
+2.51.0
 

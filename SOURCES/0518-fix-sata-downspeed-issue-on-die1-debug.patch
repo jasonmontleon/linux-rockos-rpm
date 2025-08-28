@@ -1,4 +1,4 @@
-From e477b2843bcf5f78fb9f436b11875eaf98d023f3 Mon Sep 17 00:00:00 2001
+From 990df717062d911bcd3989dc83eaeb5821d27e4e Mon Sep 17 00:00:00 2001
 From: ouyanghui <ouyanghui@eswincomputing.com>
 Date: Fri, 23 May 2025 10:53:12 +0800
 Subject: [PATCH 518/654] fix:sata downspeed issue on die1 debug
@@ -52,5 +52,5 @@ index 47240248f468..ff22d11488d7 100644
  
      win2030_tbu_power(&pdev->dev, true);
 -- 
-2.50.1
+2.51.0
 

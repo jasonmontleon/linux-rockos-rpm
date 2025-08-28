@@ -1,4 +1,4 @@
-From 0731c9ff39772eddc3c8356f96a8fe3e7d0cb713 Mon Sep 17 00:00:00 2001
+From 3bc0202abeebba65512b94bc2700a1feefa95c1a Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Tue, 21 May 2024 09:32:04 +0800
 Subject: [PATCH 018/654] feat:Porting eswin audio to 6.6 kernel
@@ -3329,5 +3329,5 @@ index 000000000000..14c4980c8267
 +
 +#endif /* __I2S_H */
 -- 
-2.50.1
+2.51.0
 

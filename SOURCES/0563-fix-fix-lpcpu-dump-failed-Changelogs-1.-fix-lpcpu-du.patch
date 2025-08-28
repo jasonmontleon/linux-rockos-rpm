@@ -1,4 +1,4 @@
-From 3690bdbd9bf277e39cf1464b557990e2df0e766d Mon Sep 17 00:00:00 2001
+From 650930dfa5214d1b3f898a0ea0413835977cf632 Mon Sep 17 00:00:00 2001
 From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
 Date: Mon, 16 Jun 2025 15:07:27 +0800
 Subject: [PATCH 563/654] fix:fix lpcpu dump failed Changelogs: 1. fix lpcpu
@@ -59,5 +59,5 @@ index 2661819c021c..c0ae9e0f4518 100644
  	adc@48 {
  		compatible = "ti,ads1115";
 -- 
-2.50.1
+2.51.0
 

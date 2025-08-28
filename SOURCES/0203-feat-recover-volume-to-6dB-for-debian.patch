@@ -1,4 +1,4 @@
-From c61a27043ea82b2a0dfe12f055f6c30007ca2217 Mon Sep 17 00:00:00 2001
+From abd52d0ec4ed4dd68b653154120f7968887fa58c Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 18 Oct 2024 18:05:32 +0800
 Subject: [PATCH 203/654] feat:recover volume to -6dB for debian
@@ -220,5 +220,5 @@ index 3c01c33f2737..dee9086d612e 100644
  }
  EXPORT_SYMBOL_GPL(es8328_probe);
 -- 
-2.50.1
+2.51.0
 

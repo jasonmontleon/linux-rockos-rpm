@@ -1,4 +1,4 @@
-From 675d4274d22cd2383a14b09875001701b8b58dff Mon Sep 17 00:00:00 2001
+From 74dcc1502e493d1dfa751de862ca3282413563ae Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 30 Jul 2024 10:24:25 +0800
 Subject: [PATCH 135/654] fix(DW200): Fix generic pm crash issue
@@ -201,5 +201,5 @@ index 7ee5a88a803c..78a843e5f85d 100644
  
  static const struct dev_pm_ops dewarp_pm_ops = {
 -- 
-2.50.1
+2.51.0
 

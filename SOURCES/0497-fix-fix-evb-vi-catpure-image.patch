@@ -1,4 +1,4 @@
-From 40e55e8b6bbf3a1ad9e8936764ab05239a029438 Mon Sep 17 00:00:00 2001
+From 6a48ead665df764f0770889a1ef1e4ef5b52ac8e Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 7 May 2025 19:46:49 +0800
 Subject: [PATCH 497/654] fix: fix evb vi catpure image
@@ -161,5 +161,5 @@ index e841e682e55e..e19690b47b9a 100644
  MODULE_PARM_DESC(debug, "Debug level (0-1)");
  
 -- 
-2.50.1
+2.51.0
 

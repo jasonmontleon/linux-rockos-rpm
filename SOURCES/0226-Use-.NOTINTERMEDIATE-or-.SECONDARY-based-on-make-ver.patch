@@ -1,4 +1,4 @@
-From 42646f71dd8736a648922a74cc85f5f131126cd3 Mon Sep 17 00:00:00 2001
+From 0d45ac55420985382fbde75812081f40810f1fa8 Mon Sep 17 00:00:00 2001
 From: Jeegar Lakhani <jeegar.lakhani@sifive.com>
 Date: Mon, 26 Aug 2024 22:35:26 -0700
 Subject: [PATCH 226/654] Use .NOTINTERMEDIATE or .SECONDARY based on make
@@ -28,5 +28,5 @@ index 60174af49e4a..087e156a263f 100644
  define symlink-source-file
  @if [ ! -e $(dir $@) ]; then mkdir -p $(dir $@); fi
 -- 
-2.50.1
+2.51.0
 

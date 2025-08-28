@@ -1,4 +1,4 @@
-From 9fa6aa7c789cdecdbfe4be9cc894f3619de85874 Mon Sep 17 00:00:00 2001
+From faef5434f98c4087126987b16227fb3caf19df47 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 11 Apr 2025 10:31:07 +0800
 Subject: [PATCH 471/654] fix: dsp pm notifier problem
@@ -147,5 +147,5 @@ index a5cc197fe138..df24ad88695c 100644
  	dsp_free_hw(dsp);
  	return 0;
 -- 
-2.50.1
+2.51.0
 

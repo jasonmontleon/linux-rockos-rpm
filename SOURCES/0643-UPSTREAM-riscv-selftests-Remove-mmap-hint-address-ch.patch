@@ -1,4 +1,4 @@
-From 0648eef89a5b4e97d91029ab86c25887dc215568 Mon Sep 17 00:00:00 2001
+From fb1e2323d82000f434310bb016d1d97cb201dd4e Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:46 -0700
 Subject: [PATCH 643/654] UPSTREAM: riscv: selftests: Remove mmap hint address
@@ -128,5 +128,5 @@ index f170c62cc2ca..75918d15919f 100644
  {
  	void *value1 = mmap(NULL, sizeof(int), PROT, FLAGS, 0, 0);
 -- 
-2.50.1
+2.51.0
 

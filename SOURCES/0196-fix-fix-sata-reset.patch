@@ -1,4 +1,4 @@
-From 9b27686e79a119f69005babf5fc1a99d433f6322 Mon Sep 17 00:00:00 2001
+From 1acdd4fc3f5c446ea4e7aab8f807a7a24c21a9c9 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 18 Oct 2024 13:36:16 +0800
 Subject: [PATCH 196/654] fix:fix sata reset
@@ -288,5 +288,5 @@ index c97431f008a2..47240248f468 100644
  }
  
 -- 
-2.50.1
+2.51.0
 

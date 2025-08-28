@@ -1,4 +1,4 @@
-From 9496b1feba2807e535ef9ea1341c336ec247dfb0 Mon Sep 17 00:00:00 2001
+From f0cbfd3b2b377b0a6e2df2b82ca1019fbb19528a Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Fri, 13 Jun 2025 14:41:23 +0800
 Subject: [PATCH 562/654] feat:npu driver print valt and rate
@@ -35,5 +35,5 @@ index 24e9c95160fa..e0099786ac87 100644
  	stat->current_frequency = nvdla_dev->rate;
  
 -- 
-2.50.1
+2.51.0
 

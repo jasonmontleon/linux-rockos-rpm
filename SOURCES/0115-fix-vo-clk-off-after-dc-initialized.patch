@@ -1,4 +1,4 @@
-From 73eef008af34abb22385ae5df0fade2a79bde4b4 Mon Sep 17 00:00:00 2001
+From 646a48ed82a31e33a1161e28d0c55a41df0d3d26 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 22 Jul 2024 17:31:42 +0800
 Subject: [PATCH 115/654] fix(vo): clk off after dc initialized
@@ -27,5 +27,5 @@ index 4d5eaec87f5d..2eddebbd2ddb 100644
  
  err_cleanup_planes:
 -- 
-2.50.1
+2.51.0
 

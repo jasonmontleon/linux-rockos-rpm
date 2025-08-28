@@ -1,4 +1,4 @@
-From ddc025692bb652cf37b7e64a7630df6bdb7e7622 Mon Sep 17 00:00:00 2001
+From 8b7b8d1823bf15a37b866e8c1ac765754dec2b03 Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/654] Merge patch series "membarrier: riscv: Core
@@ -348,5 +348,5 @@ index 4e715b9b278e..809194cd779f 100644
  	 */
  	smp_mb();	/* exit from system call is not a mb */
 -- 
-2.50.1
+2.51.0
 

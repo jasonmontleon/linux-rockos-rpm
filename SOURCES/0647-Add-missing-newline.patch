@@ -1,4 +1,4 @@
-From fdf7fd6eb38a19febf58d1b5888c2c5f28511028 Mon Sep 17 00:00:00 2001
+From 3653dc2c87041706032265511a6cd4c48ce91bad Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:04:41 -0500
 Subject: [PATCH 647/654] Add missing newline
@@ -32,5 +32,5 @@ index 0044a4be10e5..749c03efda29 100644
 \ No newline at end of file
 +    depends on ESWIN_NPU
 -- 
-2.50.1
+2.51.0
 

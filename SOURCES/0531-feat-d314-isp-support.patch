@@ -1,4 +1,4 @@
-From b3f04b85419b3c3adec885cd2756d3607ff389fb Mon Sep 17 00:00:00 2001
+From b0b5b041e52fad2299664f57ca92ebc5d7d6ce02 Mon Sep 17 00:00:00 2001
 From: luoxianke <luoxianke@eswincomputing.com>
 Date: Tue, 3 Jun 2025 16:01:34 +0800
 Subject: [PATCH 531/654] feat: d314 isp support
@@ -25,5 +25,5 @@ index 92ce38d3db41..685702bdb4f4 100644
  
  &isp_1 {
 -- 
-2.50.1
+2.51.0
 

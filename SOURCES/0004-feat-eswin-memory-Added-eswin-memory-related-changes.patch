@@ -1,4 +1,4 @@
-From e5130b6c49d0e88e2aa8fae2df080d0cbff83d36 Mon Sep 17 00:00:00 2001
+From 2021ecb92f784f038a1395bd55528e0b2e3a0032 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 11 Apr 2024 18:09:23 +0800
 Subject: [PATCH 004/654] feat(eswin memory):Added eswin memory related changes
@@ -3193,5 +3193,5 @@ index 000000000000..d7f3c91491f1
 +
 +#endif /* __LINUX_ESWIN_NPU_H */
 -- 
-2.50.1
+2.51.0
 

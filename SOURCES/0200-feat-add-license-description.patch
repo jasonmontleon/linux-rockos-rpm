@@ -1,4 +1,4 @@
-From 6f9ca5aa22c4bc51e0a7dd903b108929e78b17ee Mon Sep 17 00:00:00 2001
+From 47c677334fc7eed9e4b94a4b02749322c0b2f5af Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Tue, 22 Oct 2024 09:35:00 +0800
 Subject: [PATCH 200/654] feat:add license description
@@ -205,5 +205,5 @@ index a41252b2f632..768f9bb68041 100644
  #define __VDEC_ALLOCATOR__H
  
 -- 
-2.50.1
+2.51.0
 

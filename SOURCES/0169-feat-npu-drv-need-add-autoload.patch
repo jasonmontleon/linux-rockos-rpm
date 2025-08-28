@@ -1,4 +1,4 @@
-From 428153cf17d8e853578701a7a513240ad77cb922 Mon Sep 17 00:00:00 2001
+From 3ab4200718ddac08cfb339bd8a90fa47c10ca33b Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 4 Sep 2024 15:53:40 +0800
 Subject: [PATCH 169/654] feat:npu drv need add autoload
@@ -24,5 +24,5 @@ index a5455fcffd01..d045a32b5b59 100644
  void *npu_get_win_engine(void *arg_nvdla_dev)
  {
 -- 
-2.50.1
+2.51.0
 

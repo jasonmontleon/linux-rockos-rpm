@@ -1,4 +1,4 @@
-From 18aec7d2d3f429d996a3b5560f643f46278c3833 Mon Sep 17 00:00:00 2001
+From 3e7bc8216e9bebe810a6431f92e2548f07362778 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 22 Jan 2025 14:30:11 +0800
 Subject: [PATCH 389/654] WIN2030-16813:fix:adjust critical temperature
@@ -26,5 +26,5 @@ index 42978f4a4cdc..8d83f448e86f 100644
  					type            = "critical";
  				};
 -- 
-2.50.1
+2.51.0
 

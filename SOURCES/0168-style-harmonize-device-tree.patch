@@ -1,4 +1,4 @@
-From 98e9356102ea37af5adefad50ff06e16a3de87bd Mon Sep 17 00:00:00 2001
+From 55b0f0b6e9c2906e86e234e8cbd5c2e67d776f10 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 27 Aug 2024 10:26:01 +0800
 Subject: [PATCH 168/654] style:harmonize device-tree
@@ -50,5 +50,5 @@ index c4a9d6f97f95..f20c86264c3e 100644
  	aliases {
  		serial0 = &d0_uart0;
 -- 
-2.50.1
+2.51.0
 

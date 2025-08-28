@@ -1,4 +1,4 @@
-From e2580b374af826de80f35e9a5ef364fa59a3bdef Mon Sep 17 00:00:00 2001
+From d45d86f3e5998b858d104d5bb36010872afe5dca Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 13 Jun 2025 13:38:36 +0800
 Subject: [PATCH 607/654] feat: Support ESWIN's TRNG
@@ -344,5 +344,5 @@ index e8fa083a2c7f..bd339c496476 100644
  #define SCPU_IOC_ALLOCATE_MEM_BY_DRIVER_WITH_DMA_HEAP	_IOWR(SCPU_IOC_MAGIC, 0x1, struct dmabuf_bank_info)
  #define SCPU_IOC_FREE_MEM_BY_DRIVER_WITH_DMA_HEAP	_IOWR(SCPU_IOC_MAGIC, 0x2, struct dmabuf_bank_info)
 -- 
-2.50.1
+2.51.0
 

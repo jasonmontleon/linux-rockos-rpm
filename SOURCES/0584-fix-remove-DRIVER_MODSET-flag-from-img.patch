@@ -1,4 +1,4 @@
-From cb357bc304f5b5cb2b0c2d779e705b45d04404dd Mon Sep 17 00:00:00 2001
+From 9313bb6e697aa73fa51f363328a7973814dd2241 Mon Sep 17 00:00:00 2001
 From: zhang yizhong <zhangyizhong@eswincomputing.com>
 Date: Wed, 25 Jun 2025 13:30:30 +0800
 Subject: [PATCH 584/654] fix:remove DRIVER_MODSET flag from img.
@@ -44,5 +44,5 @@ index 6dd85240ea67..2f250b946a7a 100644
  	clk_disable_unprepare(psDevConfig->cfg_clk);
  	clk_disable_unprepare(psDevConfig->gray_clk);
 -- 
-2.50.1
+2.51.0
 

@@ -1,4 +1,4 @@
-From a68b2f36de8349e765a2869bc626edc88ee6c206 Mon Sep 17 00:00:00 2001
+From 06fa16bba604823cd428e677072be5698c5ebd09 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 17 Jun 2025 09:09:44 +0800
 Subject: [PATCH 565/654] fix:modify the reference temperature
@@ -110,5 +110,5 @@ index 207a50c2ff02..3db082bdd542 100644
  	}
  	dev_err(&pdev->dev, "state.period: %d state.duty_cycle: %d\n",
 -- 
-2.50.1
+2.51.0
 

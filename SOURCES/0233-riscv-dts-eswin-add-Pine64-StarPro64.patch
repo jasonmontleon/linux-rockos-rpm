@@ -1,4 +1,4 @@
-From 4988e1b72c60748cc24c02488155868147a34d98 Mon Sep 17 00:00:00 2001
+From ddbdd8afae09f2b060a4dbf7f43744b6a84b103a Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Wed, 20 Nov 2024 21:26:37 +0800
 Subject: [PATCH 233/654] riscv: dts: eswin: add Pine64 StarPro64
@@ -823,5 +823,5 @@ index 000000000000..b7a599878685
 +	};
 +};
 -- 
-2.50.1
+2.51.0
 

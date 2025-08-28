@@ -1,4 +1,4 @@
-From fe548143533f1564ea4b808f24a629bb971f4fe1 Mon Sep 17 00:00:00 2001
+From 53f9aaa7ebfa1bde8cdf5e89938e4efd802a8c85 Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Sat, 5 Jul 2025 18:05:56 +0800
 Subject: [PATCH 604/654] feat:Enable npu power node.
@@ -39,5 +39,5 @@ index 59ec21fbda7b..30aa28ee5b0e 100644
  		compatible = "ti,tps549d22";
  		reg = <0x10>;
 -- 
-2.50.1
+2.51.0
 

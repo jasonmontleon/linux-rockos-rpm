@@ -1,4 +1,4 @@
-From b7839013bd571983898bc912ba2343d5cc31cba9 Mon Sep 17 00:00:00 2001
+From 52358b8fa2419815cf42c01dea4d31de05d5d5c8 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 27 Jan 2025 10:54:04 +0800
 Subject: [PATCH 410/654] feat:reset driver fit for upstream
@@ -409,7 +409,7 @@ index 000000000000..156601fdd267
 +#define WIN2030_REG_OFFSET_LNOC_RST_CTRL                        0X4E0
 +#endif
 diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index cab4e8002205..7a895a05cef8 100644
+index 5f714eb0a914..6017c11332cb 100644
 --- a/drivers/reset/Kconfig
 +++ b/drivers/reset/Kconfig
 @@ -320,11 +320,11 @@ config RESET_ZYNQ
@@ -1714,5 +1714,5 @@ index 3c27a51c18ae..000000000000
 -
 -#endif /*endif __DT_ESWIN_WIN2030_SYSCRG_H__*/
 -- 
-2.50.1
+2.51.0
 

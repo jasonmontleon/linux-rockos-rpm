@@ -1,4 +1,4 @@
-From e51bd5d7872b1546b0a4521ba9c701bdf7633c02 Mon Sep 17 00:00:00 2001
+From 58eb23395799f34360a882a5e29273b3836df5a2 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Tue, 13 Aug 2024 14:44:47 +0800
 Subject: [PATCH 246/654] WIN2030-16132:feat:run on the specify die
@@ -67,5 +67,5 @@ index aa6bc6abb367..5febac70d8dc 100644
  
  #define DEC_DRIVER_NAME "es_vdec_drv"
 -- 
-2.50.1
+2.51.0
 

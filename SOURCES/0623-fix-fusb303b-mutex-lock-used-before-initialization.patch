@@ -1,4 +1,4 @@
-From 078bb30b499289f84dcf383050f3672ccf4396c7 Mon Sep 17 00:00:00 2001
+From 8a28da3c511d28d996e0a88667f6f68bf8446e9d Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:38:50 +0800
 Subject: [PATCH 623/654] fix(fusb303b):mutex lock used before initialization
@@ -28,5 +28,5 @@ index 5ffc27640a05..b0dd7c49b2c0 100644
  	{
  		chip->gpio_int_n_irq = client->irq;
 -- 
-2.50.1
+2.51.0
 
