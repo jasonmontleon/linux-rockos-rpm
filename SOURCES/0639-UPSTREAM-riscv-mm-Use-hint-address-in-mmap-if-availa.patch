@@ -1,4 +1,4 @@
-From 282434f96eaec12ba9b697a083f00584890a6bad Mon Sep 17 00:00:00 2001
+From 582e2204c79e90e98583590405e52d24a303f28f Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:00 -0800
 Subject: [PATCH 639/654] UPSTREAM: riscv: mm: Use hint address in mmap if

@@ -1,4 +1,4 @@
-From 8a28da3c511d28d996e0a88667f6f68bf8446e9d Mon Sep 17 00:00:00 2001
+From 7de4e78b46e15e561a2c5a915dbfabc796a26e2b Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:38:50 +0800
 Subject: [PATCH 623/654] fix(fusb303b):mutex lock used before initialization

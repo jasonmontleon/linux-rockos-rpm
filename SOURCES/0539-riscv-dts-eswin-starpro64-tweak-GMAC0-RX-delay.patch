@@ -1,4 +1,4 @@
-From 6f09270805a70fd12dd917c2523744cfbe7738f5 Mon Sep 17 00:00:00 2001
+From 2986e3f2e6734e6c76a541719a999b89c87a4174 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 19 Jun 2025 06:51:58 +0800
 Subject: [PATCH 539/654] riscv: dts: eswin: starpro64: tweak GMAC0 RX delay

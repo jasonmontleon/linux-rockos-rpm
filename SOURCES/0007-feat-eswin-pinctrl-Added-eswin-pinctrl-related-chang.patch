@@ -1,4 +1,4 @@
-From 83db7778954838a9191bb13a4f50f1ce677ea770 Mon Sep 17 00:00:00 2001
+From f69735fb8515fa5fc9e41db26cfcefc16122b969 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 22 Apr 2024 15:15:55 +0800
 Subject: [PATCH 007/654] feat(eswin pinctrl):Added eswin pinctrl related
@@ -30,7 +30,7 @@ index 5d701e98d635..c7a983e1e21f 100644
  CONFIG_GPIO_SYSFS=y
  CONFIG_GPIO_DWAPB=y
 diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index 7dfb7190580e..8ea6e4f7421a 100644
+index ab3908a923e3..81a8272c155c 100644
 --- a/drivers/pinctrl/Kconfig
 +++ b/drivers/pinctrl/Kconfig
 @@ -49,6 +49,17 @@ config PINCTRL_AMD
