@@ -1,4 +1,4 @@
-From d9a294284052040d90cd9e51e815b6ef088e1a18 Mon Sep 17 00:00:00 2001
+From be682cb934c6d06484c20abf49033f8d3177e699 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Tue, 8 Jul 2025 11:37:06 +0800
 Subject: [PATCH 540/654] PCI: eswin: keep PCIe alive at shutdown

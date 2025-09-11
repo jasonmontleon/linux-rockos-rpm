@@ -1,4 +1,4 @@
-From cfbb3ef42da81efce910998c12f3b0193c9df1f6 Mon Sep 17 00:00:00 2001
+From 3656a1381884ab0822683e27d74408912f5e45b1 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:13 -0800
 Subject: [PATCH 160/654] riscv: Add support for kernel-mode FPU

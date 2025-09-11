@@ -1,4 +1,4 @@
-From dff1833c7d746df0339a816579d89eb7cf0487be Mon Sep 17 00:00:00 2001
+From 53ca9153551c34e1633c5fb5ed2752f7a25a8f28 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:44:41 +0800
 Subject: [PATCH 424/654] config: scsi: enable scsi config for eic7700x

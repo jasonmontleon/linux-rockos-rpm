@@ -1,4 +1,4 @@
-From 7faa0ef8c294595b6f50804d36ba4a0a97c3285f Mon Sep 17 00:00:00 2001
+From 187bf5ae19ae052dbcbf8226ccddab14315123c0 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 19 Jun 2025 09:40:38 +0800
 Subject: [PATCH 570/654] feat:Display LOGO during kernel bootup.

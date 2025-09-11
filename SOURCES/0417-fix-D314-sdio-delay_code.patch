@@ -1,4 +1,4 @@
-From 8b8a3ebbab793ca9390db5a51064296decb43934 Mon Sep 17 00:00:00 2001
+From d5cbea6a0768a0680ce2530a89df34cbe92bfcb1 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 28 Feb 2025 14:17:24 +0800
 Subject: [PATCH 417/654] fix: D314 sdio delay_code

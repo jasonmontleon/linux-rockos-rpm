@@ -1,4 +1,4 @@
-From eb583b4c5d96f7ff63a3d58f551a03638fa03f63 Mon Sep 17 00:00:00 2001
+From de11b797256a25fc6e17e93da16aa62fccc72799 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 6 Jul 2024 20:04:55 +0800
 Subject: [PATCH 159/654] fix: pwm: eswin: Rename pwm_apply_state() to
