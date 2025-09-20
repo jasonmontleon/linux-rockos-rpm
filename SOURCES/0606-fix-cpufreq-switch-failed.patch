@@ -1,4 +1,4 @@
-From 4b1d89661ccb3eefc96090cf62192f8b9c83e252 Mon Sep 17 00:00:00 2001
+From fce8d614d72f5cd3bf3223f20342f8b52e3abfbe Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Mon, 7 Jul 2025 11:02:05 +0800
 Subject: [PATCH 606/654] fix:cpufreq switch failed

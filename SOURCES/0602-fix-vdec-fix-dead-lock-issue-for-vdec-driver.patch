@@ -1,4 +1,4 @@
-From bf844483798605a38a961ae69b4e1075cd0eb651 Mon Sep 17 00:00:00 2001
+From eaf5be6719269fda02c2cf93a3abb29ce8f0bc44 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Wed, 2 Jul 2025 17:19:43 +0800
 Subject: [PATCH 602/654] fix(vdec):fix dead lock issue for vdec driver
