@@ -1,4 +1,4 @@
-From 58f4e3b8bfd9edfab8ade3330de39d90e2283943 Mon Sep 17 00:00:00 2001
+From 5acf1eea8fc6bb5e1e30adaed60ec57ab3131f64 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 2 Jul 2024 20:09:02 +0800
 Subject: [PATCH 062/654] fix:set npu default freq to 1.5G

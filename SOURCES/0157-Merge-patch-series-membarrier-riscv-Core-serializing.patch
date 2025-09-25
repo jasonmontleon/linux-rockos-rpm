@@ -1,4 +1,4 @@
-From 9d1cac3bf1cb1b978a8496fda39fe7e873acf623 Mon Sep 17 00:00:00 2001
+From 9e0476f2662e02fc5db544cf5e5f3e4814293d6a Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/654] Merge patch series "membarrier: riscv: Core

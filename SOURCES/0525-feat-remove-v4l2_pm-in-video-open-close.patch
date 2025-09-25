@@ -1,4 +1,4 @@
-From 3275dfb13c323c0357ec47674b35abae52152492 Mon Sep 17 00:00:00 2001
+From 2939035c2bca89ff06d97ca96449ba67cd1f95b7 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 28 May 2025 15:34:42 +0800
 Subject: [PATCH 525/654] feat: remove v4l2_pm in video open/close

@@ -1,4 +1,4 @@
-From 53651db183a12c51c514bbdc7085e2174a8263be Mon Sep 17 00:00:00 2001
+From f348d76dffdafd7ad22a8918a2ba19c556ea70ba Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Wed, 10 Jul 2024 18:03:36 +0800
 Subject: [PATCH 074/654] img gpu kmd: use arch_sync_dma_for_device() instead

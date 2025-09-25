@@ -1,4 +1,4 @@
-From e625b2203ea0a92bb3b7b62bf18121a04b95ed3a Mon Sep 17 00:00:00 2001
+From c169340e4c7e5c538ad1f1463ccc2e0109a6658b Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Wed, 9 Apr 2025 07:15:16 +0000
 Subject: [PATCH 474/654] riscv: module: fix compilation error of kvrealloc

@@ -1,4 +1,4 @@
-From 58b11266944d53f36286552612d994fd02d9b517 Mon Sep 17 00:00:00 2001
+From 6152726533b8798415f23bf3741070ebea3f302f Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 14 Aug 2024 14:27:32 +0800
 Subject: [PATCH 150/654] fix:kasan for vc driver

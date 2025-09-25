@@ -1,4 +1,4 @@
-From 8ac5c8643d7b42670230788a0da35886799c2ea4 Mon Sep 17 00:00:00 2001
+From 79fe2d3f3c250bdeb68e3979c2981dfab2b87db2 Mon Sep 17 00:00:00 2001
 From: wangjinlong <wangjinlong@eswincomputing.com>
 Date: Tue, 8 Jul 2025 10:07:34 +0800
 Subject: [PATCH 613/654] fix: clear log for wifi stop
