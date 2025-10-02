@@ -1,4 +1,4 @@
-From 986e956b9fbe5c1ffe895bedd36c4459716ca3c2 Mon Sep 17 00:00:00 2001
+From c2a96ce4f91638088aa417471a76fc23ffd04cdd Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 8 Apr 2025 19:45:16 -0700
 Subject: [PATCH 473/654] riscv: module: Optimize PLT/GOT entry counting
@@ -25,7 +25,7 @@ Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
  1 file changed, 57 insertions(+), 9 deletions(-)
 
 diff --git a/arch/riscv/kernel/module-sections.c b/arch/riscv/kernel/module-sections.c
-index e264e59e596e..91d4f0fbd0af 100644
+index e264e59e596e8..91d4f0fbd0af0 100644
 --- a/arch/riscv/kernel/module-sections.c
 +++ b/arch/riscv/kernel/module-sections.c
 @@ -9,6 +9,7 @@

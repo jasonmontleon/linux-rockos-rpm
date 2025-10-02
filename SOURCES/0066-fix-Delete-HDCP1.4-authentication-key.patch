@@ -1,4 +1,4 @@
-From 626100d1eed71f5e04eebbadd0a09148a91cfacc Mon Sep 17 00:00:00 2001
+From 10f622a0df92c199890b5babcf3c99b9bc814599 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 8 Jul 2024 19:56:12 +0800
 Subject: [PATCH 066/654] fix:Delete HDCP1.4 authentication key.
@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 32 insertions(+), 364 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
-index b69b1be14e0d..a6bb3a8b939d 100644
+index b69b1be14e0dc..a6bb3a8b939da 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -22,7 +22,6 @@

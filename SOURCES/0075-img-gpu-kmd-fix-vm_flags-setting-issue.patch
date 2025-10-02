@@ -1,4 +1,4 @@
-From c28fcb74395253c9cd4c3c76977bf3e3cd1be8db Mon Sep 17 00:00:00 2001
+From 6c9acfbcaff3ec872ec3b68995fec65ffb347ea6 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 11:34:07 +0800
 Subject: [PATCH 075/654] img gpu kmd: fix vm_flags setting issue
@@ -10,7 +10,7 @@ ref: https://gist.github.com/vejeta/9078219f082d2bfd62b08b6eada780e6
  2 files changed, 9 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
-index 1a7d406fb085..6d060ddc97d7 100644
+index 1a7d406fb0859..6d060ddc97d74 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 @@ -1796,7 +1796,7 @@ PVRSRV_ERROR OSChangeSparseMemCPUAddrMap(void **psPageArray,
@@ -32,7 +32,7 @@ index 1a7d406fb085..6d060ddc97d7 100644
  				}
  			}
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pmr_os.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pmr_os.c
-index fac2bd45a371..7cf4df444089 100644
+index fac2bd45a371c..7cf4df444089e 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pmr_os.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pmr_os.c
 @@ -393,19 +393,20 @@ OSMMapPMRGeneric(PMR *psPMR, PMR_MMAP_DATA pOSMMapData)

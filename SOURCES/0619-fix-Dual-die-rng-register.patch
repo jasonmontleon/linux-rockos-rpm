@@ -1,4 +1,4 @@
-From 3990b8d87224c91cd2caa6023cd1b2e18e599d17 Mon Sep 17 00:00:00 2001
+From 6a494d24f72d2b2be7bd18db85a55fb6d5835d5f Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 11 Jul 2025 17:00:57 +0800
 Subject: [PATCH 619/654] fix: Dual die rng register
@@ -13,7 +13,7 @@ Signed-off-by: caohang <caohang@eswincomputing.com>
  2 files changed, 18 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/crypto/eswin/eswin-ipc-scpu.c b/drivers/crypto/eswin/eswin-ipc-scpu.c
-index 7ac1eae6ee8e..49c770254661 100644
+index 7ac1eae6ee8e2..49c7702546616 100644
 --- a/drivers/crypto/eswin/eswin-ipc-scpu.c
 +++ b/drivers/crypto/eswin/eswin-ipc-scpu.c
 @@ -92,6 +92,7 @@ typedef struct ipc_private_data {
@@ -131,7 +131,7 @@ index 7ac1eae6ee8e..49c770254661 100644
  	ret =ipc_cipher_mem_rsc_mgt_unit(session);
  	if (ret)
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
-index bd339c496476..e8fa083a2c7f 100644
+index bd339c496476e..e8fa083a2c7f0 100644
 --- a/include/uapi/linux/eswin-ipc-scpu.h
 +++ b/include/uapi/linux/eswin-ipc-scpu.h
 @@ -697,9 +697,6 @@ typedef struct {

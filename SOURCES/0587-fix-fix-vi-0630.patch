@@ -1,4 +1,4 @@
-From 3e8a5b585c8acf9f13fada52fb95dfd29673b272 Mon Sep 17 00:00:00 2001
+From 7f242fa06da642ac225cd60cdb8995d18a0e7e11 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Fri, 27 Jun 2025 18:22:42 +0800
 Subject: [PATCH 587/654] fix:fix vi 0630
@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  2 files changed, 140 insertions(+), 188 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.h b/drivers/media/platform/eswin/dvp2axi/dev.h
-index d8fc9ec69bba..c1590db40769 100644
+index d8fc9ec69bbad..c1590db407695 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.h
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.h
 @@ -7,7 +7,7 @@
@@ -166,7 +166,7 @@ index d8fc9ec69bba..c1590db40769 100644
  int es_dvp2axi_clr_unready_dev(void);
  
 diff --git a/drivers/media/platform/eswin/dvp2axi/hw.c b/drivers/media/platform/eswin/dvp2axi/hw.c
-index d0719bae0ca5..d999d6a4e621 100644
+index d0719bae0ca55..d999d6a4e6218 100644
 --- a/drivers/media/platform/eswin/dvp2axi/hw.c
 +++ b/drivers/media/platform/eswin/dvp2axi/hw.c
 @@ -42,19 +42,23 @@

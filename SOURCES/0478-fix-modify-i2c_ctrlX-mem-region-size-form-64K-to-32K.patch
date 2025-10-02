@@ -1,4 +1,4 @@
-From cf61f839c7d3ee0a7d6a7de7351dc45e19acfe63 Mon Sep 17 00:00:00 2001
+From ed313ffb2097abf01c26ab0ef12817984c2ae2be Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 17 Apr 2025 16:04:08 +0800
 Subject: [PATCH 478/654] fix:modify i2c_ctrlX mem region size form 64K to 32K
@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 13 insertions(+), 13 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 946693b00b4d..46ab556a0c7d 100644
+index 946693b00b4d1..46ab556a0c7df 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1372,7 +1372,7 @@ d0_i2c1: i2c@50960000 {
@@ -25,7 +25,7 @@ index 946693b00b4d..46ab556a0c7d 100644
  			interrupt-parent = <&plic0>;
  			numa-node-id = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 3a6fe0d1240c..8320fb4207c7 100644
+index 3a6fe0d1240c6..8320fb4207c7b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -734,7 +734,7 @@ d1_i2c0: i2c@70950000 {

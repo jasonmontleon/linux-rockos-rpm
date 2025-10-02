@@ -1,4 +1,4 @@
-From b58ab3967fa7369980d5e2d35d212827a9cf95eb Mon Sep 17 00:00:00 2001
+From 652eeb8cc6ff3637181c73714072a6fbbd06f39c Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 29 May 2024 14:11:20 +0800
 Subject: [PATCH 039/654] fix:dsp dma-ranges buf fix
@@ -11,7 +11,7 @@ Changelogs:
  2 files changed, 2 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index f4c569697c08..fb5920315be4 100644
+index f4c569697c08a..fb5920315be4c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -553,6 +553,7 @@ d0_dsp_subsys:dsp_subsys@52280400 {
@@ -55,7 +55,7 @@ index f4c569697c08..fb5920315be4 100644
  				tbus = <WIN2030_TBUID_DSP3>;
  				dma-noncoherent;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 971b506eaf0b..bbb403cf4776 100644
+index 971b506eaf0b5..bbb403cf47769 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1279,6 +1279,7 @@ d1_dsp_subsys:dsp_subsys@72280400 {

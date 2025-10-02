@@ -1,4 +1,4 @@
-From 0ae9100c1b021663bf3c7f7f8049b1e53b8bcb68 Mon Sep 17 00:00:00 2001
+From 619754a74079e51fc531ce9f2947fdfb139c5a16 Mon Sep 17 00:00:00 2001
 From: lijiayi <lijiayi@eswincomputing.com>
 Date: Tue, 17 Jun 2025 10:09:59 +0800
 Subject: [PATCH 564/654] fix:modify model name
@@ -14,7 +14,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
-index c0ae9e0f4518..c31a7615cb6c 100644
+index c0ae9e0f4518c..c31a7615cb6c8 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 @@ -39,7 +39,7 @@

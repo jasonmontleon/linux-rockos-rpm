@@ -1,4 +1,4 @@
-From d7d6cf29652fde5b6ddc3623c86b362603f65396 Mon Sep 17 00:00:00 2001
+From a56b9bf8113c054027f0a69e9faf34b5b6270cf2 Mon Sep 17 00:00:00 2001
 From: lihuihui <lihuihui@eswincomputing.com>
 Date: Tue, 13 May 2025 14:35:50 +0800
 Subject: [PATCH 507/654] feat:support SOC/CPU up voltage
@@ -16,7 +16,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  2 files changed, 31 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 85080a0dd008..93f413bacac1 100644
+index 85080a0dd0080..93f413bacac18 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -908,7 +908,7 @@ &d0_aon_i2c0 {
@@ -99,7 +99,7 @@ index 85080a0dd008..93f413bacac1 100644
  	&pinctrl_gpio60_default
  	&pinctrl_gpio61_default>;
 diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
-index 5744fd7d1796..1585a666d16f 100644
+index 5744fd7d17963..1585a666d16f0 100644
 --- a/arch/riscv/configs/vpu7702_pcie_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_defconfig
 @@ -850,4 +850,5 @@ CONFIG_VIDEO_ESWIN_VDEC=y

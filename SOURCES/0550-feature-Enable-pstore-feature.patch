@@ -1,4 +1,4 @@
-From e20be904dee9953ace3137244aacedcee3f49829 Mon Sep 17 00:00:00 2001
+From ba7889cb23b9a28f7879fae9f02c734c9525665f Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 10 Jun 2025 16:02:54 +0800
 Subject: [PATCH 550/654] feature: Enable pstore feature
@@ -17,7 +17,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  6 files changed, 38 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 850a81a1ff8f..910a463d3e8f 100644
+index 850a81a1ff8f4..910a463d3e8f3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -97,9 +97,14 @@ npu0_reserved: sprammemory@59000000 {
@@ -38,7 +38,7 @@ index 850a81a1ff8f..910a463d3e8f 100644
  
  		g2d_8GB_boundary_reserved_4k {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 616c36cfc3c6..6a21f7ff0c43 100644
+index 616c36cfc3c64..6a21f7ff0c43e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -93,9 +93,14 @@ npu0_reserved: sprammemory@59000000 {
@@ -59,7 +59,7 @@ index 616c36cfc3c6..6a21f7ff0c43 100644
  
  		g2d_8GB_boundary_reserved_4k {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 8743d53b5fff..f02ba7ae04d5 100644
+index 8743d53b5fff0..f02ba7ae04d5a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -112,9 +112,14 @@ npu1_reserved: sprammemory@79000000 {
@@ -80,7 +80,7 @@ index 8743d53b5fff..f02ba7ae04d5 100644
  
  		g2d_8GB_boundary_reserved_4k {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index 1c1a11ff2ee7..12ef6270c441 100644
+index 1c1a11ff2ee70..12ef6270c4416 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -111,9 +111,14 @@ npu1_reserved: sprammemory@79000000 {
@@ -101,7 +101,7 @@ index 1c1a11ff2ee7..12ef6270c441 100644
  
  		g2d_8GB_boundary_reserved_4k {
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 75f59b5ee2b1..a0eb704642c5 100644
+index 75f59b5ee2b14..a0eb704642c5a 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -822,6 +822,11 @@ CONFIG_SQUASHFS_LZ4=y
@@ -117,7 +117,7 @@ index 75f59b5ee2b1..a0eb704642c5 100644
  CONFIG_NFS_V3_ACL=y
  CONFIG_NFS_V4=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index af10604c71d3..48d08ffb7203 100644
+index af10604c71d33..48d08ffb7203e 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -799,6 +799,11 @@ CONFIG_SQUASHFS_LZ4=y

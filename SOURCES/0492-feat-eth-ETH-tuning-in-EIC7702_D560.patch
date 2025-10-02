@@ -1,4 +1,4 @@
-From 36ed6710be7bc698d8968fc3befd33e7f65bdfcf Mon Sep 17 00:00:00 2001
+From 5e200d2c96b9c0ed6bd94598e207cadcc033b0ba Mon Sep 17 00:00:00 2001
 From: lizhi2 <lizhi2@eswincomputing.com>
 Date: Wed, 30 Apr 2025 13:26:06 +0800
 Subject: [PATCH 492/654] feat(eth): ETH tuning in EIC7702_D560
@@ -12,7 +12,7 @@ Signed-off-by: lizhi2 <lizhi2@eswincomputing.com>
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index de69bc2359e4..ed5392ae9035 100644
+index de69bc2359e4b..ed5392ae9035f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -915,8 +915,8 @@ &d0_gmac0 {

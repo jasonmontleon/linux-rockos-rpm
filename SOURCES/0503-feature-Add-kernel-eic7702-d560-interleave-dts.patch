@@ -1,4 +1,4 @@
-From eb45b90fcc1b260a54f9d3366aa4556db322afd4 Mon Sep 17 00:00:00 2001
+From db0d5693a8ec751771eb7760474b0f0401864c35 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 13 May 2025 15:17:59 +0800
 Subject: [PATCH 503/654] feature: Add kernel eic7702 d560 interleave dts
@@ -16,7 +16,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 3f40204e48db..d11762b76127 100644
+index 3f40204e48dba..d11762b761275 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -16,5 +16,6 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -29,7 +29,7 @@ index 3f40204e48db..d11762b76127 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
 new file mode 100644
-index 000000000000..4a1a51635a98
+index 0000000000000..4a1a51635a983
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
 @@ -0,0 +1,331 @@
@@ -366,7 +366,7 @@ index 000000000000..4a1a51635a98
 +*/
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 new file mode 100644
-index 000000000000..41ea1b44401b
+index 0000000000000..41ea1b44401b2
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 @@ -0,0 +1,1478 @@

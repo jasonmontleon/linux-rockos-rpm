@@ -1,4 +1,4 @@
-From 8047ebd2d36010cae734583b2aab55cc5d086b6e Mon Sep 17 00:00:00 2001
+From 687f6f7defb358279e9e064ba50065a0fd41c121 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:46 -0700
 Subject: [PATCH 643/654] UPSTREAM: riscv: selftests: Remove mmap hint address
@@ -21,7 +21,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  3 files changed, 71 deletions(-)
 
 diff --git a/tools/testing/selftests/riscv/mm/mmap_bottomup.c b/tools/testing/selftests/riscv/mm/mmap_bottomup.c
-index 7f7d3eb8b9c9..f9ccae50349b 100644
+index 7f7d3eb8b9c92..f9ccae50349bc 100644
 --- a/tools/testing/selftests/riscv/mm/mmap_bottomup.c
 +++ b/tools/testing/selftests/riscv/mm/mmap_bottomup.c
 @@ -7,8 +7,6 @@
@@ -34,7 +34,7 @@ index 7f7d3eb8b9c9..f9ccae50349b 100644
  
  TEST_HARNESS_MAIN
 diff --git a/tools/testing/selftests/riscv/mm/mmap_default.c b/tools/testing/selftests/riscv/mm/mmap_default.c
-index 2ba3ec990006..3f53b6ecc326 100644
+index 2ba3ec9900064..3f53b6ecc3261 100644
 --- a/tools/testing/selftests/riscv/mm/mmap_default.c
 +++ b/tools/testing/selftests/riscv/mm/mmap_default.c
 @@ -7,8 +7,6 @@
@@ -47,7 +47,7 @@ index 2ba3ec990006..3f53b6ecc326 100644
  
  TEST_HARNESS_MAIN
 diff --git a/tools/testing/selftests/riscv/mm/mmap_test.h b/tools/testing/selftests/riscv/mm/mmap_test.h
-index f170c62cc2ca..75918d15919f 100644
+index f170c62cc2ca8..75918d15919f2 100644
 --- a/tools/testing/selftests/riscv/mm/mmap_test.h
 +++ b/tools/testing/selftests/riscv/mm/mmap_test.h
 @@ -10,76 +10,9 @@

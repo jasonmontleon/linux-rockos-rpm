@@ -1,4 +1,4 @@
-From b1de3975169f22115e47ff02a6d1efeb2c85798b Mon Sep 17 00:00:00 2001
+From f4e2ad59940ee6902c93c6664038abb38709a048 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:00 -0800
 Subject: [PATCH 639/654] UPSTREAM: riscv: mm: Use hint address in mmap if
@@ -31,7 +31,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 11 insertions(+), 16 deletions(-)
 
 diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index 4f6af8c6cfa0..990271e8724e 100644
+index 4f6af8c6cfa06..990271e8724e5 100644
 --- a/arch/riscv/include/asm/processor.h
 +++ b/arch/riscv/include/asm/processor.h
 @@ -13,22 +13,16 @@

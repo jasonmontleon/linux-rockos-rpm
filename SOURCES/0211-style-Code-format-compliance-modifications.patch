@@ -1,4 +1,4 @@
-From 7c1c123cb62db0e2369aff2bb9e7fd248029381b Mon Sep 17 00:00:00 2001
+From 4138cd5fad60628483f6b8fd90c74aca29658509 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 5 Nov 2024 13:23:29 +0800
 Subject: [PATCH 211/654] style:Code format compliance modifications
@@ -51,7 +51,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  delete mode 100644 drivers/gpu/drm/eswin/es_gem.c-dbg
 
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 669447d03681..8c73453d2beb 100644
+index 669447d036812..8c73453d2beb6 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -5,6 +5,24 @@
@@ -80,7 +80,7 @@ index 669447d03681..8c73453d2beb 100644
  #include <linux/clk.h>
  #include <linux/delay.h>
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.h b/drivers/gpu/drm/eswin/dw-hdmi.h
-index 147774f90094..dcfeaada7f1d 100644
+index 147774f900949..dcfeaada7f1df 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.h
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.h
 @@ -1,8 +1,25 @@
@@ -111,7 +111,7 @@ index 147774f90094..dcfeaada7f1d 100644
  #define __DW_HDMI_H__
  
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_audio.h b/drivers/gpu/drm/eswin/dw_hdmi_audio.h
-index f72d27208ebe..97e0d9f02490 100644
+index f72d27208ebef..97e0d9f024908 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_audio.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_audio.h
 @@ -1,4 +1,24 @@
@@ -141,7 +141,7 @@ index f72d27208ebe..97e0d9f02490 100644
  #define DW_HDMI_AUDIO_H
  
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_cec.c b/drivers/gpu/drm/eswin/dw_hdmi_cec.c
-index 42c57cf1dbc0..56553d1d4abd 100644
+index 42c57cf1dbc0a..56553d1d4abdc 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_cec.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_cec.c
 @@ -3,7 +3,26 @@
@@ -172,7 +172,7 @@ index 42c57cf1dbc0..56553d1d4abd 100644
  #include <linux/io.h>
  #include <linux/module.h>
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_cec.h b/drivers/gpu/drm/eswin/dw_hdmi_cec.h
-index 9d2547f1ea16..3ea45a7af644 100644
+index 9d2547f1ea165..3ea45a7af6447 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_cec.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_cec.h
 @@ -1,3 +1,24 @@
@@ -201,7 +201,7 @@ index 9d2547f1ea16..3ea45a7af644 100644
  #define DW_HDMI_CEC_H
  
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
-index a6bb3a8b939d..e342e766cb25 100644
+index a6bb3a8b939da..e342e766cb253 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -1,16 +1,23 @@
@@ -234,7 +234,7 @@ index a6bb3a8b939d..e342e766cb25 100644
  #include <linux/delay.h>
  #include <linux/err.h>
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
-index a4992e8a8cbc..f11b259c1731 100644
+index a4992e8a8cbc3..f11b259c1731f 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 @@ -1,14 +1,22 @@
@@ -265,7 +265,7 @@ index a4992e8a8cbc..f11b259c1731 100644
  
  #ifndef DW_HDMI_HDCP_H
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
-index e387f079eb89..63c01abfb2af 100644
+index e387f079eb89a..63c01abfb2afe 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 @@ -1,3 +1,23 @@
@@ -293,7 +293,7 @@ index e387f079eb89..63c01abfb2af 100644
  #include <linux/module.h>
  #include <linux/random.h>
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
-index e211f8b9ab73..80229c128eeb 100644
+index e211f8b9ab736..80229c128eebe 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 @@ -4,6 +4,24 @@
@@ -322,7 +322,7 @@ index e211f8b9ab73..80229c128eeb 100644
  
  #include <linux/dma-mapping.h>
 diff --git a/drivers/gpu/drm/eswin/es_crtc.c b/drivers/gpu/drm/eswin/es_crtc.c
-index 96cbe4badf91..54b74b638069 100644
+index 96cbe4badf91e..54b74b6380698 100644
 --- a/drivers/gpu/drm/eswin/es_crtc.c
 +++ b/drivers/gpu/drm/eswin/es_crtc.c
 @@ -1,6 +1,22 @@
@@ -350,7 +350,7 @@ index 96cbe4badf91..54b74b638069 100644
  
  #include <linux/clk.h>
 diff --git a/drivers/gpu/drm/eswin/es_crtc.h b/drivers/gpu/drm/eswin/es_crtc.h
-index 5f7cf9009d4f..3c8ea4c17d95 100644
+index 5f7cf9009d4f3..3c8ea4c17d95f 100644
 --- a/drivers/gpu/drm/eswin/es_crtc.h
 +++ b/drivers/gpu/drm/eswin/es_crtc.h
 @@ -1,6 +1,22 @@
@@ -379,7 +379,7 @@ index 5f7cf9009d4f..3c8ea4c17d95 100644
  
  #ifndef __ES_CRTC_H__
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index f63bd798320e..daf98bda2105 100644
+index f63bd798320e6..daf98bda21056 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -1,6 +1,22 @@
@@ -407,7 +407,7 @@ index f63bd798320e..daf98bda2105 100644
  
  #include <linux/component.h>
 diff --git a/drivers/gpu/drm/eswin/es_dc.h b/drivers/gpu/drm/eswin/es_dc.h
-index 8dbc3b4d7eb2..89b203eebc98 100644
+index 8dbc3b4d7eb25..89b203eebc980 100644
 --- a/drivers/gpu/drm/eswin/es_dc.h
 +++ b/drivers/gpu/drm/eswin/es_dc.h
 @@ -1,6 +1,22 @@
@@ -436,7 +436,7 @@ index 8dbc3b4d7eb2..89b203eebc98 100644
  
  #ifndef __ES_DC_H__
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.c b/drivers/gpu/drm/eswin/es_dc_hw.c
-index 440fd1645694..28b2a7b8f93f 100644
+index 440fd16456941..28b2a7b8f93fa 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.c
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.c
 @@ -1,6 +1,22 @@
@@ -464,7 +464,7 @@ index 440fd1645694..28b2a7b8f93f 100644
  
  #include <linux/io.h>
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.h b/drivers/gpu/drm/eswin/es_dc_hw.h
-index 1578aad0d79c..8999e0c382b4 100644
+index 1578aad0d79c3..8999e0c382b4b 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.h
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.h
 @@ -1,6 +1,22 @@
@@ -493,7 +493,7 @@ index 1578aad0d79c..8999e0c382b4 100644
  
  #ifndef __ES_DC_HW_H__
 diff --git a/drivers/gpu/drm/eswin/es_dc_mmu.c b/drivers/gpu/drm/eswin/es_dc_mmu.c
-index 260f549aeff7..4e7e6a6be107 100644
+index 260f549aeff7d..4e7e6a6be1079 100644
 --- a/drivers/gpu/drm/eswin/es_dc_mmu.c
 +++ b/drivers/gpu/drm/eswin/es_dc_mmu.c
 @@ -1,6 +1,22 @@
@@ -521,7 +521,7 @@ index 260f549aeff7..4e7e6a6be107 100644
  
  #include <linux/device.h>
 diff --git a/drivers/gpu/drm/eswin/es_dc_mmu.h b/drivers/gpu/drm/eswin/es_dc_mmu.h
-index ee049e3f40ec..ad5dc4e3dc1a 100644
+index ee049e3f40ecf..ad5dc4e3dc1a8 100644
 --- a/drivers/gpu/drm/eswin/es_dc_mmu.h
 +++ b/drivers/gpu/drm/eswin/es_dc_mmu.h
 @@ -1,6 +1,22 @@
@@ -550,7 +550,7 @@ index ee049e3f40ec..ad5dc4e3dc1a 100644
  
  #ifndef _ES_DC_MMU_H_
 diff --git a/drivers/gpu/drm/eswin/es_drm.h b/drivers/gpu/drm/eswin/es_drm.h
-index 73817dcf024b..5e1cacfc14a0 100644
+index 73817dcf024bc..5e1cacfc14a06 100644
 --- a/drivers/gpu/drm/eswin/es_drm.h
 +++ b/drivers/gpu/drm/eswin/es_drm.h
 @@ -1,3 +1,24 @@
@@ -579,7 +579,7 @@ index 73817dcf024b..5e1cacfc14a0 100644
  #define __ES_DRM_H__
  
 diff --git a/drivers/gpu/drm/eswin/es_drv.c b/drivers/gpu/drm/eswin/es_drv.c
-index a589b9cc9ae5..1c588106e39c 100644
+index a589b9cc9ae5a..1c588106e39ce 100644
 --- a/drivers/gpu/drm/eswin/es_drv.c
 +++ b/drivers/gpu/drm/eswin/es_drv.c
 @@ -1,6 +1,22 @@
@@ -607,7 +607,7 @@ index a589b9cc9ae5..1c588106e39c 100644
  
  #include <linux/of_graph.h>
 diff --git a/drivers/gpu/drm/eswin/es_drv.h b/drivers/gpu/drm/eswin/es_drv.h
-index 863e4b1da74a..b6ef6cf9548e 100644
+index 863e4b1da74a0..b6ef6cf9548e8 100644
 --- a/drivers/gpu/drm/eswin/es_drv.h
 +++ b/drivers/gpu/drm/eswin/es_drv.h
 @@ -1,6 +1,22 @@
@@ -636,7 +636,7 @@ index 863e4b1da74a..b6ef6cf9548e 100644
  
  #ifndef __ES_DRV_H__
 diff --git a/drivers/gpu/drm/eswin/es_fb.c b/drivers/gpu/drm/eswin/es_fb.c
-index 9254b784003d..7b566a379d13 100644
+index 9254b784003d2..7b566a379d130 100644
 --- a/drivers/gpu/drm/eswin/es_fb.c
 +++ b/drivers/gpu/drm/eswin/es_fb.c
 @@ -1,6 +1,22 @@
@@ -664,7 +664,7 @@ index 9254b784003d..7b566a379d13 100644
  
  #include <linux/module.h>
 diff --git a/drivers/gpu/drm/eswin/es_fb.h b/drivers/gpu/drm/eswin/es_fb.h
-index 6cd8b31684aa..db667daf6e4d 100644
+index 6cd8b31684aa5..db667daf6e4d8 100644
 --- a/drivers/gpu/drm/eswin/es_fb.h
 +++ b/drivers/gpu/drm/eswin/es_fb.h
 @@ -1,6 +1,22 @@
@@ -693,7 +693,7 @@ index 6cd8b31684aa..db667daf6e4d 100644
  
  #ifndef __ES_FB_H__
 diff --git a/drivers/gpu/drm/eswin/es_gem.c b/drivers/gpu/drm/eswin/es_gem.c
-index 5406448ee2fb..e44cfa325527 100644
+index 5406448ee2fbb..e44cfa325527e 100644
 --- a/drivers/gpu/drm/eswin/es_gem.c
 +++ b/drivers/gpu/drm/eswin/es_gem.c
 @@ -1,8 +1,23 @@
@@ -724,7 +724,7 @@ index 5406448ee2fb..e44cfa325527 100644
  
 diff --git a/drivers/gpu/drm/eswin/es_gem.c-dbg b/drivers/gpu/drm/eswin/es_gem.c-dbg
 deleted file mode 100644
-index 641fde6cc44e..000000000000
+index 641fde6cc44ed..0000000000000
 --- a/drivers/gpu/drm/eswin/es_gem.c-dbg
 +++ /dev/null
 @@ -1,607 +0,0 @@
@@ -1336,7 +1336,7 @@ index 641fde6cc44e..000000000000
 -	return es_gem_mmap_obj(obj, vma);
 -}
 diff --git a/drivers/gpu/drm/eswin/es_gem.h b/drivers/gpu/drm/eswin/es_gem.h
-index b14b32ea5cb4..4dc902406052 100644
+index b14b32ea5cb4d..4dc902406052c 100644
 --- a/drivers/gpu/drm/eswin/es_gem.h
 +++ b/drivers/gpu/drm/eswin/es_gem.h
 @@ -1,6 +1,22 @@
@@ -1365,7 +1365,7 @@ index b14b32ea5cb4..4dc902406052 100644
  
  #ifndef __ES_GEM_H__
 diff --git a/drivers/gpu/drm/eswin/es_mipi_dsi.c b/drivers/gpu/drm/eswin/es_mipi_dsi.c
-index a083eebdea4d..0707ad4155c6 100644
+index a083eebdea4d8..0707ad4155c6e 100644
 --- a/drivers/gpu/drm/eswin/es_mipi_dsi.c
 +++ b/drivers/gpu/drm/eswin/es_mipi_dsi.c
 @@ -1,6 +1,22 @@
@@ -1393,7 +1393,7 @@ index a083eebdea4d..0707ad4155c6 100644
  
  #include <linux/clk.h>
 diff --git a/drivers/gpu/drm/eswin/es_mipi_dsi.h b/drivers/gpu/drm/eswin/es_mipi_dsi.h
-index 4a757e527736..2c21ced10992 100644
+index 4a757e527736b..2c21ced10992b 100644
 --- a/drivers/gpu/drm/eswin/es_mipi_dsi.h
 +++ b/drivers/gpu/drm/eswin/es_mipi_dsi.h
 @@ -1,6 +1,22 @@
@@ -1422,7 +1422,7 @@ index 4a757e527736..2c21ced10992 100644
  
  #ifndef __ES_MIPI_DSI_H__
 diff --git a/drivers/gpu/drm/eswin/es_panel.c b/drivers/gpu/drm/eswin/es_panel.c
-index 45424570364c..185a5b5a8daf 100644
+index 45424570364ca..185a5b5a8daf9 100644
 --- a/drivers/gpu/drm/eswin/es_panel.c
 +++ b/drivers/gpu/drm/eswin/es_panel.c
 @@ -1,3 +1,24 @@
@@ -1451,7 +1451,7 @@ index 45424570364c..185a5b5a8daf 100644
  #include <drm/drm_mipi_dsi.h>
  #include <drm/drm_panel.h>
 diff --git a/drivers/gpu/drm/eswin/es_panel.h b/drivers/gpu/drm/eswin/es_panel.h
-index 96ae0171f379..093ac739e5e9 100644
+index 96ae0171f379c..093ac739e5e90 100644
 --- a/drivers/gpu/drm/eswin/es_panel.h
 +++ b/drivers/gpu/drm/eswin/es_panel.h
 @@ -1,3 +1,24 @@
@@ -1480,7 +1480,7 @@ index 96ae0171f379..093ac739e5e9 100644
  #define _ES_PANEL_H__
  
 diff --git a/drivers/gpu/drm/eswin/es_plane.c b/drivers/gpu/drm/eswin/es_plane.c
-index 68e14d921de5..93b97db5cb73 100644
+index 68e14d921de54..93b97db5cb736 100644
 --- a/drivers/gpu/drm/eswin/es_plane.c
 +++ b/drivers/gpu/drm/eswin/es_plane.c
 @@ -1,6 +1,22 @@
@@ -1508,7 +1508,7 @@ index 68e14d921de5..93b97db5cb73 100644
  
  #include <drm/drm_atomic.h>
 diff --git a/drivers/gpu/drm/eswin/es_plane.h b/drivers/gpu/drm/eswin/es_plane.h
-index cc41d0741361..b7e7d4617d49 100644
+index cc41d0741361e..b7e7d4617d49c 100644
 --- a/drivers/gpu/drm/eswin/es_plane.h
 +++ b/drivers/gpu/drm/eswin/es_plane.h
 @@ -1,6 +1,22 @@
@@ -1537,7 +1537,7 @@ index cc41d0741361..b7e7d4617d49 100644
  
  #ifndef __ES_PLANE_H__
 diff --git a/drivers/gpu/drm/eswin/es_simple_enc.c b/drivers/gpu/drm/eswin/es_simple_enc.c
-index fbc725fc64ea..e5bbb2381107 100644
+index fbc725fc64eaa..e5bbb2381107e 100644
 --- a/drivers/gpu/drm/eswin/es_simple_enc.c
 +++ b/drivers/gpu/drm/eswin/es_simple_enc.c
 @@ -1,6 +1,22 @@
@@ -1565,7 +1565,7 @@ index fbc725fc64ea..e5bbb2381107 100644
  
  #include <linux/component.h>
 diff --git a/drivers/gpu/drm/eswin/es_simple_enc.h b/drivers/gpu/drm/eswin/es_simple_enc.h
-index bc461e1231e3..bd7f2212f2a2 100644
+index bc461e1231e32..bd7f2212f2a26 100644
 --- a/drivers/gpu/drm/eswin/es_simple_enc.h
 +++ b/drivers/gpu/drm/eswin/es_simple_enc.h
 @@ -1,6 +1,22 @@
@@ -1594,7 +1594,7 @@ index bc461e1231e3..bd7f2212f2a2 100644
  
  #ifndef __ES_SIMPLE_ENC_H_
 diff --git a/drivers/gpu/drm/eswin/es_type.h b/drivers/gpu/drm/eswin/es_type.h
-index aca0a83b0017..c180315e5835 100644
+index aca0a83b0017f..c180315e58354 100644
 --- a/drivers/gpu/drm/eswin/es_type.h
 +++ b/drivers/gpu/drm/eswin/es_type.h
 @@ -1,6 +1,22 @@
@@ -1623,7 +1623,7 @@ index aca0a83b0017..c180315e5835 100644
  
  #ifndef __ES_TYPE_H__
 diff --git a/drivers/gpu/drm/eswin/es_virtual.c b/drivers/gpu/drm/eswin/es_virtual.c
-index eb546d32b4f3..b2f2770804db 100644
+index eb546d32b4f3f..b2f2770804dbe 100644
 --- a/drivers/gpu/drm/eswin/es_virtual.c
 +++ b/drivers/gpu/drm/eswin/es_virtual.c
 @@ -1,6 +1,22 @@
@@ -1651,7 +1651,7 @@ index eb546d32b4f3..b2f2770804db 100644
  
  #include <linux/component.h>
 diff --git a/drivers/gpu/drm/eswin/es_virtual.h b/drivers/gpu/drm/eswin/es_virtual.h
-index 484d146ea178..fc7fa59e586b 100644
+index 484d146ea1782..fc7fa59e586bd 100644
 --- a/drivers/gpu/drm/eswin/es_virtual.h
 +++ b/drivers/gpu/drm/eswin/es_virtual.h
 @@ -1,6 +1,22 @@
@@ -1680,7 +1680,7 @@ index 484d146ea178..fc7fa59e586b 100644
  
  #ifndef __ES_VIRTUAL_H_
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
-index 1412036bdc31..77c1481b2d2e 100644
+index 1412036bdc312..77c1481b2d2e5 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -1,6 +1,22 @@
@@ -1709,7 +1709,7 @@ index 1412036bdc31..77c1481b2d2e 100644
  
  #include <linux/component.h>
 diff --git a/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h b/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h
-index 0cde34421994..bc544798575e 100644
+index 0cde344219944..bc544798575e2 100644
 --- a/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h
 +++ b/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h
 @@ -1,3 +1,24 @@

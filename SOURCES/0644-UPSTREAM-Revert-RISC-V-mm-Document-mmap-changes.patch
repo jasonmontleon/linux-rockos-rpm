@@ -1,4 +1,4 @@
-From dbb7fa1d1f51bee7b90fd3ae5497b794c671fac4 Mon Sep 17 00:00:00 2001
+From aad608bb33a83df89e70a7f43f713d89a36d1a96 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:45 -0700
 Subject: [PATCH 644/654] UPSTREAM: Revert "RISC-V: mm: Document mmap changes"
@@ -16,7 +16,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 16 deletions(-)
 
 diff --git a/Documentation/riscv/vm-layout.rst b/Documentation/riscv/vm-layout.rst
-index e476b4386bd9..5462c84f4723 100644
+index e476b4386bd9d..5462c84f4723f 100644
 --- a/Documentation/riscv/vm-layout.rst
 +++ b/Documentation/riscv/vm-layout.rst
 @@ -133,19 +133,3 @@ RISC-V Linux Kernel SV57

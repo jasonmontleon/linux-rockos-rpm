@@ -1,4 +1,4 @@
-From 022908a79ae6455d5135bf82b85c921229e71ebf Mon Sep 17 00:00:00 2001
+From b1d0fdad40fbf0fd5bd6c1a68aad4801ed82da7f Mon Sep 17 00:00:00 2001
 From: Shenlin Liang <liangshenlin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 16:48:22 +0800
 Subject: [PATCH 552/654] feat:add vpu7702_pcie_factory.dts
@@ -14,7 +14,7 @@ Signed-off-by: Shenlin Liang <liangshenlin@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 new file mode 100644
-index 000000000000..cf7b8dbc7680
+index 0000000000000..cf7b8dbc76801
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 @@ -0,0 +1,1115 @@

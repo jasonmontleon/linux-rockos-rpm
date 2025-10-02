@@ -1,4 +1,4 @@
-From d4d6a1078a7d40e7322f4310a603a6a9c4c82259 Mon Sep 17 00:00:00 2001
+From 316dcddef60ae93ab103c2b215ba0be64b8fbf47 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 7 Jun 2024 12:08:13 +0800
 Subject: [PATCH 086/654] config: enable option for docker/podman
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 280 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index a739278985ab..398b6db958bb 100644
+index a739278985ab6..398b6db958bb1 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -1,15 +1,28 @@

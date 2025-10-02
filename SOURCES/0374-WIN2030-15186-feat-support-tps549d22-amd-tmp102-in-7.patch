@@ -1,4 +1,4 @@
-From 048788419ec4eec2ab20cb1ab9f9ccaa910107d9 Mon Sep 17 00:00:00 2001
+From a1f7241bd973cdf49bd3895865d60e3892e2238f Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 7 Jan 2025 14:16:06 +0800
 Subject: [PATCH 374/654] WIN2030-15186:feat:support tps549d22 amd tmp102 in
@@ -22,7 +22,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 new file mode 100644
-index 000000000000..2355bd3f422d
+index 0000000000000..2355bd3f422d0
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -0,0 +1,1620 @@
@@ -1647,7 +1647,7 @@ index 000000000000..2355bd3f422d
 +	gpio111 : lcd touch resetn(O)
 +*/
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index f621172704ea..72cc0c1c597c 100644
+index f621172704eae..72cc0c1c597c3 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -466,6 +466,7 @@ CONFIG_GPIO_DWAPB=y
@@ -1670,7 +1670,7 @@ index f621172704ea..72cc0c1c597c 100644
  CONFIG_MEDIA_SUPPORT=y
  CONFIG_MEDIA_SUPPORT_FILTER=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 7b5fa46fad2a..d86411ce75d4 100644
+index 7b5fa46fad2a2..d86411ce75d4c 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -467,6 +467,7 @@ CONFIG_WATCHDOG=y
@@ -1682,7 +1682,7 @@ index 7b5fa46fad2a..d86411ce75d4 100644
  CONFIG_MEDIA_SUPPORT=y
  CONFIG_MEDIA_SUPPORT_FILTER=y
 diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 1c469ddbe464..661407848b3c 100644
+index 1c469ddbe4647..661407848b3cd 100644
 --- a/drivers/regulator/Kconfig
 +++ b/drivers/regulator/Kconfig
 @@ -799,7 +799,12 @@ config REGULATOR_MPQ8785
@@ -1700,7 +1700,7 @@ index 1c469ddbe464..661407848b3c 100644
  	tristate "einno,es5340"
  	depends on I2C && OF
 diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index c182cbff6548..cdc632121ada 100644
+index c182cbff65485..cdc632121ada6 100644
 --- a/drivers/regulator/Makefile
 +++ b/drivers/regulator/Makefile
 @@ -197,4 +197,5 @@ obj-$(CONFIG_REGULATOR_WM8400) += wm8400-regulator.o
@@ -1711,7 +1711,7 @@ index c182cbff6548..cdc632121ada 100644
  ccflags-$(CONFIG_REGULATOR_DEBUG) += -DDEBUG
 diff --git a/drivers/regulator/tps549d22-regulator.c b/drivers/regulator/tps549d22-regulator.c
 new file mode 100644
-index 000000000000..1f247c14a50b
+index 0000000000000..1f247c14a50b2
 --- /dev/null
 +++ b/drivers/regulator/tps549d22-regulator.c
 @@ -0,0 +1,580 @@

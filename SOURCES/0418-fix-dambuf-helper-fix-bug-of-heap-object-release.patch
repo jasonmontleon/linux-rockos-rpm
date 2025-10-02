@@ -1,4 +1,4 @@
-From a9f94eefd62589591cfacfe9d5a0ce81d0db1a79 Mon Sep 17 00:00:00 2001
+From 90d0d5338259fec499955ffc995f5e875e4a7b4d Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 3 Mar 2025 16:06:13 +0800
 Subject: [PATCH 418/654] fix(dambuf helper):fix bug of heap object release
@@ -12,7 +12,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 10 insertions(+), 18 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
-index 0aebc309c3a9..f0d67b27ae4b 100644
+index 0aebc309c3a96..f0d67b27ae4ba 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -54,6 +54,8 @@ struct dma_heap_attachment_cma {

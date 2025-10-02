@@ -1,4 +1,4 @@
-From 7c68763e48cf5c754e4324a27b87365dbb7a4931 Mon Sep 17 00:00:00 2001
+From 7fd8386d91102541d509d8a08a0493b05f6c03ee Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 3 Jun 2024 19:00:03 +0800
 Subject: [PATCH 044/654] fix:add label for all hwmon
@@ -14,7 +14,7 @@ Changelogs:
  5 files changed, 30 insertions(+), 20 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index a92e182c073a..f5c4712de03e 100644
+index a92e182c073a4..f5c4712de03e2 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -718,6 +718,7 @@ mpq8785@10 {
@@ -66,7 +66,7 @@ index a92e182c073a..f5c4712de03e 100644
  			shunt-resistor = <1000>;
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index bec9f0b54367..e3c9de0ada5d 100644
+index bec9f0b543678..e3c9de0ada5d8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -749,6 +749,7 @@ mpq8785@10 {
@@ -118,7 +118,7 @@ index bec9f0b54367..e3c9de0ada5d 100644
  			shunt-resistor = <1000>;
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 3db50303c303..a499864a4e99 100644
+index 3db50303c3038..a499864a4e99b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1263,6 +1263,7 @@ pvt0: pvt@0x50b00000 {
@@ -146,7 +146,7 @@ index 3db50303c303..a499864a4e99 100644
  
  		d0_i2c0: i2c@50950000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 2c19ffd3893e..1805c2bcdccc 100644
+index 2c19ffd3893e5..1805c2bcdccc6 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -674,6 +674,7 @@ d1_pvt0: pvt@0x70b00000 {
@@ -174,7 +174,7 @@ index 2c19ffd3893e..1805c2bcdccc 100644
  
  		d1_i2c0: i2c@70950000 {
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 271a5881d3de..92a708552e52 100644
+index 271a5881d3ded..92a708552e523 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -662,19 +662,21 @@ &d0_aon_i2c1 {

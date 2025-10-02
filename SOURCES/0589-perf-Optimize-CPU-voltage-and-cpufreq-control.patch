@@ -1,4 +1,4 @@
-From 93b5997db050202d50bc0dd5c15d7269f35fc0e9 Mon Sep 17 00:00:00 2001
+From a68ee1e3a540e16b3f2a186f8e23b07bc7356f7b Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Mon, 30 Jun 2025 19:20:30 +0800
 Subject: [PATCH 589/654] perf: Optimize CPU voltage and cpufreq control
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 54 insertions(+), 42 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index 2569c06b4c0a..18ece1f2da59 100644
+index 2569c06b4c0a7..18ece1f2da59c 100644
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -1,6 +1,19 @@

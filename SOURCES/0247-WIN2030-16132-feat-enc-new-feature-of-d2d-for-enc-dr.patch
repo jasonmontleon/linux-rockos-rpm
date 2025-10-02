@@ -1,4 +1,4 @@
-From ca16f9527607869d24074e13f2140bb57f11a441 Mon Sep 17 00:00:00 2001
+From 0843c107b991455d928cb2eff6812edc2743e9cf Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 13 Aug 2024 15:32:51 +0800
 Subject: [PATCH 247/654] <WIN2030-16132>:feat(enc):new feature of d2d for
@@ -15,7 +15,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_driver.h b/drivers/staging/media/eswin/venc/vc8000_driver.h
-index 2863a47ff0ff..3aad8ae83bec 100644
+index 2863a47ff0ffd..3aad8ae83bec9 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_driver.h
 +++ b/drivers/staging/media/eswin/venc/vc8000_driver.h
 @@ -297,6 +297,7 @@ struct exchange_parameter {
@@ -27,7 +27,7 @@ index 2863a47ff0ff..3aad8ae83bec 100644
  
  typedef struct CoreWaitOut {
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 5f88db259b5c..66cf710ff470 100644
+index 5f88db259b5c8..66cf710ff470f 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -1025,7 +1025,7 @@ static int wait_abort_rdy(struct hantrovcmd_dev *dev)

@@ -1,4 +1,4 @@
-From 5663c7703e9f18c2084974e3d68e2ef15763cf77 Mon Sep 17 00:00:00 2001
+From 122076a7b2e0edc01e633f409684c500e8d85b0c Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 11 Nov 2024 23:30:40 +0800
 Subject: [PATCH 231/654] HACK: reject sscofpmf for kvm
@@ -12,7 +12,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/kvm/vcpu_pmu.c b/arch/riscv/kvm/vcpu_pmu.c
-index e2e2a115afb5..0a8ab8c3700f 100644
+index e2e2a115afb5c..0a8ab8c3700fe 100644
 --- a/arch/riscv/kvm/vcpu_pmu.c
 +++ b/arch/riscv/kvm/vcpu_pmu.c
 @@ -556,6 +556,8 @@ void kvm_riscv_vcpu_pmu_init(struct kvm_vcpu *vcpu)

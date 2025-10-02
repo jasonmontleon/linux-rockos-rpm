@@ -1,4 +1,4 @@
-From 2556b1e461ed6828ec9e0d81ab80891292efba58 Mon Sep 17 00:00:00 2001
+From 0e02668add55dc74a3c3ac2e8257ae833ec8500f Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:07:39 +0800
 Subject: [PATCH 427/654] config: net: disable realtek phy for eic7700x
@@ -25,7 +25,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 33c92223468f..db1039b3d49a 100644
+index 33c92223468ff..db1039b3d49a6 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -515,7 +515,6 @@ CONFIG_NETXEN_NIC=m

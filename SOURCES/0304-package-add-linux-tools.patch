@@ -1,4 +1,4 @@
-From 519a3af0943c8b0a5eeefbb3bbad80407895db2f Mon Sep 17 00:00:00 2001
+From 8a4c71fdf190013a7b502fd0095f6c9e89344686 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 9 Oct 2024 20:51:07 +0800
 Subject: [PATCH 304/654] package: add linux-tools
@@ -13,7 +13,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  create mode 100755 scripts/package/generic
 
 diff --git a/scripts/package/builddeb b/scripts/package/builddeb
-index cbcf14820fb9..d0c49dbded92 100755
+index cbcf14820fb9b..d0c49dbded923 100755
 --- a/scripts/package/builddeb
 +++ b/scripts/package/builddeb
 @@ -182,6 +182,34 @@ install_libc_headers () {
@@ -74,7 +74,7 @@ index cbcf14820fb9..d0c49dbded92 100755
  done
  
 diff --git a/scripts/package/debian/rules b/scripts/package/debian/rules
-index 3dafa9496c63..af3e0bb0d3a1 100755
+index 3dafa9496c636..af3e0bb0d3a17 100755
 --- a/scripts/package/debian/rules
 +++ b/scripts/package/debian/rules
 @@ -3,13 +3,26 @@
@@ -121,7 +121,7 @@ index 3dafa9496c63..af3e0bb0d3a1 100755
 +	cd $(srctree)/tools/perf && $(MAKE) clean
 diff --git a/scripts/package/generic b/scripts/package/generic
 new file mode 100755
-index 000000000000..fc21a8f7b25a
+index 0000000000000..fc21a8f7b25aa
 --- /dev/null
 +++ b/scripts/package/generic
 @@ -0,0 +1,16 @@
@@ -142,7 +142,7 @@ index 000000000000..fc21a8f7b25a
 +
 +exit 2
 diff --git a/scripts/package/mkdebian b/scripts/package/mkdebian
-index 420c1e4c2d40..50b06561a9cb 100755
+index 420c1e4c2d401..50b06561a9cb5 100755
 --- a/scripts/package/mkdebian
 +++ b/scripts/package/mkdebian
 @@ -153,6 +153,7 @@ else

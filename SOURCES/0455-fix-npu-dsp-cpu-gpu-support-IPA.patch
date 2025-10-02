@@ -1,4 +1,4 @@
-From 0a9f2a9b27be8d808678a3597449a300c7f2e1ff Mon Sep 17 00:00:00 2001
+From 0f51e6e7de4b8812b394231e55c58ce5a7c64186 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 11 Mar 2025 11:08:49 +0800
 Subject: [PATCH 455/654] fix:npu,dsp,cpu,gpu support IPA
@@ -21,7 +21,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  11 files changed, 288 insertions(+), 53 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
-index c8f0d48745ca..6198424e38d5 100644
+index c8f0d48745ca0..6198424e38d5e 100644
 --- a/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
 @@ -225,6 +225,22 @@ opp@1040000000 {
@@ -48,7 +48,7 @@ index c8f0d48745ca..6198424e38d5 100644
  		compatible = "operating-points-v2";
  		opp@800000000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 693a82515c87..98c4689b99a6 100644
+index 693a82515c871..98c4689b99a69 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -87,7 +87,7 @@ cpu_0: cpu@0 {
@@ -88,7 +88,7 @@ index 693a82515c87..98c4689b99a6 100644
  			cpu3_intc: interrupt-controller {
  				#interrupt-cells = <1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index f718ceea26b5..1d365fa5fe09 100644
+index f718ceea26b59..1d365fa5fe090 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -34,53 +34,59 @@ / {
@@ -269,7 +269,7 @@ index f718ceea26b5..1d365fa5fe09 100644
  			interrupts = <26 25>;
  			#size-cells = <2>;
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 5520be92a830..fdbb24bf7834 100644
+index 5520be92a8302..fdbb24bf7834e 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -37,11 +37,11 @@ CONFIG_RISCV_SBI_V01=y
@@ -315,7 +315,7 @@ index 5520be92a830..fdbb24bf7834 100644
 \ No newline at end of file
 +CONFIG_I2C_MUX_PCA954x=y
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c b/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c
-index bea5cd1c98ef..669ed230d783 100644
+index bea5cd1c98efb..669ed230d7838 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/devices/rgxtimecorr.c
 @@ -464,9 +464,9 @@ static inline IMG_UINT32 _RGXGPUFreqGetIndex(RGX_GPU_DVFS_TABLE *psGpuDVFSTable,
@@ -331,7 +331,7 @@ index bea5cd1c98ef..669ed230d783 100644
  	paui32GPUFrequencies[i] = ui32CoreClockSpeed;
  
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c
-index 57e27ebcc1c8..9bffd02fc353 100644
+index 57e27ebcc1c80..9bffd02fc3533 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_platform_drv.c
 @@ -61,6 +61,8 @@
@@ -422,7 +422,7 @@ index 57e27ebcc1c8..9bffd02fc353 100644
  	 * The load callback, called from drm_dev_register, is deprecated,
  	 * because of potential race conditions. Calling the function here,
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index 0473c1d237b1..6dd85240ea67 100644
+index 0473c1d237b17..6dd85240ea67c 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -1,14 +1,23 @@
@@ -532,7 +532,7 @@ index 0473c1d237b1..6dd85240ea67 100644
  {
  	PVRSRV_DEVICE_CONFIG *psDevConfig;
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h
-index ec76a48bb4bc..89c8663ab623 100644
+index ec76a48bb4bc0..89c8663ab623c 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysinfo.h
 @@ -16,6 +16,8 @@
@@ -554,7 +554,7 @@ index ec76a48bb4bc..89c8663ab623 100644
  #endif	/* !defined(__SYSINFO_H__) */
  
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index c5f6f2a83b12..5ad8b8471f82 100644
+index c5f6f2a83b120..5ad8b8471f827 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -3,7 +3,6 @@
@@ -627,7 +627,7 @@ index c5f6f2a83b12..5ad8b8471f82 100644
  #endif
  
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 45d4821e902b..80f49a3edf8b 100644
+index 45d4821e902b1..80f49a3edf8b5 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -3,7 +3,6 @@
@@ -648,7 +648,7 @@ index 45d4821e902b..80f49a3edf8b 100644
  }
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 04a8e7b4f77a..24e9c95160fa 100644
+index 04a8e7b4f77a4..24e9c95160fa3 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -3,7 +3,6 @@

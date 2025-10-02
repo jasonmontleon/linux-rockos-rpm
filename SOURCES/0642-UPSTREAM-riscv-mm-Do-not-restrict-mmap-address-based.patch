@@ -1,4 +1,4 @@
-From cd0390a46408fe36ee720988115041352c946545 Mon Sep 17 00:00:00 2001
+From e062e8ed157082168d21eff630c15ab92e50a98d Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:47 -0700
 Subject: [PATCH 642/654] UPSTREAM: riscv: mm: Do not restrict mmap address
@@ -21,7 +21,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 2 insertions(+), 20 deletions(-)
 
 diff --git a/arch/riscv/include/asm/processor.h b/arch/riscv/include/asm/processor.h
-index 990271e8724e..590e6d1cde70 100644
+index 990271e8724e5..590e6d1cde70b 100644
 --- a/arch/riscv/include/asm/processor.h
 +++ b/arch/riscv/include/asm/processor.h
 @@ -15,30 +15,12 @@

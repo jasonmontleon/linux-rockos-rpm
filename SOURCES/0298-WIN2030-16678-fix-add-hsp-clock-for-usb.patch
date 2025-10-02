@@ -1,4 +1,4 @@
-From fb773fc445a1f1ad7d213d6766da1193403a8aae Mon Sep 17 00:00:00 2001
+From 21f5d102f612f91f3e91297cb061a8f84aff2c25 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 28 Nov 2024 10:41:03 +0800
 Subject: [PATCH 298/654] WIN2030-16678:fix:add hsp clock for usb
@@ -14,7 +14,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 16 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index dd1fedbdbabe..baf952a80c8d 100644
+index dd1fedbdbabe2..baf952a80c8d8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1977,8 +1977,10 @@ d0_usbdrd3_0: usb0@50480000 {
@@ -44,7 +44,7 @@ index dd1fedbdbabe..baf952a80c8d 100644
  			resets = <&d0_reset HSPDMA_RST_CTRL SW_USB1_VAUX_RSTN>;
  			reset-names = "vaux";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index c05df53e7bf5..f0f24cad97a4 100644
+index c05df53e7bf57..f0f24cad97a4f 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2042,8 +2042,10 @@ d1_usbdrd3_0: usb0@70480000 {

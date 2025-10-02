@@ -1,4 +1,4 @@
-From b6a909541b45aa204e199fc55274932450825caf Mon Sep 17 00:00:00 2001
+From 8fd6e91943c1f5203a8b6766d90f6eba2e65271a Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 19 Mar 2025 16:04:01 +0800
 Subject: [PATCH 450/654] feat:sbc support rtc pcf85063a
@@ -13,7 +13,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  2 files changed, 5 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 496dd80a4d3c..0de6f9e259d1 100644
+index 496dd80a4d3cd..0de6f9e259d1a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -45,7 +45,8 @@ / {
@@ -44,7 +44,7 @@ index 496dd80a4d3c..0de6f9e259d1 100644
  	};
  };
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index a31c15f59201..5520be92a830 100644
+index a31c15f59201a..5520be92a8302 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -730,7 +730,7 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y

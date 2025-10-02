@@ -1,4 +1,4 @@
-From 33dcb99a5626783bd5f95b34bf75c278dc5b83f2 Mon Sep 17 00:00:00 2001
+From 448f097f97d89318172af34d9bce3822221900cc Mon Sep 17 00:00:00 2001
 From: gengzonglin <gengzonglin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 09:41:33 +0800
 Subject: [PATCH 551/654] fix:Fix 'invalid GPIO' for D560 gmac
@@ -13,7 +13,7 @@ Signed-off-by: gengzonglin gengzonglin@eswincomputing.com
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
-index 2e55ba76ad50..c99a7f59c2e1 100644
+index 2e55ba76ad50d..c99a7f59c2e17 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 @@ -980,7 +980,7 @@ &d1_gmac0 {
@@ -35,7 +35,7 @@ index 2e55ba76ad50..c99a7f59c2e1 100644
  	eswin,led-cfgs = <0x6100 0xa40 0x420>;
  	dly-param-1000m = <0x20202020 0x46205A20 0x20202020>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index 12ef6270c441..80ad529aafc0 100644
+index 12ef6270c4416..80ad529aafc07 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -941,7 +941,7 @@ &d1_gmac0 {

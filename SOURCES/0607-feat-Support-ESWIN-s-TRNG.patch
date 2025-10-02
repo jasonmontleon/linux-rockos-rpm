@@ -1,4 +1,4 @@
-From 1b4a39e7d29bc312d4c7037752b8a5afb4818436 Mon Sep 17 00:00:00 2001
+From 5edce38bee65d11706464dbec7cd501ddd620d35 Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 13 Jun 2025 13:38:36 +0800
 Subject: [PATCH 607/654] feat: Support ESWIN's TRNG
@@ -14,7 +14,7 @@ Signed-off-by: caohang <caohang@eswincomputing.com>
  2 files changed, 174 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/crypto/eswin/eswin-ipc-scpu.c b/drivers/crypto/eswin/eswin-ipc-scpu.c
-index 76270dbc1e9d..7ac1eae6ee8e 100644
+index 76270dbc1e9d0..7ac1eae6ee8e2 100644
 --- a/drivers/crypto/eswin/eswin-ipc-scpu.c
 +++ b/drivers/crypto/eswin/eswin-ipc-scpu.c
 @@ -48,6 +48,8 @@
@@ -330,7 +330,7 @@ index 76270dbc1e9d..7ac1eae6ee8e 100644
  	if (ret)
  		return ret;
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
-index e8fa083a2c7f..bd339c496476 100644
+index e8fa083a2c7f0..bd339c496476e 100644
 --- a/include/uapi/linux/eswin-ipc-scpu.h
 +++ b/include/uapi/linux/eswin-ipc-scpu.h
 @@ -697,6 +697,9 @@ typedef struct {

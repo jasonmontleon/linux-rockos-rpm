@@ -1,4 +1,4 @@
-From 09324f1ef9fb91086e1c4569da62805f4d80ac30 Mon Sep 17 00:00:00 2001
+From 42a3a6fcc61b7641ff5b35b4bf4bd401777054e1 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sun, 23 Feb 2025 13:25:01 -0500
 Subject: [PATCH 652/654] Add NPU enabled variants of dtbs
@@ -14,7 +14,7 @@ Subject: [PATCH 652/654] Add NPU enabled variants of dtbs
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 81c75d101176..5a248d86b6e7 100644
+index 81c75d1011768..5a248d86b6e78 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -9,6 +9,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -29,7 +29,7 @@ index 81c75d101176..5a248d86b6e7 100644
  							eic7702-evb-a1.dtb\
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 new file mode 100644
-index 000000000000..91d3346d761d
+index 0000000000000..91d3346d761d3
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 @@ -0,0 +1,902 @@
@@ -937,7 +937,7 @@ index 000000000000..91d3346d761d
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
 new file mode 100644
-index 000000000000..aa4741af7aba
+index 0000000000000..aa4741af7aba7
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
 @@ -0,0 +1,987 @@
@@ -1930,7 +1930,7 @@ index 000000000000..aa4741af7aba
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 new file mode 100644
-index 000000000000..57fc6dcc6bb0
+index 0000000000000..57fc6dcc6bb01
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 @@ -0,0 +1,873 @@

@@ -1,4 +1,4 @@
-From 6f26b0eb5d9b16bbe83ca3334a1d38f8659aa290 Mon Sep 17 00:00:00 2001
+From fa21ea56738edf7150fb3c704d1dc1fefe619ac8 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Tue, 10 Sep 2024 10:35:02 +0800
 Subject: [PATCH 172/654] chore:Remove redundant log
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/clocksource/timer-eswin.c b/drivers/clocksource/timer-eswin.c
-index 089d0f28eba3..a00a686bc0ec 100644
+index 089d0f28eba36..a00a686bc0ec9 100644
 --- a/drivers/clocksource/timer-eswin.c
 +++ b/drivers/clocksource/timer-eswin.c
 @@ -170,7 +170,6 @@ static int timer_mmap(struct file *file, struct vm_area_struct *vma)

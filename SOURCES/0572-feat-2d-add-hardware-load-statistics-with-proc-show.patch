@@ -1,4 +1,4 @@
-From 348af2d71e454129c3cda114255702fc54b861dd Mon Sep 17 00:00:00 2001
+From 2e38575b974287c5c68d664d1ca0d1375adc818a Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Mon, 9 Jun 2025 14:24:29 +0800
 Subject: [PATCH 572/654] feat(2d):add hardware load statistics with proc show
@@ -16,7 +16,7 @@ Signed-off-by: lei <leizhilin@eswincomputing.com>
  3 files changed, 86 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
-index 0cd8c0ab4dae..78ebbed1cb00 100644
+index 0cd8c0ab4daed..78ebbed1cb002 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -684,6 +684,59 @@ _PowerStateTimerFunc(gctPOINTER Data)
@@ -114,7 +114,7 @@ index 0cd8c0ab4dae..78ebbed1cb00 100644
      for (i = 0; i < gcvENGINE_GPU_ENGINE_COUNT; i++)
          gcmkVERIFY_OK(gckOS_AtomDestroy(Hardware->os, Hardware->pageTableDirty[i]));
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
-index 878241b4b49b..40a8772331e0 100644
+index 878241b4b49bd..40a8772331e00 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
 @@ -64,7 +64,7 @@ extern "C" {
@@ -139,7 +139,7 @@ index 878241b4b49b..40a8772331e0 100644
  
  gceSTATUS
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
-index 9699a7b40d14..67e66b773423 100644
+index 9699a7b40d148..67e66b7734232 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 @@ -549,7 +549,19 @@ gc_load_show(void *m, void *data)

@@ -1,4 +1,4 @@
-From 8edc225e42921c480826a203f4b4a0df41cf52e1 Mon Sep 17 00:00:00 2001
+From b7092eab9eb4a8fe57b318e963d71481d5caf211 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Tue, 8 Apr 2025 19:04:09 +0800
 Subject: [PATCH 468/654] feat:turne on NPU perf
@@ -19,7 +19,7 @@ Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
  8 files changed, 38 insertions(+), 50 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
-index 667e13996be3..898b71346aae 100644
+index 667e13996be36..898b71346aae6 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
 @@ -235,9 +235,7 @@ typedef struct _host_node {
@@ -33,7 +33,7 @@ index 667e13996be3..898b71346aae 100644
  
  typedef struct _dsp_node {
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_perf.h b/drivers/soc/eswin/ai_driver/common/hetero_perf.h
-index 5e96bcc4f760..20f0ecf3a03a 100644
+index 5e96bcc4f760f..20f0ecf3a03ab 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_perf.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_perf.h
 @@ -26,11 +26,6 @@
@@ -49,7 +49,7 @@ index 5e96bcc4f760..20f0ecf3a03a 100644
  
  typedef struct _npu_model_perf {
 diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
-index 630aa94bc05f..31e513ce5ed8 100644
+index 630aa94bc05f3..31e513ce5ed83 100644
 --- a/drivers/soc/eswin/ai_driver/npu/Makefile
 +++ b/drivers/soc/eswin/ai_driver/npu/Makefile
 @@ -1,11 +1,8 @@
@@ -74,7 +74,7 @@ index 630aa94bc05f..31e513ce5ed8 100644
  #ccflags-y += -DCONV_DUMP
  ccflags-y += -DLOG_LEVEL=$(LOG_LEVEL)
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_log.c b/drivers/soc/eswin/ai_driver/npu/dla_log.c
-index a215530f5d55..590b75280a87 100644
+index a215530f5d55c..590b75280a871 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_log.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_log.c
 @@ -29,9 +29,7 @@
@@ -97,7 +97,7 @@ index a215530f5d55..590b75280a87 100644
  int loop_buf_enable = 0;
  module_param(loop_buf_enable, int, 0644);
 diff --git a/drivers/soc/eswin/ai_driver/npu/engine.c b/drivers/soc/eswin/ai_driver/npu/engine.c
-index f9950ef478c6..fa165ac48a2f 100644
+index f9950ef478c69..fa165ac48a2f2 100644
 --- a/drivers/soc/eswin/ai_driver/npu/engine.c
 +++ b/drivers/soc/eswin/ai_driver/npu/engine.c
 @@ -557,15 +557,7 @@ int win_engine_init(struct nvdla_device *nvdla_dev, void **arg_engine)
@@ -130,7 +130,7 @@ index f9950ef478c6..fa165ac48a2f 100644
  		engine = NULL;
  	}
 diff --git a/drivers/soc/eswin/ai_driver/npu/internal_interface.h b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
-index b215769d3249..e5b14e5fb7d5 100644
+index b215769d32490..e5b14e5fb7d5e 100644
 --- a/drivers/soc/eswin/ai_driver/npu/internal_interface.h
 +++ b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
 @@ -180,7 +180,6 @@ struct win_engine {
@@ -142,7 +142,7 @@ index b215769d3249..e5b14e5fb7d5 100644
  	atomic_t is_sending;
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
-index 6ed17e6af550..4bbbb3942e1b 100644
+index 6ed17e6af5504..4bbbb3942e1b7 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 @@ -37,7 +37,6 @@ static spinlock_t proc_lock[2];
@@ -270,7 +270,7 @@ index 6ed17e6af550..4bbbb3942e1b 100644
  }
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 2ae719709386..8ea6ebe6768d 100644
+index 2ae719709386f..8ea6ebe6768dc 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -39,7 +39,7 @@

@@ -1,4 +1,4 @@
-From ee76c866cad683e06fbf11a4caf2bc581b85e011 Mon Sep 17 00:00:00 2001
+From ac50a2d85238fe16137da008d702e345a6dc2ea3 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Wed, 2 Jul 2025 17:19:43 +0800
 Subject: [PATCH 602/654] fix(vdec):fix dead lock issue for vdec driver
@@ -25,7 +25,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 65 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 3ccbc0da1a95..8d4ce4daef71 100644
+index 3ccbc0da1a95e..8d4ce4daef71a 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -715,10 +715,6 @@ struct cmdbuf_obj {
@@ -227,7 +227,7 @@ index 3ccbc0da1a95..8d4ce4daef71 100644
  					CMDBUF_EXE_STATUS_OK;
  				cmdbuf_processed_num++;
 diff --git a/drivers/staging/media/eswin/vdec/hantrodec.h b/drivers/staging/media/eswin/vdec/hantrodec.h
-index c6482db4992e..8f10bce52cdb 100644
+index c6482db4992ea..8f10bce52cdbe 100644
 --- a/drivers/staging/media/eswin/vdec/hantrodec.h
 +++ b/drivers/staging/media/eswin/vdec/hantrodec.h
 @@ -157,6 +157,11 @@ struct dmabuf_split {

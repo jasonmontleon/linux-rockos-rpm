@@ -1,4 +1,4 @@
-From a0a6ab098007aa784114e8e43ab6db53adf61266 Mon Sep 17 00:00:00 2001
+From 82b32e70b09beb3ab0454324e9944fdb353c3aae Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Mon, 2 Dec 2024 17:13:54 +0800
 Subject: [PATCH 339/654] WIN2030-16412:feat: DMA memcopy kernel driver.
@@ -24,7 +24,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  create mode 100644 include/uapi/linux/dma_memcp.h
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 353c29d85325..52c6b13f0804 100644
+index 353c29d85325b..52c6b13f0804f 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -766,6 +766,7 @@ CONFIG_ESWIN_RSVMEM_HEAP=y
@@ -36,7 +36,7 @@ index 353c29d85325..52c6b13f0804 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN_WIN2030=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 477f2406826e..7601a3cf4932 100644
+index 477f2406826e8..7601a3cf4932e 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -795,6 +795,7 @@ CONFIG_ESWIN_RSVMEM_HEAP=y
@@ -48,7 +48,7 @@ index 477f2406826e..7601a3cf4932 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN_WIN2030=y
 diff --git a/drivers/memory/eswin/Kconfig b/drivers/memory/eswin/Kconfig
-index 3078936326e4..c187f1c0ac0a 100644
+index 3078936326e4f..c187f1c0ac0a3 100644
 --- a/drivers/memory/eswin/Kconfig
 +++ b/drivers/memory/eswin/Kconfig
 @@ -31,5 +31,6 @@ source "drivers/memory/eswin/es_rsvmem_heap/Kconfig"
@@ -59,7 +59,7 @@ index 3078936326e4..c187f1c0ac0a 100644
  
  endif
 diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
-index d8b6f2868e09..1d33ac236716 100644
+index d8b6f2868e091..1d33ac2367164 100644
 --- a/drivers/memory/eswin/Makefile
 +++ b/drivers/memory/eswin/Makefile
 @@ -8,6 +8,7 @@ obj-$(CONFIG_ESWIN_RSVMEM_HEAP)			+= es_rsvmem_heap/
@@ -72,7 +72,7 @@ index d8b6f2868e09..1d33ac236716 100644
  
 diff --git a/drivers/memory/eswin/es_dma_memcp/Kconfig b/drivers/memory/eswin/es_dma_memcp/Kconfig
 new file mode 100644
-index 000000000000..deff4abf37de
+index 0000000000000..deff4abf37deb
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dma_memcp/Kconfig
 @@ -0,0 +1,6 @@
@@ -84,14 +84,14 @@ index 000000000000..deff4abf37de
 +	  ESWIN DMA memory copy device.
 diff --git a/drivers/memory/eswin/es_dma_memcp/Makefile b/drivers/memory/eswin/es_dma_memcp/Makefile
 new file mode 100644
-index 000000000000..615375e6b476
+index 0000000000000..615375e6b4767
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dma_memcp/Makefile
 @@ -0,0 +1 @@
 +obj-$(CONFIG_ESWIN_DMA_MEMCP) += es_dma_memcp.o
 diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 new file mode 100644
-index 000000000000..2901a5e8525e
+index 0000000000000..2901a5e8525e4
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 @@ -0,0 +1,603 @@
@@ -701,7 +701,7 @@ index 000000000000..2901a5e8525e
 \ No newline at end of file
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
 new file mode 100644
-index 000000000000..3cb75a348ba8
+index 0000000000000..3cb75a348ba8d
 --- /dev/null
 +++ b/include/uapi/linux/dma_memcp.h
 @@ -0,0 +1,62 @@

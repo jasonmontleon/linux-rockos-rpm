@@ -1,4 +1,4 @@
-From 3544f0d54c4627979bd2726cc65d15aaeded2859 Mon Sep 17 00:00:00 2001
+From 4c2df25491c1c5797ac9231c359974cd479a0e95 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Sat, 14 Sep 2024 14:39:17 +0800
 Subject: [PATCH 267/654] WIN2030-16287:feat:support touchscreen(gt911)
@@ -17,7 +17,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  5 files changed, 43 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index d329b5d3652e..4d20e6b2ccca 100644
+index d329b5d3652ed..4d20e6b2cccab 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -734,8 +734,18 @@ npu_vcc1:npu_svcc{
@@ -42,7 +42,7 @@ index d329b5d3652e..4d20e6b2ccca 100644
  
  &d0_i2c3 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 0c360b4c90ac..60a60f3b7f30 100644
+index 0c360b4c90ac8..60a60f3b7f309 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -1154,11 +1154,33 @@ d1_npu_vcc:npu_svcc{
@@ -83,7 +83,7 @@ index 0c360b4c90ac..60a60f3b7f30 100644
  
  &d0_i2c3 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index b48b2b84020d..d8a5da7a0d39 100644
+index b48b2b84020d2..d8a5da7a0d393 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1130,6 +1130,8 @@ d1_porta: gpio-port@0 {
@@ -96,7 +96,7 @@ index b48b2b84020d..d8a5da7a0d39 100644
  								319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334>;
  			};
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index a4618fd33805..7c0606ba04d5 100644
+index a4618fd338056..7c0606ba04d55 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -432,6 +432,8 @@ CONFIG_RTL8192SE=m
@@ -109,7 +109,7 @@ index a4618fd33805..7c0606ba04d5 100644
  # CONFIG_LEGACY_PTYS is not set
  CONFIG_SERIAL_8250=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 1e9388335206..01d1b3969200 100644
+index 1e9388335206f..01d1b3969200e 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -429,6 +429,8 @@ CONFIG_RTL8192SE=m

@@ -1,4 +1,4 @@
-From 0ddcbdeffba67c9ad44ba8a27f9758a6e474fbee Mon Sep 17 00:00:00 2001
+From afdb73b8ad313cfc0d78361576e68af583231164 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 28 Oct 2024 13:11:34 +0800
 Subject: [PATCH 322/654] WIN2030-15704:feat:Centralize the OOP table
@@ -20,7 +20,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 1271e31fb764..b30953a9f27c 100644
+index 1271e31fb7643..b30953a9f27c6 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -850,7 +850,7 @@ &d0_clock {
@@ -34,7 +34,7 @@ index 1271e31fb764..b30953a9f27c 100644
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 new file mode 100644
-index 000000000000..9f1da7ec26ce
+index 0000000000000..9f1da7ec26ce4
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 @@ -0,0 +1,173 @@
@@ -212,7 +212,7 @@ index 000000000000..9f1da7ec26ce
 +	};
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index c9afd60d2434..f138a64dfd45 100644
+index c9afd60d24344..f138a64dfd450 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -105,7 +105,7 @@ cpu_4: cpu@4 {
@@ -252,7 +252,7 @@ index c9afd60d2434..f138a64dfd45 100644
  		cpu7_intc: interrupt-controller {
  			#interrupt-cells = <1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 64671ff693e3..0f0e36842fd0 100644
+index 64671ff693e3e..0f0e36842fd00 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -19,6 +19,7 @@
@@ -300,7 +300,7 @@ index 64671ff693e3..0f0e36842fd0 100644
  			dynamic-power-coefficient = <324>;
  			cpu-idle-states = <&CPU_RET>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 57fbb83e48a9..a7e0b18764fb 100644
+index 57fbb83e48a9d..a7e0b18764fb8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -32,155 +32,6 @@
@@ -532,7 +532,7 @@ index 57fbb83e48a9..a7e0b18764fb 100644
  			interrupts = <26 25>;
  			#size-cells = <2>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 31b718685d06..66c2a8dddd04 100644
+index 31b718685d06c..66c2a8dddd043 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -30,77 +30,6 @@

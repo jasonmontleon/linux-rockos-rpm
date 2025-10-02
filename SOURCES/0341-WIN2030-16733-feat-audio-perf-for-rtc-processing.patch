@@ -1,4 +1,4 @@
-From 4ae26d2c0da0b5aaa6a5b51dca0198c77637a2a2 Mon Sep 17 00:00:00 2001
+From f8db3760ea0f19e3558f7c1463bf29ec335f844c Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Tue, 3 Dec 2024 17:45:27 +0800
 Subject: [PATCH 341/654] WIN2030-16733:feat:audio perf for rtc processing
@@ -13,7 +13,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 12 insertions(+), 14 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index 17b7c21f7b69..f21e269af657 100644
+index 17b7c21f7b69a..f21e269af6578 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -46,9 +46,7 @@ typedef enum

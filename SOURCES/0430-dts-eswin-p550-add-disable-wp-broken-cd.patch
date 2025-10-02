@@ -1,4 +1,4 @@
-From 0e46d206529c980cb5f2b67416b1c99cdc44690d Mon Sep 17 00:00:00 2001
+From 1a28921dcf2f5e694d3aebd9c9371eaf351df107 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 20:23:49 +0800
 Subject: [PATCH 430/654] dts: eswin: p550: add disable-wp & broken-cd
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 5e0df61988f5..e3124c608630 100644
+index 5e0df61988f58..e3124c608630b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -443,6 +443,8 @@ &sdio0 {

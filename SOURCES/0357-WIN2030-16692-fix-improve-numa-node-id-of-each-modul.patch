@@ -1,4 +1,4 @@
-From 6a2c4ca98cceac2f5e466dd0f68d022feb95b101 Mon Sep 17 00:00:00 2001
+From 5181d27c2ae71a1433793d1c453cebc48fe50b63 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 24 Dec 2024 20:19:31 +0800
 Subject: [PATCH 357/654] WIN2030-16692:fix:improve numa-node-id of each module
@@ -17,7 +17,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  6 files changed, 132 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index f138a64dfd45..23eb2a5424d3 100644
+index f138a64dfd450..23eb2a5424d3e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -272,6 +272,7 @@ PMU1: pmu@1 {
@@ -93,7 +93,7 @@ index f138a64dfd45..23eb2a5424d3 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 71b68bc3064e..1bcfba13d1a3 100644
+index 71b68bc3064ed..1bcfba13d1a39 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -248,6 +248,7 @@ PMU0: pmu@0 {
@@ -169,7 +169,7 @@ index 71b68bc3064e..1bcfba13d1a3 100644
  		L10: rom@1a000000 {
  			compatible = "ucbbar,cacheable-zero0";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
-index fe81f8e622e6..77243ae1b93f 100644
+index fe81f8e622e65..77243ae1b93f7 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
 @@ -24,6 +24,7 @@ d0_cfg_noc:d0_cfg_noc{
@@ -213,7 +213,7 @@ index fe81f8e622e6..77243ae1b93f 100644
  	interrupts = <448>;
  	interrupt-names = "error";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 03f878795dbc..88b00f5478cc 100644
+index 03f878795dbca..88b00f5478ccc 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -175,10 +175,12 @@ d0_sys_crg: sys-crg@51828000 {
@@ -621,7 +621,7 @@ index 03f878795dbc..88b00f5478cc 100644
  
  		d0_numa_sample:numa_sample@0 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
-index e1f621d9889e..1f4a1a693b45 100644
+index e1f621d9889e1..1f4a1a693b45e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
 @@ -29,7 +29,7 @@ d1_cfg_noc:d1_cfg_noc{
@@ -666,7 +666,7 @@ index e1f621d9889e..1f4a1a693b45 100644
  	interrupts = <448>;
  	interrupt-names = "error";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index b7405c6d6e49..454427d67f0c 100644
+index b7405c6d6e49b..454427d67f0ce 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -161,6 +161,7 @@ d1_noc_wdt:noc@71810324 {

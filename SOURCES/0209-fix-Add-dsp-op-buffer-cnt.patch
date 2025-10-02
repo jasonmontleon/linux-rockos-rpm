@@ -1,4 +1,4 @@
-From 92803046868ef053d0823347405a35372fdecfed Mon Sep 17 00:00:00 2001
+From 85ebac54b5381734fe90c054682ac5b77ab42383 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 28 Oct 2024 19:37:10 +0800
 Subject: [PATCH 209/654] fix:Add dsp op buffer cnt.
@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  3 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/dla_interface.h b/drivers/soc/eswin/ai_driver/common/dla_interface.h
-index fcabd9f85765..7c72caca94b0 100644
+index fcabd9f85765e..7c72caca94b0a 100644
 --- a/drivers/soc/eswin/ai_driver/common/dla_interface.h
 +++ b/drivers/soc/eswin/ai_driver/common/dla_interface.h
 @@ -644,7 +644,7 @@ struct dla_rubik_op_desc {
@@ -27,7 +27,7 @@ index fcabd9f85765..7c72caca94b0 100644
  struct dsp_op_desc {
      /* *
 diff --git a/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h b/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h
-index ccbb41bb2de7..0fa4b8a62fe8 100644
+index ccbb41bb2de76..0fa4b8a62fe8a 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h
 @@ -28,7 +28,7 @@
@@ -40,7 +40,7 @@ index ccbb41bb2de7..0fa4b8a62fe8 100644
  // tensor shape info in dsp ping pong tiling
  typedef struct {
 diff --git a/drivers/soc/eswin/ai_driver/common/es_dsp_types.h b/drivers/soc/eswin/ai_driver/common/es_dsp_types.h
-index 7b9c84c14ed3..ad0b3f2105e2 100644
+index 7b9c84c14ed34..ad0b3f2105e23 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_dsp_types.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_dsp_types.h
 @@ -83,7 +83,7 @@ typedef enum DSP_PRI_E {

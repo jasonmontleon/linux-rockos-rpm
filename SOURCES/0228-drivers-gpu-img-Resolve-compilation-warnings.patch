@@ -1,4 +1,4 @@
-From 63c438c9baaca63d29b118beb85eb0b37d4933bd Mon Sep 17 00:00:00 2001
+From db77df089ef71c6324b3cb754981e4abfae0132e Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Thu, 19 Sep 2024 11:52:55 +0000
 Subject: [PATCH 228/654] drivers: gpu: img: Resolve compilation warnings
@@ -56,7 +56,7 @@ Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
  1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index d94c76cc68b9..ab17236f36cd 100644
+index d94c76cc68b90..ab17236f36cde 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -60,7 +60,7 @@ void eswin_l2_flush64(phys_addr_t addr, size_t size) {

@@ -1,4 +1,4 @@
-From 571113cdbed5e5c9715652ce83a86380594a2f47 Mon Sep 17 00:00:00 2001
+From bf9951c032e8a6532499e49870a415cd260c599a Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Wed, 26 Feb 2025 09:05:52 +0800
 Subject: [PATCH 460/654] feat:adapt dual die model
@@ -12,7 +12,7 @@ Signed-off-by: yiguo <yiguo@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
-index 8858e6863ab1..6dff5245a0b8 100644
+index 8858e6863ab15..6dff5245a0b82 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 @@ -37,6 +37,7 @@ enum {

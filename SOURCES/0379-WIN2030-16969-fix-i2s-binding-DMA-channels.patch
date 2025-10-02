@@ -1,4 +1,4 @@
-From 30171a8b5d2559ae84ac51ec2e2f56e364693c12 Mon Sep 17 00:00:00 2001
+From 1aa07a0ba7ec0972422332dfc5719773b2cbc818 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 9 Jan 2025 17:03:33 +0800
 Subject: [PATCH 379/654] WIN2030-16969:fix:i2s binding DMA channels.
@@ -17,7 +17,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  5 files changed, 47 insertions(+), 19 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 720d8b672af2..f35057654baa 100644
+index 720d8b672af20..f35057654baad 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -352,7 +352,7 @@ d0_aon_dmac: dma-controller-aon@0x518c0000 {
@@ -75,7 +75,7 @@ index 720d8b672af2..f35057654baa 100644
  			resets = <&d0_reset VO_I2SRST_CTRL SW_VO_I2S_RSTN>,
  				<&d0_reset VO_I2SRST_CTRL SW_VO_I2S_PRSTN>,
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 96cf2b22d8d5..42978f4a4cdc 100644
+index 96cf2b22d8d5d..42978f4a4cdc5 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -322,7 +322,7 @@ d1_aon_dmac: dma-controller-aon@0x718c0000 {
@@ -142,7 +142,7 @@ index 96cf2b22d8d5..42978f4a4cdc 100644
  			resets = <&d1_reset VO_I2SRST_CTRL SW_VO_I2S_RSTN>,
  				<&d1_reset VO_I2SRST_CTRL SW_VO_I2S_PRSTN>,
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 152ef7167318..470f5d0e60dc 100644
+index 152ef71673186..470f5d0e60dc6 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -1415,23 +1415,42 @@ int win2030_dma_sel_cfg(struct axi_dma_chan *chan, u32 val)
@@ -193,7 +193,7 @@ index 152ef7167318..470f5d0e60dc 100644
  	return dchan;
  }
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-index 738954532c93..bcbc75598af5 100644
+index 738954532c938..bcbc75598af58 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
 @@ -95,6 +95,11 @@ struct axi_dma_chip {
@@ -209,7 +209,7 @@ index 738954532c93..bcbc75598af5 100644
  struct __packed axi_dma_lli {
  	__le64		sar;
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 56de39b82b76..2fee4120acd2 100644
+index 56de39b82b763..2fee4120acd2a 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -429,6 +429,7 @@ int esw_pcm_dma_dai_register(struct i2s_dev *chip)

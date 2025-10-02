@@ -1,4 +1,4 @@
-From b84395f442bdae4aaf61eb6870bef762c05eda4a Mon Sep 17 00:00:00 2001
+From ca4af6f98aeb610cb75314afa9801018ad298f4b Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 9 Apr 2025 16:20:35 +0800
 Subject: [PATCH 467/654] fix:fix dma period size and cnt to fit 24-16-32bit
@@ -12,7 +12,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 0603030cc424..d86c5aed4669 100644
+index 0603030cc424e..d86c5aed4669e 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -28,9 +28,8 @@

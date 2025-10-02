@@ -1,4 +1,4 @@
-From 51824b319660bdcbda8ae081ced51299118affee Mon Sep 17 00:00:00 2001
+From a9c99d265e9a0fc434970cfb39a5c14601ec7a5d Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Thu, 6 Jun 2024 17:04:36 +0800
 Subject: [PATCH 048/654] fix:add enable/disable for hdcp1x
@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
-index 1ad77afba9c3..de77dc0d9101 100644
+index 1ad77afba9c3f..de77dc0d91013 100644
 --- a/drivers/gpu/drm/eswin/Kconfig
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -71,6 +71,12 @@ config DW_HDMI_HDCP2

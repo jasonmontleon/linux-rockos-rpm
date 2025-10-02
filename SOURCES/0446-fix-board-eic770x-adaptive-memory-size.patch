@@ -1,4 +1,4 @@
-From da11532ef792728d8ce1019aae4e669bed0f4c4a Mon Sep 17 00:00:00 2001
+From 7a180265a4c8f737af5b7208521c609f656303d4 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 20 Mar 2025 18:09:24 +0800
 Subject: [PATCH 446/654] fix:board: eic770x: adaptive memory size
@@ -16,7 +16,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  5 files changed, 21 insertions(+), 21 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
-index 206bd4645c65..a471f9506b5b 100644
+index 206bd4645c656..a471f9506b5b7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -129,7 +129,7 @@ &d0_sata {
@@ -29,7 +29,7 @@ index 206bd4645c65..a471f9506b5b 100644
  
  &d0_uart2 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
-index f5443a1fe98d..6c45243ba61f 100644
+index f5443a1fe98d6..6c45243ba61f6 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -62,15 +62,15 @@ cpus {
@@ -53,7 +53,7 @@ index f5443a1fe98d..6c45243ba61f 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 26e23d8b17c1..496dd80a4d3c 100644
+index 26e23d8b17c14..496dd80a4d3cd 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -60,15 +60,15 @@ cpus {
@@ -77,7 +77,7 @@ index 26e23d8b17c1..496dd80a4d3c 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
-index 642e6f05311f..4bdb2da8ba3f 100644
+index 642e6f05311fa..4bdb2da8ba3fb 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 @@ -63,15 +63,15 @@ cpus {
@@ -101,7 +101,7 @@ index 642e6f05311f..4bdb2da8ba3f 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index a8ac0f6b857c..e4500856aa35 100644
+index a8ac0f6b857cd..e4500856aa358 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -64,27 +64,27 @@ cpus {

@@ -1,4 +1,4 @@
-From ffc31ca774f5a9ae6909e7c7dbe5307e659ebc8e Mon Sep 17 00:00:00 2001
+From c350b3f1acd042f909a3ec0ec35cf0e2ea87b6ed Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Wed, 18 Jun 2025 15:10:18 +0800
 Subject: [PATCH 585/654] fix : enable npu and dsp in dts Changelogs:
@@ -9,7 +9,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  1 file changed, 7 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 59ec21fbda7b..c82d35f115ad 100644
+index 59ec21fbda7b0..c82d35f115ad6 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -375,29 +375,29 @@ &pcie {

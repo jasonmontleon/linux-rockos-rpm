@@ -1,4 +1,4 @@
-From dbe5ae704868ef1ac3fe5705761eaab7dc8ad4cf Mon Sep 17 00:00:00 2001
+From 460f313d449ccc6033ed5f78ade12ed27b211bff Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Tue, 9 Jul 2024 09:38:51 +0800
 Subject: [PATCH 067/654] fix:fix the issue of getting hub descriptor fail.
@@ -12,7 +12,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  1 file changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/usb/core/hub.c b/drivers/usb/core/hub.c
-index bebc41308ca9..c1c9d8e6fd76 100644
+index bebc41308ca93..c1c9d8e6fd76e 100644
 --- a/drivers/usb/core/hub.c
 +++ b/drivers/usb/core/hub.c
 @@ -1434,6 +1434,7 @@ static int hub_configure(struct usb_hub *hub,

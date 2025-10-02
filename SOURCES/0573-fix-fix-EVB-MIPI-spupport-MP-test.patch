@@ -1,4 +1,4 @@
-From ca46920f95807848288209326f41845a552c6e15 Mon Sep 17 00:00:00 2001
+From 76e49c272d2c5445ce6b57f4b40c68e4094ae343 Mon Sep 17 00:00:00 2001
 From: guozeyang <guozeyang@eswincomputing.com>
 Date: Fri, 20 Jun 2025 17:25:01 +0800
 Subject: [PATCH 573/654] fix:fix EVB MIPI spupport MP test
@@ -20,7 +20,7 @@ Signed-off-by: guozeyang <guozeyang@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-evb-a3-mipi.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index cb57cad02448..19ca06fb8171 100644
+index cb57cad02448a..19ca06fb8171a 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -2,7 +2,9 @@
@@ -35,7 +35,7 @@ index cb57cad02448..19ca06fb8171 100644
                                                          eic7700-milkv-megrez-nx.dtb \
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2-mipi.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2-mipi.dts
 new file mode 100644
-index 000000000000..23a690e1a4d5
+index 0000000000000..23a690e1a4d57
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2-mipi.dts
 @@ -0,0 +1,98 @@
@@ -138,7 +138,7 @@ index 000000000000..23a690e1a4d5
 +	};
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 910a463d3e8f..3498a1434764 100644
+index 910a463d3e8f3..3498a1434764a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -20,419 +20,26 @@
@@ -1132,7 +1132,7 @@ index 910a463d3e8f..3498a1434764 100644
 -//#include "eic7700-evb-camera.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
 new file mode 100644
-index 000000000000..94418bd3cad8
+index 0000000000000..94418bd3cad8d
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
 @@ -0,0 +1,920 @@
@@ -2058,7 +2058,7 @@ index 000000000000..94418bd3cad8
 +//#include "eic7700-evb-camera.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3-mipi.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3-mipi.dts
 new file mode 100644
-index 000000000000..8d5029ac2aa1
+index 0000000000000..8d5029ac2aa1a
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3-mipi.dts
 @@ -0,0 +1,25 @@

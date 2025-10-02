@@ -1,4 +1,4 @@
-From 87b7fceefc16e94b4b5b66ea6ec9acde76cea28a Mon Sep 17 00:00:00 2001
+From 9162c9b75620c53ad9079c8564419b1cd3d7674d Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 23 Apr 2025 14:40:47 +0800
 Subject: [PATCH 485/654] fix:enable usb2.0 hub
@@ -13,7 +13,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  2 files changed, 15 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index 33926ca40729..bee85411e33a 100644
+index 33926ca407292..bee85411e33ad 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -88,6 +88,13 @@ aw315:wifi_aw3155@0 {
@@ -46,7 +46,7 @@ index 33926ca40729..bee85411e33a 100644
  			compatible = "usb-c-connector";
  			label = "USB-C";
 diff --git a/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
-index fcb3d855c105..88b7a0e850b0 100644
+index fcb3d855c105d..88b7a0e850b0a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
 @@ -822,6 +822,11 @@ mux {

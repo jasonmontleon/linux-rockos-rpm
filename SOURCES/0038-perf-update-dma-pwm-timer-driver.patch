@@ -1,4 +1,4 @@
-From 2c66f377462314965192e434e4e190f7562bf815 Mon Sep 17 00:00:00 2001
+From 78c1a592b212aa365474b1e1af63a876b83dccaf Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 27 May 2024 18:53:47 +0800
 Subject: [PATCH 038/654] perf:update dma, pwm, timer driver
@@ -26,7 +26,7 @@ Changelogs:
  delete mode 100644 drivers/pwm/pwm-eswin.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 7c742eb16669..f4c569697c08 100644
+index 7c742eb16669d..f4c569697c08a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1516,11 +1516,11 @@ pwm0: pwm@0x50818000 {
@@ -44,7 +44,7 @@ index 7c742eb16669..f4c569697c08 100644
  			pinctrl-0 = <&pinctrl_pwm0_default>;
  			status = "disabled";
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 7311283d7c6d..61b8f4de69ad 100644
+index 7311283d7c6d9..61b8f4de69ad8 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -320,3 +320,4 @@ CONFIG_RCU_EQS_DEBUG=y
@@ -54,7 +54,7 @@ index 7311283d7c6d..61b8f4de69ad 100644
 +CONFIG_TIMER_ESWIN=y
 \ No newline at end of file
 diff --git a/drivers/clocksource/Kconfig b/drivers/clocksource/Kconfig
-index 8208a3d89563..db73c2254f75 100644
+index 8208a3d895634..db73c2254f759 100644
 --- a/drivers/clocksource/Kconfig
 +++ b/drivers/clocksource/Kconfig
 @@ -73,6 +73,11 @@ config DW_APB_TIMER_OF
@@ -70,7 +70,7 @@ index 8208a3d89563..db73c2254f75 100644
  	bool "Faraday Technology timer driver" if COMPILE_TEST
  	depends on HAS_IOMEM
 diff --git a/drivers/clocksource/Makefile b/drivers/clocksource/Makefile
-index 368c3461dab8..cee18fa560c0 100644
+index 368c3461dab81..cee18fa560c0f 100644
 --- a/drivers/clocksource/Makefile
 +++ b/drivers/clocksource/Makefile
 @@ -21,6 +21,7 @@ obj-$(CONFIG_OMAP_DM_TIMER)	+= timer-ti-dm.o
@@ -83,7 +83,7 @@ index 368c3461dab8..cee18fa560c0 100644
  obj-$(CONFIG_ROCKCHIP_TIMER)      += timer-rockchip.o
 diff --git a/drivers/clocksource/timer-eswin.c b/drivers/clocksource/timer-eswin.c
 new file mode 100644
-index 000000000000..089d0f28eba3
+index 0000000000000..089d0f28eba36
 --- /dev/null
 +++ b/drivers/clocksource/timer-eswin.c
 @@ -0,0 +1,293 @@
@@ -381,7 +381,7 @@ index 000000000000..089d0f28eba3
 +MODULE_DESCRIPTION("eswin timer driver");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index dd98cce3dad8..54c1396d974b 100644
+index dd98cce3dad8d..54c1396d974be 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -55,15 +55,14 @@
@@ -548,7 +548,7 @@ index dd98cce3dad8..54c1396d974b 100644
  MODULE_AUTHOR("Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>");
 +MODULE_AUTHOR("XuXiang <xuxiang@eswincomputing.com>");
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index f7ca5c29520b..ea92a0bb9906 100644
+index f7ca5c29520b6..ea92a0bb9906e 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -437,6 +437,7 @@ static int eswin_fan_control_probe(struct platform_device *pdev)
@@ -594,7 +594,7 @@ index f7ca5c29520b..ea92a0bb9906 100644
  	ret = devm_add_action_or_reset(&pdev->dev, eswin_fan_control_remove, ctl);
  	if (ret)
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 24fc76fe7272..6d8602c47805 100644
+index 24fc76fe7272a..6d8602c478054 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -216,6 +216,53 @@ int win2030_aon_sid_cfg(struct device *dev)
@@ -652,7 +652,7 @@ index 24fc76fe7272..6d8602c47805 100644
  {
  	#ifdef CONFIG_NUMA
 diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index 4da24d757e1d..21672c33096c 100644
+index 4da24d757e1d0..21672c33096c8 100644
 --- a/drivers/pwm/Makefile
 +++ b/drivers/pwm/Makefile
 @@ -16,7 +16,7 @@ obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
@@ -666,7 +666,7 @@ index 4da24d757e1d..21672c33096c 100644
  obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
 diff --git a/drivers/pwm/pwm-dwc-eswin.c b/drivers/pwm/pwm-dwc-eswin.c
 new file mode 100644
-index 000000000000..62c2dfcef719
+index 0000000000000..62c2dfcef7191
 --- /dev/null
 +++ b/drivers/pwm/pwm-dwc-eswin.c
 @@ -0,0 +1,348 @@
@@ -1020,7 +1020,7 @@ index 000000000000..62c2dfcef719
 +MODULE_DESCRIPTION("DesignWare PWM Controller");
 diff --git a/drivers/pwm/pwm-eswin.c b/drivers/pwm/pwm-eswin.c
 deleted file mode 100644
-index 139474716da5..000000000000
+index 139474716da57..0000000000000
 --- a/drivers/pwm/pwm-eswin.c
 +++ /dev/null
 @@ -1,370 +0,0 @@
@@ -1395,7 +1395,7 @@ index 139474716da5..000000000000
 -MODULE_LICENSE("GPL");
 -
 diff --git a/include/linux/eswin-win2030-sid-cfg.h b/include/linux/eswin-win2030-sid-cfg.h
-index c52268d06f7d..98637b5eac8a 100644
+index c52268d06f7d5..98637b5eac8ab 100644
 --- a/include/linux/eswin-win2030-sid-cfg.h
 +++ b/include/linux/eswin-win2030-sid-cfg.h
 @@ -3,6 +3,7 @@

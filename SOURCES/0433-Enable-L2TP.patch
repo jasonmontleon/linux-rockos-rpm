@@ -1,4 +1,4 @@
-From c976c7520b3466f74eebfbf9691776f2ebe4dc57 Mon Sep 17 00:00:00 2001
+From 0662e87fcbf6ece3d7ef6ffea119dc1b28115e58 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Viktar=20Siarhiej=C4=8Dyk?= <a@gk.lc>
 Date: Mon, 24 Mar 2025 15:43:56 +0300
 Subject: [PATCH 433/654] Enable L2TP.
@@ -8,7 +8,7 @@ Subject: [PATCH 433/654] Enable L2TP.
  1 file changed, 5 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0ccf54cecfea..2eff323df5b3 100644
+index 0ccf54cecfead..2eff323df5b31 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -540,6 +540,11 @@ CONFIG_TXGBE=m

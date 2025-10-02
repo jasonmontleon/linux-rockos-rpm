@@ -1,4 +1,4 @@
-From d899e86e841bcb6a8919856824e054c978a09dd3 Mon Sep 17 00:00:00 2001
+From 001decf30161b11ce0d3248020950b13627ee489 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:30:25 +0800
 Subject: [PATCH 359/654] dts: eswin: rename d0_cpu_opp_table to cpu_opp_table
@@ -12,7 +12,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  4 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
-index 9631c73e0bd3..bfc99f105556 100644
+index 9631c73e0bd35..bfc99f1055564 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 @@ -32,7 +32,7 @@ &d0_clock {
@@ -25,7 +25,7 @@ index 9631c73e0bd3..bfc99f105556 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 43c00efd35de..58fe3d635616 100644
+index 43c00efd35de3..58fe3d6356167 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -891,7 +891,7 @@ &d0_clock {
@@ -38,7 +38,7 @@ index 43c00efd35de..58fe3d635616 100644
                  opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
                  opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index fdcd551ef5c5..b03f4c8c2597 100644
+index fdcd551ef5c57..b03f4c8c25973 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -786,7 +786,7 @@ &dev_llc_d0{
@@ -51,7 +51,7 @@ index fdcd551ef5c5..b03f4c8c2597 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index 4f93ff6213e8..8975632b0325 100644
+index 4f93ff6213e80..8975632b0325c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -144,7 +144,7 @@ d0_gmac0

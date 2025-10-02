@@ -1,4 +1,4 @@
-From e0b786d74cf38a95229390de582c8ff73ba33159 Mon Sep 17 00:00:00 2001
+From 12050fc122529d9c3e2d83859a1436db37cfd95f Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 5 Jul 2024 17:23:03 +0800
 Subject: [PATCH 065/654] fix(es buddy):add spin lock
@@ -15,7 +15,7 @@ Reviewed-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 3 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/memory/eswin/buddy.h b/drivers/memory/eswin/buddy.h
-index bc0fd6eb6ddb..2c40d1116ad8 100644
+index bc0fd6eb6ddbf..2c40d1116ad89 100644
 --- a/drivers/memory/eswin/buddy.h
 +++ b/drivers/memory/eswin/buddy.h
 @@ -15,17 +15,12 @@

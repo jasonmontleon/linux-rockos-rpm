@@ -1,4 +1,4 @@
-From d4c0747b337db6a458590a857b4cd48e9e2806b8 Mon Sep 17 00:00:00 2001
+From 701f1b9f98e820266a40940b4c5f8479896d3832 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 30 May 2025 11:13:30 +0800
 Subject: [PATCH 522/654] fix: fix sbc-camera dts warning log
@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
-index c34f0ce14190..f75d8d78518c 100644
+index c34f0ce141905..f75d8d78518ce 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
 @@ -54,6 +54,7 @@ vvcam_isp_port0_raw: endpoint {

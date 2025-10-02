@@ -1,4 +1,4 @@
-From 368669d511688fb93a77d2db13d3dac9a28cf22c Mon Sep 17 00:00:00 2001
+From 5ad92d0390f2a0efba50df6de5e3b355d3005d29 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Thu, 21 Nov 2024 15:29:04 +0800
 Subject: [PATCH 299/654] WIN2030-16668:feat:dump multi dsp input/output
@@ -13,7 +13,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 234 insertions(+), 228 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/debug.c b/drivers/soc/eswin/ai_driver/npu/debug.c
-index 489bbbdec743..c55a8188843b 100644
+index 489bbbdec743c..c55a8188843b9 100644
 --- a/drivers/soc/eswin/ai_driver/npu/debug.c
 +++ b/drivers/soc/eswin/ai_driver/npu/debug.c
 @@ -440,10 +440,11 @@ void dla_dump_src_data(struct win_executor *executor, struct host_frame_desc *f,

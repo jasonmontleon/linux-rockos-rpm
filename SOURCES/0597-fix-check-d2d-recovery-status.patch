@@ -1,4 +1,4 @@
-From 08a6c5d4a70d7d4d5537071bc39629582f75b78d Mon Sep 17 00:00:00 2001
+From acea165b3bd61d1cce6e8e666753d26b0185f125 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 1 Jul 2025 21:03:30 +0800
 Subject: [PATCH 597/654] fix:check d2d recovery status
@@ -14,7 +14,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  3 files changed, 64 insertions(+), 12 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ccef04665433..ddc23330610a 100644
+index ccef046654337..ddc23330610a1 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1332,7 +1332,9 @@ pvt1: pvt@0x52360000 {
@@ -29,7 +29,7 @@ index ccef04665433..ddc23330610a 100644
  			clock-names = "pclk";
  			resets = <&d0_reset FAN_RST_CTRL SW_FAN_RST_N>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 7113ea183e86..b8d68edbe239 100644
+index 7113ea183e86a..b8d68edbe239d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -712,7 +712,9 @@ d1_pvt1: pvt@0x72360000 {
@@ -44,7 +44,7 @@ index 7113ea183e86..b8d68edbe239 100644
  			clock-names = "pclk";
  			resets = <&d1_reset FAN_RST_CTRL SW_FAN_RST_N>;
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 3db082bdd542..9cdaf32f1ea8 100644
+index 3db082bdd542c..9cdaf32f1ea8c 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -39,7 +39,10 @@

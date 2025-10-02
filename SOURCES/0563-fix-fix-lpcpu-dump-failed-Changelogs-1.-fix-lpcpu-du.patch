@@ -1,4 +1,4 @@
-From e40889b42f64d29e4de2d1aab11ddf3111145b66 Mon Sep 17 00:00:00 2001
+From 98ee361ab1a131124e6736f1492a35da8091c336 Mon Sep 17 00:00:00 2001
 From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
 Date: Mon, 16 Jun 2025 15:07:27 +0800
 Subject: [PATCH 563/654] fix:fix lpcpu dump failed Changelogs: 1. fix lpcpu
@@ -10,7 +10,7 @@ Signed-off-by: yuzaiqiang <yuzaiqiang@eswincomputing.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
-index 2661819c021c..c0ae9e0f4518 100644
+index 2661819c021ce..c0ae9e0f4518c 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 @@ -827,7 +827,7 @@ &fan_control {

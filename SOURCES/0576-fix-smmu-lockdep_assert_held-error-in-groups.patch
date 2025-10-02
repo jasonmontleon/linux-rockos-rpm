@@ -1,4 +1,4 @@
-From da1fdb5545adf4643455771ce5cc4c20214897cb Mon Sep 17 00:00:00 2001
+From dd5ed19eb43c7f3330ff071c64af26d4b9b7f67f Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:45:57 +0800
 Subject: [PATCH 576/654] fix(smmu):lockdep_assert_held error in groups
@@ -13,7 +13,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index f287afb2b46e..0afb2507c882 100644
+index f287afb2b46ee..0afb2507c882e 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 @@ -2889,13 +2889,14 @@ static struct iommu_group *arm_smmu_group_lookup(struct device *dev)

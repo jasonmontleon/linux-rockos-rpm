@@ -1,4 +1,4 @@
-From bd7f7349b4f846fceebe7046c28d90806ed88b58 Mon Sep 17 00:00:00 2001
+From 2296b1bd01e53b1e45c09fd7cbe5c9405923336d Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 19 Nov 2024 14:25:46 +0800
 Subject: [PATCH 283/654] WIN2030-16657:fix(jenc):enc 32k jpeg hang
@@ -14,7 +14,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  1 file changed, 23 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 5e24f087817d..0686cc8dbd04 100644
+index 5e24f087817df..0686cc8dbd04d 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -53,6 +53,25 @@

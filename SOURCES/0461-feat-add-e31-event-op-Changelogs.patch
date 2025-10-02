@@ -1,4 +1,4 @@
-From bb2cb51f04a84b4d60b68253016fda1f38b1f4f6 Mon Sep 17 00:00:00 2001
+From 9ff11c3487c95e55eb2bee664121579f2a4d9c15 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Thu, 27 Feb 2025 09:03:07 +0800
 Subject: [PATCH 461/654] feat : add e31 event op Changelogs:
@@ -12,7 +12,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  4 files changed, 14 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
-index bfbbe244a712..b082c38f0518 100644
+index bfbbe244a7127..b082c38f05185 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 @@ -87,8 +87,10 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
@@ -27,7 +27,7 @@ index bfbbe244a712..b082c38f0518 100644
  /* NPU configuration base address */
  #define NPU_CFG_BASE_ADDR 0x51828000
 diff --git a/drivers/soc/eswin/ai_driver/common/dla_interface.h b/drivers/soc/eswin/ai_driver/common/dla_interface.h
-index 550dd165b57d..bd2d66b85d56 100644
+index 550dd165b57d6..bd2d66b85d56f 100644
 --- a/drivers/soc/eswin/ai_driver/common/dla_interface.h
 +++ b/drivers/soc/eswin/ai_driver/common/dla_interface.h
 @@ -73,6 +73,7 @@
@@ -47,7 +47,7 @@ index 550dd165b57d..bd2d66b85d56 100644
  
  #define EVENT_OP_TENSOR_NUM 8
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_common.h b/drivers/soc/eswin/ai_driver/common/hetero_common.h
-index 18297aae7002..74e134ea2e4a 100644
+index 18297aae70022..74e134ea2e4a0 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_common.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_common.h
 @@ -358,6 +358,7 @@ typedef struct _npu_dep_info {
@@ -59,7 +59,7 @@ index 18297aae7002..74e134ea2e4a 100644
  } __attribute__((aligned(CDMA_SRC_BYTE_ALIGN))) npu_dep_info_t;
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/parse_dep.c b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
-index acdbe89ac814..5a09746e08dc 100644
+index acdbe89ac814d..5a09746e08dc6 100644
 --- a/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 +++ b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 @@ -226,6 +226,14 @@ static void dependency_consumer2producer(struct win_executor *executor,

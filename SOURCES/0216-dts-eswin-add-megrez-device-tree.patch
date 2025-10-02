@@ -1,4 +1,4 @@
-From 77642a53b6463bd60b201691650609ce4aa1dea5 Mon Sep 17 00:00:00 2001
+From 9e20fa5417eec5a38e922637df381e3295d3a023 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:13:09 +0800
 Subject: [PATCH 216/654] dts: eswin: add megrez device tree
@@ -12,7 +12,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index c5b439ec7f27..5e0aadfd548d 100644
+index c5b439ec7f273..5e0aadfd548d7 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -3,6 +3,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -25,7 +25,7 @@ index c5b439ec7f27..5e0aadfd548d 100644
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 new file mode 100644
-index 000000000000..01740497fc84
+index 0000000000000..01740497fc843
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -0,0 +1,898 @@

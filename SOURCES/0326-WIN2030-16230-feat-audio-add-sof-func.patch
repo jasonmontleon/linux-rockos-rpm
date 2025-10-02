@@ -1,4 +1,4 @@
-From 0374781d82b063c78192b92e5c6616ade8089075 Mon Sep 17 00:00:00 2001
+From 27789a1ff5785ddfab088c0ab10ec97d1ca53898 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 28 Nov 2024 15:29:26 +0800
 Subject: [PATCH 326/654] WIN2030-16230:feat:audio add sof func.
@@ -38,7 +38,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  create mode 100644 sound/soc/sof/eswin/es-sof-dsp.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 00b59b71b9e7..7fb7d3b28df2 100644
+index 00b59b71b9e79..7fb7d3b28df2e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -662,6 +662,26 @@ ESWIN_MAIBOX_U84_IRQ_BIT
@@ -117,7 +117,7 @@ index 00b59b71b9e7..7fb7d3b28df2 100644
  			compatible = "audio-graph-card";
  		};
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 29d7c5f0c612..af8f18d1057d 100644
+index 29d7c5f0c6126..af8f18d1057df 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -6,20 +6,24 @@
@@ -210,7 +210,7 @@ index 29d7c5f0c612..af8f18d1057d 100644
  		ret = IS_ERR(es8328->front_jack_gpio);
  		if(ret) {
 diff --git a/sound/soc/codecs/eswin/es8328.h b/sound/soc/codecs/eswin/es8328.h
-index 70515466a4b2..fb7068f8f794 100644
+index 70515466a4b2a..fb7068f8f7940 100644
 --- a/sound/soc/codecs/eswin/es8328.h
 +++ b/sound/soc/codecs/eswin/es8328.h
 @@ -2,20 +2,24 @@
@@ -249,7 +249,7 @@ index 70515466a4b2..fb7068f8f794 100644
  
  #ifndef _ES8328_H
 diff --git a/sound/soc/eswin/Kconfig b/sound/soc/eswin/Kconfig
-index 7c930a329daa..0b25aa84a586 100644
+index 7c930a329daab..0b25aa84a586b 100644
 --- a/sound/soc/eswin/Kconfig
 +++ b/sound/soc/eswin/Kconfig
 @@ -1,11 +1,8 @@
@@ -268,7 +268,7 @@ index 7c930a329daa..0b25aa84a586 100644
 +	 a maximum of 8 channels each for play and record.
 \ No newline at end of file
 diff --git a/sound/soc/eswin/Makefile b/sound/soc/eswin/Makefile
-index 2c133c695dbe..469d77a9732d 100644
+index 2c133c695dbed..469d77a9732d3 100644
 --- a/sound/soc/eswin/Makefile
 +++ b/sound/soc/eswin/Makefile
 @@ -1,5 +1,5 @@
@@ -281,7 +281,7 @@ index 2c133c695dbe..469d77a9732d 100644
 \ No newline at end of file
 diff --git a/sound/soc/eswin/esw-dai.h b/sound/soc/eswin/esw-dai.h
 new file mode 100644
-index 000000000000..dfe49c950de0
+index 0000000000000..dfe49c950de0a
 --- /dev/null
 +++ b/sound/soc/eswin/esw-dai.h
 @@ -0,0 +1,62 @@
@@ -350,7 +350,7 @@ index 000000000000..dfe49c950de0
 \ No newline at end of file
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
 new file mode 100644
-index 000000000000..80590ef8c07e
+index 0000000000000..80590ef8c07eb
 --- /dev/null
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -0,0 +1,436 @@
@@ -792,7 +792,7 @@ index 000000000000..80590ef8c07e
 +}
 \ No newline at end of file
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index a0e200271175..24b2ebed75dd 100755
+index a0e2002711756..24b2ebed75dda 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -1,3 +1,4 @@
@@ -1540,7 +1540,7 @@ index a0e200271175..24b2ebed75dd 100755
  		.pm = &i2s_pm_ops,
  	},
 diff --git a/sound/soc/eswin/esw-i2s.h b/sound/soc/eswin/esw-i2s.h
-index 6c1a243223a4..1cc88ed411e3 100644
+index 6c1a243223a42..1cc88ed411e3d 100644
 --- a/sound/soc/eswin/esw-i2s.h
 +++ b/sound/soc/eswin/esw-i2s.h
 @@ -1,3 +1,4 @@
@@ -1643,7 +1643,7 @@ index 6c1a243223a4..1cc88ed411e3 100644
  #endif /* __I2S_H */
 diff --git a/sound/soc/eswin/esw-sof-dai.c b/sound/soc/eswin/esw-sof-dai.c
 new file mode 100644
-index 000000000000..214487ec1d44
+index 0000000000000..214487ec1d444
 --- /dev/null
 +++ b/sound/soc/eswin/esw-sof-dai.c
 @@ -0,0 +1,299 @@
@@ -1948,7 +1948,7 @@ index 000000000000..214487ec1d44
 +}
 \ No newline at end of file
 diff --git a/sound/soc/sof/Kconfig b/sound/soc/sof/Kconfig
-index 80361139a49a..92e66354e117 100644
+index 80361139a49ad..92e66354e1177 100644
 --- a/sound/soc/sof/Kconfig
 +++ b/sound/soc/sof/Kconfig
 @@ -291,5 +291,6 @@ source "sound/soc/sof/imx/Kconfig"
@@ -1959,7 +1959,7 @@ index 80361139a49a..92e66354e117 100644
  
  endif
 diff --git a/sound/soc/sof/Makefile b/sound/soc/sof/Makefile
-index 744d40bd8c8b..df2cbbd9dbb0 100644
+index 744d40bd8c8ba..df2cbbd9dbb04 100644
 --- a/sound/soc/sof/Makefile
 +++ b/sound/soc/sof/Makefile
 @@ -58,3 +58,4 @@ obj-$(CONFIG_SND_SOC_SOF_IMX_TOPLEVEL) += imx/
@@ -1970,7 +1970,7 @@ index 744d40bd8c8b..df2cbbd9dbb0 100644
 \ No newline at end of file
 diff --git a/sound/soc/sof/eswin/Kconfig b/sound/soc/sof/eswin/Kconfig
 new file mode 100644
-index 000000000000..163263f60d40
+index 0000000000000..163263f60d409
 --- /dev/null
 +++ b/sound/soc/sof/eswin/Kconfig
 @@ -0,0 +1,33 @@
@@ -2009,7 +2009,7 @@ index 000000000000..163263f60d40
 +endif ## SND_SOC_SOF_ESWIN_TOPLEVEL
 diff --git a/sound/soc/sof/eswin/Makefile b/sound/soc/sof/eswin/Makefile
 new file mode 100644
-index 000000000000..55436a008eac
+index 0000000000000..55436a008eac6
 --- /dev/null
 +++ b/sound/soc/sof/eswin/Makefile
 @@ -0,0 +1,7 @@
@@ -2022,7 +2022,7 @@ index 000000000000..55436a008eac
 +obj-$(CONFIG_SND_SOC_SOF_ESWIN) += snd-sof-eswin-dsp.o
 diff --git a/sound/soc/sof/eswin/es-common.c b/sound/soc/sof/eswin/es-common.c
 new file mode 100644
-index 000000000000..22228f4b840e
+index 0000000000000..22228f4b840e9
 --- /dev/null
 +++ b/sound/soc/sof/eswin/es-common.c
 @@ -0,0 +1,591 @@
@@ -2620,7 +2620,7 @@ index 000000000000..22228f4b840e
 \ No newline at end of file
 diff --git a/sound/soc/sof/eswin/es-common.h b/sound/soc/sof/eswin/es-common.h
 new file mode 100644
-index 000000000000..d9e1803d4ab2
+index 0000000000000..d9e1803d4ab2c
 --- /dev/null
 +++ b/sound/soc/sof/eswin/es-common.h
 @@ -0,0 +1,137 @@
@@ -2763,7 +2763,7 @@ index 000000000000..d9e1803d4ab2
 +#endif
 diff --git a/sound/soc/sof/eswin/es-sof-dsp.c b/sound/soc/sof/eswin/es-sof-dsp.c
 new file mode 100644
-index 000000000000..41cb55ba8d71
+index 0000000000000..41cb55ba8d71c
 --- /dev/null
 +++ b/sound/soc/sof/eswin/es-sof-dsp.c
 @@ -0,0 +1,614 @@

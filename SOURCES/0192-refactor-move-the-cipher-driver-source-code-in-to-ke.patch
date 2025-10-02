@@ -1,4 +1,4 @@
-From fd42e9b6650ba05e4e552f27a741532cabe147f6 Mon Sep 17 00:00:00 2001
+From 84aaea8b4fe4060be651cabb6aa63dd261f748ca Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 18 Sep 2024 16:02:21 +0800
 Subject: [PATCH 192/654] refactor:move the cipher driver source code in to
@@ -29,7 +29,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  create mode 100644 include/uapi/linux/eswin-ipc-scpu.h
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 020bae903781..71765f0bea49 100644
+index 020bae903781e..71765f0bea493 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -800,6 +800,7 @@ CONFIG_CRYPTO_CBC=m
@@ -41,7 +41,7 @@ index 020bae903781..71765f0bea49 100644
  CONFIG_CRC7=y
  CONFIG_DMA_CMA=y
 diff --git a/drivers/crypto/Kconfig b/drivers/crypto/Kconfig
-index c761952f0dc6..ab4df516eff4 100644
+index c761952f0dc6d..ab4df516eff47 100644
 --- a/drivers/crypto/Kconfig
 +++ b/drivers/crypto/Kconfig
 @@ -796,5 +796,6 @@ config CRYPTO_DEV_SA2UL
@@ -52,7 +52,7 @@ index c761952f0dc6..ab4df516eff4 100644
  
  endif # CRYPTO_HW
 diff --git a/drivers/crypto/Makefile b/drivers/crypto/Makefile
-index d859d6a5f3a4..14ce58d6cc90 100644
+index d859d6a5f3a45..14ce58d6cc908 100644
 --- a/drivers/crypto/Makefile
 +++ b/drivers/crypto/Makefile
 @@ -51,3 +51,4 @@ obj-y += hisilicon/
@@ -62,7 +62,7 @@ index d859d6a5f3a4..14ce58d6cc90 100644
 +obj-y += eswin/
 diff --git a/drivers/crypto/eswin/Kconfig b/drivers/crypto/eswin/Kconfig
 new file mode 100644
-index 000000000000..bbd9153e7368
+index 0000000000000..bbd9153e73680
 --- /dev/null
 +++ b/drivers/crypto/eswin/Kconfig
 @@ -0,0 +1,10 @@
@@ -78,7 +78,7 @@ index 000000000000..bbd9153e7368
 +	  will be called es_cipher.
 diff --git a/drivers/crypto/eswin/Makefile b/drivers/crypto/eswin/Makefile
 new file mode 100644
-index 000000000000..a77ccb139b9d
+index 0000000000000..a77ccb139b9d6
 --- /dev/null
 +++ b/drivers/crypto/eswin/Makefile
 @@ -0,0 +1,4 @@
@@ -88,7 +88,7 @@ index 000000000000..a77ccb139b9d
 +es_cipher-y = eswin-ipc-scpu.o
 diff --git a/drivers/crypto/eswin/eswin-ipc-scpu.c b/drivers/crypto/eswin/eswin-ipc-scpu.c
 new file mode 100644
-index 000000000000..76270dbc1e9d
+index 0000000000000..76270dbc1e9d0
 --- /dev/null
 +++ b/drivers/crypto/eswin/eswin-ipc-scpu.c
 @@ -0,0 +1,2405 @@
@@ -2499,7 +2499,7 @@ index 000000000000..76270dbc1e9d
 +MODULE_LICENSE("GPL v2");
 \ No newline at end of file
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/Makefile b/drivers/memory/eswin/es_rsvmem_heap/Makefile
-index e468c514bb7b..293a7b51148d 100644
+index e468c514bb7b9..293a7b51148dd 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/Makefile
 +++ b/drivers/memory/eswin/es_rsvmem_heap/Makefile
 @@ -3,6 +3,3 @@ obj-$(CONFIG_ESWIN_RSVMEM_HEAP)	+= eswin_rsvmem_heap.o eswin_rsvmem_common.o dma
@@ -2510,7 +2510,7 @@ index e468c514bb7b..293a7b51148d 100644
 -COPY_HEADERS := $(shell cp $(ES_RSVMEM_HEADER)/*.h include/linux)
 -
 diff --git a/drivers/memory/eswin/eswin_cpuid_hartid_convert.c b/drivers/memory/eswin/eswin_cpuid_hartid_convert.c
-index cfa2d6462d74..71fd4da20a04 100644
+index cfa2d6462d74c..71fd4da20a042 100644
 --- a/drivers/memory/eswin/eswin_cpuid_hartid_convert.c
 +++ b/drivers/memory/eswin/eswin_cpuid_hartid_convert.c
 @@ -20,7 +20,7 @@
@@ -2532,7 +2532,7 @@ rename from drivers/memory/eswin/es_rsvmem_heap/include/linux/mem_perf_api.h
 rename to include/linux/mem_perf_api.h
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
 new file mode 100644
-index 000000000000..e8fa083a2c7f
+index 0000000000000..e8fa083a2c7f0
 --- /dev/null
 +++ b/include/uapi/linux/eswin-ipc-scpu.h
 @@ -0,0 +1,714 @@

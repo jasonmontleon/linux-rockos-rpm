@@ -1,4 +1,4 @@
-From 5f167bdeb8953c31bb9f5a45e7410b248bd4ab9f Mon Sep 17 00:00:00 2001
+From efea2abaf0a72c0dbc2eac2c28a3aa15ca8cb308 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 10:39:21 +0800
@@ -15,7 +15,7 @@ Changelogs:
  create mode 100644 drivers/spi/spi-eswin-bootspi.c
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 725ad2400def..6733030403b9 100644
+index 725ad2400def6..6733030403b9c 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -139,6 +139,7 @@ CONFIG_SPI=y
@@ -27,7 +27,7 @@ index 725ad2400def..6733030403b9 100644
  CONFIG_PINCTRL=y
  CONFIG_PINCTRL_EIC7700=y
 diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 3ce0fd5df8e9..07e874de0ebf 100644
+index 3ce0fd5df8e9c..07e874de0ebfc 100644
 --- a/drivers/spi/Kconfig
 +++ b/drivers/spi/Kconfig
 @@ -360,6 +360,12 @@ config SPI_EP93XX
@@ -44,7 +44,7 @@ index 3ce0fd5df8e9..07e874de0ebf 100644
  	bool "Falcon SPI controller support"
  	depends on SOC_FALCON
 diff --git a/drivers/spi/Makefile b/drivers/spi/Makefile
-index 6af54842b9fa..dc4c98c2dd90 100644
+index 6af54842b9fa4..dc4c98c2dd907 100644
 --- a/drivers/spi/Makefile
 +++ b/drivers/spi/Makefile
 @@ -50,6 +50,7 @@ obj-$(CONFIG_SPI_DW_BT1)		+= spi-dw-bt1.o
@@ -57,7 +57,7 @@ index 6af54842b9fa..dc4c98c2dd90 100644
  obj-$(CONFIG_SPI_FSL_CPM)		+= spi-fsl-cpm.o
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
 new file mode 100644
-index 000000000000..c8fbc1b3fc91
+index 0000000000000..c8fbc1b3fc919
 --- /dev/null
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -0,0 +1,658 @@

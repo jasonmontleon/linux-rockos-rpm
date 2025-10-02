@@ -1,4 +1,4 @@
-From 480d93cbfc8c9351d24cb8089477d09c544c3a5f Mon Sep 17 00:00:00 2001
+From 576d304901c033b2908a69d79ceca66093152d87 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 3 Dec 2024 19:35:48 +0800
 Subject: [PATCH 300/654] dts: sync eic7x device tree
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  2 files changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index baf952a80c8d..7df6029a9451 100644
+index baf952a80c8d8..7df6029a94510 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -133,10 +133,10 @@ map0 {
@@ -29,7 +29,7 @@ index baf952a80c8d..7df6029a9451 100644
  				map1 {
  					trip = <&target>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index f0f24cad97a4..e0eb8522a10b 100644
+index f0f24cad97a4f..e0eb8522a10b7 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1340,7 +1340,7 @@ d1_dsp_subsys:dsp_subsys@72280400 {

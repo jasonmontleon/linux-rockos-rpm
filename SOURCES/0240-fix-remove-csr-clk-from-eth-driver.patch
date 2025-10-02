@@ -1,4 +1,4 @@
-From 5db4a1e397670068a02b85f7c41fd8d233f9d609 Mon Sep 17 00:00:00 2001
+From 56f947b51d47b15651d4f39c57b9489f1e34632b Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Fri, 8 Nov 2024 14:27:18 +0800
 Subject: [PATCH 240/654] fix:remove csr clk from eth driver.
@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  3 files changed, 4 insertions(+), 18 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 244d3b3424a8..9de7c694998a 100644
+index 244d3b3424a8d..9de7c694998aa 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -482,7 +482,7 @@ d0_gmac0: ethernet@50400000 {
@@ -36,7 +36,7 @@ index 244d3b3424a8..9de7c694998a 100644
  			reset-names = "ethrst";
  			// iommus = <&smmu0 WIN2030_SID_ETH1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 1a275707a259..d271b6843621 100644
+index 1a275707a259f..d271b68436212 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1501,7 +1501,7 @@ d1_gmac0: ethernet@70400000 {
@@ -58,7 +58,7 @@ index 1a275707a259..d271b6843621 100644
  			reset-names = "ethrst";
  			// iommus = <&smmu1 WIN2030_SID_ETH1>;
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
-index e80061c95639..66e0cc12ce44 100644
+index e80061c956395..66e0cc12ce44b 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -61,7 +61,6 @@ struct dwc_qos_priv {

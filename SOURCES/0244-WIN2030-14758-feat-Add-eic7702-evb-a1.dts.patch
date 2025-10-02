@@ -1,4 +1,4 @@
-From 105053bab1b070907b9c5bf8279bc30a1a0263c9 Mon Sep 17 00:00:00 2001
+From eefd3a6b8423bc0b043069bed7881c007c326936 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 5 Aug 2024 19:34:14 +0800
 Subject: [PATCH 244/654] WIN2030-14758:feat:Add eic7702-evb-a1.dts
@@ -26,7 +26,7 @@ Change-Id: If476a6b011b54c3be01acfe65cdce873135e241e
  create mode 100644 arch/riscv/configs/eic7702_defconfig
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 8c431bb594ea..83ba4023ed5e 100644
+index 8c431bb594eae..83ba4023ed5ea 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -6,6 +6,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -40,7 +40,7 @@ index 8c431bb594ea..83ba4023ed5e 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 new file mode 100644
-index 000000000000..a388e009f877
+index 0000000000000..a388e009f8779
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -0,0 +1,1242 @@
@@ -1288,7 +1288,7 @@ index 000000000000..a388e009f877
 +*/
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 828840c3e719..c9afd60d2434 100644
+index 828840c3e719b..c9afd60d24344 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -18,868 +18,383 @@
@@ -2504,7 +2504,7 @@ index 828840c3e719..c9afd60d2434 100644
  };
 +
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index bde485b4abfa..a1c618fabcea 100644
+index bde485b4abfaf..a1c618fabcea6 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -48,7 +48,7 @@ CPU_RET: cpu-retentive {
@@ -2774,7 +2774,7 @@ index bde485b4abfa..a1c618fabcea 100644
  			reg-names = "control";
  			sifive,ecc-granularity = <16>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 9de7c694998a..2a99656c01b4 100644
+index 9de7c694998aa..2a99656c01b41 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -18,11 +18,8 @@
@@ -2791,7 +2791,7 @@ index 9de7c694998a..2a99656c01b4 100644
  #include <dt-bindings/memory/eswin-win2030-sid.h>
  #include <dt-bindings/mailbox/eswin-mailbox.h>
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index d271b6843621..0a70ba1aad61 100644
+index d271b68436212..0a70ba1aad618 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -18,11 +18,8 @@
@@ -2876,7 +2876,7 @@ index d271b6843621..0a70ba1aad61 100644
  			clocks = <&d1_clock WIN2030_CLK_PCIET_ACLK>,
  				 <&d1_clock WIN2030_CLK_PCIET_CFG_CLK>,
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi
-index 6d8817dfc2b6..0754fce5b9d7 100644
+index 6d8817dfc2b63..0754fce5b9d78 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi
 @@ -31,7 +31,7 @@ BIT1  BIT0
@@ -2889,7 +2889,7 @@ index 6d8817dfc2b6..0754fce5b9d7 100644
  /* VI related Macros */
  #define MIPI_CSI2_IMX290_ENBALE
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
-index 4f8c9f146ce3..8d9e0e76c350 100644
+index 4f8c9f146ce3f..8d9e0e76c3506 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -1131,7 +1131,7 @@ &d1_dsp3 {
@@ -2912,7 +2912,7 @@ index 4f8c9f146ce3..8d9e0e76c350 100644
  
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
 new file mode 100644
-index 000000000000..36bcc734ee7e
+index 0000000000000..36bcc734ee7ee
 --- /dev/null
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -0,0 +1,834 @@

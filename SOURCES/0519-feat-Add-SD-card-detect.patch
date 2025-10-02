@@ -1,4 +1,4 @@
-From 0ae21b9cf278ff1dd91472a826ff13e7ed771dd9 Mon Sep 17 00:00:00 2001
+From 46d6ee9d63e03aba7036aea6bea517ecf2478850 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Tue, 27 May 2025 10:04:56 +0800
 Subject: [PATCH 519/654] feat:Add SD card detect
@@ -23,7 +23,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  12 files changed, 34 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
-index 952a03b3d989..92ce38d3db41 100644
+index 952a03b3d9898..92ce38d3db411 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -102,6 +102,9 @@ &sdio0 {
@@ -37,7 +37,7 @@ index 952a03b3d989..92ce38d3db41 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 2b22977cf1aa..850a81a1ff8f 100644
+index 2b22977cf1aa5..850a81a1ff8f4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -555,6 +555,9 @@ &sdio0 {
@@ -51,7 +51,7 @@ index 2b22977cf1aa..850a81a1ff8f 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 7b838e575eb3..616c36cfc3c6 100644
+index 7b838e575eb38..616c36cfc3c64 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -508,6 +508,9 @@ &sdio0 {
@@ -65,7 +65,7 @@ index 7b838e575eb3..616c36cfc3c6 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index b4b58b00518e..ae401ec96ddd 100644
+index b4b58b00518ea..ae401ec96dddf 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -436,8 +436,9 @@ &sdio0 {
@@ -81,7 +81,7 @@ index b4b58b00518e..ae401ec96ddd 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
-index c2976f8f9c96..d521b72ed729 100644
+index c2976f8f9c964..d521b72ed7293 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -528,6 +528,9 @@ &sdio0 {
@@ -95,7 +95,7 @@ index c2976f8f9c96..d521b72ed729 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 734521a26b60..690f4f2f6f40 100644
+index 734521a26b602..690f4f2f6f402 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -466,6 +466,9 @@ &sdio0 {
@@ -109,7 +109,7 @@ index 734521a26b60..690f4f2f6f40 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index d753fbba823f..fbcc6647868a 100644
+index d753fbba823f0..fbcc6647868a1 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -71,6 +71,9 @@ &sdio0 {
@@ -123,7 +123,7 @@ index d753fbba823f..fbcc6647868a 100644
  
  &sdio1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index 93eabee180ca..1bb6616b2a91 100644
+index 93eabee180cab..1bb6616b2a916 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -68,6 +68,9 @@ &sdio0 {
@@ -137,7 +137,7 @@ index 93eabee180ca..1bb6616b2a91 100644
  
  &d1_sdio0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 0d9b5d6f68ff..225555889b4f 100644
+index 0d9b5d6f68ffe..225555889b4f5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -917,6 +917,9 @@ &sdio0 {
@@ -151,7 +151,7 @@ index 0d9b5d6f68ff..225555889b4f 100644
  
  &d1_sdio0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index f3f80d416c4f..8743d53b5fff 100644
+index f3f80d416c4f3..8743d53b5fff0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -877,6 +877,9 @@ &sdio0 {
@@ -165,7 +165,7 @@ index f3f80d416c4f..8743d53b5fff 100644
  
  &d1_sdio0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index eccb17d2477d..7f9ba62b774a 100644
+index eccb17d2477db..7f9ba62b774a4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -931,6 +931,9 @@ &sdio0 {
@@ -179,7 +179,7 @@ index eccb17d2477d..7f9ba62b774a 100644
  
  &d1_sdio0 {
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index 01779e01cd61..17cc92dd4cce 100644
+index 01779e01cd61e..17cc92dd4cce3 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -214,7 +214,7 @@ static int eswin_sdhci_sdio_phase_code_tuning(struct sdhci_host *host,

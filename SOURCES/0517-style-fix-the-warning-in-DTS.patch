@@ -1,4 +1,4 @@
-From 9cf96ed20d39005b8653fd2c6eb0fdca68213182 Mon Sep 17 00:00:00 2001
+From cedf7076e0973f3bf50fa4f93456e535e9d508e0 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 27 May 2025 10:17:42 +0800
 Subject: [PATCH 517/654] style:fix the warning in DTS
@@ -21,7 +21,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  10 files changed, 36 insertions(+), 179 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
-index 8c6729abc63a..d9551aabd7c9 100644
+index 8c6729abc63a8..d9551aabd7c9a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
 @@ -64,6 +64,7 @@ vvcam_isp_port0_raw: endpoint {
@@ -76,7 +76,7 @@ index 8c6729abc63a..d9551aabd7c9 100644
  
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
-index dc6947943a84..876f3652b8b3 100644
+index dc6947943a849..876f3652b8b38 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
 @@ -4,7 +4,7 @@ vvcam_isp_0: vvcam_isp@0 {
@@ -105,7 +105,7 @@ index dc6947943a84..876f3652b8b3 100644
  		dma-ranges = <0x0 0x20000000 0x0 0x80000000 0x0 0x40000000>;
  		iommus = <&smmu0 WIN2030_SID_ISP0>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
-index e88d667627d8..ce42246ba09f 100644
+index e88d667627d8d..ce42246ba09fc 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
 @@ -13,7 +13,7 @@ port@0 {
@@ -154,7 +154,7 @@ index e88d667627d8..ce42246ba09f 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
-index b0e69d985cb0..c2976f8f9c96 100644
+index b0e69d985cb0a..c2976f8f9c964 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -115,7 +115,7 @@ mmz_nid_0_part_0 {
@@ -198,7 +198,7 @@ index b0e69d985cb0..c2976f8f9c96 100644
  			&pinctrl_gpio87_default &pinctrl_gpio89_default &pinctrl_gpio91_default &pinctrl_gpio92_default>;
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index a7a2ec2d212f..734521a26b60 100644
+index a7a2ec2d212ff..734521a26b602 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -679,6 +679,7 @@ npu_vcc1:npu_svcc{
@@ -219,7 +219,7 @@ index a7a2ec2d212f..734521a26b60 100644
  		#io-channel-cells = <1>;
  		label = "sys_power";
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index e98c77b9e5a0..60c87d3821c6 100644
+index e98c77b9e5a0f..60c87d3821c68 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -380,6 +380,8 @@ &dsi_controller {
@@ -232,7 +232,7 @@ index e98c77b9e5a0..60c87d3821c6 100644
  			reg = <0>;
  			hdmi_in_dc: endpoint@0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index 9d5fa38e0f26..b4a0cae4f180 100644
+index 9d5fa38e0f263..b4a0cae4f1805 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -328,6 +328,8 @@ &dsi_panel {
@@ -245,7 +245,7 @@ index 9d5fa38e0f26..b4a0cae4f180 100644
  			reg = <0>;
  			hdmi_in_dc: endpoint@0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index c041cbebc527..d753fbba823f 100644
+index c041cbebc5271..d753fbba823f0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -172,158 +172,6 @@ gt911:touchscreen@14 {
@@ -408,7 +408,7 @@ index c041cbebc527..d753fbba823f 100644
  	gpio0   : touch int(I)
  	gpio5   : 5g wake on host(I)
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 7127f851b105..d085ab77b4ca 100644
+index 7127f851b1050..d085ab77b4cae 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1695,7 +1695,7 @@ d1_sdio1: mmc@0x70470000{
@@ -421,7 +421,7 @@ index 7127f851b105..d085ab77b4ca 100644
  			#address-cells = <1>;
  			#size-cells = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
-index d35198469b21..766dcb95bb71 100644
+index d35198469b21f..766dcb95bb71c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -853,6 +853,8 @@ &dw_hdmi {

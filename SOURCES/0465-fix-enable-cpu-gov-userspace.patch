@@ -1,4 +1,4 @@
-From 8d90f03bf5b757d4b2b29dc52e931b7f3a8098ef Mon Sep 17 00:00:00 2001
+From a9f13a429ad0faa0d705bd5a0ac2abd1079327d1 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 8 Apr 2025 16:30:11 +0800
 Subject: [PATCH 465/654] fix:enable cpu gov userspace
@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 1d365fa5fe09..946693b00b4d 100644
+index 1d365fa5fe090..946693b00b4d1 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -53,7 +53,7 @@ target: trip-point1 {
@@ -25,7 +25,7 @@ index 1d365fa5fe09..946693b00b4d 100644
  					type            = "critical";
  				};
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index fdbb24bf7834..9cefc6922209 100644
+index fdbb24bf7834e..9cefc6922209d 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -44,6 +44,7 @@ CONFIG_CPU_FREQ_STAT=y

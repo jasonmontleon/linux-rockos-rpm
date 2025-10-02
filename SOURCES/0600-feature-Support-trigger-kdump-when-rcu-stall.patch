@@ -1,4 +1,4 @@
-From d2bb9ec0438c9c75eb1c6986077ac1c9a7664f5f Mon Sep 17 00:00:00 2001
+From 085c177f158f8e33abc04301565d7966f1482895 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 2 Jul 2025 18:01:39 +0800
 Subject: [PATCH 600/654] feature: Support trigger kdump when rcu stall
@@ -13,7 +13,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  2 files changed, 2 insertions(+)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 4db3ce7e6f6f..dd0d599ed96d 100644
+index 4db3ce7e6f6fd..dd0d599ed96d6 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -846,6 +846,7 @@ CONFIG_DEBUG_ATOMIC_SLEEP=y
@@ -25,7 +25,7 @@ index 4db3ce7e6f6f..dd0d599ed96d 100644
  # CONFIG_RUNTIME_TESTING_MENU is not set
  CONFIG_MEMTEST=y
 diff --git a/arch/riscv/configs/eic7702_dbg_defconfig b/arch/riscv/configs/eic7702_dbg_defconfig
-index 174f6aac9374..a2bd1daf22bc 100644
+index 174f6aac9374a..a2bd1daf22bc8 100644
 --- a/arch/riscv/configs/eic7702_dbg_defconfig
 +++ b/arch/riscv/configs/eic7702_dbg_defconfig
 @@ -874,6 +874,7 @@ CONFIG_DEBUG_ATOMIC_SLEEP=y

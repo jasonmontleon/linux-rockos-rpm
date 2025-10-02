@@ -1,4 +1,4 @@
-From b3807cba1a21fa70b62351606a6dd0617fde900b Mon Sep 17 00:00:00 2001
+From b33fba7f3acd98bc7783ecbbdd6680cb76be045f Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Tue, 30 Jul 2024 14:03:46 +0800
 Subject: [PATCH 131/654] fix:fix regulator warning print
@@ -14,7 +14,7 @@ Signed-off-by: luyulin <luyulin@eswincomputing.com>
  1 file changed, 61 insertions(+), 33 deletions(-)
 
 diff --git a/drivers/ata/ahci_eswin.c b/drivers/ata/ahci_eswin.c
-index d9495dfe9887..c97431f008a2 100644
+index d9495dfe9887b..c97431f008a2a 100644
 --- a/drivers/ata/ahci_eswin.c
 +++ b/drivers/ata/ahci_eswin.c
 @@ -160,7 +160,7 @@ static int __init eswin_reset(struct device *dev)

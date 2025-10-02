@@ -1,4 +1,4 @@
-From d09a9f06b5cc4080a4f8d5841d7e3470897e711a Mon Sep 17 00:00:00 2001
+From 02c23f9a45e3065b40aa6abc19073720aaf56b32 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Tue, 18 Feb 2025 12:49:37 -0500
 Subject: [PATCH 649/654] Reduce crit threshold temp to 85000
@@ -8,7 +8,7 @@ Subject: [PATCH 649/654] Reduce crit threshold temp to 85000
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ddc23330610a..981ef91ef58f 100644
+index ddc23330610a1..981ef91ef58f5 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -51,7 +51,7 @@ target: trip-point1 {

@@ -1,4 +1,4 @@
-From e45ac7f91803eea0f33b6acf872859846dded4e7 Mon Sep 17 00:00:00 2001
+From 046437df3e0998270e3cd741aa9ae00bc30749c2 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Wed, 11 Sep 2024 10:12:37 +0800
 Subject: [PATCH 174/654] to(je):disable je timeout check
@@ -12,7 +12,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index d08a8effc7f2..e0ccc2ab9673 100644
+index d08a8effc7f25..e0ccc2ab96732 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -734,7 +734,10 @@ static void _vcmd_watchdog_stop(struct hantrovcmd_dev *dev){

@@ -1,4 +1,4 @@
-From 44cba49e2e144af8ef38bf7443dc7277b2ba780e Mon Sep 17 00:00:00 2001
+From 6bdb6e946dc0665a9c44e067b83a5e9fd8698392 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 6 Sep 2024 22:22:09 +0800
 Subject: [PATCH 254/654] WIN2030-16284:fix:adapt pinctrl driver for eic7x
@@ -18,7 +18,7 @@ Signed-off-by: luyulin <luyulin@eswincomputing.com>
  6 files changed, 99 insertions(+), 88 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 6f148bfed948..a65fe6e7ffcf 100644
+index 6f148bfed9483..a65fe6e7ffcf5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -31,7 +31,8 @@
@@ -156,7 +156,7 @@ index 6f148bfed948..a65fe6e7ffcf 100644
  
  &dev_llc_d0{
 diff --git a/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
-index dcbd96fc473e..8409a0886b7d 100644
+index dcbd96fc473ec..8409a0886b7da 100644
 --- a/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
 @@ -69,7 +69,7 @@ mux {
@@ -223,7 +223,7 @@ index dcbd96fc473e..8409a0886b7d 100644
  					bias-pull-down = <1>;
  				};
 diff --git a/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
-index ef18b0649043..fcb3d855c105 100644
+index ef18b0649043d..fcb3d855c105d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
 @@ -17,14 +17,14 @@
@@ -319,7 +319,7 @@ index ef18b0649043..fcb3d855c105 100644
              pinctrl_die1_gpio69_default: gpio69-default{
  				mux {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 775c6231f3a8..2b2b722b548a 100644
+index 775c6231f3a89..2b2b722b548aa 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1332,7 +1332,7 @@ fan_control: fan_control@50b50000 {
@@ -360,7 +360,7 @@ index 775c6231f3a8..2b2b722b548a 100644
  		};
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 95cc804403c9..5759e726f77b 100644
+index 95cc804403c98..5759e726f77b5 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1081,58 +1081,45 @@ conf {
@@ -435,7 +435,7 @@ index 95cc804403c9..5759e726f77b 100644
  		};
  
 diff --git a/drivers/pinctrl/pinctrl-eic7x.c b/drivers/pinctrl/pinctrl-eic7x.c
-index 1a04a041432d..3183b0dc424a 100644
+index 1a04a041432d9..3183b0dc424a8 100644
 --- a/drivers/pinctrl/pinctrl-eic7x.c
 +++ b/drivers/pinctrl/pinctrl-eic7x.c
 @@ -239,7 +239,7 @@ static const struct pinctrl_pin_desc eswin_pins[] = {

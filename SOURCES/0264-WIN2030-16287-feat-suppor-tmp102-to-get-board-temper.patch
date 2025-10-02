@@ -1,4 +1,4 @@
-From 495372c4595a81d96e0b6fb5b934b530965b8d22 Mon Sep 17 00:00:00 2001
+From 19e1b53040f138c43b792e676cd0e0b8d2214b0b Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 12 Sep 2024 09:18:33 +0800
 Subject: [PATCH 264/654] WIN2030-16287:feat:suppor tmp102 to get board
@@ -16,7 +16,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  3 files changed, 19 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 22a8b5764493..3bf4332d267a 100644
+index 22a8b5764493d..3bf4332d267a3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -716,6 +716,12 @@ ina226@44 {
@@ -33,7 +33,7 @@ index 22a8b5764493..3bf4332d267a 100644
  
  &d0_aon_i2c1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 6d1db9c6a713..d1c9d8cbd5b3 100644
+index 6d1db9c6a7131..d1c9d8cbd5b3c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -1239,6 +1239,12 @@ ina226@44 {
@@ -63,7 +63,7 @@ index 6d1db9c6a713..d1c9d8cbd5b3 100644
  &d1_aon_i2c1 {
  	status = "disabled";
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index f0de31f666a0..1e9388335206 100644
+index f0de31f666a0a..1e9388335206f 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -460,6 +460,7 @@ CONFIG_GPIO_DWAPB=y

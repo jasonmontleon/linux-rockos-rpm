@@ -1,4 +1,4 @@
-From 932b77bd5c13e832b02de3ed4b0231a51e098539 Mon Sep 17 00:00:00 2001
+From f3259d96d58542f11ec408d80b90554c394a6da2 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 19 Nov 2024 10:45:39 +0800
 Subject: [PATCH 284/654] WIN2030-16445:fix:resolve the issue of DMA interrupt.
@@ -17,7 +17,7 @@ Change-Id: Id6fbd1e84a6aa65acb3bce8aef8b411b206f1c6d
  2 files changed, 145 insertions(+)
 
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 6700a9b44f0f..78fbfd5d8f8c 100644
+index 6700a9b44f0f6..78fbfd5d8f8c2 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -6,6 +6,25 @@
@@ -218,7 +218,7 @@ index 6700a9b44f0f..78fbfd5d8f8c 100644
  }
  
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-index cc09abf15aad..3bd0e65ed010 100644
+index cc09abf15aad2..3bd0e65ed010c 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
 @@ -6,6 +6,25 @@

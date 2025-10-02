@@ -1,4 +1,4 @@
-From 32ef7eb97a95128fa2bce5b0c967d2fd64a3d700 Mon Sep 17 00:00:00 2001
+From c63787f57fc6aa4b4c41025fe736cd760760633a Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Fri, 27 Dec 2024 16:59:27 +0800
 Subject: [PATCH 483/654] feat:add memcp offset overflow check
@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  2 files changed, 22 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
-index ba07f2bd38b5..1c2096270595 100644
+index ba07f2bd38b54..1c20962705954 100644
 --- a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 +++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 @@ -414,6 +414,26 @@ static int esw_cmdq_add_task(struct file *filp, void __user *user_arg) {
@@ -44,7 +44,7 @@ index ba07f2bd38b5..1c2096270595 100644
      cmdq_task->f2f_cmd = memcp_f2f_cmd;
  
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
-index 7d0ffdca4d99..30ca7423a39c 100644
+index 7d0ffdca4d99a..30ca7423a39c1 100644
 --- a/include/uapi/linux/dma_memcp.h
 +++ b/include/uapi/linux/dma_memcp.h
 @@ -36,9 +36,9 @@

@@ -1,4 +1,4 @@
-From 85ecf66b04793a413a5d7b4ee2802ab1d64682e8 Mon Sep 17 00:00:00 2001
+From a4d4b0864603fd0d0ad776d9537ae0c4ce882551 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 15 Jul 2025 16:33:18 +0800
 Subject: [PATCH 634/654] fix: fix no dewarp dev node
@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 6a419ddbc324..c2c51545ae2a 100644
+index 6a419ddbc3248..c2c51545ae2ae 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2206,6 +2206,9 @@ d1_dewarp: dewarp@71020000 {

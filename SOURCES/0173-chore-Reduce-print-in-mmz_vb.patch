@@ -1,4 +1,4 @@
-From e0f786dfd90b02d7487e27436c863da654d7450a Mon Sep 17 00:00:00 2001
+From c2f8fcc4787df45fb79753b9f5e8b945ce37808b Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 10 Sep 2024 15:19:33 +0800
 Subject: [PATCH 173/654] chore:Reduce print in mmz_vb
@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index 2c2f829817ad..8fad791695d7 100644
+index 2c2f829817adf..8fad791695d7c 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -1147,7 +1147,7 @@ static int mmz_vb_do_destory_pool(struct esVB_K_POOL_INFO_S *pool, bool is_lock,

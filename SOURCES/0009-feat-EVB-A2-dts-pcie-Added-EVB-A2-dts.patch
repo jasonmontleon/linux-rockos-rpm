@@ -1,4 +1,4 @@
-From fc9cfdd85d923125708092dd8d0e348344cf3ea7 Mon Sep 17 00:00:00 2001
+From a1138d8b418c5358d0715636071806fe2d1ef8df Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Sat, 18 May 2024 11:16:41 +0800
 Subject: [PATCH 009/654] feat(EVB-A2 dts+pcie):Added EVB-A2 dts
@@ -27,7 +27,7 @@ Changelogs:
  create mode 100644 drivers/pci/controller/dwc/pcie-eswin.c
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index dd52dd167996..5f6f08e84743 100644
+index dd52dd1679960..5f6f08e84743b 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -1,4 +1,6 @@
@@ -40,7 +40,7 @@ index dd52dd167996..5f6f08e84743 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 new file mode 100644
-index 000000000000..300eed57dca6
+index 0000000000000..300eed57dca64
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -0,0 +1,905 @@
@@ -950,7 +950,7 @@ index 000000000000..300eed57dca6
 +	status = "okay";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 25bdb68ef921..ba2b6a3ea3b5 100644
+index 25bdb68ef921d..ba2b6a3ea3b5d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -26,7 +26,7 @@
@@ -1239,7 +1239,7 @@ index 25bdb68ef921..ba2b6a3ea3b5 100644
  
  &pvt0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
-index 1b194f9d04ee..0529f98d4dd3 100644
+index 1b194f9d04ee2..0529f98d4dd38 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 @@ -221,7 +221,6 @@ mux {
@@ -1580,7 +1580,7 @@ index 1b194f9d04ee..0529f98d4dd3 100644
  				};
  			};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index e56ff06664f1..453f15acbd15 100644
+index e56ff06664f1e..453f15acbd158 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -201,6 +201,7 @@ d0_noc_wdt:noc@51810324 {
@@ -2277,7 +2277,7 @@ index e56ff06664f1..453f15acbd15 100644
  			interrupt-parent = <&plic0>;
  			interrupts = <238>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 9c24a81da4f8..b1b077ceea0e 100644
+index 9c24a81da4f8b..b1b077ceea0ed 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -163,6 +163,7 @@ d1_noc_wdt:noc@71810324 {
@@ -2514,7 +2514,7 @@ index 9c24a81da4f8..b1b077ceea0e 100644
  			interrupt-parent = <&plic1>;
  			interrupts = <238>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
-index 3b4815537560..8e7769e5b509 100644
+index 3b48155375605..8e7769e5b509a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -509,7 +509,7 @@ &d0_gmac1 {
@@ -2668,7 +2668,7 @@ index 3b4815537560..8e7769e5b509 100644
  
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 new file mode 100644
-index 000000000000..d3baea543371
+index 0000000000000..d3baea5433718
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -0,0 +1,861 @@
@@ -3534,7 +3534,7 @@ index 000000000000..d3baea543371
 +	status = "okay";
 +};
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index c0695f06820c..332acc518c31 100644
+index c0695f06820cc..332acc518c31f 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -12,8 +12,6 @@ CONFIG_CGROUP_BPF=y
@@ -3631,7 +3631,7 @@ index c0695f06820c..332acc518c31 100644
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
 diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index ab96da43e0c2..09f44434f854 100644
+index ab96da43e0c2e..09f44434f8547 100644
 --- a/drivers/pci/controller/dwc/Kconfig
 +++ b/drivers/pci/controller/dwc/Kconfig
 @@ -415,4 +415,12 @@ config PCIE_VISCONTI_HOST
@@ -3648,7 +3648,7 @@ index ab96da43e0c2..09f44434f854 100644
 +
  endmenu
 diff --git a/drivers/pci/controller/dwc/Makefile b/drivers/pci/controller/dwc/Makefile
-index bf5c311875a1..927459a28dc7 100644
+index bf5c311875a1e..927459a28dc7e 100644
 --- a/drivers/pci/controller/dwc/Makefile
 +++ b/drivers/pci/controller/dwc/Makefile
 @@ -26,6 +26,7 @@ obj-$(CONFIG_PCIE_TEGRA194) += pcie-tegra194.o
@@ -3661,7 +3661,7 @@ index bf5c311875a1..927459a28dc7 100644
  # pci_root.c driver but don't support standard ECAM config access.
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
 new file mode 100644
-index 000000000000..66941cce9dde
+index 0000000000000..66941cce9ddef
 --- /dev/null
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -0,0 +1,531 @@

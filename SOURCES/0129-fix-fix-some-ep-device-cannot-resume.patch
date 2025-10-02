@@ -1,4 +1,4 @@
-From 70a5178a65cf004dcfdda6368f2b64f54e8c4838 Mon Sep 17 00:00:00 2001
+From 1d387b4a8bb14b01ca1520d8330b0bf48d7ce66a Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Wed, 31 Jul 2024 17:39:47 +0800
 Subject: [PATCH 129/654] fix:fix some ep device cannot resume
@@ -12,7 +12,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index e8d60d183d2b..4da79e854ea4 100644
+index e8d60d183d2b9..4da79e854ea46 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -413,7 +413,6 @@ static int eswin_pcie_suspend(struct device *dev)

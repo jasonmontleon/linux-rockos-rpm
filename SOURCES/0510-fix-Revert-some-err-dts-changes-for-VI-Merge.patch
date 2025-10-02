@@ -1,4 +1,4 @@
-From b4752a0a19fa9fab9775e858c6046410211e782e Mon Sep 17 00:00:00 2001
+From f12be5017ccbc7f745d1fdfd6458c424576c7605 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 16 May 2025 14:42:41 +0800
 Subject: [PATCH 510/654] fix: Revert some err dts changes for VI Merge
@@ -19,7 +19,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  4 files changed, 22 insertions(+), 19 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 478bd6201176..2b22977cf1aa 100644
+index 478bd62011767..2b22977cf1aa5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -299,7 +299,7 @@ &d0_lpcpu {
@@ -40,7 +40,7 @@ index 478bd6201176..2b22977cf1aa 100644
  			npu_vcc1:npu_svcc{
  				regulator-name="NPU_SVCC";
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 0472c026c77f..b4b58b00518e 100644
+index 0472c026c77f6..b4b58b00518ea 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -29,7 +29,7 @@
@@ -53,7 +53,7 @@ index 0472c026c77f..b4b58b00518e 100644
  #include <dt-bindings/interrupt-controller/irq.h>
  #include <dt-bindings/gpio/gpio.h>
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
-index ae1af65fcc40..b0e69d985cb0 100644
+index ae1af65fcc401..b0e69d985cb0a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -48,8 +48,7 @@ aliases {
@@ -133,7 +133,7 @@ index ae1af65fcc40..b0e69d985cb0 100644
  	};
  };
 diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
-index 6df6dd5b0c1c..298f9cd38193 100644
+index 6df6dd5b0c1cb..298f9cd381937 100644
 --- a/drivers/media/platform/eswin/dvp2axi/capture.c
 +++ b/drivers/media/platform/eswin/dvp2axi/capture.c
 @@ -843,7 +843,7 @@ static struct v4l2_subdev *get_remote_sensor(struct es_dvp2axi_stream *stream,

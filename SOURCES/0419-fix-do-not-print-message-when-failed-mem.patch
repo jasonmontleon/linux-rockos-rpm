@@ -1,4 +1,4 @@
-From 5124c4894c102676f2425440b87ef0be10f59ff1 Mon Sep 17 00:00:00 2001
+From 8ce89f00c0c9b62f4d03041fff3054abab5bdbbc Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 28 Feb 2025 15:42:16 +0800
 Subject: [PATCH 419/654] fix: do not print message when failed mem
@@ -12,7 +12,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 26 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 6b567365de80..c79b5748242e 100644
+index 6b567365de802..c79b5748242e3 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -1035,6 +1035,7 @@ static long dsp_ioctl_multi_tasks_submit(struct file *flip,

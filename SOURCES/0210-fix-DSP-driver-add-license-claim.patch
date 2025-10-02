@@ -1,4 +1,4 @@
-From 5452480c1c46593c1ca9be79e0fadfbc9eb4c740 Mon Sep 17 00:00:00 2001
+From cc05277e60587ed110f98232f80fa526d0a64fde Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 5 Nov 2024 15:51:38 +0800
 Subject: [PATCH 210/654] fix:DSP driver add license claim.
@@ -101,7 +101,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  90 files changed, 149 insertions(+), 105 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/cdma_regs.h b/drivers/soc/eswin/ai_driver/common/devices/cdma_regs.h
-index 62023dd7c49f..646db14a0959 100644
+index 62023dd7c49f4..646db14a0959d 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/cdma_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/cdma_regs.h
 @@ -1,6 +1,6 @@
@@ -113,7 +113,7 @@ index 62023dd7c49f..646db14a0959 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/conv_regs.h b/drivers/soc/eswin/ai_driver/common/devices/conv_regs.h
-index 81c4f141e75a..8fe8f9a5c6c1 100644
+index 81c4f141e75a9..8fe8f9a5c6c15 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/conv_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/conv_regs.h
 @@ -1,6 +1,6 @@
@@ -125,7 +125,7 @@ index 81c4f141e75a..8fe8f9a5c6c1 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/drp_regs.h b/drivers/soc/eswin/ai_driver/common/devices/drp_regs.h
-index 5dc253d33b23..28a7579155e7 100644
+index 5dc253d33b235..28a7579155e72 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/drp_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/drp_regs.h
 @@ -1,6 +1,6 @@
@@ -137,7 +137,7 @@ index 5dc253d33b23..28a7579155e7 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/edma_regs.h b/drivers/soc/eswin/ai_driver/common/devices/edma_regs.h
-index 5ae6332ae6a2..1ecb8b3d0b2e 100644
+index 5ae6332ae6a29..1ecb8b3d0b2ea 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/edma_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/edma_regs.h
 @@ -1,6 +1,6 @@
@@ -149,7 +149,7 @@ index 5ae6332ae6a2..1ecb8b3d0b2e 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
-index a247096e8029..98558ecf0af5 100644
+index a247096e80294..98558ecf0af5d 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
 @@ -1,6 +1,6 @@
@@ -161,7 +161,7 @@ index a247096e8029..98558ecf0af5 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
-index 6ff00201ec7d..cea2c9335305 100644
+index 6ff00201ec7da..cea2c93353057 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 @@ -1,6 +1,6 @@
@@ -173,7 +173,7 @@ index 6ff00201ec7d..cea2c9335305 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/pdp_regs.h b/drivers/soc/eswin/ai_driver/common/devices/pdp_regs.h
-index 62f45518e294..bbc29e5fd69e 100644
+index 62f45518e2945..bbc29e5fd69e4 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/pdp_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/pdp_regs.h
 @@ -1,6 +1,6 @@
@@ -185,7 +185,7 @@ index 62f45518e294..bbc29e5fd69e 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/pec_reg.h b/drivers/soc/eswin/ai_driver/common/devices/pec_reg.h
-index 16394963331c..12428f0850c3 100644
+index 16394963331c1..12428f0850c3e 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/pec_reg.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/pec_reg.h
 @@ -1,6 +1,6 @@
@@ -197,7 +197,7 @@ index 16394963331c..12428f0850c3 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/rubik_regs.h b/drivers/soc/eswin/ai_driver/common/devices/rubik_regs.h
-index 9fc21d991d9d..6e5ccfc2e5b7 100644
+index 9fc21d991d9d9..6e5ccfc2e5b71 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/rubik_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/rubik_regs.h
 @@ -1,6 +1,6 @@
@@ -209,7 +209,7 @@ index 9fc21d991d9d..6e5ccfc2e5b7 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/sdp_regs.h b/drivers/soc/eswin/ai_driver/common/devices/sdp_regs.h
-index 28d8ee717b44..008cf86549e6 100644
+index 28d8ee717b447..008cf86549e64 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/sdp_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/sdp_regs.h
 @@ -1,6 +1,6 @@
@@ -221,7 +221,7 @@ index 28d8ee717b44..008cf86549e6 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/sys_regs.h b/drivers/soc/eswin/ai_driver/common/devices/sys_regs.h
-index 185589b5b2ed..62dd38df24af 100644
+index 185589b5b2ed9..62dd38df24af6 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/sys_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/sys_regs.h
 @@ -1,6 +1,6 @@
@@ -233,7 +233,7 @@ index 185589b5b2ed..62dd38df24af 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/dla_interface.h b/drivers/soc/eswin/ai_driver/common/dla_interface.h
-index 7c72caca94b0..550dd165b57d 100644
+index 7c72caca94b0a..550dd165b57d6 100644
 --- a/drivers/soc/eswin/ai_driver/common/dla_interface.h
 +++ b/drivers/soc/eswin/ai_driver/common/dla_interface.h
 @@ -1,6 +1,6 @@
@@ -245,7 +245,7 @@ index 7c72caca94b0..550dd165b57d 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/es_dsp_internal.h b/drivers/soc/eswin/ai_driver/common/es_dsp_internal.h
-index 1454935a34d8..79d6a1b501b4 100644
+index 1454935a34d86..79d6a1b501b4f 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_dsp_internal.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_dsp_internal.h
 @@ -1,6 +1,6 @@
@@ -257,7 +257,7 @@ index 1454935a34d8..79d6a1b501b4 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h b/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h
-index 0fa4b8a62fe8..203fbde5714b 100644
+index 0fa4b8a62fe8a..203fbde5714bd 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_dsp_op_types.h
 @@ -1,6 +1,6 @@
@@ -269,7 +269,7 @@ index 0fa4b8a62fe8..203fbde5714b 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/es_dsp_types.h b/drivers/soc/eswin/ai_driver/common/es_dsp_types.h
-index ad0b3f2105e2..90b2deaf0810 100644
+index ad0b3f2105e23..90b2deaf08109 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_dsp_types.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_dsp_types.h
 @@ -1,6 +1,6 @@
@@ -281,7 +281,7 @@ index ad0b3f2105e2..90b2deaf0810 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/es_nn_common.h b/drivers/soc/eswin/ai_driver/common/es_nn_common.h
-index 9a618fb4bc0a..9d53a0fb1a40 100644
+index 9a618fb4bc0ab..9d53a0fb1a407 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_nn_common.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_nn_common.h
 @@ -1,6 +1,6 @@
@@ -293,7 +293,7 @@ index 9a618fb4bc0a..9d53a0fb1a40 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/es_type.h b/drivers/soc/eswin/ai_driver/common/es_type.h
-index 330eeb5b87cc..008543285492 100644
+index 330eeb5b87cce..008543285492c 100644
 --- a/drivers/soc/eswin/ai_driver/common/es_type.h
 +++ b/drivers/soc/eswin/ai_driver/common/es_type.h
 @@ -1,6 +1,6 @@
@@ -305,7 +305,7 @@ index 330eeb5b87cc..008543285492 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_arch.h b/drivers/soc/eswin/ai_driver/common/hetero_arch.h
-index 70b55b9d4977..e577200853af 100644
+index 70b55b9d49772..e577200853af8 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_arch.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_arch.h
 @@ -1,6 +1,6 @@
@@ -317,7 +317,7 @@ index 70b55b9d4977..e577200853af 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_common.h b/drivers/soc/eswin/ai_driver/common/hetero_common.h
-index 2119c2e02401..18297aae7002 100644
+index 2119c2e024014..18297aae70022 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_common.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_common.h
 @@ -1,6 +1,6 @@
@@ -329,7 +329,7 @@ index 2119c2e02401..18297aae7002 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_env.h b/drivers/soc/eswin/ai_driver/common/hetero_env.h
-index eac954fa37de..006dcbe4095b 100644
+index eac954fa37dea..006dcbe4095b9 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_env.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_env.h
 @@ -1,6 +1,6 @@
@@ -341,7 +341,7 @@ index eac954fa37de..006dcbe4095b 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_host.h b/drivers/soc/eswin/ai_driver/common/hetero_host.h
-index ad790176c55a..f36a0fbd0041 100644
+index ad790176c55ad..f36a0fbd0041a 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_host.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_host.h
 @@ -1,6 +1,6 @@
@@ -353,7 +353,7 @@ index ad790176c55a..f36a0fbd0041 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
-index 94f41117952b..8858e6863ab1 100644
+index 94f41117952b5..8858e6863ab15 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 @@ -1,6 +1,6 @@
@@ -365,7 +365,7 @@ index 94f41117952b..8858e6863ab1 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
-index ed0e2c5b2e4e..c255d5cd371b 100644
+index ed0e2c5b2e4e4..c255d5cd371b5 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
 @@ -1,6 +1,6 @@
@@ -377,7 +377,7 @@ index ed0e2c5b2e4e..c255d5cd371b 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_perf.h b/drivers/soc/eswin/ai_driver/common/hetero_perf.h
-index afda052cd119..5e96bcc4f760 100644
+index afda052cd1194..5e96bcc4f760f 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_perf.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_perf.h
 @@ -1,6 +1,6 @@
@@ -389,7 +389,7 @@ index afda052cd119..5e96bcc4f760 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_processor.h b/drivers/soc/eswin/ai_driver/common/hetero_processor.h
-index 333d804fe174..aaf2ac02c4ed 100644
+index 333d804fe1747..aaf2ac02c4ed0 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_processor.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_processor.h
 @@ -1,6 +1,6 @@
@@ -401,7 +401,7 @@ index 333d804fe174..aaf2ac02c4ed 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_types.h b/drivers/soc/eswin/ai_driver/common/hetero_types.h
-index 89ac2ce05f56..a0bb913c61f6 100644
+index 89ac2ce05f56b..a0bb913c61f65 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_types.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_types.h
 @@ -1,6 +1,6 @@
@@ -413,7 +413,7 @@ index 89ac2ce05f56..a0bb913c61f6 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/common/md5.h b/drivers/soc/eswin/ai_driver/common/md5.h
-index c78ab427c1dd..bdc076504d38 100644
+index c78ab427c1ddf..bdc076504d380 100644
 --- a/drivers/soc/eswin/ai_driver/common/md5.h
 +++ b/drivers/soc/eswin/ai_driver/common/md5.h
 @@ -1,6 +1,6 @@
@@ -425,7 +425,7 @@ index c78ab427c1dd..bdc076504d38 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c
-index ead266d8c016..d0b0b1388956 100644
+index ead266d8c0165..d0b0b13889563 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c
 @@ -1,6 +1,6 @@
@@ -437,7 +437,7 @@ index ead266d8c016..d0b0b1388956 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h
-index 494c8f1c9beb..6a2c9ec275ac 100755
+index 494c8f1c9beb2..6a2c9ec275ac5 100755
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h
 @@ -1,6 +1,6 @@
@@ -449,7 +449,7 @@ index 494c8f1c9beb..6a2c9ec275ac 100755
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h b/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h
-index 63446d205d28..abfcecc50526 100644
+index 63446d205d283..abfcecc50526f 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h
 @@ -1,6 +1,6 @@
@@ -461,7 +461,7 @@ index 63446d205d28..abfcecc50526 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h
-index 1e81181e4a2d..252fcf0f199b 100644
+index 1e81181e4a2de..252fcf0f199b7 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h
 @@ -1,6 +1,6 @@
@@ -473,7 +473,7 @@ index 1e81181e4a2d..252fcf0f199b 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 371d6f738f21..1e7871eb56b0 100644
+index 371d6f738f210..1e7871eb56b0e 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -1,6 +1,6 @@
@@ -485,7 +485,7 @@ index 371d6f738f21..1e7871eb56b0 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h
-index cdf8b255d11f..177ee55ff001 100644
+index cdf8b255d11f7..177ee55ff0016 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h
 @@ -1,6 +1,6 @@
@@ -497,7 +497,7 @@ index cdf8b255d11f..177ee55ff001 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
-index 33bd46dd61e7..31cb775d5173 100644
+index 33bd46dd61e7c..31cb775d5173a 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 @@ -1,6 +1,6 @@
@@ -509,7 +509,7 @@ index 33bd46dd61e7..31cb775d5173 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_log.c b/drivers/soc/eswin/ai_driver/dsp/dsp_log.c
-index b59cb359501f..edb41d60283b 100644
+index b59cb359501ff..edb41d60283ba 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_log.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_log.c
 @@ -1,6 +1,6 @@
@@ -521,7 +521,7 @@ index b59cb359501f..edb41d60283b 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_log.h b/drivers/soc/eswin/ai_driver/dsp/dsp_log.h
-index 8ccdaf549931..20f6e0dc735b 100644
+index 8ccdaf549931c..20f6e0dc735b1 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_log.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_log.h
 @@ -1,6 +1,6 @@
@@ -533,7 +533,7 @@ index 8ccdaf549931..20f6e0dc735b 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h b/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h
-index 9cfed6fdaf12..e40dfc1b0ea8 100644
+index 9cfed6fdaf12a..e40dfc1b0ea89 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h
 @@ -1,6 +1,6 @@
@@ -545,7 +545,7 @@ index 9cfed6fdaf12..e40dfc1b0ea8 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 77546cff84d3..b32ffba9dcc8 100644
+index 77546cff84d3d..b32ffba9dcc86 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -1,6 +1,6 @@
@@ -600,7 +600,7 @@ index 77546cff84d3..b32ffba9dcc8 100644
  {
  	int ret;
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
-index 3fbc261016d4..af85e992634f 100644
+index 3fbc261016d46..af85e992634fa 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 @@ -1,6 +1,6 @@
@@ -612,7 +612,7 @@ index 3fbc261016d4..af85e992634f 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h b/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
-index f3cd75147591..5dd44b52f6e2 100644
+index f3cd751475917..5dd44b52f6e24 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
 @@ -1,6 +1,6 @@
@@ -624,7 +624,7 @@ index f3cd75147591..5dd44b52f6e2 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 652b640be2cc..83c309dcae5a 100644
+index 652b640be2cce..83c309dcae5ac 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -1,6 +1,6 @@
@@ -677,7 +677,7 @@ index 652b640be2cc..83c309dcae5a 100644
  static int load_segment_to_iomem(struct es_dsp *dsp, Elf32_Phdr *phdr)
  {
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-index 6790660e3af7..d538a9727242 100644
+index 6790660e3af77..d538a9727242a 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 @@ -1,6 +1,6 @@
@@ -689,7 +689,7 @@ index 6790660e3af7..d538a9727242 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
-index 42a3788e4d41..ea9471381e02 100644
+index 42a3788e4d41a..ea9471381e02a 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 @@ -1,6 +1,6 @@
@@ -701,7 +701,7 @@ index 42a3788e4d41..ea9471381e02 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c
-index 9295b9ee0d99..5da8214d8605 100644
+index 9295b9ee0d996..5da8214d86056 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c
 @@ -1,3 +1,25 @@
@@ -731,7 +731,7 @@ index 9295b9ee0d99..5da8214d8605 100644
  #include <linux/spinlock.h>
  #include <linux/list.h>
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h
-index 946bf3840680..1a5b37818416 100644
+index 946bf38406800..1a5b378184161 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h
 @@ -1,3 +1,25 @@
@@ -761,7 +761,7 @@ index 946bf3840680..1a5b37818416 100644
  #define __DSP_POOL_H_
  #include <linux/list.h>
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-index f234f3cf9842..54d9169a3515 100644
+index f234f3cf98425..54d9169a35151 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 @@ -1,6 +1,6 @@
@@ -773,7 +773,7 @@ index f234f3cf9842..54d9169a3515 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h
-index 94e9158de9fd..c739e8192ed9 100644
+index 94e9158de9fdc..c739e8192ed9a 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h
 @@ -1,6 +1,6 @@
@@ -785,7 +785,7 @@ index 94e9158de9fd..c739e8192ed9 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c b/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
-index df4f8abf1c2a..6b41fd861886 100644
+index df4f8abf1c2aa..6b41fd8618866 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
 @@ -1,6 +1,6 @@
@@ -797,7 +797,7 @@ index df4f8abf1c2a..6b41fd861886 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/common.c b/drivers/soc/eswin/ai_driver/npu/common.c
-index a294bb196dc0..2b96401397fa 100644
+index a294bb196dc07..2b96401397fac 100644
 --- a/drivers/soc/eswin/ai_driver/npu/common.c
 +++ b/drivers/soc/eswin/ai_driver/npu/common.c
 @@ -1,6 +1,6 @@
@@ -809,7 +809,7 @@ index a294bb196dc0..2b96401397fa 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/common.h b/drivers/soc/eswin/ai_driver/npu/common.h
-index 08d5dad54b35..ae8696fe9965 100644
+index 08d5dad54b359..ae8696fe99657 100644
 --- a/drivers/soc/eswin/ai_driver/npu/common.h
 +++ b/drivers/soc/eswin/ai_driver/npu/common.h
 @@ -1,6 +1,6 @@
@@ -821,7 +821,7 @@ index 08d5dad54b35..ae8696fe9965 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/conv.c b/drivers/soc/eswin/ai_driver/npu/conv.c
-index fb00776642fb..b8eac2a1b551 100644
+index fb00776642fb1..b8eac2a1b551f 100644
 --- a/drivers/soc/eswin/ai_driver/npu/conv.c
 +++ b/drivers/soc/eswin/ai_driver/npu/conv.c
 @@ -1,6 +1,6 @@
@@ -833,7 +833,7 @@ index fb00776642fb..b8eac2a1b551 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/conv.h b/drivers/soc/eswin/ai_driver/npu/conv.h
-index a290b7696526..a2c57b546e59 100644
+index a290b7696526b..a2c57b546e593 100644
 --- a/drivers/soc/eswin/ai_driver/npu/conv.h
 +++ b/drivers/soc/eswin/ai_driver/npu/conv.h
 @@ -1,6 +1,6 @@
@@ -845,7 +845,7 @@ index a290b7696526..a2c57b546e59 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/debug.c b/drivers/soc/eswin/ai_driver/npu/debug.c
-index 45ebb8328bbb..489bbbdec743 100644
+index 45ebb8328bbb8..489bbbdec743c 100644
 --- a/drivers/soc/eswin/ai_driver/npu/debug.c
 +++ b/drivers/soc/eswin/ai_driver/npu/debug.c
 @@ -1,6 +1,6 @@
@@ -857,7 +857,7 @@ index 45ebb8328bbb..489bbbdec743 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/debug.h b/drivers/soc/eswin/ai_driver/npu/debug.h
-index a62586a85034..0368fa788199 100644
+index a62586a85034f..0368fa788199f 100644
 --- a/drivers/soc/eswin/ai_driver/npu/debug.h
 +++ b/drivers/soc/eswin/ai_driver/npu/debug.h
 @@ -1,6 +1,6 @@
@@ -869,7 +869,7 @@ index a62586a85034..0368fa788199 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_buffer.c b/drivers/soc/eswin/ai_driver/npu/dla_buffer.c
-index 7f12c6e36ed6..8aea165e53ec 100644
+index 7f12c6e36ed6f..8aea165e53ece 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_buffer.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_buffer.c
 @@ -1,6 +1,6 @@
@@ -881,7 +881,7 @@ index 7f12c6e36ed6..8aea165e53ec 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_buffer.h b/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
-index 6deddea6d2db..f6afe68f912e 100644
+index 6deddea6d2db2..f6afe68f912e8 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
 @@ -1,6 +1,6 @@
@@ -893,7 +893,7 @@ index 6deddea6d2db..f6afe68f912e 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.c b/drivers/soc/eswin/ai_driver/npu/dla_driver.c
-index 6a18ffe3572a..8e470db4a163 100644
+index 6a18ffe3572ad..8e470db4a1630 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.c
 @@ -1,6 +1,6 @@
@@ -905,7 +905,7 @@ index 6a18ffe3572a..8e470db4a163 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index 9ab56b2ec0e5..f497ada38f56 100644
+index 9ab56b2ec0e5d..f497ada38f565 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -1,6 +1,6 @@
@@ -917,7 +917,7 @@ index 9ab56b2ec0e5..f497ada38f56 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h b/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h
-index 455f6da4ccb0..f1269cbf89e7 100644
+index 455f6da4ccb0f..f1269cbf89e7d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h
 @@ -1,6 +1,6 @@
@@ -929,7 +929,7 @@ index 455f6da4ccb0..f1269cbf89e7 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_log.c b/drivers/soc/eswin/ai_driver/npu/dla_log.c
-index b723cf5368f0..a215530f5d55 100644
+index b723cf5368f04..a215530f5d55c 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_log.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_log.c
 @@ -1,6 +1,6 @@
@@ -941,7 +941,7 @@ index b723cf5368f0..a215530f5d55 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_log.h b/drivers/soc/eswin/ai_driver/npu/dla_log.h
-index b9c5a368a0ea..410f8240e881 100644
+index b9c5a368a0eae..410f8240e8816 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_log.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_log.h
 @@ -1,6 +1,6 @@
@@ -953,7 +953,7 @@ index b9c5a368a0ea..410f8240e881 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
-index c8334fcc9dc4..8c91949cb9da 100644
+index c8334fcc9dc4f..8c91949cb9dac 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dsp.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
 @@ -1,6 +1,6 @@
@@ -965,7 +965,7 @@ index c8334fcc9dc4..8c91949cb9da 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.h b/drivers/soc/eswin/ai_driver/npu/dsp.h
-index 4d370fac875b..a0e584af0122 100644
+index 4d370fac875ba..a0e584af01227 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dsp.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.h
 @@ -1,6 +1,6 @@
@@ -977,7 +977,7 @@ index 4d370fac875b..a0e584af0122 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/edma.c b/drivers/soc/eswin/ai_driver/npu/edma.c
-index cc3e365dee4f..f720be48c277 100644
+index cc3e365dee4fe..f720be48c277b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/edma.c
 +++ b/drivers/soc/eswin/ai_driver/npu/edma.c
 @@ -1,6 +1,6 @@
@@ -989,7 +989,7 @@ index cc3e365dee4f..f720be48c277 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/edma.h b/drivers/soc/eswin/ai_driver/npu/edma.h
-index 69abc05cc361..697efc33841f 100644
+index 69abc05cc3611..697efc33841fd 100644
 --- a/drivers/soc/eswin/ai_driver/npu/edma.h
 +++ b/drivers/soc/eswin/ai_driver/npu/edma.h
 @@ -1,6 +1,6 @@
@@ -1001,7 +1001,7 @@ index 69abc05cc361..697efc33841f 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/engine.c b/drivers/soc/eswin/ai_driver/npu/engine.c
-index 53805e20d485..479628628177 100644
+index 53805e20d4854..479628628177e 100644
 --- a/drivers/soc/eswin/ai_driver/npu/engine.c
 +++ b/drivers/soc/eswin/ai_driver/npu/engine.c
 @@ -1,6 +1,6 @@
@@ -1013,7 +1013,7 @@ index 53805e20d485..479628628177 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/event.c b/drivers/soc/eswin/ai_driver/npu/event.c
-index 11cd3f2be059..67cacae5c475 100644
+index 11cd3f2be0592..67cacae5c4756 100644
 --- a/drivers/soc/eswin/ai_driver/npu/event.c
 +++ b/drivers/soc/eswin/ai_driver/npu/event.c
 @@ -1,6 +1,6 @@
@@ -1025,7 +1025,7 @@ index 11cd3f2be059..67cacae5c475 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h b/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h
-index 8a8cca1c7cd8..90c6be9b9aef 100644
+index 8a8cca1c7cd82..90c6be9b9aefc 100644
 --- a/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h
 +++ b/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h
 @@ -1,6 +1,6 @@
@@ -1037,7 +1037,7 @@ index 8a8cca1c7cd8..90c6be9b9aef 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h b/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h
-index a3daffbdc12e..ecdf488e114e 100644
+index a3daffbdc12e3..ecdf488e114e2 100644
 --- a/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h
 +++ b/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h
 @@ -1,6 +1,6 @@
@@ -1049,7 +1049,7 @@ index a3daffbdc12e..ecdf488e114e 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h b/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h
-index 16aedf2056db..8f041a495321 100644
+index 16aedf2056db8..8f041a495321b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h
 +++ b/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h
 @@ -1,6 +1,6 @@
@@ -1061,7 +1061,7 @@ index 16aedf2056db..8f041a495321 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h b/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h
-index ef11f3a642f0..1d8f1727b02e 100644
+index ef11f3a642f00..1d8f1727b02e1 100644
 --- a/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h
 +++ b/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h
 @@ -1,6 +1,6 @@
@@ -1073,7 +1073,7 @@ index ef11f3a642f0..1d8f1727b02e 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/internal_interface.h b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
-index 149805f15838..b215769d3249 100644
+index 149805f15838f..b215769d32490 100644
 --- a/drivers/soc/eswin/ai_driver/npu/internal_interface.h
 +++ b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
 @@ -1,6 +1,6 @@
@@ -1085,7 +1085,7 @@ index 149805f15838..b215769d3249 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_e31.c b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
-index 67484cba570f..c32249e6dd48 100644
+index 67484cba570f7..c32249e6dd48c 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 @@ -1,6 +1,6 @@
@@ -1097,7 +1097,7 @@ index 67484cba570f..c32249e6dd48 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_frame.c b/drivers/soc/eswin/ai_driver/npu/npu_frame.c
-index e006710be1cb..6c4ad357cf86 100644
+index e006710be1cbf..6c4ad357cf860 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_frame.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_frame.c
 @@ -1,6 +1,6 @@
@@ -1109,7 +1109,7 @@ index e006710be1cb..6c4ad357cf86 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 3ffeb5001ed9..f75e70fc4549 100644
+index 3ffeb5001ed9b..f75e70fc45497 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -1,6 +1,6 @@
@@ -1121,7 +1121,7 @@ index 3ffeb5001ed9..f75e70fc4549 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_spram.c b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
-index 3a5ba558a54b..27da16f2d241 100644
+index 3a5ba558a54b8..27da16f2d241b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 @@ -1,6 +1,6 @@
@@ -1133,7 +1133,7 @@ index 3a5ba558a54b..27da16f2d241 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_spram.h b/drivers/soc/eswin/ai_driver/npu/npu_spram.h
-index fa4203a43951..cf88e3417201 100644
+index fa4203a439515..cf88e34172018 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_spram.h
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_spram.h
 @@ -1,6 +1,6 @@
@@ -1145,7 +1145,7 @@ index fa4203a43951..cf88e3417201 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index 11d7a8ef6560..c81d0a3b3b93 100644
+index 11d7a8ef65606..c81d0a3b3b936 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -1,6 +1,6 @@
@@ -1157,7 +1157,7 @@ index 11d7a8ef6560..c81d0a3b3b93 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
-index f833987cfeea..ed2b392aeda2 100644
+index f833987cfeeac..ed2b392aeda22 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 @@ -1,6 +1,6 @@
@@ -1169,7 +1169,7 @@ index f833987cfeea..ed2b392aeda2 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
-index 93bc993fe849..16af8d0eeac7 100644
+index 93bc993fe849d..16af8d0eeac73 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 @@ -1,6 +1,6 @@
@@ -1181,7 +1181,7 @@ index 93bc993fe849..16af8d0eeac7 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h
-index afa6c7906b0a..677e67cdf84c 100644
+index afa6c7906b0ac..677e67cdf84ca 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h
 @@ -1,6 +1,6 @@
@@ -1193,7 +1193,7 @@ index afa6c7906b0a..677e67cdf84c 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c b/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c
-index 1e318f786c0f..e856f71778c9 100644
+index 1e318f786c0f0..e856f71778c94 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c
 @@ -1,6 +1,6 @@
@@ -1205,7 +1205,7 @@ index 1e318f786c0f..e856f71778c9 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/parse_dep.c b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
-index b7829b0f08d5..acdbe89ac814 100644
+index b7829b0f08d56..acdbe89ac814d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 +++ b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 @@ -1,6 +1,6 @@
@@ -1217,7 +1217,7 @@ index b7829b0f08d5..acdbe89ac814 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/pdp.c b/drivers/soc/eswin/ai_driver/npu/pdp.c
-index c1fe8839bbb1..f3547c884da5 100644
+index c1fe8839bbb19..f3547c884da50 100644
 --- a/drivers/soc/eswin/ai_driver/npu/pdp.c
 +++ b/drivers/soc/eswin/ai_driver/npu/pdp.c
 @@ -1,6 +1,6 @@
@@ -1229,7 +1229,7 @@ index c1fe8839bbb1..f3547c884da5 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/post_drp.h b/drivers/soc/eswin/ai_driver/npu/post_drp.h
-index e56861b9ea32..6061676fc692 100644
+index e56861b9ea32c..6061676fc6921 100644
 --- a/drivers/soc/eswin/ai_driver/npu/post_drp.h
 +++ b/drivers/soc/eswin/ai_driver/npu/post_drp.h
 @@ -1,6 +1,6 @@
@@ -1241,7 +1241,7 @@ index e56861b9ea32..6061676fc692 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/rubik.c b/drivers/soc/eswin/ai_driver/npu/rubik.c
-index 6771a121b604..ceff84b76284 100644
+index 6771a121b6044..ceff84b76284b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/rubik.c
 +++ b/drivers/soc/eswin/ai_driver/npu/rubik.c
 @@ -1,6 +1,6 @@
@@ -1253,7 +1253,7 @@ index 6771a121b604..ceff84b76284 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
-index 2c01649a0612..8d81d8665a6d 100644
+index 2c01649a0612e..8d81d8665a6db 100644
 --- a/drivers/soc/eswin/ai_driver/npu/scheduler.c
 +++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
 @@ -1,6 +1,6 @@
@@ -1265,7 +1265,7 @@ index 2c01649a0612..8d81d8665a6d 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/sdp.c b/drivers/soc/eswin/ai_driver/npu/sdp.c
-index 792e87a2e1e2..dbef535052b8 100644
+index 792e87a2e1e27..dbef535052b8d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/sdp.c
 +++ b/drivers/soc/eswin/ai_driver/npu/sdp.c
 @@ -1,6 +1,6 @@
@@ -1277,7 +1277,7 @@ index 792e87a2e1e2..dbef535052b8 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/sdp.h b/drivers/soc/eswin/ai_driver/npu/sdp.h
-index b4af8cb07642..27eca7ce4b8a 100644
+index b4af8cb076426..27eca7ce4b8a1 100644
 --- a/drivers/soc/eswin/ai_driver/npu/sdp.h
 +++ b/drivers/soc/eswin/ai_driver/npu/sdp.h
 @@ -1,6 +1,6 @@
@@ -1289,7 +1289,7 @@ index b4af8cb07642..27eca7ce4b8a 100644
   * Copyright 2024, Beijing ESWIN Computing Technology Co., Ltd.. All rights reserved.
   * SPDX-License-Identifier: GPL-2.0
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index bef308e8dccb..a1b4d007cef4 100644
+index bef308e8dccbd..a1b4d007cef40 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -1,6 +1,6 @@

@@ -1,4 +1,4 @@
-From fbfe264c7975b7771a25f717252d9612772b26a4 Mon Sep 17 00:00:00 2001
+From 5f8d2e11fc3323d43f24ed90a84405c6df6d9a7e Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 12 Dec 2024 19:06:12 +0800
 Subject: [PATCH 336/654] WIN2030-16760:feat:modify sdio's delay to adapt to
@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index 2926d780b79c..d9dc8a8afd6a 100644
+index 2926d780b79c0..d9dc8a8afd6a1 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -59,7 +59,7 @@ &pcie {

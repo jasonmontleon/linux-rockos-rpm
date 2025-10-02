@@ -1,4 +1,4 @@
-From 20c0ab41efb80bdd9af86951dfd8ede9201d4bb8 Mon Sep 17 00:00:00 2001
+From f374890c79d4f47253f4c9555af32514a60ff10a Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:04:41 -0500
 Subject: [PATCH 647/654] Add missing newline
@@ -9,7 +9,7 @@ Subject: [PATCH 647/654] Add missing newline
  2 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/Kconfig b/drivers/media/platform/eswin/Kconfig
-index 8de8f9daefda..59728263eb1b 100644
+index 8de8f9daefdac..59728263eb1bd 100644
 --- a/drivers/media/platform/eswin/Kconfig
 +++ b/drivers/media/platform/eswin/Kconfig
 @@ -6,4 +6,5 @@ source "drivers/media/platform/eswin/isp/Kconfig"
@@ -21,7 +21,7 @@ index 8de8f9daefda..59728263eb1b 100644
 +    default n
 +
 diff --git a/drivers/soc/eswin/ai_driver/Kconfig b/drivers/soc/eswin/ai_driver/Kconfig
-index 0044a4be10e5..749c03efda29 100644
+index 0044a4be10e5e..749c03efda29c 100644
 --- a/drivers/soc/eswin/ai_driver/Kconfig
 +++ b/drivers/soc/eswin/ai_driver/Kconfig
 @@ -18,4 +18,4 @@ config ESWIN_NPU

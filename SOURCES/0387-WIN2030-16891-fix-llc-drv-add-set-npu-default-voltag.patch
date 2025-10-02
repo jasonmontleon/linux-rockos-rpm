@@ -1,4 +1,4 @@
-From 8056a204e964a08bc6a33706140fbdfc030dbe94 Mon Sep 17 00:00:00 2001
+From a5c0451988cc1a3ecd4f077dd7d81a0d4311fc93 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 27 Dec 2024 09:46:44 +0800
 Subject: [PATCH 387/654] WIN2030-16891:fix:llc drv add set npu default voltage
@@ -14,7 +14,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  2 files changed, 39 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 8ef878c0abef..101be38bbbfc 100644
+index 8ef878c0abef0..101be38bbbfc7 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -1,7 +1,9 @@
@@ -68,7 +68,7 @@ index 8ef878c0abef..101be38bbbfc 100644
  	{
  		dev_err(&pdev->dev, "failed to set mux_u_npu_core_3mux1_gfree parent: %d\n",
 diff --git a/drivers/memory/eswin/codacache/llc_spram.h b/drivers/memory/eswin/codacache/llc_spram.h
-index 44863a70efbd..de54d3ba6a7f 100644
+index 44863a70efbd2..de54d3ba6a7fe 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.h
 +++ b/drivers/memory/eswin/codacache/llc_spram.h
 @@ -1,6 +1,24 @@

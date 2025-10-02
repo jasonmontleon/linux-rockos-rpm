@@ -1,4 +1,4 @@
-From 1dd5ae25e8c6bcd46c95abd46b9b04649081c37c Mon Sep 17 00:00:00 2001
+From 9a309bd2b65d68ce434e037b4ecf0d5a845277c8 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 10 Dec 2024 20:12:08 +0800
 Subject: [PATCH 302/654] configs: remove LOCALVERSION for eic7702
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 830481fffc7e..2f468cfeba8d 100644
+index 830481fffc7ec..2f468cfeba8d6 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -1,4 +1,3 @@

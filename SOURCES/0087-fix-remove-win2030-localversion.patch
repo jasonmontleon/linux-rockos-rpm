@@ -1,4 +1,4 @@
-From e27b5eb7ca34ed0db0282a91f093d0d24443c8d9 Mon Sep 17 00:00:00 2001
+From fbb975856d180b186ef730635e6db376ebe03c35 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 13 Jun 2024 22:21:56 +0800
 Subject: [PATCH 087/654] fix: remove win2030 localversion
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 398b6db958bb..f0c03fda4b3b 100644
+index 398b6db958bb1..f0c03fda4b3b0 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -326,7 +326,6 @@ CONFIG_ATA=y

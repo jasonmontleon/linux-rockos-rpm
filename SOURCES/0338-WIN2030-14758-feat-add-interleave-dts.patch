@@ -1,4 +1,4 @@
-From da3815dd8bbb7916ee4f5a1a16ccc828a3767b86 Mon Sep 17 00:00:00 2001
+From d113d48480ecf9195ee0330b1d9d0f4ecd1e2f2c Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 24 Oct 2024 15:02:58 +0800
 Subject: [PATCH 338/654] WIN2030-14758:feat:add interleave dts
@@ -15,7 +15,7 @@ Change-Id: Icfc5996b73bfcff38de829ac7b3d71d4334c3a4c
  create mode 100644 arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index cd6b6f5c3dbb..13ef45a272d3 100644
+index cd6b6f5c3dbb1..13ef45a272d3f 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -9,6 +9,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -29,7 +29,7 @@ index cd6b6f5c3dbb..13ef45a272d3 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 new file mode 100644
-index 000000000000..8e0d8e10a664
+index 0000000000000..8e0d8e10a6648
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -0,0 +1,1530 @@

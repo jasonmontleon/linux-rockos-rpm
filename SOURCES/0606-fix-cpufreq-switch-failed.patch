@@ -1,4 +1,4 @@
-From 6281a5aaf34f772661ad020bde796864c471a8a1 Mon Sep 17 00:00:00 2001
+From 10daee0208cc5aed7d9e75aa0401c18ce320d789 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Mon, 7 Jul 2025 11:02:05 +0800
 Subject: [PATCH 606/654] fix:cpufreq switch failed
@@ -14,7 +14,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  2 files changed, 31 insertions(+), 31 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index c4dc231f62d8..f5284cb1b611 100644
+index c4dc231f62d8b..f5284cb1b611d 100644
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -140,13 +140,13 @@ int eswin_clk_register_fixed_rate(const struct eswin_fixed_rate_clock *clks,
@@ -143,7 +143,7 @@ index c4dc231f62d8..f5284cb1b611 100644
  		if (IS_ERR(clk)) {
  			devm_kfree(dev, p_clk);
 diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
-index 167e2a627a7a..42cf07d693ec 100644
+index 167e2a627a7a1..42cf07d693ec1 100644
 --- a/drivers/clk/eswin/clk.h
 +++ b/drivers/clk/eswin/clk.h
 @@ -162,7 +162,7 @@ struct eswin_clk_pll {

@@ -1,4 +1,4 @@
-From 9de60cee1de527e07d198cb014ad13dea70dad81 Mon Sep 17 00:00:00 2001
+From 401171c19ab671f2cb8aa189687ecfcb11c054f8 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 31 Oct 2024 09:46:25 +0800
 Subject: [PATCH 237/654] fix:add irq/reset gpio for aw3155.
@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  3 files changed, 27 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index bf2bf5e2c920..d329b5d3652e 100644
+index bf2bf5e2c9205..d329b5d3652ed 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -487,6 +487,18 @@ &sdio1 {
@@ -37,7 +37,7 @@ index bf2bf5e2c920..d329b5d3652e 100644
  
  &d0_gmac0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 4b6772710ab6..0a8342376dbc 100644
+index 4b6772710ab6a..0a8342376dbc0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -436,6 +436,17 @@ &sdio1 {
@@ -59,7 +59,7 @@ index 4b6772710ab6..0a8342376dbc 100644
  
  &d0_gmac0 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index daf927d2b3df..ad9cd4db5802 100644
+index daf927d2b3dfa..ad9cd4db58022 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -987,7 +987,8 @@ sdio1: mmc@0x50470000{

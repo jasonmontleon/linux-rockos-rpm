@@ -1,4 +1,4 @@
-From 17b3fed71a802951f0fea51be5389fe78f20c734 Mon Sep 17 00:00:00 2001
+From e9a12272dcf434f4d8d3422e9230569997edaebe Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:13:32 +0800
 Subject: [PATCH 225/654] sync: sync thermal config for win2030
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 7 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 043710150877..fe6b5b7f98ef 100644
+index 0437101508777..fe6b5b7f98efb 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -38,6 +38,7 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus

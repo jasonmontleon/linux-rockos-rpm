@@ -1,4 +1,4 @@
-From 950203a16ed7a7d7d489f1cae2f9d0e53b48895f Mon Sep 17 00:00:00 2001
+From a48cdcf7fb45e4f5e70561a056eb89ac4db6d3c3 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 8 Jul 2025 09:15:08 +0800
 Subject: [PATCH 608/654] feat: support fccsp evb mipi csi
@@ -14,7 +14,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-fccsp-camera-imx219.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-fccsp-camera-imx219.dtsi
 new file mode 100644
-index 000000000000..87da239d0bcb
+index 0000000000000..87da239d0bcbb
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-fccsp-camera-imx219.dtsi
 @@ -0,0 +1,487 @@

@@ -1,4 +1,4 @@
-From 766652db9f45cf9e7fe98fe7f38da20596a51d6e Mon Sep 17 00:00:00 2001
+From fd31973f742c7ab336c7630c30ce8f11defcb739 Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Tue, 31 Dec 2024 11:09:30 +0800
 Subject: [PATCH 378/654] WIN2030-16910:feat:add numa support for 770x.
@@ -14,7 +14,7 @@ Signed-off-by: zhangyizhong <zhangyizhong@eswincomputing.com>
  2 files changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
-index 62390830ccd5..3f9b2effcf7f 100644
+index 62390830ccd52..3f9b2effcf7fb 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 @@ -266,7 +266,7 @@ PVRSRV_ERROR OSPhyContigPagesAlloc(PHYS_HEAP *psPhysHeap, size_t uiSize,
@@ -27,7 +27,7 @@ index 62390830ccd5..3f9b2effcf7f 100644
  	{
  		return PVRSRV_ERROR_OUT_OF_MEMORY;
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_osmem_linux.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_osmem_linux.c
-index e624878d6862..50d7c7e77731 100644
+index e624878d68628..50d7c7e77731a 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_osmem_linux.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_osmem_linux.c
 @@ -2276,13 +2276,17 @@ _AllocOSPage(PMR_OSPAGEARRAY_DATA *psPageArrayData,

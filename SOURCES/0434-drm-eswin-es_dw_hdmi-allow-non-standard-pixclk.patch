@@ -1,4 +1,4 @@
-From f5378666c116e4d1e3cf8e47c71db29e81ff4ee0 Mon Sep 17 00:00:00 2001
+From 593084be349d4a40ab2b4178bd886e1411e20506 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 21 Mar 2025 16:04:18 +0800
 Subject: [PATCH 434/654] drm: eswin: es_dw_hdmi: allow non-standard pixclk
@@ -15,7 +15,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw_hdmi.c
-index eefbabba3c92..ae389aca75eb 100644
+index eefbabba3c92b..ae389aca75eb2 100644
 --- a/drivers/gpu/drm/eswin/es_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
 @@ -260,7 +260,7 @@ dw_hdmi_eswin_mode_valid(struct dw_hdmi *hdmi, void *data,

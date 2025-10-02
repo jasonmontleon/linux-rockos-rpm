@@ -1,4 +1,4 @@
-From e677f95589ca007c2751c6da0519cef8fa0f46b8 Mon Sep 17 00:00:00 2001
+From ef503721f9396fd30cf6867511583e15d44685f5 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 10 Apr 2025 09:56:22 +0800
 Subject: [PATCH 466/654] fix:Resolve the issue of system crashes.
@@ -13,7 +13,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 12 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 5ad8b8471f82..a5cc197fe138 100644
+index 5ad8b8471f827..a5cc197fe1381 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -949,9 +949,6 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
@@ -67,7 +67,7 @@ index 5ad8b8471f82..a5cc197fe138 100644
  	dsp_disable_mbox_clock(dsp);
  	es_dsp_unmap_resource(dsp);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
-index f98ae647cd7c..99aab26af20f 100644
+index f98ae647cd7c5..99aab26af20ff 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 @@ -191,6 +191,9 @@ struct es_dsp {

@@ -1,4 +1,4 @@
-From 53a635cba6d866d42730ae06f6a67a7f2be1e68c Mon Sep 17 00:00:00 2001
+From 577af1628243b0bbd0c6800aab18be2f4b187dd1 Mon Sep 17 00:00:00 2001
 From: tanshanshan <tanshanshan@eswincomputing.com>
 Date: Wed, 26 Mar 2025 15:29:35 +0800
 Subject: [PATCH 476/654] fix:fix pacmsg bug
@@ -17,7 +17,7 @@ Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
  1 file changed, 21 insertions(+)
 
 diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-index 9d25640e8525..c10dc4bc3e65 100644
+index 9d25640e85250..c10dc4bc3e65a 100644
 --- a/kernel/printk/printk.c
 +++ b/kernel/printk/printk.c
 @@ -84,6 +84,8 @@ struct paclog_iter {

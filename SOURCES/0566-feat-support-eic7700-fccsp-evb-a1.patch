@@ -1,4 +1,4 @@
-From 47313d6948f632374d7ca543130ebe60ff9040bd Mon Sep 17 00:00:00 2001
+From c441fcda7cdd2baa3c79e683ad33d2155e1bbc0b Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Sat, 12 Apr 2025 17:17:12 +0800
 Subject: [PATCH 566/654] feat:support eic7700 fccsp evb a1
@@ -14,7 +14,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 4eca5f1130a6..cb57cad02448 100644
+index 4eca5f1130a68..cb57cad02448a 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -20,5 +20,6 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -27,7 +27,7 @@ index 4eca5f1130a6..cb57cad02448 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-ce1.dts b/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 new file mode 100644
-index 000000000000..2a37c22f7c30
+index 0000000000000..2a37c22f7c30b
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 @@ -0,0 +1,975 @@

@@ -1,4 +1,4 @@
-From baf3d14726390610ec25c6b243e2d4002c54b5e1 Mon Sep 17 00:00:00 2001
+From 986d7e1089bf2faf899f0b3421545736b6004dba Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Sun, 29 Sep 2024 11:21:45 +0800
 Subject: [PATCH 274/654] WIN2030-16271:feat:add delay_work for d2d's
@@ -16,7 +16,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  3 files changed, 25 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 347738617668..0d217f5a9a58 100644
+index 3477386176687..0d217f5a9a58c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2334,7 +2334,7 @@ d2d: d2d-unit@52100000 {
@@ -29,7 +29,7 @@ index 347738617668..0d217f5a9a58 100644
  			numa-node-id = <0>;
  			status = "disabled";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 34c5a22cdf26..20ddace05a59 100644
+index 34c5a22cdf268..20ddace05a598 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2389,7 +2389,7 @@ d1_d2d: d2d-unit@72100000 {
@@ -42,7 +42,7 @@ index 34c5a22cdf26..20ddace05a59 100644
  			numa-node-id = <1>;
  			status = "disabled";
 diff --git a/drivers/soc/eswin/d2d.c b/drivers/soc/eswin/d2d.c
-index e237641177b7..2b60e5eb4a6b 100644
+index e237641177b77..2b60e5eb4a6b3 100644
 --- a/drivers/soc/eswin/d2d.c
 +++ b/drivers/soc/eswin/d2d.c
 @@ -28,19 +28,22 @@

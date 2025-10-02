@@ -1,4 +1,4 @@
-From 295ecbff1813a6efede96524d4176b4659d6e305 Mon Sep 17 00:00:00 2001
+From dfbfb9e9294bcea12a4a0dd57b0501f581e7d664 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 11 Dec 2024 16:52:31 +0800
 Subject: [PATCH 305/654] img: AXM-8-258 not support DRIVER_MODESET
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c
-index 145f40c5b884..f75542490b78 100644
+index 145f40c5b884b..f75542490b78e 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c
 @@ -521,7 +521,7 @@ const struct file_operations pvr_drm_fops = {

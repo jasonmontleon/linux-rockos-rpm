@@ -1,4 +1,4 @@
-From 41f0bf12ddf38924d3069e89aada3d9ac9a00e38 Mon Sep 17 00:00:00 2001
+From 9d04d63c93e64dfce9ec98c31fc3d513a0fdd68c Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Mon, 23 Sep 2024 15:07:31 +0800
 Subject: [PATCH 180/654] feat:Loud sound occurs for debian start for linux
@@ -12,7 +12,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 6 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 2c7a4031fa44..3c01c33f2737 100644
+index 2c7a4031fa443..3c01c33f27370 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -789,12 +789,6 @@ static int es8328_set_dai_fmt(struct snd_soc_dai *codec_dai,

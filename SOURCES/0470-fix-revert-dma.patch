@@ -1,4 +1,4 @@
-From 3bd2eb5ab0a65cae29c893b770157cc63ceb4e81 Mon Sep 17 00:00:00 2001
+From 036f389c145ad4dd3b7c3c1934e3632f5c5d32f7 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 11 Apr 2025 14:53:32 +0800
 Subject: [PATCH 470/654] fix:revert dma
@@ -12,7 +12,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 0603030cc424..80787986d26d 100644
+index 0603030cc424e..80787986d26d3 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -27,10 +27,9 @@

@@ -1,4 +1,4 @@
-From 44e2ea85b0fec162a11fad159ff80fccabd2e1d6 Mon Sep 17 00:00:00 2001
+From aafc3ae2817f5f5184b7a59175d01f93c2e675ad Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:47:04 +0800
 Subject: [PATCH 459/654] feat:support 22.01/11.025kHz
@@ -14,7 +14,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  mode change 100755 => 100644 sound/soc/eswin/esw-i2s.c
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 924190fcacfa..3e937b7e64a4 100644
+index 924190fcacfa9..3e937b7e64a46 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -240,16 +240,16 @@ int esw_codec_dump_put(struct snd_kcontrol *kcontrol,
@@ -53,7 +53,7 @@ index 924190fcacfa..3e937b7e64a4 100644
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
 old mode 100755
 new mode 100644
-index eed2859387b1..e1aa30eeb5a9
+index eed2859387b11..e1aa30eeb5a9c
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -1,1186 +1,1204 @@

@@ -1,4 +1,4 @@
-From 4247955642cdaa5a36335a8b692e06882d6145fb Mon Sep 17 00:00:00 2001
+From 600cedf4e34e1b2dcdd4f42dfb9d4218982ff518 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Sun, 7 Apr 2024 17:38:16 +0800
 Subject: [PATCH 003/654] feat(dma coherent/noncoherent):Support dma
@@ -21,7 +21,7 @@ Changelogs:
  7 files changed, 444 insertions(+), 56 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index d5ba4ef1772b..030907121d03 100644
+index d5ba4ef1772bb..030907121d030 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -14,14 +14,12 @@ CONFIG_USER_NS=y
@@ -232,7 +232,7 @@ index d5ba4ef1772b..030907121d03 100644
  CONFIG_DEBUG_PLIST=y
  CONFIG_DEBUG_SG=y
 diff --git a/arch/riscv/errata/sifive/errata.c b/arch/riscv/errata/sifive/errata.c
-index 3d9a32d791f7..20dcbd9e76f4 100644
+index 3d9a32d791f73..20dcbd9e76f4c 100644
 --- a/arch/riscv/errata/sifive/errata.c
 +++ b/arch/riscv/errata/sifive/errata.c
 @@ -12,6 +12,7 @@
@@ -257,7 +257,7 @@ index 3d9a32d791f7..20dcbd9e76f4 100644
  		if (errata_list[idx].check_func(archid, impid))
  			cpu_req_errata |= (1U << idx);
 diff --git a/arch/riscv/include/asm/pgtable-bits.h b/arch/riscv/include/asm/pgtable-bits.h
-index f896708e8331..dbe56bc01230 100644
+index f896708e83312..dbe56bc01230d 100644
 --- a/arch/riscv/include/asm/pgtable-bits.h
 +++ b/arch/riscv/include/asm/pgtable-bits.h
 @@ -18,6 +18,13 @@
@@ -275,7 +275,7 @@ index f896708e8331..dbe56bc01230 100644
  #define _PAGE_TABLE     _PAGE_PRESENT
  
 diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
-index 332a6bf72b1d..2cfa65e87cd4 100644
+index 332a6bf72b1d5..2cfa65e87cd49 100644
 --- a/arch/riscv/include/asm/pgtable.h
 +++ b/arch/riscv/include/asm/pgtable.h
 @@ -205,9 +205,192 @@ extern struct pt_alloc_ops pt_ops __initdata;
@@ -548,7 +548,7 @@ index 332a6bf72b1d..2cfa65e87cd4 100644
  /*
   * THP functions
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 341bd6706b4c..807cf361156e 100644
+index 341bd6706b4c5..807cf361156e9 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -7,6 +7,7 @@
@@ -641,7 +641,7 @@ index 341bd6706b4c..807cf361156e 100644
 +#endif
 \ No newline at end of file
 diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-index e86870be34c9..290b961eb729 100644
+index e86870be34c95..290b961eb729b 100644
 --- a/drivers/soc/sifive/Kconfig
 +++ b/drivers/soc/sifive/Kconfig
 @@ -7,4 +7,89 @@ config SIFIVE_CCACHE
@@ -735,7 +735,7 @@ index e86870be34c9..290b961eb729 100644
 +endif
  endif
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 3684f5b40a80..a88123c81ace 100644
+index 3684f5b40a80e..a88123c81ace6 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -17,6 +17,8 @@

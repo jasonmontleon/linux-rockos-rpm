@@ -1,4 +1,4 @@
-From 00ec467a0f5d9ced7b597f9da3809a3d36fadf25 Mon Sep 17 00:00:00 2001
+From f10054090e1bc19a35881e302b11e467f35e69e1 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 15 Oct 2024 10:29:01 +0800
 Subject: [PATCH 317/654] WIN2030-15704:feat:Add devfreq support
@@ -23,7 +23,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  6 files changed, 87 insertions(+), 100 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 6b5c63f0e5a8..4b65251cccb1 100644
+index 6b5c63f0e5a81..4b65251cccb16 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -103,6 +103,18 @@ opp-1400000000 {
@@ -78,7 +78,7 @@ index 6b5c63f0e5a8..4b65251cccb1 100644
  				device-irq = <17
  					ESWIN_MAILBOX_DSP_3_TO_U84_REG_BASE
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 7c0606ba04d5..e3a7b779ee59 100644
+index 7c0606ba04d55..e3a7b779ee595 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -755,6 +755,7 @@ CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
@@ -90,7 +90,7 @@ index 7c0606ba04d5..e3a7b779ee59 100644
  CONFIG_EXTCON=y
  CONFIG_MEMORY=y
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index b32ffba9dcc8..1a5a1a0d7e16 100644
+index b32ffba9dcc86..1a5a1a0d7e16e 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -58,6 +58,9 @@
@@ -302,7 +302,7 @@ index b32ffba9dcc8..1a5a1a0d7e16 100644
  err_mbox_clk:
  	es_dsp_unmap_resource(dsp);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 45c8bda644cc..342bdb20baae 100644
+index 45c8bda644cc8..342bdb20baae7 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -318,7 +318,7 @@ int es_dsp_clk_enable(struct es_dsp *dsp)
@@ -352,7 +352,7 @@ index 45c8bda644cc..342bdb20baae 100644
  	return 0;
  err:
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-index d538a9727242..40740cdfe21e 100644
+index d538a9727242a..40740cdfe21e9 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 @@ -30,7 +30,7 @@ int es_dsp_send_irq(struct es_dsp_hw *, dsp_request_t *);
@@ -365,7 +365,7 @@ index d538a9727242..40740cdfe21e 100644
  void es_dsp_halt(struct es_dsp_hw *);
  void es_dsp_release(struct es_dsp_hw *);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
-index ea9471381e02..2a7ba4077a99 100644
+index ea9471381e02a..2a7ba4077a99e 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 @@ -262,7 +262,7 @@ void es_dsp_halt(struct es_dsp_hw *hw)

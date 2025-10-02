@@ -1,4 +1,4 @@
-From 97d711bcc0f0ecc7e8bf5783df7221a482c2d4d6 Mon Sep 17 00:00:00 2001
+From 335d28f8a6c75e612eca2beb0a638bbaf5977a22 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 11 Mar 2025 08:39:04 +0800
 Subject: [PATCH 443/654] fix:disable cca pvt0 and timer1
@@ -17,7 +17,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  4 files changed, 13 insertions(+), 11 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 73bf57188e97..18e0104ca2b8 100644
+index 73bf57188e978..18e0104ca2b8d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -1503,10 +1503,10 @@ &d1_pwm0 {
@@ -47,7 +47,7 @@ index 73bf57188e97..18e0104ca2b8 100644
  
  &timer2 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index 65789ee2fc92..93da8eba92f1 100644
+index 65789ee2fc923..93da8eba92f13 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -1526,10 +1526,10 @@ &d1_pwm0 {
@@ -77,7 +77,7 @@ index 65789ee2fc92..93da8eba92f1 100644
  
  &timer2 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 0f1cc6970ffd..474355f36098 100644
+index 0f1cc6970ffda..474355f36098a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2309,6 +2309,7 @@ d1_numa_sample:numa_sample@1 {
@@ -89,7 +89,7 @@ index 0f1cc6970ffd..474355f36098 100644
  
  		d1_ddr0: ddr-controller@72300000 {
 diff --git a/drivers/soc/eswin/d2d.c b/drivers/soc/eswin/d2d.c
-index 2b60e5eb4a6b..b9a58bd146da 100644
+index 2b60e5eb4a6b3..b9a58bd146da7 100644
 --- a/drivers/soc/eswin/d2d.c
 +++ b/drivers/soc/eswin/d2d.c
 @@ -203,10 +203,11 @@ static int  d2d_probe(struct platform_device *pdev)

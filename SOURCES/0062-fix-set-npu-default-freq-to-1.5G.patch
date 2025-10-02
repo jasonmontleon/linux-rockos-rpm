@@ -1,4 +1,4 @@
-From 5acf1eea8fc6bb5e1e30adaed60ec57ab3131f64 Mon Sep 17 00:00:00 2001
+From 973d27608054aa7dbddf8e73eda4e3d7854adb13 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 2 Jul 2024 20:09:02 +0800
 Subject: [PATCH 062/654] fix:set npu default freq to 1.5G
@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 19 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index e84f3650ae37..4e9027dd5db9 100644
+index e84f3650ae371..4e9027dd5db97 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -683,7 +683,7 @@ static int llc_rst_init(struct platform_device *pdev)

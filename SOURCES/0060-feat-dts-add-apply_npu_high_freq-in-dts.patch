@@ -1,4 +1,4 @@
-From 6e0dd4e2a2dafac5c4099714daad2d9ef80384a3 Mon Sep 17 00:00:00 2001
+From 155bc35cd73df889eaf08282dc18c6856b819d95 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 2 Jul 2024 15:08:43 +0800
 Subject: [PATCH 060/654] feat(dts):add apply_npu_high_freq in dts
@@ -15,7 +15,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index bde120c77fe1..70b720d094c3 100644
+index bde120c77fe16..70b720d094c39 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -823,3 +823,7 @@ gpio111 : gphy1 resern(O), active low

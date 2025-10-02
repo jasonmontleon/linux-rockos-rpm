@@ -1,4 +1,4 @@
-From 81dfa9a116c5b265e0132f19029bfdb441411746 Mon Sep 17 00:00:00 2001
+From f0cb2f6a4984b734b40e294dc71ca638495d480f Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 30 Oct 2024 10:16:39 +0800
 Subject: [PATCH 276/654] WIN2030-16576:feat:npu drv support dual die move to
@@ -24,7 +24,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  10 files changed, 92 insertions(+), 89 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
-index cea2c9335305..80e7cc72497b 100644
+index cea2c93353057..80e7cc72497b7 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 @@ -92,6 +92,9 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
@@ -38,7 +38,7 @@ index cea2c9335305..80e7cc72497b 100644
  #define NPU_SRAM_BASE_ADDR 0x59000000
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index f497ada38f56..7604d1e9c406 100644
+index f497ada38f565..7604d1e9c406b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -44,6 +44,7 @@ struct nvdla_device {
@@ -50,7 +50,7 @@ index f497ada38f56..7604d1e9c406 100644
  	dma_addr_t e31_nim_iova;
  	uint32_t e31_fw_size;
 diff --git a/drivers/soc/eswin/ai_driver/npu/edma.c b/drivers/soc/eswin/ai_driver/npu/edma.c
-index f720be48c277..b24b56debb37 100644
+index f720be48c277b..b24b56debb375 100644
 --- a/drivers/soc/eswin/ai_driver/npu/edma.c
 +++ b/drivers/soc/eswin/ai_driver/npu/edma.c
 @@ -942,7 +942,7 @@ void edma_free(struct nvdla_device *nvdla_dev)
@@ -72,7 +72,7 @@ index f720be48c277..b24b56debb37 100644
  		dla_info("%s %d edma can't alloc memory\n", __func__, __LINE__);
  		return -1;
 diff --git a/drivers/soc/eswin/ai_driver/npu/engine.c b/drivers/soc/eswin/ai_driver/npu/engine.c
-index 479628628177..f9950ef478c6 100644
+index 479628628177e..f9950ef478c69 100644
 --- a/drivers/soc/eswin/ai_driver/npu/engine.c
 +++ b/drivers/soc/eswin/ai_driver/npu/engine.c
 @@ -25,7 +25,7 @@
@@ -236,7 +236,7 @@ index 479628628177..f9950ef478c6 100644
  	}
  	return;
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_e31.c b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
-index c32249e6dd48..a0c01295970b 100644
+index c32249e6dd48c..a0c01295970ba 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 @@ -36,7 +36,7 @@
@@ -278,7 +278,7 @@ index c32249e6dd48..a0c01295970b 100644
  		dla_error("Eswin e31 request fw error.\n");
  		return -EINVAL;
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index f75e70fc4549..a742cbc58452 100644
+index f75e70fc45497..a742cbc584527 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -51,7 +51,7 @@
@@ -423,7 +423,7 @@ index f75e70fc4549..a742cbc58452 100644
  		dev_err(dev, "load e31 fw error.\n");
  		goto err_load_firm;
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_spram.c b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
-index 27da16f2d241..02a17f2b892c 100644
+index 27da16f2d241b..02a17f2b892cf 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 @@ -157,7 +157,7 @@ static int npu_llc_interleave_enable(struct nvdla_device *nvdla_dev)
@@ -445,7 +445,7 @@ index 27da16f2d241..02a17f2b892c 100644
  		dev_err(dev, "npu spram ioremap error\n");
  		return -ENODEV;
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index c81d0a3b3b93..c00b3fdb6110 100644
+index c81d0a3b3b936..c00b3fdb61108 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -42,7 +42,7 @@
@@ -662,7 +662,7 @@ index c81d0a3b3b93..c00b3fdb6110 100644
  	if (IS_ERR(nvdla_dev->mbox_rst_device)) {
  		ret = PTR_ERR(nvdla_dev->mbox_rst_device);
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
-index ed2b392aeda2..6d26b9470152 100644
+index ed2b392aeda22..6d26b94701521 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 @@ -45,7 +45,8 @@ int npu_dev_reset(struct nvdla_device *nvdla_dev);
@@ -676,7 +676,7 @@ index ed2b392aeda2..6d26b9470152 100644
  int npu_pm_put(struct nvdla_device *ndev);
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index a1b4d007cef4..47dadc142fed 100644
+index a1b4d007cef40..47dadc142fedd 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -1151,7 +1151,7 @@ int create_npu_dev(int node_id, struct nvdla_device *nvdla_dev)

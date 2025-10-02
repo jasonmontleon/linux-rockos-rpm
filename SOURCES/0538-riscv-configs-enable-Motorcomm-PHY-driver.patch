@@ -1,4 +1,4 @@
-From 1e26742fcd62520956e66a8581077965355a7eb1 Mon Sep 17 00:00:00 2001
+From 8833c1c843df47239d1c329834de76432ab3290b Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Jun 2025 14:30:55 +0800
 Subject: [PATCH 538/654] riscv: configs: enable Motorcomm PHY driver
@@ -11,7 +11,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index dfe1b886df52..31bc21c2496f 100644
+index dfe1b886df52c..31bc21c2496f3 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -543,6 +543,7 @@ CONFIG_NGBE=m

@@ -1,4 +1,4 @@
-From 4f3ae7f6a6ba197e5cbfa2f5eb7835cc77a802f7 Mon Sep 17 00:00:00 2001
+From 578afaccfb68a604f572a1b8d82714fe5f1e609b Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 17 Jun 2024 17:42:34 +0800
 Subject: [PATCH 132/654] refactor:add vo qos config
@@ -12,7 +12,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 18 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 2eddebbd2ddb..ac43c604a2dc 100644
+index 2eddebbd2ddb6..ac43c604a2dc3 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -977,6 +977,23 @@ const struct component_ops dc_component_ops = {

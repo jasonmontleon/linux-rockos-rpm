@@ -1,4 +1,4 @@
-From 7ba872775f8259a8234d07e03ace9156788906ea Mon Sep 17 00:00:00 2001
+From 25a84287d73e4df92542e5fee5489c350388f736 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 27 Nov 2024 15:01:03 +0800
 Subject: [PATCH 295/654] WIN2030-14758:fix:split dmabuf
@@ -14,7 +14,7 @@ Change-Id: I120e2e900ae57b2fd145c31f513c32954c6003ac
  1 file changed, 18 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
-index 2a2877f848b2..d9ba68d918ef 100644
+index 2a2877f848b25..d9ba68d918ef0 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -47,6 +47,13 @@ struct dma_heap_attachment {

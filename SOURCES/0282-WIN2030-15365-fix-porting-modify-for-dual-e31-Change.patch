@@ -1,4 +1,4 @@
-From a1c629c5cee99fb7cd4d51377c123f79f59c2167 Mon Sep 17 00:00:00 2001
+From 20ccb17b78a4b6c271f0680cfe57d1e21ade597f Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Tue, 5 Nov 2024 14:59:26 +0800
 Subject: [PATCH 282/654] WIN2030-15365: fix: porting modify for dual e31
@@ -13,7 +13,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  3 files changed, 28 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
-index f4be79fac599..a92f45669a4e 100644
+index f4be79fac5999..a92f45669a4ed 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
 @@ -44,8 +44,11 @@
@@ -74,7 +74,7 @@ index f4be79fac599..a92f45669a4e 100644
  /**
   * @brief MBOX_NPU_WR_DATA0_OFFSET
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
-index 80e7cc72497b..bfbbe244a712 100644
+index 80e7cc72497b7..bfbbe244a7127 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/npu_base_regs.h
 @@ -85,7 +85,11 @@ typedef enum type_NPU_MODULE_SEL_ID_E {
@@ -124,7 +124,7 @@ index 80e7cc72497b..bfbbe244a712 100644
  /**
   * @brief The ssid of write and read operation.
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_arch.h b/drivers/soc/eswin/ai_driver/common/hetero_arch.h
-index e577200853af..deb46ac3d38f 100644
+index e577200853af8..deb46ac3d38ff 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_arch.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_arch.h
 @@ -125,7 +125,11 @@ static inline u32 _ffs(u32 r0)

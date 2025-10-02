@@ -1,4 +1,4 @@
-From 777cea85a2b7a8f2d06b3a665208ecce10ec6328 Mon Sep 17 00:00:00 2001
+From e5f89e97356f71dca7fc4b904af30a52f0147ec6 Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Tue, 15 Apr 2025 15:37:32 +0800
 Subject: [PATCH 624/654] fix(2d):kernel stack on d2d,cherry-pick 4559ee5 from
@@ -23,7 +23,7 @@ Signed-off-by: lei zhilin <leizhilin@eswincomputing.com>
  3 files changed, 39 insertions(+), 51 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
-index 2af1f18c7754..986d2f046527 100644
+index 2af1f18c77543..986d2f0465274 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
 @@ -2906,6 +2906,9 @@ gcoOS_ProfileDB(IN gctCONST_STRING Function, IN OUT gctBOOL_PTR Initialized);
@@ -37,7 +37,7 @@ index 2af1f18c7754..986d2f046527 100644
  gckOS_Print(IN gctCONST_STRING Message, ...) CHECK_PRINTF_FORMAT(1, 2);
  
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
-index dcc6b0558a33..22f6ebe226a6 100644
+index dcc6b0558a338..22f6ebe226a67 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 @@ -305,7 +305,7 @@ static int compression = -1;
@@ -50,7 +50,7 @@ index dcc6b0558a33..22f6ebe226a6 100644
  MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
  
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
-index 25f1c2e3b5f9..d0bdc1a449e7 100644
+index 25f1c2e3b5f94..d0bdc1a449e75 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 @@ -183,7 +183,6 @@ static const int nc_of_rsts = gcmCOUNTOF(rst_names);

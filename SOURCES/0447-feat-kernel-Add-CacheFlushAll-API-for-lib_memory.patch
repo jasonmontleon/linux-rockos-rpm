@@ -1,4 +1,4 @@
-From 034a426268a20792b5b5269f3ac8e836dcc45315 Mon Sep 17 00:00:00 2001
+From c3f7baafd6bf2dec275d384c9b5950221dc49bb8 Mon Sep 17 00:00:00 2001
 From: hejiean <hejiean@eswincomputing.com>
 Date: Mon, 17 Mar 2025 18:55:55 +0800
 Subject: [PATCH 447/654] feat(kernel): Add CacheFlushAll API for lib_memory
@@ -26,7 +26,7 @@ Signed-off-by: hejiean <hejiean@eswincomputing.com>
  7 files changed, 120 insertions(+), 71 deletions(-)
 
 diff --git a/arch/riscv/include/asm/dma-noncoherent.h b/arch/riscv/include/asm/dma-noncoherent.h
-index 7a9fe8a0e2db..b1e0cba77c41 100644
+index 7a9fe8a0e2dbb..b1e0cba77c415 100644
 --- a/arch/riscv/include/asm/dma-noncoherent.h
 +++ b/arch/riscv/include/asm/dma-noncoherent.h
 @@ -7,7 +7,7 @@
@@ -92,7 +92,7 @@ index 7a9fe8a0e2db..b1e0cba77c41 100644
  	}
  #endif
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index eec109eaf89f..5ecf95370a69 100644
+index eec109eaf89f8..5ecf95370a690 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -72,7 +72,7 @@ static inline bool arch_sync_dma_cpu_needs_post_dma_flush(void)
@@ -211,7 +211,7 @@ index eec109eaf89f..5ecf95370a69 100644
  #endif
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index 9102b4ec61ae..0473c1d237b1 100644
+index 9102b4ec61aef..0473c1d237b17 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -58,7 +58,7 @@ extern void eswin_l2_flush64(phys_addr_t addr, size_t size);
@@ -264,7 +264,7 @@ index 9102b4ec61ae..0473c1d237b1 100644
  	psDevConfig = OSAllocZMem(sizeof(*psDevConfig) +
  							  sizeof(*psRGXData) +
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index 635ee815b7e7..dfbfa2783c8c 100644
+index 635ee815b7e74..dfbfa2783c8c3 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -103,7 +103,8 @@ static int vb_blk_to_pool(struct esVB_BLOCK_TO_POOL_CMD_S *blkToPoolCmd);
@@ -322,7 +322,7 @@ index 635ee815b7e7..dfbfa2783c8c 100644
  	int ret = 0;
  	struct dma_buf *dmabuf;
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 55e69e613a25..f6ff949eb98d 100644
+index 55e69e613a25a..f6ff949eb98d2 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -307,22 +307,20 @@ static int zero_device_init(struct device_node *root, int nid)
@@ -368,7 +368,7 @@ index 55e69e613a25..f6ff949eb98d 100644
  		waymaskN_addr = ccache_base[nid] + SIFIVE_CCACHE_WAYMASK_OFFSET + (masterid << 3);
  		for (wayIdx = 0; wayIdx < 16; wayIdx++) {
 diff --git a/include/uapi/linux/es_vb_user.h b/include/uapi/linux/es_vb_user.h
-index db3bda6d0d69..19588ab99b01 100644
+index db3bda6d0d693..19588ab99b013 100644
 --- a/include/uapi/linux/es_vb_user.h
 +++ b/include/uapi/linux/es_vb_user.h
 @@ -1,6 +1,31 @@
@@ -422,7 +422,7 @@ index db3bda6d0d69..19588ab99b01 100644
   * mmz vb pool or block struct definition
   */
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
-index 1bb76ebb5aa8..27a5f0a94352 100644
+index 1bb76ebb5aa8f..27a5f0a943526 100644
 --- a/include/uapi/linux/mmz_vb.h
 +++ b/include/uapi/linux/mmz_vb.h
 @@ -145,7 +145,7 @@ typedef struct esVB_RETRIEVE_MEM_NODE_CMD_S

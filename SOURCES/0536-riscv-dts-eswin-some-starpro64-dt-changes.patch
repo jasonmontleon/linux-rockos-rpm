@@ -1,4 +1,4 @@
-From 34acfa8f23c882ce44d9dff7d3ed6aa4c8c46e10 Mon Sep 17 00:00:00 2001
+From 9fe073a9125842183fd97baaeb7a36103931842a Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Jun 2025 14:27:46 +0800
 Subject: [PATCH 536/654] riscv: dts: eswin: some starpro64 dt changes
@@ -13,7 +13,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 2860c4b37162..4e440aa2f43e 100644
+index 2860c4b37162b..4e440aa2f43e1 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -464,7 +464,9 @@ &csi2_1 {

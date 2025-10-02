@@ -1,4 +1,4 @@
-From 365b7ccc3a5bed9fff5e6578e493226f4dbeb9cb Mon Sep 17 00:00:00 2001
+From d1fe8e37ece975af301618aaead928fbb226bc92 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Thu, 2 Jan 2025 18:46:26 +0800
 Subject: [PATCH 315/654] milkv-megrez: fix sd card delay_code
@@ -9,7 +9,7 @@ Signed-off-by: carbon <carbon@milkv.io>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 1a77bb521dc8..43c00efd35de 100644
+index 1a77bb521dc8e..43c00efd35de3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -450,7 +450,7 @@ &sdhci_emmc {

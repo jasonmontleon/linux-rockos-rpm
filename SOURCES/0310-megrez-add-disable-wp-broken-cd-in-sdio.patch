@@ -1,4 +1,4 @@
-From eb980af56123f9aef19443308e3a111b24db96c8 Mon Sep 17 00:00:00 2001
+From ac4ca78d52ae8eb664c8d612af7817fad21a87e5 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 23 Dec 2024 00:30:51 +0800
 Subject: [PATCH 310/654] megrez: add disable-wp/broken-cd in sdio
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 7839bd28d00f..cb35446dd403 100644
+index 7839bd28d00f5..cb35446dd4035 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -456,6 +456,8 @@ &sdio0 {

@@ -1,4 +1,4 @@
-From f81c0f450b84b503538b249ffe45444e6b2370e8 Mon Sep 17 00:00:00 2001
+From 051d921a897aaf55818bd62e0167c5b4a8583fdf Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 28 Feb 2025 14:17:24 +0800
 Subject: [PATCH 417/654] fix: D314 sdio delay_code
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
-index 3c2da482d2fe..df9ab2e935ec 100644
+index 3c2da482d2fed..df9ab2e935ecc 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -89,7 +89,7 @@ &isp_1 {

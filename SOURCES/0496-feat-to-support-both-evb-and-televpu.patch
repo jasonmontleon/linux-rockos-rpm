@@ -1,4 +1,4 @@
-From 75282d785e183194a2a3fc67096f60af2e47d6e8 Mon Sep 17 00:00:00 2001
+From 3485c3aa3f7bea40f0a867555bee7f8cea5cee66 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Wed, 30 Apr 2025 19:55:01 +0800
 Subject: [PATCH 496/654] feat:to support both evb and televpu
@@ -23,7 +23,7 @@ Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 new file mode 100644
-index 000000000000..ef7606e68027
+index 0000000000000..ef7606e680275
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -0,0 +1,1085 @@
@@ -1114,7 +1114,7 @@ index 000000000000..ef7606e68027
 +};
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 new file mode 100644
-index 000000000000..0a54b5c27bb6
+index 0000000000000..0a54b5c27bb6b
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -0,0 +1,1032 @@
@@ -2152,7 +2152,7 @@ index 000000000000..0a54b5c27bb6
 +};
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
 new file mode 100644
-index 000000000000..ca6a63a49950
+index 0000000000000..ca6a63a499504
 --- /dev/null
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -0,0 +1,850 @@

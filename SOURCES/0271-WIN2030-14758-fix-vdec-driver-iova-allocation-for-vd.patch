@@ -1,4 +1,4 @@
-From 0cb63bc8632c3ba10b70fbb014a5bf957fd6e750 Mon Sep 17 00:00:00 2001
+From 25340d81bb28f416d7f5dfc23868b6606b4a594b Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 18 Sep 2024 09:25:55 +0800
 Subject: [PATCH 271/654] WIN2030-14758:fix(vdec driver):iova allocation for
@@ -19,7 +19,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  2 files changed, 35 insertions(+), 67 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index a806ffc41d94..7c4de300d6e6 100644
+index a806ffc41d943..7c4de300d6e6b 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -333,10 +333,6 @@ int is_clk_on;
@@ -190,7 +190,7 @@ index a806ffc41d94..7c4de300d6e6 100644
  	vcrt = platform_get_drvdata(pdev);
  	vdec_hardware_reset(vcrt);
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index ac9a03b02031..6d6cb6dcb1ea 100644
+index ac9a03b020318..6d6cb6dcb1ea1 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -3291,9 +3291,9 @@ static int vcmd_init(void)

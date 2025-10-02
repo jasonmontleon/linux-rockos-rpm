@@ -1,4 +1,4 @@
-From 1b65d1559d7c9a8df155497ad712614b8309c484 Mon Sep 17 00:00:00 2001
+From 3cbfc078e6e5c7f3ab16032a6830c3fcfb6c555f Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 8 Aug 2024 15:04:33 +0800
 Subject: [PATCH 143/654] feat:remove nonret cpu idle state
@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  2 files changed, 12 insertions(+), 26 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index fa46f44bd3a1..828840c3e719 100644
+index fa46f44bd3a1d..828840c3e719b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -42,13 +42,6 @@ CPU_RET: cpu-retentive {
@@ -103,7 +103,7 @@ index fa46f44bd3a1..828840c3e719 100644
  				#interrupt-cells = <1>;
  				compatible = "riscv,cpu-intc";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index f20e1064ea7c..3f2582159f83 100644
+index f20e1064ea7cc..3f2582159f83a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -47,13 +47,6 @@ CPU_RET: cpu-retentive {

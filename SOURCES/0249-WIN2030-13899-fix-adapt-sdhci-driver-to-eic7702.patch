@@ -1,4 +1,4 @@
-From a9b48e1ec59d54d1bf635b0b3088131d125f6f92 Mon Sep 17 00:00:00 2001
+From 6fe6a8fd6e53dd8482e520b38adac793c3e2bbe7 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 4 Sep 2024 14:56:47 +0800
 Subject: [PATCH 249/654] WIN2030-13899:fix:adapt sdhci driver to eic7702.
@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  2 files changed, 40 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 66e375244082..b1ba158a56ab 100644
+index 66e3752440822..b1ba158a56ab6 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -911,6 +911,7 @@ sdhci_emmc: mmc@50450000 {
@@ -26,7 +26,7 @@ index 66e375244082..b1ba158a56ab 100644
  			bus-width = <8>;
  			non-removable;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index a2afa1dbe862..242961e9d459 100644
+index a2afa1dbe8625..242961e9d4593 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1603,6 +1603,7 @@ d1_sdio0: mmc@0x70460000{

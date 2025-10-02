@@ -1,4 +1,4 @@
-From c169340e4c7e5c538ad1f1463ccc2e0109a6658b Mon Sep 17 00:00:00 2001
+From 8b7e495b70ac37fa06d194e74751c0ff580497a5 Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Wed, 9 Apr 2025 07:15:16 +0000
 Subject: [PATCH 474/654] riscv: module: fix compilation error of kvrealloc
@@ -20,7 +20,7 @@ Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/kernel/module-sections.c b/arch/riscv/kernel/module-sections.c
-index 91d4f0fbd0af..a191ba7f8892 100644
+index 91d4f0fbd0af0..a191ba7f8892a 100644
 --- a/arch/riscv/kernel/module-sections.c
 +++ b/arch/riscv/kernel/module-sections.c
 @@ -168,10 +168,10 @@ int module_frob_arch_sections(Elf_Ehdr *ehdr, Elf_Shdr *sechdrs,

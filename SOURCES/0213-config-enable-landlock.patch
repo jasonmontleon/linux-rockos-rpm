@@ -1,4 +1,4 @@
-From 7e70c4c7b916e3ad19d0b1491646f4edbce5e13e Mon Sep 17 00:00:00 2001
+From 816a1e630b167bcf566bb45cd6cc6120ad328154 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 2 Oct 2024 01:14:19 +0800
 Subject: [PATCH 213/654] config: enable landlock
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 3f122dd04f2f..801434d707a2 100644
+index 3f122dd04f2f2..801434d707a27 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -795,6 +795,7 @@ CONFIG_SECURITY=y

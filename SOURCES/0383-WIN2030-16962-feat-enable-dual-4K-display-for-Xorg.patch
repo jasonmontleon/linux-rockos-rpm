@@ -1,4 +1,4 @@
-From 563b4831aa8699597abbd33d34393e91f10cf4d4 Mon Sep 17 00:00:00 2001
+From e6fb810041be8e9dd151b3b9fa88efea59f2def6 Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Fri, 10 Jan 2025 09:41:27 +0800
 Subject: [PATCH 383/654] WIN2030-16962:feat:enable dual 4K display for Xorg.
@@ -13,7 +13,7 @@ Signed-off-by: zhangyizhong <zhangyizhong@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.c b/drivers/gpu/drm/eswin/es_dc_hw.c
-index 28b2a7b8f93f..4ba66b5bba2e 100644
+index 28b2a7b8f93fa..4ba66b5bba2e8 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.c
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.c
 @@ -523,7 +523,7 @@ static const struct es_plane_info dc_hw_planes[][PLANE_NUM] = {

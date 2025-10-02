@@ -1,4 +1,4 @@
-From 1acbe07c576d949c2bbb58cf53911735dc6be49e Mon Sep 17 00:00:00 2001
+From 7e45e72e49dad314ecda467f0aaa72c22afcdd54 Mon Sep 17 00:00:00 2001
 From: hehuan1 <hehuan1@eswincomputing.com>
 Date: Tue, 10 Jun 2025 21:51:57 +0800
 Subject: [PATCH 628/654] feat: implement cpu read data from lpcpu
@@ -18,7 +18,7 @@ Signed-off-by: hehuan1 <hehuan1@eswincomputing.com>
  create mode 100644 drivers/hwmon/eswin_dummy_pvt.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index 6af9e0ae4d87..466fc878547d 100644
+index 6af9e0ae4d87a..466fc878547d3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -1330,9 +1330,13 @@ &d1_pwm0 {
@@ -36,7 +36,7 @@ index 6af9e0ae4d87..466fc878547d 100644
  
  &pvt1 {
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 88aca18d7bc1..0637f2b612f6 100644
+index 88aca18d7bc16..0637f2b612f63 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -470,6 +470,7 @@ CONFIG_GPIO_SYSFS=y
@@ -48,7 +48,7 @@ index 88aca18d7bc1..0637f2b612f6 100644
  CONFIG_SENSORS_TMP102=y
  CONFIG_SENSORS_PAC1934=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 655ce8348386..88735efccb69 100644
+index 655ce83483869..88735efccb694 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -568,6 +568,12 @@ config SENSORS_DA9055
@@ -65,7 +65,7 @@ index 655ce8348386..88735efccb69 100644
          tristate "Eswin Process, Voltage, Temperature sensor driver"
          depends on HWMON
 diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 273e8f758fbe..e74a753a77de 100644
+index 273e8f758fbe4..e74a753a77def 100644
 --- a/drivers/hwmon/Makefile
 +++ b/drivers/hwmon/Makefile
 @@ -222,6 +222,7 @@ obj-$(CONFIG_SENSORS_WM8350)	+= wm8350-hwmon.o
@@ -78,7 +78,7 @@ index 273e8f758fbe..e74a753a77de 100644
  obj-$(CONFIG_SENSORS_PECI)	+= peci/
 diff --git a/drivers/hwmon/eswin_dummy_pvt.c b/drivers/hwmon/eswin_dummy_pvt.c
 new file mode 100644
-index 000000000000..711f28481427
+index 0000000000000..711f284814274
 --- /dev/null
 +++ b/drivers/hwmon/eswin_dummy_pvt.c
 @@ -0,0 +1,732 @@
@@ -815,7 +815,7 @@ index 000000000000..711f28481427
 +MODULE_AUTHOR("Huan He <hehuan1@eswincomputing.com>");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/hwmon/eswin_pvt.h b/drivers/hwmon/eswin_pvt.h
-index aaf7c55171e9..fe30569f4897 100644
+index aaf7c55171e9c..fe30569f48973 100644
 --- a/drivers/hwmon/eswin_pvt.h
 +++ b/drivers/hwmon/eswin_pvt.h
 @@ -111,6 +111,8 @@

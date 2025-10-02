@@ -1,4 +1,4 @@
-From 86449bf233bd9ebe13e331856d84fa0a914a3489 Mon Sep 17 00:00:00 2001
+From a640486ecac1ff2858c24b604ecfed553a334db5 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Mon, 2 Sep 2024 16:41:42 +0800
 Subject: [PATCH 248/654] WIN2030-16070:feat:add eic7x pinctrl driver
@@ -26,7 +26,7 @@ Signed-off-by: luyulin <luyulin@eswincomputing.com>
  rename drivers/pinctrl/{pinctrl-eic7700.c => pinctrl-eic7x.c} (85%)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
-index 0529f98d4dd3..26aa840c9882 100644
+index 0529f98d4dd38..26aa840c98828 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 @@ -25,7 +25,7 @@ / {
@@ -67,7 +67,7 @@ index 0529f98d4dd3..26aa840c9882 100644
              pinctrl_boot_sel_default: boot_sel-default{
 diff --git a/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
 new file mode 100644
-index 000000000000..dcbd96fc473e
+index 0000000000000..dcbd96fc473ec
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7x-die0-pinctrl.dtsi
 @@ -0,0 +1,1447 @@
@@ -1520,7 +1520,7 @@ index 000000000000..dcbd96fc473e
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
 new file mode 100644
-index 000000000000..ef18b0649043
+index 0000000000000..ef18b0649043d
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7x-die1-pinctrl.dtsi
 @@ -0,0 +1,1447 @@
@@ -2972,7 +2972,7 @@ index 000000000000..ef18b0649043
 +    };
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 2a99656c01b4..66e375244082 100644
+index 2a99656c01b41..66e3752440822 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1501,7 +1501,7 @@ d0_aon_i2c1: i2c@51838000 {
@@ -2985,7 +2985,7 @@ index 2a99656c01b4..66e375244082 100644
  			status = "disabled";
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 30492bf2b7c3..a2afa1dbe862 100644
+index 30492bf2b7c3e..a2afa1dbe8625 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1035,7 +1035,7 @@ d1_sata: sata@0x70420000 {
@@ -2998,7 +2998,7 @@ index 30492bf2b7c3..a2afa1dbe862 100644
  			status = "disabled";
  			d1_pinctrl_pwm0_default: pwm0-default{
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 4381b03d08cf..a4618fd33805 100644
+index 4381b03d08cf7..a4618fd338056 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -457,7 +457,7 @@ CONFIG_SPI_DW_MMIO=y
@@ -3011,7 +3011,7 @@ index 4381b03d08cf..a4618fd33805 100644
  CONFIG_GPIO_SYSFS=y
  CONFIG_GPIO_DWAPB=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 36bcc734ee7e..3e746b7c0bf6 100644
+index 36bcc734ee7ee..3e746b7c0bf61 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -451,7 +451,7 @@ CONFIG_SPI_DW_MMIO=y
@@ -3024,7 +3024,7 @@ index 36bcc734ee7e..3e746b7c0bf6 100644
  CONFIG_GPIO_SYSFS=y
  CONFIG_GPIO_DWAPB=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 7d9b96993252..0d21bb6bf614 100644
+index 7d9b969932529..0d21bb6bf6146 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -485,7 +485,7 @@ CONFIG_SPI_DW_MMIO=y
@@ -3037,7 +3037,7 @@ index 7d9b96993252..0d21bb6bf614 100644
  CONFIG_GPIO_SYSFS=y
  CONFIG_GPIO_DWAPB=y
 diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index 81a8272c155c..b2a63ab00702 100644
+index 81a8272c155c4..b2a63ab00702f 100644
 --- a/drivers/pinctrl/Kconfig
 +++ b/drivers/pinctrl/Kconfig
 @@ -49,8 +49,8 @@ config PINCTRL_AMD
@@ -3061,7 +3061,7 @@ index 81a8272c155c..b2a63ab00702 100644
  config PINCTRL_APPLE_GPIO
  	tristate "Apple SoC GPIO pin controller driver"
 diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
-index 3b1057c5411e..571811fb66ee 100644
+index 3b1057c5411eb..571811fb66eee 100644
 --- a/drivers/pinctrl/Makefile
 +++ b/drivers/pinctrl/Makefile
 @@ -10,7 +10,7 @@ obj-$(CONFIG_GENERIC_PINCONF)	+= pinconf-generic.o
@@ -3077,7 +3077,7 @@ diff --git a/drivers/pinctrl/pinctrl-eic7700.c b/drivers/pinctrl/pinctrl-eic7x.c
 similarity index 85%
 rename from drivers/pinctrl/pinctrl-eic7700.c
 rename to drivers/pinctrl/pinctrl-eic7x.c
-index c464e6964f26..1a04a041432d 100644
+index c464e6964f26c..1a04a041432d9 100644
 --- a/drivers/pinctrl/pinctrl-eic7700.c
 +++ b/drivers/pinctrl/pinctrl-eic7x.c
 @@ -37,10 +37,9 @@

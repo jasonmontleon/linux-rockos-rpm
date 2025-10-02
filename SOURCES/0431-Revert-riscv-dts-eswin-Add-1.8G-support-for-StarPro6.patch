@@ -1,4 +1,4 @@
-From 1c52a08b1aeb3f0e8d2757a579145ab4b968ee1e Mon Sep 17 00:00:00 2001
+From 69f8cf7d4fc170ac84afc2c703ffce4c0966c3ac Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 21 Mar 2025 15:51:57 +0800
 Subject: [PATCH 431/654] Revert "riscv: dts: eswin: Add 1.8G support for
@@ -15,7 +15,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 89ed4514b0bc..2860c4b37162 100644
+index 89ed4514b0bc6..2860c4b37162b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -127,7 +127,6 @@ status {

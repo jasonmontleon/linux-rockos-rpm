@@ -1,4 +1,4 @@
-From 1c06175fc02bd0a37affea167c5c6e8ee4acd24e Mon Sep 17 00:00:00 2001
+From 33ae8b6bec2d1e25c8bd43a526dd140f851bfd87 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:34:08 +0800
 Subject: [PATCH 082/654] configs: enable initrd
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 9234bf09feb9..d32dd5f08021 100644
+index 9234bf09feb9e..d32dd5f080215 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -13,6 +13,7 @@ CONFIG_CGROUP_BPF=y

@@ -1,4 +1,4 @@
-From f7de8a25e46b7a0ccc25e9cc2f08db600708d09f Mon Sep 17 00:00:00 2001
+From dc19e57b0a9fa46493996e60f7b22d5f0f3017a2 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 26 Jun 2024 21:42:42 +0800
 Subject: [PATCH 078/654] feat: enable h ext
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  2 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 08b35addb5b7..725d93d2165f 100644
+index 08b35addb5b73..725d93d2165ff 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -99,7 +99,7 @@ cpu_0: cpu@0 {
@@ -86,7 +86,7 @@ index 08b35addb5b7..725d93d2165f 100644
  			riscv,pmpregions = <8>;
  			#if (CHIPLET_AND_DIE & 0x2)
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 3571f134aacc..cde282a61863 100644
+index 3571f134aacca..cde282a618639 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -66,7 +66,7 @@ L17: cpu@0 {

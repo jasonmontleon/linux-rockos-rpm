@@ -1,4 +1,4 @@
-From 188a7dfe0d7d8806ad800003818aaa01b674527c Mon Sep 17 00:00:00 2001
+From f84dec5dbeb8de1593a2b74a068ae29d46fc7c31 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 2 Jan 2025 20:13:04 +0800
 Subject: [PATCH 372/654] WIN2030-16607:feat:adapt new eth params to 7702-evb.
@@ -16,7 +16,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  4 files changed, 12 insertions(+), 12 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 77da51ea4a24..6d604d24c5ca 100644
+index 77da51ea4a24c..6d604d24c5ca2 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -490,7 +490,7 @@ &d0_gmac0 {
@@ -38,7 +38,7 @@ index 77da51ea4a24..6d604d24c5ca 100644
  	dly-param-10m = <0 0 0>;
  	status = "okay";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index efa27dd9eb5a..1b5e3260a978 100644
+index efa27dd9eb5a8..1b5e3260a9780 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -504,7 +504,7 @@ &d0_gmac0 {
@@ -60,7 +60,7 @@ index efa27dd9eb5a..1b5e3260a978 100644
  	dly-param-10m = <0 0 0>;
  	status = "okay";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 7ded7b9b4a84..c1ab29ec50ad 100644
+index 7ded7b9b4a841..c1ab29ec50ad8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -952,7 +952,7 @@ &d0_gmac0 {
@@ -100,7 +100,7 @@ index 7ded7b9b4a84..c1ab29ec50ad 100644
  	dly-param-10m = <0 0 0>;
  	status = "okay";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index ef4dd86c24e2..6141c93d92d0 100644
+index ef4dd86c24e27..6141c93d92d05 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -910,7 +910,7 @@ &d0_gmac0 {

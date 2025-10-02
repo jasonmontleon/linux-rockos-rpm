@@ -1,4 +1,4 @@
-From de9224eaf0c9697226f5909102c0f0cf62410b36 Mon Sep 17 00:00:00 2001
+From 9d2bfc3dc65e92cb6a21a7edf3c6950da4768f16 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Mon, 12 Aug 2024 18:41:31 +0800
 Subject: [PATCH 245/654] WIN2030-16098:ci:dw200 support d2d
@@ -15,7 +15,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 217 insertions(+), 232 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 0a70ba1aad61..30492bf2b7c3 100644
+index 0a70ba1aad618..30492bf2b7c3e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2106,6 +2106,7 @@ d1_dewarp: dewarp@71020000 {
@@ -27,7 +27,7 @@ index 0a70ba1aad61..30492bf2b7c3 100644
  			reg = <0x0 0x71020000 0x0 0xc00>, <0x0 0x71020c00 0x0 0x120>;
  			numa-node-id = <1>;
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index 78a843e5f85d..f1ab8835ceac 100644
+index 78a843e5f85d9..f1ab8835ceac8 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -80,8 +80,12 @@

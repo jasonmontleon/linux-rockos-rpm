@@ -1,4 +1,4 @@
-From 07b0fc371a2793e766a63ad0e8f5f33dd3db713f Mon Sep 17 00:00:00 2001
+From 107b7507a4e0e44ca8715316ab9316db87e60ef9 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 24 Feb 2023 17:23:17 +0800
 Subject: [PATCH 079/654] ttm: disallow cached mapping
@@ -13,7 +13,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  5 files changed, 12 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/drm_gem_vram_helper.c b/drivers/gpu/drm/drm_gem_vram_helper.c
-index b67eafa55715..5ebe418bd383 100644
+index b67eafa557159..5ebe418bd383b 100644
 --- a/drivers/gpu/drm/drm_gem_vram_helper.c
 +++ b/drivers/gpu/drm/drm_gem_vram_helper.c
 @@ -870,7 +870,7 @@ static struct ttm_tt *bo_driver_ttm_tt_create(struct ttm_buffer_object *bo,
@@ -26,7 +26,7 @@ index b67eafa55715..5ebe418bd383 100644
  		goto err_ttm_tt_init;
  
 diff --git a/drivers/gpu/drm/ttm/ttm_bo_util.c b/drivers/gpu/drm/ttm/ttm_bo_util.c
-index 64606104551c..8392393b7bf5 100644
+index 64606104551cd..8392393b7bf52 100644
 --- a/drivers/gpu/drm/ttm/ttm_bo_util.c
 +++ b/drivers/gpu/drm/ttm/ttm_bo_util.c
 @@ -355,6 +355,7 @@ static int ttm_bo_kmap_ttm(struct ttm_buffer_object *bo,
@@ -49,7 +49,7 @@ index 64606104551c..8392393b7bf5 100644
  		 * We need to use vmap to get the desired page protection
  		 * or to make the buffer object look contiguous.
 diff --git a/drivers/gpu/drm/ttm/ttm_module.c b/drivers/gpu/drm/ttm/ttm_module.c
-index b3fffe7b5062..aa137ead5cc5 100644
+index b3fffe7b5062a..aa137ead5cc59 100644
 --- a/drivers/gpu/drm/ttm/ttm_module.c
 +++ b/drivers/gpu/drm/ttm/ttm_module.c
 @@ -74,7 +74,8 @@ pgprot_t ttm_prot_from_caching(enum ttm_caching caching, pgprot_t tmp)
@@ -63,7 +63,7 @@ index b3fffe7b5062..aa137ead5cc5 100644
  		tmp = pgprot_writecombine(tmp);
  	else
 diff --git a/drivers/gpu/drm/ttm/ttm_resource.c b/drivers/gpu/drm/ttm/ttm_resource.c
-index 8f2423a15c71..a468273f314f 100644
+index 8f2423a15c71c..a468273f314fd 100644
 --- a/drivers/gpu/drm/ttm/ttm_resource.c
 +++ b/drivers/gpu/drm/ttm/ttm_resource.c
 @@ -187,7 +187,7 @@ void ttm_resource_init(struct ttm_buffer_object *bo,
@@ -97,7 +97,7 @@ index 8f2423a15c71..a468273f314f 100644
  		if (iosys_map_is_null(&iter_io->dmap))
  			iosys_map_set_vaddr_iomem(&iter_io->dmap,
 diff --git a/drivers/gpu/drm/ttm/ttm_tt.c b/drivers/gpu/drm/ttm/ttm_tt.c
-index bf9601351fa3..af3ab03200c0 100644
+index bf9601351fa35..af3ab03200c09 100644
 --- a/drivers/gpu/drm/ttm/ttm_tt.c
 +++ b/drivers/gpu/drm/ttm/ttm_tt.c
 @@ -154,7 +154,7 @@ static void ttm_tt_init_fields(struct ttm_tt *ttm,

@@ -1,4 +1,4 @@
-From a0d0ab8ba71e7596b394025dbd9b385ee4c29f5a Mon Sep 17 00:00:00 2001
+From 2f44928d9f193f12f86b6b4a76e5ab240528476a Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Mon, 9 Sep 2024 17:40:19 +0800
 Subject: [PATCH 258/654] WIN2030-16035:feat:vdec support d2d
@@ -14,7 +14,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  2 files changed, 11 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index cc4e04b3c5c3..47ef2f26489a 100644
+index cc4e04b3c5c33..47ef2f26489af 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -2437,7 +2437,7 @@ static long hantrodec_ioctl(struct file *filp, unsigned int cmd,
@@ -44,7 +44,7 @@ index cc4e04b3c5c3..47ef2f26489a 100644
  		}
  	}
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 50b6f7d740cb..575b8e36727b 100644
+index 50b6f7d740cbb..575b8e36727bb 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -3301,7 +3301,8 @@ static int vcmd_init(void)

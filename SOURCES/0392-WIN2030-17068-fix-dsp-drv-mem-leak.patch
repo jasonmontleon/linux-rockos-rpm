@@ -1,4 +1,4 @@
-From 91011f805d838e50ec03e96203068be26b94622c Mon Sep 17 00:00:00 2001
+From e2e3e1e2ab4477825f1181048a9d10ba52876e25 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 5 Feb 2025 19:57:56 +0800
 Subject: [PATCH 392/654] WIN2030-17068:fix:dsp drv mem leak
@@ -13,7 +13,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 3 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 2250f2cfd476..60e9a2ea5a04 100644
+index 2250f2cfd4767..60e9a2ea5a04c 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -444,10 +444,13 @@ static void dsp_hw_complete_task(struct device *dev, dsp_request_t *req)

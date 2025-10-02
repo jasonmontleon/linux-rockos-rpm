@@ -1,4 +1,4 @@
-From e5a25dd25c30433f678f0b1f7da2f3da23886a65 Mon Sep 17 00:00:00 2001
+From 0e9195a8bac2cbce74d7373f4d2b9bfe487a3aa6 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 11 Dec 2024 18:14:17 +0800
 Subject: [PATCH 306/654] dts: enable 7702 d1_gpu
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index bf68852cbb0e..34502e9b98a1 100644
+index bf68852cbb0e8..34502e9b98a19 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -436,7 +436,7 @@ &gpu0 {

@@ -1,4 +1,4 @@
-From c6eb990b2ed885c5e16c03fea26c02b8d50ed518 Mon Sep 17 00:00:00 2001
+From 39cce05576593481a54c49db1c6eb40462eac7f6 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 14 Jun 2024 16:42:44 +0800
 Subject: [PATCH 090/654] configs: enable CONFIG_DEBUG_FS
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 78c1df17d734..9854a9a16996 100644
+index 78c1df17d7348..9854a9a169969 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -615,6 +615,7 @@ CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15

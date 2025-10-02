@@ -1,4 +1,4 @@
-From f914825b528b9f014cd29f7eced78175b3a3a1f8 Mon Sep 17 00:00:00 2001
+From c584a7a967206d98ac2ceed62ec04b64cc2778ca Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 26 Mar 2025 09:56:25 +0800
 Subject: [PATCH 449/654] fix:use rgmii-txid as phy mode for gmac
@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 2 insertions(+)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index a82f71b58a6e..a31c15f59201 100644
+index a82f71b58a6e2..a31c15f59201a 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -410,6 +410,7 @@ CONFIG_DWMAC_WIN2030=y
@@ -24,7 +24,7 @@ index a82f71b58a6e..a31c15f59201 100644
  # CONFIG_WLAN_VENDOR_ATH is not set
  # CONFIG_WLAN_VENDOR_ATMEL is not set
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 9da3898179d6..b3da698eba9c 100644
+index 9da3898179d62..b3da698eba9c3 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -405,6 +405,7 @@ CONFIG_DWMAC_WIN2030=y

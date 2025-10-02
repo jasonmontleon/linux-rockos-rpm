@@ -1,4 +1,4 @@
-From f43da1e7fb039cc1ad400b615e112ff56c0ba705 Mon Sep 17 00:00:00 2001
+From c0a72af0fd2fa56d4c59b49d79704d7b2f5e0bc5 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 24 Jun 2025 09:29:59 +0800
 Subject: [PATCH 579/654] feat:Add statistics of NPU frame rate.
@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  3 files changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index cce6f8429c80..af24cc0516ce 100644
+index cce6f8429c803..af24cc0516ce6 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -100,6 +100,7 @@ struct nvdla_device {
@@ -26,7 +26,7 @@ index cce6f8429c80..af24cc0516ce 100644
  
  void dla_reg_write(struct nvdla_device *dev, uint32_t addr, uint32_t value);
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
-index 4bbbb3942e1b..cde3203bc649 100644
+index 4bbbb3942e1b7..cde3203bc6494 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 @@ -199,8 +199,9 @@ static int npu_stat_show(struct seq_file *m, void *p)
@@ -42,7 +42,7 @@ index 4bbbb3942e1b..cde3203bc649 100644
  	return 0;
  }
 diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
-index bb7316a6a66d..a29b0532de8a 100644
+index bb7316a6a66da..a29b0532de8a3 100644
 --- a/drivers/soc/eswin/ai_driver/npu/scheduler.c
 +++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
 @@ -308,6 +308,8 @@ void mbx_irq_frame_done(struct win_engine *priv, u32 tiktok, u32 stat)

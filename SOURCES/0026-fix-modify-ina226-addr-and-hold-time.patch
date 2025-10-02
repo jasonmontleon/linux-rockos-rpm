@@ -1,4 +1,4 @@
-From 9c56e7fca7002a38b3a60b6755501ef5e222771f Mon Sep 17 00:00:00 2001
+From f14e38414643930366106be1756296d5201e8a02 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 20:30:07 +0800
 Subject: [PATCH 026/654] fix:modify ina226 addr and hold time
@@ -12,7 +12,7 @@ Changelogs:
  2 files changed, 20 insertions(+), 23 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 8c2b945ed8a9..519c74d06f0e 100644
+index 8c2b945ed8a9f..519c74d06f0e4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -793,35 +793,33 @@ rtc@51 {
@@ -62,7 +62,7 @@ index 8c2b945ed8a9..519c74d06f0e 100644
  		};
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index c627133f179c..a1e0766efd04 100644
+index c627133f179cb..a1e0766efd04e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -752,8 +752,7 @@ rtc@51 {

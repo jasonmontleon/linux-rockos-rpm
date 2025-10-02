@@ -1,4 +1,4 @@
-From e40f87dcc75d68f58671d3adaee5e219ced594bb Mon Sep 17 00:00:00 2001
+From f978d77ec70c3fc3432d40879b35fa4e19747378 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 7 May 2025 19:46:49 +0800
 Subject: [PATCH 497/654] fix: fix evb vi catpure image
@@ -13,7 +13,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  2 files changed, 3 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
-index 296416df4e9f..b4a8638c00d0 100644
+index 296416df4e9f7..b4a8638c00d09 100644
 --- a/drivers/media/platform/eswin/dvp2axi/capture.c
 +++ b/drivers/media/platform/eswin/dvp2axi/capture.c
 @@ -82,7 +82,7 @@
@@ -148,7 +148,7 @@ index 296416df4e9f..b4a8638c00d0 100644
  
  		// do software reset
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
-index e841e682e55e..e19690b47b9a 100644
+index e841e682e55ec..e19690b47b9a2 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.c
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.c
 @@ -49,7 +49,7 @@
