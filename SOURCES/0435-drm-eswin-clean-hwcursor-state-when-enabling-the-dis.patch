@@ -1,4 +1,4 @@
-From 42e10fb8a91f418dbeac02078280798d9e95014c Mon Sep 17 00:00:00 2001
+From 0600a5b668b851db4ba4ee42d51f742989fa1f7c Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 19:16:26 +0800
 Subject: [PATCH 435/654] drm: eswin: clean hwcursor state when enabling the

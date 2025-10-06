@@ -1,4 +1,4 @@
-From ca4af6f98aeb610cb75314afa9801018ad298f4b Mon Sep 17 00:00:00 2001
+From e975151f82d7f5507dde416028fab3e386abb56c Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 9 Apr 2025 16:20:35 +0800
 Subject: [PATCH 467/654] fix:fix dma period size and cnt to fit 24-16-32bit

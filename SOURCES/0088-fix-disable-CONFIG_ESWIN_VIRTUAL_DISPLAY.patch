@@ -1,4 +1,4 @@
-From 350cfea1d7d254528a4b1048f6d8d45b097c7e6f Mon Sep 17 00:00:00 2001
+From 4245e5b06794e2afc1c08d6fa2189421711fa61f Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 13 Jun 2024 23:08:12 +0800
 Subject: [PATCH 088/654] fix: disable CONFIG_ESWIN_VIRTUAL_DISPLAY

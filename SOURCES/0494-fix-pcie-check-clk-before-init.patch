@@ -1,4 +1,4 @@
-From 1e31d44b9815a7f927a274538b0cea78e6711c99 Mon Sep 17 00:00:00 2001
+From d916a0eab16a848268e21470149b4a56a1c0d506 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 30 Apr 2025 10:53:23 +0800
 Subject: [PATCH 494/654] fix:pcie-check-clk-before-init

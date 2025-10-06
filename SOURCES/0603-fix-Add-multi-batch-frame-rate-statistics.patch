@@ -1,4 +1,4 @@
-From 8651f1b3eccd2f45b2da3a61fb38ff0a2526d871 Mon Sep 17 00:00:00 2001
+From 8e7fab4731dee5eb66cea958b41b380146fd9fd1 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 1 Jul 2025 15:18:58 +0800
 Subject: [PATCH 603/654] fix:Add multi batch frame rate statistics.
