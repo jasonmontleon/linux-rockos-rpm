@@ -1,7 +1,7 @@
-From 62849a39f816205520ce4123ecfd25fcb0452194 Mon Sep 17 00:00:00 2001
+From 25cbd878c970758a353de9c5d6270ab08050e080 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:13 -0800
-Subject: [PATCH 160/654] riscv: Add support for kernel-mode FPU
+Subject: [PATCH 160/652] riscv: Add support for kernel-mode FPU
 
 This is needed to support recent hardware in the amdgpu DRM driver. The
 FPU code in that driver is not performance-critical, so only provide the

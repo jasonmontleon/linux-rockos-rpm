@@ -1,7 +1,7 @@
-From a3416bd5d02312a3296c39cf8af2043040a78c22 Mon Sep 17 00:00:00 2001
+From 8b59a8b3fdf91f0977fc378b2f51ec43edee3f5e Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 14:32:12 +0800
-Subject: [PATCH 333/654] WIN2030-16445:fix:fix the issue of audio recording.
+Subject: [PATCH 333/652] WIN2030-16445:fix:fix the issue of audio recording.
 
 Changelogs:
 	1.fix the issue of audio recording on Z530 board.

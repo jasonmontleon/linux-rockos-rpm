@@ -1,7 +1,7 @@
-From e697b24f352632acd78a370bc9914168933df95f Mon Sep 17 00:00:00 2001
+From 96dcb71ce75c08c9f69ab672e701ad69dea4da14 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sat, 22 Feb 2025 21:33:23 -0500
-Subject: [PATCH 651/654] remove mmz vb reserved memory ranges
+Subject: [PATCH 649/652] remove mmz vb reserved memory ranges
 
 ---
  arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts | 5 -----

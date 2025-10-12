@@ -1,7 +1,7 @@
-From 25150fe81ef98bdb1383abae1e8839e1ef96852d Mon Sep 17 00:00:00 2001
+From eee97f557fabfac6d444ce5fd6875b42705fa356 Mon Sep 17 00:00:00 2001
 From: hehuan1 <hehuan1@eswincomputing.com>
 Date: Tue, 10 Jun 2025 21:51:57 +0800
-Subject: [PATCH 628/654] feat: implement cpu read data from lpcpu
+Subject: [PATCH 628/652] feat: implement cpu read data from lpcpu
 
     Changelogs:
     implement cpu read data from lpcpu

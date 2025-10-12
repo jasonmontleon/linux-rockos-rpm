@@ -1,7 +1,7 @@
-From 0358f280d9c3e0a2a59ec72d4661808d4375c4d0 Mon Sep 17 00:00:00 2001
+From 2df1cb7cce454efbb8dfb51785a542e9309f9eb0 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 15:47:52 +0800
-Subject: [PATCH 567/654] chore:Make es_proc as common interfaces
+Subject: [PATCH 567/652] chore:Make es_proc as common interfaces
 
 Changelogs:
 1.To make es_proc interfaces for other eswin modules, rename parent dir name

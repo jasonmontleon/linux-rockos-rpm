@@ -1,7 +1,7 @@
-From 5d425036bdd8168d0de3e92e839407b72cb5fffe Mon Sep 17 00:00:00 2001
+From 2f941d2690afe54e85240b6fdae271930e0dc064 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 16 Jul 2024 10:15:29 +0800
-Subject: [PATCH 098/654] feat: npu drv support low power
+Subject: [PATCH 098/652] feat: npu drv support low power
 
 Changelogs:
 	support npu clock enable and disable for low power

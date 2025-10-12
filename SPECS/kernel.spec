@@ -160,18 +160,18 @@ Summary: The Linux kernel
 #  the --with-release option overrides this setting.)
 %define debugbuildsenabled 1
 %define buildid .eswin
-%define specrpmversion 6.6.110
-%define specversion 6.6.110
+%define specrpmversion 6.6.111
+%define specversion 6.6.111
 %define patchversion 6.6
 %define pkgrelease 200
 %define kversion 6
-%define tarfile_release 6.6.110
+%define tarfile_release 6.6.111
 # This is needed to do merge window version magic
 %define patchlevel 6
 # This allows pkg_release to have configurable %%{?dist} tag
 %define specrelease 200%{?buildid}%{?dist}
 # This defines the kabi tarball version
-%define kabiversion 6.6.110
+%define kabiversion 6.6.111
 
 # If this variable is set to 1, a bpf selftests build failure will cause a
 # fatal kernel package build error
@@ -1605,22 +1605,20 @@ Patch10635: 0635-fix-2d-close-power-mangemnet.patch
 Patch10636: 0636-fix-Enable-sdio1-by-default-for-eic7700-sbc-a1-board.patch
 Patch10637: 0637-dts-sync-ramoops-for-megrez-nx-star64pro.patch
 Patch10638: 0638-config-sync-eic7700-config.patch
-Patch10639: 0639-UPSTREAM-riscv-mm-Use-hint-address-in-mmap-if-availa.patch
-Patch10640: 0640-UPSTREAM-selftests-riscv-Generalize-mm-selftests.patch
-Patch10641: 0641-UPSTREAM-docs-riscv-Define-behavior-of-mmap.patch
-Patch10642: 0642-UPSTREAM-riscv-mm-Do-not-restrict-mmap-address-based.patch
-Patch10643: 0643-UPSTREAM-riscv-selftests-Remove-mmap-hint-address-ch.patch
-Patch10644: 0644-UPSTREAM-Revert-RISC-V-mm-Document-mmap-changes.patch
-Patch10645: 0645-header-workarounds.patch
-Patch10646: 0646-stop-triggering-vmlinux-rebuild.patch
-Patch10647: 0647-Add-missing-newline.patch
-Patch10648: 0648-uninvert-the-fan.patch
-Patch10649: 0649-Reduce-crit-threshold-temp-to-85000.patch
-Patch10650: 0650-eswin-dsp-fixes.patch
-Patch10651: 0651-remove-mmz-vb-reserved-memory-ranges.patch
-Patch10652: 0652-Add-NPU-enabled-variants-of-dtbs.patch
-Patch10653: 0653-Bring-back-1.8GHz-to-STARPro64.patch
-Patch10654: 0654-remove-makefile-reference-for-non-existent-directory.patch
+Patch10639: 0639-UPSTREAM-selftests-riscv-Generalize-mm-selftests.patch
+Patch10640: 0640-UPSTREAM-docs-riscv-Define-behavior-of-mmap.patch
+Patch10641: 0641-UPSTREAM-riscv-selftests-Remove-mmap-hint-address-ch.patch
+Patch10642: 0642-UPSTREAM-Revert-RISC-V-mm-Document-mmap-changes.patch
+Patch10643: 0643-header-workarounds.patch
+Patch10644: 0644-stop-triggering-vmlinux-rebuild.patch
+Patch10645: 0645-Add-missing-newline.patch
+Patch10646: 0646-uninvert-the-fan.patch
+Patch10647: 0647-Reduce-crit-threshold-temp-to-85000.patch
+Patch10648: 0648-eswin-dsp-fixes.patch
+Patch10649: 0649-remove-mmz-vb-reserved-memory-ranges.patch
+Patch10650: 0650-Add-NPU-enabled-variants-of-dtbs.patch
+Patch10651: 0651-Bring-back-1.8GHz-to-STARPro64.patch
+Patch10652: 0652-remove-makefile-reference-for-non-existent-directory.patch
 
 
 
@@ -3015,22 +3013,20 @@ ApplyOptionalPatch 0635-fix-2d-close-power-mangemnet.patch
 ApplyOptionalPatch 0636-fix-Enable-sdio1-by-default-for-eic7700-sbc-a1-board.patch
 ApplyOptionalPatch 0637-dts-sync-ramoops-for-megrez-nx-star64pro.patch
 ApplyOptionalPatch 0638-config-sync-eic7700-config.patch
-ApplyOptionalPatch 0639-UPSTREAM-riscv-mm-Use-hint-address-in-mmap-if-availa.patch
-ApplyOptionalPatch 0640-UPSTREAM-selftests-riscv-Generalize-mm-selftests.patch
-ApplyOptionalPatch 0641-UPSTREAM-docs-riscv-Define-behavior-of-mmap.patch
-ApplyOptionalPatch 0642-UPSTREAM-riscv-mm-Do-not-restrict-mmap-address-based.patch
-ApplyOptionalPatch 0643-UPSTREAM-riscv-selftests-Remove-mmap-hint-address-ch.patch
-ApplyOptionalPatch 0644-UPSTREAM-Revert-RISC-V-mm-Document-mmap-changes.patch
-ApplyOptionalPatch 0645-header-workarounds.patch
-ApplyOptionalPatch 0646-stop-triggering-vmlinux-rebuild.patch
-ApplyOptionalPatch 0647-Add-missing-newline.patch
-ApplyOptionalPatch 0648-uninvert-the-fan.patch
-ApplyOptionalPatch 0649-Reduce-crit-threshold-temp-to-85000.patch
-ApplyOptionalPatch 0650-eswin-dsp-fixes.patch
-ApplyOptionalPatch 0651-remove-mmz-vb-reserved-memory-ranges.patch
-ApplyOptionalPatch 0652-Add-NPU-enabled-variants-of-dtbs.patch
-ApplyOptionalPatch 0653-Bring-back-1.8GHz-to-STARPro64.patch
-ApplyOptionalPatch 0654-remove-makefile-reference-for-non-existent-directory.patch
+ApplyOptionalPatch 0639-UPSTREAM-selftests-riscv-Generalize-mm-selftests.patch
+ApplyOptionalPatch 0640-UPSTREAM-docs-riscv-Define-behavior-of-mmap.patch
+ApplyOptionalPatch 0641-UPSTREAM-riscv-selftests-Remove-mmap-hint-address-ch.patch
+ApplyOptionalPatch 0642-UPSTREAM-Revert-RISC-V-mm-Document-mmap-changes.patch
+ApplyOptionalPatch 0643-header-workarounds.patch
+ApplyOptionalPatch 0644-stop-triggering-vmlinux-rebuild.patch
+ApplyOptionalPatch 0645-Add-missing-newline.patch
+ApplyOptionalPatch 0646-uninvert-the-fan.patch
+ApplyOptionalPatch 0647-Reduce-crit-threshold-temp-to-85000.patch
+ApplyOptionalPatch 0648-eswin-dsp-fixes.patch
+ApplyOptionalPatch 0649-remove-mmz-vb-reserved-memory-ranges.patch
+ApplyOptionalPatch 0650-Add-NPU-enabled-variants-of-dtbs.patch
+ApplyOptionalPatch 0651-Bring-back-1.8GHz-to-STARPro64.patch
+ApplyOptionalPatch 0652-remove-makefile-reference-for-non-existent-directory.patch
 
 
 

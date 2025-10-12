@@ -1,7 +1,7 @@
-From ba6de673251204c3fa095aff79d917880abcff3c Mon Sep 17 00:00:00 2001
+From 12728856a160b072a0d71533b2f1200af0bcaa39 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 25 Jun 2025 19:43:35 +0800
-Subject: [PATCH 582/654] feature: Remove CONFIG_DEBUG_INFO
+Subject: [PATCH 582/652] feature: Remove CONFIG_DEBUG_INFO
 
 Changelogs:
 1. Remove CONFIG_DEBUG_INFO_DWARF_TOOLCHAIN_DEFAULT in defconfig

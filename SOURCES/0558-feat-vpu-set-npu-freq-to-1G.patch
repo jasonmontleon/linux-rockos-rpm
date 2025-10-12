@@ -1,7 +1,7 @@
-From 41f96c3e6e2265d0be327225265c7f66449c0f41 Mon Sep 17 00:00:00 2001
+From 1f491de37047a84e04668356085180b87feca9d2 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 13 Jun 2025 18:12:58 +0800
-Subject: [PATCH 558/654] feat: vpu set npu freq to 1G
+Subject: [PATCH 558/652] feat: vpu set npu freq to 1G
 
 Changelogs:
 	set npu freq 1G for vpu

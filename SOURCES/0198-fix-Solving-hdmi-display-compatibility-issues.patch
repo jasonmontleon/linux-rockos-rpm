@@ -1,7 +1,7 @@
-From ad975c3ab66227add43f43b42d7444d5f16afaf9 Mon Sep 17 00:00:00 2001
+From 3de394a62d511b2370afac79dc8520129234c7ee Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 22 Oct 2024 09:53:00 +0800
-Subject: [PATCH 198/654] fix:Solving hdmi display compatibility issues.
+Subject: [PATCH 198/652] fix:Solving hdmi display compatibility issues.
 
 Changelogs:
 	HKC monitor, after multiple hot plugging, fails to display.

@@ -1,7 +1,7 @@
-From d72fb8a2b1d25ee6930fee3129f0cfd82e9e50d5 Mon Sep 17 00:00:00 2001
+From 0aa8ed63e2075ed80a20c23f216ad999457d40f0 Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Thu, 29 May 2025 14:12:18 +0800
-Subject: [PATCH 548/654] fix:fix SBC MIPI spupport MP test
+Subject: [PATCH 548/652] fix:fix SBC MIPI spupport MP test
 
 Changelogs:
 	fix mipi open,hdmi display black

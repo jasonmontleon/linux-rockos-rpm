@@ -1,7 +1,7 @@
-From 742daddc13e1d9bd913a49f67add440ed836448a Mon Sep 17 00:00:00 2001
+From f9dae392ebf6b10e58d9fcc339ee5a1d100e1ddf Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 1 Aug 2024 17:32:12 +0800
-Subject: [PATCH 133/654] refactor:modify evb1 dts
+Subject: [PATCH 133/652] refactor:modify evb1 dts
 
 Changelogs:
 1. Modify evb1 dts, adjust mmz size to 6GB, in order to consistent with other board.

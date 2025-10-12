@@ -1,7 +1,7 @@
-From 72d9ea808073e69361d99a4bdf79fecbf616abf2 Mon Sep 17 00:00:00 2001
+From 00f39ec0ae1759cfe4adec8074a2e13e025fb031 Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Wed, 21 May 2025 13:45:33 +0800
-Subject: [PATCH 511/654] feat: update escl linux dependency
+Subject: [PATCH 511/652] feat: update escl linux dependency
 
 Changelogs:
 1. vpu7702 defconfig add CONFIG_ESWIN_MALLOC_DMABUF

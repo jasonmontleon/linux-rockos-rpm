@@ -1,7 +1,7 @@
-From 4743df9211d9ba75186c7e7a230f8b39e4e37c3a Mon Sep 17 00:00:00 2001
+From da56c1dfeeb892f705b8f027f0476380dd5c59d6 Mon Sep 17 00:00:00 2001
 From: lizhi2 <lizhi2@eswincomputing.com>
 Date: Wed, 30 Apr 2025 13:26:06 +0800
-Subject: [PATCH 492/654] feat(eth): ETH tuning in EIC7702_D560
+Subject: [PATCH 492/652] feat(eth): ETH tuning in EIC7702_D560
 
 Changelogs:
 1. update dly-param in dts by tuning ethernet

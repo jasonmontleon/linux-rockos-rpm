@@ -1,7 +1,7 @@
-From 160177edd63b234c8cf7a2248dcf6e62fbefa7ea Mon Sep 17 00:00:00 2001
+From 58732417eb48fcb762e5e73728f4c1638d714fee Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 13 Jun 2025 13:38:36 +0800
-Subject: [PATCH 607/654] feat: Support ESWIN's TRNG
+Subject: [PATCH 607/652] feat: Support ESWIN's TRNG
 
 Changelogs:
  1. Register eswin-rng driver for ESWIN's TRNG

@@ -1,7 +1,7 @@
-From fdb03551329c390d96886afd1a502da0a9d43421 Mon Sep 17 00:00:00 2001
+From 4d99a03205ff9a69040364fce4a5bf61821d0231 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 12 Aug 2024 16:04:58 +0800
-Subject: [PATCH 147/654] feat:KASAN warnning & bootspi region protection
+Subject: [PATCH 147/652] feat:KASAN warnning & bootspi region protection
 
 Changelogs:
    1.fix KASAN warnning of NOC and clock driver

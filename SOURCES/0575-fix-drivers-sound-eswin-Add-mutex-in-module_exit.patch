@@ -1,7 +1,7 @@
-From a00785831163d5b214834abe5abc8e855f4d2811 Mon Sep 17 00:00:00 2001
+From 96f45b47030c5c4b210a34c75bbf44a88925fdfa Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:10:18 +0800
-Subject: [PATCH 575/654] fix:drivers: sound: eswin: Add mutex in module_exit
+Subject: [PATCH 575/652] fix:drivers: sound: eswin: Add mutex in module_exit
 
 Changelogs:
 1.Add mutex_unlock in audio_proc_module_exit()

@@ -1,7 +1,7 @@
-From 80518d67dca123bdc2442fc595314a08bd320cfd Mon Sep 17 00:00:00 2001
+From 6b45a510f75a9bac32141c32e67a3691f1327ca0 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Mon, 30 Dec 2024 20:30:39 +0800
-Subject: [PATCH 369/654] WIN2030-16708:fix:Fix squeezenet bug
+Subject: [PATCH 369/652] WIN2030-16708:fix:Fix squeezenet bug
 
 Changelogs:
 1. fix squeezenet bug for dsp offset error.

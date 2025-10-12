@@ -1,7 +1,7 @@
-From e51e952a17695680a8dd50b182318bb62205f861 Mon Sep 17 00:00:00 2001
+From 4d2e7f7b88e68c2a3db0fd71b28857e3565a1e3b Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 24 Jun 2025 10:40:42 +0800
-Subject: [PATCH 580/654] fix:modify temperature to 65-75-105
+Subject: [PATCH 580/652] fix:modify temperature to 65-75-105
 
 Changelogs:
 1. change the temperature parameter of thermal zone to 65-75-105

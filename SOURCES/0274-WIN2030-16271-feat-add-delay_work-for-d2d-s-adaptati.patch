@@ -1,7 +1,7 @@
-From d3b59386f80f8ca80f620da918df48cf33afe197 Mon Sep 17 00:00:00 2001
+From ed958b27783c125f7a4607fabf0bae392f38509b Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Sun, 29 Sep 2024 11:21:45 +0800
-Subject: [PATCH 274/654] WIN2030-16271:feat:add delay_work for d2d's
+Subject: [PATCH 274/652] WIN2030-16271:feat:add delay_work for d2d's
  adaptation.
 
 Changelogs:

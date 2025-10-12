@@ -1,7 +1,7 @@
-From b7c6a8eebe500e40b589b361251067b45e1846b2 Mon Sep 17 00:00:00 2001
+From 4e81fa63798c5fef455802efe6b04dc2255cd4c0 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Wed, 12 Mar 2025 09:18:01 +0800
-Subject: [PATCH 442/654] feat:npu proc add voltage and frequency
+Subject: [PATCH 442/652] feat:npu proc add voltage and frequency
 
 Changelogs:
 NPU driver exposes voltage and frequency configuration in PROC

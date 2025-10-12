@@ -1,7 +1,7 @@
-From 451c0e3498fc4dba4d3a87eaa862ff56313e0582 Mon Sep 17 00:00:00 2001
+From 3b521ab5d9ba217119e2cc5fbe288ec4477f1ae5 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Tue, 8 Jul 2025 11:37:06 +0800
-Subject: [PATCH 540/654] PCI: eswin: keep PCIe alive at shutdown
+Subject: [PATCH 540/652] PCI: eswin: keep PCIe alive at shutdown
 
 Transfer could still happen (especially to external GPU) after calling
 shutdown callback of the PCIe controller, which will hang if we shutdown

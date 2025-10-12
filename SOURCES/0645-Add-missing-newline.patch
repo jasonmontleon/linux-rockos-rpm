@@ -1,7 +1,7 @@
-From bc4670917948fac0ad34787289e5a13ea9f634af Mon Sep 17 00:00:00 2001
+From eb2eba859f6ba7b6054c2421fe56179007d60119 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:04:41 -0500
-Subject: [PATCH 647/654] Add missing newline
+Subject: [PATCH 645/652] Add missing newline
 
 ---
  drivers/media/platform/eswin/Kconfig | 3 ++-

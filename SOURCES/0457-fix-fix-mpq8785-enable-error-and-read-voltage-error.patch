@@ -1,7 +1,7 @@
-From 62df0618779a8f87ff0ca3aafa81738873219e92 Mon Sep 17 00:00:00 2001
+From 30cd647beb830dac68474d97f012c94aba806959 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 2 Apr 2025 13:45:41 +0800
-Subject: [PATCH 457/654] fix:fix mpq8785 enable error and read voltage error
+Subject: [PATCH 457/652] fix:fix mpq8785 enable error and read voltage error
 
 Changelogs:
 

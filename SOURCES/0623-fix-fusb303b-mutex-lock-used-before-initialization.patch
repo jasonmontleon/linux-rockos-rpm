@@ -1,7 +1,7 @@
-From 6e5a39f1f6b0f5bd2c96724802ec1d297fff33d2 Mon Sep 17 00:00:00 2001
+From 13257e31ee28d657232ed2908e66802d9437ec27 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:38:50 +0800
-Subject: [PATCH 623/654] fix(fusb303b):mutex lock used before initialization
+Subject: [PATCH 623/652] fix(fusb303b):mutex lock used before initialization
 
 Changelogs:
 1. In fusb303b.c, the mutext chip->logbuffer_lock was used in fusb303b_init(chip)

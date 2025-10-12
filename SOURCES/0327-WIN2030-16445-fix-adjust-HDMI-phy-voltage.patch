@@ -1,7 +1,7 @@
-From 1fd7ff70b2a45303c03daf5328ecd050764c473e Mon Sep 17 00:00:00 2001
+From 57ec4a72db3b69d5ab5ff6de88deb2cbfbf1d888 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 29 Nov 2024 15:25:27 +0800
-Subject: [PATCH 327/654] WIN2030-16445:fix:adjust HDMI phy voltage.
+Subject: [PATCH 327/652] WIN2030-16445:fix:adjust HDMI phy voltage.
 
 Changelogs:
 	1.Adjust HDMI phy voltage.

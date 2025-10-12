@@ -1,7 +1,7 @@
-From 8f5cdb169f35ca6f366275c9b3b81404520095be Mon Sep 17 00:00:00 2001
+From ab84200c9999c93495dfcc02b3188c27e8465b93 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Wed, 19 Feb 2025 16:24:27 +0800
-Subject: [PATCH 482/654] feat:dma memcp add sync and async notifier
+Subject: [PATCH 482/652] feat:dma memcp add sync and async notifier
 
 Changelogs:
 1. add sync and async notifier

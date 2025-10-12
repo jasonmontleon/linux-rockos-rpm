@@ -1,7 +1,7 @@
-From f1476a4da3b8a231594be41665ce5e53cf585d64 Mon Sep 17 00:00:00 2001
+From a75f9b315a8a26726555c42570343f4ebc8d5309 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 23 Oct 2024 18:23:02 +0800
-Subject: [PATCH 202/654] feat: dsp drv use dsp pool for flat mem
+Subject: [PATCH 202/652] feat: dsp drv use dsp pool for flat mem
 
 Changelogs:
 	The native DMA pool does not support specifying the size of each memory allocation,

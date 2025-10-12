@@ -1,7 +1,7 @@
-From c5187c9d51d3bc4af724487414201d53a64efc5e Mon Sep 17 00:00:00 2001
+From cc6eb501b989c162126c5904a03d8bff155afb12 Mon Sep 17 00:00:00 2001
 From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
 Date: Mon, 16 Jun 2025 15:07:27 +0800
-Subject: [PATCH 563/654] fix:fix lpcpu dump failed Changelogs: 1. fix lpcpu
+Subject: [PATCH 563/652] fix:fix lpcpu dump failed Changelogs: 1. fix lpcpu
  dump failed
 
 Signed-off-by: yuzaiqiang <yuzaiqiang@eswincomputing.com>

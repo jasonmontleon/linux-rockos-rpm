@@ -1,7 +1,7 @@
-From 6da78843611cdfa11edec5097b7098ad380aa710 Mon Sep 17 00:00:00 2001
+From 63f1c39a9faa69b07eb5ee7f8c67294c1ecfe309 Mon Sep 17 00:00:00 2001
 From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
 Date: Fri, 13 Jun 2025 14:34:45 +0800
-Subject: [PATCH 555/654] feat:Reserve memory for bd info
+Subject: [PATCH 555/652] feat:Reserve memory for bd info
 
 Changelogs:
 

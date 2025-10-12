@@ -1,7 +1,7 @@
-From 684e8ba076fe9f2c0eeb7a7e6a1bea34846acdbc Mon Sep 17 00:00:00 2001
+From 8a61b9e1a8ce8ae1f554f53b0f1fcd9877da1221 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 28 May 2025 14:43:45 +0800
-Subject: [PATCH 524/654] fix: fix system hang after run isp and sample_vps 2
+Subject: [PATCH 524/652] fix: fix system hang after run isp and sample_vps 2
 
 Changelogs:
 1. enable dwe clk

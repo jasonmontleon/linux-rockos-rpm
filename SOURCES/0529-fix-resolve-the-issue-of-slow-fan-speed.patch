@@ -1,7 +1,7 @@
-From c9d62446672f5f432f58f4fd43c9a6afa8d6f211 Mon Sep 17 00:00:00 2001
+From 87ef1ec740b0b9e0c0310b3cc4fd5702d5c6df7b Mon Sep 17 00:00:00 2001
 From: weishangjuan <weishangjuan@eswincomputing.com>
 Date: Fri, 23 May 2025 09:47:13 +0800
-Subject: [PATCH 529/654] fix: resolve the issue of slow fan speed
+Subject: [PATCH 529/652] fix: resolve the issue of slow fan speed
 
     Changelogs:
     1. enable the fan control node

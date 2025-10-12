@@ -1,7 +1,7 @@
-From b51d1e55a0709c8fbe7c3d9cd9e60341a3fbbf98 Mon Sep 17 00:00:00 2001
+From da622450ac2cd15258a91be15713a11dc18909dc Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 15 Jul 2025 16:33:18 +0800
-Subject: [PATCH 634/654] fix: fix no dewarp dev node
+Subject: [PATCH 634/652] fix: fix no dewarp dev node
 
 Changelogs:
 1. eic7702 die1 dewarp dts add opp table

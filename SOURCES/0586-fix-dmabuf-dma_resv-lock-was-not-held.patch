@@ -1,7 +1,7 @@
-From d05de2cae2e17b5bf17c4e74596aab76a0fee08c Mon Sep 17 00:00:00 2001
+From 6ca8497e42762d04bb7834f710278b516ae23816 Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Fri, 27 Jun 2025 10:22:09 +0800
-Subject: [PATCH 586/654] fix:dmabuf dma_resv lock was not held
+Subject: [PATCH 586/652] fix:dmabuf dma_resv lock was not held
 
 Changelogs:
 1. memory replace dma_buf_vmap, dma_buf_vunmap,

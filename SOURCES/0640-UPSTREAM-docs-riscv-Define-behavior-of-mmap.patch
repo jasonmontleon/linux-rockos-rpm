@@ -1,7 +1,7 @@
-From f9a791c002ca2dc6ed97d8062681bd8c92b8a6fd Mon Sep 17 00:00:00 2001
+From 03243710d57acd3945027b4fac19467632606e44 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:02 -0800
-Subject: [PATCH 641/654] UPSTREAM: docs: riscv: Define behavior of mmap
+Subject: [PATCH 640/652] UPSTREAM: docs: riscv: Define behavior of mmap
 
 Define mmap on riscv to not provide an address that uses more bits than
 the hint address, if provided.

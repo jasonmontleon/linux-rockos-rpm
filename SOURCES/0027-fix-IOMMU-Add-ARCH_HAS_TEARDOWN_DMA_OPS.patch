@@ -1,7 +1,7 @@
-From bdbabd1c43aa16766b8a9c7e96c33f58072ee90b Mon Sep 17 00:00:00 2001
+From 84d7cb387c8fdcc99c72c4ed9b359f1fe92d2456 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 29 Apr 2024 08:59:44 +0800
-Subject: [PATCH 027/654] fix(IOMMU):Add ARCH_HAS_TEARDOWN_DMA_OPS
+Subject: [PATCH 027/652] fix(IOMMU):Add ARCH_HAS_TEARDOWN_DMA_OPS
 
 Changelogs:
 1.Added "select ARCH_HAS_TEARDOWN_DMA_OPS if IOMMU_SUPPORT"

@@ -1,7 +1,7 @@
-From 6d3c2738061a77f1789b8f432cc812feb077d202 Mon Sep 17 00:00:00 2001
+From 6ddc04d7f930e2e229ee269d3e62a1e453ae0c97 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 19 Jun 2025 09:38:05 +0800
-Subject: [PATCH 568/654] fix:lspci issue after reboot
+Subject: [PATCH 568/652] fix:lspci issue after reboot
 
 Changelogs:
 1.fix lspci issue after insmod and rebooting host

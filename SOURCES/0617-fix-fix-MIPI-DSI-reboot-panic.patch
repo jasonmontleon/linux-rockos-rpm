@@ -1,7 +1,7 @@
-From c88e75de260c1ccc2e1686875db62798a908439c Mon Sep 17 00:00:00 2001
+From a82b80962feae070478e7d834ebe4101493f0ec4 Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Fri, 11 Jul 2025 15:57:11 +0800
-Subject: [PATCH 617/654] fix fix MIPI DSI reboot panic
+Subject: [PATCH 617/652] fix fix MIPI DSI reboot panic
 
 Changelogs: disabled hdmi, HDMI shut down add NULL verify
 Signed-off-by: fanxiaping <fanxiaping@eswincomputing.com>

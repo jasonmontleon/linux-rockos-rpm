@@ -1,7 +1,7 @@
-From 00809dc2c5f389f7dc2ce9f1d5166be2eee442e0 Mon Sep 17 00:00:00 2001
+From eab8c20d0e77fe86029abab04bff875c80942792 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:06:00 +0800
-Subject: [PATCH 574/654] fix:usb: dwc3: eswin: Fix section mismatch
+Subject: [PATCH 574/652] fix:usb: dwc3: eswin: Fix section mismatch
 
 Changelogs:
 dwc3_eswin_deassert() may be called at runtime from dwc3_eswin_probe().

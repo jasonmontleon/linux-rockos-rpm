@@ -1,7 +1,7 @@
-From 2d55a5c4b05bee7aac7612b95e2732f24baf6d26 Mon Sep 17 00:00:00 2001
+From 8aa27de6bd124a758f8122dd115f4dec467e3956 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Tue, 16 Jul 2024 17:32:14 +0800
-Subject: [PATCH 099/654] feat(emmc sd sdio):sdhci support power management
+Subject: [PATCH 099/652] feat(emmc sd sdio):sdhci support power management
 
 Changelogs:
 1.sdhci driver support power management.

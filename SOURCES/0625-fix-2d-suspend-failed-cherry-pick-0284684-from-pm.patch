@@ -1,7 +1,7 @@
-From 1f7581eb2c56c79d4772b54f961b71c810cfd033 Mon Sep 17 00:00:00 2001
+From 992bb6f963c5a1555e3c9a9e551fe251f5f2a2ec Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Wed, 16 Apr 2025 13:26:22 +0800
-Subject: [PATCH 625/654] fix(2d):suspend failed,cherry-pick 0284684 from pm
+Subject: [PATCH 625/652] fix(2d):suspend failed,cherry-pick 0284684 from pm
 
 Changelogs:
     1.Problem cause: first platform_device register not record private struct info galDevice;

@@ -1,7 +1,7 @@
-From c6e50f8cf430e3241f9e02f7c1aa30acfcaabc98 Mon Sep 17 00:00:00 2001
+From c5f13d3d7339c61c9ffec421b4dede7cf124737a Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Tue, 15 Jul 2025 14:20:57 +0800
-Subject: [PATCH 631/654] fix: disabled isp for feature not ready
+Subject: [PATCH 631/652] fix: disabled isp for feature not ready
 
 Changelogs:
 1. disabled isp for feature not ready

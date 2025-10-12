@@ -1,7 +1,7 @@
-From 1a00ac88f1afcdaad63768a6a7db2ddce9b00550 Mon Sep 17 00:00:00 2001
+From 208a95b1131c85edaf3dcca6e55c6864471a9665 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 14 Jul 2025 09:35:34 +0800
-Subject: [PATCH 622/654] fix(venc):venc run in D1 cause system hang
+Subject: [PATCH 622/652] fix(venc):venc run in D1 cause system hang
 
 Changelogs:
 Rootcause: The venc driver will not initialize and enable the clock

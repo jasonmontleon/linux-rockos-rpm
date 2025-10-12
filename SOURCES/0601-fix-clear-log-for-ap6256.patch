@@ -1,7 +1,7 @@
-From b531226d9485c97612ebdc916ff90381365ef0e6 Mon Sep 17 00:00:00 2001
+From 225514a056227889953caf221c944ca7df2266dd Mon Sep 17 00:00:00 2001
 From: wangjinlong <wangjinlong@eswincomputing.com>
 Date: Wed, 2 Jul 2025 15:12:04 +0800
-Subject: [PATCH 601/654] fix: clear log for ap6256
+Subject: [PATCH 601/652] fix: clear log for ap6256
 
 Changelogs:
 1. clear driver log for ap6256

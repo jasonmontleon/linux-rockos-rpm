@@ -1,7 +1,7 @@
-From d104b60aaa2fc4284320af92f9f67b77e352c0fc Mon Sep 17 00:00:00 2001
+From 68237f616a572825594e7e8b909af836719e275e Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 18 Sep 2024 16:02:21 +0800
-Subject: [PATCH 192/654] refactor:move the cipher driver source code in to
+Subject: [PATCH 192/652] refactor:move the cipher driver source code in to
  kernel
 
 Changelogs:

@@ -1,7 +1,7 @@
-From 9fe6769365ea78c5fc22ca0e30108a1827343637 Mon Sep 17 00:00:00 2001
+From a2e3f495895261dc7de81451fdca12cc61368429 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:47:04 +0800
-Subject: [PATCH 459/654] feat:support 22.01/11.025kHz
+Subject: [PATCH 459/652] feat:support 22.01/11.025kHz
 
 Changelogs:
 1. i2s

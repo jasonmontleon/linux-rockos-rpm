@@ -1,7 +1,7 @@
-From 17c2dfb79e8639e520d3cb98c9d1f21bc7a9baf7 Mon Sep 17 00:00:00 2001
+From d993c755df07fb8fbeec4c62fcfaa1caf9c12a9e Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:01 -0800
-Subject: [PATCH 640/654] UPSTREAM: selftests: riscv: Generalize mm selftests
+Subject: [PATCH 639/652] UPSTREAM: selftests: riscv: Generalize mm selftests
 
 The behavior of mmap on riscv is defined to not provide an address that
 uses more bits than the hint address, if provided. Make the tests

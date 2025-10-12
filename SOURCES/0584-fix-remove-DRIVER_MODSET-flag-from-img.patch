@@ -1,7 +1,7 @@
-From 8b2848e9b39b53ad323750b4ec615f810e312289 Mon Sep 17 00:00:00 2001
+From a9d42db106a5c058ed0279f82b396a9ad8bacb53 Mon Sep 17 00:00:00 2001
 From: zhang yizhong <zhangyizhong@eswincomputing.com>
 Date: Wed, 25 Jun 2025 13:30:30 +0800
-Subject: [PATCH 584/654] fix:remove DRIVER_MODSET flag from img.
+Subject: [PATCH 584/652] fix:remove DRIVER_MODSET flag from img.
 
 Changelogs:
 1. remove DRIVER_MODSET flag from img drm feature. On win2030,

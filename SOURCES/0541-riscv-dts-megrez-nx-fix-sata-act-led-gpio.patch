@@ -1,7 +1,7 @@
-From 114f792889d96de8b8317e0609352945e4ba9ab5 Mon Sep 17 00:00:00 2001
+From 8613c4ea1d1cc768f40e525ab72d9ba64668bb09 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Tue, 15 Jul 2025 14:27:52 +0800
-Subject: [PATCH 541/654] riscv: dts: megrez-nx: fix sata act led gpio
+Subject: [PATCH 541/652] riscv: dts: megrez-nx: fix sata act led gpio
 
 Release gpio27 because it will be used by stat act led.
 

@@ -1,7 +1,7 @@
-From 01acfadec7d5dbfd30fd2ebb8134c3a3b983d12b Mon Sep 17 00:00:00 2001
+From db4b4ebb6a385257ddb50f867b499aadec1964c7 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Tue, 20 May 2025 17:14:45 +0800
-Subject: [PATCH 512/654] feat:sbc support i2c, spi
+Subject: [PATCH 512/652] feat:sbc support i2c, spi
 
 Changelogs:
 1. sbc support spi flash winbond,w25q128

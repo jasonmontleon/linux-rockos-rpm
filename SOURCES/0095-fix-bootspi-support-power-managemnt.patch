@@ -1,7 +1,7 @@
-From 3a9c0ee6cd4fcc67af053d9f2dfaedd3ed328440 Mon Sep 17 00:00:00 2001
+From 2c964f5dedac488abc9089ec137e3e61e79d100b Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 4 Jul 2024 17:28:16 +0800
-Subject: [PATCH 095/654] fix:bootspi support power managemnt
+Subject: [PATCH 095/652] fix:bootspi support power managemnt
 
 Changelogs:
     1.bootspi driver support power managemnt

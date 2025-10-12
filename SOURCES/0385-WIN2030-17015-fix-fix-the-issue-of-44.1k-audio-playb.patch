@@ -1,7 +1,7 @@
-From 0b390ff62a2636f01372b9528194795ca095dbf0 Mon Sep 17 00:00:00 2001
+From 483a61ac9a172c72fdd2af4ccbd1ef21bfc84ac1 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 16 Jan 2025 11:01:39 +0800
-Subject: [PATCH 385/654] WIN2030-17015:fix:fix the issue of 44.1k audio
+Subject: [PATCH 385/652] WIN2030-17015:fix:fix the issue of 44.1k audio
  playback.
 
 Changelogs:

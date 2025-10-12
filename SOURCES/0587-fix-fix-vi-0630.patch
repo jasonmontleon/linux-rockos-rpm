@@ -1,7 +1,7 @@
-From 0b0bafb1f130369d650a99a6521e3d33f02bd48b Mon Sep 17 00:00:00 2001
+From b252878f8093789f09b08b32bed8254c78de8288 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Fri, 27 Jun 2025 18:22:42 +0800
-Subject: [PATCH 587/654] fix:fix vi 0630
+Subject: [PATCH 587/652] fix:fix vi 0630
 
 Changelogs:
 1. fix vi compile err in 7702

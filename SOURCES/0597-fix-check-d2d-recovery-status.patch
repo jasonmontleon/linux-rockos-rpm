@@ -1,7 +1,7 @@
-From 738faef8ae00b11915ee5f747b1f3c2ae5699318 Mon Sep 17 00:00:00 2001
+From c928e97a4367ea554317310e9f82bd4365a1304b Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 1 Jul 2025 21:03:30 +0800
-Subject: [PATCH 597/654] fix:check d2d recovery status
+Subject: [PATCH 597/652] fix:check d2d recovery status
 
 Changelogs:
 1. check d2d recovery status in es-fand

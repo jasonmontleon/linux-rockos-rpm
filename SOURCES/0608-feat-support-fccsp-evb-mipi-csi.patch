@@ -1,7 +1,7 @@
-From d65f42bb1b3a6d945a905f663c37de757bdc50d7 Mon Sep 17 00:00:00 2001
+From 00a5943d049aee7e7ed595c5e1b7e015485c0e12 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 8 Jul 2025 09:15:08 +0800
-Subject: [PATCH 608/654] feat: support fccsp evb mipi csi
+Subject: [PATCH 608/652] feat: support fccsp evb mipi csi
 
 Changelogs:
 1. add fccsp evb imx219 dtsi

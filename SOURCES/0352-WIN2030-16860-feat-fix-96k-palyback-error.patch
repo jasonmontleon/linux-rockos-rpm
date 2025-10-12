@@ -1,7 +1,7 @@
-From 3eae9fa74eb219b9b55e720e8d3f4145a7328434 Mon Sep 17 00:00:00 2001
+From 28b9086b37ae320a1bba2ee7f6ee2affe024b4e4 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Mon, 23 Dec 2024 20:02:31 +0800
-Subject: [PATCH 352/654] WIN2030-16860:feat:fix 96k palyback error
+Subject: [PATCH 352/652] WIN2030-16860:feat:fix 96k palyback error
 
 Changelogs:
 1. es8328.c

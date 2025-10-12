@@ -1,7 +1,7 @@
-From 1a542639b8f2032ac156c984f9f129866da8b859 Mon Sep 17 00:00:00 2001
+From 99e3572d912f2c12bd67bd5a81512efd369dc505 Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Wed, 28 May 2025 10:41:07 +0800
-Subject: [PATCH 530/654] fix: fix isp isp_media_server error in debian
+Subject: [PATCH 530/652] fix: fix isp isp_media_server error in debian
 
 Changelogs:
 1. modify the order of isp driver insmod(after imx327) only for evb a3

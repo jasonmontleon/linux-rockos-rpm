@@ -1,7 +1,7 @@
-From 2774109a1fcbc449dda2d60a44e674948c070a60 Mon Sep 17 00:00:00 2001
+From 1cdce7946d7bfd6995281c33860feb282520c821 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:15 -0800
-Subject: [PATCH 162/654] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
+Subject: [PATCH 162/652] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
 
 RISC-V uses kernel_fpu_begin()/kernel_fpu_end() like several other
 architectures. Enabling hardware FP requires overriding the ISA string

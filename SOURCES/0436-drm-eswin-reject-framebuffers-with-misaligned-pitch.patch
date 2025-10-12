@@ -1,7 +1,7 @@
-From 962d6e386341f83bd8240fe48c15c12e26fd3717 Mon Sep 17 00:00:00 2001
+From df3e180c7bb6afe721d7992dc9ba1dea41ee2cf3 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 22:20:04 +0800
-Subject: [PATCH 436/654] drm: eswin: reject framebuffers with misaligned pitch
+Subject: [PATCH 436/652] drm: eswin: reject framebuffers with misaligned pitch
 
 Currently the pitch of dumb buffers seems to be not respected by the IMG
 blob, which leads to framebuffers with misaligned pitch get created; in

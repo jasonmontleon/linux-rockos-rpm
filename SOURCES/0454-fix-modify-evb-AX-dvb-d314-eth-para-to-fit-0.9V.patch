@@ -1,7 +1,7 @@
-From 4dbb2bca1900cd36d36e7508c8df235df4e5133b Mon Sep 17 00:00:00 2001
+From 226488c1283b56381567e82127f214c45cf43e7e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 19 Mar 2025 14:52:40 +0800
-Subject: [PATCH 454/654] fix:modify evb-AX/dvb/d314 eth para to fit 0.9V
+Subject: [PATCH 454/652] fix:modify evb-AX/dvb/d314 eth para to fit 0.9V
 
 Changelogs:
 modify evb-A1/A2/A3/dvb/d314 eth para to fit 0.9V and 0.8V

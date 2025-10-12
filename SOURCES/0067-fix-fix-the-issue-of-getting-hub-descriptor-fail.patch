@@ -1,7 +1,7 @@
-From 1061f99d67ab1d1b13c985b75e6e5f5da845eb5a Mon Sep 17 00:00:00 2001
+From d6677449a67b47a49ced2ebe11e6be7f81aeebb0 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Tue, 9 Jul 2024 09:38:51 +0800
-Subject: [PATCH 067/654] fix:fix the issue of getting hub descriptor fail.
+Subject: [PATCH 067/652] fix:fix the issue of getting hub descriptor fail.
 
 Changelogs:
 1.fix the issue of hub not being able to read descriptor.

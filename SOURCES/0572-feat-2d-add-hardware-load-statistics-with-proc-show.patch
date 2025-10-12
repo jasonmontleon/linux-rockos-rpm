@@ -1,7 +1,7 @@
-From 6b248518f3c68bed037da35793cc8ec19927897e Mon Sep 17 00:00:00 2001
+From 2895f76843813b261c95e3933b44e66a540201dc Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Mon, 9 Jun 2025 14:24:29 +0800
-Subject: [PATCH 572/654] feat(2d):add hardware load statistics with proc show
+Subject: [PATCH 572/652] feat(2d):add hardware load statistics with proc show
 
 Changelogs:
     1.use timer to measure hardware load every 1s;

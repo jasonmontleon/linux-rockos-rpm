@@ -1,7 +1,7 @@
-From 0df2787269ab6667f73f890f839e218c0fd3c5fb Mon Sep 17 00:00:00 2001
+From 9a2d304fd6be1fc5385f82cdf6d537490310ef89 Mon Sep 17 00:00:00 2001
 From: hejiean <hejiean@eswincomputing.com>
 Date: Mon, 17 Mar 2025 18:55:55 +0800
-Subject: [PATCH 447/654] feat(kernel): Add CacheFlushAll API for lib_memory
+Subject: [PATCH 447/652] feat(kernel): Add CacheFlushAll API for lib_memory
 
 Changelogs:
 1. add type EIC770X_LOGICAL_MEM_NODE_E to encode numa node id, contains

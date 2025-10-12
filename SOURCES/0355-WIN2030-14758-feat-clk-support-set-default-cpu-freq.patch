@@ -1,7 +1,7 @@
-From 2c9a9709984f86bc538f9814f68283149f761dc4 Mon Sep 17 00:00:00 2001
+From 3adff9201f646609a9f9885e28ea3b48bb554f5e Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 24 Dec 2024 10:29:33 +0800
-Subject: [PATCH 355/654] WIN2030-14758:feat:clk support set default cpu freq
+Subject: [PATCH 355/652] WIN2030-14758:feat:clk support set default cpu freq
 
 Changelogs:
 If the clock node in the device tree is configured with the

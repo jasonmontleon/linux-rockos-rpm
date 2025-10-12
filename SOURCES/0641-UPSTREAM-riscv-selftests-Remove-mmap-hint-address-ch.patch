@@ -1,7 +1,7 @@
-From 9811f20f4d26ac68537388ace4ba81dff75343f3 Mon Sep 17 00:00:00 2001
+From f0af983faef194115504a9d61ee7d70a8d1314d2 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:46 -0700
-Subject: [PATCH 643/654] UPSTREAM: riscv: selftests: Remove mmap hint address
+Subject: [PATCH 641/652] UPSTREAM: riscv: selftests: Remove mmap hint address
  checks
 
 The mmap behavior that restricts the addresses returned by mmap caused

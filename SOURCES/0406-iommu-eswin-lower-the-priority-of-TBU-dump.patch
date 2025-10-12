@@ -1,7 +1,7 @@
-From 7160074c6acd275449d6913d321ce6b884c1eb63 Mon Sep 17 00:00:00 2001
+From 0b57d73f288e75c27d85d5d50193d249e41c2b27 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 20 Feb 2025 19:32:11 +0800
-Subject: [PATCH 406/654] iommu: eswin: lower the priority of TBU dump
+Subject: [PATCH 406/652] iommu: eswin: lower the priority of TBU dump
 
 They are not so meaningful to end users, so lower the prio to debug
 instead of info.

@@ -1,7 +1,7 @@
-From a0a7028724aa264c80cb41c4f58a345777b098db Mon Sep 17 00:00:00 2001
+From a4b73f32c5380ffc8b48695a4180f6a164c0cb9c Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 9 May 2025 09:46:58 +0800
-Subject: [PATCH 501/654] fix: dvp2axi kernel warning
+Subject: [PATCH 501/652] fix: dvp2axi kernel warning
 
 Changelogs:
 1. initialize stream frame_phase to  unready

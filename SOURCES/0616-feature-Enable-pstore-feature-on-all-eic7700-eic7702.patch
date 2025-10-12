@@ -1,7 +1,7 @@
-From 77b1b6d43b39c937ab454381ef8c7da19cd593a9 Mon Sep 17 00:00:00 2001
+From f3d44a3ad91bc90da108758bb30f81825218aa8d Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Thu, 10 Jul 2025 17:53:50 +0800
-Subject: [PATCH 616/654] feature: Enable pstore feature on all eic7700/eic7702
+Subject: [PATCH 616/652] feature: Enable pstore feature on all eic7700/eic7702
 
 Changelogs:
 1. Enable pstore feature on all eic7700/eic7702

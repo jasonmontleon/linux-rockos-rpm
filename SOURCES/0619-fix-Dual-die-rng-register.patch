@@ -1,7 +1,7 @@
-From 5f16ba7788c95db2837e99f3a6f050535aeb47de Mon Sep 17 00:00:00 2001
+From ee66ec52bd99f1a0594774ef38194798cb961ca6 Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 11 Jul 2025 17:00:57 +0800
-Subject: [PATCH 619/654] fix: Dual die rng register
+Subject: [PATCH 619/652] fix: Dual die rng register
 
 Changelogs:
 Fix dual die rng register failed.

@@ -1,7 +1,7 @@
-From 52fceb78fe5588bd7e171f137b69a4cd47de39fb Mon Sep 17 00:00:00 2001
+From a68f0000fc6a56559fc7394ab089b47677a7126f Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Wed, 14 May 2025 13:50:20 +0800
-Subject: [PATCH 506/654] feat:update memory for mmz and bar2
+Subject: [PATCH 506/652] feat:update memory for mmz and bar2
 
 Changelogs:
 1.restore memory size to be the original size for

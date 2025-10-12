@@ -1,7 +1,7 @@
-From b3e36a89139470dd0efcd6a89aa820f0c05786a8 Mon Sep 17 00:00:00 2001
+From 490f67791f72558ca6994ccd20591ea6cceecc25 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 19 Nov 2024 14:25:46 +0800
-Subject: [PATCH 283/654] WIN2030-16657:fix(jenc):enc 32k jpeg hang
+Subject: [PATCH 283/652] WIN2030-16657:fix(jenc):enc 32k jpeg hang
 
 Changelogs:
 	too samll size counting for jenc, encoding 32k*32k jpeg

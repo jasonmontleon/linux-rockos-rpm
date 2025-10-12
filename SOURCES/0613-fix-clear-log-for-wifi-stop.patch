@@ -1,7 +1,7 @@
-From 9eac746f02a4febf7fa6aab6f04621af591050bf Mon Sep 17 00:00:00 2001
+From 1e922ddc8a96b2683c30ee91dec40fd1212ab97d Mon Sep 17 00:00:00 2001
 From: wangjinlong <wangjinlong@eswincomputing.com>
 Date: Tue, 8 Jul 2025 10:07:34 +0800
-Subject: [PATCH 613/654] fix: clear log for wifi stop
+Subject: [PATCH 613/652] fix: clear log for wifi stop
 
 Changelogs:
 1. clear driver log for wlan0 stop

@@ -1,7 +1,7 @@
-From b06c6027111d0a398b2cc5e60c4d67ced828c4e3 Mon Sep 17 00:00:00 2001
+From a472cfd02c16f28e387c53bfd098ff029cdaed17 Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Thu, 12 Jun 2025 17:38:59 +0800
-Subject: [PATCH 557/654] fix:fix modify SBC MIPI path
+Subject: [PATCH 557/652] fix:fix modify SBC MIPI path
 
 Changelogs: config set for 'y' in defconfig
 

@@ -1,7 +1,7 @@
-From ca134d72e636ad1347b189bfd324293599b68aba Mon Sep 17 00:00:00 2001
+From 7a2d04103d112aa2dbd6181da39cbdf8c8af7bdd Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sun, 23 Feb 2025 13:25:01 -0500
-Subject: [PATCH 652/654] Add NPU enabled variants of dtbs
+Subject: [PATCH 650/652] Add NPU enabled variants of dtbs
 
 ---
  arch/riscv/boot/dts/eswin/Makefile            |   3 +

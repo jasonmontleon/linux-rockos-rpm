@@ -1,7 +1,7 @@
-From a41e569f2669b8ab1c1aa3f497ca009265f3a710 Mon Sep 17 00:00:00 2001
+From afc155f7662e326ca23e161eed2da4b4b805d46a Mon Sep 17 00:00:00 2001
 From: zhangdongchuan <zhangdongchuan@eswincomputing.com>
 Date: Tue, 8 Jul 2025 08:32:18 +0800
-Subject: [PATCH 621/654] feat: Refactor PACMSG
+Subject: [PATCH 621/652] feat: Refactor PACMSG
 
 Changelogs:
 	Move PACMSG feature to ipcm driver

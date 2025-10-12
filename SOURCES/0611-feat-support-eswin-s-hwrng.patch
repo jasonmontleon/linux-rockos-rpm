@@ -1,7 +1,7 @@
-From c54aaf13b39a06cd9f5978bcc2b71e7e0ed7188a Mon Sep 17 00:00:00 2001
+From 07207728da5395c68775e1e5dc5efa680be286f5 Mon Sep 17 00:00:00 2001
 From: lihuihui <lihuihui@eswincomputing.com>
 Date: Thu, 3 Jul 2025 18:57:19 +0800
-Subject: [PATCH 611/654] feat:support eswin's hwrng
+Subject: [PATCH 611/652] feat:support eswin's hwrng
 
 Changelogs:
 1.support eswin's hwrng by CONFIG_CRYPTO_DEV_ESWIN_EIC770x=y

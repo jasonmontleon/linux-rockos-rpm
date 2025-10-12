@@ -1,7 +1,7 @@
-From 849008083d2845ecb53bc65223752e7699f1bae9 Mon Sep 17 00:00:00 2001
+From e3bfa894ee1a186f18035b5c1bd6757935c8c991 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 13 May 2025 13:47:57 +0800
-Subject: [PATCH 502/654] fix:modify the reading method of rpm
+Subject: [PATCH 502/652] fix:modify the reading method of rpm
 
 Changelogs:
 1. when rpm value is abnormal, read it again

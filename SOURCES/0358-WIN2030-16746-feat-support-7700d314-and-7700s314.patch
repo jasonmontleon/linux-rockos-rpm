@@ -1,7 +1,7 @@
-From b0958ef7072d422c16a5b84ecbc18d3edb5afe6e Mon Sep 17 00:00:00 2001
+From b0be9220fe4c2a62f045fc8b4a655f1d45cd251e Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 20 Dec 2024 23:09:07 +0800
-Subject: [PATCH 358/654] WIN2030-16746:feat:support 7700d314 and 7700s314
+Subject: [PATCH 358/652] WIN2030-16746:feat:support 7700d314 and 7700s314
 
 Changelogs:
 1. Implement 7700d314 dts

@@ -1,7 +1,7 @@
-From 362f186a130a52a20c0d20dfb0721d705fe59518 Mon Sep 17 00:00:00 2001
+From dfe221dcb0fd145a273c8c8e3624b34316dc8a39 Mon Sep 17 00:00:00 2001
 From: He jiean <hejiean@eswincomputing.com>
 Date: Wed, 9 Jul 2025 16:43:28 +0800
-Subject: [PATCH 618/654] fix: add dmabuf_helper params check
+Subject: [PATCH 618/652] fix: add dmabuf_helper params check
 
 Changelogs:
 1. make sure all heap_obj returen value as ERR_PTR when error occurs.

@@ -1,7 +1,7 @@
-From b1ec02a4e361234de2b6a77618ffc165b34448d4 Mon Sep 17 00:00:00 2001
+From 97cdb71dfb412104415961aed0aa26fd8c76ca1f Mon Sep 17 00:00:00 2001
 From: guozeyang <guozeyang@eswincomputing.com>
 Date: Fri, 20 Jun 2025 17:25:01 +0800
-Subject: [PATCH 573/654] fix:fix EVB MIPI spupport MP test
+Subject: [PATCH 573/652] fix:fix EVB MIPI spupport MP test
 
 Changelogs:
 	fix mipi open,hdmi display black

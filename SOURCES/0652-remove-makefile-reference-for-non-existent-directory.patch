@@ -1,7 +1,7 @@
-From ffdbd011b78d221d4c31204d900541fff12ecd3c Mon Sep 17 00:00:00 2001
+From 32b4177a2ac95e1882da260245473f8ee350f0b2 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Thu, 10 Jul 2025 14:51:04 -0400
-Subject: [PATCH 654/654] remove makefile reference for non existent directory
+Subject: [PATCH 652/652] remove makefile reference for non existent directory
 
 ---
  drivers/media/i2c/Makefile | 3 +--

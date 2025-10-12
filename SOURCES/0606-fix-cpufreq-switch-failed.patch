@@ -1,7 +1,7 @@
-From 02f07ced4c2f36e38f7fe8caed54b6bf628d1a34 Mon Sep 17 00:00:00 2001
+From bc7e6d87c9c6eb675d870a44ec219b18fa58dce4 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Mon, 7 Jul 2025 11:02:05 +0800
-Subject: [PATCH 606/654] fix:cpufreq switch failed
+Subject: [PATCH 606/652] fix:cpufreq switch failed
 
 Changelogs:
 1. cpufreq  switch failed because not set voltage gpio

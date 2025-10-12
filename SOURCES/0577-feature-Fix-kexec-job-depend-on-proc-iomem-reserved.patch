@@ -1,7 +1,7 @@
-From 0c4fc385f5f8e0faf06232d91e6bc8e2d6fb2148 Mon Sep 17 00:00:00 2001
+From f2d01f5188379eb92c9a613f9970f72ca4c0299b Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Fri, 20 Jun 2025 09:38:03 +0800
-Subject: [PATCH 577/654] feature: Fix kexec job depend on proc/iomem reserved
+Subject: [PATCH 577/652] feature: Fix kexec job depend on proc/iomem reserved
 
 Changelogs:
 1. Fix kexec job depend on proc/iomem reserved(Modification of the kernel source code)

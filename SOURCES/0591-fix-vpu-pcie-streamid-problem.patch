@@ -1,7 +1,7 @@
-From 31f2321cc251f71ef78694e7909b989327803b06 Mon Sep 17 00:00:00 2001
+From 5761ed077d3d64fca90e8b0412c645e3ee278fa6 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 27 Jun 2025 18:35:29 +0800
-Subject: [PATCH 591/654] fix: vpu pcie streamid problem
+Subject: [PATCH 591/652] fix: vpu pcie streamid problem
 
 Changelogs:
 	vpu pcie card smmu first level ptr point the same

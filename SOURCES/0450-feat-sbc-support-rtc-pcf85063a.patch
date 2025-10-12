@@ -1,7 +1,7 @@
-From da67ea4481e37b5a71e3514b541ff9ae88632f84 Mon Sep 17 00:00:00 2001
+From 265cec9d8b7e1373d1747ca085f45446d22a1a8c Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 19 Mar 2025 16:04:01 +0800
-Subject: [PATCH 450/654] feat:sbc support rtc pcf85063a
+Subject: [PATCH 450/652] feat:sbc support rtc pcf85063a
 
 Changelogs:
 1. sbc support rtc pcf85063a

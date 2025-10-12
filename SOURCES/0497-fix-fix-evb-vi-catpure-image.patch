@@ -1,7 +1,7 @@
-From 1ae3f890a11a58855cbaca7f50b5223912a51f18 Mon Sep 17 00:00:00 2001
+From a59c21bb4cdac73a0149e18fe4c9ec0d85fb8c08 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 7 May 2025 19:46:49 +0800
-Subject: [PATCH 497/654] fix: fix evb vi catpure image
+Subject: [PATCH 497/652] fix: fix evb vi catpure image
 
 Changelogs:
 1. remove interrupt log

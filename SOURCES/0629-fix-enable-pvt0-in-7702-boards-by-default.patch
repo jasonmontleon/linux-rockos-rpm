@@ -1,7 +1,7 @@
-From 8fcb681d7076bbea17061f863324f616520132f1 Mon Sep 17 00:00:00 2001
+From 20641b764b60085b6e325a8e12d6a829ae0b5a6e Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 13 Jun 2025 09:14:53 +0800
-Subject: [PATCH 629/654] fix:enable pvt0 in 7702 boards by default
+Subject: [PATCH 629/652] fix:enable pvt0 in 7702 boards by default
 
 Changelogs:
 Use dummy pvt0 in 7702 boards because pvt0 is used by lpcpu

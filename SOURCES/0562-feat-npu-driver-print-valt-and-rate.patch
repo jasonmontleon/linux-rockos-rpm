@@ -1,7 +1,7 @@
-From bd4f47806a1a23713a1d18d4928b30b6c91fc74d Mon Sep 17 00:00:00 2001
+From b47717bcd19be764e66cc375a4b88e344cf4b906 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Fri, 13 Jun 2025 14:41:23 +0800
-Subject: [PATCH 562/654] feat:npu driver print valt and rate
+Subject: [PATCH 562/652] feat:npu driver print valt and rate
 
 Changelogs:
 	When NPU frequency and voltage are adjusted, the driver print voltage and frequency setting information

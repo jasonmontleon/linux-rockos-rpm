@@ -1,7 +1,7 @@
-From 2d679a64efc4203b0865ce2bc80b1b40f85a1e2f Mon Sep 17 00:00:00 2001
+From 2a3722fbf64453bae91581ab22c2a3a251d115c7 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Wed, 7 May 2025 11:17:25 +0800
-Subject: [PATCH 500/654] feat:add es-fand function
+Subject: [PATCH 500/652] feat:add es-fand function
 
 Changelogs:
 1. control temperature by adjusting fan speed

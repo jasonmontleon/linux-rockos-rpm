@@ -1,7 +1,7 @@
-From 5ef9cde77d998ec96553c99f9baa365a389a6c85 Mon Sep 17 00:00:00 2001
+From 61eadd449b30388bacb9fb920c5bd7907f0fd06e Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 16 Apr 2025 10:19:42 +0800
-Subject: [PATCH 477/654] feat:make dma period size under 500ms
+Subject: [PATCH 477/652] feat:make dma period size under 500ms
 
 Changelogs:
 1. dma

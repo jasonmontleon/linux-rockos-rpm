@@ -1,7 +1,7 @@
-From f7b9091615b08af5f1151746d96a2024d1b886e9 Mon Sep 17 00:00:00 2001
+From cc228efca21b6bdf4990727022fc7f678d1594e4 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Thu, 26 Sep 2024 11:27:58 +0800
-Subject: [PATCH 181/654] fix: dsp driver need cancel scheduled work
+Subject: [PATCH 181/652] fix: dsp driver need cancel scheduled work
 
 Changelogs:
 	when suspend, driver need flush work for scheduled work have

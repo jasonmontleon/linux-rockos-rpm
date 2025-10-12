@@ -1,7 +1,7 @@
-From d52eef7038d594d846ea9a0e283459117ee73b86 Mon Sep 17 00:00:00 2001
+From f0c128b49cfb1c6b67d8627f7c168997b8a028a1 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 28 Oct 2024 18:46:15 +0800
-Subject: [PATCH 222/654] fix: 8250_dw typo
+Subject: [PATCH 222/652] fix: 8250_dw typo
 
 Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
 ---

@@ -1,7 +1,7 @@
-From bc79b624bd4fd72f14e79061b7f364fa146e669d Mon Sep 17 00:00:00 2001
+From 199a1b212785a6b0a3f51135affd48164178f40d Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 10 Sep 2024 13:11:44 +0800
-Subject: [PATCH 259/654] WIN2030-14758:fix:dma_numa_cma_reserve failed
+Subject: [PATCH 259/652] WIN2030-14758:fix:dma_numa_cma_reserve failed
 
 Changelogs:
 1.It said "cma: dma_numa_cma_reserve: reservation failed: err -12, node 0"

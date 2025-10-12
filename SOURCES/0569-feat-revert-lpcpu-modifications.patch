@@ -1,7 +1,7 @@
-From bde9d064d1f6040364074bcf285aade861341bbf Mon Sep 17 00:00:00 2001
+From 57a221616c51f1247c9e6fc3cb20042a14502a8a Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 19 Jun 2025 19:10:40 +0800
-Subject: [PATCH 569/654] feat:revert lpcpu modifications
+Subject: [PATCH 569/652] feat:revert lpcpu modifications
 
 Changelogs:
 1.revert lpcpu modifications in linux dts and

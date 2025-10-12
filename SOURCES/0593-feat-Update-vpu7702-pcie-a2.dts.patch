@@ -1,7 +1,7 @@
-From 167af56139289e8b6ceec86341a27bf222748158 Mon Sep 17 00:00:00 2001
+From 3687692e7ea794edfcbda94460148a9ff946e318 Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Wed, 2 Jul 2025 16:45:52 +0800
-Subject: [PATCH 593/654] feat:Update vpu7702-pcie-a2.dts.
+Subject: [PATCH 593/652] feat:Update vpu7702-pcie-a2.dts.
 
 Changelogs:
 Update arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts.

@@ -1,7 +1,7 @@
-From bda42993cc7d57d9052ed76fc988cb217496db0f Mon Sep 17 00:00:00 2001
+From 570a41036920b2446df499c7b6f7b0ea30f8cb49 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 13 Jun 2025 10:19:29 +0800
-Subject: [PATCH 556/654] feat:to support vpu7702 pcie A2 card
+Subject: [PATCH 556/652] feat:to support vpu7702 pcie A2 card
 
 Changelogs:
 1.add linux DTS and defconfig for vpu7702 pcie A2
