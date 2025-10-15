@@ -1,4 +1,4 @@
-From 5d819256a6d7bd0778308d2c74360658b0bf86aa Mon Sep 17 00:00:00 2001
+From ae9b3d12825a9ef7b70177474c5e38de11ac954c Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 13:50:10 +0800
 Subject: [PATCH 334/652] WIN2030-16445:fix:NPU driver add switch for perf

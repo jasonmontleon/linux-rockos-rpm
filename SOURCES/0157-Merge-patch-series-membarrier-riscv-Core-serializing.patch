@@ -1,4 +1,4 @@
-From 933884cded4be3fdc2488c63c6baf8bae5029aad Mon Sep 17 00:00:00 2001
+From 62435e9827b2b39c4c4f46cf0744f611d48c479b Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/652] Merge patch series "membarrier: riscv: Core
@@ -252,10 +252,10 @@ index 013da4b8b3272..67bb9794b8758 100644
  
 +#endif /* _LINUX_SYNC_CORE_H */
 diff --git a/init/Kconfig b/init/Kconfig
-index 8b630143c720f..e2463d3e8ba79 100644
+index 461591503bf43..a1e6ef3b1352b 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
-@@ -1994,6 +1994,9 @@ source "kernel/Kconfig.locks"
+@@ -1995,6 +1995,9 @@ source "kernel/Kconfig.locks"
  config ARCH_HAS_NON_OVERLAPPING_ADDRESS_SPACE
  	bool
  

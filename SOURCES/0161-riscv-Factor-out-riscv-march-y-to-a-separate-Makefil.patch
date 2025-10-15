@@ -1,4 +1,4 @@
-From a16cf048a8dbc79eff4095ded47facafdd6a3df1 Mon Sep 17 00:00:00 2001
+From 6044b61c6fa0f9e5bd80156791349cefdb9a0c94 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:14 -0800
 Subject: [PATCH 161/652] riscv: Factor out riscv-march-y to a separate
