@@ -1,4 +1,4 @@
-From e4f418a85196c324ffa59c8fd1bee4c7f5295735 Mon Sep 17 00:00:00 2001
+From c3b8c65ca6843160cf9e93facee0d3409ab85edd Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 3 Dec 2024 19:51:07 +0800
 Subject: [PATCH 301/652] configs: builtin ESWIN_IOMMU_RSV

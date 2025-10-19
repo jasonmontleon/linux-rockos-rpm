@@ -1,4 +1,4 @@
-From 45759b45074982799acdce211761cc1933f35008 Mon Sep 17 00:00:00 2001
+From 683c8509c1574ce77abaf00fe700e5152ada1421 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 13:21:56 +0800
 Subject: [PATCH 380/652] WIN2030-16919:feat:Apply numa early node patch from
@@ -46,10 +46,10 @@ index 37e9be5045669..d69a7dc8a0225 100644
  	select PCI_DOMAINS_GENERIC if PCI
  	select PCI_MSI if PCI
 diff --git a/init/main.c b/init/main.c
-index c787e94cc8982..01c1cb38456f4 100644
+index 20d2dd4d9b40f..52f6494d4d07c 100644
 --- a/init/main.c
 +++ b/init/main.c
-@@ -872,6 +872,19 @@ static void __init print_unknown_bootoptions(void)
+@@ -884,6 +884,19 @@ static void __init print_unknown_bootoptions(void)
  	memblock_free(unknown_options, len);
  }
  
@@ -69,7 +69,7 @@ index c787e94cc8982..01c1cb38456f4 100644
  asmlinkage __visible __init __no_sanitize_address __noreturn __no_stack_protector
  void start_kernel(void)
  {
-@@ -902,6 +915,7 @@ void start_kernel(void)
+@@ -914,6 +927,7 @@ void start_kernel(void)
  	setup_nr_cpu_ids();
  	setup_per_cpu_areas();
  	smp_prepare_boot_cpu();	/* arch-specific boot-cpu hooks */

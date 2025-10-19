@@ -1,4 +1,4 @@
-From d1def69dd2c63e1cd992a3c0abfea179baf7690c Mon Sep 17 00:00:00 2001
+From 8ee05177f218237a8a94e4fe2934e87d17197437 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Thu, 6 Feb 2025 16:01:28 +0800
 Subject: [PATCH 396/652] WIN2030-17070:fix:dsp drv module refcnt problem

@@ -1,4 +1,4 @@
-From 9f1097ee4dfb323a708f680733d22fe7f9f567e1 Mon Sep 17 00:00:00 2001
+From 62736ad02ff0f23f0b21c9672f3684bf157a7cf8 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Fri, 29 Mar 2024 00:18:16 -0700
 Subject: [PATCH 475/652] arch: add ARCH_HAS_KERNEL_FPU_SUPPORT
@@ -147,7 +147,7 @@ index 7a3a08d81f111..974beccd671f6 100644
  Low level entry and exit
  ========================
 diff --git a/Makefile b/Makefile
-index 64d76baa0e0c9..8dcb9efe40632 100644
+index ab277ff876431..f9b40b9584313 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -980,6 +980,11 @@ KBUILD_CFLAGS	+= $(CC_FLAGS_CFI)

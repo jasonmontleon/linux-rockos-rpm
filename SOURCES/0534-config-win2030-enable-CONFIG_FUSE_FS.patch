@@ -1,4 +1,4 @@
-From 114ca975f0135f53ff5b12af7ec7cf3096a60e25 Mon Sep 17 00:00:00 2001
+From c7769a2a333a513a518a6eb4d8c81951ab8cf2c7 Mon Sep 17 00:00:00 2001
 From: "Kevin.MX" <zhengjingkun@iscas.ac.cn>
 Date: Wed, 11 Jun 2025 22:04:36 +0800
 Subject: [PATCH 534/652] config: win2030: enable CONFIG_FUSE_FS
