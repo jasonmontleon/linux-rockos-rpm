@@ -1,4 +1,4 @@
-From ede96b8d297790407d560ebb13c5fd5cf9d3f828 Mon Sep 17 00:00:00 2001
+From 6f826e411d59e887b42e9e1a6bf6794e88df8292 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Mon, 16 Dec 2024 19:57:03 +0800
 Subject: [PATCH 368/652] WIN2030-16701: fix : die1 uart not inited, use uart0

@@ -1,4 +1,4 @@
-From daf9c691ececf5390bd5373e58a5e4bc363ee180 Mon Sep 17 00:00:00 2001
+From 6403b1521661417e72c712f95fa906a915fdedc4 Mon Sep 17 00:00:00 2001
 From: "Kevin.MX" <zhengjingkun@iscas.ac.cn>
 Date: Wed, 11 Jun 2025 22:03:32 +0800
 Subject: [PATCH 533/652] config: win2030: enable CONFIG_TASK_IO_ACCOUNTING
