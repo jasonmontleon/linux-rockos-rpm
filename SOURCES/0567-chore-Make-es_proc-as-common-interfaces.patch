@@ -1,4 +1,4 @@
-From 505702e6f2389e8269e6dd61eb038e54f2af666a Mon Sep 17 00:00:00 2001
+From 906f7f911e434c48b4a9e1d0bd35f46129b30f1c Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 15:47:52 +0800
 Subject: [PATCH 567/652] chore:Make es_proc as common interfaces
@@ -301,5 +301,5 @@ index 65c73460e11bc..255db4cd25085 100644
  extern void es_remove_proc_entry(const char *name, es_proc_entry_t *parent);
  extern int es_seq_printf(es_proc_entry_t *entry, const char *fmt, ...)
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 24a34c69bef33d517dc7f2db41c331437d5dcea5 Mon Sep 17 00:00:00 2001
+From 0056318ba26ce162e260ebf70c3c62384e94abc6 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Jun 2025 14:30:55 +0800
 Subject: [PATCH 538/652] riscv: configs: enable Motorcomm PHY driver
@@ -23,5 +23,5 @@ index dfe1b886df52c..31bc21c2496f3 100644
  CONFIG_PPP=m
  CONFIG_PPP_BSDCOMP=m
 -- 
-2.51.0
+2.51.1
 

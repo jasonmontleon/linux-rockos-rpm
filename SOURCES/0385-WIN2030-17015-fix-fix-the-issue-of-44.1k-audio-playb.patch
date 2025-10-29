@@ -1,4 +1,4 @@
-From 98d05e93092ac37cb8047f9ca318f0aa5b890446 Mon Sep 17 00:00:00 2001
+From 58a9d7b85f351bd9c7082c30243753fa9b3927c0 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 16 Jan 2025 11:01:39 +0800
 Subject: [PATCH 385/652] WIN2030-17015:fix:fix the issue of 44.1k audio
@@ -56,5 +56,5 @@ index 2fee4120acd2a..14a365e84718e 100644
  	hw.info |= SNDRV_PCM_INFO_BATCH;
  
 -- 
-2.51.0
+2.51.1
 

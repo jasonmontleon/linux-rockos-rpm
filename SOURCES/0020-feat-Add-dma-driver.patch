@@ -1,4 +1,4 @@
-From 164db41ab2f16e89dcf8351867622108cb45b537 Mon Sep 17 00:00:00 2001
+From 16b1340c64fc3b3066bebd9b82465e39ef571d74 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Thu, 23 May 2024 10:01:46 +0800
 Subject: [PATCH 020/652] feat:Add dma driver.
@@ -457,5 +457,5 @@ index 6c85b4b980f21..7793f39259324 100755
  #define WIN2030_NR_CLKS                                         700
  
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 9bd4e90040b8821762c5f995a81e60c9a8f0a343 Mon Sep 17 00:00:00 2001
+From 063144cde0575d019bae2aed8f84dbe615f5757f Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 8 Jul 2025 17:09:02 +0800
 Subject: [PATCH 612/652] feat: support fccsp evb mipi csi
@@ -28,5 +28,5 @@ index 2a37c22f7c30b..db34692de19be 100644
  
  / {
 -- 
-2.51.0
+2.51.1
 

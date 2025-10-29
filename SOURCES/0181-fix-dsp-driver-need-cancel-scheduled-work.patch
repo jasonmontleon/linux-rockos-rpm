@@ -1,4 +1,4 @@
-From f8cbc1621ffd36b949dfbcc514fe3ea25005d926 Mon Sep 17 00:00:00 2001
+From c8ba92837bd5b0b824a524116796df153329aa59 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Thu, 26 Sep 2024 11:27:58 +0800
 Subject: [PATCH 181/652] fix: dsp driver need cancel scheduled work
@@ -199,5 +199,5 @@ index fd2edd5fa9265..8c36e90e20f6b 100644
  {
  	struct es_dsp_hw *hw = (struct es_dsp_hw *)dsp->hw_arg;
 -- 
-2.51.0
+2.51.1
 

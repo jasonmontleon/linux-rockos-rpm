@@ -1,4 +1,4 @@
-From 086dc42032106fa948b74dfcc7b46b01e2d5197c Mon Sep 17 00:00:00 2001
+From ba2a21dccc02ffb24bf16b4f2777690d1fea024f Mon Sep 17 00:00:00 2001
 From: liwenkai <liwenkai@eswincomputing.com>
 Date: Thu, 21 Nov 2024 18:16:01 +0800
 Subject: [PATCH 289/652] WIN2030-16671:fix(drm):add VIRTUAL on 7702 board
@@ -23,5 +23,5 @@ index 5ae50b34eea18..830481fffc7ec 100644
  CONFIG_DW_HDMI_CEC=y
  CONFIG_DRM_IMG_VOLCANIC=m
 -- 
-2.51.0
+2.51.1
 

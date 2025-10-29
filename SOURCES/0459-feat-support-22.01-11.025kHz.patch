@@ -1,4 +1,4 @@
-From d2893f8607527ccd654c04dbba3944b5f0951446 Mon Sep 17 00:00:00 2001
+From 9eeb1c4a2fd4fb4d4f0935b506e826929638db74 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:47:04 +0800
 Subject: [PATCH 459/652] feat:support 22.01/11.025kHz
@@ -2448,5 +2448,5 @@ index eed2859387b11..e1aa30eeb5a9c
 +MODULE_DESCRIPTION("I2S driver");
 +MODULE_LICENSE("GPL");
 -- 
-2.51.0
+2.51.1
 

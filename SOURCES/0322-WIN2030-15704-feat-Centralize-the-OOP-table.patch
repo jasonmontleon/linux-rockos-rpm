@@ -1,4 +1,4 @@
-From da04b802500c495e6a5f0c0c5ec3a376c23478fa Mon Sep 17 00:00:00 2001
+From 676f0eac83b57d11337c8c017ecdf07f8acf35bb Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 28 Oct 2024 13:11:34 +0800
 Subject: [PATCH 322/652] WIN2030-15704:feat:Centralize the OOP table
@@ -614,5 +614,5 @@ index 31b718685d06c..66c2a8dddd043 100644
  		d1_thermal0 {
  			polling-delay-passive = <500>; /*ms*/
 -- 
-2.51.0
+2.51.1
 

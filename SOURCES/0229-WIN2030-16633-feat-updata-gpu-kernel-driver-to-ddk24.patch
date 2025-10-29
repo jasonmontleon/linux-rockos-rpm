@@ -1,4 +1,4 @@
-From 6a7707f57174b709c85dfaa6f5a393f805908eae Mon Sep 17 00:00:00 2001
+From 9a146a97a16c1bbfbc23105a8e58c8ea7f407450 Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Tue, 12 Nov 2024 10:47:12 +0800
 Subject: [PATCH 229/652] <WIN2030-16633>:feat:updata gpu kernel driver to
@@ -258365,5 +258365,5 @@ index adbef2a038b4b..4d17f6e555948 100644
  #define PVRVERSION_PACK(MAJOR,MINOR) (((IMG_UINT32)((IMG_UINT32)(MAJOR) & 0xFFFFU) << 16U) | (((MINOR) & 0xFFFFU) << 0U))
  #define PVRVERSION_UNPACK_MAJ(VERSION) (((VERSION) >> 16U) & 0xFFFFU)
 -- 
-2.51.0
+2.51.1
 

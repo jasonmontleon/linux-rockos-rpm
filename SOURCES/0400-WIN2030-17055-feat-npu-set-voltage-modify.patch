@@ -1,4 +1,4 @@
-From a795caea2efbb20bc05ce7f02da46967aae24bd6 Mon Sep 17 00:00:00 2001
+From 8f7488f45d38b9a2a4d74cdd2636780830c54f5d Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 7 Feb 2025 20:00:25 +0800
 Subject: [PATCH 400/652] WIN2030-17055:feat: npu set voltage modify
@@ -72,5 +72,5 @@ index aa3be74f7e387..e4b6eca924830 100644
  
  &d0_dsp_subsys {
 -- 
-2.51.0
+2.51.1
 

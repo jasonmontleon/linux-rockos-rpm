@@ -1,4 +1,4 @@
-From 21aaae7c771d49f29b79821c0f8acffaa53eb4af Mon Sep 17 00:00:00 2001
+From 8014b823232ea9153b2d1affc8c31bcdf16a7dd2 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 14:43:33 +0800
 Subject: [PATCH 122/652] fix:fix the cpu 100% issue when wait FE idle
@@ -116,5 +116,5 @@ index 21e9513d8347d..b31682bb944ee 100644
          gckKERNEL_Notify(kernel, gcvNOTIFY_INTERRUPT);
      }
 -- 
-2.51.0
+2.51.1
 

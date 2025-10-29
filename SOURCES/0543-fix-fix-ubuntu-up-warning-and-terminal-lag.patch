@@ -1,4 +1,4 @@
-From 3cbfa9a5759b06e22d5beb0a93bade4a313b0547 Mon Sep 17 00:00:00 2001
+From 8644ec8151c60208ebd8ab6c405f69c5c489f294 Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Fri, 20 Jun 2025 15:00:43 +0800
 Subject: [PATCH 543/652] fix:fix ubuntu up warning and terminal lag
@@ -39,5 +39,5 @@ index 2b8d299e2f02f..9aa488f42add5 100644
      int ret = 0;
      struct vvcam_isp_ctrl *isp_ctrl;
 -- 
-2.51.0
+2.51.1
 

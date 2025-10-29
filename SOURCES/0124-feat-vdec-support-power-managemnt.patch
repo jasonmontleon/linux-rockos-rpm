@@ -1,4 +1,4 @@
-From c1d2c042d7312b66f75faf8b6e76b9a616ae2be4 Mon Sep 17 00:00:00 2001
+From faf2175a8cb102e34d9e9818c177f71cf3fccf79 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 18 Jul 2024 13:54:33 +0800
 Subject: [PATCH 124/652] feat:vdec support power managemnt
@@ -725,5 +725,5 @@ index 39b68c6c1bbd7..17a82a6169b0e 100644
  /* MMU */
  /******************************************************************************/
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 64b76331887e4aa146cbf9e8fe96f4bf61bb9a91 Mon Sep 17 00:00:00 2001
+From 34e67202c1625fc71f98369462db87997edc0c97 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 18 Dec 2024 10:59:41 +0800
 Subject: [PATCH 345/652] WIN2030-16831:fix:Delete HDMI Audio error printing.
@@ -41,5 +41,5 @@ index 8fc5a00472d36..9e3648863be60 100755
  	{
  		.name = "d1-i2s0",
 -- 
-2.51.0
+2.51.1
 

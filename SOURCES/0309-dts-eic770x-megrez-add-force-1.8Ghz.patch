@@ -1,4 +1,4 @@
-From 5dd047b901f6ac53e97dedbb945b9552a4a3f3c5 Mon Sep 17 00:00:00 2001
+From 895e541f5f85bad77470e99f5499ba479d9bb881 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 23:50:58 +0800
 Subject: [PATCH 309/652] dts: eic770x: megrez: add force 1.8Ghz
@@ -27,5 +27,5 @@ index 3fbee7bee3950..7839bd28d00f5 100644
          opp-1500000000 {
                  opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
 -- 
-2.51.0
+2.51.1
 

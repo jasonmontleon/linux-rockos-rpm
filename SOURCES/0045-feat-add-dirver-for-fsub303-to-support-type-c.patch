@@ -1,4 +1,4 @@
-From 824ced2525215881e229b86ff840b1ba81f81388 Mon Sep 17 00:00:00 2001
+From 03d7e4686cd175c5f8d7f6aec4a4f882fdfc3bf8 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 3 Jun 2024 19:06:17 +0800
 Subject: [PATCH 045/652] feat:add dirver for fsub303 to support type-c
@@ -862,5 +862,5 @@ index 0000000000000..5ffc27640a05a
 +MODULE_DESCRIPTION("Onsemi FUSB303B Type-C Chip Driver");
 +MODULE_LICENSE("GPL");
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From db463e14b1295dd738da29902aeb97b127a0c52f Mon Sep 17 00:00:00 2001
+From 01f321bc8217b6ea2cc930c873b6aa8a19076333 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 8 Jan 2025 16:12:18 +0800
 Subject: [PATCH 376/652] WIN2030-16501:fix:Add vi config TBU
@@ -27,5 +27,5 @@ index ecfff2bf03348..cc651302b4a09 100644
  
  
 -- 
-2.51.0
+2.51.1
 

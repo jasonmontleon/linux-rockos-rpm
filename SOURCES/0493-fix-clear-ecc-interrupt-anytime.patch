@@ -1,4 +1,4 @@
-From ccf26361b1b0ad181d9e3cd14dcb705044eeb4e6 Mon Sep 17 00:00:00 2001
+From 1bcedfb94c11cd065b28cc365fad51913fd44fba Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 1 May 2025 18:33:11 +0800
 Subject: [PATCH 493/652] fix:clear ecc interrupt anytime
@@ -26,5 +26,5 @@ index 508010cf44341..ebf42694d3c03 100644
  	priv->ce_cnt += priv->stat.ce_cnt;
  	priv->ue_cnt += priv->stat.ue_cnt;
 -- 
-2.51.0
+2.51.1
 

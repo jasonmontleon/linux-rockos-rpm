@@ -1,4 +1,4 @@
-From a9736f4acfae0d1eec4748446a24132e43046f20 Mon Sep 17 00:00:00 2001
+From 9a3422ea901e1e81820bfe2f3c8abaad04ea7769 Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Fri, 12 Jul 2024 18:30:09 +0800
 Subject: [PATCH 128/652] feat:Add lpcpu driver for linux-6.6
@@ -522,5 +522,5 @@ index 0000000000000..0568e1ef57f56
 +MODULE_DESCRIPTION("ESWIN WIN2030 lpcpu driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.51.0
+2.51.1
 

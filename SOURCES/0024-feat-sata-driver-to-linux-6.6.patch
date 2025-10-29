@@ -1,4 +1,4 @@
-From e8e737ac03f3bf71a057d4eecf3d351d8fe44007 Mon Sep 17 00:00:00 2001
+From 645e91fa3b5cd6454542b32ae0d39bfa17105ce7 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 24 May 2024 10:47:11 +0800
 Subject: [PATCH 024/652] feat:sata driver to linux 6.6.
@@ -406,5 +406,5 @@ index 0000000000000..d9495dfe9887b
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.51.0
+2.51.1
 

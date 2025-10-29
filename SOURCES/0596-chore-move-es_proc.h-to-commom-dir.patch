@@ -1,4 +1,4 @@
-From 884cf447c5e29854b55697498fa9b7ffee2b401c Mon Sep 17 00:00:00 2001
+From 45f2d1e405f6f4b71a753b01bf05a9ce28658b12 Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Wed, 2 Jul 2025 13:51:36 +0800
 Subject: [PATCH 596/652] chore: move es_proc.h to commom dir
@@ -45,5 +45,5 @@ similarity index 100%
 rename from drivers/memory/eswin/es_proc/include/linux/es_proc.h
 rename to include/linux/es_proc.h
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 712735ddc3b9f3be75314fd682166667f5fa792e Mon Sep 17 00:00:00 2001
+From 44f07ae8072e1c6ef182bc53888ad8c1d2a0a6fa Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 19 Dec 2024 09:36:02 +0800
 Subject: [PATCH 346/652] WIN2030-16760:feat:adapt eth dly params to 7702
@@ -62,5 +62,5 @@ index 8e0d8e10a6648..1470d3990cd5b 100644
  };
  
 -- 
-2.51.0
+2.51.1
 

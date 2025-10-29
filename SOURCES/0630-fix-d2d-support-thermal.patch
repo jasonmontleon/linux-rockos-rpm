@@ -1,4 +1,4 @@
-From d57d9d3942c81a0c8668760340ccb36e4f0a122f Mon Sep 17 00:00:00 2001
+From ec9bd24be651ab6c271b85dafe901b37ab3a390f Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Mon, 14 Jul 2025 18:01:21 +0800
 Subject: [PATCH 630/652] fix:d2d support thermal
@@ -60,5 +60,5 @@ index 0637f2b612f63..32b36f7a820b1 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.51.0
+2.51.1
 

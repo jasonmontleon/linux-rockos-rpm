@@ -1,4 +1,4 @@
-From ca193113a1f9ddafe96e2a6417f58b3c9163ce15 Mon Sep 17 00:00:00 2001
+From 05fc50ec8fbadcd901a818cc0424bd8560c630ce Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Thu, 10 Jul 2025 14:51:04 -0400
 Subject: [PATCH 652/652] remove makefile reference for non existent directory
@@ -27,5 +27,5 @@ index d0f8b180c1de6..f782c9be9d26d 100644
 \ No newline at end of file
 +obj-$(CONFIG_VIDEO_IMX327) += imx327.o
 -- 
-2.51.0
+2.51.1
 

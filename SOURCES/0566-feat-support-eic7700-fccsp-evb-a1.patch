@@ -1,4 +1,4 @@
-From 05a0d85e6afac5726f23d9eb7f0084fed686b092 Mon Sep 17 00:00:00 2001
+From 5e2f9905025a2ac62c96941168098ccec5f38319 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Sat, 12 Apr 2025 17:17:12 +0800
 Subject: [PATCH 566/652] feat:support eic7700 fccsp evb a1
@@ -1007,5 +1007,5 @@ index 0000000000000..2a37c22f7c30b
 +
 +
 -- 
-2.51.0
+2.51.1
 

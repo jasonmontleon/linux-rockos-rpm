@@ -1,4 +1,4 @@
-From 7638788d5ccee5062c4e2530eeb02f0a55885086 Mon Sep 17 00:00:00 2001
+From 457f2aaefb8bb49ffc066c4e7b4e9095e9c64879 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:03:38 +0800
 Subject: [PATCH 223/652] Revert "sync:drm support debugfs control virtual"
@@ -47,5 +47,5 @@ index 39409f08c2220..079152612a36d 100644
  CONFIG_DW_HDMI_CEC=y
  CONFIG_DRM_IMG_VOLCANIC=m
 -- 
-2.51.0
+2.51.1
 

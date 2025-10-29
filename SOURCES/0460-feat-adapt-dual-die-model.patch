@@ -1,4 +1,4 @@
-From 52718592100126b3084722a0ae73258e1e4c47d7 Mon Sep 17 00:00:00 2001
+From 8c6348b833d6771378c63576d58d31ab1372ac90 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Wed, 26 Feb 2025 09:05:52 +0800
 Subject: [PATCH 460/652] feat:adapt dual die model
@@ -24,5 +24,5 @@ index 8858e6863ab15..6dff5245a0b82 100644
  
  /**
 -- 
-2.51.0
+2.51.1
 

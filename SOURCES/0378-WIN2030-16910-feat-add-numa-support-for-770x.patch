@@ -1,4 +1,4 @@
-From bbfddb4d4761dc7991e6d27c131803d32b499010 Mon Sep 17 00:00:00 2001
+From 49fbf1d5c3c439aec6e3fdb8be3e2adab927e0eb Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Tue, 31 Dec 2024 11:09:30 +0800
 Subject: [PATCH 378/652] WIN2030-16910:feat:add numa support for 770x.
@@ -50,5 +50,5 @@ index e624878d68628..50d7c7e77731a 100644
  
  	if (psPage == NULL)
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From ad6165ba027fc9b8bb4806d9e624f3e2ccb5e423 Mon Sep 17 00:00:00 2001
+From 964cef568d6c5f619d63dc84aafc14b52700620d Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:02 -0800
 Subject: [PATCH 640/652] UPSTREAM: docs: riscv: Define behavior of mmap
@@ -40,5 +40,5 @@ index 69ff6da1dbf8f..e476b4386bd9d 100644
 +bits 41 through 63. If no mappable addresses are available in that range, mmap
 +will return `MAP_FAILED`.
 -- 
-2.51.0
+2.51.1
 

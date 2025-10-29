@@ -1,4 +1,4 @@
-From 7020e606c0f81f79dd6c9d37cc5957e5e11d5f18 Mon Sep 17 00:00:00 2001
+From 2afef6767c20cd4bcc94b13fed6c580a8253fac1 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 2 Jul 2025 17:38:30 +0800
 Subject: [PATCH 599/652] fix:disable wifi by default
@@ -96,5 +96,5 @@ index 36366cc3642eb..04ffef051e20f 100644
 +};
 \ No newline at end of file
 -- 
-2.51.0
+2.51.1
 

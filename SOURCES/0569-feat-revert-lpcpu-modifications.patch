@@ -1,4 +1,4 @@
-From b13143ed6998b14cf960ef99dec2b06648105380 Mon Sep 17 00:00:00 2001
+From cd8306e51022bd57b1d784ef684ac60d9d451737 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 19 Jun 2025 19:10:40 +0800
 Subject: [PATCH 569/652] feat:revert lpcpu modifications
@@ -54,5 +54,5 @@ index 21d2c8c083b67..a331af3f0898e 100644
  	pcf_rtc:rtc@51 {
  		compatible = "nxp,pcf8563";
 -- 
-2.51.0
+2.51.1
 

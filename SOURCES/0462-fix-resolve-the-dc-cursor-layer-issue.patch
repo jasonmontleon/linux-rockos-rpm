@@ -1,4 +1,4 @@
-From b39979fd8c43560ca2b4e9956bbc235ce31bdec8 Mon Sep 17 00:00:00 2001
+From a0e016e7bc1e9b59459b9c1f32913ef9bc5791a1 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 3 Apr 2025 16:23:23 +0800
 Subject: [PATCH 462/652] fix:resolve the dc cursor layer issue.
@@ -24,5 +24,5 @@ index 799fdd18d5cb2..9ea5560062aab 100644
  	dc_hw_update_cursor(&dc->hw, &cursor);
  }
 -- 
-2.51.0
+2.51.1
 

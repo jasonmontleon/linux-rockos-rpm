@@ -1,4 +1,4 @@
-From 7e8fb7c5bd3ee0928b1228fca5c8083c4e61c9db Mon Sep 17 00:00:00 2001
+From 475d9c9793807af5115fc3e1487d452cf71b62c2 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 13 Jun 2025 10:19:29 +0800
 Subject: [PATCH 556/652] feat:to support vpu7702 pcie A2 card
@@ -2001,5 +2001,5 @@ index 0000000000000..c151e2f411bbe
 +CONFIG_TI_ADS1015=y
 +CONFIG_ESWIN_MALLOC_DMABUF=y
 -- 
-2.51.0
+2.51.1
 

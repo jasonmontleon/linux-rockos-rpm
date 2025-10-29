@@ -1,4 +1,4 @@
-From 2feb6abaa873f7fc1be989ceab4ae5326eb13a0e Mon Sep 17 00:00:00 2001
+From ccf163834d8e573d63a0851ccfec9c76034f250e Mon Sep 17 00:00:00 2001
 From: hehuan1 <hehuan1@eswincomputing.com>
 Date: Tue, 10 Jun 2025 21:51:57 +0800
 Subject: [PATCH 628/652] feat: implement cpu read data from lpcpu
@@ -837,5 +837,5 @@ index aaf7c55171e9c..fe30569f48973 100644
  
  /*
 -- 
-2.51.0
+2.51.1
 

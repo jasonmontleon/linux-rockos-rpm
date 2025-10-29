@@ -1,4 +1,4 @@
-From d8485f78d1557ec25826e7a3f731d32030422978 Mon Sep 17 00:00:00 2001
+From 00ab101d88888a9c7f7b4bc38c27218d78ecb181 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Thu, 21 Nov 2024 15:29:04 +0800
 Subject: [PATCH 299/652] WIN2030-16668:feat:dump multi dsp input/output
@@ -587,5 +587,5 @@ index 489bbbdec743c..c55a8188843b9 100644
  
  	return;
 -- 
-2.51.0
+2.51.1
 

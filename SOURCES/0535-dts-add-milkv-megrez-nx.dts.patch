@@ -1,4 +1,4 @@
-From 58822c331f3c1d5d9e8ab42f8132d2d33c2c050d Mon Sep 17 00:00:00 2001
+From 67e844578d29c7a50cf6f2d5a55f2ed2a0827e8f Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Tue, 27 May 2025 14:31:56 +0800
 Subject: [PATCH 535/652] dts: add milkv-megrez-nx.dts
@@ -989,5 +989,5 @@ index 0000000000000..e8e09df6105ae
 +};
 +
 -- 
-2.51.0
+2.51.1
 

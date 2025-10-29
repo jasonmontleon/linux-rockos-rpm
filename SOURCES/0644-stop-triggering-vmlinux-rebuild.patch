@@ -1,4 +1,4 @@
-From e43a27738928d29a6c5040d9f85d8c9270441928 Mon Sep 17 00:00:00 2001
+From 3c48a57f8e6c25f9865aef47bf5125e120f43d56 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:03:43 -0500
 Subject: [PATCH 644/652] stop triggering vmlinux rebuild
@@ -321,5 +321,5 @@ index 0000000000000..6c18444599de8
 +
 +#endif
 -- 
-2.51.0
+2.51.1
 

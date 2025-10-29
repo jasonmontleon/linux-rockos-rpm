@@ -1,4 +1,4 @@
-From 27cc8647662090913dd2b1b21580f59798185e07 Mon Sep 17 00:00:00 2001
+From 651374d1586a215c1c5bddb5970298da56ab68c2 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Thu, 18 Jul 2024 17:12:45 +0800
 Subject: [PATCH 106/652] feat:adapt g2d for the RPM framework
@@ -2169,5 +2169,5 @@ index 416fd0bb6dd9b..9551b0cbed098 100644
  #endif
  #endif
 -- 
-2.51.0
+2.51.1
 

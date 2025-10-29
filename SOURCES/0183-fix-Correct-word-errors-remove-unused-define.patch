@@ -1,4 +1,4 @@
-From 29e41f81f9cd9710e2904c2ffcf16c8a13c721bc Mon Sep 17 00:00:00 2001
+From 4624e7d94b0d5e742ffcfb3923db290c18242f3a Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 30 Jul 2024 13:56:07 +0800
 Subject: [PATCH 183/652] fix:Correct word errors,remove unused define
@@ -87,5 +87,5 @@ index 1769d9a7ff5f3..4ea7003b03392 100755
  	struct usb_hcd *hcd;
  	struct notifier_block device_nb;
 -- 
-2.51.0
+2.51.1
 

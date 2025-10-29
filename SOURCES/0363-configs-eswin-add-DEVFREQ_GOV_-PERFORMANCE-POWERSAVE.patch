@@ -1,4 +1,4 @@
-From 02f77bebe2d4630c9751edf1ba82b4df52389ebf Mon Sep 17 00:00:00 2001
+From 62b48761a1cd7bf35630c6179895997130200f2b Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 24 Jan 2025 17:16:08 +0800
 Subject: [PATCH 363/652] configs: eswin: add
@@ -30,5 +30,5 @@ index 7601a3cf4932e..6af7ca38d0c99 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.51.0
+2.51.1
 

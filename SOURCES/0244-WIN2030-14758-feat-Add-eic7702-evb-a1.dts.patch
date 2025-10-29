@@ -1,4 +1,4 @@
-From d0d0f649c84fc31315b3fa28ec76dbe0ceb89ec8 Mon Sep 17 00:00:00 2001
+From d501b8ca5cca9a96e26f6b2d13f7ec57d8fb6924 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 5 Aug 2024 19:34:14 +0800
 Subject: [PATCH 244/652] WIN2030-14758:feat:Add eic7702-evb-a1.dts
@@ -3751,5 +3751,5 @@ index 0000000000000..36bcc734ee7ee
 +# CONFIG_RUNTIME_TESTING_MENU is not set
 +CONFIG_MEMTEST=y
 -- 
-2.51.0
+2.51.1
 

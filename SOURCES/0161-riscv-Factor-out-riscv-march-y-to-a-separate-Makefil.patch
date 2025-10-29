@@ -1,4 +1,4 @@
-From aad241241ee9ce7a4f87c96e99aeda6acd181d40 Mon Sep 17 00:00:00 2001
+From 16bfb90e78b857ff3c21618b99ba7ca9ba78eab1 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:14 -0800
 Subject: [PATCH 161/652] riscv: Factor out riscv-march-y to a separate
@@ -72,5 +72,5 @@ index 0000000000000..322a83958b968
 +# Check if the toolchain supports Zihintpause extension
 +riscv-march-$(CONFIG_TOOLCHAIN_HAS_ZIHINTPAUSE) := $(riscv-march-y)_zihintpause
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From f4fa707bb960e47902c36e3fe4f232f011763b7a Mon Sep 17 00:00:00 2001
+From e52feeb51bbf0eaad3fc844de8bbad20f7bf3583 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 8 Jul 2025 18:01:36 +0800
 Subject: [PATCH 615/652] feature: Sync config from eic7700_defconfig
@@ -192,5 +192,5 @@ index 9e634f09e222a..fdbad29cf77e3 100644
  CONFIG_BCMDHD_SDIO_IRQ=y
  CONFIG_REGULATOR=y
 -- 
-2.51.0
+2.51.1
 

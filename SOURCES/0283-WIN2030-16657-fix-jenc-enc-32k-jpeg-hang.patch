@@ -1,4 +1,4 @@
-From 116a0f21a1013eb4a04ac7c6d2ffb1adb16f9d11 Mon Sep 17 00:00:00 2001
+From 70d3dab08de0a9eaa78098c98a67d3eb31d4a026 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 19 Nov 2024 14:25:46 +0800
 Subject: [PATCH 283/652] WIN2030-16657:fix(jenc):enc 32k jpeg hang
@@ -56,5 +56,5 @@ index 5e24f087817df..0686cc8dbd04d 100644
  /** the wait time for the vcmd task list(in milliseconds):
   * 200x frame encoding time + 1000ms
 -- 
-2.51.0
+2.51.1
 

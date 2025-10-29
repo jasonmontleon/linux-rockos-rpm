@@ -1,4 +1,4 @@
-From aaed2c7ee8fffbb5afac56f9c867081e2c0aeafc Mon Sep 17 00:00:00 2001
+From e78bf0cf28b42b6a0d0f9bc7224d835b1eb22859 Mon Sep 17 00:00:00 2001
 From: Yanko Kaneti <yaneti@declera.com>
 Date: Sun, 29 Jun 2025 22:49:20 +0300
 Subject: [PATCH 651/652] Bring back 1.8GHz to STARPro64
@@ -90,5 +90,5 @@ index 3f24c8829310d..4614f55ca71c4 100644
 +        };
  };
 -- 
-2.51.0
+2.51.1
 

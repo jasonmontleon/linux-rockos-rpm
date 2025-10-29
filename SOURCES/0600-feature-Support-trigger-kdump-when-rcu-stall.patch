@@ -1,4 +1,4 @@
-From ff7f2d609f28621f1414bc8731078df259d381d5 Mon Sep 17 00:00:00 2001
+From 8ebf3437b32539a0a5a82559455f5e84584ae7c8 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 2 Jul 2025 18:01:39 +0800
 Subject: [PATCH 600/652] feature: Support trigger kdump when rcu stall
@@ -37,5 +37,5 @@ index 174f6aac9374a..a2bd1daf22bc8 100644
  # CONFIG_RUNTIME_TESTING_MENU is not set
  CONFIG_MEMTEST=y
 -- 
-2.51.0
+2.51.1
 

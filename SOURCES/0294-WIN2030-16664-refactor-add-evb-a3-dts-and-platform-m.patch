@@ -1,4 +1,4 @@
-From bd1a60bb7dd122295cec3992f151e401c4f0fdd4 Mon Sep 17 00:00:00 2001
+From 4f11035a462556588789fcbd46ebbdecd7dfc667 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 27 Nov 2024 14:22:07 +0800
 Subject: [PATCH 294/652] WIN2030-16664:refactor:add evb a3 dts and platform
@@ -172,5 +172,5 @@ index c035da206e7bd..3c3ba2be4bfa3 100755
  				ret = eswin_clk_set_cpu_volatge(clk->cpu_voltage_gpio, cpu_target_volatge);
  				if (ret) {
 -- 
-2.51.0
+2.51.1
 

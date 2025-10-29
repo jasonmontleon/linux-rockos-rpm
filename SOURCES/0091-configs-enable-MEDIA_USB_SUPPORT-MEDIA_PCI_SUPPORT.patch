@@ -1,4 +1,4 @@
-From 13b162d37035e030b27ab0b226e34721b4cf8927 Mon Sep 17 00:00:00 2001
+From 4c3a238434e870ce4688c6311bfd8cdb3d948986 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 28 Jun 2024 17:27:25 +0800
 Subject: [PATCH 091/652] configs: enable MEDIA_USB_SUPPORT & MEDIA_PCI_SUPPORT
@@ -169,5 +169,5 @@ index 9854a9a169969..c30b74940c053 100644
  # CONFIG_DRM=y
  # CONFIG_DRM_I2C_CH7006 is not set
 -- 
-2.51.0
+2.51.1
 

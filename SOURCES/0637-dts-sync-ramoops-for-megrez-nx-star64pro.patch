@@ -1,4 +1,4 @@
-From 445fe7dc87d8d1f525e4bd75b4163e492abccc6e Mon Sep 17 00:00:00 2001
+From 7b6d263814ae88ea63c3289ebfd706ec1eef9a98 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Tue, 12 Aug 2025 23:01:14 +0800
 Subject: [PATCH 637/652] dts: sync ramoops for megrez/nx/star64pro
@@ -74,5 +74,5 @@ index 7f71dd33b71fd..57fc6dcc6bb01 100644
  
  		g2d_8GB_boundary_reserved_4k {
 -- 
-2.51.0
+2.51.1
 

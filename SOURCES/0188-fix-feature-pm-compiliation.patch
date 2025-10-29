@@ -1,4 +1,4 @@
-From 64112e8b26d32c02faa207a6360e285c781f002e Mon Sep 17 00:00:00 2001
+From 6c84db7079872ed48d9e1d04a733ec3ccb543854 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 9 Oct 2024 10:13:45 +0800
 Subject: [PATCH 188/652] fix:feature-pm compiliation
@@ -26,5 +26,5 @@ index da90216883cc7..c6482db4992ea 100644
  	void *memory;  /* user space memory addr */
  	size_t size;   /* memory size */
 -- 
-2.51.0
+2.51.1
 

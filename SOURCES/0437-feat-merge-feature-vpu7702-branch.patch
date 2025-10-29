@@ -1,4 +1,4 @@
-From 4b1edc45b18303a159d90f8e89916f0ed8d0c5e5 Mon Sep 17 00:00:00 2001
+From 156261032b3ed4b51e500343eb4dbf2ccddf82bd Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 14 Feb 2025 16:48:39 +0800
 Subject: [PATCH 437/652] feat:merge feature-vpu7702 branch
@@ -2224,5 +2224,5 @@ index 1aae81c57b2c9..7ee5642825458 100644
  	bool "Show build ID information in stacktraces"
  	depends on PRINTK
 -- 
-2.51.0
+2.51.1
 

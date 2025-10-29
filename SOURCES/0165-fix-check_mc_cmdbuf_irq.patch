@@ -1,4 +1,4 @@
-From 64eb3991dea8ac7ca7163b5a57230ffd47abc939 Mon Sep 17 00:00:00 2001
+From e635e5c4fbc360edb11909e4e0274bf68dfb6ed0 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 29 Aug 2024 17:26:10 +0800
 Subject: [PATCH 165/652] fix:check_mc_cmdbuf_irq
@@ -205,5 +205,5 @@ index 9991f4e2ed8e8..4f597b740eb2e 100644
  };
  #endif
 -- 
-2.51.0
+2.51.1
 

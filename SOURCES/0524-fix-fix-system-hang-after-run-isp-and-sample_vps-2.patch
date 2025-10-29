@@ -1,4 +1,4 @@
-From 20755947e4f4709f5dc5caaece66033adb6f5bcc Mon Sep 17 00:00:00 2001
+From 01ce864e21551bb0d71e0ba3955e1a2b4bd0acac Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 28 May 2025 14:43:45 +0800
 Subject: [PATCH 524/652] fix: fix system hang after run isp and sample_vps 2
@@ -61,5 +61,5 @@ index 7f85d82d28711..b0f01ad7b6893 100644
  
  	viscu_cfg(es_vi_dev);///isp_rst(sys_crg)
 -- 
-2.51.0
+2.51.1
 

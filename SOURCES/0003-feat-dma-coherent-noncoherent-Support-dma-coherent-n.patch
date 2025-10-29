@@ -1,4 +1,4 @@
-From caafd3636064b4be839a031119145ef4da248764 Mon Sep 17 00:00:00 2001
+From d86968f2ea90a1802a50541268e052226e98e3ec Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Sun, 7 Apr 2024 17:38:16 +0800
 Subject: [PATCH 003/652] feat(dma coherent/noncoherent):Support dma
@@ -14,11 +14,11 @@ Changelogs:
  arch/riscv/configs/win2030_defconfig  |  61 +------
  arch/riscv/errata/sifive/errata.c     |   7 +
  arch/riscv/include/asm/pgtable-bits.h |   7 +
- arch/riscv/include/asm/pgtable.h      | 220 ++++++++++++++++++++++++++
+ arch/riscv/include/asm/pgtable.h      | 222 +++++++++++++++++++++++++-
  arch/riscv/mm/dma-noncoherent.c       |  77 +++++++++
  drivers/soc/sifive/Kconfig            |  85 ++++++++++
  drivers/soc/sifive/sifive_ccache.c    |  43 +++++
- 7 files changed, 444 insertions(+), 56 deletions(-)
+ 7 files changed, 444 insertions(+), 58 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
 index d5ba4ef1772bb..030907121d030 100644
@@ -275,7 +275,7 @@ index f896708e83312..dbe56bc01230d 100644
  #define _PAGE_TABLE     _PAGE_PRESENT
  
 diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
-index 332a6bf72b1d5..2cfa65e87cd49 100644
+index 987cfe87e7825..2cfa65e87cd49 100644
 --- a/arch/riscv/include/asm/pgtable.h
 +++ b/arch/riscv/include/asm/pgtable.h
 @@ -205,9 +205,192 @@ extern struct pt_alloc_ops pt_ops __initdata;
@@ -539,10 +539,12 @@ index 332a6bf72b1d5..2cfa65e87cd49 100644
  #define pgprot_noncached pgprot_noncached
  static inline pgprot_t pgprot_noncached(pgprot_t _prot)
  {
-@@ -617,6 +836,7 @@ static inline pgprot_t pgprot_writecombine(pgprot_t _prot)
+@@ -617,8 +836,7 @@ static inline pgprot_t pgprot_writecombine(pgprot_t _prot)
  
  	return __pgprot(prot);
  }
+-
+-#define pgprot_dmacoherent pgprot_writecombine
 +#endif
  
  /*
@@ -810,5 +812,5 @@ index 3684f5b40a80e..a88123c81ace6 100644
  
  	ccache_cache_ops.get_priv_group = ccache_get_priv_group;
 -- 
-2.51.0
+2.51.1
 

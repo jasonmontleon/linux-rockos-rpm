@@ -1,4 +1,4 @@
-From 629cd5870c5038f3e7261a5a29899fb99948b4af Mon Sep 17 00:00:00 2001
+From 2143889a18db67f4a828fc4b5c82762b21fbc9cb Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 22:44:44 +0800
 Subject: [PATCH 307/652] eic7700: megrez: add opp table for 1.5G-1.8G
@@ -43,5 +43,5 @@ index 0df73dab566b6..3fbee7bee3950 100644
 +        };
  };
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 4c8ba659e31e0572f9544f8fe3c8f18decc6f7e9 Mon Sep 17 00:00:00 2001
+From 323ca8af7667b88d2aecd0c9f051f0970858a3db Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Thu, 29 May 2025 14:12:18 +0800
 Subject: [PATCH 548/652] fix:fix SBC MIPI spupport MP test
@@ -1851,5 +1851,5 @@ index 0707ad4155c6e..cf3b74eb04796 100644
  	dsi_priv->plat_data.base = dsi_priv->dphy_base;
  
 -- 
-2.51.0
+2.51.1
 

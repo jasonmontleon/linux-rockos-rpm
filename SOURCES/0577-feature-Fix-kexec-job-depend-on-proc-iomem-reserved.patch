@@ -1,4 +1,4 @@
-From 100c9ad767ca30cd3aba6bd4f721bf36864eb2c1 Mon Sep 17 00:00:00 2001
+From 55134201d7d238ec5c59bace682c94918aa0543c Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Fri, 20 Jun 2025 09:38:03 +0800
 Subject: [PATCH 577/652] feature: Fix kexec job depend on proc/iomem reserved
@@ -25,5 +25,5 @@ index 6584317decd52..3d783bfb05ed0 100644
  
  void __init paging_init(void)
 -- 
-2.51.0
+2.51.1
 

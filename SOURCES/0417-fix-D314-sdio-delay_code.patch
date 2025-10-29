@@ -1,4 +1,4 @@
-From cc5a798b049850d9e96a75dc27670a7d848b7ca9 Mon Sep 17 00:00:00 2001
+From 342a8fb3f6ae7b125ddbfb15b85c1bd64ce5afa9 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 28 Feb 2025 14:17:24 +0800
 Subject: [PATCH 417/652] fix: D314 sdio delay_code
@@ -25,5 +25,5 @@ index 3c2da482d2fed..df9ab2e935ecc 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 8f953dccf6f50f59cbd7e756a6884ae2c8463fcc Mon Sep 17 00:00:00 2001
+From eba04d1b503edca623fc60828c4459c206dd0884 Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Mon, 31 Mar 2025 10:40:28 +0800
 Subject: [PATCH 453/652] <fix>(2d):hae disable powersaving for version 0330
@@ -55,5 +55,5 @@ index db95354cb7c05..dcc6b0558a338 100644
  MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
  
 -- 
-2.51.0
+2.51.1
 

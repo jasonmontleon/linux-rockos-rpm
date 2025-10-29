@@ -1,4 +1,4 @@
-From 2679988c9f39eb0edda258550d73cb10bf3b7347 Mon Sep 17 00:00:00 2001
+From 2f6cad265d4d5fc6906e2856e0eaa7eae3e0179d Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 20 Sep 2024 09:05:43 +0800
 Subject: [PATCH 269/652] WIN2030-16233:fix:resolve hdcp compilation issue.
@@ -110,5 +110,5 @@ index 62373b2b7eb5e..19f7cccdca333 100644
  struct platform_driver dw_hdmi_eswin_pltfm_driver = {
      .probe  = dw_hdmi_eswin_probe,
 -- 
-2.51.0
+2.51.1
 

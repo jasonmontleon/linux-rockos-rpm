@@ -1,4 +1,4 @@
-From 8e33f357a7389f629f181e794346125184c23ff7 Mon Sep 17 00:00:00 2001
+From 18045a962d64aa85e94ba3749eb2668cba2a7ce1 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Tue, 3 Dec 2024 17:45:27 +0800
 Subject: [PATCH 341/652] WIN2030-16733:feat:audio perf for rtc processing
@@ -70,5 +70,5 @@ index 17b7c21f7b69a..f21e269af6578 100644
  	seq_printf(m,"-----------------------------------------------------AI PERF STATISTIC END"
  				"-----------------------------------------------------\n");
 -- 
-2.51.0
+2.51.1
 

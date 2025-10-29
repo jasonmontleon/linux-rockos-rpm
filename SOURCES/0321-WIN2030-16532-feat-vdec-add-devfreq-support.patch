@@ -1,4 +1,4 @@
-From e509d5b435be2c35e3e6b8e1e6aba168ac921fdd Mon Sep 17 00:00:00 2001
+From ec4d5af7e1f943fe74101ab64e20bfe69e157328 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 23 Oct 2024 14:19:57 +0800
 Subject: [PATCH 321/652] WIN2030-16532:feat(vdec):add devfreq support
@@ -155,5 +155,5 @@ index 7c4de300d6e6b..780b2561ab200 100644
  	if (ret < 0) {
  		LOG_ERR("vdec: reset initialization failed");
 -- 
-2.51.0
+2.51.1
 

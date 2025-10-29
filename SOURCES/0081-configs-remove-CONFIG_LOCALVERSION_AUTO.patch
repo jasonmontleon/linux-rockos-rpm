@@ -1,4 +1,4 @@
-From d92fd7c302821e0a0e1aa0587e9a34b6419e40ad Mon Sep 17 00:00:00 2001
+From 02c0e339f01e797782a56f0a5d3add650d229e28 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:32:21 +0800
 Subject: [PATCH 081/652] configs: remove CONFIG_LOCALVERSION_AUTO
@@ -26,5 +26,5 @@ index 5a06fbd7c31bb..9234bf09feb9e 100644
  CONFIG_MODULE_UNLOAD=y
  CONFIG_SPARSEMEM_MANUAL=y
 -- 
-2.51.0
+2.51.1
 

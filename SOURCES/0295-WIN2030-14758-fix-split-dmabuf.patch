@@ -1,4 +1,4 @@
-From c776fb13f01f088bec13c096e4b0a8cdb720407a Mon Sep 17 00:00:00 2001
+From e97dfe77260392d597030ec91b2d563b44d4004f Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 27 Nov 2024 15:01:03 +0800
 Subject: [PATCH 295/652] WIN2030-14758:fix:split dmabuf
@@ -59,5 +59,5 @@ index 2a2877f848b25..d9ba68d918ef0 100644
  	{
  		pr_debug("%s:parent[0x%px]:sgt->orig_nents=%d, nents=%d, sg_nents(in) %d\n",
 -- 
-2.51.0
+2.51.1
 

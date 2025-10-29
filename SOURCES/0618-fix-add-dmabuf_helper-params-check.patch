@@ -1,4 +1,4 @@
-From 6959334e63b75adc02ee4aaa2e013847c21a3191 Mon Sep 17 00:00:00 2001
+From 261de5b9ba347c834e2af62cd82541b7f259285b Mon Sep 17 00:00:00 2001
 From: He jiean <hejiean@eswincomputing.com>
 Date: Wed, 9 Jul 2025 16:43:28 +0800
 Subject: [PATCH 618/652] fix: add dmabuf_helper params check
@@ -161,5 +161,5 @@ index d4acd7c5177c3..913134b88cc8c 100644
  void common_dmabuf_heap_rsv_iova_unmap(struct heap_mem *heap_obj);
  void common_dmabuf_heap_rsv_iova_uninit(struct heap_root *root);
 -- 
-2.51.0
+2.51.1
 

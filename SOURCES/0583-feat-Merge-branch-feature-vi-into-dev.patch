@@ -1,4 +1,4 @@
-From 0e2786070fa260e5c4924b20268f604143e6e201 Mon Sep 17 00:00:00 2001
+From 0c79c09ca9ac1222b57a30b0211a0aea7f5fee0c Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Mon, 16 Jun 2025 17:18:27 +0800
 Subject: [PATCH 583/652] feat:Merge branch 'feature-vi' into dev
@@ -6017,5 +6017,5 @@ index a2e45b961ec76..5184683432c8b 100644
  
  static struct i2c_driver imx219_i2c_driver = {
 -- 
-2.51.0
+2.51.1
 

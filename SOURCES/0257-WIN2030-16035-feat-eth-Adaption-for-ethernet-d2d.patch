@@ -1,4 +1,4 @@
-From bb8a36e9eb23b4b247b84cdf583ab531a97546a4 Mon Sep 17 00:00:00 2001
+From 7710b5e3c9e46b74b9fa3f4f89ed2f3bbc1f687e Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 9 Sep 2024 10:17:35 +0800
 Subject: [PATCH 257/652] WIN2030-16035: feat(eth): Adaption for ethernet d2d
@@ -76,5 +76,5 @@ index 66e0cc12ce44b..e3b6c28394b6f 100644
  	return 0;
  }
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From f85e223ad6343ae8b5d32de196d1e9ad51809d3f Mon Sep 17 00:00:00 2001
+From b9a56b4ba39f0433ea3e8073be887746bc1ebfad Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 10 Sep 2024 16:54:31 +0800
 Subject: [PATCH 268/652] WIN2030-16233:feat:hdmi & hdcp driver adapt d2d.
@@ -1295,5 +1295,5 @@ index dcb552d2331a9..a0e2002711756 100755
  	unsigned long i2s0_io_addr;
  	int dai_offset = 0;
 -- 
-2.51.0
+2.51.1
 

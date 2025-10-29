@@ -1,4 +1,4 @@
-From e943152b3ff96fdda0748182dbed0b7719656b37 Mon Sep 17 00:00:00 2001
+From 72ad2ee9d5457859dc772831d674ea8abea5f63d Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Thu, 17 Oct 2024 09:59:33 +0800
 Subject: [PATCH 318/652] WIN2030-15754:feat:VI dw200 add devfreq support
@@ -203,5 +203,5 @@ index f1ab8835ceac8..d7b7695b91445 100644
  static const struct dev_pm_ops dewarp_pm_ops = {
  	SET_RUNTIME_PM_OPS(dewarp_runtime_suspend, dewarp_runtime_resume, NULL)
 -- 
-2.51.0
+2.51.1
 

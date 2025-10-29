@@ -1,4 +1,4 @@
-From 8e1537d6518f07b0640c39ad4a8dedcd993c44b8 Mon Sep 17 00:00:00 2001
+From 1a339bda3de45d9e4e320f63434224a21ebc306a Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 4 Nov 2024 21:40:05 +0800
 Subject: [PATCH 219/652] dts: megrez: add pwm fan
@@ -21,5 +21,5 @@ index fbab3ae40f53e..0df73dab566b6 100644
  
  &d0_i2c0 {
 -- 
-2.51.0
+2.51.1
 

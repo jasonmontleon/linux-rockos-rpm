@@ -1,4 +1,4 @@
-From d0eb211c5c6831bea2d72ad07768ccef49c639cd Mon Sep 17 00:00:00 2001
+From 19a3b7a1a8f1f3e510afbe1e68ac478131685899 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:44:41 +0800
 Subject: [PATCH 424/652] config: scsi: enable scsi config for eic7700x
@@ -138,5 +138,5 @@ index b1223dff91aa3..381dec16e8438 100644
  # CONFIG_NET_VENDOR_RENESAS is not set
  # CONFIG_NET_VENDOR_ROCKER is not set
 -- 
-2.51.0
+2.51.1
 

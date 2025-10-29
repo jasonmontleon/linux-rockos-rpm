@@ -1,4 +1,4 @@
-From b11dd8b7c5a2eba093cbab5b1c550e829bd6b30b Mon Sep 17 00:00:00 2001
+From 04fcc3acb6250d45d433e46bdfc0811fd7d1c595 Mon Sep 17 00:00:00 2001
 From: zhuxuefei <zhuxuefei@eswincomputing.com>
 Date: Thu, 10 Apr 2025 17:41:02 +0800
 Subject: [PATCH 545/652] feat:add new perf interface
@@ -92,5 +92,5 @@ index 99aab26af20ff..b225e2287ff41 100644
  #if defined(CONFIG_PM_DEVFREQ)
  	struct devfreq *df;
 -- 
-2.51.0
+2.51.1
 

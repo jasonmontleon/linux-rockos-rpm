@@ -1,4 +1,4 @@
-From 6344c7c17fba9a0219842157351902ad920c94f4 Mon Sep 17 00:00:00 2001
+From d39ef3b0001e39ec833ea998c471f4dd514bd05e Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
 Subject: [PATCH 643/652] header workarounds
@@ -189,5 +189,5 @@ index 27a5f0a943526..5e808bba0e498 100644
  
  #define MMZ_VB_IOC_MAGIC 		'M'
 -- 
-2.51.0
+2.51.1
 

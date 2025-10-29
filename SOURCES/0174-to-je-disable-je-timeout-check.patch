@@ -1,4 +1,4 @@
-From d44ab06f7e5e7fe54dd0aea09c30cb924d8b49d6 Mon Sep 17 00:00:00 2001
+From ba610931a82997c6e4d8b3f8a4f83dee2b67419e Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Wed, 11 Sep 2024 10:12:37 +0800
 Subject: [PATCH 174/652] to(je):disable je timeout check
@@ -28,5 +28,5 @@ index d08a8effc7f25..e0ccc2ab96732 100644
  			_vcmd_watchdog_stop(dev);
  	} else {
 -- 
-2.51.0
+2.51.1
 

@@ -1,4 +1,4 @@
-From 496f23af731fc6f3fed6c9f8aef04afa931a2969 Mon Sep 17 00:00:00 2001
+From 63aebb3240404131454849718c3f3abee39f71c7 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 15 Oct 2024 10:29:01 +0800
 Subject: [PATCH 317/652] WIN2030-15704:feat:Add devfreq support
@@ -378,5 +378,5 @@ index ea9471381e02a..2a7ba4077a99e 100644
  	return 0;
  }
 -- 
-2.51.0
+2.51.1
 

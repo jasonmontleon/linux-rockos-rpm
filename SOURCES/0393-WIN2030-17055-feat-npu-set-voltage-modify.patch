@@ -1,4 +1,4 @@
-From bdc24f896c1ab64ed62b199a90fbce873a245f17 Mon Sep 17 00:00:00 2001
+From bd6417d04e0904a26e1983a829bb4704ef22148f Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 24 Jan 2025 10:18:24 +0800
 Subject: [PATCH 393/652] WIN2030-17055:feat: npu set voltage modify
@@ -545,5 +545,5 @@ index a33c8efbccebc..1addd530c1f7c 100644
  		&pdev->dev, "e31_core");
  	if (IS_ERR_OR_NULL(nvdla_dev->rstc_e31_core)) {
 -- 
-2.51.0
+2.51.1
 

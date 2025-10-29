@@ -1,4 +1,4 @@
-From 4a6601e79944bca111d357be44f6cf246527f640 Mon Sep 17 00:00:00 2001
+From 1d3f0a802720c30e3c1941fbf65c20be52ddaaa7 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Fri, 27 Jun 2025 18:22:42 +0800
 Subject: [PATCH 587/652] fix:fix vi 0630
@@ -564,5 +564,5 @@ index d0719bae0ca55..d999d6a4e6218 100644
  	if (pm_runtime_get_if_in_use(&pdev->dev) <= 0)
  		return;
 -- 
-2.51.0
+2.51.1
 

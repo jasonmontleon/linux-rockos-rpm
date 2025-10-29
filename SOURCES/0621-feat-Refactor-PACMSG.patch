@@ -1,4 +1,4 @@
-From 9a29aa56b9284cbbf3e90defe62295d4f1b6df22 Mon Sep 17 00:00:00 2001
+From 2429db6bdb5860044ea0a05ff89a43d84c6f5fb1 Mon Sep 17 00:00:00 2001
 From: zhangdongchuan <zhangdongchuan@eswincomputing.com>
 Date: Tue, 8 Jul 2025 08:32:18 +0800
 Subject: [PATCH 621/652] feat: Refactor PACMSG
@@ -306,5 +306,5 @@ index 7ee5642825458..1aae81c57b2c9 100644
  	bool "Show build ID information in stacktraces"
  	depends on PRINTK
 -- 
-2.51.0
+2.51.1
 

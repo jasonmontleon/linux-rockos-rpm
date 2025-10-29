@@ -1,4 +1,4 @@
-From ff355ccf48e5c721b0ddc061ce63bd5625716ab8 Mon Sep 17 00:00:00 2001
+From 6ff5de00910b0f31781ec5e5cabb429a761379b3 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 23 May 2025 13:32:19 +0800
 Subject: [PATCH 515/652] feat: sbc vi
@@ -358,5 +358,5 @@ index 92dd6fd50039f..973ee3ef97bf3 100755
  	if (!node) {
  		dev_err(&pdev->dev, "No port node at %pOF\n",
 -- 
-2.51.0
+2.51.1
 

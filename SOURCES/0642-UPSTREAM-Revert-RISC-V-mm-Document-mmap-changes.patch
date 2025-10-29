@@ -1,4 +1,4 @@
-From 1c87a04e139065a51093c9f7548274f72f984955 Mon Sep 17 00:00:00 2001
+From 28dff40a1fe3a999c299e3be0b81a7a2f075d99d Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:45 -0700
 Subject: [PATCH 642/652] UPSTREAM: Revert "RISC-V: mm: Document mmap changes"
@@ -40,5 +40,5 @@ index e476b4386bd9d..5462c84f4723f 100644
 -bits 41 through 63. If no mappable addresses are available in that range, mmap
 -will return `MAP_FAILED`.
 -- 
-2.51.0
+2.51.1
 

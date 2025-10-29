@@ -1,4 +1,4 @@
-From e8043985857eb0730ede0744e16e8a79baa4a0ce Mon Sep 17 00:00:00 2001
+From 302c5b883855d9443e5cc218f6dd908b58ab4fa5 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Thu, 2 Jan 2025 18:46:26 +0800
 Subject: [PATCH 315/652] milkv-megrez: fix sd card delay_code
@@ -22,5 +22,5 @@ index 1a77bb521dc8e..43c00efd35de3 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 -- 
-2.51.0
+2.51.1
 
