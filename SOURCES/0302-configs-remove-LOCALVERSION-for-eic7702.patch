@@ -1,4 +1,4 @@
-From 9375181794ec9497d54c2d1a1f45fe358bbab49e Mon Sep 17 00:00:00 2001
+From 62fe0752c2be13ab0730ea2d0ee22c7f9cf10ab2 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 10 Dec 2024 20:12:08 +0800
 Subject: [PATCH 302/652] configs: remove LOCALVERSION for eic7702

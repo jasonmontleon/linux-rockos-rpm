@@ -1,4 +1,4 @@
-From 28dff40a1fe3a999c299e3be0b81a7a2f075d99d Mon Sep 17 00:00:00 2001
+From 11d323b8eb658c11bedd9a7a53a1d6a355b9c43c Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:45 -0700
 Subject: [PATCH 642/652] UPSTREAM: Revert "RISC-V: mm: Document mmap changes"

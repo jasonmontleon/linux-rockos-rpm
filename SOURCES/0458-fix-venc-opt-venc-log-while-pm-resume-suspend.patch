@@ -1,4 +1,4 @@
-From b08f43dbbfd9c3a654b83802552c1804bb54b730 Mon Sep 17 00:00:00 2001
+From c112fde98577401a3b2661fab745efdb907d06c2 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:59:35 +0800
 Subject: [PATCH 458/652] fix(venc):opt venc log while pm resume/suspend

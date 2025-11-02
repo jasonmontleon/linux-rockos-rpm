@@ -1,4 +1,4 @@
-From 14b7f403bbde74d1f4ab229752629961c4c0a945 Mon Sep 17 00:00:00 2001
+From a7e72deb486b0f62e5c48357b44ac20e530548b3 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 24 Jun 2025 09:29:59 +0800
 Subject: [PATCH 579/652] feat:Add statistics of NPU frame rate.

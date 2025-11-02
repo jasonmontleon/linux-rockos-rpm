@@ -1,4 +1,4 @@
-From 1bcedfb94c11cd065b28cc365fad51913fd44fba Mon Sep 17 00:00:00 2001
+From 79110cff3d6e2f4c70892cf50d1359634700fe72 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 1 May 2025 18:33:11 +0800
 Subject: [PATCH 493/652] fix:clear ecc interrupt anytime

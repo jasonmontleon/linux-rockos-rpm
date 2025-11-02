@@ -1,4 +1,4 @@
-From dea326179ab691ef55f62e768b96b5e6ab64c532 Mon Sep 17 00:00:00 2001
+From 8b5bfddb084e5b410f796917bcfed3af955ab46e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 28 May 2024 10:37:37 +0800
 Subject: [PATCH 036/652] feat(llc_spram):set npu default freq to 1.5G

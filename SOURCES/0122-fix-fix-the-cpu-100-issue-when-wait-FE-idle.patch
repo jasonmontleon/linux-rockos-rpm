@@ -1,4 +1,4 @@
-From 8014b823232ea9153b2d1affc8c31bcdf16a7dd2 Mon Sep 17 00:00:00 2001
+From 603993afee7cb0c98fb63d6e1af350c09ba0d244 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 14:43:33 +0800
 Subject: [PATCH 122/652] fix:fix the cpu 100% issue when wait FE idle
