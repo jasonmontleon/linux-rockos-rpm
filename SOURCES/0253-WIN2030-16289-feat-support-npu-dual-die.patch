@@ -15,7 +15,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  3 files changed, 12 insertions(+), 10 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 073decf58c030..6f148bfed9483 100644
+index 073decf58c03..6f148bfed948 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -379,42 +379,42 @@ &d0_npu{
@@ -87,7 +87,7 @@ index 073decf58c030..6f148bfed9483 100644
 \ No newline at end of file
 +*/
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ea0f743251032..775c6231f3a89 100644
+index ea0f74325103..775c6231f3a8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -534,7 +534,7 @@ noc {
@@ -100,7 +100,7 @@ index ea0f743251032..775c6231f3a89 100644
  			interrupt-parent = <&plic0>;
  			interrupts = <387 16>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 5be5d6f3d76a3..95cc804403c98 100644
+index 5be5d6f3d76a..95cc804403c9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -542,7 +542,7 @@ d1_mbox1: mbox@70a20000 {

@@ -534,7 +534,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  create mode 100644 drivers/staging/media/eswin/venc/vcmdswhwregisters.h
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 32b31b28bdbd4..e985f5c3732c3 100644
+index 32b31b28bdbd..e985f5c3732c 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -828,3 +828,10 @@ CONFIG_RCU_EQS_DEBUG=y
@@ -549,7 +549,7 @@ index 32b31b28bdbd4..e985f5c3732c3 100644
 +CONFIG_VIDEO_ESWIN_VDEC=y
 +CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 diff --git a/drivers/staging/media/Kconfig b/drivers/staging/media/Kconfig
-index bc6c7b248f862..20a9d308ce0e8 100644
+index bc6c7b248f86..20a9d308ce0e 100644
 --- a/drivers/staging/media/Kconfig
 +++ b/drivers/staging/media/Kconfig
 @@ -56,4 +56,6 @@ if STAGING_MEDIA_DEPRECATED
@@ -560,7 +560,7 @@ index bc6c7b248f862..20a9d308ce0e8 100644
 +
  endif
 diff --git a/drivers/staging/media/Makefile b/drivers/staging/media/Makefile
-index 1a4c3a062e3dc..db72ee88af046 100644
+index 1a4c3a062e3d..db72ee88af04 100644
 --- a/drivers/staging/media/Makefile
 +++ b/drivers/staging/media/Makefile
 @@ -10,3 +10,4 @@ obj-$(CONFIG_VIDEO_SUNXI)	+= sunxi/
@@ -571,7 +571,7 @@ index 1a4c3a062e3dc..db72ee88af046 100644
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/Kconfig b/drivers/staging/media/eswin/Kconfig
 new file mode 100644
-index 0000000000000..02e7262daec82
+index 000000000000..02e7262daec8
 --- /dev/null
 +++ b/drivers/staging/media/eswin/Kconfig
 @@ -0,0 +1,12 @@
@@ -589,7 +589,7 @@ index 0000000000000..02e7262daec82
 +source "drivers/staging/media/eswin/es-media-ext/Kconfig"
 diff --git a/drivers/staging/media/eswin/Makefile b/drivers/staging/media/eswin/Makefile
 new file mode 100644
-index 0000000000000..5c3d6117c4d5d
+index 000000000000..5c3d6117c4d5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/Makefile
 @@ -0,0 +1,6 @@
@@ -602,7 +602,7 @@ index 0000000000000..5c3d6117c4d5d
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/dewarp/Kconfig b/drivers/staging/media/eswin/dewarp/Kconfig
 new file mode 100644
-index 0000000000000..1dfea99d50057
+index 000000000000..1dfea99d5005
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/Kconfig
 @@ -0,0 +1,5 @@
@@ -613,7 +613,7 @@ index 0000000000000..1dfea99d50057
 +	  This is video dewarp && scale accelerator.
 diff --git a/drivers/staging/media/eswin/dewarp/Makefile b/drivers/staging/media/eswin/dewarp/Makefile
 new file mode 100644
-index 0000000000000..91419f01c6d54
+index 000000000000..91419f01c6d5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/Makefile
 @@ -0,0 +1,7 @@
@@ -626,7 +626,7 @@ index 0000000000000..91419f01c6d54
 +obj-$(CONFIG_VIDEO_ESWIN_DEWARP) += es_dewarp.o
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_dump.c b/drivers/staging/media/eswin/dewarp/dw200_dump.c
 new file mode 100644
-index 0000000000000..052a477a1ece9
+index 000000000000..052a477a1ece
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_dump.c
 @@ -0,0 +1,146 @@
@@ -778,7 +778,7 @@ index 0000000000000..052a477a1ece9
 +}
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_dump.h b/drivers/staging/media/eswin/dewarp/dw200_dump.h
 new file mode 100644
-index 0000000000000..f2a116f473399
+index 000000000000..f2a116f47339
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_dump.h
 @@ -0,0 +1,15 @@
@@ -800,7 +800,7 @@ index 0000000000000..f2a116f473399
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_fe.c b/drivers/staging/media/eswin/dewarp/dw200_fe.c
 new file mode 100644
-index 0000000000000..16afece7694a7
+index 000000000000..16afece7694a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_fe.c
 @@ -0,0 +1,861 @@
@@ -1668,7 +1668,7 @@ index 0000000000000..16afece7694a7
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_fe.h b/drivers/staging/media/eswin/dewarp/dw200_fe.h
 new file mode 100644
-index 0000000000000..43e0f294182f6
+index 000000000000..43e0f294182f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_fe.h
 @@ -0,0 +1,16 @@
@@ -1691,7 +1691,7 @@ index 0000000000000..43e0f294182f6
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_ioctl.c b/drivers/staging/media/eswin/dewarp/dw200_ioctl.c
 new file mode 100644
-index 0000000000000..0088cf5704e80
+index 000000000000..0088cf5704e8
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_ioctl.c
 @@ -0,0 +1,1275 @@
@@ -2972,7 +2972,7 @@ index 0000000000000..0088cf5704e80
 +}
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_ioctl.h b/drivers/staging/media/eswin/dewarp/dw200_ioctl.h
 new file mode 100644
-index 0000000000000..f7c7a6e623687
+index 000000000000..f7c7a6e62368
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_ioctl.h
 @@ -0,0 +1,125 @@
@@ -3103,7 +3103,7 @@ index 0000000000000..f7c7a6e623687
 +#endif // _DWE_IOC_H_
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_subdev.h b/drivers/staging/media/eswin/dewarp/dw200_subdev.h
 new file mode 100644
-index 0000000000000..f95b7561465f4
+index 000000000000..f95b7561465f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dw200_subdev.h
 @@ -0,0 +1,360 @@
@@ -3469,7 +3469,7 @@ index 0000000000000..f95b7561465f4
 +#endif // _DW200_DEV_H
 diff --git a/drivers/staging/media/eswin/dewarp/dwe_regs.h b/drivers/staging/media/eswin/dewarp/dwe_regs.h
 new file mode 100644
-index 0000000000000..b662b6d9cc78f
+index 000000000000..b662b6d9cc78
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/dwe_regs.h
 @@ -0,0 +1,171 @@
@@ -3646,7 +3646,7 @@ index 0000000000000..b662b6d9cc78f
 +#endif /* _DWE_REGS_H_ */
 diff --git a/drivers/staging/media/eswin/dewarp/vivdw200_irq_queue.c b/drivers/staging/media/eswin/dewarp/vivdw200_irq_queue.c
 new file mode 100644
-index 0000000000000..bf4c47f1830c4
+index 000000000000..bf4c47f1830c
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/vivdw200_irq_queue.c
 @@ -0,0 +1,197 @@
@@ -3850,7 +3850,7 @@ index 0000000000000..bf4c47f1830c4
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/dewarp/vivdw200_irq_queue.h b/drivers/staging/media/eswin/dewarp/vivdw200_irq_queue.h
 new file mode 100644
-index 0000000000000..fb244eb1b4ece
+index 000000000000..fb244eb1b4ec
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/vivdw200_irq_queue.h
 @@ -0,0 +1,84 @@
@@ -3940,7 +3940,7 @@ index 0000000000000..fb244eb1b4ece
 +#endif
 diff --git a/drivers/staging/media/eswin/dewarp/vse_regs.h b/drivers/staging/media/eswin/dewarp/vse_regs.h
 new file mode 100644
-index 0000000000000..0d59c0580c43c
+index 000000000000..0d59c0580c43
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/vse_regs.h
 @@ -0,0 +1,327 @@
@@ -4273,7 +4273,7 @@ index 0000000000000..0d59c0580c43c
 +#endif /* _VSE_REGS_H_ */
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 new file mode 100644
-index 0000000000000..2810f0a57d801
+index 000000000000..2810f0a57d80
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -0,0 +1,1399 @@
@@ -5678,7 +5678,7 @@ index 0000000000000..2810f0a57d801
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/staging/media/eswin/dewarp/vvdefs.h b/drivers/staging/media/eswin/dewarp/vvdefs.h
 new file mode 100644
-index 0000000000000..63f1a7aacf546
+index 000000000000..63f1a7aacf54
 --- /dev/null
 +++ b/drivers/staging/media/eswin/dewarp/vvdefs.h
 @@ -0,0 +1,127 @@
@@ -5811,7 +5811,7 @@ index 0000000000000..63f1a7aacf546
 +#endif /* _ISP_VVDEFS_H_ */
 diff --git a/drivers/staging/media/eswin/es-media-ext/Kconfig b/drivers/staging/media/eswin/es-media-ext/Kconfig
 new file mode 100644
-index 0000000000000..9873399f78048
+index 000000000000..9873399f7804
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/Kconfig
 @@ -0,0 +1,5 @@
@@ -5823,7 +5823,7 @@ index 0000000000000..9873399f78048
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/es-media-ext/Makefile b/drivers/staging/media/eswin/es-media-ext/Makefile
 new file mode 100644
-index 0000000000000..326e4316fbd33
+index 000000000000..326e4316fbd3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/Makefile
 @@ -0,0 +1,22 @@
@@ -5851,7 +5851,7 @@ index 0000000000000..326e4316fbd33
 +obj-$(CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER) += es_media_ext_drv.o
 diff --git a/drivers/staging/media/eswin/es-media-ext/chn/class_chn_mgr.c b/drivers/staging/media/eswin/es-media-ext/chn/class_chn_mgr.c
 new file mode 100644
-index 0000000000000..999f9625d0cea
+index 000000000000..999f9625d0ce
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/chn/class_chn_mgr.c
 @@ -0,0 +1,170 @@
@@ -6027,7 +6027,7 @@ index 0000000000000..999f9625d0cea
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/chn/class_chn_mgr.h b/drivers/staging/media/eswin/es-media-ext/chn/class_chn_mgr.h
 new file mode 100644
-index 0000000000000..36e24c16e14dd
+index 000000000000..36e24c16e14d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/chn/class_chn_mgr.h
 @@ -0,0 +1,37 @@
@@ -6070,7 +6070,7 @@ index 0000000000000..36e24c16e14dd
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/chn/dev_channel.c b/drivers/staging/media/eswin/es-media-ext/chn/dev_channel.c
 new file mode 100644
-index 0000000000000..b68c535cd8020
+index 000000000000..b68c535cd802
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/chn/dev_channel.c
 @@ -0,0 +1,257 @@
@@ -6333,7 +6333,7 @@ index 0000000000000..b68c535cd8020
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/chn/dev_channel.h b/drivers/staging/media/eswin/es-media-ext/chn/dev_channel.h
 new file mode 100644
-index 0000000000000..60b27c093bd7c
+index 000000000000..60b27c093bd7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/chn/dev_channel.h
 @@ -0,0 +1,12 @@
@@ -6351,7 +6351,7 @@ index 0000000000000..60b27c093bd7c
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/common/dev_common.c b/drivers/staging/media/eswin/es-media-ext/common/dev_common.c
 new file mode 100644
-index 0000000000000..f048cd540e1f9
+index 000000000000..f048cd540e1f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/common/dev_common.c
 @@ -0,0 +1,114 @@
@@ -6471,7 +6471,7 @@ index 0000000000000..f048cd540e1f9
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/common/dev_common.h b/drivers/staging/media/eswin/es-media-ext/common/dev_common.h
 new file mode 100644
-index 0000000000000..747d1d98b63e3
+index 000000000000..747d1d98b63e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/common/dev_common.h
 @@ -0,0 +1,85 @@
@@ -6562,7 +6562,7 @@ index 0000000000000..747d1d98b63e3
 +#define MAX_GROUP_SIZE    (10 * 1024 * 1024)
 diff --git a/drivers/staging/media/eswin/es-media-ext/es_media_ext_drv_main.c b/drivers/staging/media/eswin/es-media-ext/es_media_ext_drv_main.c
 new file mode 100644
-index 0000000000000..07dc51d3a5bc9
+index 000000000000..07dc51d3a5bc
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/es_media_ext_drv_main.c
 @@ -0,0 +1,128 @@
@@ -6696,7 +6696,7 @@ index 0000000000000..07dc51d3a5bc9
 +MODULE_VERSION("1.0");
 diff --git a/drivers/staging/media/eswin/es-media-ext/include/es_media_ext_drv.h b/drivers/staging/media/eswin/es-media-ext/include/es_media_ext_drv.h
 new file mode 100644
-index 0000000000000..cadba58310f0f
+index 000000000000..cadba58310f0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/include/es_media_ext_drv.h
 @@ -0,0 +1,171 @@
@@ -6873,7 +6873,7 @@ index 0000000000000..cadba58310f0f
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/module/class_event.c b/drivers/staging/media/eswin/es-media-ext/module/class_event.c
 new file mode 100644
-index 0000000000000..93a1adf78153f
+index 000000000000..93a1adf78153
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/module/class_event.c
 @@ -0,0 +1,153 @@
@@ -7032,7 +7032,7 @@ index 0000000000000..93a1adf78153f
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/module/class_event.h b/drivers/staging/media/eswin/es-media-ext/module/class_event.h
 new file mode 100644
-index 0000000000000..ef216865ef2de
+index 000000000000..ef216865ef2d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/module/class_event.h
 @@ -0,0 +1,34 @@
@@ -7072,7 +7072,7 @@ index 0000000000000..ef216865ef2de
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/module/class_module.c b/drivers/staging/media/eswin/es-media-ext/module/class_module.c
 new file mode 100644
-index 0000000000000..7a301aa0cee3b
+index 000000000000..7a301aa0cee3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/module/class_module.c
 @@ -0,0 +1,205 @@
@@ -7283,7 +7283,7 @@ index 0000000000000..7a301aa0cee3b
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/module/class_module.h b/drivers/staging/media/eswin/es-media-ext/module/class_module.h
 new file mode 100644
-index 0000000000000..675eb562188b5
+index 000000000000..675eb562188b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/module/class_module.h
 @@ -0,0 +1,38 @@
@@ -7327,7 +7327,7 @@ index 0000000000000..675eb562188b5
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/module/dev_module.c b/drivers/staging/media/eswin/es-media-ext/module/dev_module.c
 new file mode 100644
-index 0000000000000..b83ce8adc1aca
+index 000000000000..b83ce8adc1ac
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/module/dev_module.c
 @@ -0,0 +1,200 @@
@@ -7533,7 +7533,7 @@ index 0000000000000..b83ce8adc1aca
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/module/dev_module.h b/drivers/staging/media/eswin/es-media-ext/module/dev_module.h
 new file mode 100644
-index 0000000000000..902b4ffaaf610
+index 000000000000..902b4ffaaf61
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/module/dev_module.h
 @@ -0,0 +1,14 @@
@@ -7553,7 +7553,7 @@ index 0000000000000..902b4ffaaf610
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_proc_data.c b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_data.c
 new file mode 100644
-index 0000000000000..209aa3439e84c
+index 000000000000..209aa3439e84
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_data.c
 @@ -0,0 +1,214 @@
@@ -7773,7 +7773,7 @@ index 0000000000000..209aa3439e84c
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_proc_data.h b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_data.h
 new file mode 100644
-index 0000000000000..e384cc29ada7f
+index 000000000000..e384cc29ada7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_data.h
 @@ -0,0 +1,41 @@
@@ -7820,7 +7820,7 @@ index 0000000000000..e384cc29ada7f
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_proc_module.c b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_module.c
 new file mode 100644
-index 0000000000000..ef8af1458be95
+index 000000000000..ef8af1458be9
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_module.c
 @@ -0,0 +1,157 @@
@@ -7983,7 +7983,7 @@ index 0000000000000..ef8af1458be95
 +////////////////////////////////////////////////////////
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_proc_module.h b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_module.h
 new file mode 100644
-index 0000000000000..8741967e61125
+index 000000000000..8741967e6112
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_proc_module.h
 @@ -0,0 +1,28 @@
@@ -8017,7 +8017,7 @@ index 0000000000000..8741967e61125
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_section.c b/drivers/staging/media/eswin/es-media-ext/proc/class_section.c
 new file mode 100644
-index 0000000000000..46610667b5e1f
+index 000000000000..46610667b5e1
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_section.c
 @@ -0,0 +1,878 @@
@@ -8901,7 +8901,7 @@ index 0000000000000..46610667b5e1f
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_section.h b/drivers/staging/media/eswin/es-media-ext/proc/class_section.h
 new file mode 100644
-index 0000000000000..f0da1b68869eb
+index 000000000000..f0da1b68869e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_section.h
 @@ -0,0 +1,48 @@
@@ -8955,7 +8955,7 @@ index 0000000000000..f0da1b68869eb
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_section_mgr.c b/drivers/staging/media/eswin/es-media-ext/proc/class_section_mgr.c
 new file mode 100644
-index 0000000000000..05ad851efab26
+index 000000000000..05ad851efab2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_section_mgr.c
 @@ -0,0 +1,342 @@
@@ -9303,7 +9303,7 @@ index 0000000000000..05ad851efab26
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/class_section_mgr.h b/drivers/staging/media/eswin/es-media-ext/proc/class_section_mgr.h
 new file mode 100644
-index 0000000000000..54171c073391a
+index 000000000000..54171c073391
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/class_section_mgr.h
 @@ -0,0 +1,25 @@
@@ -9334,7 +9334,7 @@ index 0000000000000..54171c073391a
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/dev_proc.c b/drivers/staging/media/eswin/es-media-ext/proc/dev_proc.c
 new file mode 100644
-index 0000000000000..af12b98f3e110
+index 000000000000..af12b98f3e11
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/dev_proc.c
 @@ -0,0 +1,372 @@
@@ -9712,7 +9712,7 @@ index 0000000000000..af12b98f3e110
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/proc/dev_proc.h b/drivers/staging/media/eswin/es-media-ext/proc/dev_proc.h
 new file mode 100644
-index 0000000000000..3d8277e84e952
+index 000000000000..3d8277e84e95
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/proc/dev_proc.h
 @@ -0,0 +1,15 @@
@@ -9733,7 +9733,7 @@ index 0000000000000..3d8277e84e952
 +#endif
 diff --git a/drivers/staging/media/eswin/es-media-ext/test/test_channel/Makefile b/drivers/staging/media/eswin/es-media-ext/test/test_channel/Makefile
 new file mode 100644
-index 0000000000000..3415e94eac962
+index 000000000000..3415e94eac96
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/test/test_channel/Makefile
 @@ -0,0 +1,39 @@
@@ -9778,7 +9778,7 @@ index 0000000000000..3415e94eac962
 +	rm -f $(OBJS) $(OBJS:.o=.d) $(BUILD_TARGET)
 diff --git a/drivers/staging/media/eswin/es-media-ext/test/test_channel/test_channel.c b/drivers/staging/media/eswin/es-media-ext/test/test_channel/test_channel.c
 new file mode 100644
-index 0000000000000..fdd8c08436556
+index 000000000000..fdd8c0843655
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/test/test_channel/test_channel.c
 @@ -0,0 +1,159 @@
@@ -9943,7 +9943,7 @@ index 0000000000000..fdd8c08436556
 +}
 diff --git a/drivers/staging/media/eswin/es-media-ext/test/test_module/Makefile b/drivers/staging/media/eswin/es-media-ext/test/test_module/Makefile
 new file mode 100644
-index 0000000000000..164bc8fc1d189
+index 000000000000..164bc8fc1d18
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/test/test_module/Makefile
 @@ -0,0 +1,39 @@
@@ -9988,7 +9988,7 @@ index 0000000000000..164bc8fc1d189
 +	rm -f $(OBJS) $(OBJS:.o=.d) $(BUILD_TARGET)
 diff --git a/drivers/staging/media/eswin/es-media-ext/test/test_module/auto_test.sh b/drivers/staging/media/eswin/es-media-ext/test/test_module/auto_test.sh
 new file mode 100755
-index 0000000000000..24aebe7e4560a
+index 000000000000..24aebe7e4560
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/test/test_module/auto_test.sh
 @@ -0,0 +1,13 @@
@@ -10007,7 +10007,7 @@ index 0000000000000..24aebe7e4560a
 +wait
 diff --git a/drivers/staging/media/eswin/es-media-ext/test/test_module/test_module.c b/drivers/staging/media/eswin/es-media-ext/test/test_module/test_module.c
 new file mode 100644
-index 0000000000000..8c2d75a571cc8
+index 000000000000..8c2d75a571cc
 --- /dev/null
 +++ b/drivers/staging/media/eswin/es-media-ext/test/test_module/test_module.c
 @@ -0,0 +1,274 @@
@@ -10287,7 +10287,7 @@ index 0000000000000..8c2d75a571cc8
 +}
 diff --git a/drivers/staging/media/eswin/hae/Kconfig b/drivers/staging/media/eswin/hae/Kconfig
 new file mode 100644
-index 0000000000000..e59eb6ac296be
+index 000000000000..e59eb6ac296b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/Kconfig
 @@ -0,0 +1,5 @@
@@ -10298,7 +10298,7 @@ index 0000000000000..e59eb6ac296be
 +	  This is 2d graphics accelerator.
 diff --git a/drivers/staging/media/eswin/hae/Makefile b/drivers/staging/media/eswin/hae/Makefile
 new file mode 100644
-index 0000000000000..e4293f03bafa6
+index 000000000000..e4293f03bafa
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/Makefile
 @@ -0,0 +1,241 @@
@@ -10545,7 +10545,7 @@ index 0000000000000..e4293f03bafa6
 +obj-$(CONFIG_VIDEO_ESWIN_HAE) += $(MODULE_NAME).o
 diff --git a/drivers/staging/media/eswin/hae/build.sh b/drivers/staging/media/eswin/hae/build.sh
 new file mode 100755
-index 0000000000000..29e8d59df5e75
+index 000000000000..29e8d59df5e7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/build.sh
 @@ -0,0 +1,72 @@
@@ -10623,7 +10623,7 @@ index 0000000000000..29e8d59df5e75
 +make -C $BASEDIR ESW_DEBUG_PERF=0 ${EXTRA_FLAGS[@]}
 diff --git a/drivers/staging/media/eswin/hae/config b/drivers/staging/media/eswin/hae/config
 new file mode 100644
-index 0000000000000..909b2487f3ad8
+index 000000000000..909b2487f3ad
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/config
 @@ -0,0 +1,71 @@
@@ -10700,7 +10700,7 @@ index 0000000000000..909b2487f3ad8
 +SOC_PLATFORM                      ?= default
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.355.vcxproj b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.355.vcxproj
 new file mode 100644
-index 0000000000000..cae185418a9c5
+index 000000000000..cae185418a9c
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.355.vcxproj
 @@ -0,0 +1,229 @@
@@ -10936,7 +10936,7 @@ index 0000000000000..cae185418a9c5
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.vcxproj b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.vcxproj
 new file mode 100644
-index 0000000000000..e4215683d8454
+index 000000000000..e4215683d845
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.vcxproj
 @@ -0,0 +1,567 @@
@@ -11510,7 +11510,7 @@ index 0000000000000..e4215683d8454
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.vcxproj.filters b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.vcxproj.filters
 new file mode 100644
-index 0000000000000..3b8c850a5ac7a
+index 000000000000..3b8c850a5ac7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.2012.vcxproj.filters
 @@ -0,0 +1,116 @@
@@ -11632,7 +11632,7 @@ index 0000000000000..3b8c850a5ac7a
 +</Project>
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcproj b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcproj
 new file mode 100644
-index 0000000000000..dfc5b00180f26
+index 000000000000..dfc5b00180f2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcproj
 @@ -0,0 +1,856 @@
@@ -12494,7 +12494,7 @@ index 0000000000000..dfc5b00180f26
 +</VisualStudioProject>
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcxproj b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcxproj
 new file mode 100644
-index 0000000000000..85d03d7f51aa8
+index 000000000000..85d03d7f51aa
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcxproj
 @@ -0,0 +1,517 @@
@@ -13018,7 +13018,7 @@ index 0000000000000..85d03d7f51aa8
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcxproj.filters b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcxproj.filters
 new file mode 100644
-index 0000000000000..572c1dd74488b
+index 000000000000..572c1dd74488
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/aqHalKernel.vcxproj.filters
 @@ -0,0 +1,116 @@
@@ -13141,7 +13141,7 @@ index 0000000000000..572c1dd74488b
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/dirs b/drivers/staging/media/eswin/hae/hal/kernel/arch/dirs
 new file mode 100644
-index 0000000000000..1d47b524e8249
+index 000000000000..1d47b524e824
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/dirs
 @@ -0,0 +1,57 @@
@@ -13204,7 +13204,7 @@ index 0000000000000..1d47b524e8249
 +	cebuild \
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_context.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_context.c
 new file mode 100644
-index 0000000000000..f42a9b463d750
+index 000000000000..f42a9b463d75
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_context.c
 @@ -0,0 +1,1776 @@
@@ -14986,7 +14986,7 @@ index 0000000000000..f42a9b463d750
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_context.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_context.h
 new file mode 100644
-index 0000000000000..ac6564c2140a6
+index 000000000000..ac6564c2140a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_context.h
 @@ -0,0 +1,196 @@
@@ -15188,7 +15188,7 @@ index 0000000000000..ac6564c2140a6
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 new file mode 100644
-index 0000000000000..e31b3a9608b82
+index 000000000000..e31b3a9608b8
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -0,0 +1,11451 @@
@@ -26645,7 +26645,7 @@ index 0000000000000..e31b3a9608b82
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
 new file mode 100644
-index 0000000000000..cfd691f1c5eb0
+index 000000000000..cfd691f1c5eb
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
 @@ -0,0 +1,347 @@
@@ -26998,7 +26998,7 @@ index 0000000000000..cfd691f1c5eb0
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_async_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_async_fe.c
 new file mode 100644
-index 0000000000000..c9f44b3659cf4
+index 000000000000..c9f44b3659cf
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_async_fe.c
 @@ -0,0 +1,425 @@
@@ -27429,7 +27429,7 @@ index 0000000000000..c9f44b3659cf4
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_fe.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_fe.h
 new file mode 100644
-index 0000000000000..e2feac6f0ded7
+index 000000000000..e2feac6f0ded
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_fe.h
 @@ -0,0 +1,220 @@
@@ -27655,7 +27655,7 @@ index 0000000000000..e2feac6f0ded7
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func.c
 new file mode 100644
-index 0000000000000..2fb947ade30ce
+index 000000000000..2fb947ade30c
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func.c
 @@ -0,0 +1,7151 @@
@@ -34812,7 +34812,7 @@ index 0000000000000..2fb947ade30ce
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func.h
 new file mode 100644
-index 0000000000000..7de59a924ea67
+index 000000000000..7de59a924ea6
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func.h
 @@ -0,0 +1,220 @@
@@ -35038,7 +35038,7 @@ index 0000000000000..7de59a924ea67
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset.c
 new file mode 100644
-index 0000000000000..b79921fcc6bce
+index 000000000000..b79921fcc6bc
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset.c
 @@ -0,0 +1,3123 @@
@@ -38167,7 +38167,7 @@ index 0000000000000..b79921fcc6bce
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset.h
 new file mode 100644
-index 0000000000000..e02304dda9000
+index 000000000000..e02304dda900
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset.h
 @@ -0,0 +1,91 @@
@@ -38264,7 +38264,7 @@ index 0000000000000..e02304dda9000
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset_config.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset_config.h
 new file mode 100644
-index 0000000000000..e8e5897ca2532
+index 000000000000..e8e5897ca253
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_flop_reset_config.h
 @@ -0,0 +1,294 @@
@@ -38564,7 +38564,7 @@ index 0000000000000..e8e5897ca2532
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_ppu.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_ppu.h
 new file mode 100644
-index 0000000000000..53386c2bd8a43
+index 000000000000..53386c2bd8a4
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_ppu.h
 @@ -0,0 +1,802 @@
@@ -39372,7 +39372,7 @@ index 0000000000000..53386c2bd8a43
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_usc.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_usc.h
 new file mode 100644
-index 0000000000000..b943e163f09b9
+index 000000000000..b943e163f09b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_func_usc.h
 @@ -0,0 +1,950 @@
@@ -40328,7 +40328,7 @@ index 0000000000000..b943e163f09b9
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_mc_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_mc_fe.c
 new file mode 100644
-index 0000000000000..eeb8938490cdf
+index 000000000000..eeb8938490cd
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_mc_fe.c
 @@ -0,0 +1,726 @@
@@ -41060,7 +41060,7 @@ index 0000000000000..eeb8938490cdf
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 new file mode 100644
-index 0000000000000..256581fd48a26
+index 000000000000..256581fd48a2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 @@ -0,0 +1,1221 @@
@@ -42287,7 +42287,7 @@ index 0000000000000..256581fd48a26
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_recorder.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_recorder.c
 new file mode 100644
-index 0000000000000..11ad9ea1ea412
+index 000000000000..11ad9ea1ea41
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_recorder.c
 @@ -0,0 +1,638 @@
@@ -42931,7 +42931,7 @@ index 0000000000000..11ad9ea1ea412
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.2012.vcxproj b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.2012.vcxproj
 new file mode 100644
-index 0000000000000..f90f30aeab131
+index 000000000000..f90f30aeab13
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.2012.vcxproj
 @@ -0,0 +1,587 @@
@@ -43525,7 +43525,7 @@ index 0000000000000..f90f30aeab131
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.2012.vcxproj.filters b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.2012.vcxproj.filters
 new file mode 100644
-index 0000000000000..6722f862bb58a
+index 000000000000..6722f862bb58
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.2012.vcxproj.filters
 @@ -0,0 +1,53 @@
@@ -43585,7 +43585,7 @@ index 0000000000000..6722f862bb58a
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcproj b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcproj
 new file mode 100644
-index 0000000000000..84cbcdbbaa11c
+index 000000000000..84cbcdbbaa11
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcproj
 @@ -0,0 +1,546 @@
@@ -44137,7 +44137,7 @@ index 0000000000000..84cbcdbbaa11c
 +</VisualStudioProject>
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcxproj b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcxproj
 new file mode 100644
-index 0000000000000..afe7cebb09f4b
+index 000000000000..afe7cebb09f4
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcxproj
 @@ -0,0 +1,537 @@
@@ -44681,7 +44681,7 @@ index 0000000000000..afe7cebb09f4b
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcxproj.filters b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcxproj.filters
 new file mode 100644
-index 0000000000000..6722f862bb58a
+index 000000000000..6722f862bb58
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/hal.kernel.vcxproj.filters
 @@ -0,0 +1,53 @@
@@ -44741,7 +44741,7 @@ index 0000000000000..6722f862bb58a
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/makefile.linux b/drivers/staging/media/eswin/hae/hal/kernel/arch/makefile.linux
 new file mode 100644
-index 0000000000000..797ca4bc49d24
+index 000000000000..797ca4bc49d2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/makefile.linux
 @@ -0,0 +1,97 @@
@@ -44844,7 +44844,7 @@ index 0000000000000..797ca4bc49d24
 +include $(AQROOT)/common.target
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/dirs b/drivers/staging/media/eswin/hae/hal/kernel/dirs
 new file mode 100644
-index 0000000000000..2fa6b2df5e19e
+index 000000000000..2fa6b2df5e19
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/dirs
 @@ -0,0 +1,16 @@
@@ -44866,7 +44866,7 @@ index 0000000000000..2fa6b2df5e19e
 +	arch \
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 new file mode 100644
-index 0000000000000..250373eee8a52
+index 000000000000..250373eee8a5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 @@ -0,0 +1,5784 @@
@@ -50656,7 +50656,7 @@ index 0000000000000..250373eee8a52
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h
 new file mode 100644
-index 0000000000000..922cbae61a8c6
+index 000000000000..922cbae61a8c
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h
 @@ -0,0 +1,2064 @@
@@ -52726,7 +52726,7 @@ index 0000000000000..922cbae61a8c6
 +#endif /* __gc_hal_kernel_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_command.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_command.c
 new file mode 100644
-index 0000000000000..aefe8499138d5
+index 000000000000..aefe8499138d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_command.c
 @@ -0,0 +1,4232 @@
@@ -56964,7 +56964,7 @@ index 0000000000000..aefe8499138d5
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_db.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_db.c
 new file mode 100644
-index 0000000000000..c56c672a4dfa8
+index 000000000000..c56c672a4dfa
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_db.c
 @@ -0,0 +1,1666 @@
@@ -58636,7 +58636,7 @@ index 0000000000000..c56c672a4dfa8
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 new file mode 100644
-index 0000000000000..ec0be96ab951d
+index 000000000000..ec0be96ab951
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 @@ -0,0 +1,2301 @@
@@ -60943,7 +60943,7 @@ index 0000000000000..ec0be96ab951d
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_heap.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_heap.c
 new file mode 100644
-index 0000000000000..55a3422909dee
+index 000000000000..55a3422909de
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_heap.c
 @@ -0,0 +1,783 @@
@@ -61732,7 +61732,7 @@ index 0000000000000..55a3422909dee
 +#endif /* VIVANTE_PROFILER_SYSTEM_MEMORY */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_mmu.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_mmu.c
 new file mode 100644
-index 0000000000000..0c73bd03c8169
+index 000000000000..0c73bd03c816
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_mmu.c
 @@ -0,0 +1,4507 @@
@@ -66245,7 +66245,7 @@ index 0000000000000..0c73bd03c8169
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_mmu.h b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_mmu.h
 new file mode 100644
-index 0000000000000..39492699fc2f1
+index 000000000000..39492699fc2f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_mmu.h
 @@ -0,0 +1,408 @@
@@ -66659,7 +66659,7 @@ index 0000000000000..39492699fc2f1
 +#endif /* _gc_hal_kernel_mmu_h */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_power.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_power.c
 new file mode 100644
-index 0000000000000..46f2b57f56c9f
+index 000000000000..46f2b57f56c9
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_power.c
 @@ -0,0 +1,322 @@
@@ -66987,7 +66987,7 @@ index 0000000000000..46f2b57f56c9f
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_precomp.h b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_precomp.h
 new file mode 100644
-index 0000000000000..d3f9060cc7c2d
+index 000000000000..d3f9060cc7c2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_precomp.h
 @@ -0,0 +1,63 @@
@@ -67056,7 +67056,7 @@ index 0000000000000..d3f9060cc7c2d
 +#endif /* __gc_hal_kernel_precomp_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_preemption.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_preemption.c
 new file mode 100644
-index 0000000000000..40ea4897318ed
+index 000000000000..40ea4897318e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_preemption.c
 @@ -0,0 +1,1410 @@
@@ -68472,7 +68472,7 @@ index 0000000000000..40ea4897318ed
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_preemption.h b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_preemption.h
 new file mode 100644
-index 0000000000000..4fe80610ebc24
+index 000000000000..4fe80610ebc2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_preemption.h
 @@ -0,0 +1,231 @@
@@ -68709,7 +68709,7 @@ index 0000000000000..4fe80610ebc24
 +#endif /* __gc_hal_kernel_preemption_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_security.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_security.c
 new file mode 100644
-index 0000000000000..caa55498cd90a
+index 000000000000..caa55498cd90
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_security.c
 @@ -0,0 +1,59 @@
@@ -68774,7 +68774,7 @@ index 0000000000000..caa55498cd90a
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_security_v1.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_security_v1.c
 new file mode 100644
-index 0000000000000..6b69db05b54de
+index 000000000000..6b69db05b54d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_security_v1.c
 @@ -0,0 +1,277 @@
@@ -69057,7 +69057,7 @@ index 0000000000000..6b69db05b54de
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_video_memory.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_video_memory.c
 new file mode 100644
-index 0000000000000..ffa5ce767ccba
+index 000000000000..ffa5ce767ccb
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_video_memory.c
 @@ -0,0 +1,5047 @@
@@ -74110,7 +74110,7 @@ index 0000000000000..ffa5ce767ccba
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_feature_database.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_feature_database.h
 new file mode 100644
-index 0000000000000..bbe80362b0de2
+index 000000000000..bbe80362b0de
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_feature_database.h
 @@ -0,0 +1,2650 @@
@@ -76766,7 +76766,7 @@ index 0000000000000..bbe80362b0de2
 +#endif /* _gc_feature_database_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal.h
 new file mode 100644
-index 0000000000000..094b1948a4065
+index 000000000000..094b1948a406
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal.h
 @@ -0,0 +1,1658 @@
@@ -78430,7 +78430,7 @@ index 0000000000000..094b1948a4065
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
 new file mode 100644
-index 0000000000000..2af1f18c77543
+index 000000000000..2af1f18c7754
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_base.h
 @@ -0,0 +1,4943 @@
@@ -83379,7 +83379,7 @@ index 0000000000000..2af1f18c77543
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_debug_zones.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_debug_zones.h
 new file mode 100644
-index 0000000000000..f86166977e30d
+index 000000000000..f86166977e30
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_debug_zones.h
 @@ -0,0 +1,330 @@
@@ -83715,7 +83715,7 @@ index 0000000000000..f86166977e30d
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_driver.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_driver.h
 new file mode 100644
-index 0000000000000..ba40bb8b7bed4
+index 000000000000..ba40bb8b7bed
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_driver.h
 @@ -0,0 +1,58 @@
@@ -83779,7 +83779,7 @@ index 0000000000000..ba40bb8b7bed4
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_drm.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_drm.h
 new file mode 100644
-index 0000000000000..f6930036154f4
+index 000000000000..f6930036154f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_drm.h
 @@ -0,0 +1,213 @@
@@ -83998,7 +83998,7 @@ index 0000000000000..f6930036154f4
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_dump.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_dump.h
 new file mode 100644
-index 0000000000000..d6d2082d9cabc
+index 000000000000..d6d2082d9cab
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_dump.h
 @@ -0,0 +1,146 @@
@@ -84150,7 +84150,7 @@ index 0000000000000..d6d2082d9cabc
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_eglplatform.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_eglplatform.h
 new file mode 100644
-index 0000000000000..d348fe8754a98
+index 000000000000..d348fe8754a9
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_eglplatform.h
 @@ -0,0 +1,437 @@
@@ -84593,7 +84593,7 @@ index 0000000000000..d348fe8754a98
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_enum.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_enum.h
 new file mode 100644
-index 0000000000000..16d88478bf9f9
+index 000000000000..16d88478bf9f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_enum.h
 @@ -0,0 +1,1959 @@
@@ -86558,7 +86558,7 @@ index 0000000000000..16d88478bf9f9
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_kernel_buffer.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_kernel_buffer.h
 new file mode 100644
-index 0000000000000..8a80cc99b3549
+index 000000000000..8a80cc99b354
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_kernel_buffer.h
 @@ -0,0 +1,263 @@
@@ -86827,7 +86827,7 @@ index 0000000000000..8a80cc99b3549
 +#endif /* __gc_hal_kernel_buffer_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_mem.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_mem.h
 new file mode 100644
-index 0000000000000..76b421eace329
+index 000000000000..76b421eace32
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_mem.h
 @@ -0,0 +1,64 @@
@@ -86897,7 +86897,7 @@ index 0000000000000..76b421eace329
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_metadata.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_metadata.h
 new file mode 100644
-index 0000000000000..94865e1ec6439
+index 000000000000..94865e1ec643
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_metadata.h
 @@ -0,0 +1,90 @@
@@ -86993,7 +86993,7 @@ index 0000000000000..94865e1ec6439
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
 new file mode 100644
-index 0000000000000..2301e3f2ad32b
+index 000000000000..2301e3f2ad32
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
 @@ -0,0 +1,1610 @@
@@ -88609,7 +88609,7 @@ index 0000000000000..2301e3f2ad32b
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_profiler.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_profiler.h
 new file mode 100644
-index 0000000000000..4ca25e801e171
+index 000000000000..4ca25e801e17
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_profiler.h
 @@ -0,0 +1,1217 @@
@@ -89832,7 +89832,7 @@ index 0000000000000..4ca25e801e171
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_raster.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_raster.h
 new file mode 100644
-index 0000000000000..c932f0c8cc4af
+index 000000000000..c932f0c8cc4a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_raster.h
 @@ -0,0 +1,928 @@
@@ -90766,7 +90766,7 @@ index 0000000000000..c932f0c8cc4af
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_security_interface.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_security_interface.h
 new file mode 100644
-index 0000000000000..bdfe0590c0692
+index 000000000000..bdfe0590c069
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_security_interface.h
 @@ -0,0 +1,157 @@
@@ -90929,7 +90929,7 @@ index 0000000000000..bdfe0590c0692
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_types.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_types.h
 new file mode 100644
-index 0000000000000..c1b3e81908f3c
+index 000000000000..c1b3e81908f3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_types.h
 @@ -0,0 +1,60 @@
@@ -90995,7 +90995,7 @@ index 0000000000000..c1b3e81908f3c
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_version.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_version.h
 new file mode 100644
-index 0000000000000..7e05b8edad2e4
+index 000000000000..7e05b8edad2e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_version.h
 @@ -0,0 +1,71 @@
@@ -91072,7 +91072,7 @@ index 0000000000000..7e05b8edad2e4
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_vsim_configs.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_vsim_configs.h
 new file mode 100644
-index 0000000000000..61e944d90b1bd
+index 000000000000..61e944d90b1b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_vsim_configs.h
 @@ -0,0 +1,427 @@
@@ -91505,7 +91505,7 @@ index 0000000000000..61e944d90b1bd
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/probeStatistics_Driver.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/probeStatistics_Driver.h
 new file mode 100644
-index 0000000000000..7188ca366bf7e
+index 000000000000..7188ca366bf7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/probeStatistics_Driver.h
 @@ -0,0 +1,1897 @@
@@ -93408,7 +93408,7 @@ index 0000000000000..7188ca366bf7e
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_base_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_base_shared.h
 new file mode 100644
-index 0000000000000..7a873677428a7
+index 000000000000..7a873677428a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_base_shared.h
 @@ -0,0 +1,87 @@
@@ -93501,7 +93501,7 @@ index 0000000000000..7a873677428a7
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_driver_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_driver_shared.h
 new file mode 100644
-index 0000000000000..a42751a2cb58f
+index 000000000000..a42751a2cb58
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_driver_shared.h
 @@ -0,0 +1,1366 @@
@@ -94873,7 +94873,7 @@ index 0000000000000..a42751a2cb58f
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_driver_vg_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_driver_vg_shared.h
 new file mode 100644
-index 0000000000000..bf3ac8eb665d1
+index 000000000000..bf3ac8eb665d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_driver_vg_shared.h
 @@ -0,0 +1,250 @@
@@ -95129,7 +95129,7 @@ index 0000000000000..bf3ac8eb665d1
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_enum_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_enum_shared.h
 new file mode 100644
-index 0000000000000..56d651f5f7eb7
+index 000000000000..56d651f5f7eb
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_enum_shared.h
 @@ -0,0 +1,2250 @@
@@ -97385,7 +97385,7 @@ index 0000000000000..56d651f5f7eb7
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_profiler_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_profiler_shared.h
 new file mode 100644
-index 0000000000000..6ccaeefac0974
+index 000000000000..6ccaeefac097
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_profiler_shared.h
 @@ -0,0 +1,389 @@
@@ -97780,7 +97780,7 @@ index 0000000000000..6ccaeefac0974
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_types_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_types_shared.h
 new file mode 100644
-index 0000000000000..3e7bc9d0a3727
+index 000000000000..3e7bc9d0a372
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_types_shared.h
 @@ -0,0 +1,1058 @@
@@ -98844,7 +98844,7 @@ index 0000000000000..3e7bc9d0a3727
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_vg_shared.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_vg_shared.h
 new file mode 100644
-index 0000000000000..c910aa06197d5
+index 000000000000..c910aa06197d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/shared/gc_hal_vg_shared.h
 @@ -0,0 +1,222 @@
@@ -99072,7 +99072,7 @@ index 0000000000000..c910aa06197d5
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/makefile.linux b/drivers/staging/media/eswin/hae/hal/kernel/makefile.linux
 new file mode 100644
-index 0000000000000..7f9490852aa44
+index 000000000000..7f9490852aa4
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/makefile.linux
 @@ -0,0 +1,102 @@
@@ -99180,7 +99180,7 @@ index 0000000000000..7f9490852aa44
 +include $(AQROOT)/common.target
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_array.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_array.h
 new file mode 100644
-index 0000000000000..5cff850fc6040
+index 000000000000..5cff850fc604
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_array.h
 @@ -0,0 +1,98 @@
@@ -99284,7 +99284,7 @@ index 0000000000000..5cff850fc6040
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dma.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dma.c
 new file mode 100644
-index 0000000000000..d697da4d5d36a
+index 000000000000..d697da4d5d36
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dma.c
 @@ -0,0 +1,617 @@
@@ -99907,7 +99907,7 @@ index 0000000000000..d697da4d5d36a
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c
 new file mode 100644
-index 0000000000000..28b07d9b1431a
+index 000000000000..28b07d9b1431
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c
 @@ -0,0 +1,486 @@
@@ -100399,7 +100399,7 @@ index 0000000000000..28b07d9b1431a
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_gfp.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_gfp.c
 new file mode 100644
-index 0000000000000..6125d841131eb
+index 000000000000..6125d841131e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_gfp.c
 @@ -0,0 +1,1129 @@
@@ -101534,7 +101534,7 @@ index 0000000000000..6125d841131eb
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_reserved_mem.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_reserved_mem.c
 new file mode 100644
-index 0000000000000..61d3dd2b033d5
+index 000000000000..61d3dd2b033d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_reserved_mem.c
 @@ -0,0 +1,546 @@
@@ -102086,7 +102086,7 @@ index 0000000000000..61d3dd2b033d5
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 new file mode 100644
-index 0000000000000..2fca3da9c7270
+index 000000000000..2fca3da9c727
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 @@ -0,0 +1,961 @@
@@ -103053,7 +103053,7 @@ index 0000000000000..2fca3da9c7270
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_allocator.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_allocator.c
 new file mode 100644
-index 0000000000000..6676dd40e9495
+index 000000000000..6676dd40e949
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_allocator.c
 @@ -0,0 +1,250 @@
@@ -103309,7 +103309,7 @@ index 0000000000000..6676dd40e9495
 +#endif  /* #if !gcdUSE_LINUX_SG_TABLE_API */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_allocator.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_allocator.h
 new file mode 100644
-index 0000000000000..19cd566ecacb4
+index 000000000000..19cd566ecacb
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_allocator.h
 @@ -0,0 +1,495 @@
@@ -103810,7 +103810,7 @@ index 0000000000000..19cd566ecacb4
 +#endif /* __gc_hal_kernel_allocator_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debug.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debug.c
 new file mode 100644
-index 0000000000000..8d37955daef4d
+index 000000000000..8d37955daef4
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debug.c
 @@ -0,0 +1,1240 @@
@@ -105056,7 +105056,7 @@ index 0000000000000..8d37955daef4d
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debug.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debug.h
 new file mode 100644
-index 0000000000000..f2a52f74d86ef
+index 000000000000..f2a52f74d86e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debug.h
 @@ -0,0 +1,175 @@
@@ -105237,7 +105237,7 @@ index 0000000000000..f2a52f74d86ef
 +#endif /* __gc_hal_kernel_debug_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debugfs.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debugfs.c
 new file mode 100644
-index 0000000000000..d5384f6ccc846
+index 000000000000..d5384f6ccc84
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debugfs.c
 @@ -0,0 +1,197 @@
@@ -105440,7 +105440,7 @@ index 0000000000000..d5384f6ccc846
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debugfs.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debugfs.h
 new file mode 100644
-index 0000000000000..d7529459fffc4
+index 000000000000..d7529459fffc
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_debugfs.h
 @@ -0,0 +1,99 @@
@@ -105545,7 +105545,7 @@ index 0000000000000..d7529459fffc4
 +#endif /* __gc_hal_kernel_debugfs_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 new file mode 100644
-index 0000000000000..9e8f6bcbbfd71
+index 000000000000..9e8f6bcbbfd7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 @@ -0,0 +1,3580 @@
@@ -109131,7 +109131,7 @@ index 0000000000000..9e8f6bcbbfd71
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.h
 new file mode 100644
-index 0000000000000..3a5b9e202f637
+index 000000000000..3a5b9e202f63
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.h
 @@ -0,0 +1,179 @@
@@ -109316,7 +109316,7 @@ index 0000000000000..3a5b9e202f637
 +#endif /* __gc_hal_kernel_device_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 new file mode 100644
-index 0000000000000..82325f3d44459
+index 000000000000..82325f3d4445
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 @@ -0,0 +1,1651 @@
@@ -110973,7 +110973,7 @@ index 0000000000000..82325f3d44459
 +module_exit(viv_dev_exit);
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_drm.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_drm.c
 new file mode 100644
-index 0000000000000..ce04280b301ee
+index 000000000000..ce04280b301e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_drm.c
 @@ -0,0 +1,878 @@
@@ -111857,7 +111857,7 @@ index 0000000000000..ce04280b301ee
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_iommu.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_iommu.c
 new file mode 100644
-index 0000000000000..1b56e913fdc65
+index 000000000000..1b56e913fdc6
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_iommu.c
 @@ -0,0 +1,151 @@
@@ -112014,7 +112014,7 @@ index 0000000000000..1b56e913fdc65
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_linux.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_linux.c
 new file mode 100644
-index 0000000000000..080c336007db0
+index 000000000000..080c336007db
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_linux.c
 @@ -0,0 +1,765 @@
@@ -112785,7 +112785,7 @@ index 0000000000000..080c336007db0
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_linux.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_linux.h
 new file mode 100644
-index 0000000000000..f6ac430e22c11
+index 000000000000..f6ac430e22c1
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_linux.h
 @@ -0,0 +1,386 @@
@@ -113177,7 +113177,7 @@ index 0000000000000..f6ac430e22c11
 +#endif /* __gc_hal_kernel_linux_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_math.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_math.c
 new file mode 100644
-index 0000000000000..ca65e5ce90eaa
+index 000000000000..ca65e5ce90ea
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_math.c
 @@ -0,0 +1,65 @@
@@ -113248,7 +113248,7 @@ index 0000000000000..ca65e5ce90eaa
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_mutex.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_mutex.h
 new file mode 100644
-index 0000000000000..7e33e91669c10
+index 000000000000..7e33e91669c1
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_mutex.h
 @@ -0,0 +1,101 @@
@@ -113355,7 +113355,7 @@ index 0000000000000..7e33e91669c10
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
 new file mode 100644
-index 0000000000000..04219a9d82aee
+index 000000000000..04219a9d82ae
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
 @@ -0,0 +1,7073 @@
@@ -120434,7 +120434,7 @@ index 0000000000000..04219a9d82aee
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.h
 new file mode 100644
-index 0000000000000..e7c3fa547d3b6
+index 000000000000..e7c3fa547d3b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.h
 @@ -0,0 +1,137 @@
@@ -120577,7 +120577,7 @@ index 0000000000000..e7c3fa547d3b6
 +#endif /* __gc_hal_kernel_os_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 new file mode 100644
-index 0000000000000..1c06724978981
+index 000000000000..1c0672497898
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 @@ -0,0 +1,504 @@
@@ -121087,7 +121087,7 @@ index 0000000000000..1c06724978981
 +#endif /* _GC_HAL_KERNEL_PARAMETER_H_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_platform.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_platform.h
 new file mode 100644
-index 0000000000000..5f7f522ce60a1
+index 000000000000..5f7f522ce60a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_platform.h
 @@ -0,0 +1,410 @@
@@ -121503,7 +121503,7 @@ index 0000000000000..5f7f522ce60a1
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_security_channel.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_security_channel.c
 new file mode 100644
-index 0000000000000..0944ced1991a5
+index 000000000000..0944ced1991a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_security_channel.c
 @@ -0,0 +1,350 @@
@@ -121859,7 +121859,7 @@ index 0000000000000..0944ced1991a5
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_security_channel_emulator.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_security_channel_emulator.c
 new file mode 100644
-index 0000000000000..1f0b3137f7a4f
+index 000000000000..1f0b3137f7a4
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_security_channel_emulator.c
 @@ -0,0 +1,103 @@
@@ -121968,7 +121968,7 @@ index 0000000000000..1f0b3137f7a4f
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_sync.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_sync.c
 new file mode 100644
-index 0000000000000..1c534f4027f63
+index 000000000000..1c534f4027f6
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_sync.c
 @@ -0,0 +1,369 @@
@@ -122343,7 +122343,7 @@ index 0000000000000..1c534f4027f63
 +#endif /* gcdLINUX_SYNC_FILE */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_sync.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_sync.h
 new file mode 100644
-index 0000000000000..7e0aabc8baac0
+index 000000000000..7e0aabc8baac
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_sync.h
 @@ -0,0 +1,145 @@
@@ -122494,7 +122494,7 @@ index 0000000000000..7e0aabc8baac0
 +#endif /* __gc_hal_kernel_sync_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.c
 new file mode 100644
-index 0000000000000..ce1565dc1f09c
+index 000000000000..ce1565dc1f09
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.c
 @@ -0,0 +1,1110 @@
@@ -123610,7 +123610,7 @@ index 0000000000000..ce1565dc1f09c
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.config b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.config
 new file mode 100644
-index 0000000000000..6f27b40070d3c
+index 000000000000..6f27b40070d3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.config
 @@ -0,0 +1,13 @@
@@ -123629,7 +123629,7 @@ index 0000000000000..6f27b40070d3c
 +EXTRA_CFLAGS +=-DgcdDYNAMIC_ALLOC_LOCAL_MEMORY=0
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.h
 new file mode 100644
-index 0000000000000..543e73fcae6a3
+index 000000000000..543e73fcae6a
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/default/gc_hal_kernel_platform_default.h
 @@ -0,0 +1,79 @@
@@ -123714,7 +123714,7 @@ index 0000000000000..543e73fcae6a3
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 new file mode 100644
-index 0000000000000..ecd2dc1124017
+index 000000000000..ecd2dc112401
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 @@ -0,0 +1,1311 @@
@@ -125031,7 +125031,7 @@ index 0000000000000..ecd2dc1124017
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.config b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.config
 new file mode 100644
-index 0000000000000..d40506b49b532
+index 000000000000..d40506b49b53
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.config
 @@ -0,0 +1,12 @@
@@ -125050,7 +125050,7 @@ index 0000000000000..d40506b49b532
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h
 new file mode 100644
-index 0000000000000..416fd0bb6dd9b
+index 000000000000..416fd0bb6dd9
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h
 @@ -0,0 +1,88 @@
@@ -125144,7 +125144,7 @@ index 0000000000000..416fd0bb6dd9b
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_array.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_array.h
 new file mode 100644
-index 0000000000000..acea9a00c2015
+index 000000000000..acea9a00c201
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_array.h
 @@ -0,0 +1,46 @@
@@ -125196,7 +125196,7 @@ index 0000000000000..acea9a00c2015
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_default.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_default.c
 new file mode 100644
-index 0000000000000..674a870032e9d
+index 000000000000..674a870032e9
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_default.c
 @@ -0,0 +1,206 @@
@@ -125408,7 +125408,7 @@ index 0000000000000..674a870032e9d
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_reserved_mem.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_reserved_mem.c
 new file mode 100644
-index 0000000000000..cc950e3c9b9b7
+index 000000000000..cc950e3c9b9b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_reserved_mem.c
 @@ -0,0 +1,234 @@
@@ -125648,7 +125648,7 @@ index 0000000000000..cc950e3c9b9b7
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 new file mode 100644
-index 0000000000000..761d44a03af52
+index 000000000000..761d44a03af5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 @@ -0,0 +1,324 @@
@@ -125978,7 +125978,7 @@ index 0000000000000..761d44a03af52
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_allocator.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_allocator.c
 new file mode 100644
-index 0000000000000..784827ce4f763
+index 000000000000..784827ce4f76
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_allocator.c
 @@ -0,0 +1,91 @@
@@ -126075,7 +126075,7 @@ index 0000000000000..784827ce4f763
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_allocator.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_allocator.h
 new file mode 100644
-index 0000000000000..274d8d4726452
+index 000000000000..274d8d472645
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_allocator.h
 @@ -0,0 +1,476 @@
@@ -126557,7 +126557,7 @@ index 0000000000000..274d8d4726452
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_debug.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_debug.c
 new file mode 100644
-index 0000000000000..642cd40686b2e
+index 000000000000..642cd40686b2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_debug.c
 @@ -0,0 +1,1261 @@
@@ -127824,7 +127824,7 @@ index 0000000000000..642cd40686b2e
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_debug.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_debug.h
 new file mode 100644
-index 0000000000000..872a91df58d3c
+index 000000000000..872a91df58d3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_debug.h
 @@ -0,0 +1,80 @@
@@ -127910,7 +127910,7 @@ index 0000000000000..872a91df58d3c
 +#endif /* __gc_hal_kernel_debug_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_device.c
 new file mode 100644
-index 0000000000000..f866b938f4e57
+index 000000000000..f866b938f4e5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_device.c
 @@ -0,0 +1,1486 @@
@@ -129402,7 +129402,7 @@ index 0000000000000..f866b938f4e57
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_device.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_device.h
 new file mode 100644
-index 0000000000000..df1c34d6f4957
+index 000000000000..df1c34d6f495
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_device.h
 @@ -0,0 +1,226 @@
@@ -129634,7 +129634,7 @@ index 0000000000000..df1c34d6f4957
 +#endif /* __gc_hal_kernel_device_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_driver.c
 new file mode 100644
-index 0000000000000..d98876a31978a
+index 000000000000..d98876a31978
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_driver.c
 @@ -0,0 +1,673 @@
@@ -130313,7 +130313,7 @@ index 0000000000000..d98876a31978a
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_math.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_math.c
 new file mode 100644
-index 0000000000000..e427f10b41c8a
+index 000000000000..e427f10b41c8
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_math.c
 @@ -0,0 +1,24 @@
@@ -130343,7 +130343,7 @@ index 0000000000000..e427f10b41c8a
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_mutex.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_mutex.h
 new file mode 100644
-index 0000000000000..2f8d20a0371b0
+index 000000000000..2f8d20a0371b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_mutex.h
 @@ -0,0 +1,46 @@
@@ -130395,7 +130395,7 @@ index 0000000000000..2f8d20a0371b0
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_os.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_os.c
 new file mode 100644
-index 0000000000000..0a4dc14fa77b5
+index 000000000000..0a4dc14fa77b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_os.c
 @@ -0,0 +1,5646 @@
@@ -136047,7 +136047,7 @@ index 0000000000000..0a4dc14fa77b5
 +}
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_os.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_os.h
 new file mode 100644
-index 0000000000000..4feb39f9ff7fe
+index 000000000000..4feb39f9ff7f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_os.h
 @@ -0,0 +1,181 @@
@@ -136234,7 +136234,7 @@ index 0000000000000..4feb39f9ff7fe
 +#endif /* __gc_hal_kernel_os_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_platform.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_platform.h
 new file mode 100644
-index 0000000000000..94358e815e629
+index 000000000000..94358e815e62
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_platform.h
 @@ -0,0 +1,218 @@
@@ -136458,7 +136458,7 @@ index 0000000000000..94358e815e629
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_vxworks.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_vxworks.c
 new file mode 100644
-index 0000000000000..957e5ee52bb07
+index 000000000000..957e5ee52bb0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_vxworks.c
 @@ -0,0 +1,438 @@
@@ -136902,7 +136902,7 @@ index 0000000000000..957e5ee52bb07
 +#endif
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_vxworks.h b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_vxworks.h
 new file mode 100644
-index 0000000000000..dd6fb250d9312
+index 000000000000..dd6fb250d931
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/gc_hal_kernel_vxworks.h
 @@ -0,0 +1,236 @@
@@ -137144,7 +137144,7 @@ index 0000000000000..dd6fb250d9312
 +#endif /* __gc_hal_kernel_vxworks_h_ */
 diff --git a/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/platform/hyxt/gc_hal_kernel_platform_hyxt.c b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/platform/hyxt/gc_hal_kernel_platform_hyxt.c
 new file mode 100644
-index 0000000000000..309fd75b66ea7
+index 000000000000..309fd75b66ea
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/os/vxworks/kernel/platform/hyxt/gc_hal_kernel_platform_hyxt.c
 @@ -0,0 +1,55 @@
@@ -137205,7 +137205,7 @@ index 0000000000000..309fd75b66ea7
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta.c b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta.c
 new file mode 100644
-index 0000000000000..bc47ed85fab56
+index 000000000000..bc47ed85fab5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta.c
 @@ -0,0 +1,349 @@
@@ -137560,7 +137560,7 @@ index 0000000000000..bc47ed85fab56
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta.h b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta.h
 new file mode 100644
-index 0000000000000..47c077b3509b8
+index 000000000000..47c077b3509b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta.h
 @@ -0,0 +1,374 @@
@@ -137940,7 +137940,7 @@ index 0000000000000..47c077b3509b8
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_hardware.c b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_hardware.c
 new file mode 100644
-index 0000000000000..4039b5fed22ba
+index 000000000000..4039b5fed22b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_hardware.c
 @@ -0,0 +1,942 @@
@@ -138888,7 +138888,7 @@ index 0000000000000..4039b5fed22ba
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_hardware.h b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_hardware.h
 new file mode 100644
-index 0000000000000..1fd687535d15c
+index 000000000000..1fd687535d15
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_hardware.h
 @@ -0,0 +1,140 @@
@@ -139034,7 +139034,7 @@ index 0000000000000..1fd687535d15c
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_mmu.c b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_mmu.c
 new file mode 100644
-index 0000000000000..3b815ae502003
+index 000000000000..3b815ae50200
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/gc_hal_ta_mmu.c
 @@ -0,0 +1,586 @@
@@ -139626,7 +139626,7 @@ index 0000000000000..3b815ae502003
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/os/emulator/gc_hal_ta_emulator.c b/drivers/staging/media/eswin/hae/hal/security_v1/os/emulator/gc_hal_ta_emulator.c
 new file mode 100644
-index 0000000000000..93383d7481f69
+index 000000000000..93383d7481f6
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/os/emulator/gc_hal_ta_emulator.c
 @@ -0,0 +1,327 @@
@@ -139959,7 +139959,7 @@ index 0000000000000..93383d7481f69
 +
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/ta.2012.vcxproj b/drivers/staging/media/eswin/hae/hal/security_v1/ta.2012.vcxproj
 new file mode 100644
-index 0000000000000..3e48f4c0d58e4
+index 000000000000..3e48f4c0d58e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/ta.2012.vcxproj
 @@ -0,0 +1,465 @@
@@ -140431,7 +140431,7 @@ index 0000000000000..3e48f4c0d58e4
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/ta.2012.vcxproj.filters b/drivers/staging/media/eswin/hae/hal/security_v1/ta.2012.vcxproj.filters
 new file mode 100644
-index 0000000000000..4c8957971f305
+index 000000000000..4c8957971f30
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/ta.2012.vcxproj.filters
 @@ -0,0 +1,31 @@
@@ -140469,7 +140469,7 @@ index 0000000000000..4c8957971f305
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/ta.vcxproj b/drivers/staging/media/eswin/hae/hal/security_v1/ta.vcxproj
 new file mode 100644
-index 0000000000000..7ea99cd12eaee
+index 000000000000..7ea99cd12eae
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/ta.vcxproj
 @@ -0,0 +1,441 @@
@@ -140916,7 +140916,7 @@ index 0000000000000..7ea99cd12eaee
 +</Project>
 diff --git a/drivers/staging/media/eswin/hae/hal/security_v1/ta.vcxproj.filters b/drivers/staging/media/eswin/hae/hal/security_v1/ta.vcxproj.filters
 new file mode 100644
-index 0000000000000..4c8957971f305
+index 000000000000..4c8957971f30
 --- /dev/null
 +++ b/drivers/staging/media/eswin/hae/hal/security_v1/ta.vcxproj.filters
 @@ -0,0 +1,31 @@
@@ -140954,7 +140954,7 @@ index 0000000000000..4c8957971f305
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/vdec/Kconfig b/drivers/staging/media/eswin/vdec/Kconfig
 new file mode 100644
-index 0000000000000..7eda1d7f5ca16
+index 000000000000..7eda1d7f5ca1
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/Kconfig
 @@ -0,0 +1,5 @@
@@ -140965,7 +140965,7 @@ index 0000000000000..7eda1d7f5ca16
 +	  This is video decoder accelerator.
 diff --git a/drivers/staging/media/eswin/vdec/Makefile b/drivers/staging/media/eswin/vdec/Makefile
 new file mode 100644
-index 0000000000000..3983ec82f153b
+index 000000000000..3983ec82f153
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/Makefile
 @@ -0,0 +1,13 @@
@@ -140985,7 +140985,7 @@ index 0000000000000..3983ec82f153b
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/vdec/Makefile-bck b/drivers/staging/media/eswin/vdec/Makefile-bck
 new file mode 100644
-index 0000000000000..3550a14376e76
+index 000000000000..3550a14376e7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/Makefile-bck
 @@ -0,0 +1,85 @@
@@ -141076,7 +141076,7 @@ index 0000000000000..3550a14376e76
 +
 diff --git a/drivers/staging/media/eswin/vdec/README b/drivers/staging/media/eswin/vdec/README
 new file mode 100644
-index 0000000000000..323afc090c99a
+index 000000000000..323afc090c99
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/README
 @@ -0,0 +1,49 @@
@@ -141131,7 +141131,7 @@ index 0000000000000..323afc090c99a
 +major from /proc/devices. Remember to set the driver parameters.
 diff --git a/drivers/staging/media/eswin/vdec/bidirect_list.c b/drivers/staging/media/eswin/vdec/bidirect_list.c
 new file mode 100644
-index 0000000000000..d65f3108520e1
+index 000000000000..d65f3108520e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/bidirect_list.c
 @@ -0,0 +1,208 @@
@@ -141345,7 +141345,7 @@ index 0000000000000..d65f3108520e1
 +}
 diff --git a/drivers/staging/media/eswin/vdec/bidirect_list.h b/drivers/staging/media/eswin/vdec/bidirect_list.h
 new file mode 100644
-index 0000000000000..5ce071a7d9ea5
+index 000000000000..5ce071a7d9ea
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/bidirect_list.h
 @@ -0,0 +1,120 @@
@@ -141471,7 +141471,7 @@ index 0000000000000..5ce071a7d9ea5
 +#endif /* !_BIDIRECT_LIST_H_ */
 diff --git a/drivers/staging/media/eswin/vdec/build_for_mpcore.sh b/drivers/staging/media/eswin/vdec/build_for_mpcore.sh
 new file mode 100644
-index 0000000000000..478d2cf6f0e8b
+index 000000000000..478d2cf6f0e8
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/build_for_mpcore.sh
 @@ -0,0 +1,10 @@
@@ -141487,7 +141487,7 @@ index 0000000000000..478d2cf6f0e8b
 +
 diff --git a/drivers/staging/media/eswin/vdec/build_for_socle.sh b/drivers/staging/media/eswin/vdec/build_for_socle.sh
 new file mode 100644
-index 0000000000000..8997658ac071c
+index 000000000000..8997658ac071
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/build_for_socle.sh
 @@ -0,0 +1,10 @@
@@ -141503,7 +141503,7 @@ index 0000000000000..8997658ac071c
 +
 diff --git a/drivers/staging/media/eswin/vdec/build_for_vexpress.sh b/drivers/staging/media/eswin/vdec/build_for_vexpress.sh
 new file mode 100644
-index 0000000000000..583babff2d698
+index 000000000000..583babff2d69
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/build_for_vexpress.sh
 @@ -0,0 +1,10 @@
@@ -141519,7 +141519,7 @@ index 0000000000000..583babff2d698
 +
 diff --git a/drivers/staging/media/eswin/vdec/driver_load.sh b/drivers/staging/media/eswin/vdec/driver_load.sh
 new file mode 100755
-index 0000000000000..90f8ae5ec7f34
+index 000000000000..90f8ae5ec7f3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/driver_load.sh
 @@ -0,0 +1,49 @@
@@ -141574,7 +141574,7 @@ index 0000000000000..90f8ae5ec7f34
 +echo
 diff --git a/drivers/staging/media/eswin/vdec/driver_load_sc.sh b/drivers/staging/media/eswin/vdec/driver_load_sc.sh
 new file mode 100644
-index 0000000000000..a25ce4891dceb
+index 000000000000..a25ce4891dce
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/driver_load_sc.sh
 @@ -0,0 +1,44 @@
@@ -141624,7 +141624,7 @@ index 0000000000000..a25ce4891dceb
 +echo
 diff --git a/drivers/staging/media/eswin/vdec/dts_parser.c b/drivers/staging/media/eswin/vdec/dts_parser.c
 new file mode 100644
-index 0000000000000..a423612727d06
+index 000000000000..a423612727d0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/dts_parser.c
 @@ -0,0 +1,134 @@
@@ -141764,7 +141764,7 @@ index 0000000000000..a423612727d06
 +
 diff --git a/drivers/staging/media/eswin/vdec/dts_parser.h b/drivers/staging/media/eswin/vdec/dts_parser.h
 new file mode 100644
-index 0000000000000..310cfcf8ccd1e
+index 000000000000..310cfcf8ccd1
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/dts_parser.h
 @@ -0,0 +1,13 @@
@@ -141783,7 +141783,7 @@ index 0000000000000..310cfcf8ccd1e
 +#endif /* __DTS_PARSER_H__ */
 diff --git a/drivers/staging/media/eswin/vdec/dwl_defs.h b/drivers/staging/media/eswin/vdec/dwl_defs.h
 new file mode 100644
-index 0000000000000..2482c9358574d
+index 000000000000..2482c9358574
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/dwl_defs.h
 @@ -0,0 +1,125 @@
@@ -141914,7 +141914,7 @@ index 0000000000000..2482c9358574d
 +#endif /* SOFTWARE_LINUX_DWL_DWL_DEFS_H_ */
 diff --git a/drivers/staging/media/eswin/vdec/hantro_afbc.c b/drivers/staging/media/eswin/vdec/hantro_afbc.c
 new file mode 100644
-index 0000000000000..449aababfd21a
+index 000000000000..449aababfd21
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantro_afbc.c
 @@ -0,0 +1,90 @@
@@ -142010,7 +142010,7 @@ index 0000000000000..449aababfd21a
 +
 diff --git a/drivers/staging/media/eswin/vdec/hantro_axife.c b/drivers/staging/media/eswin/vdec/hantro_axife.c
 new file mode 100644
-index 0000000000000..ddce559bb96f6
+index 000000000000..ddce559bb96f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantro_axife.c
 @@ -0,0 +1,100 @@
@@ -142116,7 +142116,7 @@ index 0000000000000..ddce559bb96f6
 +}
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
 new file mode 100644
-index 0000000000000..54b1fbe6ad6fd
+index 000000000000..54b1fbe6ad6f
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -0,0 +1,4010 @@
@@ -146132,7 +146132,7 @@ index 0000000000000..54b1fbe6ad6fd
 +MODULE_DESCRIPTION("driver module for eswin video decoder");
 diff --git a/drivers/staging/media/eswin/vdec/hantro_mmu.c b/drivers/staging/media/eswin/vdec/hantro_mmu.c
 new file mode 100644
-index 0000000000000..2ee3d4eec777c
+index 000000000000..2ee3d4eec777
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantro_mmu.c
 @@ -0,0 +1,1934 @@
@@ -148072,7 +148072,7 @@ index 0000000000000..2ee3d4eec777c
 +}
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 new file mode 100644
-index 0000000000000..76a411fdbde23
+index 000000000000..76a411fdbde2
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -0,0 +1,4984 @@
@@ -153062,7 +153062,7 @@ index 0000000000000..76a411fdbde23
 +}
 diff --git a/drivers/staging/media/eswin/vdec/hantroafbc.h b/drivers/staging/media/eswin/vdec/hantroafbc.h
 new file mode 100644
-index 0000000000000..03df59173fda7
+index 000000000000..03df59173fda
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantroafbc.h
 @@ -0,0 +1,65 @@
@@ -153133,7 +153133,7 @@ index 0000000000000..03df59173fda7
 +#endif
 diff --git a/drivers/staging/media/eswin/vdec/hantroaxife.h b/drivers/staging/media/eswin/vdec/hantroaxife.h
 new file mode 100644
-index 0000000000000..2a9cb1e527e13
+index 000000000000..2a9cb1e527e1
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantroaxife.h
 @@ -0,0 +1,79 @@
@@ -153218,7 +153218,7 @@ index 0000000000000..2a9cb1e527e13
 +#endif
 diff --git a/drivers/staging/media/eswin/vdec/hantrodec.h b/drivers/staging/media/eswin/vdec/hantrodec.h
 new file mode 100644
-index 0000000000000..e9f356be4f077
+index 000000000000..e9f356be4f07
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantrodec.h
 @@ -0,0 +1,253 @@
@@ -153477,7 +153477,7 @@ index 0000000000000..e9f356be4f077
 +#endif /* !_HANTRODEC_H_ */
 diff --git a/drivers/staging/media/eswin/vdec/hantrommu.h b/drivers/staging/media/eswin/vdec/hantrommu.h
 new file mode 100644
-index 0000000000000..8733014282b78
+index 000000000000..8733014282b7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantrommu.h
 @@ -0,0 +1,137 @@
@@ -153620,7 +153620,7 @@ index 0000000000000..8733014282b78
 +#endif
 diff --git a/drivers/staging/media/eswin/vdec/hantrovcmd.h b/drivers/staging/media/eswin/vdec/hantrovcmd.h
 new file mode 100644
-index 0000000000000..aa6bc6abb367f
+index 000000000000..aa6bc6abb367
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/hantrovcmd.h
 @@ -0,0 +1,235 @@
@@ -153861,7 +153861,7 @@ index 0000000000000..aa6bc6abb367f
 +#endif /* !_VC8000_VCMD_DRIVER_H_ */
 diff --git a/drivers/staging/media/eswin/vdec/subsys.c b/drivers/staging/media/eswin/vdec/subsys.c
 new file mode 100644
-index 0000000000000..0f68ed405bcec
+index 000000000000..0f68ed405bce
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/subsys.c
 @@ -0,0 +1,212 @@
@@ -154079,7 +154079,7 @@ index 0000000000000..0f68ed405bcec
 +}
 diff --git a/drivers/staging/media/eswin/vdec/subsys.h b/drivers/staging/media/eswin/vdec/subsys.h
 new file mode 100644
-index 0000000000000..39b68c6c1bbd7
+index 000000000000..39b68c6c1bbd
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/subsys.h
 @@ -0,0 +1,215 @@
@@ -154300,7 +154300,7 @@ index 0000000000000..39b68c6c1bbd7
 +#endif
 diff --git a/drivers/staging/media/eswin/vdec/subsys_cfg.h b/drivers/staging/media/eswin/vdec/subsys_cfg.h
 new file mode 100644
-index 0000000000000..bdb67a3a7bd07
+index 000000000000..bdb67a3a7bd0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/subsys_cfg.h
 @@ -0,0 +1,16 @@
@@ -154322,7 +154322,7 @@ index 0000000000000..bdb67a3a7bd07
 +};
 diff --git a/drivers/staging/media/eswin/vdec/vc_drv_log.h b/drivers/staging/media/eswin/vdec/vc_drv_log.h
 new file mode 100644
-index 0000000000000..6876601c28b3a
+index 000000000000..6876601c28b3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vc_drv_log.h
 @@ -0,0 +1,54 @@
@@ -154382,7 +154382,7 @@ index 0000000000000..6876601c28b3a
 +#endif
 diff --git a/drivers/staging/media/eswin/vdec/vcmdregisterenum.h b/drivers/staging/media/eswin/vdec/vcmdregisterenum.h
 new file mode 100644
-index 0000000000000..6f8219de8fbe6
+index 000000000000..6f8219de8fbe
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vcmdregisterenum.h
 @@ -0,0 +1,160 @@
@@ -154548,7 +154548,7 @@ index 0000000000000..6f8219de8fbe6
 +	HWIF_VCMD_CMDBUF_EXECUTING_ID,
 diff --git a/drivers/staging/media/eswin/vdec/vcmdregistertable.h b/drivers/staging/media/eswin/vdec/vcmdregistertable.h
 new file mode 100644
-index 0000000000000..655a5b9eff055
+index 000000000000..655a5b9eff05
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vcmdregistertable.h
 @@ -0,0 +1,160 @@
@@ -154714,7 +154714,7 @@ index 0000000000000..655a5b9eff055
 +	VCMDREG(HWIF_VCMD_CMDBUF_EXECUTING_ID           , 104,0xffffffff,        0,        0,RW,"The ID of current executing command buffer.used after version 1.1.2."),
 diff --git a/drivers/staging/media/eswin/vdec/vcmdswhwregisters.c b/drivers/staging/media/eswin/vdec/vcmdswhwregisters.c
 new file mode 100644
-index 0000000000000..fcaee6a63fb03
+index 000000000000..fcaee6a63fb0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vcmdswhwregisters.c
 @@ -0,0 +1,184 @@
@@ -154904,7 +154904,7 @@ index 0000000000000..fcaee6a63fb03
 +}
 diff --git a/drivers/staging/media/eswin/vdec/vcmdswhwregisters.h b/drivers/staging/media/eswin/vdec/vcmdswhwregisters.h
 new file mode 100644
-index 0000000000000..7bd304ed5d6bb
+index 000000000000..7bd304ed5d6b
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vcmdswhwregisters.h
 @@ -0,0 +1,226 @@
@@ -155136,7 +155136,7 @@ index 0000000000000..7bd304ed5d6bb
 +#endif /* VCMD_SWHWREGISTERS_H */
 diff --git a/drivers/staging/media/eswin/venc/Kconfig b/drivers/staging/media/eswin/venc/Kconfig
 new file mode 100644
-index 0000000000000..624c7a545bf3f
+index 000000000000..624c7a545bf3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/Kconfig
 @@ -0,0 +1,6 @@
@@ -155148,7 +155148,7 @@ index 0000000000000..624c7a545bf3f
 +
 diff --git a/drivers/staging/media/eswin/venc/Makefile b/drivers/staging/media/eswin/venc/Makefile
 new file mode 100644
-index 0000000000000..c14e399e3393c
+index 000000000000..c14e399e3393
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/Makefile
 @@ -0,0 +1,6 @@
@@ -155160,7 +155160,7 @@ index 0000000000000..c14e399e3393c
 +obj-$(CONFIG_VIDEO_ESWIN_VENC) += es_venc.o
 diff --git a/drivers/staging/media/eswin/venc/Makefile-bck b/drivers/staging/media/eswin/venc/Makefile-bck
 new file mode 100644
-index 0000000000000..f2fad6bd83e58
+index 000000000000..f2fad6bd83e5
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/Makefile-bck
 @@ -0,0 +1,67 @@
@@ -155234,7 +155234,7 @@ index 0000000000000..f2fad6bd83e58
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/venc/bidirect_list.c b/drivers/staging/media/eswin/venc/bidirect_list.c
 new file mode 100644
-index 0000000000000..0538f89d7ae0a
+index 000000000000..0538f89d7ae0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/bidirect_list.c
 @@ -0,0 +1,199 @@
@@ -155439,7 +155439,7 @@ index 0000000000000..0538f89d7ae0a
 +}
 diff --git a/drivers/staging/media/eswin/venc/bidirect_list.h b/drivers/staging/media/eswin/venc/bidirect_list.h
 new file mode 100644
-index 0000000000000..787c14783c09b
+index 000000000000..787c14783c09
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/bidirect_list.h
 @@ -0,0 +1,100 @@
@@ -155545,7 +155545,7 @@ index 0000000000000..787c14783c09b
 +#endif /* !_BIDIRECT_LIST_H_ */
 diff --git a/drivers/staging/media/eswin/venc/driver_ko_load.sh b/drivers/staging/media/eswin/venc/driver_ko_load.sh
 new file mode 100644
-index 0000000000000..17a8a9f6706d5
+index 000000000000..17a8a9f6706d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/driver_ko_load.sh
 @@ -0,0 +1,56 @@
@@ -155607,7 +155607,7 @@ index 0000000000000..17a8a9f6706d5
 +echo
 diff --git a/drivers/staging/media/eswin/venc/driver_load.sh b/drivers/staging/media/eswin/venc/driver_load.sh
 new file mode 100644
-index 0000000000000..05792ab232234
+index 000000000000..05792ab23223
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/driver_load.sh
 @@ -0,0 +1,38 @@
@@ -155651,7 +155651,7 @@ index 0000000000000..05792ab232234
 +echo
 diff --git a/drivers/staging/media/eswin/venc/hantro_mmu.c b/drivers/staging/media/eswin/venc/hantro_mmu.c
 new file mode 100644
-index 0000000000000..a391cd4da4b31
+index 000000000000..a391cd4da4b3
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/hantro_mmu.c
 @@ -0,0 +1,2004 @@
@@ -157662,7 +157662,7 @@ index 0000000000000..a391cd4da4b31
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/venc/hantrommu.h b/drivers/staging/media/eswin/venc/hantrommu.h
 new file mode 100644
-index 0000000000000..df2294d6287ef
+index 000000000000..df2294d6287e
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/hantrommu.h
 @@ -0,0 +1,160 @@
@@ -157829,7 +157829,7 @@ index 0000000000000..df2294d6287ef
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/venc/register/8170enum.h b/drivers/staging/media/eswin/venc/register/8170enum.h
 new file mode 100644
-index 0000000000000..7f4bdd5381adc
+index 000000000000..7f4bdd5381ad
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/8170enum.h
 @@ -0,0 +1,104 @@
@@ -157939,7 +157939,7 @@ index 0000000000000..7f4bdd5381adc
 +    HWIF_VCMD_CMDBUF_EXECUTING_ID,
 diff --git a/drivers/staging/media/eswin/venc/register/8170table.h b/drivers/staging/media/eswin/venc/register/8170table.h
 new file mode 100644
-index 0000000000000..de4a3b42658d4
+index 000000000000..de4a3b42658d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/8170table.h
 @@ -0,0 +1,104 @@
@@ -158049,7 +158049,7 @@ index 0000000000000..de4a3b42658d4
 +    VCMDREG(HWIF_VCMD_CMDBUF_EXECUTING_ID           , 104,0xffffffff,        0,        0,RW,"The ID of current executing command buffer.used after version 1.1.2."),
 diff --git a/drivers/staging/media/eswin/venc/register/create_swreg_struct.sh b/drivers/staging/media/eswin/venc/register/create_swreg_struct.sh
 new file mode 100644
-index 0000000000000..287ccc278061c
+index 000000000000..287ccc278061
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/create_swreg_struct.sh
 @@ -0,0 +1,412 @@
@@ -158467,7 +158467,7 @@ index 0000000000000..287ccc278061c
 +cp 8170table.h ../vcmdregistertable.h
 diff --git a/drivers/staging/media/eswin/venc/register/hwdriver.vhd b/drivers/staging/media/eswin/venc/register/hwdriver.vhd
 new file mode 100644
-index 0000000000000..612e8ae5b7115
+index 000000000000..612e8ae5b711
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/hwdriver.vhd
 @@ -0,0 +1,103 @@
@@ -158576,7 +158576,7 @@ index 0000000000000..612e8ae5b7115
 + SwRegister_sw_vcmd_cmdbuf_executing_id  <= swreg26(31 downto 0);
 diff --git a/drivers/staging/media/eswin/venc/register/signals.vhd b/drivers/staging/media/eswin/venc/register/signals.vhd
 new file mode 100644
-index 0000000000000..b3a9a5aed9e78
+index 000000000000..b3a9a5aed9e7
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/signals.vhd
 @@ -0,0 +1,103 @@
@@ -158685,7 +158685,7 @@ index 0000000000000..b3a9a5aed9e78
 + signal SwRegister_sw_vcmd_cmdbuf_executing_id : std_logic_vector(31 downto 0);
 diff --git a/drivers/staging/media/eswin/venc/register/swregisters.h b/drivers/staging/media/eswin/venc/register/swregisters.h
 new file mode 100644
-index 0000000000000..29955f50f4cee
+index 000000000000..29955f50f4ce
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/swregisters.h
 @@ -0,0 +1,116 @@
@@ -158807,7 +158807,7 @@ index 0000000000000..29955f50f4cee
 +#endif /*SWREGISTERS_H_*/ 
 diff --git a/drivers/staging/media/eswin/venc/register/swregisters_directives.tcl b/drivers/staging/media/eswin/venc/register/swregisters_directives.tcl
 new file mode 100644
-index 0000000000000..e8a483d8487d1
+index 000000000000..e8a483d8487d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/register/swregisters_directives.tcl
 @@ -0,0 +1,103 @@
@@ -158916,7 +158916,7 @@ index 0000000000000..e8a483d8487d1
 +directive set /$block/SwRegister.sw_vcmd_cmdbuf_executing_id:rsc -MAP_TO_MODULE {[DirectInput]}
 diff --git a/drivers/staging/media/eswin/venc/vc8000_axife.c b/drivers/staging/media/eswin/venc/vc8000_axife.c
 new file mode 100644
-index 0000000000000..7dd2cc6554718
+index 000000000000..7dd2cc655471
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_axife.c
 @@ -0,0 +1,97 @@
@@ -159019,7 +159019,7 @@ index 0000000000000..7dd2cc6554718
 +}
 diff --git a/drivers/staging/media/eswin/venc/vc8000_axife.h b/drivers/staging/media/eswin/venc/vc8000_axife.h
 new file mode 100644
-index 0000000000000..4a57cb9785c90
+index 000000000000..4a57cb9785c9
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_axife.h
 @@ -0,0 +1,69 @@
@@ -159094,7 +159094,7 @@ index 0000000000000..4a57cb9785c90
 +#endif
 diff --git a/drivers/staging/media/eswin/venc/vc8000_driver.c b/drivers/staging/media/eswin/venc/vc8000_driver.c
 new file mode 100644
-index 0000000000000..b202fd01aefd7
+index 000000000000..b202fd01aefd
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_driver.c
 @@ -0,0 +1,95 @@
@@ -159195,7 +159195,7 @@ index 0000000000000..b202fd01aefd7
 +MODULE_DESCRIPTION("eswin encoder driver");
 diff --git a/drivers/staging/media/eswin/venc/vc8000_driver.h b/drivers/staging/media/eswin/venc/vc8000_driver.h
 new file mode 100644
-index 0000000000000..aadd259d1752c
+index 000000000000..aadd259d1752
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_driver.h
 @@ -0,0 +1,428 @@
@@ -159629,7 +159629,7 @@ index 0000000000000..aadd259d1752c
 +#endif /* !_VC8000_VCMD_DRIVER_H_ */
 diff --git a/drivers/staging/media/eswin/venc/vc8000_normal_cfg.h b/drivers/staging/media/eswin/venc/vc8000_normal_cfg.h
 new file mode 100644
-index 0000000000000..30c5471a36362
+index 000000000000..30c5471a3636
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_normal_cfg.h
 @@ -0,0 +1,134 @@
@@ -159769,7 +159769,7 @@ index 0000000000000..30c5471a36362
 +#endif
 diff --git a/drivers/staging/media/eswin/venc/vc8000_normal_driver.c b/drivers/staging/media/eswin/venc/vc8000_normal_driver.c
 new file mode 100644
-index 0000000000000..6aae8a725c2da
+index 000000000000..6aae8a725c2d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_normal_driver.c
 @@ -0,0 +1,1384 @@
@@ -161159,7 +161159,7 @@ index 0000000000000..6aae8a725c2da
 +#endif
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_cfg.h b/drivers/staging/media/eswin/venc/vc8000_vcmd_cfg.h
 new file mode 100644
-index 0000000000000..4c5f23b6e5ffe
+index 000000000000..4c5f23b6e5ff
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_cfg.h
 @@ -0,0 +1,145 @@
@@ -161310,7 +161310,7 @@ index 0000000000000..4c5f23b6e5ffe
 +#endif /*__VC8000_VCMD_CFG_H__ */
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 new file mode 100644
-index 0000000000000..6442cd2c0a547
+index 000000000000..6442cd2c0a54
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -0,0 +1,4047 @@
@@ -165363,7 +165363,7 @@ index 0000000000000..6442cd2c0a547
 +
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 new file mode 100644
-index 0000000000000..c85d919fe7508
+index 000000000000..c85d919fe750
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -0,0 +1,683 @@
@@ -166052,7 +166052,7 @@ index 0000000000000..c85d919fe7508
 +MODULE_DESCRIPTION("Eswin Venc Driver");
 diff --git a/drivers/staging/media/eswin/venc/vc_drv_log.h b/drivers/staging/media/eswin/venc/vc_drv_log.h
 new file mode 100644
-index 0000000000000..ade441ef0059b
+index 000000000000..ade441ef0059
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vc_drv_log.h
 @@ -0,0 +1,54 @@
@@ -166112,7 +166112,7 @@ index 0000000000000..ade441ef0059b
 +#endif
 diff --git a/drivers/staging/media/eswin/venc/vcmdregisterenum.h b/drivers/staging/media/eswin/venc/vcmdregisterenum.h
 new file mode 100644
-index 0000000000000..a4cc0e3736435
+index 000000000000..a4cc0e373643
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vcmdregisterenum.h
 @@ -0,0 +1,159 @@
@@ -166277,7 +166277,7 @@ index 0000000000000..a4cc0e3736435
 +   HWIF_VCMD_CMDBUF_EXECUTING_ID,
 diff --git a/drivers/staging/media/eswin/venc/vcmdregistertable.h b/drivers/staging/media/eswin/venc/vcmdregistertable.h
 new file mode 100644
-index 0000000000000..0dbf70d9dc3d4
+index 000000000000..0dbf70d9dc3d
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vcmdregistertable.h
 @@ -0,0 +1,159 @@
@@ -166442,7 +166442,7 @@ index 0000000000000..0dbf70d9dc3d4
 +    VCMDREG(HWIF_VCMD_CMDBUF_EXECUTING_ID,               104, 0xffffffff,        0,        0, RW, "The ID of current executing command buffer.used after version 1.1.2."),
 diff --git a/drivers/staging/media/eswin/venc/vcmdswhwregisters.c b/drivers/staging/media/eswin/venc/vcmdswhwregisters.c
 new file mode 100644
-index 0000000000000..ce83798b1932f
+index 000000000000..ce83798b1932
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vcmdswhwregisters.c
 @@ -0,0 +1,202 @@
@@ -166650,7 +166650,7 @@ index 0000000000000..ce83798b1932f
 +}
 diff --git a/drivers/staging/media/eswin/venc/vcmdswhwregisters.h b/drivers/staging/media/eswin/venc/vcmdswhwregisters.h
 new file mode 100644
-index 0000000000000..f394179604f01
+index 000000000000..f394179604f0
 --- /dev/null
 +++ b/drivers/staging/media/eswin/venc/vcmdswhwregisters.h
 @@ -0,0 +1,244 @@

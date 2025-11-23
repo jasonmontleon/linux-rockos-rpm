@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
-index de77dc0d91013..77733cd77352a 100644
+index de77dc0d9101..77733cd77352 100644
 --- a/drivers/gpu/drm/eswin/Kconfig
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -32,7 +32,9 @@ config ESWIN_DW_HDMI

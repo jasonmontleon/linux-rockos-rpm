@@ -13,7 +13,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 12 insertions(+), 14 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index 17b7c21f7b69a..f21e269af6578 100644
+index 17b7c21f7b69..f21e269af657 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -46,9 +46,7 @@ typedef enum

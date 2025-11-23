@@ -12,7 +12,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
-index 9d3447538e38b..ee28701ab1b84 100644
+index 9d3447538e38..ee28701ab1b8 100644
 --- a/drivers/spi/spi-eswin-bootspi.c
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -477,6 +477,7 @@ void eswin_bootspi_wp_cfg(struct es_spi_priv *priv, int enable)

@@ -12,7 +12,7 @@ Signed-off-by: yiguo <yiguo@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
-index 8858e6863ab15..6dff5245a0b82 100644
+index 8858e6863ab1..6dff5245a0b8 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 @@ -37,6 +37,7 @@ enum {

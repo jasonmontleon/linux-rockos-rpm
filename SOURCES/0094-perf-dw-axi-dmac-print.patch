@@ -12,7 +12,7 @@ Signed-off-by: xuxiang <xuxiang@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 54c1396d974be..cddc9a612ee36 100644
+index 54c1396d974b..cddc9a612ee3 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -550,7 +550,7 @@ static void dw_axi_dma_set_hw_channel(struct axi_dma_chan *chan, bool set)

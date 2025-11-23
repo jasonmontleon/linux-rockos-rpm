@@ -14,7 +14,7 @@ Signed-off-by: fanglifei <fanglifei@eswincomputing.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 4d5eaec87f5de..2eddebbd2ddb6 100644
+index 4d5eaec87f5d..2eddebbd2ddb 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -945,6 +945,8 @@ static int dc_bind(struct device *dev, struct device *master, void *data)

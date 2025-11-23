@@ -23,7 +23,7 @@ Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 new file mode 100644
-index 0000000000000..ef7606e680275
+index 000000000000..ef7606e68027
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -0,0 +1,1085 @@
@@ -1114,7 +1114,7 @@ index 0000000000000..ef7606e680275
 +};
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 new file mode 100644
-index 0000000000000..0a54b5c27bb6b
+index 000000000000..0a54b5c27bb6
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -0,0 +1,1032 @@
@@ -2152,7 +2152,7 @@ index 0000000000000..0a54b5c27bb6b
 +};
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
 new file mode 100644
-index 0000000000000..ca6a63a499504
+index 000000000000..ca6a63a49950
 --- /dev/null
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -0,0 +1,850 @@

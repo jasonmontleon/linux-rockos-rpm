@@ -17,7 +17,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 5f6f08e84743b..83f22c56ae877 100644
+index 5f6f08e84743..83f22c56ae87 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -2,5 +2,8 @@
@@ -32,7 +32,7 @@ index 5f6f08e84743b..83f22c56ae877 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 new file mode 100644
-index 0000000000000..870323d163ea7
+index 000000000000..870323d163ea
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -0,0 +1,813 @@
@@ -851,7 +851,7 @@ index 0000000000000..870323d163ea7
 +
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 new file mode 100644
-index 0000000000000..cd069bc2da760
+index 000000000000..cd069bc2da76
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -0,0 +1,828 @@

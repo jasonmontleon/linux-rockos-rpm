@@ -14,7 +14,7 @@ Subject: [PATCH 650/652] Add NPU enabled variants of dtbs
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 81c75d1011768..5a248d86b6e78 100644
+index 81c75d101176..5a248d86b6e7 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -9,6 +9,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -29,7 +29,7 @@ index 81c75d1011768..5a248d86b6e78 100644
  							eic7702-evb-a1.dtb\
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 new file mode 100644
-index 0000000000000..91d3346d761d3
+index 000000000000..91d3346d761d
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-npu.dts
 @@ -0,0 +1,902 @@
@@ -937,7 +937,7 @@ index 0000000000000..91d3346d761d3
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
 new file mode 100644
-index 0000000000000..aa4741af7aba7
+index 000000000000..aa4741af7aba
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-npu.dts
 @@ -0,0 +1,987 @@
@@ -1930,7 +1930,7 @@ index 0000000000000..aa4741af7aba7
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 new file mode 100644
-index 0000000000000..57fc6dcc6bb01
+index 000000000000..57fc6dcc6bb0
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 @@ -0,0 +1,873 @@

@@ -15,7 +15,7 @@ Reviewed-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 3 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/memory/eswin/buddy.h b/drivers/memory/eswin/buddy.h
-index bc0fd6eb6ddbf..2c40d1116ad89 100644
+index bc0fd6eb6ddb..2c40d1116ad8 100644
 --- a/drivers/memory/eswin/buddy.h
 +++ b/drivers/memory/eswin/buddy.h
 @@ -15,17 +15,12 @@

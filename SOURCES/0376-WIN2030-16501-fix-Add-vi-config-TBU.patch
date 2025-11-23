@@ -15,7 +15,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ecfff2bf03348..cc651302b4a09 100644
+index ecfff2bf0334..cc651302b4a0 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2055,6 +2055,7 @@ vi_top_csr: vi_common_top_csr@0x51030000 {

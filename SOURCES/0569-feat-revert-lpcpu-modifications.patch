@@ -14,7 +14,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
-index 21d2c8c083b67..a331af3f0898e 100644
+index 21d2c8c083b6..a331af3f0898 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -843,7 +843,7 @@ &fan_control {

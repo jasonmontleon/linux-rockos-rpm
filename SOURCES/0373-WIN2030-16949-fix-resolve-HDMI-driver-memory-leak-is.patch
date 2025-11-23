@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 82a3cc3f69aab..4a49bcfbd49f2 100644
+index 82a3cc3f69aa..4a49bcfbd49f 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -2743,6 +2743,7 @@ static void dw_hdmi_update_power(struct dw_hdmi *hdmi)

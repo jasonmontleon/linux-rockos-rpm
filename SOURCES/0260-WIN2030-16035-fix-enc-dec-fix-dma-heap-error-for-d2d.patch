@@ -14,7 +14,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 47 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 47ef2f26489af..24ceb91b868ac 100644
+index 47ef2f26489a..24ceb91b868a 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -332,6 +332,10 @@ int is_clk_on;
@@ -115,7 +115,7 @@ index 47ef2f26489af..24ceb91b868ac 100644
  	vcrt = platform_get_drvdata(pdev);
  	vdec_hardware_reset(vcrt);
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 66cf710ff470f..44d3f79ce197e 100644
+index 66cf710ff470..44d3f79ce197 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -249,6 +249,10 @@ struct hantrovcmd_dev {

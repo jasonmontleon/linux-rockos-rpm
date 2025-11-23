@@ -13,7 +13,7 @@ Signed-off-by: weishangjuan <weishangjuan@eswincomputing.com>
  1 file changed, 8 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index 1bb6616b2a916..29c7fbc030fe8 100644
+index 1bb6616b2a91..29c7fbc030fe 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -177,6 +177,10 @@ aon_eeprom@50 {

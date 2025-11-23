@@ -18,7 +18,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  5 files changed, 44 insertions(+), 16 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 9f1bba3799691..2019957d4530f 100644
+index 9f1bba379969..2019957d4530 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -437,7 +437,7 @@ &gc820 {
@@ -31,7 +31,7 @@ index 9f1bba3799691..2019957d4530f 100644
  
  &vdec0 {
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
-index 8303e9a139c60..fb921fbd970e6 100644
+index 8303e9a139c6..fb921fbd970e 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 @@ -732,6 +732,13 @@ gckKERNEL_Construct(gckOS Os, gceCORE Core,
@@ -49,7 +49,7 @@ index 8303e9a139c60..fb921fbd970e6 100644
                  if (!kernel->mmu) {
                      gcmkONERROR(gckMMU_Construct(kernel, gcdMMU_SIZE, &kernel->mmu));
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
-index 9386092809b57..a428dcd84af58 100644
+index 9386092809b5..a428dcd84af5 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 @@ -314,6 +314,8 @@ _SyncModuleParam(gcsMODULE_PARAMETERS *ModuleParam)
@@ -93,7 +93,7 @@ index 9386092809b57..a428dcd84af58 100644
          }
      }
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
-index 0adeae90bc10c..db95354cb7c05 100644
+index 0adeae90bc10..db95354cb7c0 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 @@ -248,7 +248,7 @@ static uint devCoreCounts[gcdDEVICE_COUNT] = {gcdCORE_3D_COUNT, 0};
@@ -106,7 +106,7 @@ index 0adeae90bc10c..db95354cb7c05 100644
  MODULE_PARM_DESC(dev2DCoreCounts, "Array of core 2D count of each hardware device");
  
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
-index 4b52d96799547..5802677709927 100644
+index 4b52d9679954..580267770992 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 @@ -163,7 +163,13 @@ struct gpu_power_domain {

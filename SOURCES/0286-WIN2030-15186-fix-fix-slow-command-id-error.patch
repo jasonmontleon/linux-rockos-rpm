@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/hwmon/pac193x.c b/drivers/hwmon/pac193x.c
-index ae2735139729c..c0d165a206c3b 100644
+index ae2735139729..c0d165a206c3 100644
 --- a/drivers/hwmon/pac193x.c
 +++ b/drivers/hwmon/pac193x.c
 @@ -73,7 +73,7 @@

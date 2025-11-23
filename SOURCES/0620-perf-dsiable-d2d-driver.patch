@@ -15,7 +15,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  4 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 225555889b4f5..628f066512f42 100644
+index 225555889b4f..628f066512f4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -1637,11 +1637,11 @@ &d1_llc_dev{
@@ -33,7 +33,7 @@ index 225555889b4f5..628f066512f42 100644
  
  /* die0 GPIO Function Description
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index f02ba7ae04d5a..9ffd69cd107d0 100644
+index f02ba7ae04d5..9ffd69cd107d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -1602,11 +1602,11 @@ &d1_llc_dev{
@@ -51,7 +51,7 @@ index f02ba7ae04d5a..9ffd69cd107d0 100644
  
  /* die0 GPIO Function Description
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index 80ad529aafc07..6af9e0ae4d87a 100644
+index 80ad529aafc0..6af9e0ae4d87 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -1431,9 +1431,9 @@ &d1_llc_dev{
@@ -67,7 +67,7 @@ index 80ad529aafc07..6af9e0ae4d87a 100644
 +	status = "disabled";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index 2be51435f591c..767eccef2e048 100644
+index 2be51435f591..767eccef2e04 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -1626,11 +1626,11 @@ &d1_llc_dev{

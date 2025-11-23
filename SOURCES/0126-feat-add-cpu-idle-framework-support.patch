@@ -14,7 +14,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  3 files changed, 46 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 725d93d2165ff..fa46f44bd3a1d 100644
+index 725d93d2165f..fa46f44bd3a1 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -34,7 +34,22 @@ L64: cpus {
@@ -106,7 +106,7 @@ index 725d93d2165ff..fa46f44bd3a1d 100644
  				#interrupt-cells = <1>;
  				compatible = "riscv,cpu-intc";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index cde282a618639..f20e1064ea7cc 100644
+index cde282a61863..f20e1064ea7c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -39,6 +39,22 @@ L64: cpus {
@@ -165,7 +165,7 @@ index cde282a618639..f20e1064ea7cc 100644
  				#interrupt-cells = <1>;
  				compatible = "riscv,cpu-intc";
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 1603e0ec1bf7c..2ef6525451ad7 100644
+index 1603e0ec1bf7..2ef6525451ad 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -50,6 +50,8 @@ CONFIG_CPU_FREQ_GOV_SCHEDUTIL=y

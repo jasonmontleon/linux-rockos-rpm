@@ -9,7 +9,7 @@ Signed-off-by: carbon <carbon@milkv.io>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 1a77bb521dc8e..43c00efd35de3 100644
+index 1a77bb521dc8..43c00efd35de 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -450,7 +450,7 @@ &sdhci_emmc {

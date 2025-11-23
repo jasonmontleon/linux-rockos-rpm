@@ -20,7 +20,7 @@ Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
  delete mode 100644 arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index d11762b761275..0fcaa7ad3005a 100644
+index d11762b76127..0fcaa7ad3005 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -14,8 +14,9 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -37,7 +37,7 @@ index d11762b761275..0fcaa7ad3005a 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 deleted file mode 100644
-index 0a54b5c27bb6b..0000000000000
+index 0a54b5c27bb6..000000000000
 --- a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 +++ /dev/null
 @@ -1,1032 +0,0 @@
@@ -1074,7 +1074,7 @@ index 0a54b5c27bb6b..0000000000000
 -	status = "okay";
 -};
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index fd7737b62c61c..03f548efbc803 100644
+index fd7737b62c61..03f548efbc80 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -39,7 +39,7 @@

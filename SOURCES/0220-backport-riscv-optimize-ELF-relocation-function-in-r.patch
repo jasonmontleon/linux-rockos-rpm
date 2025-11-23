@@ -29,7 +29,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 16 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/kernel/module.c b/arch/riscv/kernel/module.c
-index df4f6fec5d174..31000dacbba05 100644
+index df4f6fec5d17..31000dacbba0 100644
 --- a/arch/riscv/kernel/module.c
 +++ b/arch/riscv/kernel/module.c
 @@ -346,6 +346,7 @@ int apply_relocate_add(Elf_Shdr *sechdrs, const char *strtab,

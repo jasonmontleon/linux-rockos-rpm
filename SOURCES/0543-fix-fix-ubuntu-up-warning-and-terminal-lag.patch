@@ -12,7 +12,7 @@ Signed-off-by: shenzhenya <shenzhenya@eswincomputing.com>
  1 file changed, 9 insertions(+)
 
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
-index 2b8d299e2f02f..9aa488f42add5 100644
+index 2b8d299e2f02..9aa488f42add 100644
 --- a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
 @@ -91,6 +91,11 @@ int vvcam_isp_post_event(struct v4l2_subdev *sd, struct vvcam_isp_event_pkg *eve

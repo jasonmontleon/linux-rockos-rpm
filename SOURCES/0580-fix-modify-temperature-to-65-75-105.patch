@@ -14,7 +14,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  3 files changed, 44 insertions(+), 22 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 47cbe32e59474..df4b8dac0ec10 100644
+index 47cbe32e5947..df4b8dac0ec1 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -109,6 +109,7 @@ cpu_4: cpu@4 {
@@ -50,7 +50,7 @@ index 47cbe32e59474..df4b8dac0ec10 100644
  		cpu7_intc: interrupt-controller {
  			#interrupt-cells = <1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 9d132f6e42847..5f27110b940b6 100644
+index 9d132f6e4284..5f27110b940b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -40,18 +40,16 @@ thermal0 {
@@ -92,7 +92,7 @@ index 9d132f6e42847..5f27110b940b6 100644
  			label = "pvt1";
  			numa-node-id = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index ec38ce8bf5d84..610cddc7a6d90 100644
+index ec38ce8bf5d8..610cddc7a6d9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -32,24 +32,22 @@

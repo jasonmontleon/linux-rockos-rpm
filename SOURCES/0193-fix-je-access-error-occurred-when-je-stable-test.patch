@@ -14,7 +14,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 35 insertions(+), 16 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index e0ccc2ab96732..5f88db259b5c8 100644
+index e0ccc2ab9673..5f88db259b5c 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -1428,9 +1428,25 @@ static long release_cmdbuf(struct file *filp, u16 cmdbuf_id)
@@ -183,7 +183,7 @@ index e0ccc2ab96732..5f88db259b5c8 100644
  		dev->working_state = WORKING_STATE_IDLE;
  		if (dev->hw_version_id > HW_ID_1_0_C) {
 diff --git a/drivers/staging/media/eswin/venc/vc_drv_log.h b/drivers/staging/media/eswin/venc/vc_drv_log.h
-index ade441ef0059b..98dbd0006ce37 100644
+index ade441ef0059..98dbd0006ce3 100644
 --- a/drivers/staging/media/eswin/venc/vc_drv_log.h
 +++ b/drivers/staging/media/eswin/venc/vc_drv_log.h
 @@ -32,7 +32,7 @@

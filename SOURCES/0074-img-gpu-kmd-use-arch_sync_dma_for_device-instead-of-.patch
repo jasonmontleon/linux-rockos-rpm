@@ -9,7 +9,7 @@ Subject: [PATCH 074/652] img gpu kmd: use arch_sync_dma_for_device() instead
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index e6750e7b49a0f..d94c76cc68b90 100644
+index e6750e7b49a0..d94c76cc68b9 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -34,7 +34,7 @@

@@ -18,7 +18,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  rename arch/riscv/boot/dts/eswin/{hifive-premier-p550.dts => eic7700-hifive-premier-p550.dts} (99%)
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 3812da5bbdcee..c5b439ec7f273 100644
+index 3812da5bbdce..c5b439ec7f27 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -2,7 +2,7 @@
@@ -34,7 +34,7 @@ diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts b/arch/riscv/boot
 similarity index 99%
 rename from arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 rename to arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index c4a9d6f97f95f..f20c86264c3e2 100644
+index c4a9d6f97f95..f20c86264c3e 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -38,9 +38,8 @@

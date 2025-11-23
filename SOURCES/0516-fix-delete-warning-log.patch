@@ -12,7 +12,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index d3f0342a74b03..7c0a330c1f2bc 100644
+index d3f0342a74b0..7c0a330c1f2b 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -245,7 +245,6 @@ static int eswin_fan_control_read_fan(struct device *dev, u32 attr, long *val)

@@ -23,7 +23,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  10 files changed, 11 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index c301d589a5087..84819ec2eadde 100644
+index c301d589a508..84819ec2eadd 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -22,7 +22,7 @@
@@ -36,7 +36,7 @@ index c301d589a5087..84819ec2eadde 100644
  #include <linux/clk.h>
  #include <linux/delay.h>
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.h b/drivers/gpu/drm/eswin/dw-hdmi.h
-index dcfeaada7f1df..9304c5865aeeb 100644
+index dcfeaada7f1d..9304c5865aee 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.h
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.h
 @@ -18,7 +18,7 @@
@@ -49,7 +49,7 @@ index dcfeaada7f1df..9304c5865aeeb 100644
  #ifndef __DW_HDMI_H__
  #define __DW_HDMI_H__
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_audio.h b/drivers/gpu/drm/eswin/dw_hdmi_audio.h
-index 97e0d9f024908..105f5e71babd1 100644
+index 97e0d9f02490..105f5e71babd 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_audio.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_audio.h
 @@ -16,7 +16,7 @@
@@ -62,7 +62,7 @@ index 97e0d9f024908..105f5e71babd1 100644
  
  #ifndef DW_HDMI_AUDIO_H
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_cec.c b/drivers/gpu/drm/eswin/dw_hdmi_cec.c
-index 56553d1d4abdc..90e8c973ef068 100644
+index 56553d1d4abd..90e8c973ef06 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_cec.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_cec.c
 @@ -20,7 +20,7 @@
@@ -75,7 +75,7 @@ index 56553d1d4abdc..90e8c973ef068 100644
  
  #include <linux/interrupt.h>
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_cec.h b/drivers/gpu/drm/eswin/dw_hdmi_cec.h
-index 3ea45a7af6447..a43854725d88b 100644
+index 3ea45a7af644..a43854725d88 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_cec.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_cec.h
 @@ -16,7 +16,7 @@
@@ -88,7 +88,7 @@ index 3ea45a7af6447..a43854725d88b 100644
  
  #ifndef DW_HDMI_CEC_H
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
-index 12933da6568bf..8147044d12c96 100644
+index 12933da6568b..8147044d12c9 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -16,7 +16,7 @@
@@ -101,7 +101,7 @@ index 12933da6568bf..8147044d12c96 100644
  #include <linux/clk.h>
  #include <linux/delay.h>
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
-index 20fd169b387ca..8d8c386515f42 100644
+index 20fd169b387c..8d8c386515f4 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 @@ -16,7 +16,7 @@
@@ -114,7 +114,7 @@ index 20fd169b387ca..8d8c386515f42 100644
  
  #ifndef DW_HDMI_HDCP_H
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
-index 6c3b0af804f84..aa71bc7cce8ef 100644
+index 6c3b0af804f8..aa71bc7cce8e 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 @@ -16,7 +16,7 @@
@@ -127,7 +127,7 @@ index 6c3b0af804f84..aa71bc7cce8ef 100644
  #include <linux/kernel.h>
  #include <linux/module.h>
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
-index 80229c128eebe..33af4db6fa4c3 100644
+index 80229c128eeb..33af4db6fa4c 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 @@ -21,7 +21,7 @@
@@ -140,7 +140,7 @@ index 80229c128eebe..33af4db6fa4c3 100644
  
  #include <linux/dma-mapping.h>
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
-index 19f7cccdca333..03c4f9b8cfb9f 100644
+index 19f7cccdca33..03c4f9b8cfb9 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -16,7 +16,7 @@

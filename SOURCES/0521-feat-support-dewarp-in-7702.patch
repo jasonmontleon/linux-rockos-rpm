@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  2 files changed, 19 insertions(+), 16 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index e0bedeec731a2..9d132f6e42847 100644
+index e0bedeec731a..9d132f6e4284 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2068,22 +2068,23 @@ vi_subsys: vi-subsys@51000000 {
@@ -57,7 +57,7 @@ index e0bedeec731a2..9d132f6e42847 100644
  			ranges;
  			status = "okay";
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index e6a2e0400b91b..af10604c71d33 100644
+index e6a2e0400b91..af10604c71d3 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -862,3 +862,5 @@ CONFIG_REGULATOR_FIXED_VOLTAGE=y

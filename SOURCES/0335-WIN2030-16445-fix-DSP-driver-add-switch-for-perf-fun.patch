@@ -15,7 +15,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 10 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/Kconfig b/drivers/soc/eswin/ai_driver/Kconfig
-index 713289b59ae25..0044a4be10e5e 100644
+index 713289b59ae2..0044a4be10e5 100644
 --- a/drivers/soc/eswin/ai_driver/Kconfig
 +++ b/drivers/soc/eswin/ai_driver/Kconfig
 @@ -2,6 +2,11 @@ config ESWIN_DSP
@@ -39,7 +39,7 @@ index 713289b59ae25..0044a4be10e5e 100644
      bool "NPU PERF"
      default n
 diff --git a/drivers/soc/eswin/ai_driver/dsp/Makefile b/drivers/soc/eswin/ai_driver/dsp/Makefile
-index e433e1af883b9..d9fb51b3c14d2 100755
+index e433e1af883b..d9fb51b3c14d 100755
 --- a/drivers/soc/eswin/ai_driver/dsp/Makefile
 +++ b/drivers/soc/eswin/ai_driver/dsp/Makefile
 @@ -50,4 +50,8 @@ eic7700_dsp-y += dsp_platform.o dsp_sram.o dsp_firmware.o dsp_pool.o \

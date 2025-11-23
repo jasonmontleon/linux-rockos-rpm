@@ -18,7 +18,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 13ef45a272d3f..69074a4a14512 100644
+index 13ef45a272d3..69074a4a1451 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -10,6 +10,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -31,7 +31,7 @@ index 13ef45a272d3f..69074a4a14512 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 new file mode 100644
-index 0000000000000..f8bfb293fcfa5
+index 000000000000..f8bfb293fcfa
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -0,0 +1,335 @@
@@ -372,7 +372,7 @@ index 0000000000000..f8bfb293fcfa5
 +*/
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 new file mode 100644
-index 0000000000000..79a885bb2c62c
+index 000000000000..79a885bb2c62
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -0,0 +1,688 @@

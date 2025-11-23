@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 4 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index 5ffed4c4ab34e..f0c0cbe10f568 100644
+index 5ffed4c4ab34..f0c0cbe10f56 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -354,10 +354,6 @@ static int audio_dev_mmap(struct file *file, struct vm_area_struct *vma)

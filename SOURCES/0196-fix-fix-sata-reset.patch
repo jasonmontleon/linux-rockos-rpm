@@ -15,7 +15,7 @@ Signed-off-by: luyulin <luyulin@eswincomputing.com>
  3 files changed, 59 insertions(+), 117 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 14d5b4b0df6a6..4a79fe6b07218 100644
+index 14d5b4b0df6a..4a79fe6b0721 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -785,12 +785,8 @@ d0_sata: sata@0x50420000{
@@ -34,7 +34,7 @@ index 14d5b4b0df6a6..4a79fe6b07218 100644
  			iommus = <&smmu0 WIN2030_SID_SATA>;
  			tbus = <WIN2030_TBUID_SATA>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 8351a81c605ab..e8a5c18b54593 100644
+index 8351a81c605a..e8a5c18b5459 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1022,11 +1022,8 @@ d1_sata: sata@0x70420000 {
@@ -52,7 +52,7 @@ index 8351a81c605ab..e8a5c18b54593 100644
  				iommus = <&smmu1 WIN2030_SID_SATA>;
  				tbus = <WIN2030_TBUID_SATA>;
 diff --git a/drivers/ata/ahci_eswin.c b/drivers/ata/ahci_eswin.c
-index c97431f008a2a..47240248f4683 100644
+index c97431f008a2..47240248f468 100644
 --- a/drivers/ata/ahci_eswin.c
 +++ b/drivers/ata/ahci_eswin.c
 @@ -69,9 +69,10 @@

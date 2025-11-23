@@ -17,7 +17,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
 new file mode 100644
-index 0000000000000..c34f0ce141905
+index 000000000000..c34f0ce14190
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
 @@ -0,0 +1,231 @@
@@ -253,7 +253,7 @@ index 0000000000000..c34f0ce141905
 +	status = "disabled";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index e019b70ecda02..a7a2ec2d212ff 100644
+index e019b70ecda0..a7a2ec2d212f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -33,6 +33,7 @@
@@ -286,7 +286,7 @@ index e019b70ecda02..a7a2ec2d212ff 100644
 +	memory-region = <&dvp2axi_mem>;
 +};
 diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-index 7caab5a79e657..a2e45b961ec76 100644
+index 7caab5a79e65..a2e45b961ec7 100644
 --- a/drivers/media/i2c/imx219.c
 +++ b/drivers/media/i2c/imx219.c
 @@ -555,6 +555,10 @@ struct imx219 {
@@ -345,7 +345,7 @@ index 7caab5a79e657..a2e45b961ec76 100644
  	/*
  	* The sensor must be powered for imx219_identify_module()
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
-index 92dd6fd50039f..973ee3ef97bf3 100755
+index 92dd6fd50039..973ee3ef97bf 100755
 --- a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 @@ -445,8 +445,6 @@ dw_mipi_csi_parse_dt(struct platform_device *pdev, struct dw_csi *dev)

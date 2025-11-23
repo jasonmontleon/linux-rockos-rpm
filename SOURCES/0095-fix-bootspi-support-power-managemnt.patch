@@ -15,7 +15,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  3 files changed, 137 insertions(+), 45 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index c9ffac16a2866..e7c3b818c5982 100644
+index c9ffac16a286..e7c3b818c598 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -37,6 +37,8 @@ CONFIG_RISCV_SBI_V01=y
@@ -28,7 +28,7 @@ index c9ffac16a2866..e7c3b818c5982 100644
  CONFIG_CPU_FREQ_STAT=y
  CONFIG_CPU_FREQ_DEFAULT_GOV_USERSPACE=y
 diff --git a/drivers/mailbox/eswin-mailbox.c b/drivers/mailbox/eswin-mailbox.c
-index 6a2c40e4d45e6..6727882ee6820 100755
+index 6a2c40e4d45e..6727882ee682 100755
 --- a/drivers/mailbox/eswin-mailbox.c
 +++ b/drivers/mailbox/eswin-mailbox.c
 @@ -527,7 +527,7 @@ static int eswin_mbox_remove(struct platform_device *pdev)
@@ -65,7 +65,7 @@ index 6a2c40e4d45e6..6727882ee6820 100755
  	return eswin_mbox_prepare_clk(dev, true);
  }
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
-index 1205ce3941ae1..9d3447538e38b 100644
+index 1205ce3941ae..9d3447538e38 100644
 --- a/drivers/spi/spi-eswin-bootspi.c
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -23,7 +23,6 @@

@@ -9,7 +9,7 @@ Subject: [PATCH 432/652] Add modules required to run strongswan as per
  1 file changed, 7 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 4e586f315d0ac..0ccf54cecfead 100644
+index 4e586f315d0a..0ccf54cecfea 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -76,14 +76,21 @@ CONFIG_UNIX_DIAG=m

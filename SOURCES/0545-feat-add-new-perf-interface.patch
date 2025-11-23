@@ -14,7 +14,7 @@ Signed-off-by: zhuxuefei <zhuxuefei@eswincomputing.com>
  3 files changed, 37 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 1cc31a98eb58a..e9bcdae06212a 100644
+index 1cc31a98eb58..e9bcdae06212 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -1024,6 +1024,37 @@ static long dsp_ioctl_get_fw_perf_data(struct file *flip, dsp_fw_perf_t *data)
@@ -67,7 +67,7 @@ index 1cc31a98eb58a..e9bcdae06212a 100644
  		retval = es_dsp_hw_ioctl(flip, cmd, arg);
  		break;
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
-index 31cb775d5173a..b7b565d040182 100644
+index 31cb775d5173..b7b565d04018 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 @@ -52,7 +52,7 @@
@@ -80,7 +80,7 @@ index 31cb775d5173a..b7b565d040182 100644
      ES_DEV_BUF_S desc;
  } __attribute__((packed)) dsp_ioctl_pre_dma_s;
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
-index 99aab26af20ff..b225e2287ff41 100644
+index 99aab26af20f..b225e2287ff4 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 @@ -190,6 +190,7 @@ struct es_dsp {

@@ -12,7 +12,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index e8d60d183d2b9..4da79e854ea46 100644
+index e8d60d183d2b..4da79e854ea4 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -413,7 +413,6 @@ static int eswin_pcie_suspend(struct device *dev)

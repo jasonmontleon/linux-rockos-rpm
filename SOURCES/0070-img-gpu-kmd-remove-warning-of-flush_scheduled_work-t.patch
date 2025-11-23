@@ -10,7 +10,7 @@ ref: https://github.com/starfive-tech/linux/commit/d89c0fec5e542e859df5dc590caea
  1 file changed, 1 deletion(-)
 
 diff --git a/include/linux/workqueue.h b/include/linux/workqueue.h
-index 52c6dd6d80ac0..629f9dcdc1114 100644
+index 52c6dd6d80ac..629f9dcdc111 100644
 --- a/include/linux/workqueue.h
 +++ b/include/linux/workqueue.h
 @@ -636,7 +636,6 @@ extern void __warn_flushing_systemwide_wq(void)

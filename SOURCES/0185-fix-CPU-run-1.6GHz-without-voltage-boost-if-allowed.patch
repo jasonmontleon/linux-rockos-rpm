@@ -19,7 +19,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 34 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index b944a5e6ec446..c035da206e7bd 100755
+index b944a5e6ec44..c035da206e7b 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -281,6 +281,14 @@ static int eswin_calc_pll(u32 *frac_val, u32 *postdiv1_val,

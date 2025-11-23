@@ -16,7 +16,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/eswin/es_plane.c b/drivers/gpu/drm/eswin/es_plane.c
-index 93b97db5cb736..e2e01ac5fa3f4 100644
+index 93b97db5cb73..e2e01ac5fa3f 100644
 --- a/drivers/gpu/drm/eswin/es_plane.c
 +++ b/drivers/gpu/drm/eswin/es_plane.c
 @@ -252,10 +252,17 @@ static int es_plane_atomic_check(struct drm_plane *plane,

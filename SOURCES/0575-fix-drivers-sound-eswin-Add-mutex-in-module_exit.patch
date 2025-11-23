@@ -12,7 +12,7 @@ Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index f21e269af6578..276356c57e8d5 100644
+index f21e269af657..276356c57e8d 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -477,6 +477,7 @@ void audio_proc_module_exit(void)

@@ -15,7 +15,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  4 files changed, 17 insertions(+), 16 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index e27a53bb27173..47e30488bd8b8 100644
+index e27a53bb2717..47e30488bd8b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -569,8 +569,8 @@ &d0_gmac0 {
@@ -41,7 +41,7 @@ index e27a53bb27173..47e30488bd8b8 100644
  	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 31d9befdd3f0d..3e1a0a95d57a7 100644
+index 31d9befdd3f0..3e1a0a95d57a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -528,8 +528,8 @@ &d0_gmac0 {
@@ -75,7 +75,7 @@ index 31d9befdd3f0d..3e1a0a95d57a7 100644
  
  &d0_i2c0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 024bd9d6cac87..ffec40184fc0f 100644
+index 024bd9d6cac8..ffec40184fc0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -478,8 +478,8 @@ &d0_gmac0 {
@@ -101,7 +101,7 @@ index 024bd9d6cac87..ffec40184fc0f 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index e9c6bb6e261b4..9d5fa38e0f263 100644
+index e9c6bb6e261b..9d5fa38e0f26 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -432,8 +432,8 @@ &d0_gmac0 {

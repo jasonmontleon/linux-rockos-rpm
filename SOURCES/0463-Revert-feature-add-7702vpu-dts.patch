@@ -16,7 +16,7 @@ useless at present, revert it.
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts
 deleted file mode 100644
-index b2433137f6712..0000000000000
+index b2433137f671..000000000000
 --- a/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts
 +++ /dev/null
 @@ -1,921 +0,0 @@
@@ -943,7 +943,7 @@ index b2433137f6712..0000000000000
 -};
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts
 deleted file mode 100644
-index 124aceffac84d..0000000000000
+index 124aceffac84..000000000000
 --- a/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts
 +++ /dev/null
 @@ -1,880 +0,0 @@

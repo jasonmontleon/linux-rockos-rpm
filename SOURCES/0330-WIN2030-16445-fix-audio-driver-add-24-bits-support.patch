@@ -17,7 +17,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  4 files changed, 61 insertions(+), 18 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index af8f18d1057df..1ceb706a9f9a6 100644
+index af8f18d1057d..1ceb706a9f9a 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -98,6 +98,7 @@ static const char * const supply_names[ES8328_SUPPLY_NUM] = {
@@ -29,7 +29,7 @@ index af8f18d1057df..1ceb706a9f9a6 100644
  
  #define EVB_BOARD  1
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 80590ef8c07eb..cb7bbfca3de51 100644
+index 80590ef8c07e..cb7bbfca3de5 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -159,6 +159,11 @@ int esw_pcm_dma_open(struct snd_soc_component *component,
@@ -148,7 +148,7 @@ index 80590ef8c07eb..cb7bbfca3de51 100644
  
  	return 0;
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 24b2ebed75dda..8fc5a00472d36 100755
+index 24b2ebed75dd..8fc5a00472d3 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -80,7 +80,10 @@
@@ -172,7 +172,7 @@ index 24b2ebed75dda..8fc5a00472d36 100755
  		i2s_drvdata->ccr = CLOCK_CYCLES_32 << CCR_WSS_POS |
  					NO_CLOCK_GATING;
 diff --git a/sound/soc/eswin/esw-i2s.h b/sound/soc/eswin/esw-i2s.h
-index 1cc88ed411e3d..63f12992236fa 100644
+index 1cc88ed411e3..63f12992236f 100644
 --- a/sound/soc/eswin/esw-i2s.h
 +++ b/sound/soc/eswin/esw-i2s.h
 @@ -199,6 +199,7 @@ struct i2s_dev {

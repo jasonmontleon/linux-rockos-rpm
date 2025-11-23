@@ -11,7 +11,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  1 file changed, 18 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 47dadc142fedd..6679f371b06b4 100644
+index 47dadc142fed..6679f371b06b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -600,6 +600,20 @@ static int commit_new_io_tensor(struct user_context *uctx, void *arg)

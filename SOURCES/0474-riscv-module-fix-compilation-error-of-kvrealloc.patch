@@ -20,7 +20,7 @@ Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/kernel/module-sections.c b/arch/riscv/kernel/module-sections.c
-index 91d4f0fbd0af0..a191ba7f8892a 100644
+index 91d4f0fbd0af..a191ba7f8892 100644
 --- a/arch/riscv/kernel/module-sections.c
 +++ b/arch/riscv/kernel/module-sections.c
 @@ -168,10 +168,10 @@ int module_frob_arch_sections(Elf_Ehdr *ehdr, Elf_Shdr *sechdrs,

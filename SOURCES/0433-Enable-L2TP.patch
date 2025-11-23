@@ -8,7 +8,7 @@ Subject: [PATCH 433/652] Enable L2TP.
  1 file changed, 5 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0ccf54cecfead..2eff323df5b31 100644
+index 0ccf54cecfea..2eff323df5b3 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -540,6 +540,11 @@ CONFIG_TXGBE=m

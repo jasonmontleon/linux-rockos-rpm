@@ -11,7 +11,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  2 files changed, 14 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
-index f18e7dd299484..77974acb3b0b8 100644
+index f18e7dd29948..77974acb3b0b 100644
 --- a/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
 @@ -258,7 +258,7 @@ typedef struct _modelShmDesc {
@@ -33,7 +33,7 @@ index f18e7dd299484..77974acb3b0b8 100644
  #define NPU_HETERO_CMD_BASE 'h'
  #define NPU_HETERO_IOWR(nr, type) _IOWR(NPU_HETERO_CMD_BASE, nr, type)
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 1d58f190a7a77..b32f9484d98d8 100644
+index 1d58f190a7a7..b32f9484d98d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -592,7 +592,15 @@ static int runtime_lock_request(struct user_context *uctx, struct file *file,

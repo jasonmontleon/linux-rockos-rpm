@@ -16,7 +16,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  4 files changed, 16 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
-index 21a1b0d204bdb..a40648236f105 100644
+index 21a1b0d204bd..a40648236f10 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -2033,6 +2033,9 @@ gckHARDWARE_Construct(gckOS Os, gckKERNEL Kernel, gckHARDWARE *Hardware)
@@ -57,7 +57,7 @@ index 21a1b0d204bdb..a40648236f105 100644
      }
  
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
-index cfd691f1c5eb0..878241b4b49bd 100644
+index cfd691f1c5eb..878241b4b49b 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.h
 @@ -249,6 +249,8 @@ struct _gckHARDWARE {
@@ -70,7 +70,7 @@ index cfd691f1c5eb0..878241b4b49bd 100644
  
  gceSTATUS
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
-index 256581fd48a26..bae3b45386392 100644
+index 256581fd48a2..bae3b4538639 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 @@ -1125,16 +1125,12 @@ gckWLFE_Execute(gckHARDWARE Hardware, gctADDRESS Address, gctUINT32 Bytes)
@@ -104,7 +104,7 @@ index 256581fd48a26..bae3b45386392 100644
      return status;
  }
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
-index 21e9513d8347d..b31682bb944ee 100644
+index 21e9513d8347..b31682bb944e 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 @@ -2458,6 +2458,7 @@ threadRoutine(void *ctxt)

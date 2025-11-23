@@ -12,7 +12,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  1 file changed, 62 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 7fd375c410069..ee87be45c3464 100644
+index 7fd375c41006..ee87be45c346 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -788,7 +788,7 @@ static int vcmd_type_core_num[MAX_VCMD_TYPE];

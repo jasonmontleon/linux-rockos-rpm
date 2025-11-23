@@ -13,7 +13,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 58 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index d462277fecc6b..dd178b8e361d6 100644
+index d462277fecc6..dd178b8e361d 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -1,4 +1,25 @@

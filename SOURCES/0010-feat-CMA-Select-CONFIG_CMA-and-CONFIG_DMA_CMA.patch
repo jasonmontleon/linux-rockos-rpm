@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 332acc518c31f..725ad2400def6 100644
+index 332acc518c31..725ad2400def 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -36,6 +36,7 @@ CONFIG_JUMP_LABEL=y

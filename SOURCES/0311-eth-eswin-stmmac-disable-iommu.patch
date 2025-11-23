@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 7df6029a94510..6b5c63f0e5a81 100644
+index 7df6029a9451..6b5c63f0e5a8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -482,7 +482,7 @@ d0_gmac0: ethernet@50400000 {
@@ -32,7 +32,7 @@ index 7df6029a94510..6b5c63f0e5a81 100644
  			dma-noncoherent;
  			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x1034 0x200 0x208>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index e0eb8522a10b7..31b718685d06c 100644
+index e0eb8522a10b..31b718685d06 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1545,7 +1545,7 @@ d1_gmac0: ethernet@70400000 {

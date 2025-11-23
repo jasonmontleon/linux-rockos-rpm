@@ -13,7 +13,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 328c51187781d..ed5d3e6ea9e3e 100644
+index 328c51187781..ed5d3e6ea9e3 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -32,12 +32,12 @@ CONFIG_PERF_EVENTS=y

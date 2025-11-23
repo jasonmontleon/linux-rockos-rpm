@@ -13,7 +13,7 @@ Signed-off-by: sun huan <sunhuan@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
-index b58544de1fb43..a1b78ba8e70b0 100644
+index b58544de1fb4..a1b78ba8e70b 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 @@ -53,7 +53,7 @@

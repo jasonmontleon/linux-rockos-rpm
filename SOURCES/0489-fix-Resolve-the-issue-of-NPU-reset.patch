@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 8 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index 1addd530c1f7c..6e2f83bd8b97a 100644
+index 1addd530c1f7..6e2f83bd8b97 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -516,6 +516,8 @@ static ssize_t store_reset_hand(struct device *d, struct device_attribute *attr,

@@ -13,7 +13,7 @@ Signed-off-by: hejiean <hejiean@eswincomputing.com>
  1 file changed, 60 insertions(+), 54 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_proc/es_proc.c b/drivers/memory/eswin/es_proc/es_proc.c
-index 4e7f2bca6e103..569b9cf307d88 100644
+index 4e7f2bca6e10..569b9cf307d8 100644
 --- a/drivers/memory/eswin/es_proc/es_proc.c
 +++ b/drivers/memory/eswin/es_proc/es_proc.c
 @@ -18,9 +18,12 @@

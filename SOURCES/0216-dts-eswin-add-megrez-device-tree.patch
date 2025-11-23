@@ -12,7 +12,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index c5b439ec7f273..5e0aadfd548d7 100644
+index c5b439ec7f27..5e0aadfd548d 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -3,6 +3,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -25,7 +25,7 @@ index c5b439ec7f273..5e0aadfd548d7 100644
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 new file mode 100644
-index 0000000000000..01740497fc843
+index 000000000000..01740497fc84
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -0,0 +1,898 @@

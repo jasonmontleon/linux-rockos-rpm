@@ -12,7 +12,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index bdedf42533279..33926ca407292 100644
+index bdedf4253327..33926ca40729 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -59,6 +59,7 @@ &sdio0 {

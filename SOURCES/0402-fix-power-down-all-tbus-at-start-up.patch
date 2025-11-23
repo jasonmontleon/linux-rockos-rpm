@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 22 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 36fc0651f9386..7a4d5fe5002e3 100644
+index 36fc0651f938..7a4d5fe5002e 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -121,6 +121,7 @@ void print_tcu_node_status(const char *call_name, int call_line, int nid);

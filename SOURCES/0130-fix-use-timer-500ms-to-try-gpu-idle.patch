@@ -16,7 +16,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  2 files changed, 23 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h
-index 922cbae61a8c6..20ccde6d9e792 100644
+index 922cbae61a8c..20ccde6d9e79 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.h
 @@ -828,6 +828,8 @@ struct _gckEVENT {
@@ -29,7 +29,7 @@ index 922cbae61a8c6..20ccde6d9e792 100644
      gctPOINTER                  interruptCount;
  #endif
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
-index 882b453ec8974..c210a5237740c 100644
+index 882b453ec897..c210a5237740 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 @@ -511,6 +511,13 @@ _SubmitTimerFunction(gctPOINTER Data)

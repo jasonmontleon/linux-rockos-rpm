@@ -12,7 +12,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
  1 file changed, 70 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index ab1f4b421eab7..498a26304aead 100644
+index ab1f4b421eab..498a26304aea 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -39,6 +39,7 @@

@@ -18,7 +18,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  5 files changed, 5 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
-index 6d4043ca833cb..09cb7092e2e5b 100644
+index 6d4043ca833c..09cb7092e2e5 100644
 --- a/drivers/gpu/drm/eswin/Makefile
 +++ b/drivers/gpu/drm/eswin/Makefile
 @@ -1,5 +1,7 @@
@@ -30,7 +30,7 @@ index 6d4043ca833cb..09cb7092e2e5b 100644
  		es_dc.o \
  		es_crtc.o \
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index a54dddc63d302..c301d589a5087 100644
+index a54dddc63d30..c301d589a508 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -4616,10 +4616,6 @@ void dw_hdmi_suspend(struct dw_hdmi *hdmi)
@@ -61,7 +61,7 @@ index a54dddc63d302..c301d589a5087 100644
  MODULE_AUTHOR("Andy Yan <andy.yan@rock-chips.com>");
  MODULE_AUTHOR("Yakir Yang <ykk@rock-chips.com>");
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.h b/drivers/gpu/drm/eswin/dw-hdmi.h
-index 880e51f246b09..dcfeaada7f1df 100644
+index 880e51f246b0..dcfeaada7f1d 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.h
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.h
 @@ -1286,5 +1286,4 @@ enum supported_eotf_type {
@@ -71,7 +71,7 @@ index 880e51f246b09..dcfeaada7f1df 100644
 -void dw_hdmi_resume_early(struct dw_hdmi *hdmi);
  #endif /* __DW_HDMI_H__ */
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
-index 239a41809cc9d..20fd169b387ca 100644
+index 239a41809cc9..20fd169b387c 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 @@ -23,7 +23,7 @@
@@ -84,7 +84,7 @@ index 239a41809cc9d..20fd169b387ca 100644
  #define DW_HDCP_DRIVER_NAME "dw-hdmi-hdcp"
  #define HDCP_PRIVATE_KEY_SIZE 280
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
-index 62373b2b7eb5e..19f7cccdca333 100644
+index 62373b2b7eb5..19f7cccdca33 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -955,19 +955,8 @@ static int __maybe_unused dw_hdmi_eswin_resume(struct device *dev)

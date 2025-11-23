@@ -36,7 +36,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index d5dae70d3d505..3787fe244618b 100644
+index d5dae70d3d50..3787fe244618 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -153,7 +153,7 @@ struct MPQ8785_DRIVER_DATA

@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 21 insertions(+), 68 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index acf2329968154..02c05b85dfab8 100755
+index acf232996815..02c05b85dfab 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -287,65 +287,8 @@ static void i2s_stop(struct i2s_dev *i2s_drvdata,

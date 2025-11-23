@@ -21,7 +21,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 83ba4023ed5ea..80efde30fa4ff 100644
+index 83ba4023ed5e..80efde30fa4f 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -2,6 +2,7 @@
@@ -33,7 +33,7 @@ index 83ba4023ed5ea..80efde30fa4ff 100644
                                                          eic7700-milkv-megrez.dtb \
                                                          eic7700-pine64-starpro64.dtb \
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 4d20e6b2cccab..1ea82a170c60a 100644
+index 4d20e6b2ccca..1ea82a170c60 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -39,7 +39,7 @@
@@ -47,7 +47,7 @@ index 4d20e6b2cccab..1ea82a170c60a 100644
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 new file mode 100644
-index 0000000000000..47b490f8c6c1b
+index 000000000000..47b490f8c6c1
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 @@ -0,0 +1,55 @@
@@ -108,7 +108,7 @@ index 0000000000000..47b490f8c6c1b
 +};
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 456890a19c8c6..aba11f7d5040d 100644
+index 456890a19c8c..aba11f7d5040 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -38,7 +38,7 @@
@@ -121,7 +121,7 @@ index 456890a19c8c6..aba11f7d5040d 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 0a8342376dbc0..1271e31fb7643 100644
+index 0a8342376dbc..1271e31fb764 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -851,11 +851,21 @@ &d0_clock {
@@ -147,7 +147,7 @@ index 0a8342376dbc0..1271e31fb7643 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1800M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 642ebf79f2ddf..bf68852cbb0e8 100644
+index 642ebf79f2dd..bf68852cbb0e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -42,7 +42,7 @@
@@ -160,7 +160,7 @@ index 642ebf79f2ddf..bf68852cbb0e8 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index c035da206e7bd..3c3ba2be4bfa3 100755
+index c035da206e7b..3c3ba2be4bfa 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -379,6 +379,7 @@ static int clk_pll_set_rate(struct clk_hw *hw,

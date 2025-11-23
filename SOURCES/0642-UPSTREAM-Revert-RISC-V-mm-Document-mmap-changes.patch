@@ -16,7 +16,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 16 deletions(-)
 
 diff --git a/Documentation/riscv/vm-layout.rst b/Documentation/riscv/vm-layout.rst
-index e476b4386bd9d..5462c84f4723f 100644
+index e476b4386bd9..5462c84f4723 100644
 --- a/Documentation/riscv/vm-layout.rst
 +++ b/Documentation/riscv/vm-layout.rst
 @@ -133,19 +133,3 @@ RISC-V Linux Kernel SV57

@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index d3524b1324816..0c9b6e662ed4f 100644
+index d3524b132481..0c9b6e662ed4 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -180,7 +180,6 @@ CONFIG_SND_SOC=y

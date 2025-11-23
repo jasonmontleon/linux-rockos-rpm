@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index 60c48ae47d313..d5dae70d3d505 100644
+index 60c48ae47d31..d5dae70d3d50 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -187,6 +187,7 @@ struct MPQ8785_DRIVER_DATA

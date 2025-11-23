@@ -15,7 +15,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index 685f6377d9f8b..06569c72ba379 100755
+index 685f6377d9f8..06569c72ba37 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -308,9 +308,16 @@ static int clk_pll_set_rate(struct clk_hw *hw,

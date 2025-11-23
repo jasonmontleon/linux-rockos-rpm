@@ -15,7 +15,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index d5547aef615cf..2e0d2fb3838fd 100644
+index d5547aef615c..2e0d2fb3838f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -439,14 +439,14 @@ &vdec0 {

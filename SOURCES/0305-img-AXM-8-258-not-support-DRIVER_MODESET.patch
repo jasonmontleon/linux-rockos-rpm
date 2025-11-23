@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c
-index 145f40c5b884b..f75542490b78e 100644
+index 145f40c5b884..f75542490b78 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_drm.c
 @@ -521,7 +521,7 @@ const struct file_operations pvr_drm_fops = {

@@ -12,7 +12,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  1 file changed, 9 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
-index c633d52f53f2f..882b453ec8974 100644
+index c633d52f53f2..882b453ec897 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 @@ -288,6 +288,14 @@ _TryToIdleGPU(gckEVENT Event)

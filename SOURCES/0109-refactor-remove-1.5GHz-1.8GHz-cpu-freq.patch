@@ -12,7 +12,7 @@ Signed-off-by: chenshuo <chenshuo@eswincomputing.com>
  1 file changed, 20 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index fea1f577fddcd..3b2961f29389a 100644
+index fea1f577fddc..3b2961f29389 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -103,26 +103,6 @@ opp-1400000000 {

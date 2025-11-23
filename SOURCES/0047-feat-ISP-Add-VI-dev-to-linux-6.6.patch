@@ -13,7 +13,7 @@ Changelogs:
  4 files changed, 20 insertions(+), 15 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 3f35d2201584d..93e0e29bf2c7e 100644
+index 3f35d2201584..93e0e29bf2c7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -435,11 +435,11 @@ &d0_graphcard2 {
@@ -63,7 +63,7 @@ index 3f35d2201584d..93e0e29bf2c7e 100644
  
  &d0_i2c4 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index f41705285b0b3..64a47c750f0de 100644
+index f41705285b0b..64a47c750f0d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -408,11 +408,11 @@ &d0_graphcard2 {
@@ -113,7 +113,7 @@ index f41705285b0b3..64a47c750f0de 100644
  
  &d0_i2c4 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index a499864a4e99b..55aba79102eb2 100644
+index a499864a4e99..55aba79102eb 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2025,12 +2025,14 @@ vi_top_csr: vi_common_top_csr@0x51030000 {
@@ -153,7 +153,7 @@ index a499864a4e99b..55aba79102eb2 100644
  				};
  			};
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 47122461e3fc4..65b68c9e1d277 100644
+index 47122461e3fc..65b68c9e1d27 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -159,6 +159,7 @@ CONFIG_REGULATOR_MPQ8785=y

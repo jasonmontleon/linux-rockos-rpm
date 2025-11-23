@@ -12,7 +12,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  1 file changed, 23 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 80b75ffc9d787..7fd375c410069 100644
+index 80b75ffc9d78..7fd375c41006 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -1602,12 +1602,17 @@ static long release_cmdbuf(struct file *filp, u16 cmdbuf_id)

@@ -17,7 +17,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  2 files changed, 46 insertions(+), 46 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
-index ef7606e680275..9622681917891 100644
+index ef7606e68027..962268191789 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -111,65 +111,65 @@ g2d_12GB_boundary_reserved_4k {
@@ -110,7 +110,7 @@ index ef7606e680275..9622681917891 100644
  		};
  
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 03f548efbc803..85080a0dd0080 100644
+index 03f548efbc80..85080a0dd008 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -110,65 +110,65 @@ g2d_12GB_boundary_reserved_4k {

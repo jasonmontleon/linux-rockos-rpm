@@ -12,7 +12,7 @@ Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 8ea6ebe6768dc..12a2926c3aca6 100644
+index 8ea6ebe6768d..12a2926c3aca 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -918,8 +918,7 @@ static long npu_dev_ioctl(struct file *file, unsigned int cmd,

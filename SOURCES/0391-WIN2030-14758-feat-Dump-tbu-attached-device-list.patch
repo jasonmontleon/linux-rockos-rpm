@@ -17,7 +17,7 @@ Change-Id: I74f21333f34048d46b71053e02834d4d4f87e80d
  2 files changed, 230 insertions(+), 49 deletions(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 27ce32947e691..36fc0651f9386 100644
+index 27ce32947e69..36fc0651f938 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -1,7 +1,22 @@
@@ -483,7 +483,7 @@ index 27ce32947e691..36fc0651f9386 100644
  	return 0;
  }
 diff --git a/include/linux/eswin-win2030-sid-cfg.h b/include/linux/eswin-win2030-sid-cfg.h
-index 98637b5eac8ab..40f0ba5749a88 100644
+index 98637b5eac8a..40f0ba5749a8 100644
 --- a/include/linux/eswin-win2030-sid-cfg.h
 +++ b/include/linux/eswin-win2030-sid-cfg.h
 @@ -1,3 +1,24 @@

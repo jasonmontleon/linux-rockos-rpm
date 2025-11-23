@@ -20,7 +20,7 @@ Signed-off-by: fanglifei <fanglifei@eswincomputing.com>
  2 files changed, 50 insertions(+), 28 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 3ae03d20b6001..4d5eaec87f5de 100644
+index 3ae03d20b600..4d5eaec87f5d 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -218,15 +218,56 @@ static inline u8 to_es_tile_mode(u64 modifier)
@@ -145,7 +145,7 @@ index 3ae03d20b6001..4d5eaec87f5de 100644
  
  static bool es_dc_mode_fixup(struct device *dev,
 diff --git a/drivers/gpu/drm/eswin/es_dc.h b/drivers/gpu/drm/eswin/es_dc.h
-index 3a20987aa799a..8dbc3b4d7eb25 100644
+index 3a20987aa799..8dbc3b4d7eb2 100644
 --- a/drivers/gpu/drm/eswin/es_dc.h
 +++ b/drivers/gpu/drm/eswin/es_dc.h
 @@ -40,6 +40,7 @@ struct es_dc {

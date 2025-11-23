@@ -11,7 +11,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 76 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 36366cc3642eb..04ffef051e20f 100644
+index 36366cc3642e..04ffef051e20 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -19,3 +19,79 @@

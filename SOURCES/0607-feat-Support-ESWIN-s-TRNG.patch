@@ -14,7 +14,7 @@ Signed-off-by: caohang <caohang@eswincomputing.com>
  2 files changed, 174 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/crypto/eswin/eswin-ipc-scpu.c b/drivers/crypto/eswin/eswin-ipc-scpu.c
-index 76270dbc1e9d0..7ac1eae6ee8e2 100644
+index 76270dbc1e9d..7ac1eae6ee8e 100644
 --- a/drivers/crypto/eswin/eswin-ipc-scpu.c
 +++ b/drivers/crypto/eswin/eswin-ipc-scpu.c
 @@ -48,6 +48,8 @@
@@ -330,7 +330,7 @@ index 76270dbc1e9d0..7ac1eae6ee8e2 100644
  	if (ret)
  		return ret;
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
-index e8fa083a2c7f0..bd339c496476e 100644
+index e8fa083a2c7f..bd339c496476 100644
 --- a/include/uapi/linux/eswin-ipc-scpu.h
 +++ b/include/uapi/linux/eswin-ipc-scpu.h
 @@ -697,6 +697,9 @@ typedef struct {

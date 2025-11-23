@@ -12,7 +12,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 16 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index a5cc197fe1381..df24ad88695c6 100644
+index a5cc197fe138..df24ad88695c 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -738,10 +738,6 @@ int __maybe_unused dsp_suspend(struct device *dev)

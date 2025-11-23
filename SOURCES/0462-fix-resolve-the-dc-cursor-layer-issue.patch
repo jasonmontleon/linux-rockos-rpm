@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 799fdd18d5cb2..9ea5560062aab 100644
+index 799fdd18d5cb..9ea5560062aa 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -407,7 +407,6 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)

@@ -12,7 +12,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 50 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
-index cc232396f842e..c6d44719db367 100644
+index cc232396f842..c6d44719db36 100644
 --- a/drivers/interconnect/eswin/noc.c
 +++ b/drivers/interconnect/eswin/noc.c
 @@ -509,6 +509,24 @@ void stack_dump(void)

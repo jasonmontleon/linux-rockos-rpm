@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 6 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
-index 298f9cd381937..c697cbc975cc8 100644
+index 298f9cd38193..c697cbc975cc 100644
 --- a/drivers/media/platform/eswin/dvp2axi/capture.c
 +++ b/drivers/media/platform/eswin/dvp2axi/capture.c
 @@ -854,7 +854,7 @@ static struct v4l2_subdev *get_remote_sensor(struct es_dvp2axi_stream *stream,

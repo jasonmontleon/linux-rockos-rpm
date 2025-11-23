@@ -36,7 +36,7 @@ Changelogs:
  create mode 100644 sound/soc/eswin/esw-i2s.h
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 9149eabecee29..5d25e67b935d1 100644
+index 9149eabecee2..5d25e67b935d 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -177,7 +177,10 @@ CONFIG_SND=y
@@ -52,7 +52,7 @@ index 9149eabecee29..5d25e67b935d1 100644
  CONFIG_SND_AUDIO_GRAPH_CARD=y
  CONFIG_USB_ULPI_BUS=y
 diff --git a/sound/soc/Kconfig b/sound/soc/Kconfig
-index 439fa631c342a..dfd26f13970c6 100644
+index 439fa631c342..dfd26f13970c 100644
 --- a/sound/soc/Kconfig
 +++ b/sound/soc/Kconfig
 @@ -114,6 +114,7 @@ source "sound/soc/uniphier/Kconfig"
@@ -64,7 +64,7 @@ index 439fa631c342a..dfd26f13970c6 100644
  # Supported codecs
  source "sound/soc/codecs/Kconfig"
 diff --git a/sound/soc/Makefile b/sound/soc/Makefile
-index 8376fdb217ed1..7c3b9197e7b27 100644
+index 8376fdb217ed..7c3b9197e7b2 100644
 --- a/sound/soc/Makefile
 +++ b/sound/soc/Makefile
 @@ -71,3 +71,4 @@ obj-$(CONFIG_SND_SOC)	+= uniphier/
@@ -73,7 +73,7 @@ index 8376fdb217ed1..7c3b9197e7b27 100644
  obj-$(CONFIG_SND_SOC)	+= xtensa/
 +obj-$(CONFIG_SND_SOC)	+= eswin/
 diff --git a/sound/soc/codecs/Kconfig b/sound/soc/codecs/Kconfig
-index 6d105a23c8284..363fc75ae167f 100644
+index 6d105a23c828..363fc75ae167 100644
 --- a/sound/soc/codecs/Kconfig
 +++ b/sound/soc/codecs/Kconfig
 @@ -2405,4 +2405,5 @@ config SND_SOC_LPASS_TX_MACRO
@@ -83,7 +83,7 @@ index 6d105a23c8284..363fc75ae167f 100644
 +source "sound/soc/codecs/eswin/Kconfig"
  endmenu
 diff --git a/sound/soc/codecs/Makefile b/sound/soc/codecs/Makefile
-index a87e56938ce58..ea3f39cf3d709 100644
+index a87e56938ce5..ea3f39cf3d70 100644
 --- a/sound/soc/codecs/Makefile
 +++ b/sound/soc/codecs/Makefile
 @@ -772,3 +772,4 @@ obj-$(CONFIG_SND_SOC_LPASS_TX_MACRO)	+= snd-soc-lpass-tx-macro.o
@@ -93,7 +93,7 @@ index a87e56938ce58..ea3f39cf3d709 100644
 +obj-$(CONFIG_ESWIN_SND_SOC_CODECS) += eswin/
 diff --git a/sound/soc/codecs/eswin/Kconfig b/sound/soc/codecs/eswin/Kconfig
 new file mode 100755
-index 0000000000000..d3c7039aa8e93
+index 000000000000..d3c7039aa8e9
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/Kconfig
 @@ -0,0 +1,20 @@
@@ -119,7 +119,7 @@ index 0000000000000..d3c7039aa8e93
 +#endif #ESWIN_SND_SOC_CODECS
 diff --git a/sound/soc/codecs/eswin/Makefile b/sound/soc/codecs/eswin/Makefile
 new file mode 100755
-index 0000000000000..ee696d62096cd
+index 000000000000..ee696d62096c
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/Makefile
 @@ -0,0 +1,3 @@
@@ -129,7 +129,7 @@ index 0000000000000..ee696d62096cd
 \ No newline at end of file
 diff --git a/sound/soc/codecs/eswin/es8328-i2c.c b/sound/soc/codecs/eswin/es8328-i2c.c
 new file mode 100644
-index 0000000000000..d6756c46a4a52
+index 000000000000..d6756c46a4a5
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/es8328-i2c.c
 @@ -0,0 +1,65 @@
@@ -200,7 +200,7 @@ index 0000000000000..d6756c46a4a52
 +MODULE_LICENSE("GPL");
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
 new file mode 100644
-index 0000000000000..2c7a4031fa443
+index 000000000000..2c7a4031fa44
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -0,0 +1,1101 @@
@@ -1307,7 +1307,7 @@ index 0000000000000..2c7a4031fa443
 +MODULE_LICENSE("GPL");
 diff --git a/sound/soc/codecs/eswin/es8328.h b/sound/soc/codecs/eswin/es8328.h
 new file mode 100644
-index 0000000000000..70515466a4b2a
+index 000000000000..70515466a4b2
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/es8328.h
 @@ -0,0 +1,299 @@
@@ -1612,7 +1612,7 @@ index 0000000000000..70515466a4b2a
 +#endif
 diff --git a/sound/soc/eswin/Kconfig b/sound/soc/eswin/Kconfig
 new file mode 100644
-index 0000000000000..7c930a329daab
+index 000000000000..7c930a329daa
 --- /dev/null
 +++ b/sound/soc/eswin/Kconfig
 @@ -0,0 +1,11 @@
@@ -1629,7 +1629,7 @@ index 0000000000000..7c930a329daab
 +endmenu
 diff --git a/sound/soc/eswin/Makefile b/sound/soc/eswin/Makefile
 new file mode 100644
-index 0000000000000..2c133c695dbed
+index 000000000000..2c133c695dbe
 --- /dev/null
 +++ b/sound/soc/eswin/Makefile
 @@ -0,0 +1,5 @@
@@ -1641,7 +1641,7 @@ index 0000000000000..2c133c695dbed
 \ No newline at end of file
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
 new file mode 100644
-index 0000000000000..5ffed4c4ab34e
+index 000000000000..5ffed4c4ab34
 --- /dev/null
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -0,0 +1,488 @@
@@ -2135,7 +2135,7 @@ index 0000000000000..5ffed4c4ab34e
 +}
 diff --git a/sound/soc/eswin/esw-audio-proc.h b/sound/soc/eswin/esw-audio-proc.h
 new file mode 100644
-index 0000000000000..1fd3f377671d9
+index 000000000000..1fd3f377671d
 --- /dev/null
 +++ b/sound/soc/eswin/esw-audio-proc.h
 @@ -0,0 +1,23 @@
@@ -2164,7 +2164,7 @@ index 0000000000000..1fd3f377671d9
 +#endif
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
 new file mode 100755
-index 0000000000000..8fe165ddb0d6d
+index 000000000000..8fe165ddb0d6
 --- /dev/null
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -0,0 +1,973 @@
@@ -3143,7 +3143,7 @@ index 0000000000000..8fe165ddb0d6d
 +MODULE_LICENSE("GPL");
 diff --git a/sound/soc/eswin/esw-i2s.h b/sound/soc/eswin/esw-i2s.h
 new file mode 100644
-index 0000000000000..14c4980c82676
+index 000000000000..14c4980c8267
 --- /dev/null
 +++ b/sound/soc/eswin/esw-i2s.h
 @@ -0,0 +1,181 @@

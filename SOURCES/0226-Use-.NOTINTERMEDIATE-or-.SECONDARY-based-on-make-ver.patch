@@ -10,7 +10,7 @@ Signed-off-by: Jeegar Lakhani <jeegar.lakhani@sifive.com>
  1 file changed, 6 insertions(+)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/Makefile b/drivers/gpu/drm/img/img-volcanic/Makefile
-index 60174af49e4a3..087e156a263f8 100644
+index 60174af49e4a..087e156a263f 100644
 --- a/drivers/gpu/drm/img/img-volcanic/Makefile
 +++ b/drivers/gpu/drm/img/img-volcanic/Makefile
 @@ -74,7 +74,13 @@ WINDOW_SYSTEM=nulldrmws

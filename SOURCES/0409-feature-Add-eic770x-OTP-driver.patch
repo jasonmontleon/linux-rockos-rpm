@@ -35,7 +35,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  create mode 100644 drivers/soc/eswin/otp_map_eic770x.h
 
 diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
-index ed45c8ff1d8b5..cf0b6ca3f31c7 100644
+index ed45c8ff1d8b..cf0b6ca3f31c 100644
 --- a/drivers/soc/eswin/Kconfig
 +++ b/drivers/soc/eswin/Kconfig
 @@ -25,4 +25,11 @@ config EIC7X_D2D
@@ -51,7 +51,7 @@ index ed45c8ff1d8b5..cf0b6ca3f31c7 100644
 +       If unsure, say N.
  endif
 diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
-index 07df48f987ec1..820463ed596a8 100644
+index 07df48f987ec..820463ed596a 100644
 --- a/drivers/soc/eswin/Makefile
 +++ b/drivers/soc/eswin/Makefile
 @@ -1,5 +1,6 @@
@@ -66,7 +66,7 @@ index 07df48f987ec1..820463ed596a8 100644
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/otp_debugfs.c b/drivers/soc/eswin/otp_debugfs.c
 new file mode 100644
-index 0000000000000..09e29a6383043
+index 000000000000..09e29a638304
 --- /dev/null
 +++ b/drivers/soc/eswin/otp_debugfs.c
 @@ -0,0 +1,243 @@
@@ -315,7 +315,7 @@ index 0000000000000..09e29a6383043
 +MODULE_VERSION("1.0");
 diff --git a/drivers/soc/eswin/otp_eic770x.c b/drivers/soc/eswin/otp_eic770x.c
 new file mode 100644
-index 0000000000000..b69624011e89b
+index 000000000000..b69624011e89
 --- /dev/null
 +++ b/drivers/soc/eswin/otp_eic770x.c
 @@ -0,0 +1,857 @@
@@ -1178,7 +1178,7 @@ index 0000000000000..b69624011e89b
 +
 diff --git a/drivers/soc/eswin/otp_eic770x.h b/drivers/soc/eswin/otp_eic770x.h
 new file mode 100644
-index 0000000000000..a6280839c05b0
+index 000000000000..a6280839c05b
 --- /dev/null
 +++ b/drivers/soc/eswin/otp_eic770x.h
 @@ -0,0 +1,90 @@
@@ -1274,7 +1274,7 @@ index 0000000000000..a6280839c05b0
 +#endif /*__OTP_EIC770X_H__*/
 diff --git a/drivers/soc/eswin/otp_map_eic770x.h b/drivers/soc/eswin/otp_map_eic770x.h
 new file mode 100644
-index 0000000000000..1a21cad105327
+index 000000000000..1a21cad10532
 --- /dev/null
 +++ b/drivers/soc/eswin/otp_map_eic770x.h
 @@ -0,0 +1,246 @@

@@ -27,7 +27,7 @@ Changelogs:
  delete mode 100644 drivers/gpu/drm/eswin/dw_hdmi.h
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 519c74d06f0e4..93fa224c75b75 100644
+index 519c74d06f0e..93fa224c75b7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -378,7 +378,6 @@ &dsi_panel {
@@ -39,7 +39,7 @@ index 519c74d06f0e4..93fa224c75b75 100644
  		port@2 {
  			reg = <2>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index a1e0766efd04e..642a62246b548 100644
+index a1e0766efd04..642a62246b54 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -339,7 +339,6 @@ &dsi_panel {
@@ -51,7 +51,7 @@ index a1e0766efd04e..642a62246b548 100644
  		port@2 {
  			reg = <2>;
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 82c00984fe525..0a03d049eff90 100644
+index 82c00984fe52..0a03d049eff9 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -174,6 +174,9 @@ CONFIG_DRM_TOSHIBA_TC358768=m
@@ -65,7 +65,7 @@ index 82c00984fe525..0a03d049eff90 100644
  CONFIG_FB=y
  CONFIG_SOUND=y
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
-index 6a7771e6ac299..d518575e9bb35 100644
+index 6a7771e6ac29..d518575e9bb3 100644
 --- a/drivers/gpu/drm/eswin/Kconfig
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -66,7 +66,7 @@ config DW_HDMI_HDCP
@@ -78,7 +78,7 @@ index 6a7771e6ac299..d518575e9bb35 100644
        Support the HDCP2 interface which is part of the Synopsys
        Designware HDMI block.
 diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
-index e84e28f388d6e..099597edf6190 100644
+index e84e28f388d6..099597edf619 100644
 --- a/drivers/gpu/drm/eswin/Makefile
 +++ b/drivers/gpu/drm/eswin/Makefile
 @@ -11,7 +11,7 @@ es_drm-objs := es_dc_hw.o \
@@ -94,7 +94,7 @@ diff --git a/drivers/gpu/drm/eswin/dw_hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
 similarity index 82%
 rename from drivers/gpu/drm/eswin/dw_hdmi.c
 rename to drivers/gpu/drm/eswin/dw-hdmi.c
-index ae13cbcb6e295..71c89e7e3bb55 100644
+index ae13cbcb6e29..71c89e7e3bb5 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -10,10 +10,11 @@
@@ -2362,7 +2362,7 @@ index ae13cbcb6e295..71c89e7e3bb55 100644
  MODULE_ALIAS("platform:dw-hdmi");
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.h b/drivers/gpu/drm/eswin/dw-hdmi.h
 new file mode 100644
-index 0000000000000..147774f900949
+index 000000000000..147774f90094
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.h
 @@ -0,0 +1,1272 @@
@@ -3640,7 +3640,7 @@ index 0000000000000..147774f900949
 +#endif /* __DW_HDMI_H__ */
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi.h b/drivers/gpu/drm/eswin/dw_hdmi.h
 deleted file mode 100644
-index 6281fd8bfc53d..0000000000000
+index 6281fd8bfc53..000000000000
 --- a/drivers/gpu/drm/eswin/dw_hdmi.h
 +++ /dev/null
 @@ -1,1408 +0,0 @@
@@ -5053,7 +5053,7 @@ index 6281fd8bfc53d..0000000000000
 -void dw_hdmi_disable_video(struct dw_hdmi *hdmi);
 -#endif /* __DW_HDMI_H__ */
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
-index 1b4e7433b718c..b69b1be14e0dc 100644
+index 1b4e7433b718..b69b1be14e0d 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -22,11 +22,12 @@
@@ -5081,7 +5081,7 @@ index 1b4e7433b718c..b69b1be14e0dc 100644
  	for (i = 0; i < sizeof(hdcp_vendor_data); i++)
  		hdcp_vendor_data[i] = hdcp_const_data[i];
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
-index 849de9037652c..a4992e8a8cbc3 100644
+index 849de9037652..a4992e8a8cbc 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 @@ -67,5 +67,4 @@ extern u8 tv_hdmi_hdcp2_support(struct dw_hdmi *hdmi);
@@ -5091,7 +5091,7 @@ index 849de9037652c..a4992e8a8cbc3 100644
 -extern void get_random_bytes(void *buf, int nbytes);
  #endif
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
-index dd553bd9b72ec..63ce0ae4fde3b 100644
+index dd553bd9b72e..63ce0ae4fde3 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 @@ -146,8 +146,8 @@ static long load_code(hl_device *hl_dev, struct hl_drv_ioc_code __user *arg)
@@ -5106,7 +5106,7 @@ index dd553bd9b72ec..63ce0ae4fde3b 100644
  
  	if (copy_from_user(hl_dev->code, &arg->data, head.len) != 0)
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
-index a2f3099b6bd28..e211f8b9ab736 100644
+index a2f3099b6bd2..e211f8b9ab73 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 @@ -9,17 +9,18 @@
@@ -5244,7 +5244,7 @@ index a2f3099b6bd28..e211f8b9ab736 100644
  MODULE_LICENSE("GPL v2");
  MODULE_ALIAS("platform:" DRIVER_NAME);
 diff --git a/drivers/gpu/drm/eswin/es_drv.c b/drivers/gpu/drm/eswin/es_drv.c
-index 1d15deda7c7b0..885b8d6fa5ab0 100644
+index 1d15deda7c7b..885b8d6fa5ab 100644
 --- a/drivers/gpu/drm/eswin/es_drv.c
 +++ b/drivers/gpu/drm/eswin/es_drv.c
 @@ -32,7 +32,7 @@
@@ -5266,7 +5266,7 @@ index 1d15deda7c7b0..885b8d6fa5ab0 100644
  #endif
  
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
-index 3308370475808..36efffa7d47ad 100644
+index 330837047580..36efffa7d47a 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -18,12 +18,14 @@
@@ -5379,7 +5379,7 @@ index 3308370475808..36efffa7d47ad 100644
  	} else if (property == config->hdr_output_metadata_property) {
  		*val = state->hdr_output_metadata ?
 diff --git a/include/drm/bridge/dw_hdmi.h b/include/drm/bridge/dw_hdmi.h
-index 6a46baa0737cd..85bab1773f38e 100644
+index 6a46baa0737c..85bab1773f38 100644
 --- a/include/drm/bridge/dw_hdmi.h
 +++ b/include/drm/bridge/dw_hdmi.h
 @@ -160,6 +160,13 @@ struct dw_hdmi_plat_data {

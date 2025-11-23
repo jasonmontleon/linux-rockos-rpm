@@ -14,7 +14,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 32 insertions(+), 10 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 8dc5eb4c46075..e019b70ecda02 100644
+index 8dc5eb4c4607..e019b70ecda0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -561,7 +561,9 @@ &d0_uart2 {

@@ -8,7 +8,7 @@ Subject: [PATCH 646/652] uninvert the fan...
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 614e8f708b6d2..aa4741af7aba7 100644
+index 614e8f708b6d..aa4741af7aba 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -724,7 +724,6 @@ &d0_mbox7 {

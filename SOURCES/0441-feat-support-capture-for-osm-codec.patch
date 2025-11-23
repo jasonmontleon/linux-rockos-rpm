@@ -12,7 +12,7 @@ Signed-off-by: yangqiang <yangqiang1@eswincomputing.com>
  1 file changed, 27 insertions(+), 6 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/tlv320aic3x.c b/sound/soc/codecs/eswin/tlv320aic3x.c
-index e829b01103630..18329fc835d7d 100644
+index e829b0110363..18329fc835d7 100644
 --- a/sound/soc/codecs/eswin/tlv320aic3x.c
 +++ b/sound/soc/codecs/eswin/tlv320aic3x.c
 @@ -1425,7 +1425,6 @@ static int aic3x_set_bias_level(struct snd_soc_component *component,

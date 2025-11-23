@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/scripts/package/builddeb b/scripts/package/builddeb
-index d7dd0d04c70c9..cbcf14820fb9b 100755
+index d7dd0d04c70c..cbcf14820fb9 100755
 --- a/scripts/package/builddeb
 +++ b/scripts/package/builddeb
 @@ -59,7 +59,7 @@ install_linux_image () {

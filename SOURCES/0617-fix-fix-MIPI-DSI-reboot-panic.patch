@@ -11,7 +11,7 @@ Signed-off-by: fanxiaping <fanxiaping@eswincomputing.com>
  2 files changed, 14 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
-index d04f39408a679..51db3caaa9563 100755
+index d04f39408a67..51db3caaa956 100755
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
 @@ -133,3 +133,7 @@ reg_display: regulator@45 {
@@ -23,7 +23,7 @@ index d04f39408a679..51db3caaa9563 100755
 +};
 +
 diff --git a/drivers/gpu/drm/eswin/es_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw_hdmi.c
-index ae389aca75eb2..99bc87ad8e230 100644
+index ae389aca75eb..99bc87ad8e23 100644
 --- a/drivers/gpu/drm/eswin/es_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
 @@ -964,6 +964,16 @@ static void dw_hdmi_eswin_shutdown(struct platform_device *pdev)

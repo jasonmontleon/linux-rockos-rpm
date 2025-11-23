@@ -14,7 +14,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  3 files changed, 3 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
-index 9dba60840c6a8..0dad82e8e5817 100644
+index 9dba60840c6a..0dad82e8e581 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 @@ -376,6 +376,7 @@ &pcie {
@@ -26,7 +26,7 @@ index 9dba60840c6a8..0dad82e8e5817 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 372a533eaba3f..81d0576394f36 100644
+index 372a533eaba3..81d0576394f3 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -376,6 +376,7 @@ &pcie {
@@ -38,7 +38,7 @@ index 372a533eaba3f..81d0576394f36 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
-index cf7b8dbc76801..2661819c021ce 100644
+index cf7b8dbc7680..2661819c021c 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 @@ -376,6 +376,7 @@ &pcie {

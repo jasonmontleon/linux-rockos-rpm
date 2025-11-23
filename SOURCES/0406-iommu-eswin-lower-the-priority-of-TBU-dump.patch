@@ -12,7 +12,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index e3308e4e35eec..d109b45f33f1e 100644
+index e3308e4e35ee..d109b45f33f1 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -694,12 +694,12 @@ static void eic770x_tbu_dump_attachment(struct tbu_priv *tbu_priv_p)

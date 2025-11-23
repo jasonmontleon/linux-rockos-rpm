@@ -12,7 +12,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 6 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 2c7a4031fa443..3c01c33f27370 100644
+index 2c7a4031fa44..3c01c33f2737 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -789,12 +789,6 @@ static int es8328_set_dai_fmt(struct snd_soc_dai *codec_dai,

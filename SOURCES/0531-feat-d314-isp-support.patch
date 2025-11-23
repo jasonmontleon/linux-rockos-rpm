@@ -12,7 +12,7 @@ Signed-off-by: luoxianke <luoxianke@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
-index 92ce38d3db411..685702bdb4f4c 100644
+index 92ce38d3db41..685702bdb4f4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -86,7 +86,7 @@ &d0_graphcard2 {

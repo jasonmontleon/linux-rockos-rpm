@@ -15,7 +15,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
 new file mode 100644
-index 0000000000000..cd2e87461fb75
+index 000000000000..cd2e87461fb7
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
 @@ -0,0 +1,246 @@
@@ -266,7 +266,7 @@ index 0000000000000..cd2e87461fb75
 +	status = "disabled";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index b4a0cae4f1805..465d228ec2115 100644
+index b4a0cae4f180..465d228ec211 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -32,6 +32,7 @@

@@ -14,7 +14,7 @@ Changelogs:
  3 files changed, 53 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 9e485f7edcc42..3ae03d20b6001 100644
+index 9e485f7edcc4..3ae03d20b600 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -615,17 +615,54 @@ static void update_overlay_plane(struct es_dc *dc, struct es_plane *plane)
@@ -78,7 +78,7 @@ index 9e485f7edcc42..3ae03d20b6001 100644
  
  	dc_hw_update_cursor(&dc->hw, &cursor);
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.c b/drivers/gpu/drm/eswin/es_dc_hw.c
-index 010de5b652509..30bcfb6b759c2 100644
+index 010de5b65250..30bcfb6b759c 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.c
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.c
 @@ -1485,8 +1485,9 @@ void dc_hw_commit(struct dc_hw *hw)
@@ -94,7 +94,7 @@ index 010de5b652509..30bcfb6b759c2 100644
  			dc_write(hw, DC_CURSOR_CONFIG, 0x00);
  		}
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.h b/drivers/gpu/drm/eswin/es_dc_hw.h
-index 885d225c92032..1578aad0d79c3 100644
+index 885d225c9203..1578aad0d79c 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.h
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.h
 @@ -235,6 +235,13 @@ enum dc_hw_swizzle {

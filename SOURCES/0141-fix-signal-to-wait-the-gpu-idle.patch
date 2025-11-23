@@ -15,7 +15,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  2 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
-index a40648236f105..bebbbd4a7edfa 100644
+index a40648236f10..bebbbd4a7edf 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -2033,8 +2033,7 @@ gckHARDWARE_Construct(gckOS Os, gckKERNEL Kernel, gckHARDWARE *Hardware)
@@ -37,7 +37,7 @@ index a40648236f105..bebbbd4a7edfa 100644
  
  #if gcdLINK_QUEUE_SIZE
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
-index bae3b45386392..bb92f5f58e0a5 100644
+index bae3b4538639..bb92f5f58e0a 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 @@ -1168,6 +1168,7 @@ gckWLFE_Execute(gckHARDWARE Hardware, gctADDRESS Address, gctUINT32 Bytes)

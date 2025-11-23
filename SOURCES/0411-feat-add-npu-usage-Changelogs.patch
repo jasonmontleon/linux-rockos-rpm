@@ -15,7 +15,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  7 files changed, 134 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h b/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
-index 5dd44b52f6e24..6a4df951a8581 100644
+index 5dd44b52f6e2..6a4df951a858 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
 @@ -71,6 +71,7 @@ typedef struct {
@@ -27,7 +27,7 @@ index 5dd44b52f6e24..6a4df951a8581 100644
  
  #endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 342bdb20baae7..9754713ea3895 100644
+index 342bdb20baae..9754713ea389 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -95,10 +95,10 @@
@@ -44,7 +44,7 @@ index 342bdb20baae7..9754713ea3895 100644
  #define DSP_CORE_INTERVAL 0x40000
  
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-index e21212fecb6bb..6797e819176f4 100644
+index e21212fecb6b..6797e819176f 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 @@ -54,6 +54,32 @@ static char *func_state[] = {
@@ -152,7 +152,7 @@ index e21212fecb6bb..6797e819176f4 100644
  	}
  	if (!proc_create("debug", 0644, proc_es_dsp, &proc_debug_fops)) {
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index 86e096f6ce519..e9930f432a9b2 100644
+index 86e096f6ce51..e9930f432a9b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -93,6 +93,12 @@ struct nvdla_device {
@@ -169,7 +169,7 @@ index 86e096f6ce519..e9930f432a9b2 100644
  
  void dla_reg_write(struct nvdla_device *dev, uint32_t addr, uint32_t value);
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
-index 16af8d0eeac73..d7e1270e4a7d6 100644
+index 16af8d0eeac7..d7e1270e4a7d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 @@ -187,6 +187,26 @@ static char *pcer_str(u8 pcer)
@@ -237,7 +237,7 @@ index 16af8d0eeac73..d7e1270e4a7d6 100644
  		dla_error("error create proc npu perf file.\n");
  		goto err_perf;
 diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
-index 8d81d8665a6db..bb7316a6a66da 100644
+index 8d81d8665a6d..bb7316a6a66d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/scheduler.c
 +++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
 @@ -62,6 +62,7 @@ static int send_frame_to_hw(struct win_engine *engine, u8 tiktok,
@@ -275,7 +275,7 @@ index 8d81d8665a6db..bb7316a6a66da 100644
  	last_state = atomic_fetch_and(~NPU_RT_MUTX_FRAME_DONE,
  				      &model->uctx->lock_status);
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 6679f371b06b4..2ae719709386f 100644
+index 6679f371b06b..2ae719709386 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -603,13 +603,15 @@ static struct win_engine *get_engine_from_file(struct file *file);

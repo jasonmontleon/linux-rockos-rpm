@@ -13,7 +13,7 @@ Signed-off-by: hujiamiao <hujiamiao@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index d86411ce75d4c..176e8c08f1759 100644
+index d86411ce75d4..176e8c08f175 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -754,6 +754,7 @@ CONFIG_ESWIN_RSVMEM_HEAP=y

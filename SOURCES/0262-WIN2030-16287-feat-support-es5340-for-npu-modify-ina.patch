@@ -22,7 +22,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  5 files changed, 58 insertions(+), 68 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 8c558119a286e..22a8b5764493d 100644
+index 8c558119a286..22a8b5764493 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -609,11 +609,10 @@ d0_codec1_endpoint: endpoint {
@@ -84,7 +84,7 @@ index 8c558119a286e..22a8b5764493d 100644
  	};
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index 2733649b4c3f2..4154b2da9d220 100644
+index 2733649b4c3f..4154b2da9d22 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -623,11 +623,10 @@ d0_codec1_endpoint: endpoint {
@@ -103,7 +103,7 @@ index 2733649b4c3f2..4154b2da9d220 100644
  		eswin,regulator_label = "supply vdd1", "npu vdd1", "npu current1", "npu temperature1";
  		label = "npu_vdd";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 2e0d2fb3838fd..6d1db9c6a7131 100644
+index 2e0d2fb3838f..6d1db9c6a713 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -1087,16 +1087,15 @@ d1_codec1_endpoint: endpoint {
@@ -264,7 +264,7 @@ index 2e0d2fb3838fd..6d1db9c6a7131 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index fde17194951ad..2f36205bc50e2 100644
+index fde17194951a..2f36205bc50e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -980,7 +980,7 @@ d1_llc_dev: llc@71c00000 {
@@ -277,7 +277,7 @@ index fde17194951ad..2f36205bc50e2 100644
  					"mux_u_npu_core_3mux1_gfree", "fixed_rate_clk_spll2_fout2",
  					"fixed_rate_clk_spll1_fout1";
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index bb996acd43d9e..f0de31f666a0a 100644
+index bb996acd43d9..f0de31f666a0 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -464,7 +464,7 @@ CONFIG_SENSORS_PAC1934=y

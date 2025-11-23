@@ -13,7 +13,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 9 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 1a5a1a0d7e16e..5a2f3e97d9d8b 100644
+index 1a5a1a0d7e16..5a2f3e97d9d8 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -884,6 +884,7 @@ static void dsp_init_prio_array(struct es_dsp *dsp)

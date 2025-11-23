@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/scripts/package/mkdebian b/scripts/package/mkdebian
-index c1a36da85e84f..420c1e4c2d401 100755
+index c1a36da85e84..420c1e4c2d40 100755
 --- a/scripts/package/mkdebian
 +++ b/scripts/package/mkdebian
 @@ -220,6 +220,7 @@ Homepage: https://www.kernel.org/

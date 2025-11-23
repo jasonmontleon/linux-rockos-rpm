@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 2f468cfeba8d6..78b45bbf24abf 100644
+index 2f468cfeba8d..78b45bbf24ab 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -26,6 +26,7 @@ CONFIG_CGROUP_MISC=y

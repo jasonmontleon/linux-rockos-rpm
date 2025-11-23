@@ -12,7 +12,7 @@ Signed-off-by: yangqiang <yangqiang1@eswincomputing.com>
  1 file changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index f0c0cbe10f568..83c3bbb26c73e 100644
+index f0c0cbe10f56..83c3bbb26c73 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -27,6 +27,7 @@

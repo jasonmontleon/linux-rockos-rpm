@@ -13,7 +13,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  1 file changed, 34 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
-index 2fca3da9c7270..151e006da98f7 100644
+index 2fca3da9c727..151e006da98f 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 @@ -114,6 +114,7 @@ struct um_desc {

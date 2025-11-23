@@ -15,7 +15,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw_hdmi.c
-index eefbabba3c92b..ae389aca75eb2 100644
+index eefbabba3c92..ae389aca75eb 100644
 --- a/drivers/gpu/drm/eswin/es_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
 @@ -260,7 +260,7 @@ dw_hdmi_eswin_mode_valid(struct dw_hdmi *hdmi, void *data,

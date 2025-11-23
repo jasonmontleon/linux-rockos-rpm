@@ -14,7 +14,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/usb/typec/fusb303b.c b/drivers/usb/typec/fusb303b.c
-index 5ffc27640a05a..b0dd7c49b2c00 100644
+index 5ffc27640a05..b0dd7c49b2c0 100644
 --- a/drivers/usb/typec/fusb303b.c
 +++ b/drivers/usb/typec/fusb303b.c
 @@ -568,8 +568,8 @@ static int fusb303b_probe(struct i2c_client *client)

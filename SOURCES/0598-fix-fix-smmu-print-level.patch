@@ -12,7 +12,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 39691049512d4..b06aee3686b34 100644
+index 39691049512d..b06aee3686b3 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 @@ -1700,9 +1700,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)

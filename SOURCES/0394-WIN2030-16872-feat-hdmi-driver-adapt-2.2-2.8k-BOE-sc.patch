@@ -15,7 +15,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  3 files changed, 26 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 4a49bcfbd49f2..dd244a7007231 100644
+index 4a49bcfbd49f..dd244a700723 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -3371,13 +3371,6 @@ dw_hdmi_bridge_mode_valid(struct drm_bridge *bridge,
@@ -33,7 +33,7 @@ index 4a49bcfbd49f2..dd244a7007231 100644
  		mode_status = pdata->mode_valid(hdmi, pdata->priv_data, info,
  						mode);
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 80538ae9aa9ec..7c608e29d25ba 100644
+index 80538ae9aa9e..7c608e29d25b 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -426,7 +426,7 @@ static bool es_dc_mode_fixup(struct device *dev,
@@ -54,7 +54,7 @@ index 80538ae9aa9ec..7c608e29d25ba 100644
  
  	return true;
 diff --git a/drivers/gpu/drm/eswin/es_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw_hdmi.c
-index 84f75833aa622..eefbabba3c92b 100644
+index 84f75833aa62..eefbabba3c92 100644
 --- a/drivers/gpu/drm/eswin/es_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
 @@ -143,6 +143,14 @@ static const struct dw_hdmi_mpll_config eswin_mpll_cfg[] = {

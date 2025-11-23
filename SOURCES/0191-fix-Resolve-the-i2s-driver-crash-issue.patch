@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 6 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index cddc9a612ee36..6700a9b44f0f6 100644
+index cddc9a612ee3..6700a9b44f0f 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -1564,6 +1564,10 @@ static int dw_probe(struct platform_device *pdev)
@@ -29,7 +29,7 @@ index cddc9a612ee36..6700a9b44f0f6 100644
  	dw->dma.max_burst = hdata->axi_rw_burst_len;
  	dw->dma.src_addr_widths = AXI_DMA_BUSWIDTHS;
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 4c5d33faade49..5774a03a270b2 100755
+index 4c5d33faade4..5774a03a270b 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -334,17 +334,7 @@ static int i2s_configure_res_by_dt(struct i2s_dev *dev,

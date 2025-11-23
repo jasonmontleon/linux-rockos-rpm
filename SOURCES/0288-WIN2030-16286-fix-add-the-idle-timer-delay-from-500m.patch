@@ -14,7 +14,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  1 file changed, 21 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
-index c210a5237740c..b58544de1fb43 100644
+index c210a5237740..b58544de1fb4 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 @@ -1,3 +1,4 @@

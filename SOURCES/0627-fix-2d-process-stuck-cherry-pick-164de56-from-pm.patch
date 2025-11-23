@@ -21,7 +21,7 @@ Signed-off-by: lei <leizhilin@eswincomputing.com>
  1 file changed, 12 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
-index 52907911bf206..377ac7d0acad1 100644
+index 52907911bf20..377ac7d0acad 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 @@ -1125,12 +1125,23 @@ gckWLFE_Execute(gckHARDWARE Hardware, gctADDRESS Address, gctUINT32 Bytes)

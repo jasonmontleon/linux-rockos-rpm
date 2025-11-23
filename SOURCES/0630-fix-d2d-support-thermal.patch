@@ -12,7 +12,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  1 file changed, 20 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 0637f2b612f63..32b36f7a820b1 100644
+index 0637f2b612f6..32b36f7a820b 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -42,9 +42,12 @@ CONFIG_RISCV_SBI_V01=y

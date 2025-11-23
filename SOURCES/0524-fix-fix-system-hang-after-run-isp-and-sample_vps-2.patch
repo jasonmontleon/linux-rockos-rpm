@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 7 insertions(+), 17 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/vi_top/eswin_vi.c b/drivers/media/platform/eswin/vi_top/eswin_vi.c
-index 7f85d82d28711..b0f01ad7b6893 100644
+index 7f85d82d2871..b0f01ad7b689 100644
 --- a/drivers/media/platform/eswin/vi_top/eswin_vi.c
 +++ b/drivers/media/platform/eswin/vi_top/eswin_vi.c
 @@ -112,20 +112,7 @@ static int vitop_intf_cfg(struct eswin_vi_device *es_vi_dev)

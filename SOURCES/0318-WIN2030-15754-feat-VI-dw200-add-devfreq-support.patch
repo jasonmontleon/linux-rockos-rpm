@@ -17,7 +17,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 96 insertions(+), 12 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 4b65251cccb16..685eda496ec47 100644
+index 4b65251cccb1..685eda496ec4 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -115,6 +115,22 @@ opp@1040000000 {
@@ -52,7 +52,7 @@ index 4b65251cccb16..685eda496ec47 100644
  			interrupts = <26 25>;
  			#size-cells = <2>;
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index f1ab8835ceac8..d7b7695b91445 100644
+index f1ab8835ceac..d7b7695b9144 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -74,6 +74,8 @@

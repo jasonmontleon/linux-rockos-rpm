@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  2 files changed, 12 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 58fe3d6356167..bd6120c66ab76 100644
+index 58fe3d635616..bd6120c66ab7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -479,7 +479,9 @@ &d0_gmac0 {
@@ -36,7 +36,7 @@ index 58fe3d6356167..bd6120c66ab76 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index b03f4c8c25973..f02a7936cc609 100644
+index b03f4c8c2597..f02a7936cc60 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -445,7 +445,9 @@ &d0_gmac0 {

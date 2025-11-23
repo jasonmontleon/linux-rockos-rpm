@@ -13,7 +13,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 8 insertions(+), 9 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index fb032ebd085e4..4c5d33faade49 100755
+index fb032ebd085e..4c5d33faade4 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -75,6 +75,8 @@

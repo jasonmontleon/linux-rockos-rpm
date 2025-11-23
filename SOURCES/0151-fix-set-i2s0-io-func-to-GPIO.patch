@@ -13,7 +13,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 31 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 5171c76ec825b..5655e36926195 100644
+index 5171c76ec825..5655e3692619 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -325,6 +325,7 @@ &dw_hdmi_hdcp2 {
@@ -25,7 +25,7 @@ index 5171c76ec825b..5655e36926195 100644
  		#address-cells = <1>;
  		#size-cells = <0>;
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 02c05b85dfab8..fb032ebd085e4 100755
+index 02c05b85dfab..fb032ebd085e 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -73,6 +73,8 @@

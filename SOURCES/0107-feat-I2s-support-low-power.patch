@@ -17,7 +17,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  6 files changed, 62 insertions(+), 103 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index c95b68dafe7c7..385c39c4395b8 100644
+index c95b68dafe7c..385c39c4395b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -388,7 +388,6 @@ &dw_hdmi_hdcp2 {
@@ -45,7 +45,7 @@ index c95b68dafe7c7..385c39c4395b8 100644
  		d0_i2s2_endpoint: endpoint {
  			remote-endpoint = <&d0_codec1_endpoint>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index bbabd938baef0..fc7dd40a4bc4f 100644
+index bbabd938baef..fc7dd40a4bc4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -349,7 +349,6 @@ &dw_hdmi_hdcp2 {
@@ -73,7 +73,7 @@ index bbabd938baef0..fc7dd40a4bc4f 100644
  		d0_i2s2_endpoint: endpoint {
  			remote-endpoint = <&d0_codec2_endpoint>;
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 8bd614757b017..11ecf0bb3cd2e 100644
+index 8bd614757b01..11ecf0bb3cd2 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -329,7 +329,6 @@ &dw_hdmi_hdcp2 {
@@ -93,7 +93,7 @@ index 8bd614757b017..11ecf0bb3cd2e 100644
  		d0_i2s1_endpoint: endpoint {
  			remote-endpoint = <&d0_codec0_endpoint>;
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 71c89e7e3bb55..7123022dfd0c0 100644
+index 71c89e7e3bb5..7123022dfd0c 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -4548,6 +4548,7 @@ EXPORT_SYMBOL_GPL(dw_hdmi_unbind);
@@ -113,7 +113,7 @@ index 71c89e7e3bb55..7123022dfd0c0 100644
  }
  EXPORT_SYMBOL_GPL(dw_hdmi_resume);
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 8fe165ddb0d6d..acf2329968154 100755
+index 8fe165ddb0d6..acf232996815 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -73,6 +73,8 @@
@@ -390,7 +390,7 @@ index 8fe165ddb0d6d..acf2329968154 100755
  	pm_runtime_disable(&pdev->dev);
  
 diff --git a/sound/soc/eswin/esw-i2s.h b/sound/soc/eswin/esw-i2s.h
-index 14c4980c82676..6c1a243223a42 100644
+index 14c4980c8267..6c1a243223a4 100644
 --- a/sound/soc/eswin/esw-i2s.h
 +++ b/sound/soc/eswin/esw-i2s.h
 @@ -175,7 +175,6 @@ struct i2s_dev {

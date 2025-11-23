@@ -15,7 +15,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  2 files changed, 29 insertions(+), 27 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index d87b845a09669..5750ea1646ca7 100644
+index d87b845a0966..5750ea1646ca 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -751,6 +751,7 @@ gc820: g2d@50140000 {
@@ -27,7 +27,7 @@ index d87b845a09669..5750ea1646ca7 100644
  
  		gpu0: gpu@51400000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 2f36205bc50e2..e23aace10f03b 100644
+index 2f36205bc50e..e23aace10f03 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1912,34 +1912,35 @@ d1_wdt3: watchdog@0x7080c000 {

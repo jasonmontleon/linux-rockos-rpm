@@ -15,7 +15,7 @@ Signed-off-by: yangqiang <yangqiang1@eswincomputing.com>
  3 files changed, 278 insertions(+), 43 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index e5c44cf04df51..073decf58c030 100644
+index e5c44cf04df5..073decf58c03 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -508,7 +508,16 @@ hdmi_in_i2s: endpoint@1 {
@@ -191,7 +191,7 @@ index e5c44cf04df51..073decf58c030 100644
  
  &d0_i2c1 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 2e4419128df68..5be5d6f3d76a3 100644
+index 2e4419128df6..5be5d6f3d76a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1294,6 +1294,18 @@ d1_i2s2: i2s@70220000 {
@@ -214,7 +214,7 @@ index 2e4419128df68..5be5d6f3d76a3 100644
  			#address-cells = <2>;
  			#size-cells = <2>;
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 5774a03a270b2..dcb552d2331a9 100755
+index 5774a03a270b..dcb552d2331a 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -59,7 +59,8 @@

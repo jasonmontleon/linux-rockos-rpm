@@ -11,7 +11,7 @@ Signed-off-by: carbon <carbon@milkv.io>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
-index e8e09df6105ae..aef0c0a61efda 100644
+index e8e09df6105a..aef0c0a61efd 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 @@ -935,7 +935,6 @@ &pinctrl_gpio21_default

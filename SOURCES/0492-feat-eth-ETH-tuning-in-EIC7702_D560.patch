@@ -12,7 +12,7 @@ Signed-off-by: lizhi2 <lizhi2@eswincomputing.com>
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index de69bc2359e4b..ed5392ae9035f 100644
+index de69bc2359e4..ed5392ae9035 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -915,8 +915,8 @@ &d0_gmac0 {

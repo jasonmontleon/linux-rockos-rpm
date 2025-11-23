@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 4da79e854ea46..399e2a203d050 100644
+index 4da79e854ea4..399e2a203d05 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -260,12 +260,19 @@ static int eswin_pcie_host_init(struct dw_pcie_rp *pp)

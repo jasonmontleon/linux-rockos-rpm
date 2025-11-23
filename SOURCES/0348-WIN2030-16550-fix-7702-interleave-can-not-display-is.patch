@@ -18,7 +18,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 37 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index b7ea2eea76cb0..8e38dc5e7f590 100644
+index b7ea2eea76cb..8e38dc5e7f59 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -81,16 +81,14 @@ memory@4000000000 {
@@ -91,7 +91,7 @@ index b7ea2eea76cb0..8e38dc5e7f590 100644
  
  &dc {
 diff --git a/drivers/gpu/drm/eswin/es_drv.c b/drivers/gpu/drm/eswin/es_drv.c
-index 1c588106e39ce..d29c3572857c2 100644
+index 1c588106e39c..d29c3572857c 100644
 --- a/drivers/gpu/drm/eswin/es_drv.c
 +++ b/drivers/gpu/drm/eswin/es_drv.c
 @@ -25,6 +25,9 @@

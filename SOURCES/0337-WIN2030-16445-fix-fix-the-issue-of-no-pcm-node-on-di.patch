@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 9 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 51734f0ecfe14..d7935bb5ec3bb 100644
+index 51734f0ecfe1..d7935bb5ec3b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1197,8 +1197,9 @@ d1_pwm0: pwm@0x70818000 {

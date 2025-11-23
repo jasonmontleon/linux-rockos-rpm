@@ -29,7 +29,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  rename arch/riscv/boot/dts/eswin/{eic770x-ooptable.dtsi => eic770x-opptable.dtsi} (72%)
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 69074a4a14512..f4f2418da8864 100644
+index 69074a4a1451..f4f2418da886 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -11,6 +11,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -42,7 +42,7 @@ index 69074a4a14512..f4f2418da8864 100644
  
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
-index bfc99f1055564..9631c73e0bd35 100644
+index bfc99f105556..9631c73e0bd3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 @@ -32,7 +32,7 @@ &d0_clock {
@@ -55,7 +55,7 @@ index bfc99f1055564..9631c73e0bd35 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index badde2fa404cb..75e180fbf78f8 100644
+index badde2fa404c..75e180fbf78f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -875,7 +875,7 @@ &d0_clock {
@@ -68,7 +68,7 @@ index badde2fa404cb..75e180fbf78f8 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 3a016445160af..e2b84bec70e05 100644
+index 3a016445160a..e2b84bec70e0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -955,7 +955,7 @@ &d0_clock {
@@ -81,7 +81,7 @@ index 3a016445160af..e2b84bec70e05 100644
                  opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
                  opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 1b7d32898c4c0..70889ccceb7d9 100644
+index 1b7d32898c4c..70889ccceb7d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -850,7 +850,7 @@ &dev_llc_d0{
@@ -94,7 +94,7 @@ index 1b7d32898c4c0..70889ccceb7d9 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1600M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index bf6d610b3cf04..eb5fb2350a9d1 100644
+index bf6d610b3cf0..eb5fb2350a9d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -145,7 +145,7 @@ d0_gmac0
@@ -107,7 +107,7 @@ index bf6d610b3cf04..eb5fb2350a9d1 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index ff10802cc2a35..bbee71eff0991 100644
+index ff10802cc2a3..bbee71eff099 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -689,7 +689,7 @@ &d0_clock {
@@ -120,7 +120,7 @@ index ff10802cc2a35..bbee71eff0991 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
  		opp-microvolt = <900000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index 2355bd3f422d0..aa3be74f7e387 100644
+index 2355bd3f422d..aa3be74f7e38 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -187,11 +187,64 @@ d1_zero_device: zero-device@3a000000 {
@@ -192,7 +192,7 @@ diff --git a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi b/arch/riscv/boot/d
 similarity index 72%
 rename from arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 rename to arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
-index 471984153c447..2f4deaf21d958 100644
+index 471984153c44..2f4deaf21d95 100644
 --- a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
 @@ -20,7 +20,78 @@
@@ -276,7 +276,7 @@ index 471984153c447..2f4deaf21d958 100644
  		opp-shared;
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 48f72db0adfa6..2e3228e16ccd7 100644
+index 48f72db0adfa..2e3228e16ccd 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -20,7 +20,7 @@
@@ -325,7 +325,7 @@ index 48f72db0adfa6..2e3228e16ccd7 100644
  		cpu7_intc: interrupt-controller {
  			#interrupt-cells = <1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 9fa246a5898f4..80c512ffa74a8 100644
+index 9fa246a5898f..80c512ffa74a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -19,7 +19,7 @@
@@ -374,7 +374,7 @@ index 9fa246a5898f4..80c512ffa74a8 100644
  			dynamic-power-coefficient = <324>;
  			cpu-idle-states = <&CPU_RET>;
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index e243673c771d1..425056d394b6f 100755
+index e243673c771d..425056d394b6 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -626,7 +626,7 @@ void eswin_clk_register_pll(struct eswin_pll_clock *clks,

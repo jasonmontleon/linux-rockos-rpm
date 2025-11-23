@@ -13,7 +13,7 @@ Signed-off-by: yiguo <yiguo@eswincomputing.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
-index 8c91949cb9dac..5207c17be5405 100644
+index 8c91949cb9da..5207c17be540 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dsp.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
 @@ -770,8 +770,9 @@ int npu_set_dsp_iobuf(struct win_executor *executor, struct host_frame_desc *f)

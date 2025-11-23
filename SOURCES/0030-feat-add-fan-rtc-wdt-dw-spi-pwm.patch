@@ -26,7 +26,7 @@ Changelogs:
  create mode 100644 drivers/rtc/rtc-eswin.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 70f8a9d9af3b3..430c5410bdda5 100644
+index 70f8a9d9af3b..430c5410bdda 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1292,6 +1292,8 @@ fan_control: fan_control@50b50000 {
@@ -56,7 +56,7 @@ index 70f8a9d9af3b3..430c5410bdda5 100644
  		};
  
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0a03d049eff90..d0362cdd1b1ef 100644
+index 0a03d049eff9..d0362cdd1b1e 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -247,7 +247,6 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y
@@ -78,7 +78,7 @@ index 0a03d049eff90..d0362cdd1b1ef 100644
  CONFIG_INTERCONNECT=y
  CONFIG_EXT4_FS=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 14e8320b5c07d..39185cb8e3df6 100644
+index 14e8320b5c07..39185cb8e3df 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -312,6 +312,15 @@ config SENSORS_AXI_FAN_CONTROL
@@ -98,7 +98,7 @@ index 14e8320b5c07d..39185cb8e3df6 100644
  	tristate "AMD Athlon64/FX or Opteron temperature sensor"
  	depends on X86 && PCI
 diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 6b5643ef316a0..60f32f51eeb95 100644
+index 6b5643ef316a..60f32f51eeb9 100644
 --- a/drivers/hwmon/Makefile
 +++ b/drivers/hwmon/Makefile
 @@ -221,6 +221,7 @@ obj-$(CONFIG_SENSORS_WM831X)	+= wm831x-hwmon.o
@@ -111,7 +111,7 @@ index 6b5643ef316a0..60f32f51eeb95 100644
  obj-$(CONFIG_SENSORS_PECI)	+= peci/
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
 new file mode 100644
-index 0000000000000..9c8ab39dee302
+index 000000000000..9c8ab39dee30
 --- /dev/null
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -0,0 +1,522 @@
@@ -638,7 +638,7 @@ index 0000000000000..9c8ab39dee302
 +MODULE_DESCRIPTION("ESWIN Fan Control CORE driver");
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/pwm/Kconfig b/drivers/pwm/Kconfig
-index 8ebcddf91f7b7..66e803d4b5a82 100644
+index 8ebcddf91f7b..66e803d4b5a8 100644
 --- a/drivers/pwm/Kconfig
 +++ b/drivers/pwm/Kconfig
 @@ -195,6 +195,15 @@ config PWM_DWC
@@ -658,7 +658,7 @@ index 8ebcddf91f7b7..66e803d4b5a82 100644
  	tristate "Cirrus Logic EP93xx PWM support"
  	depends on ARCH_EP93XX || COMPILE_TEST
 diff --git a/drivers/pwm/Makefile b/drivers/pwm/Makefile
-index c822389c2a24c..4da24d757e1d0 100644
+index c822389c2a24..4da24d757e1d 100644
 --- a/drivers/pwm/Makefile
 +++ b/drivers/pwm/Makefile
 @@ -16,6 +16,7 @@ obj-$(CONFIG_PWM_CLPS711X)	+= pwm-clps711x.o
@@ -671,7 +671,7 @@ index c822389c2a24c..4da24d757e1d0 100644
  obj-$(CONFIG_PWM_HIBVT)		+= pwm-hibvt.o
 diff --git a/drivers/pwm/pwm-eswin.c b/drivers/pwm/pwm-eswin.c
 new file mode 100644
-index 0000000000000..139474716da57
+index 000000000000..139474716da5
 --- /dev/null
 +++ b/drivers/pwm/pwm-eswin.c
 @@ -0,0 +1,370 @@
@@ -1046,7 +1046,7 @@ index 0000000000000..139474716da57
 +MODULE_LICENSE("GPL");
 +
 diff --git a/drivers/rtc/Kconfig b/drivers/rtc/Kconfig
-index 92f46a6312c24..e6a5d8083520d 100644
+index 92f46a6312c2..e6a5d8083520 100644
 --- a/drivers/rtc/Kconfig
 +++ b/drivers/rtc/Kconfig
 @@ -1985,4 +1985,12 @@ config RTC_DRV_POLARFIRE_SOC
@@ -1063,7 +1063,7 @@ index 92f46a6312c24..e6a5d8083520d 100644
 +	  will be called "rtc-eswin".
  endif # RTC_CLASS
 diff --git a/drivers/rtc/Makefile b/drivers/rtc/Makefile
-index fd209883ee2ef..feff57496fb9b 100644
+index fd209883ee2e..feff57496fb9 100644
 --- a/drivers/rtc/Makefile
 +++ b/drivers/rtc/Makefile
 @@ -184,3 +184,4 @@ obj-$(CONFIG_RTC_DRV_WM8350)	+= rtc-wm8350.o
@@ -1073,7 +1073,7 @@ index fd209883ee2ef..feff57496fb9b 100644
 +obj-$(CONFIG_RTC_DRV_ESWIN)	+= rtc-eswin.o
 diff --git a/drivers/rtc/rtc-eswin.c b/drivers/rtc/rtc-eswin.c
 new file mode 100644
-index 0000000000000..b4ca046d8ff88
+index 000000000000..b4ca046d8ff8
 --- /dev/null
 +++ b/drivers/rtc/rtc-eswin.c
 @@ -0,0 +1,323 @@
@@ -1401,7 +1401,7 @@ index 0000000000000..b4ca046d8ff88
 +MODULE_AUTHOR("zhangpengcheng@eswin.com>");
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 805264c9c65c6..39c1ae316ac06 100644
+index 805264c9c65c..39c1ae316ac0 100644
 --- a/drivers/spi/spi-dw-mmio.c
 +++ b/drivers/spi/spi-dw-mmio.c
 @@ -210,6 +210,14 @@ static int dw_spi_alpine_init(struct platform_device *pdev,

@@ -20,7 +20,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  6 files changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 9318fc21eaa9d..5ae50b34eea18 100644
+index 9318fc21eaa9..5ae50b34eea1 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -742,6 +742,8 @@ CONFIG_ARM_SMMU_V3=y
@@ -33,7 +33,7 @@ index 9318fc21eaa9d..5ae50b34eea18 100644
  CONFIG_EXTCON=y
  CONFIG_MEMORY=y
 diff --git a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
-index 98558ecf0af5d..f4be79fac5999 100644
+index 98558ecf0af5..f4be79fac599 100644
 --- a/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
 +++ b/drivers/soc/eswin/ai_driver/common/devices/mailbox_regs.h
 @@ -202,10 +202,12 @@
@@ -50,7 +50,7 @@ index 98558ecf0af5d..f4be79fac5999 100644
  #define MBOX_INT_BIT_BASE 5
  
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
-index c255d5cd371b5..667e13996be36 100644
+index c255d5cd371b..667e13996be3 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ipc.h
 @@ -444,6 +444,7 @@ static void messagebox_send(u16 channel_id, msg_payload_t payload)
@@ -70,7 +70,7 @@ index c255d5cd371b5..667e13996be36 100644
  /**
   * @brief Receives data from a mailbox message.
 diff --git a/drivers/soc/eswin/ai_driver/dsp/Makefile b/drivers/soc/eswin/ai_driver/dsp/Makefile
-index ebacf5f1723ec..e433e1af883b9 100755
+index ebacf5f1723e..e433e1af883b 100755
 --- a/drivers/soc/eswin/ai_driver/dsp/Makefile
 +++ b/drivers/soc/eswin/ai_driver/dsp/Makefile
 @@ -30,7 +30,6 @@ DEBUG_LEVEL ?= 0
@@ -82,7 +82,7 @@ index ebacf5f1723ec..e433e1af883b9 100755
  ccflags-y += -I$(srctree)/$(src)/../common/devices
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
-index 3602d3c9a0f66..29cbe78dd0267 100644
+index 3602d3c9a0f6..29cbe78dd026 100644
 --- a/drivers/soc/eswin/ai_driver/npu/Makefile
 +++ b/drivers/soc/eswin/ai_driver/npu/Makefile
 @@ -10,7 +10,6 @@ ccflags-y += -I$(srctree)/$(src)/include
@@ -94,7 +94,7 @@ index 3602d3c9a0f66..29cbe78dd0267 100644
  
  ccflags-y += -DNPU_DEV_SIM=$(NPU_DEV_SIM)
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_spram.c b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
-index 02a17f2b892cf..2e8b78a88e73a 100644
+index 02a17f2b892c..2e8b78a88e73 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 @@ -27,6 +27,7 @@

@@ -24,7 +24,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  13 files changed, 18 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 16397c4ba2f4f..328c51187781d 100644
+index 16397c4ba2f4..328c51187781 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -733,6 +733,8 @@ CONFIG_ESWIN_LPCPU=m
@@ -37,7 +37,7 @@ index 16397c4ba2f4f..328c51187781d 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index b87608ed3c65a..4de22fc5228ac 100644
+index b87608ed3c65..4de22fc5228a 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -733,6 +733,8 @@ CONFIG_ESWIN_LPCPU=m
@@ -50,7 +50,7 @@ index b87608ed3c65a..4de22fc5228ac 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0cfccd32280c9..f0d832fcd1121 100644
+index 0cfccd32280c..f0d832fcd112 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -737,6 +737,8 @@ CONFIG_ESWIN_LPCPU=m
@@ -63,7 +63,7 @@ index 0cfccd32280c9..f0d832fcd1121 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/drivers/soc/eswin/ai_driver/dsp/Makefile b/drivers/soc/eswin/ai_driver/dsp/Makefile
-index 465f11f3e6885..22f9cf76b86ed 100755
+index 465f11f3e688..22f9cf76b86e 100755
 --- a/drivers/soc/eswin/ai_driver/dsp/Makefile
 +++ b/drivers/soc/eswin/ai_driver/dsp/Makefile
 @@ -29,6 +29,8 @@ DEBUG_LEVEL ?= 0
@@ -76,7 +76,7 @@ index 465f11f3e6885..22f9cf76b86ed 100755
  
  obj-$(CONFIG_ESWIN_DSP) += eic7700_dsp.o
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index dee6ec9d8da0f..5bfd429001bb5 100644
+index dee6ec9d8da0..5bfd429001bb 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -11,7 +11,7 @@
@@ -89,7 +89,7 @@ index dee6ec9d8da0f..5bfd429001bb5 100644
  #include <linux/poll.h>
  #include "dsp_platform.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 14c8ed7c23507..5051f7585dc8b 100644
+index 14c8ed7c2350..5051f7585dc8 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -23,7 +23,7 @@
@@ -102,7 +102,7 @@ index 14c8ed7c23507..5051f7585dc8b 100644
  
  #include "dsp_platform.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c b/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
-index 1639727bb118d..46bc9b79ca1fd 100644
+index 1639727bb118..46bc9b79ca1f 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
 @@ -6,7 +6,7 @@
@@ -115,7 +115,7 @@ index 1639727bb118d..46bc9b79ca1fd 100644
  #include "dsp_main.h"
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
-index bcf99a4898153..29de4587ff044 100644
+index bcf99a489815..29de4587ff04 100644
 --- a/drivers/soc/eswin/ai_driver/npu/Makefile
 +++ b/drivers/soc/eswin/ai_driver/npu/Makefile
 @@ -9,6 +9,8 @@ ccflags-y += -I$(srctree)/drivers/memory/eswin/codacache/
@@ -128,7 +128,7 @@ index bcf99a4898153..29de4587ff044 100644
  ccflags-y += -DNPU_DEV_SIM=$(NPU_DEV_SIM)
  ccflags-y += -DENABLE_PROGRAM_CORE=$(ENABLE_PROGRAM_CORE)
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_buffer.h b/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
-index 7fa41c8c4f981..68424d415be84 100644
+index 7fa41c8c4f98..68424d415be8 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
 @@ -17,7 +17,7 @@
@@ -141,7 +141,7 @@ index 7fa41c8c4f981..68424d415be84 100644
  struct user_model;
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/engine.c b/drivers/soc/eswin/ai_driver/npu/engine.c
-index f51eacae6f102..49cad9c3e451e 100644
+index f51eacae6f10..49cad9c3e451 100644
 --- a/drivers/soc/eswin/ai_driver/npu/engine.c
 +++ b/drivers/soc/eswin/ai_driver/npu/engine.c
 @@ -10,7 +10,7 @@
@@ -154,7 +154,7 @@ index f51eacae6f102..49cad9c3e451e 100644
  #include <dla_interface.h>
  #include "dla_engine.h"
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_e31.c b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
-index 3494f170fc681..c44cef95d451e 100644
+index 3494f170fc68..c44cef95d451 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 @@ -21,7 +21,7 @@
@@ -167,7 +167,7 @@ index 3494f170fc681..c44cef95d451e 100644
  #include "dla_log.h"
  #include "hetero_host.h"
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 309e6b6bafef3..a5455fcffd013 100644
+index 309e6b6bafef..a5455fcffd01 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -36,7 +36,7 @@
@@ -180,7 +180,7 @@ index 309e6b6bafef3..a5455fcffd013 100644
  #include "dla_engine.h"
  #include "dla_engine_internal.h"
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index 3ccaec7130fd8..70665817d93df 100644
+index 3ccaec7130fd..70665817d93d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -27,7 +27,7 @@

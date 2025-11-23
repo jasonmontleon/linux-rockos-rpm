@@ -11,7 +11,7 @@ Signed-off-by: fanxiaping <fanxiaping@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index a0eb704642c5a..9261a4b9cbf77 100644
+index a0eb704642c5..9261a4b9cbf7 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -488,7 +488,7 @@ CONFIG_REGULATOR_MPQ8785=y

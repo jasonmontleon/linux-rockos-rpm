@@ -12,7 +12,7 @@ Signed-off-by: hehuan1 <hehuan1@eswincomputing.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/hwmon/eswin_pvt.c b/drivers/hwmon/eswin_pvt.c
-index fd8dec5db85eb..f4842c96bbb27 100644
+index fd8dec5db85e..f4842c96bbb2 100644
 --- a/drivers/hwmon/eswin_pvt.c
 +++ b/drivers/hwmon/eswin_pvt.c
 @@ -51,11 +51,11 @@

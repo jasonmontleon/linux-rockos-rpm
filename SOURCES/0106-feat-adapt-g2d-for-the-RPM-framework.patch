@@ -23,7 +23,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  9 files changed, 734 insertions(+), 813 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
-index e31b3a9608b82..21a1b0d204bdb 100644
+index e31b3a9608b8..21a1b0d204bd 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -2553,7 +2553,7 @@ gckHARDWARE_InitializeHardware(gckHARDWARE Hardware)
@@ -36,7 +36,7 @@ index e31b3a9608b82..21a1b0d204bdb 100644
          /* APB FE ctrl. */
          gcmkONERROR(gckOS_WriteRegisterEx(Hardware->os, Hardware->kernel,
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
-index 250373eee8a52..8303e9a139c60 100644
+index 250373eee8a5..8303e9a139c6 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 @@ -3950,6 +3950,12 @@ gckKERNEL_AttachProcessEx(gckKERNEL Kernel, gctBOOL Attach, gctUINT32 PID)
@@ -53,7 +53,7 @@ index 250373eee8a52..8303e9a139c60 100644
                  if (Kernel->processPageTable) {
                      status = gckEVENT_Submit(Kernel->eventObj, &eventAttr);
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
-index ec0be96ab951d..c633d52f53f2f 100644
+index ec0be96ab951..c633d52f53f2 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel_event.c
 @@ -235,7 +235,8 @@ _TryToIdleGPU(gckEVENT Event)
@@ -67,7 +67,7 @@ index ec0be96ab951d..c633d52f53f2f 100644
              if (status == gcvSTATUS_TIMEOUT) {
                  gcmkFOOTER();
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
-index 2301e3f2ad32b..7215038503f18 100644
+index 2301e3f2ad32..7215038503f1 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
 @@ -695,7 +695,7 @@
@@ -89,7 +89,7 @@ index 2301e3f2ad32b..7215038503f18 100644
  
  /*
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
-index 82325f3d44459..9386092809b57 100644
+index 82325f3d4445..9386092809b5 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 @@ -83,6 +83,8 @@ static int gpu3DMinClock = 1;
@@ -179,7 +179,7 @@ index 82325f3d44459..9386092809b57 100644
  
      gcmkFOOTER_NO();
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
-index 04219a9d82aee..68bcf61c95f01 100644
+index 04219a9d82ae..68bcf61c95f0 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
 @@ -4321,7 +4321,8 @@ gckOS_Broadcast(gckOS Os, gckHARDWARE Hardware, gceBROADCAST Reason)
@@ -193,7 +193,7 @@ index 04219a9d82aee..68bcf61c95f01 100644
              gckDEVICE device = kernel->device;
              gctUINT32 broCoreMask;
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
-index 1c06724978981..0adeae90bc10c 100644
+index 1c0672497898..0adeae90bc10 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 @@ -282,7 +282,7 @@ static int compression = -1;
@@ -206,7 +206,7 @@ index 1c06724978981..0adeae90bc10c 100644
  MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
  
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
-index ecd2dc1124017..4b52d96799547 100644
+index ecd2dc112401..4b52d9679954 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 @@ -51,56 +51,86 @@
@@ -2130,7 +2130,7 @@ index ecd2dc1124017..4b52d96799547 100644
      return 0;
  }
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h
-index 416fd0bb6dd9b..9551b0cbed098 100644
+index 416fd0bb6dd9..9551b0cbed09 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.h
 @@ -56,6 +56,7 @@

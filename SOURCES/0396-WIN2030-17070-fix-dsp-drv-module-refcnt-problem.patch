@@ -13,7 +13,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 9 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 60e9a2ea5a04c..0569d1579eba4 100644
+index 60e9a2ea5a04..0569d1579eba 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -313,7 +313,7 @@ static int dsp_ioctl_set_flat(struct dsp_file *dsp_file, dsp_ioctl_task_s *req,

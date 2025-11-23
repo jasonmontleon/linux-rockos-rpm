@@ -18,7 +18,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 75e180fbf78f8..6c3220cb47379 100644
+index 75e180fbf78f..6c3220cb4737 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -29,7 +29,7 @@
@@ -31,7 +31,7 @@ index 75e180fbf78f8..6c3220cb47379 100644
  #include <dt-bindings/interrupt-controller/irq.h>
  #include <dt-bindings/gpio/gpio.h>
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index eb5fb2350a9d1..ce1ca4a3b8156 100644
+index eb5fb2350a9d..ce1ca4a3b815 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -29,7 +29,7 @@

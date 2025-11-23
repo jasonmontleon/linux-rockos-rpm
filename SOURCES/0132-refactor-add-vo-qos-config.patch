@@ -12,7 +12,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 18 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 2eddebbd2ddb6..ac43c604a2dc3 100644
+index 2eddebbd2ddb..ac43c604a2dc 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -977,6 +977,23 @@ const struct component_ops dc_component_ops = {

@@ -14,7 +14,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 454427d67f0ce..46a70eb15886c 100644
+index 454427d67f0c..46a70eb15886 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -641,6 +641,7 @@ d1_ipc_scpu:ipc@1 {

@@ -12,7 +12,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/kvm/vcpu_pmu.c b/arch/riscv/kvm/vcpu_pmu.c
-index e2e2a115afb5c..0a8ab8c3700fe 100644
+index e2e2a115afb5..0a8ab8c3700f 100644
 --- a/arch/riscv/kvm/vcpu_pmu.c
 +++ b/arch/riscv/kvm/vcpu_pmu.c
 @@ -556,6 +556,8 @@ void kvm_riscv_vcpu_pmu_init(struct kvm_vcpu *vcpu)

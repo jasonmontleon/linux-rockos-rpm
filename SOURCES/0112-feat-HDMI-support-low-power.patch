@@ -16,7 +16,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  5 files changed, 26 insertions(+), 194 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 3b2961f29389a..8cc13e04a2d4d 100644
+index 3b2961f29389..8cc13e04a2d4 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1857,9 +1857,9 @@ dw_hdmi: hdmi@502a0000 {
@@ -33,7 +33,7 @@ index 3b2961f29389a..8cc13e04a2d4d 100644
  			reg-io-width = <4>;
  			ddc-i2c-scl-high-time-ns = <4708>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 005cd8fc4c35e..92cddf1e756fb 100644
+index 005cd8fc4c35..92cddf1e756f 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1729,9 +1729,9 @@ d1_dw_hdmi: hdmi@702a0000 {
@@ -50,7 +50,7 @@ index 005cd8fc4c35e..92cddf1e756fb 100644
              reg-io-width = <4>;
              ddc-i2c-scl-high-time-ns = <4708>;
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 11ecf0bb3cd2e..163938a2a3932 100644
+index 11ecf0bb3cd2..163938a2a393 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -310,7 +310,6 @@ &dsi_panel {
@@ -62,7 +62,7 @@ index 11ecf0bb3cd2e..163938a2a3932 100644
  		port@2 {
  			reg = <2>;
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 7123022dfd0c0..552b80ccacdb1 100644
+index 7123022dfd0c..552b80ccacdb 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -51,6 +51,8 @@
@@ -175,7 +175,7 @@ index 7123022dfd0c0..552b80ccacdb1 100644
  	clk_disable_unprepare(hdmi->isfr_clk);
  err_res:
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
-index 36efffa7d47ad..1412036bdc312 100644
+index 36efffa7d47a..1412036bdc31 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -57,12 +57,8 @@ enum dw_hdmi_eswin_color_depth {

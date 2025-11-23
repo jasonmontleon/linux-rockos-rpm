@@ -15,7 +15,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  3 files changed, 3 insertions(+)
 
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
-index 36756a8dfd509..59589ede0dc12 100644
+index 36756a8dfd50..59589ede0dc1 100644
 --- a/arch/riscv/configs/vpu7702_evb_defconfig
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -829,6 +829,7 @@ CONFIG_CRYPTO_MD5=y
@@ -27,7 +27,7 @@ index 36756a8dfd509..59589ede0dc12 100644
  CONFIG_CRC7=y
  CONFIG_DMA_CMA=y
 diff --git a/arch/riscv/configs/vpu7702_pcie_a2_defconfig b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
-index e70e59a4fb41a..2a1cbf1ba2bfe 100644
+index e70e59a4fb41..2a1cbf1ba2bf 100644
 --- a/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 @@ -829,6 +829,7 @@ CONFIG_CRYPTO_MD5=y
@@ -39,7 +39,7 @@ index e70e59a4fb41a..2a1cbf1ba2bfe 100644
  CONFIG_CRC7=y
  CONFIG_DMA_CMA=y
 diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
-index 45b98b871a637..6c20799e4b522 100644
+index 45b98b871a63..6c20799e4b52 100644
 --- a/arch/riscv/configs/vpu7702_pcie_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_defconfig
 @@ -829,6 +829,7 @@ CONFIG_CRYPTO_MD5=y

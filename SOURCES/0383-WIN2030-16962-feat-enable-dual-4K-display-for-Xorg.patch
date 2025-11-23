@@ -13,7 +13,7 @@ Signed-off-by: zhangyizhong <zhangyizhong@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.c b/drivers/gpu/drm/eswin/es_dc_hw.c
-index 28b2a7b8f93fa..4ba66b5bba2e8 100644
+index 28b2a7b8f93f..4ba66b5bba2e 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.c
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.c
 @@ -523,7 +523,7 @@ static const struct es_plane_info dc_hw_planes[][PLANE_NUM] = {

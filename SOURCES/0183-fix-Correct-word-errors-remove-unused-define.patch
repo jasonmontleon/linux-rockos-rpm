@@ -16,7 +16,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  4 files changed, 3 insertions(+), 11 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 2785eb640b3a6..fc1bb85f22895 100644
+index 2785eb640b3a..fc1bb85f2289 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1274,7 +1274,7 @@ fan_control: fan_control@50b50000 {
@@ -29,7 +29,7 @@ index 2785eb640b3a6..fc1bb85f22895 100644
  			pinctrl-names = "default";
  			pinctrl-0 = <&pinctrl_fan_tach_default>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 9883a0b1a8bfc..067c9488efd51 100644
+index 9883a0b1a8bf..067c9488efd5 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -683,7 +683,7 @@ d1_fan_control: fan_control@70b50000 {
@@ -42,7 +42,7 @@ index 9883a0b1a8bfc..067c9488efd51 100644
  			status = "disabled";
  			label = "d1_fan_control";
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 24a328da5178a..01447e641fa33 100644
+index 24a328da5178..01447e641fa3 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -378,7 +378,7 @@ static int eswin_fan_control_init(struct eswin_fan_control_data *ctl,
@@ -55,7 +55,7 @@ index 24a328da5178a..01447e641fa33 100644
  		return ret;
  
 diff --git a/drivers/usb/dwc3/dwc3-eswin.c b/drivers/usb/dwc3/dwc3-eswin.c
-index 1769d9a7ff5f3..4ea7003b03392 100755
+index 1769d9a7ff5f..4ea7003b0339 100755
 --- a/drivers/usb/dwc3/dwc3-eswin.c
 +++ b/drivers/usb/dwc3/dwc3-eswin.c
 @@ -51,12 +51,6 @@

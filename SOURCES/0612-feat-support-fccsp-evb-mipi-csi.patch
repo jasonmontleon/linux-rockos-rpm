@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-ce1.dts b/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
-index 2a37c22f7c30b..db34692de19be 100644
+index 2a37c22f7c30..db34692de19b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 @@ -30,10 +30,10 @@

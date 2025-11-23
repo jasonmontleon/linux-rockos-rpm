@@ -18,7 +18,7 @@ Changelogs:
  create mode 100644 drivers/usb/typec/fusb303b.c
 
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 92a708552e523..2b08a6bbfd2a4 100644
+index 92a708552e52..2b08a6bbfd2a 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -61,12 +61,6 @@ memory@80000000 {
@@ -89,7 +89,7 @@ index 92a708552e523..2b08a6bbfd2a4 100644
  	};
  
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 61b8f4de69ad8..47122461e3fc4 100644
+index 61b8f4de69ad..47122461e3fc 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -148,6 +148,8 @@ CONFIG_PINCTRL_EIC7700=y
@@ -143,7 +143,7 @@ index 61b8f4de69ad8..47122461e3fc4 100644
 -CONFIG_TIMER_ESWIN=y
 \ No newline at end of file
 diff --git a/drivers/usb/typec/Kconfig b/drivers/usb/typec/Kconfig
-index 2f80c2792dbda..b8bcb74d8d53e 100644
+index 2f80c2792dbd..b8bcb74d8d53 100644
 --- a/drivers/usb/typec/Kconfig
 +++ b/drivers/usb/typec/Kconfig
 @@ -110,6 +110,14 @@ config TYPEC_WUSB3801
@@ -162,7 +162,7 @@ index 2f80c2792dbda..b8bcb74d8d53e 100644
  
  source "drivers/usb/typec/altmodes/Kconfig"
 diff --git a/drivers/usb/typec/Makefile b/drivers/usb/typec/Makefile
-index 7a368fea61bc9..e53e9ea83d6bc 100644
+index 7a368fea61bc..e53e9ea83d6b 100644
 --- a/drivers/usb/typec/Makefile
 +++ b/drivers/usb/typec/Makefile
 @@ -12,3 +12,4 @@ obj-$(CONFIG_TYPEC_STUSB160X) 	+= stusb160x.o
@@ -172,7 +172,7 @@ index 7a368fea61bc9..e53e9ea83d6bc 100644
 +obj-$(CONFIG_TYPEC_FUSB303B)		+= fusb303b.o
 diff --git a/drivers/usb/typec/fusb303b.c b/drivers/usb/typec/fusb303b.c
 new file mode 100644
-index 0000000000000..5ffc27640a05a
+index 000000000000..5ffc27640a05
 --- /dev/null
 +++ b/drivers/usb/typec/fusb303b.c
 @@ -0,0 +1,685 @@

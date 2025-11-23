@@ -9,7 +9,7 @@ Signed-off-by: Jingkun Zheng <zhengjingkun@iscas.ac.cn>
  1 file changed, 3 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 383bc4438249e..dfe1b886df52c 100644
+index 383bc4438249..dfe1b886df52 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -987,6 +987,9 @@ CONFIG_F2FS_FS_SECURITY=y

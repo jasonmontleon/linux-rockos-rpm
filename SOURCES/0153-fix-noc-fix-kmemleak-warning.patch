@@ -13,7 +13,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  2 files changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
-index 6712cf02f5f26..cd577ec7c1165 100644
+index 6712cf02f5f2..cd577ec7c116 100644
 --- a/drivers/interconnect/eswin/noc.c
 +++ b/drivers/interconnect/eswin/noc.c
 @@ -91,7 +91,7 @@ const char **win2030_get_strings_from_dts(struct device *_dev,
@@ -26,7 +26,7 @@ index 6712cf02f5f26..cd577ec7c1165 100644
  		/* To find out the end of the list */
  		lut[lut_len] = NULL;
 diff --git a/drivers/interconnect/eswin/win2030_sideband_manager.c b/drivers/interconnect/eswin/win2030_sideband_manager.c
-index c694e34115ea1..6c58a90c54fe6 100644
+index c694e34115ea..6c58a90c54fe 100644
 --- a/drivers/interconnect/eswin/win2030_sideband_manager.c
 +++ b/drivers/interconnect/eswin/win2030_sideband_manager.c
 @@ -143,6 +143,7 @@ static int win2030_noc_register_sideband_mgr(struct device_node *np,

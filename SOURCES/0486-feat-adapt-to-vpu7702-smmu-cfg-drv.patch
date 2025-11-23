@@ -13,7 +13,7 @@ Signed-off-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
-index 4bdb2da8ba3fb..25c74eaa69605 100644
+index 4bdb2da8ba3f..25c74eaa6960 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 @@ -188,7 +188,7 @@ d0_ipcm:ipcm@0 {

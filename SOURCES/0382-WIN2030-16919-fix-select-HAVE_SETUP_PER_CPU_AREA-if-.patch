@@ -14,7 +14,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index d69a7dc8a0225..02d015d8850ea 100644
+index d69a7dc8a022..02d015d8850e 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -153,7 +153,7 @@ config RISCV

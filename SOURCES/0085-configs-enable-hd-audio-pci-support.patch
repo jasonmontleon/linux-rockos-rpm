@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 2b7beb5b34955..a739278985ab6 100644
+index 2b7beb5b3495..a739278985ab 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -217,6 +217,11 @@ CONFIG_BACKLIGHT_CLASS_DEVICE=y

@@ -13,7 +13,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  2 files changed, 6 insertions(+)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 8166eb144e00b..8b6396856ff89 100644
+index 8166eb144e00..8b6396856ff8 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -29,6 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -34,7 +34,7 @@ index 8166eb144e00b..8b6396856ff89 100644
  CONFIG_SCHED_STACK_END_CHECK=y
  CONFIG_DEBUG_VM=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 4fcedf262fd25..9e9ddbbf21aa1 100644
+index 4fcedf262fd2..9e9ddbbf21aa 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -30,6 +30,7 @@ CONFIG_BLK_DEV_INITRD=y

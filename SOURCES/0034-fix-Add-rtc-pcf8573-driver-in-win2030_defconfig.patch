@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 8d5ad3f193064..7311283d7c6d9 100644
+index 8d5ad3f19306..7311283d7c6d 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -247,6 +247,7 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y

@@ -12,7 +12,7 @@ Changelogs:
  2 files changed, 44 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 93e0e29bf2c7e..7a3702e88b195 100644
+index 93e0e29bf2c7..7a3702e88b19 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -770,7 +770,28 @@ &d0_i2c7 {
@@ -46,7 +46,7 @@ index 93e0e29bf2c7e..7a3702e88b195 100644
  
  &d0_i2c9 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 64a47c750f0de..5e18922ba44a6 100644
+index 64a47c750f0d..5e18922ba44a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -727,7 +727,28 @@ &d0_i2c7 {

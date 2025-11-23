@@ -16,7 +16,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  3 files changed, 82 insertions(+), 24 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 2e72cf2fd61c2..03f878795dbca 100644
+index 2e72cf2fd61c..03f878795dbc 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1600,6 +1600,7 @@ timer0: timer@0x51840000 {
@@ -52,7 +52,7 @@ index 2e72cf2fd61c2..03f878795dbca 100644
  			interrupts = <348>;
  			clock-names = "pclk","timer_aclk","timer3_clk8";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 65146bf6141a9..a15a50825f392 100644
+index 65146bf6141a..a15a50825f39 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1100,6 +1100,8 @@ d1_timer0: timer@0x71840000 {
@@ -89,7 +89,7 @@ index 65146bf6141a9..a15a50825f392 100644
  			interrupts = <348>;
  			clock-names = "pclk","timer_aclk","timer3_clk8";
 diff --git a/drivers/clocksource/timer-eswin.c b/drivers/clocksource/timer-eswin.c
-index a00a686bc0ec9..f7003459da049 100644
+index a00a686bc0ec..f7003459da04 100644
 --- a/drivers/clocksource/timer-eswin.c
 +++ b/drivers/clocksource/timer-eswin.c
 @@ -1,8 +1,22 @@

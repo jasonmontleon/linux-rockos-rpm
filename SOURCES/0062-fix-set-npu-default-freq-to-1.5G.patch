@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 19 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index e84f3650ae371..4e9027dd5db97 100644
+index e84f3650ae37..4e9027dd5db9 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -683,7 +683,7 @@ static int llc_rst_init(struct platform_device *pdev)

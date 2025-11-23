@@ -13,7 +13,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  2 files changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_drv.c b/drivers/gpu/drm/eswin/es_drv.c
-index 936198b1c3513..2596e8e492a3f 100644
+index 936198b1c351..2596e8e492a3 100644
 --- a/drivers/gpu/drm/eswin/es_drv.c
 +++ b/drivers/gpu/drm/eswin/es_drv.c
 @@ -22,6 +22,7 @@
@@ -34,7 +34,7 @@ index 936198b1c3513..2596e8e492a3f 100644
  
  err_helper:
 diff --git a/drivers/gpu/drm/eswin/es_gem.c b/drivers/gpu/drm/eswin/es_gem.c
-index 4898c86d5d875..5406448ee2fbb 100644
+index 4898c86d5d87..5406448ee2fb 100644
 --- a/drivers/gpu/drm/eswin/es_gem.c
 +++ b/drivers/gpu/drm/eswin/es_gem.c
 @@ -103,7 +103,7 @@ static int es_gem_alloc_buf(struct es_gem_object *es_obj)

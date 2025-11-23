@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 17 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 6af7ca38d0c99..9e2a3c4483ce5 100644
+index 6af7ca38d0c9..9e2a3c4483ce 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -32,9 +32,10 @@ CONFIG_PERF_EVENTS=y

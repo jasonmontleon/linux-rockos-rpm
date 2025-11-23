@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 23 insertions(+), 85 deletions(-)
 
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 24b0859ea482e..55e69e613a25a 100644
+index 24b0859ea482..55e69e613a25 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -45,20 +45,7 @@ enum {

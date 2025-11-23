@@ -14,7 +14,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 5 insertions(+)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 77f225e11a2d8..26aedb86a7c90 100644
+index 77f225e11a2d..26aedb86a7c9 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -700,6 +700,10 @@ static const struct snd_soc_dapm_route es8328_dapm_routes[] = {

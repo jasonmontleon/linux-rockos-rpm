@@ -16,7 +16,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi b/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi
 new file mode 100644
-index 0000000000000..0ee4c1ab5eb30
+index 000000000000..0ee4c1ab5eb3
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi
 @@ -0,0 +1,512 @@
@@ -533,7 +533,7 @@ index 0000000000000..0ee4c1ab5eb30
 +smmu_cfg_510: smmu_cfg510@510 {};
 +smmu_cfg_511: smmu_cfg511@511 {};
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
-index 9622681917891..0b21ee68c4526 100644
+index 962268191789..0b21ee68c452 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -198,11 +198,7 @@ dev_smmu_cfg: smmu_cfg@0 {
@@ -550,7 +550,7 @@ index 9622681917891..0b21ee68c4526 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 93f413bacac18..8f19ec7f1925a 100644
+index 93f413bacac1..8f19ec7f1925 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -197,11 +197,8 @@ dev_smmu_cfg: smmu_cfg@0 {

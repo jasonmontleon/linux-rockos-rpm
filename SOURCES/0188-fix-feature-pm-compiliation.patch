@@ -14,7 +14,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantrodec.h b/drivers/staging/media/eswin/vdec/hantrodec.h
-index da90216883cc7..c6482db4992ea 100644
+index da90216883cc..c6482db4992e 100644
 --- a/drivers/staging/media/eswin/vdec/hantrodec.h
 +++ b/drivers/staging/media/eswin/vdec/hantrodec.h
 @@ -170,6 +170,7 @@ struct filp_priv {

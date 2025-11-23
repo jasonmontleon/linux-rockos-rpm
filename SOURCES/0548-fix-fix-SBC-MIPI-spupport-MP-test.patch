@@ -20,7 +20,7 @@ Signed-off-by: fanxiaping <fanxiaping@eswincomputing.com>
  create mode 100755 arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index e2f266a1cba60..4eca5f1130a68 100644
+index e2f266a1cba6..4eca5f1130a6 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -15,6 +15,7 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -33,7 +33,7 @@ index e2f266a1cba60..4eca5f1130a68 100644
  							eic7702-d560-interleave.dtb \
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
 new file mode 100755
-index 0000000000000..d04f39408a679
+index 000000000000..d04f39408a67
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-mipi.dts
 @@ -0,0 +1,135 @@
@@ -173,7 +173,7 @@ index 0000000000000..d04f39408a679
 +};
 +
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 8dfe46c4b3dc9..36366cc3642eb 100644
+index 8dfe46c4b3dc..36366cc3642e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -18,811 +18,4 @@
@@ -991,7 +991,7 @@ index 8dfe46c4b3dc9..36366cc3642eb 100644
 +#include "eic7700-sbc-a1.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
 new file mode 100755
-index 0000000000000..153998c57c1a2
+index 000000000000..153998c57c1a
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
 @@ -0,0 +1,798 @@
@@ -1794,7 +1794,7 @@ index 0000000000000..153998c57c1a2
 +};
 +
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 0dfd89d5a2f72..75f59b5ee2b14 100644
+index 0dfd89d5a2f7..75f59b5ee2b1 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -488,6 +488,7 @@ CONFIG_REGULATOR_MPQ8785=y
@@ -1818,7 +1818,7 @@ index 0dfd89d5a2f72..75f59b5ee2b14 100644
  CONFIG_ESWIN_DW_HDMI=y
  CONFIG_DW_HDMI_I2S_AUDIO=y
 diff --git a/drivers/gpu/drm/eswin/es_mipi_dsi.c b/drivers/gpu/drm/eswin/es_mipi_dsi.c
-index 0707ad4155c6e..cf3b74eb04796 100644
+index 0707ad4155c6..cf3b74eb0479 100644
 --- a/drivers/gpu/drm/eswin/es_mipi_dsi.c
 +++ b/drivers/gpu/drm/eswin/es_mipi_dsi.c
 @@ -30,6 +30,7 @@

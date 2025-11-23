@@ -13,7 +13,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  2 files changed, 26 insertions(+), 9 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index d085ab77b4cae..ec38ce8bf5d84 100644
+index d085ab77b4ca..ec38ce8bf5d8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -709,7 +709,7 @@ d1_pvt1: pvt@0x72360000 {
@@ -26,7 +26,7 @@ index d085ab77b4cae..ec38ce8bf5d84 100644
  			clock-names = "pclk";
  			resets = <&d1_reset FAN_RST_CTRL SW_FAN_RST_N>;
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 207a50c2ff023..3db082bdd542c 100644
+index 207a50c2ff02..3db082bdd542 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -39,6 +39,7 @@

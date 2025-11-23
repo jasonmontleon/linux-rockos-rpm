@@ -15,7 +15,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  3 files changed, 144 insertions(+), 60 deletions(-)
 
 diff --git a/drivers/mmc/host/sdhci-eswin.c b/drivers/mmc/host/sdhci-eswin.c
-index c823d034ce6b8..e75d8b77acdb1 100644
+index c823d034ce6b..e75d8b77acdb 100644
 --- a/drivers/mmc/host/sdhci-eswin.c
 +++ b/drivers/mmc/host/sdhci-eswin.c
 @@ -112,6 +112,8 @@ void eswin_sdhci_set_core_clock(struct sdhci_host *host,
@@ -28,7 +28,7 @@ index c823d034ce6b8..e75d8b77acdb1 100644
  		eswin_mshc_coreclk_disable(host);
  		return;
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index d5ae6a5694f67..f9090ece0f65e 100644
+index d5ae6a5694f6..f9090ece0f65 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -64,16 +64,15 @@ static void eswin_sdhci_sdio_set_clock(struct sdhci_host *host,
@@ -192,7 +192,7 @@ index d5ae6a5694f67..f9090ece0f65e 100644
  	.probe = eswin_sdhci_sdio_probe,
  	.remove = eswin_sdhci_sdio_remove,
 diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
-index a0347ac5c7390..3e2912aca4763 100644
+index a0347ac5c739..3e2912aca476 100644
 --- a/drivers/mmc/host/sdhci-of-eswin.c
 +++ b/drivers/mmc/host/sdhci-of-eswin.c
 @@ -74,7 +74,6 @@ static void eswin_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)

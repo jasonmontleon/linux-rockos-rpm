@@ -10,7 +10,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+), 27 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 690f4f2f6f402..8dfe46c4b3dc9 100644
+index 690f4f2f6f40..8dfe46c4b3dc 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -473,33 +473,7 @@ &sdio0 {

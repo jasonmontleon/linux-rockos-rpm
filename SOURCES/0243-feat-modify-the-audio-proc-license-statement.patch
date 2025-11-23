@@ -13,7 +13,7 @@ Signed-off-by: yangqiang <yangqiang1@eswincomputing.com>
  2 files changed, 28 insertions(+), 18 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index 83c3bbb26c73e..17b7c21f7b69a 100644
+index 83c3bbb26c73..17b7c21f7b69 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -1,17 +1,22 @@
@@ -48,7 +48,7 @@ index 83c3bbb26c73e..17b7c21f7b69a 100644
  
  #include <linux/module.h>
 diff --git a/sound/soc/eswin/esw-audio-proc.h b/sound/soc/eswin/esw-audio-proc.h
-index 1fd3f377671d9..c08c377493ba7 100644
+index 1fd3f377671d..c08c377493ba 100644
 --- a/sound/soc/eswin/esw-audio-proc.h
 +++ b/sound/soc/eswin/esw-audio-proc.h
 @@ -1,21 +1,26 @@

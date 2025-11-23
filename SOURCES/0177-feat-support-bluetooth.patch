@@ -13,7 +13,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  2 files changed, 11 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 4de22fc5228ac..020bae903781e 100644
+index 4de22fc5228a..020bae903781 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -286,12 +286,17 @@ CONFIG_NET_CLS_CGROUP=m
@@ -59,7 +59,7 @@ index 4de22fc5228ac..020bae903781e 100644
  CONFIG_CRC_ITU_T=y
  CONFIG_CRC7=y
 diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index 57b27f9ea1f03..a88488dc29ee0 100644
+index 57b27f9ea1f0..a88488dc29ee 100644
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
 @@ -769,6 +769,7 @@ static const struct dev_pm_ops dw8250_pm_ops = {

@@ -11,7 +11,7 @@ Changelogs:
  1 file changed, 48 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/hwmon/pac193x.c b/drivers/hwmon/pac193x.c
-index ebad3bde611e1..ae2735139729c 100644
+index ebad3bde611e..ae2735139729 100644
 --- a/drivers/hwmon/pac193x.c
 +++ b/drivers/hwmon/pac193x.c
 @@ -252,11 +252,11 @@ static ssize_t pac193x_refresh_store(struct device *dev,

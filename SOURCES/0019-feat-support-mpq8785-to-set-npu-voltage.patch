@@ -15,7 +15,7 @@ Changelogs:
  create mode 100644 drivers/regulator/mpq8785.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 00154660ab7c4..cddfc166e851a 100644
+index 00154660ab7c..cddfc166e851 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -724,18 +724,19 @@ d0_codec1_endpoint: endpoint {
@@ -45,7 +45,7 @@ index 00154660ab7c4..cddfc166e851a 100644
  			};
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 7a9883a89dc36..34bc531d58f9b 100644
+index 7a9883a89dc3..34bc531d58f9 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -760,13 +760,16 @@ &d0_aon_i2c1 {
@@ -70,7 +70,7 @@ index 7a9883a89dc36..34bc531d58f9b 100644
  			};
  		};
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 5d25e67b935d1..7f8075d825bca 100644
+index 5d25e67b935d..7f8075d825bc 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -150,6 +150,7 @@ CONFIG_SENSORS_INA2XX=y
@@ -82,7 +82,7 @@ index 5d25e67b935d1..7f8075d825bca 100644
  CONFIG_MEDIA_SUPPORT=y
  CONFIG_V4L_PLATFORM_DRIVERS=y
 diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 965d4f0c18a6c..512ca2e53f1bc 100644
+index 965d4f0c18a6..512ca2e53f1b 100644
 --- a/drivers/regulator/Kconfig
 +++ b/drivers/regulator/Kconfig
 @@ -795,6 +795,12 @@ config REGULATOR_MPQ7920
@@ -99,7 +99,7 @@ index 965d4f0c18a6c..512ca2e53f1bc 100644
  	tristate "MediaTek MT6311 PMIC"
  	depends on I2C
 diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index 23074714a81a3..a0b29a60d7f8d 100644
+index 23074714a81a..a0b29a60d7f8 100644
 --- a/drivers/regulator/Makefile
 +++ b/drivers/regulator/Makefile
 @@ -195,5 +195,5 @@ obj-$(CONFIG_REGULATOR_WM831X) += wm831x-ldo.o
@@ -111,7 +111,7 @@ index 23074714a81a3..a0b29a60d7f8d 100644
  ccflags-$(CONFIG_REGULATOR_DEBUG) += -DDEBUG
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
 new file mode 100644
-index 0000000000000..60c48ae47d313
+index 000000000000..60c48ae47d31
 --- /dev/null
 +++ b/drivers/regulator/mpq8785.c
 @@ -0,0 +1,1217 @@

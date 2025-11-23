@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 60ae1c7268e6f..2b7beb5b34955 100644
+index 60ae1c7268e6..2b7beb5b3495 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -33,6 +33,8 @@ CONFIG_CPU_FREQ_GOV_ONDEMAND=y

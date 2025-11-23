@@ -12,7 +12,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index a5455fcffd013..d045a32b5b59c 100644
+index a5455fcffd01..d045a32b5b59 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -247,6 +247,7 @@ static const struct of_device_id edla_of_match[] = {

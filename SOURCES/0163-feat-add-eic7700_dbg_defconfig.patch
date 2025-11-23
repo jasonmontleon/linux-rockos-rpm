@@ -16,7 +16,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
 new file mode 100644
-index 0000000000000..16397c4ba2f4f
+index 000000000000..16397c4ba2f4
 --- /dev/null
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -0,0 +1,835 @@

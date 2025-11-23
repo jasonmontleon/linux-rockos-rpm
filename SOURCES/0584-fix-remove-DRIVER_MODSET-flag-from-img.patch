@@ -15,7 +15,7 @@ Signed-off-by: zhangyizhong <zhangyizhong@eswincomputing.com>
  1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index 6dd85240ea67c..2f250b946a7ad 100644
+index 6dd85240ea67..2f250b946a7a 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -262,7 +262,6 @@ void SysDevDeInit(PVRSRV_DEVICE_CONFIG *psDevConfig)

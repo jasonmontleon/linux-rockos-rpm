@@ -12,7 +12,7 @@ Signed-off-by: shenzhenya <shenzhenya@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index 466fc878547d3..5f83942fd3030 100644
+index 466fc878547d..5f83942fd303 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -825,17 +825,17 @@ &d1_graphcard2 {

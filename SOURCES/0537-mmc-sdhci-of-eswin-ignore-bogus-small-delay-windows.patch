@@ -9,7 +9,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 8 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
-index b9881798fc4e8..94ab3392cffe3 100644
+index b9881798fc4e..94ab3392cffe 100644
 --- a/drivers/mmc/host/sdhci-of-eswin.c
 +++ b/drivers/mmc/host/sdhci-of-eswin.c
 @@ -243,8 +243,14 @@ static int eswin_sdhci_delay_tuning(struct sdhci_host *host, u32 opcode)

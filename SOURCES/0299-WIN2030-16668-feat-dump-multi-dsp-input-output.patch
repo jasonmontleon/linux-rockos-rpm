@@ -13,7 +13,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 234 insertions(+), 228 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/debug.c b/drivers/soc/eswin/ai_driver/npu/debug.c
-index 489bbbdec743c..c55a8188843b9 100644
+index 489bbbdec743..c55a8188843b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/debug.c
 +++ b/drivers/soc/eswin/ai_driver/npu/debug.c
 @@ -440,10 +440,11 @@ void dla_dump_src_data(struct win_executor *executor, struct host_frame_desc *f,

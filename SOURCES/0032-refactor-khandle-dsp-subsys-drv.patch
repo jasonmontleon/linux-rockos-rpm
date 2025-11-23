@@ -25,7 +25,7 @@ Changelogs:
  create mode 100644 drivers/soc/eswin/eswin_timer.h
 
 diff --git a/drivers/soc/Kconfig b/drivers/soc/Kconfig
-index d21e75d692943..bc857765a996e 100644
+index d21e75d69294..bc857765a996 100644
 --- a/drivers/soc/Kconfig
 +++ b/drivers/soc/Kconfig
 @@ -24,6 +24,7 @@ source "drivers/soc/renesas/Kconfig"
@@ -37,7 +37,7 @@ index d21e75d692943..bc857765a996e 100644
  source "drivers/soc/sunxi/Kconfig"
  source "drivers/soc/tegra/Kconfig"
 diff --git a/drivers/soc/Makefile b/drivers/soc/Makefile
-index 0706a27d13bef..5dbaca5b7bac2 100644
+index 0706a27d13be..5dbaca5b7bac 100644
 --- a/drivers/soc/Makefile
 +++ b/drivers/soc/Makefile
 @@ -29,6 +29,7 @@ obj-y				+= renesas/
@@ -50,7 +50,7 @@ index 0706a27d13bef..5dbaca5b7bac2 100644
  obj-y				+= ti/
 diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
 new file mode 100644
-index 0000000000000..54179b920cc81
+index 000000000000..54179b920cc8
 --- /dev/null
 +++ b/drivers/soc/eswin/Kconfig
 @@ -0,0 +1,20 @@
@@ -76,7 +76,7 @@ index 0000000000000..54179b920cc81
 +endif
 diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
 new file mode 100644
-index 0000000000000..290bd185817ff
+index 000000000000..290bd185817f
 --- /dev/null
 +++ b/drivers/soc/eswin/Makefile
 @@ -0,0 +1,4 @@
@@ -86,7 +86,7 @@ index 0000000000000..290bd185817ff
 +
 diff --git a/drivers/soc/eswin/dsp_subsys.c b/drivers/soc/eswin/dsp_subsys.c
 new file mode 100644
-index 0000000000000..acf33631926aa
+index 000000000000..acf33631926a
 --- /dev/null
 +++ b/drivers/soc/eswin/dsp_subsys.c
 @@ -0,0 +1,348 @@
@@ -440,7 +440,7 @@ index 0000000000000..acf33631926aa
 +MODULE_LICENSE("Dual MIT/GPL");
 diff --git a/drivers/soc/eswin/eswin-dsp-subsys.h b/drivers/soc/eswin/eswin-dsp-subsys.h
 new file mode 100644
-index 0000000000000..4933411fde94e
+index 000000000000..4933411fde94
 --- /dev/null
 +++ b/drivers/soc/eswin/eswin-dsp-subsys.h
 @@ -0,0 +1,44 @@
@@ -491,7 +491,7 @@ index 0000000000000..4933411fde94e
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/eswin-khandle.c b/drivers/soc/eswin/eswin-khandle.c
 new file mode 100644
-index 0000000000000..055615a17b7ae
+index 000000000000..055615a17b7a
 --- /dev/null
 +++ b/drivers/soc/eswin/eswin-khandle.c
 @@ -0,0 +1,242 @@
@@ -739,7 +739,7 @@ index 0000000000000..055615a17b7ae
 +EXPORT_SYMBOL(find_kernel_handle);
 diff --git a/drivers/soc/eswin/eswin-khandle.h b/drivers/soc/eswin/eswin-khandle.h
 new file mode 100644
-index 0000000000000..7e086388890a2
+index 000000000000..7e086388890a
 --- /dev/null
 +++ b/drivers/soc/eswin/eswin-khandle.h
 @@ -0,0 +1,84 @@
@@ -829,7 +829,7 @@ index 0000000000000..7e086388890a2
 +#endif
 diff --git a/drivers/soc/eswin/eswin_timer.h b/drivers/soc/eswin/eswin_timer.h
 new file mode 100644
-index 0000000000000..a7fac84ac6139
+index 000000000000..a7fac84ac613
 --- /dev/null
 +++ b/drivers/soc/eswin/eswin_timer.h
 @@ -0,0 +1,6 @@

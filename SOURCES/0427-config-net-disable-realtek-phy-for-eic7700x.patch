@@ -25,7 +25,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 33c92223468ff..db1039b3d49a6 100644
+index 33c92223468f..db1039b3d49a 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -515,7 +515,6 @@ CONFIG_NETXEN_NIC=m

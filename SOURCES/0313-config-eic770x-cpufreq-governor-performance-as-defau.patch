@@ -11,7 +11,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  2 files changed, 3 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 78b45bbf24abf..10811521fe52c 100644
+index 78b45bbf24ab..10811521fe52 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -44,9 +44,8 @@ CONFIG_CMDLINE_EXTEND=y
@@ -61,7 +61,7 @@ index 78b45bbf24abf..10811521fe52c 100644
  CONFIG_SCHED_STACK_END_CHECK=y
  CONFIG_DEBUG_VM=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 4849013e0e221..f71a973a7da9e 100644
+index 4849013e0e22..f71a973a7da9 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -42,9 +42,8 @@ CONFIG_ENERGY_MODEL=y

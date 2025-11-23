@@ -11,7 +11,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index dfe1b886df52c..31bc21c2496f3 100644
+index dfe1b886df52..31bc21c2496f 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -543,6 +543,7 @@ CONFIG_NGBE=m

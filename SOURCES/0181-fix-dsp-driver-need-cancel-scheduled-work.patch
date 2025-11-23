@@ -17,7 +17,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  5 files changed, 57 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 1edac591f642f..c42c9ec251c7c 100644
+index 1edac591f642..c42c9ec251c7 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -1170,7 +1170,10 @@ static int dsp_open(struct inode *inode, struct file *flip)
@@ -33,7 +33,7 @@ index 1edac591f642f..c42c9ec251c7c 100644
  	if (ret < 0) {
  		dsp_err("%s, %d, pm get sync err, ret=%d.\n", __func__,
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 4a68e4bf3559b..130479f6d7785 100644
+index 4a68e4bf3559..130479f6d778 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -329,7 +329,6 @@ irqreturn_t dsp_irq_handler(void *msg_data, struct es_dsp *dsp)
@@ -131,7 +131,7 @@ index 4a68e4bf3559b..130479f6d7785 100644
  
  	pm_runtime_disable(dsp->dev);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index a2a360d181e90..055428dfaba15 100644
+index a2a360d181e9..055428dfaba1 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -352,6 +352,28 @@ void es_dsp_release(struct es_dsp_hw *hw)
@@ -172,7 +172,7 @@ index a2a360d181e90..055428dfaba15 100644
  
  int dsp_enable_irq(struct es_dsp *dsp)
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-index b01f21bc7055c..e0b3bf847d3fa 100644
+index b01f21bc7055..e0b3bf847d3f 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 @@ -55,5 +55,6 @@ int dsp_enable_irq(struct es_dsp *dsp);
@@ -183,7 +183,7 @@ index b01f21bc7055c..e0b3bf847d3fa 100644
  
  #endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
-index fd2edd5fa9265..8c36e90e20f6b 100644
+index fd2edd5fa926..8c36e90e20f6 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 @@ -498,6 +498,11 @@ int dsp_alloc_hw(struct platform_device *pdev, struct es_dsp *dsp)

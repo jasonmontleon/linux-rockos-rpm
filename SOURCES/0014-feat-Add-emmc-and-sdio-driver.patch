@@ -23,7 +23,7 @@ Changelogs:
  create mode 100644 drivers/mmc/host/sdhci-of-eswin.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 300eed57dca64..00154660ab7c4 100644
+index 300eed57dca6..00154660ab7c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -491,17 +491,20 @@ &sdhci_emmc {
@@ -50,7 +50,7 @@ index 300eed57dca64..00154660ab7c4 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index ba2b6a3ea3b5d..7a9883a89dc36 100644
+index ba2b6a3ea3b5..7a9883a89dc3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -466,6 +466,7 @@ &sdio0 {
@@ -62,7 +62,7 @@ index ba2b6a3ea3b5d..7a9883a89dc36 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index d3baea5433718..550a8cc2fbaf2 100644
+index d3baea543371..550a8cc2fbaf 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -400,6 +400,7 @@ &sdio0 {
@@ -74,7 +74,7 @@ index d3baea5433718..550a8cc2fbaf2 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index bc7e2ad370021..2fb029a80648f 100644
+index bc7e2ad37002..2fb029a80648 100644
 --- a/drivers/mmc/host/Kconfig
 +++ b/drivers/mmc/host/Kconfig
 @@ -150,6 +150,34 @@ config MMC_SDHCI_PLTFM
@@ -113,7 +113,7 @@ index bc7e2ad370021..2fb029a80648f 100644
  	tristate "SDHCI OF support for the Arasan SDHCI controllers"
  	depends on MMC_SDHCI_PLTFM
 diff --git a/drivers/mmc/host/Makefile b/drivers/mmc/host/Makefile
-index a693fa3d3f1cc..bcab602d3ea57 100644
+index a693fa3d3f1c..bcab602d3ea5 100644
 --- a/drivers/mmc/host/Makefile
 +++ b/drivers/mmc/host/Makefile
 @@ -81,6 +81,10 @@ obj-$(CONFIG_MMC_SDHCI_ESDHC_IMX)	+= sdhci-esdhc-imx.o
@@ -129,7 +129,7 @@ index a693fa3d3f1cc..bcab602d3ea57 100644
  obj-$(CONFIG_MMC_SDHCI_OF_ESDHC)	+= sdhci-of-esdhc.o
 diff --git a/drivers/mmc/host/sdhci-eswin.c b/drivers/mmc/host/sdhci-eswin.c
 new file mode 100644
-index 0000000000000..c823d034ce6b8
+index 000000000000..c823d034ce6b
 --- /dev/null
 +++ b/drivers/mmc/host/sdhci-eswin.c
 @@ -0,0 +1,301 @@
@@ -436,7 +436,7 @@ index 0000000000000..c823d034ce6b8
 +}
 diff --git a/drivers/mmc/host/sdhci-eswin.h b/drivers/mmc/host/sdhci-eswin.h
 new file mode 100644
-index 0000000000000..08ddfdf8932ee
+index 000000000000..08ddfdf8932e
 --- /dev/null
 +++ b/drivers/mmc/host/sdhci-eswin.h
 @@ -0,0 +1,237 @@
@@ -679,7 +679,7 @@ index 0000000000000..08ddfdf8932ee
 +#endif /* _DRIVERS_MMC_SDHCI_ESWIN_H */
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 new file mode 100644
-index 0000000000000..fa23d1ded51c8
+index 000000000000..fa23d1ded51c
 --- /dev/null
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -0,0 +1,1095 @@
@@ -1780,7 +1780,7 @@ index 0000000000000..fa23d1ded51c8
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
 new file mode 100644
-index 0000000000000..591315f48cbca
+index 000000000000..591315f48cbc
 --- /dev/null
 +++ b/drivers/mmc/host/sdhci-of-eswin.c
 @@ -0,0 +1,1109 @@

@@ -40,7 +40,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
-index f8bfb293fcfa5..3c2da482d2fed 100644
+index f8bfb293fcfa..3c2da482d2fe 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -43,6 +43,7 @@ usb-hub {
@@ -61,7 +61,7 @@ index f8bfb293fcfa5..3c2da482d2fed 100644
  	status = "okay";
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
 new file mode 100644
-index 0000000000000..4b5eb4c16220b
+index 000000000000..4b5eb4c16220
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
 @@ -0,0 +1,130 @@
@@ -196,7 +196,7 @@ index 0000000000000..4b5eb4c16220b
 +	};
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 38e593b4c97c0..e27a53bb27173 100644
+index 38e593b4c97c..e27a53bb2717 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -330,22 +330,75 @@ &video_output {
@@ -295,7 +295,7 @@ index 38e593b4c97c0..e27a53bb27173 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 7842d5136303f..31d9befdd3f0d 100644
+index 7842d5136303..31d9befdd3f0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -291,6 +291,22 @@ &video_output {
@@ -388,7 +388,7 @@ index 7842d5136303f..31d9befdd3f0d 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 94ea752f5e055..badde2fa404cb 100644
+index 94ea752f5e05..badde2fa404c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -29,6 +29,7 @@
@@ -473,7 +473,7 @@ index 94ea752f5e055..badde2fa404cb 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 1809b384d0be8..3a016445160af 100644
+index 1809b384d0be..3a016445160a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -319,22 +319,74 @@ &video_output {
@@ -571,7 +571,7 @@ index 1809b384d0be8..3a016445160af 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 0d2d03ac73aaf..1b7d32898c4c0 100644
+index 0d2d03ac73aa..1b7d32898c4c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -286,14 +286,35 @@ &video_output {
@@ -668,7 +668,7 @@ index 0d2d03ac73aaf..1b7d32898c4c0 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index ee83ad1ee1286..bf6d610b3cf04 100644
+index ee83ad1ee128..bf6d610b3cf0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -29,6 +29,7 @@
@@ -739,7 +739,7 @@ index ee83ad1ee1286..bf6d610b3cf04 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index 2b73601269211..ff10802cc2a35 100644
+index 2b7360126921..ff10802cc2a3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -283,31 +283,56 @@ &video_output {
@@ -805,7 +805,7 @@ index 2b73601269211..ff10802cc2a35 100644
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
 new file mode 100644
-index 0000000000000..2875ce48c1a88
+index 000000000000..2875ce48c1a8
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
 @@ -0,0 +1,111 @@
@@ -921,7 +921,7 @@ index 0000000000000..2875ce48c1a88
 +	};
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index d9dc8a8afd6a1..038ee48f8ddf5 100644
+index d9dc8a8afd6a..038ee48f8ddf 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -100,13 +100,6 @@ &ssi1 {
@@ -939,7 +939,7 @@ index d9dc8a8afd6a1..038ee48f8ddf5 100644
  	status = "okay";
  	label = "Analog Audio-0";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 45fb6aca84c0f..77da51ea4a24c 100644
+index 45fb6aca84c0..77da51ea4a24 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -273,6 +273,22 @@ &video_output {
@@ -1032,7 +1032,7 @@ index 45fb6aca84c0f..77da51ea4a24c 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index 453dcea701557..efa27dd9eb5a8 100644
+index 453dcea70155..efa27dd9eb5a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -285,6 +285,22 @@ &video_output {
@@ -1125,7 +1125,7 @@ index 453dcea701557..efa27dd9eb5a8 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 1c0820e01cfb8..7ded7b9b4a841 100644
+index 1c0820e01cfb..7ded7b9b4a84 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -526,10 +526,42 @@ &d1_video_output {
@@ -1293,7 +1293,7 @@ index 1c0820e01cfb8..7ded7b9b4a841 100644
  			reg = <2>;
  			d1_hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 76bb244c32506..ef4dd86c24e27 100644
+index 76bb244c3250..ef4dd86c24e2 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -484,10 +484,42 @@ &d1_video_output {
@@ -1461,7 +1461,7 @@ index 76bb244c32506..ef4dd86c24e27 100644
  			reg = <2>;
  			d1_hdmi_in_i2s: endpoint@1 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index b6d4e88e747ca..2403d2c604fda 100644
+index b6d4e88e747c..2403d2c604fd 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1824,8 +1824,8 @@ d0_graphcard2: graphcard2 {
@@ -1576,7 +1576,7 @@ index b6d4e88e747ca..2403d2c604fda 100644
  
  		dw_hdmi_hdcp2: hdmi-hdcp2@50290000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index f4c173ccb4080..2eb71e5e85258 100644
+index f4c173ccb408..2eb71e5e8525 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1772,21 +1772,6 @@ d1_dc: display_control@702c0000 {
@@ -1682,7 +1682,7 @@ index f4c173ccb4080..2eb71e5e85258 100644
  
  		d1_dw_hdmi_hdcp2: hdmi-hdcp2@70290000 {
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 52c6b13f0804f..f621172704eae 100644
+index 52c6b13f0804..f621172704ea 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -851,3 +851,5 @@ CONFIG_RCU_EQS_DEBUG=y
@@ -1693,7 +1693,7 @@ index 52c6b13f0804f..f621172704eae 100644
 +CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index e2cb568415e99..7b5fa46fad2a2 100644
+index e2cb568415e9..7b5fa46fad2a 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -840,3 +840,5 @@ CONFIG_RCU_EQS_DEBUG=y
@@ -1704,7 +1704,7 @@ index e2cb568415e99..7b5fa46fad2a2 100644
 +CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
-index 7edd441f446de..9a08d81437fd3 100644
+index 7edd441f446d..9a08d81437fd 100644
 --- a/drivers/gpu/drm/eswin/Kconfig
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -74,8 +74,18 @@ config DW_HDMI_HDCP2
@@ -1729,7 +1729,7 @@ index 7edd441f446de..9a08d81437fd3 100644
 +    help
 +      Enable support for the Raspberry Pi 7-inch DSI panel
 diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
-index b96f169eedfe1..1f7a44346d8de 100644
+index b96f169eedfe..1f7a44346d8d 100644
 --- a/drivers/gpu/drm/eswin/Makefile
 +++ b/drivers/gpu/drm/eswin/Makefile
 @@ -24,4 +24,4 @@ dw_hdcp2-$(CONFIG_DW_HDMI_HDCP2) += dw_hdmi_hdcp2.o
@@ -1741,7 +1741,7 @@ index b96f169eedfe1..1f7a44346d8de 100644
 +es_drm-$(CONFIG_ESWIN_MIPI_DSI)+= es_mipi_dsi.o es_panel.o
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 0d69098eddd90..9a35ee8d58108 100644
+index 0d69098eddd9..9a35ee8d5810 100644
 --- a/drivers/gpu/drm/panel/panel-simple.c
 +++ b/drivers/gpu/drm/panel/panel-simple.c
 @@ -3377,6 +3377,31 @@ static const struct panel_desc rocktech_rk043fn48h = {

@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 585d21eb8e08d..b87608ed3c65a 100644
+index 585d21eb8e08..b87608ed3c65 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -32,12 +32,12 @@ CONFIG_PERF_EVENTS=y

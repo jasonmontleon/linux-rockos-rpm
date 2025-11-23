@@ -83,7 +83,7 @@ Changelogs:
  create mode 100644 drivers/gpu/drm/eswin/host_lib_driver_linux_if.h
 
 diff --git a/arch/riscv/boot/dts/Makefile b/arch/riscv/boot/dts/Makefile
-index f60a280abb157..5c3eda88e8aff 100644
+index f60a280abb15..5c3eda88e8af 100644
 --- a/arch/riscv/boot/dts/Makefile
 +++ b/arch/riscv/boot/dts/Makefile
 @@ -6,5 +6,6 @@ subdir-y += renesas
@@ -94,7 +94,7 @@ index f60a280abb157..5c3eda88e8aff 100644
  
  obj-$(CONFIG_BUILTIN_DTB) := $(addsuffix /, $(subdir-y))
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 6733030403b9c..dab66c9936018 100644
+index 6733030403b9..dab66c993601 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -167,6 +167,9 @@ CONFIG_DRM_NOUVEAU=y
@@ -116,7 +116,7 @@ index 6733030403b9c..dab66c9936018 100644
  CONFIG_SCHED_STACK_END_CHECK=y
  CONFIG_DEBUG_VM=y
 diff --git a/drivers/gpu/drm/Kconfig b/drivers/gpu/drm/Kconfig
-index a2b4c97bcb319..338e6e30fca16 100644
+index a2b4c97bcb31..338e6e30fca1 100644
 --- a/drivers/gpu/drm/Kconfig
 +++ b/drivers/gpu/drm/Kconfig
 @@ -388,6 +388,8 @@ source "drivers/gpu/drm/solomon/Kconfig"
@@ -129,7 +129,7 @@ index a2b4c97bcb319..338e6e30fca16 100644
  	tristate "DRM Support for Hyper-V synthetic video device"
  	depends on DRM && PCI && MMU && HYPERV
 diff --git a/drivers/gpu/drm/Makefile b/drivers/gpu/drm/Makefile
-index 215e78e791250..a2b855de24bfb 100644
+index 215e78e79125..a2b855de24bf 100644
 --- a/drivers/gpu/drm/Makefile
 +++ b/drivers/gpu/drm/Makefile
 @@ -198,3 +198,4 @@ obj-$(CONFIG_DRM_HYPERV) += hyperv/
@@ -139,7 +139,7 @@ index 215e78e791250..a2b855de24bfb 100644
 +obj-$(CONFIG_DRM_ESWIN) += eswin/
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
 new file mode 100644
-index 0000000000000..6a7771e6ac299
+index 000000000000..6a7771e6ac29
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -0,0 +1,72 @@
@@ -217,7 +217,7 @@ index 0000000000000..6a7771e6ac299
 +      Designware HDMI block.
 diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
 new file mode 100644
-index 0000000000000..e84e28f388d6e
+index 000000000000..e84e28f388d6
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/Makefile
 @@ -0,0 +1,23 @@
@@ -247,7 +247,7 @@ index 0000000000000..e84e28f388d6e
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi.c b/drivers/gpu/drm/eswin/dw_hdmi.c
 new file mode 100644
-index 0000000000000..ae13cbcb6e295
+index 000000000000..ae13cbcb6e29
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi.c
 @@ -0,0 +1,4617 @@
@@ -4870,7 +4870,7 @@ index 0000000000000..ae13cbcb6e295
 +MODULE_ALIAS("platform:dw-hdmi");
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi.h b/drivers/gpu/drm/eswin/dw_hdmi.h
 new file mode 100644
-index 0000000000000..6281fd8bfc53d
+index 000000000000..6281fd8bfc53
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi.h
 @@ -0,0 +1,1408 @@
@@ -6284,7 +6284,7 @@ index 0000000000000..6281fd8bfc53d
 +#endif /* __DW_HDMI_H__ */
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_audio.h b/drivers/gpu/drm/eswin/dw_hdmi_audio.h
 new file mode 100644
-index 0000000000000..f72d27208ebef
+index 000000000000..f72d27208ebe
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_audio.h
 @@ -0,0 +1,23 @@
@@ -6313,7 +6313,7 @@ index 0000000000000..f72d27208ebef
 +#endif
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_cec.c b/drivers/gpu/drm/eswin/dw_hdmi_cec.c
 new file mode 100644
-index 0000000000000..42c57cf1dbc0a
+index 000000000000..42c57cf1dbc0
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_cec.c
 @@ -0,0 +1,334 @@
@@ -6653,7 +6653,7 @@ index 0000000000000..42c57cf1dbc0a
 +MODULE_ALIAS(PLATFORM_MODULE_PREFIX "dw-hdmi-cec");
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_cec.h b/drivers/gpu/drm/eswin/dw_hdmi_cec.h
 new file mode 100644
-index 0000000000000..9d2547f1ea165
+index 000000000000..9d2547f1ea16
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_cec.h
 @@ -0,0 +1,18 @@
@@ -6677,7 +6677,7 @@ index 0000000000000..9d2547f1ea165
 +#endif
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 new file mode 100644
-index 0000000000000..1b4e7433b718c
+index 000000000000..1b4e7433b718
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -0,0 +1,1055 @@
@@ -7738,7 +7738,7 @@ index 0000000000000..1b4e7433b718c
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 new file mode 100644
-index 0000000000000..849de9037652c
+index 000000000000..849de9037652
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 @@ -0,0 +1,71 @@
@@ -7815,7 +7815,7 @@ index 0000000000000..849de9037652c
 +#endif
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 new file mode 100644
-index 0000000000000..dd553bd9b72ec
+index 000000000000..dd553bd9b72e
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 @@ -0,0 +1,775 @@
@@ -8596,7 +8596,7 @@ index 0000000000000..dd553bd9b72ec
 +MODULE_DESCRIPTION("Linux Host Library Driver");
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 new file mode 100644
-index 0000000000000..a2f3099b6bd28
+index 000000000000..a2f3099b6bd2
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_i2s_audio.c
 @@ -0,0 +1,237 @@
@@ -8839,7 +8839,7 @@ index 0000000000000..a2f3099b6bd28
 +MODULE_ALIAS("platform:" DRIVER_NAME);
 diff --git a/drivers/gpu/drm/eswin/es_crtc.c b/drivers/gpu/drm/eswin/es_crtc.c
 new file mode 100644
-index 0000000000000..96cbe4badf91e
+index 000000000000..96cbe4badf91
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_crtc.c
 @@ -0,0 +1,436 @@
@@ -9281,7 +9281,7 @@ index 0000000000000..96cbe4badf91e
 +}
 diff --git a/drivers/gpu/drm/eswin/es_crtc.h b/drivers/gpu/drm/eswin/es_crtc.h
 new file mode 100644
-index 0000000000000..5f7cf9009d4f3
+index 000000000000..5f7cf9009d4f
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_crtc.h
 @@ -0,0 +1,71 @@
@@ -9358,7 +9358,7 @@ index 0000000000000..5f7cf9009d4f3
 +#endif /* __ES_CRTC_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
 new file mode 100644
-index 0000000000000..9e485f7edcc42
+index 000000000000..9e485f7edcc4
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -0,0 +1,1083 @@
@@ -10447,7 +10447,7 @@ index 0000000000000..9e485f7edcc42
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/gpu/drm/eswin/es_dc.h b/drivers/gpu/drm/eswin/es_dc.h
 new file mode 100644
-index 0000000000000..3a20987aa799a
+index 000000000000..3a20987aa799
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_dc.h
 @@ -0,0 +1,48 @@
@@ -10501,7 +10501,7 @@ index 0000000000000..3a20987aa799a
 +#endif /* __ES_DC_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.c b/drivers/gpu/drm/eswin/es_dc_hw.c
 new file mode 100644
-index 0000000000000..010de5b652509
+index 000000000000..010de5b65250
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.c
 @@ -0,0 +1,1614 @@
@@ -12121,7 +12121,7 @@ index 0000000000000..010de5b652509
 +}
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.h b/drivers/gpu/drm/eswin/es_dc_hw.h
 new file mode 100644
-index 0000000000000..885d225c92032
+index 000000000000..885d225c9203
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.h
 @@ -0,0 +1,473 @@
@@ -12600,7 +12600,7 @@ index 0000000000000..885d225c92032
 +#endif /* __ES_DC_HW_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_dc_mmu.c b/drivers/gpu/drm/eswin/es_dc_mmu.c
 new file mode 100644
-index 0000000000000..80cbeb4217404
+index 000000000000..80cbeb421740
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_dc_mmu.c
 @@ -0,0 +1,778 @@
@@ -13384,7 +13384,7 @@ index 0000000000000..80cbeb4217404
 +}
 diff --git a/drivers/gpu/drm/eswin/es_dc_mmu.h b/drivers/gpu/drm/eswin/es_dc_mmu.h
 new file mode 100644
-index 0000000000000..ee049e3f40ecf
+index 000000000000..ee049e3f40ec
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_dc_mmu.h
 @@ -0,0 +1,100 @@
@@ -13490,7 +13490,7 @@ index 0000000000000..ee049e3f40ecf
 +#endif /* _ES_DC_MMU_H_ */
 diff --git a/drivers/gpu/drm/eswin/es_drm.h b/drivers/gpu/drm/eswin/es_drm.h
 new file mode 100644
-index 0000000000000..73817dcf024bc
+index 000000000000..73817dcf024b
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_drm.h
 @@ -0,0 +1,23 @@
@@ -13520,7 +13520,7 @@ index 0000000000000..73817dcf024bc
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/eswin/es_drv.c b/drivers/gpu/drm/eswin/es_drv.c
 new file mode 100644
-index 0000000000000..1d15deda7c7b0
+index 000000000000..1d15deda7c7b
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_drv.c
 @@ -0,0 +1,517 @@
@@ -14043,7 +14043,7 @@ index 0000000000000..1d15deda7c7b0
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/gpu/drm/eswin/es_drv.h b/drivers/gpu/drm/eswin/es_drv.h
 new file mode 100644
-index 0000000000000..85465f559de0f
+index 000000000000..85465f559de0
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_drv.h
 @@ -0,0 +1,71 @@
@@ -14120,7 +14120,7 @@ index 0000000000000..85465f559de0f
 +#endif /* __ES_DRV_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_fb.c b/drivers/gpu/drm/eswin/es_fb.c
 new file mode 100644
-index 0000000000000..9254b784003d2
+index 000000000000..9254b784003d
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_fb.c
 @@ -0,0 +1,141 @@
@@ -14267,7 +14267,7 @@ index 0000000000000..9254b784003d2
 +}
 diff --git a/drivers/gpu/drm/eswin/es_fb.h b/drivers/gpu/drm/eswin/es_fb.h
 new file mode 100644
-index 0000000000000..6cd8b31684aa5
+index 000000000000..6cd8b31684aa
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_fb.h
 @@ -0,0 +1,13 @@
@@ -14286,7 +14286,7 @@ index 0000000000000..6cd8b31684aa5
 +#endif /* __ES_FB_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_gem.c b/drivers/gpu/drm/eswin/es_gem.c
 new file mode 100644
-index 0000000000000..4898c86d5d875
+index 000000000000..4898c86d5d87
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_gem.c
 @@ -0,0 +1,598 @@
@@ -14890,7 +14890,7 @@ index 0000000000000..4898c86d5d875
 +}
 diff --git a/drivers/gpu/drm/eswin/es_gem.h b/drivers/gpu/drm/eswin/es_gem.h
 new file mode 100644
-index 0000000000000..b14b32ea5cb4d
+index 000000000000..b14b32ea5cb4
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_gem.h
 @@ -0,0 +1,76 @@
@@ -14972,7 +14972,7 @@ index 0000000000000..b14b32ea5cb4d
 +#endif /* __ES_GEM_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_plane.c b/drivers/gpu/drm/eswin/es_plane.c
 new file mode 100644
-index 0000000000000..68e14d921de54
+index 000000000000..68e14d921de5
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_plane.c
 @@ -0,0 +1,399 @@
@@ -15377,7 +15377,7 @@ index 0000000000000..68e14d921de54
 +}
 diff --git a/drivers/gpu/drm/eswin/es_plane.h b/drivers/gpu/drm/eswin/es_plane.h
 new file mode 100644
-index 0000000000000..cc41d0741361e
+index 000000000000..cc41d0741361
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_plane.h
 @@ -0,0 +1,87 @@
@@ -15470,7 +15470,7 @@ index 0000000000000..cc41d0741361e
 +#endif /* __ES_PLANE_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_simple_enc.c b/drivers/gpu/drm/eswin/es_simple_enc.c
 new file mode 100644
-index 0000000000000..fbc725fc64eaa
+index 000000000000..fbc725fc64ea
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_simple_enc.c
 @@ -0,0 +1,266 @@
@@ -15742,7 +15742,7 @@ index 0000000000000..fbc725fc64eaa
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/gpu/drm/eswin/es_simple_enc.h b/drivers/gpu/drm/eswin/es_simple_enc.h
 new file mode 100644
-index 0000000000000..bc461e1231e32
+index 000000000000..bc461e1231e3
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_simple_enc.h
 @@ -0,0 +1,27 @@
@@ -15775,7 +15775,7 @@ index 0000000000000..bc461e1231e32
 +#endif /* __ES_SIMPLE_ENC_H_ */
 diff --git a/drivers/gpu/drm/eswin/es_type.h b/drivers/gpu/drm/eswin/es_type.h
 new file mode 100644
-index 0000000000000..aca0a83b0017f
+index 000000000000..aca0a83b0017
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_type.h
 @@ -0,0 +1,58 @@
@@ -15839,7 +15839,7 @@ index 0000000000000..aca0a83b0017f
 +#endif /* __ES_TYPE_H__ */
 diff --git a/drivers/gpu/drm/eswin/es_virtual.c b/drivers/gpu/drm/eswin/es_virtual.c
 new file mode 100644
-index 0000000000000..1d35ada1c0c08
+index 000000000000..1d35ada1c0c0
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_virtual.c
 @@ -0,0 +1,1310 @@
@@ -17155,7 +17155,7 @@ index 0000000000000..1d35ada1c0c08
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/gpu/drm/eswin/es_virtual.h b/drivers/gpu/drm/eswin/es_virtual.h
 new file mode 100644
-index 0000000000000..16371232d605a
+index 000000000000..16371232d605
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_virtual.h
 @@ -0,0 +1,34 @@
@@ -17195,7 +17195,7 @@ index 0000000000000..16371232d605a
 +#endif /* __ES_VIRTUAL_H_ */
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 new file mode 100644
-index 0000000000000..3308370475808
+index 000000000000..330837047580
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -0,0 +1,1129 @@
@@ -18330,7 +18330,7 @@ index 0000000000000..3308370475808
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h b/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h
 new file mode 100644
-index 0000000000000..0cde344219944
+index 000000000000..0cde34421994
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/host_lib_driver_linux_if.h
 @@ -0,0 +1,146 @@

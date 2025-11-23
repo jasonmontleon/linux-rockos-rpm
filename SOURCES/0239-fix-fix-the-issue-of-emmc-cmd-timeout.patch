@@ -12,7 +12,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
-index 585d30259cdde..b9881798fc4e8 100644
+index 585d30259cdd..b9881798fc4e 100644
 --- a/drivers/mmc/host/sdhci-of-eswin.c
 +++ b/drivers/mmc/host/sdhci-of-eswin.c
 @@ -448,7 +448,8 @@ static const struct sdhci_ops eswin_sdhci_cqe_ops = {

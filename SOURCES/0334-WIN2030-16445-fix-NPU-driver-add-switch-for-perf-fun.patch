@@ -15,7 +15,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 7 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/Kconfig b/drivers/soc/eswin/ai_driver/Kconfig
-index 84a135ee3d690..713289b59ae25 100644
+index 84a135ee3d69..713289b59ae2 100644
 --- a/drivers/soc/eswin/ai_driver/Kconfig
 +++ b/drivers/soc/eswin/ai_driver/Kconfig
 @@ -9,3 +9,7 @@ config ESWIN_NPU
@@ -28,7 +28,7 @@ index 84a135ee3d690..713289b59ae25 100644
 +    depends on ESWIN_NPU
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
-index 9e85f48c355bd..630aa94bc05f3 100644
+index 9e85f48c355b..630aa94bc05f 100644
 --- a/drivers/soc/eswin/ai_driver/npu/Makefile
 +++ b/drivers/soc/eswin/ai_driver/npu/Makefile
 @@ -3,6 +3,9 @@ LOG_LEVEL ?= 0

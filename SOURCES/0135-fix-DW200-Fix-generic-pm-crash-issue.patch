@@ -14,7 +14,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 50 insertions(+), 9 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index 7ee5a88a803c7..78a843e5f85d9 100644
+index 7ee5a88a803c..78a843e5f85d 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -131,7 +131,7 @@ struct es_dw200_private {

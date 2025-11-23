@@ -13,7 +13,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index ea92a0bb9906e..24a328da5178a 100644
+index ea92a0bb9906..24a328da5178 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -139,7 +139,7 @@ static ssize_t eswin_fan_pwm_ctl_store(struct device *dev, struct device_attribu

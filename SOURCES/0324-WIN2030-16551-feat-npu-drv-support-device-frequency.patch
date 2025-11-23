@@ -19,7 +19,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  6 files changed, 249 insertions(+), 39 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index a7e0b18764fb8..49dcfe4d8eabd 100644
+index a7e0b18764fb..49dcfe4d8eab 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -462,6 +462,18 @@ noc {
@@ -62,7 +62,7 @@ index a7e0b18764fb8..49dcfe4d8eabd 100644
  			numa-node-id = <0>;
  			firmware-name = "eic7700_die0_e31_fw";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 66c2a8dddd043..c1d0a7c285741 100644
+index 66c2a8dddd04..c1d0a7c28574 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -904,6 +904,19 @@ d1_aon_i2c1: i2c@71838000 {
@@ -94,7 +94,7 @@ index 66c2a8dddd043..c1d0a7c285741 100644
  			numa-node-id = <1>;
  			firmware-name = "eic7700_die1_e31_fw";
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 7b43016883837..8ef878c0abef0 100644
+index 7b4301688383..8ef878c0abef 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -782,30 +782,13 @@ static int llc_clk_set_parent(struct platform_device *pdev)
@@ -137,7 +137,7 @@ index 7b43016883837..8ef878c0abef0 100644
  }
  static int llc_clk_set_frq(struct platform_device *pdev)
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index b098833d2e40a..bb5af332c7701 100644
+index b098833d2e40..bb5af332c770 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -67,6 +67,11 @@ struct nvdla_device {
@@ -162,7 +162,7 @@ index b098833d2e40a..bb5af332c7701 100644
  	uint16_t *pause_op_list;
  	struct regulator *npu_regulator;
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 8a42a21bd79d4..026a89f803b87 100644
+index 8a42a21bd79d..026a89f803b8 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -73,9 +73,17 @@
@@ -403,7 +403,7 @@ index 8a42a21bd79d4..026a89f803b87 100644
  
  	return ret;
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index a7d7b58cc849e..a33c8efbccebc 100644
+index a7d7b58cc849..a33c8efbcceb 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -852,7 +852,44 @@ int npu_dt_node_resources(struct nvdla_device *nvdla_dev)

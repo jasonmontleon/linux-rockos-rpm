@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  3 files changed, 13 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 385c39c4395b8..dada3492fe110 100644
+index 385c39c4395b..dada3492fe11 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -497,6 +497,7 @@ &sdio1 {
@@ -26,7 +26,7 @@ index 385c39c4395b8..dada3492fe110 100644
  	no-sd;
  	no-mmc;
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 163938a2a3932..31a1b673b89c3 100644
+index 163938a2a393..31a1b673b89c 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -431,6 +431,7 @@ &sdio1 {
@@ -38,7 +38,7 @@ index 163938a2a3932..31a1b673b89c3 100644
  	no-mmc;
  };
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index f9090ece0f65e..a828298e0e028 100644
+index f9090ece0f65..a828298e0e02 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -227,7 +227,7 @@ static int eswin_sdhci_sdio_phase_code_tuning(struct sdhci_host *host,

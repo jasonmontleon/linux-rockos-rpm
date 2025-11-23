@@ -11,7 +11,7 @@ is finished.
  1 file changed, 31 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
-index 977bc6487e991..1205ce3941ae1 100644
+index 977bc6487e99..1205ce3941ae 100644
 --- a/drivers/spi/spi-eswin-bootspi.c
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -147,6 +147,9 @@ struct es_spi_priv {

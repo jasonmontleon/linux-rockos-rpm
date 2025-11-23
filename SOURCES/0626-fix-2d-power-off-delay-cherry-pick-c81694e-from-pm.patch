@@ -20,7 +20,7 @@ Signed-off-by: lei <leizhilin@eswincomputing.com>
  4 files changed, 27 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
-index c9c0812f10612..4bf68c449b889 100644
+index c9c0812f1061..4bf68c449b88 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -5200,6 +5200,19 @@ gckHARDWARE_PowerControlClusters(gckHARDWARE Hardware,
@@ -76,7 +76,7 @@ index c9c0812f10612..4bf68c449b889 100644
          (state == gcvPOWER_IDLE || state == gcvPOWER_SUSPEND)) {
          /* Delayed power off. */
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
-index 7215038503f18..7f408288dd24a 100644
+index 7215038503f1..7f408288dd24 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/inc/gc_hal_options.h
 @@ -695,7 +695,7 @@
@@ -89,7 +89,7 @@ index 7215038503f18..7f408288dd24a 100644
  
  /*
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
-index 67e66b7734232..c6f03e6bab453 100644
+index 67e66b773423..c6f03e6bab45 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 @@ -2280,7 +2280,8 @@ isrRoutine(int irq, void *ctxt)
@@ -103,7 +103,7 @@ index 67e66b7734232..c6f03e6bab453 100644
  
      return IRQ_NONE;
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
-index b7481fdb4a01a..eae6ecbf41a00 100644
+index b7481fdb4a01..eae6ecbf41a0 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 @@ -1555,6 +1555,7 @@ static int viv_dev_suspend(struct platform_device *dev, pm_message_t state)

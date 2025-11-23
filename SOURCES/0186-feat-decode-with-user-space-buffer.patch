@@ -19,7 +19,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  create mode 100644 drivers/staging/media/eswin/vdec/vdec_allocator.h
 
 diff --git a/drivers/staging/media/eswin/vdec/Makefile b/drivers/staging/media/eswin/vdec/Makefile
-index 3983ec82f153b..0788e1021086f 100644
+index 3983ec82f153..0788e1021086 100644
 --- a/drivers/staging/media/eswin/vdec/Makefile
 +++ b/drivers/staging/media/eswin/vdec/Makefile
 @@ -8,6 +8,7 @@ es_vdec-objs := hantro_dec.o \
@@ -33,7 +33,7 @@ index 3983ec82f153b..0788e1021086f 100644
  obj-$(CONFIG_VIDEO_ESWIN_VDEC) += es_vdec.o
 \ No newline at end of file
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 88adf1bd86d60..cc4e04b3c5c33 100644
+index 88adf1bd86d6..cc4e04b3c5c3 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -104,6 +104,7 @@
@@ -141,7 +141,7 @@ index 88adf1bd86d60..cc4e04b3c5c33 100644
  	MMURelease(filp, hantrodec_data.hwregs[0][HW_MMU]);
  
 diff --git a/drivers/staging/media/eswin/vdec/hantrodec.h b/drivers/staging/media/eswin/vdec/hantrodec.h
-index 4f597b740eb2e..da90216883cc7 100644
+index 4f597b740eb2..da90216883cc 100644
 --- a/drivers/staging/media/eswin/vdec/hantrodec.h
 +++ b/drivers/staging/media/eswin/vdec/hantrodec.h
 @@ -74,6 +74,7 @@
@@ -188,7 +188,7 @@ index 4f597b740eb2e..da90216883cc7 100644
  #endif /* !_HANTRODEC_H_ */
 diff --git a/drivers/staging/media/eswin/vdec/vdec_allocator.c b/drivers/staging/media/eswin/vdec/vdec_allocator.c
 new file mode 100644
-index 0000000000000..f4a27d2e3894d
+index 000000000000..f4a27d2e3894
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vdec_allocator.c
 @@ -0,0 +1,887 @@
@@ -1081,7 +1081,7 @@ index 0000000000000..f4a27d2e3894d
 +}
 diff --git a/drivers/staging/media/eswin/vdec/vdec_allocator.h b/drivers/staging/media/eswin/vdec/vdec_allocator.h
 new file mode 100644
-index 0000000000000..a41252b2f6327
+index 000000000000..a41252b2f632
 --- /dev/null
 +++ b/drivers/staging/media/eswin/vdec/vdec_allocator.h
 @@ -0,0 +1,20 @@

@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 32 insertions(+), 364 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
-index b69b1be14e0dc..a6bb3a8b939da 100644
+index b69b1be14e0d..a6bb3a8b939d 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -22,7 +22,6 @@

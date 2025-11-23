@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  1 file changed, 12 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 8e0d8e10a6648..1470d3990cd5b 100644
+index 8e0d8e10a664..1470d3990cd5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -797,7 +797,9 @@ &d0_gmac0 {

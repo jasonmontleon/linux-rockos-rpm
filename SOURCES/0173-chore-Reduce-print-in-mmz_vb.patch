@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index 2c2f829817adf..8fad791695d7c 100644
+index 2c2f829817ad..8fad791695d7 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -1147,7 +1147,7 @@ static int mmz_vb_do_destory_pool(struct esVB_K_POOL_INFO_S *pool, bool is_lock,

@@ -27,7 +27,7 @@ Signed-off-by: lei zhilin <leizhilin@eswincomputing.com>
  3 files changed, 27 insertions(+), 13 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
-index fb921fbd970e6..c5b7110e346de 100644
+index fb921fbd970e..c5b7110e346d 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/gc_hal_kernel.c
 @@ -3957,12 +3957,6 @@ gckKERNEL_AttachProcessEx(gckKERNEL Kernel, gctBOOL Attach, gctUINT32 PID)
@@ -44,7 +44,7 @@ index fb921fbd970e6..c5b7110e346de 100644
                  if (Kernel->processPageTable) {
                      status = gckEVENT_Submit(Kernel->eventObj, &eventAttr);
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
-index b31682bb944ee..9699a7b40d148 100644
+index b31682bb944e..9699a7b40d14 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_device.c
 @@ -2267,14 +2267,8 @@ isrRoutine(int irq, void *ctxt)
@@ -64,7 +64,7 @@ index b31682bb944ee..9699a7b40d148 100644
  
      return IRQ_NONE;
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
-index 68bcf61c95f01..e661e24e2fb53 100644
+index 68bcf61c95f0..e661e24e2fb5 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_os.c
 @@ -1,3 +1,26 @@

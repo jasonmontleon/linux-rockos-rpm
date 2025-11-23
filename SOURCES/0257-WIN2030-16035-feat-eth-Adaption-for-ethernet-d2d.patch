@@ -15,7 +15,7 @@ Signed-off-by: fanglifei <fanglifei@eswincomputing.com>
  2 files changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index ae2633ca6832a..fde17194951ad 100644
+index ae2633ca6832..fde17194951a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1507,7 +1507,7 @@ d1_gmac0: ethernet@70400000 {
@@ -37,7 +37,7 @@ index ae2633ca6832a..fde17194951ad 100644
  			dma-noncoherent;
  			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x1034 0x200 0x208>;
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
-index 66e0cc12ce44b..e3b6c28394b6f 100644
+index 66e0cc12ce44..e3b6c28394b6 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -205,7 +205,7 @@ static void dwc_qos_fix_speed(void *priv, unsigned int speed, unsigned int mode)

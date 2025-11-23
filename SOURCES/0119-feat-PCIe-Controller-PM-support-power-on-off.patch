@@ -12,7 +12,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 498a26304aead..e8d60d183d2b9 100644
+index 498a26304aea..e8d60d183d2b 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -409,14 +409,15 @@ static const struct of_device_id eswin_pcie_of_match[] = {

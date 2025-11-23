@@ -13,7 +13,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 16 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index b1b48b5ec94be..5e39c7b49eb52 100644
+index b1b48b5ec94b..5e39c7b49eb5 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -3,7 +3,6 @@

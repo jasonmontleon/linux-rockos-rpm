@@ -15,7 +15,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index bde120c77fe16..70b720d094c39 100644
+index bde120c77fe1..70b720d094c3 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -823,3 +823,7 @@ gpio111 : gphy1 resern(O), active low

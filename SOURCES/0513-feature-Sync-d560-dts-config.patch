@@ -13,7 +13,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  2 files changed, 21 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
-index 4a1a51635a983..f60641e6664c6 100644
+index 4a1a51635a98..f60641e6664c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560-interleave.dts
 @@ -39,6 +39,12 @@ gpio-111 {
@@ -51,7 +51,7 @@ index 4a1a51635a983..f60641e6664c6 100644
  
  &d0_usbdrd3_1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
-index 41ea1b44401b2..7e65b902c7793 100644
+index 41ea1b44401b..7e65b902c779 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 @@ -959,8 +959,8 @@ &d0_gmac0 {

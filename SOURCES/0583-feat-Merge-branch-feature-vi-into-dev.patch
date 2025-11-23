@@ -30,7 +30,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
-index cd2e87461fb75..a2ecef0ec3c8a 100644
+index cd2e87461fb7..a2ecef0ec3c8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314-camera.dtsi
 @@ -1,4 +1,8 @@
@@ -561,7 +561,7 @@ index cd2e87461fb75..a2ecef0ec3c8a 100644
 +	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
-index 94418bd3cad8d..a6bc1ae50b9ea 100644
+index 94418bd3cad8..a6bc1ae50b9e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dtsi
 @@ -122,12 +122,6 @@ mmz_nid_0_part_0 {
@@ -591,7 +591,7 @@ index 94418bd3cad8d..a6bc1ae50b9ea 100644
 +};
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
-index 1aac57abe47aa..c4dc49598f39b 100644
+index 1aac57abe47a..c4dc49598f39 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
 @@ -1,8 +1,11 @@
@@ -1003,7 +1003,7 @@ index 1aac57abe47aa..c4dc49598f39b 100644
 +
 +
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
-index 876f3652b8b38..a2ecef0ec3c8a 100644
+index 876f3652b8b3..a2ecef0ec3c8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
 @@ -1,10 +1,14 @@
@@ -1541,7 +1541,7 @@ index 876f3652b8b38..a2ecef0ec3c8a 100644
 +	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index ae401ec96dddf..3b273020075a5 100644
+index ae401ec96ddd..3b273020075a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -33,6 +33,7 @@
@@ -1584,7 +1584,7 @@ index ae401ec96dddf..3b273020075a5 100644
 -
 -#include "eic7700-hifive-premier-p550-camera.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
-index ce42246ba09fc..0580f139021ab 100644
+index ce42246ba09f..0580f139021a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
 @@ -1,161 +1,143 @@
@@ -2075,7 +2075,7 @@ index ce42246ba09fc..0580f139021ab 100644
 \ No newline at end of file
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
-index f75d8d78518ce..095958061da5f 100644
+index f75d8d78518c..095958061da5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1-camera.dtsi
 @@ -2,7 +2,7 @@ &vi_subsys {
@@ -2264,7 +2264,7 @@ index f75d8d78518ce..095958061da5f 100644
  			};
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
-index 153998c57c1a2..07ac38f43b40f 100755
+index 153998c57c1a..07ac38f43b40 100755
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dtsi
 @@ -745,7 +745,8 @@ &pinctrl {
@@ -2279,7 +2279,7 @@ index 153998c57c1a2..07ac38f43b40f 100755
         SPI1 (CS0,SCLK,MOSI,MISO,D2,D3,CS1): GPIO 35,36,37,38,39,40,41
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
 new file mode 100644
-index 0000000000000..8609a01c11c1c
+index 000000000000..8609a01c11c1
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
 @@ -0,0 +1,353 @@
@@ -2638,7 +2638,7 @@ index 0000000000000..8609a01c11c1c
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
 new file mode 100644
-index 0000000000000..366d7f52b4a06
+index 000000000000..366d7f52b4a0
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
 @@ -0,0 +1,353 @@
@@ -2996,7 +2996,7 @@ index 0000000000000..366d7f52b4a06
 +	status = "disabled";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 5f27110b940b6..ccef046654337 100644
+index 5f27110b940b..ccef04665433 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2068,23 +2068,22 @@ vi_subsys: vi-subsys@51000000 {
@@ -3279,7 +3279,7 @@ index 5f27110b940b6..ccef046654337 100644
  				ipi2_vcid = <0>;/* virtual channel id */
  				ipi3_en = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 610cddc7a6d90..7113ea183e86a 100644
+index 610cddc7a6d9..7113ea183e86 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2076,9 +2076,13 @@ d1_usbdrd_dwc3_1: dwc3@70490000 {
@@ -3960,7 +3960,7 @@ index 610cddc7a6d90..7113ea183e86a 100644
  
  		d1_dc_test: dctest@702c0000 {
 diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-index a2e45b961ec76..5184683432c8b 100644
+index a2e45b961ec7..5184683432c8 100644
 --- a/drivers/media/i2c/imx219.c
 +++ b/drivers/media/i2c/imx219.c
 @@ -12,7 +12,7 @@

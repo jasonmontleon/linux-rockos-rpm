@@ -18,7 +18,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  3 files changed, 89 insertions(+), 30 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index f12568c50271f..fd95a7c1c3b5d 100644
+index f12568c50271..fd95a7c1c3b5 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -20,7 +20,7 @@ CONFIG_SOC_VIRT=y
@@ -31,7 +31,7 @@ index f12568c50271f..fd95a7c1c3b5d 100644
  CONFIG_CPU_FREQ=y
  CONFIG_CPU_FREQ_STAT=y
 diff --git a/drivers/mailbox/eswin-mailbox.c b/drivers/mailbox/eswin-mailbox.c
-index 4e9b6b2244698..6a2c40e4d45e6 100755
+index 4e9b6b224469..6a2c40e4d45e 100755
 --- a/drivers/mailbox/eswin-mailbox.c
 +++ b/drivers/mailbox/eswin-mailbox.c
 @@ -19,7 +19,6 @@
@@ -274,7 +274,7 @@ index 4e9b6b2244698..6a2c40e4d45e6 100755
  };
  
 diff --git a/drivers/pwm/pwm-dwc-eswin.c b/drivers/pwm/pwm-dwc-eswin.c
-index 62c2dfcef7191..1873b8351b0cc 100644
+index 62c2dfcef719..1873b8351b0c 100644
 --- a/drivers/pwm/pwm-dwc-eswin.c
 +++ b/drivers/pwm/pwm-dwc-eswin.c
 @@ -336,7 +336,7 @@ static struct platform_driver dwc_pwm_driver = {

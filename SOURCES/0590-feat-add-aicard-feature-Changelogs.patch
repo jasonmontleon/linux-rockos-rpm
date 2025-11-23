@@ -14,7 +14,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin_aicard.dts b/arch/riscv/boot/dts/eswin/eswin_aicard.dts
 new file mode 100644
-index 0000000000000..c82d35f115ad6
+index 000000000000..c82d35f115ad
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin_aicard.dts
 @@ -0,0 +1,1116 @@
@@ -1135,7 +1135,7 @@ index 0000000000000..c82d35f115ad6
 +	status = "okay";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index c82d35f115ad6..59ec21fbda7b0 100644
+index c82d35f115ad..59ec21fbda7b 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -375,29 +375,29 @@ &pcie {
@@ -1183,7 +1183,7 @@ index c82d35f115ad6..59ec21fbda7b0 100644
  };
 diff --git a/arch/riscv/configs/eswin_aicard_defconfig b/arch/riscv/configs/eswin_aicard_defconfig
 new file mode 100644
-index 0000000000000..4f9eb65c23530
+index 000000000000..4f9eb65c2353
 --- /dev/null
 +++ b/arch/riscv/configs/eswin_aicard_defconfig
 @@ -0,0 +1,852 @@

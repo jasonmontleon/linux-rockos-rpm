@@ -11,7 +11,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/edac/eswin_edac.c b/drivers/edac/eswin_edac.c
-index 508010cf44341..ebf42694d3c03 100644
+index 508010cf4434..ebf42694d3c0 100644
 --- a/drivers/edac/eswin_edac.c
 +++ b/drivers/edac/eswin_edac.c
 @@ -519,8 +519,8 @@ static irqreturn_t intr_handler(int irq, void *dev_id)

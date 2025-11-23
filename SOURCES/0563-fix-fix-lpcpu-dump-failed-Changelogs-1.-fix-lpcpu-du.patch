@@ -10,7 +10,7 @@ Signed-off-by: yuzaiqiang <yuzaiqiang@eswincomputing.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
-index 2661819c021ce..c0ae9e0f4518c 100644
+index 2661819c021c..c0ae9e0f4518 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 @@ -827,7 +827,7 @@ &fan_control {

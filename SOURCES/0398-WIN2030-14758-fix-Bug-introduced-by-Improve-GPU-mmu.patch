@@ -14,7 +14,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
-index 55e1c828e6348..cc0652febd980 100644
+index 55e1c828e634..cc0652febd98 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 @@ -345,10 +345,12 @@ PVRSRV_ERROR OSPhyContigPagesMap(PHYS_HEAP *psPhysHeap, PG_HANDLE *psMemHandle,

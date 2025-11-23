@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 18 insertions(+), 15 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 825c432cf2f2a..f6970d5606050 100644
+index 825c432cf2f2..f6970d560605 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -731,35 +731,36 @@ static int32_t __exit edla_remove(struct platform_device *pdev)

@@ -17,7 +17,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  3 files changed, 14 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/amd/display/Kconfig b/drivers/gpu/drm/amd/display/Kconfig
-index 901d1961b7392..49b33b2f67012 100644
+index 901d1961b739..49b33b2f6701 100644
 --- a/drivers/gpu/drm/amd/display/Kconfig
 +++ b/drivers/gpu/drm/amd/display/Kconfig
 @@ -8,7 +8,10 @@ config DRM_AMD_DC
@@ -33,7 +33,7 @@ index 901d1961b7392..49b33b2f67012 100644
  	  Choose this option if you want to use the new display engine
  	  support for AMDGPU. This adds required support for Vega and
 diff --git a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
-index 172aa10a8800f..53a7122ba98d5 100644
+index 172aa10a8800..53a7122ba98d 100644
 --- a/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
 +++ b/drivers/gpu/drm/amd/display/amdgpu_dm/dc_fpu.c
 @@ -35,6 +35,8 @@
@@ -64,7 +64,7 @@ index 172aa10a8800f..53a7122ba98d5 100644
  		migrate_enable();
  #elif defined(CONFIG_PPC64)
 diff --git a/drivers/gpu/drm/amd/display/dc/dml/Makefile b/drivers/gpu/drm/amd/display/dc/dml/Makefile
-index 0ba9a7997d561..96f7110e8e41d 100644
+index 0ba9a7997d56..96f7110e8e41 100644
 --- a/drivers/gpu/drm/amd/display/dc/dml/Makefile
 +++ b/drivers/gpu/drm/amd/display/dc/dml/Makefile
 @@ -43,6 +43,12 @@ dml_ccflags := -mfpu=64

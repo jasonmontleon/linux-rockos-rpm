@@ -20,7 +20,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  3 files changed, 250 insertions(+), 261 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index a65fe6e7ffcf5..9f1bba3799691 100644
+index a65fe6e7ffcf..9f1bba379969 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -457,15 +457,17 @@ &venc1 {
@@ -97,7 +97,7 @@ index a65fe6e7ffcf5..9f1bba3799691 100644
  
  &mipi_dphy_rx {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 2b2b722b548aa..d87b845a09669 100644
+index 2b2b722b548a..d87b845a0966 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1946,6 +1946,7 @@ dw_hdmi: hdmi@502a0000 {
@@ -117,7 +117,7 @@ index 2b2b722b548aa..d87b845a09669 100644
  
  		d0_usbdrd3_0: usb0@50480000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 5759e726f77b5..ae2633ca6832a 100644
+index 5759e726f77b..ae2633ca6832 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -31,7 +31,7 @@

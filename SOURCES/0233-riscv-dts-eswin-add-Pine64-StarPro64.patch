@@ -11,7 +11,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 5e0aadfd548d7..8c431bb594eae 100644
+index 5e0aadfd548d..8c431bb594ea 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -4,6 +4,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -24,7 +24,7 @@ index 5e0aadfd548d7..8c431bb594eae 100644
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 new file mode 100644
-index 0000000000000..b7a5998786855
+index 000000000000..b7a599878685
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -0,0 +1,794 @@

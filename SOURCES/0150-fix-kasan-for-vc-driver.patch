@@ -13,7 +13,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  2 files changed, 2 insertions(+)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 12d63a5ea9850..88adf1bd86d60 100644
+index 12d63a5ea985..88adf1bd86d6 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -4119,6 +4119,7 @@ static const struct dev_pm_ops eswin_vdec_dev_pm_ops = {
@@ -25,7 +25,7 @@ index 12d63a5ea9850..88adf1bd86d60 100644
  
  static struct platform_driver eswin_vdec_driver = {
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index 09c4195a60af2..008166eeb8cc0 100644
+index 09c4195a60af..008166eeb8cc 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -894,6 +894,7 @@ static const struct dev_pm_ops venc_pm_ops = {

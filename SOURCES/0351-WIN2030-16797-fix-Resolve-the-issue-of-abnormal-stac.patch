@@ -18,7 +18,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  5 files changed, 53 insertions(+), 29 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index cb7bbfca3de51..387974d162706 100644
+index cb7bbfca3de5..387974d16270 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -159,11 +159,6 @@ int esw_pcm_dma_open(struct snd_soc_component *component,
@@ -136,7 +136,7 @@ index cb7bbfca3de51..387974d162706 100644
  }
 \ No newline at end of file
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 9e3648863be60..0d40aee31f871 100755
+index 9e3648863be6..0d40aee31f87 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -990,6 +990,8 @@ static int i2s_sof_ringbuffer_init(struct i2s_dev *i2s_drvdata)
@@ -174,7 +174,7 @@ index 9e3648863be60..0d40aee31f871 100755
  }
  
 diff --git a/sound/soc/sof/eswin/Kconfig b/sound/soc/sof/eswin/Kconfig
-index 163263f60d409..273e28dcb67b1 100644
+index 163263f60d40..273e28dcb67b 100644
 --- a/sound/soc/sof/eswin/Kconfig
 +++ b/sound/soc/sof/eswin/Kconfig
 @@ -25,6 +25,7 @@ config SND_SOC_SOF_ESWIN_COMMON
@@ -186,7 +186,7 @@ index 163263f60d409..273e28dcb67b1 100644
  	  This adds support for Sound Open Firmware for ESWIN win2030 platforms.
  	  Say Y if you have such a device.
 diff --git a/sound/soc/sof/eswin/Makefile b/sound/soc/sof/eswin/Makefile
-index 55436a008eac6..dcb9c540b37b6 100644
+index 55436a008eac..dcb9c540b37b 100644
 --- a/sound/soc/sof/eswin/Makefile
 +++ b/sound/soc/sof/eswin/Makefile
 @@ -1,6 +1,5 @@
@@ -197,7 +197,7 @@ index 55436a008eac6..dcb9c540b37b6 100644
  snd-sof-eswin-dsp-objs := es-sof-dsp.o es-common.o
  
 diff --git a/sound/soc/sof/eswin/es-common.h b/sound/soc/sof/eswin/es-common.h
-index d9e1803d4ab2c..415ccb866d74a 100644
+index d9e1803d4ab2..415ccb866d74 100644
 --- a/sound/soc/sof/eswin/es-common.h
 +++ b/sound/soc/sof/eswin/es-common.h
 @@ -24,7 +24,7 @@

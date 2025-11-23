@@ -11,7 +11,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 89 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index 2e4e95e3d98b0..a2bfd04af41b3 100644
+index 2e4e95e3d98b..a2bfd04af41b 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -192,7 +192,7 @@ struct MPQ8785_DRIVER_DATA

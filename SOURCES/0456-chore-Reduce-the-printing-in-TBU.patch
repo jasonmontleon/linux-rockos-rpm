@@ -12,7 +12,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 4 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index d109b45f33f1e..7308e0dcabdac 100644
+index d109b45f33f1..7308e0dcabda 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -133,7 +133,7 @@ int win2030_dynm_sid_enable(int nid)

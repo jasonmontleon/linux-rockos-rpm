@@ -213,7 +213,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  create mode 100644 drivers/soc/eswin/ai_driver/npu/user_context.c
 
 diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
-index 54179b920cc81..256bfa5d85eb2 100644
+index 54179b920cc8..256bfa5d85eb 100644
 --- a/drivers/soc/eswin/Kconfig
 +++ b/drivers/soc/eswin/Kconfig
 @@ -1,3 +1,5 @@
@@ -223,7 +223,7 @@ index 54179b920cc81..256bfa5d85eb2 100644
  
  config ESWIN_KHANDLE
 diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
-index 290bd185817ff..bc4e41370dc16 100644
+index 290bd185817f..bc4e41370dc1 100644
 --- a/drivers/soc/eswin/Makefile
 +++ b/drivers/soc/eswin/Makefile
 @@ -1,4 +1,3 @@
@@ -235,7 +235,7 @@ index 290bd185817ff..bc4e41370dc16 100644
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/ai_driver/Kconfig b/drivers/soc/eswin/ai_driver/Kconfig
 new file mode 100644
-index 0000000000000..84a135ee3d690
+index 000000000000..84a135ee3d69
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/Kconfig
 @@ -0,0 +1,11 @@
@@ -252,7 +252,7 @@ index 0000000000000..84a135ee3d690
 +    select ESWIN_RSVMEM_HEAP
 diff --git a/drivers/soc/eswin/ai_driver/Makefile b/drivers/soc/eswin/ai_driver/Makefile
 new file mode 100644
-index 0000000000000..3763ea444940c
+index 000000000000..3763ea444940
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/Makefile
 @@ -0,0 +1,2 @@
@@ -260,7 +260,7 @@ index 0000000000000..3763ea444940c
 +obj-$(CONFIG_ESWIN_NPU) += npu/
 diff --git a/drivers/soc/eswin/ai_driver/dsp/Makefile b/drivers/soc/eswin/ai_driver/dsp/Makefile
 new file mode 100755
-index 0000000000000..465f11f3e6885
+index 000000000000..465f11f3e688
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/Makefile
 @@ -0,0 +1,50 @@
@@ -316,7 +316,7 @@ index 0000000000000..465f11f3e6885
 +ccflags-y += -DDSP_ENV_SIM=${DSP_ENV_SIM} -DBUILD_RELEASE=${BUILD_RELEASE} -DDEBUG_LEVEL=${DEBUG_LEVEL} -w
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c
 new file mode 100644
-index 0000000000000..d901a770f566e
+index 000000000000..d901a770f566
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.c
 @@ -0,0 +1,234 @@
@@ -556,7 +556,7 @@ index 0000000000000..d901a770f566e
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h
 new file mode 100755
-index 0000000000000..240ddf0f966d4
+index 000000000000..240ddf0f966d
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_firmware.h
 @@ -0,0 +1,28 @@
@@ -590,7 +590,7 @@ index 0000000000000..240ddf0f966d4
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h b/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h
 new file mode 100644
-index 0000000000000..302c48a5234d0
+index 000000000000..302c48a5234d
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_hw.h
 @@ -0,0 +1,186 @@
@@ -782,7 +782,7 @@ index 0000000000000..302c48a5234d0
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h
 new file mode 100644
-index 0000000000000..27e3313bfb5fd
+index 000000000000..27e3313bfb5f
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_hw_if.h
 @@ -0,0 +1,39 @@
@@ -827,7 +827,7 @@ index 0000000000000..27e3313bfb5fd
 +#endif  // ESWIN_COMMON_DSP_HW_IF_H_
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 new file mode 100644
-index 0000000000000..dee6ec9d8da0f
+index 000000000000..dee6ec9d8da0
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -0,0 +1,1126 @@
@@ -1959,7 +1959,7 @@ index 0000000000000..dee6ec9d8da0f
 +};
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h
 new file mode 100644
-index 0000000000000..59a21dcd13ce3
+index 000000000000..59a21dcd13ce
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.h
 @@ -0,0 +1,51 @@
@@ -2016,7 +2016,7 @@ index 0000000000000..59a21dcd13ce3
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 new file mode 100644
-index 0000000000000..76a88f2399dc9
+index 000000000000..76a88f2399dc
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 @@ -0,0 +1,85 @@
@@ -2107,7 +2107,7 @@ index 0000000000000..76a88f2399dc9
 +#endif  // ESWIN_COMMON_DSP_IOCTL_IF_H_
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_log.c b/drivers/soc/eswin/ai_driver/dsp/dsp_log.c
 new file mode 100644
-index 0000000000000..4ade1bc6d6db8
+index 000000000000..4ade1bc6d6db
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_log.c
 @@ -0,0 +1,25 @@
@@ -2138,7 +2138,7 @@ index 0000000000000..4ade1bc6d6db8
 +		 "Log level (0:DISABLE 1: ERROR, 2: INFO, 3: DEBUG)");
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_log.h b/drivers/soc/eswin/ai_driver/dsp/dsp_log.h
 new file mode 100644
-index 0000000000000..ba9dd92d26f8c
+index 000000000000..ba9dd92d26f8
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_log.h
 @@ -0,0 +1,32 @@
@@ -2176,7 +2176,7 @@ index 0000000000000..ba9dd92d26f8c
 +#define dsp_debug(fmt, ...) dsp_log(LOG_DEBUG, fmt, ##__VA_ARGS__)
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h b/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h
 new file mode 100644
-index 0000000000000..6694b8b52ce3d
+index 000000000000..6694b8b52ce3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_mailbox.h
 @@ -0,0 +1,44 @@
@@ -2226,7 +2226,7 @@ index 0000000000000..6694b8b52ce3d
 +#endif  // ESWIN_DSP_COMMON_MAILBOX_H_
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 new file mode 100644
-index 0000000000000..1fa928df25c2a
+index 000000000000..1fa928df25c2
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -0,0 +1,1155 @@
@@ -3387,7 +3387,7 @@ index 0000000000000..1fa928df25c2a
 +MODULE_LICENSE("Dual MIT/GPL");
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 new file mode 100644
-index 0000000000000..7d2b9e77ee57c
+index 000000000000..7d2b9e77ee57
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 @@ -0,0 +1,215 @@
@@ -3608,7 +3608,7 @@ index 0000000000000..7d2b9e77ee57c
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h b/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
 new file mode 100644
-index 0000000000000..eb1988839543f
+index 000000000000..eb1988839543
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_perf.h
 @@ -0,0 +1,61 @@
@@ -3675,7 +3675,7 @@ index 0000000000000..eb1988839543f
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 new file mode 100644
-index 0000000000000..998538a44f46d
+index 000000000000..998538a44f46
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -0,0 +1,1254 @@
@@ -4935,7 +4935,7 @@ index 0000000000000..998538a44f46d
 +}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 new file mode 100644
-index 0000000000000..82343e910bc27
+index 000000000000..82343e910bc2
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 @@ -0,0 +1,59 @@
@@ -5000,7 +5000,7 @@ index 0000000000000..82343e910bc27
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 new file mode 100644
-index 0000000000000..fd2edd5fa9265
+index 000000000000..fd2edd5fa926
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform_sim.c
 @@ -0,0 +1,529 @@
@@ -5535,7 +5535,7 @@ index 0000000000000..fd2edd5fa9265
 +}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 new file mode 100644
-index 0000000000000..b12258767c430
+index 000000000000..b12258767c43
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 @@ -0,0 +1,400 @@
@@ -5941,7 +5941,7 @@ index 0000000000000..b12258767c430
 +}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h
 new file mode 100644
-index 0000000000000..5fd60ec9e0098
+index 000000000000..5fd60ec9e009
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.h
 @@ -0,0 +1,13 @@
@@ -5960,7 +5960,7 @@ index 0000000000000..5fd60ec9e0098
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c b/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
 new file mode 100644
-index 0000000000000..1639727bb118d
+index 000000000000..1639727bb118
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_sram.c
 @@ -0,0 +1,98 @@
@@ -6064,7 +6064,7 @@ index 0000000000000..1639727bb118d
 +EXPORT_SYMBOL(dsp_get_sram_iova_by_addr);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/core-const16w.inc b/drivers/soc/eswin/ai_driver/dsp/mloader/core-const16w.inc
 new file mode 100644
-index 0000000000000..cb67d5f9210ae
+index 000000000000..cb67d5f9210a
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/core-const16w.inc
 @@ -0,0 +1,113 @@
@@ -6183,7 +6183,7 @@ index 0000000000000..cb67d5f9210ae
 +
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/dsp_load_operator.c b/drivers/soc/eswin/ai_driver/dsp/mloader/dsp_load_operator.c
 new file mode 100644
-index 0000000000000..34ce44f0aeae7
+index 000000000000..34ce44f0aeae
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/dsp_load_operator.c
 @@ -0,0 +1,269 @@
@@ -6458,7 +6458,7 @@ index 0000000000000..34ce44f0aeae7
 +}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_elf.h b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_elf.h
 new file mode 100644
-index 0000000000000..c91d110065fc6
+index 000000000000..c91d110065fc
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_elf.h
 @@ -0,0 +1,342 @@
@@ -6806,7 +6806,7 @@ index 0000000000000..c91d110065fc6
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
 new file mode 100644
-index 0000000000000..e5967e94da47a
+index 000000000000..e5967e94da47
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
 @@ -0,0 +1,1149 @@
@@ -7961,7 +7961,7 @@ index 0000000000000..e5967e94da47a
 +}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.h b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.h
 new file mode 100644
-index 0000000000000..4036e17e16e3d
+index 000000000000..4036e17e16e3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.h
 @@ -0,0 +1,259 @@
@@ -8226,7 +8226,7 @@ index 0000000000000..4036e17e16e3d
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_relocate.c b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_relocate.c
 new file mode 100644
-index 0000000000000..75e18557c879b
+index 000000000000..75e18557c879
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_relocate.c
 @@ -0,0 +1,498 @@
@@ -8730,7 +8730,7 @@ index 0000000000000..75e18557c879b
 +/* end relocate code */
 diff --git a/drivers/soc/eswin/ai_driver/include/cdma_regs.h b/drivers/soc/eswin/ai_driver/include/cdma_regs.h
 new file mode 100644
-index 0000000000000..331d0b00d920c
+index 000000000000..331d0b00d920
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/cdma_regs.h
 @@ -0,0 +1,245 @@
@@ -8982,7 +8982,7 @@ index 0000000000000..331d0b00d920c
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/ai_driver/include/conv_regs.h b/drivers/soc/eswin/ai_driver/include/conv_regs.h
 new file mode 100644
-index 0000000000000..f72902ce1ac35
+index 000000000000..f72902ce1ac3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/conv_regs.h
 @@ -0,0 +1,234 @@
@@ -9223,7 +9223,7 @@ index 0000000000000..f72902ce1ac35
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/ai_driver/include/dla_interface.h b/drivers/soc/eswin/ai_driver/include/dla_interface.h
 new file mode 100644
-index 0000000000000..82ed5865926dd
+index 000000000000..82ed5865926d
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/dla_interface.h
 @@ -0,0 +1,865 @@
@@ -10094,7 +10094,7 @@ index 0000000000000..82ed5865926dd
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/edma_regs.h b/drivers/soc/eswin/ai_driver/include/edma_regs.h
 new file mode 100644
-index 0000000000000..507fb815e8adf
+index 000000000000..507fb815e8ad
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/edma_regs.h
 @@ -0,0 +1,68 @@
@@ -10168,7 +10168,7 @@ index 0000000000000..507fb815e8adf
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h b/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h
 new file mode 100644
-index 0000000000000..ec2c202ed2d89
+index 000000000000..ec2c202ed2d8
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h
 @@ -0,0 +1,183 @@
@@ -10357,7 +10357,7 @@ index 0000000000000..ec2c202ed2d89
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/es_dsp_op_types.h b/drivers/soc/eswin/ai_driver/include/es_dsp_op_types.h
 new file mode 100644
-index 0000000000000..6e0ce6b31c63e
+index 000000000000..6e0ce6b31c63
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/es_dsp_op_types.h
 @@ -0,0 +1,53 @@
@@ -10416,7 +10416,7 @@ index 0000000000000..6e0ce6b31c63e
 +#endif  // __ESWIN_DSP_OP_TYPES_H__
 diff --git a/drivers/soc/eswin/ai_driver/include/es_dsp_types.h b/drivers/soc/eswin/ai_driver/include/es_dsp_types.h
 new file mode 100644
-index 0000000000000..473df42a41d30
+index 000000000000..473df42a41d3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/es_dsp_types.h
 @@ -0,0 +1,151 @@
@@ -10573,7 +10573,7 @@ index 0000000000000..473df42a41d30
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/es_nn_common.h b/drivers/soc/eswin/ai_driver/include/es_nn_common.h
 new file mode 100644
-index 0000000000000..7ea0b4c7502ea
+index 000000000000..7ea0b4c7502e
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/es_nn_common.h
 @@ -0,0 +1,269 @@
@@ -10849,7 +10849,7 @@ index 0000000000000..7ea0b4c7502ea
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/ai_driver/include/es_type.h b/drivers/soc/eswin/ai_driver/include/es_type.h
 new file mode 100644
-index 0000000000000..ab30d1383ff67
+index 000000000000..ab30d1383ff6
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/es_type.h
 @@ -0,0 +1,75 @@
@@ -10930,7 +10930,7 @@ index 0000000000000..ab30d1383ff67
 +#endif /* __ES_TYPE_H__ */
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_arch.h b/drivers/soc/eswin/ai_driver/include/hetero_arch.h
 new file mode 100644
-index 0000000000000..31c2b75375db9
+index 000000000000..31c2b75375db
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_arch.h
 @@ -0,0 +1,206 @@
@@ -11142,7 +11142,7 @@ index 0000000000000..31c2b75375db9
 +#endif  // __HETERO_UTILS_H__
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_common.h b/drivers/soc/eswin/ai_driver/include/hetero_common.h
 new file mode 100644
-index 0000000000000..1bf7568415f8e
+index 000000000000..1bf7568415f8
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_common.h
 @@ -0,0 +1,917 @@
@@ -12065,7 +12065,7 @@ index 0000000000000..1bf7568415f8e
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_env.h b/drivers/soc/eswin/ai_driver/include/hetero_env.h
 new file mode 100644
-index 0000000000000..107f4ad8e928c
+index 000000000000..107f4ad8e928
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_env.h
 @@ -0,0 +1,17 @@
@@ -12088,7 +12088,7 @@ index 0000000000000..107f4ad8e928c
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_host.h b/drivers/soc/eswin/ai_driver/include/hetero_host.h
 new file mode 100644
-index 0000000000000..ca39021162292
+index 000000000000..ca3902116229
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_host.h
 @@ -0,0 +1,615 @@
@@ -12709,7 +12709,7 @@ index 0000000000000..ca39021162292
 +#endif  // __HETERO_HOST_H__
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
 new file mode 100644
-index 0000000000000..f18e7dd299484
+index 000000000000..f18e7dd29948
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
 @@ -0,0 +1,311 @@
@@ -13026,7 +13026,7 @@ index 0000000000000..f18e7dd299484
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_ipc.h b/drivers/soc/eswin/ai_driver/include/hetero_ipc.h
 new file mode 100644
-index 0000000000000..791132cfd645b
+index 000000000000..791132cfd645
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_ipc.h
 @@ -0,0 +1,506 @@
@@ -13538,7 +13538,7 @@ index 0000000000000..791132cfd645b
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_perf.h b/drivers/soc/eswin/ai_driver/include/hetero_perf.h
 new file mode 100644
-index 0000000000000..5b5212e4034a0
+index 000000000000..5b5212e4034a
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_perf.h
 @@ -0,0 +1,98 @@
@@ -13642,7 +13642,7 @@ index 0000000000000..5b5212e4034a0
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_processor.h b/drivers/soc/eswin/ai_driver/include/hetero_processor.h
 new file mode 100644
-index 0000000000000..da3b9d3afbdf1
+index 000000000000..da3b9d3afbdf
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_processor.h
 @@ -0,0 +1,48 @@
@@ -13696,7 +13696,7 @@ index 0000000000000..da3b9d3afbdf1
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_types.h b/drivers/soc/eswin/ai_driver/include/hetero_types.h
 new file mode 100644
-index 0000000000000..50e8423d264e3
+index 000000000000..50e8423d264e
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_types.h
 @@ -0,0 +1,54 @@
@@ -13756,7 +13756,7 @@ index 0000000000000..50e8423d264e3
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/mailbox_regs.h b/drivers/soc/eswin/ai_driver/include/mailbox_regs.h
 new file mode 100644
-index 0000000000000..e656352821f6b
+index 000000000000..e656352821f6
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/mailbox_regs.h
 @@ -0,0 +1,199 @@
@@ -13961,7 +13961,7 @@ index 0000000000000..e656352821f6b
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/md5.h b/drivers/soc/eswin/ai_driver/include/md5.h
 new file mode 100644
-index 0000000000000..108f9c740437a
+index 000000000000..108f9c740437
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/md5.h
 @@ -0,0 +1,68 @@
@@ -14035,7 +14035,7 @@ index 0000000000000..108f9c740437a
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/npu_base_regs.h b/drivers/soc/eswin/ai_driver/include/npu_base_regs.h
 new file mode 100644
-index 0000000000000..15894d65d304f
+index 000000000000..15894d65d304
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/npu_base_regs.h
 @@ -0,0 +1,382 @@
@@ -14423,7 +14423,7 @@ index 0000000000000..15894d65d304f
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/pdp_regs.h b/drivers/soc/eswin/ai_driver/include/pdp_regs.h
 new file mode 100644
-index 0000000000000..c75e777e37082
+index 000000000000..c75e777e3708
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/pdp_regs.h
 @@ -0,0 +1,136 @@
@@ -14565,7 +14565,7 @@ index 0000000000000..c75e777e37082
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/rubik_regs.h b/drivers/soc/eswin/ai_driver/include/rubik_regs.h
 new file mode 100644
-index 0000000000000..a41463b080f41
+index 000000000000..a41463b080f4
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/rubik_regs.h
 @@ -0,0 +1,65 @@
@@ -14636,7 +14636,7 @@ index 0000000000000..a41463b080f41
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/sdp_regs.h b/drivers/soc/eswin/ai_driver/include/sdp_regs.h
 new file mode 100644
-index 0000000000000..3d782efa8ad70
+index 000000000000..3d782efa8ad7
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/sdp_regs.h
 @@ -0,0 +1,207 @@
@@ -14849,7 +14849,7 @@ index 0000000000000..3d782efa8ad70
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/include/sys_regs.h b/drivers/soc/eswin/ai_driver/include/sys_regs.h
 new file mode 100644
-index 0000000000000..568df49362bb5
+index 000000000000..568df49362bb
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/include/sys_regs.h
 @@ -0,0 +1,30 @@
@@ -14885,7 +14885,7 @@ index 0000000000000..568df49362bb5
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
 new file mode 100644
-index 0000000000000..bcf99a4898153
+index 000000000000..bcf99a489815
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/Makefile
 @@ -0,0 +1,54 @@
@@ -14945,7 +14945,7 @@ index 0000000000000..bcf99a4898153
 +
 diff --git a/drivers/soc/eswin/ai_driver/npu/common.c b/drivers/soc/eswin/ai_driver/npu/common.c
 new file mode 100644
-index 0000000000000..8089e861907d4
+index 000000000000..8089e861907d
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/common.c
 @@ -0,0 +1,123 @@
@@ -15074,7 +15074,7 @@ index 0000000000000..8089e861907d4
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/common.h b/drivers/soc/eswin/ai_driver/npu/common.h
 new file mode 100644
-index 0000000000000..0c73e1ed235ce
+index 000000000000..0c73e1ed235c
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/common.h
 @@ -0,0 +1,22 @@
@@ -15102,7 +15102,7 @@ index 0000000000000..0c73e1ed235ce
 +#endif /* __FIRMWARE_COMMON_H_ */
 diff --git a/drivers/soc/eswin/ai_driver/npu/conv.c b/drivers/soc/eswin/ai_driver/npu/conv.c
 new file mode 100644
-index 0000000000000..69dd91f79f07a
+index 000000000000..69dd91f79f07
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/conv.c
 @@ -0,0 +1,495 @@
@@ -15603,7 +15603,7 @@ index 0000000000000..69dd91f79f07a
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/conv.h b/drivers/soc/eswin/ai_driver/npu/conv.h
 new file mode 100644
-index 0000000000000..11643f5d8770b
+index 000000000000..11643f5d8770
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/conv.h
 @@ -0,0 +1,34 @@
@@ -15643,7 +15643,7 @@ index 0000000000000..11643f5d8770b
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/debug.c b/drivers/soc/eswin/ai_driver/npu/debug.c
 new file mode 100644
-index 0000000000000..1393e345c2f5a
+index 000000000000..1393e345c2f5
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/debug.c
 @@ -0,0 +1,1131 @@
@@ -16780,7 +16780,7 @@ index 0000000000000..1393e345c2f5a
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/debug.h b/drivers/soc/eswin/ai_driver/npu/debug.h
 new file mode 100644
-index 0000000000000..7d85d754ed2d6
+index 000000000000..7d85d754ed2d
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/debug.h
 @@ -0,0 +1,37 @@
@@ -16823,7 +16823,7 @@ index 0000000000000..7d85d754ed2d6
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_buffer.c b/drivers/soc/eswin/ai_driver/npu/dla_buffer.c
 new file mode 100644
-index 0000000000000..32090ca1ac64b
+index 000000000000..32090ca1ac64
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_buffer.c
 @@ -0,0 +1,402 @@
@@ -17231,7 +17231,7 @@ index 0000000000000..32090ca1ac64b
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_buffer.h b/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
 new file mode 100644
-index 0000000000000..7fa41c8c4f981
+index 000000000000..7fa41c8c4f98
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_buffer.h
 @@ -0,0 +1,59 @@
@@ -17296,7 +17296,7 @@ index 0000000000000..7fa41c8c4f981
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.c b/drivers/soc/eswin/ai_driver/npu/dla_driver.c
 new file mode 100644
-index 0000000000000..b2eb069aa0faa
+index 000000000000..b2eb069aa0fa
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.c
 @@ -0,0 +1,14 @@
@@ -17316,7 +17316,7 @@ index 0000000000000..b2eb069aa0faa
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 new file mode 100644
-index 0000000000000..e732c99a91f83
+index 000000000000..e732c99a91f8
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -0,0 +1,73 @@
@@ -17395,7 +17395,7 @@ index 0000000000000..e732c99a91f83
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h b/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h
 new file mode 100644
-index 0000000000000..1ab86ecaa78c4
+index 000000000000..1ab86ecaa78c
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_engine_internal.h
 @@ -0,0 +1,176 @@
@@ -17577,7 +17577,7 @@ index 0000000000000..1ab86ecaa78c4
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_log.c b/drivers/soc/eswin/ai_driver/npu/dla_log.c
 new file mode 100644
-index 0000000000000..d12729d8600f1
+index 000000000000..d12729d8600f
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_log.c
 @@ -0,0 +1,169 @@
@@ -17752,7 +17752,7 @@ index 0000000000000..d12729d8600f1
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_log.h b/drivers/soc/eswin/ai_driver/npu/dla_log.h
 new file mode 100644
-index 0000000000000..d1be7e55e9b6d
+index 000000000000..d1be7e55e9b6
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_log.h
 @@ -0,0 +1,53 @@
@@ -17811,7 +17811,7 @@ index 0000000000000..d1be7e55e9b6d
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
 new file mode 100644
-index 0000000000000..60c66db717046
+index 000000000000..60c66db71704
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
 @@ -0,0 +1,865 @@
@@ -18682,7 +18682,7 @@ index 0000000000000..60c66db717046
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.h b/drivers/soc/eswin/ai_driver/npu/dsp.h
 new file mode 100644
-index 0000000000000..0601e922481e7
+index 000000000000..0601e922481e
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.h
 @@ -0,0 +1,17 @@
@@ -18705,7 +18705,7 @@ index 0000000000000..0601e922481e7
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/edma.c b/drivers/soc/eswin/ai_driver/npu/edma.c
 new file mode 100644
-index 0000000000000..f8638dad0dff4
+index 000000000000..f8638dad0dff
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/edma.c
 @@ -0,0 +1,954 @@
@@ -19665,7 +19665,7 @@ index 0000000000000..f8638dad0dff4
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/edma.h b/drivers/soc/eswin/ai_driver/npu/edma.h
 new file mode 100644
-index 0000000000000..6f5301811ffec
+index 000000000000..6f5301811ffe
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/edma.h
 @@ -0,0 +1,370 @@
@@ -20041,7 +20041,7 @@ index 0000000000000..6f5301811ffec
 +#endif /* __EDMA_H_ */
 diff --git a/drivers/soc/eswin/ai_driver/npu/engine.c b/drivers/soc/eswin/ai_driver/npu/engine.c
 new file mode 100644
-index 0000000000000..f51eacae6f102
+index 000000000000..f51eacae6f10
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/engine.c
 @@ -0,0 +1,957 @@
@@ -21004,7 +21004,7 @@ index 0000000000000..f51eacae6f102
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/event.c b/drivers/soc/eswin/ai_driver/npu/event.c
 new file mode 100644
-index 0000000000000..59847508c74d2
+index 000000000000..59847508c74d
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/event.c
 @@ -0,0 +1,104 @@
@@ -21114,7 +21114,7 @@ index 0000000000000..59847508c74d2
 +
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h b/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h
 new file mode 100644
-index 0000000000000..544e216d79817
+index 000000000000..544e216d7981
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/dla_engine.h
 @@ -0,0 +1,94 @@
@@ -21214,7 +21214,7 @@ index 0000000000000..544e216d79817
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/dla_err.h b/drivers/soc/eswin/ai_driver/npu/include/dla_err.h
 new file mode 100644
-index 0000000000000..4b16eb549722d
+index 000000000000..4b16eb549722
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/dla_err.h
 @@ -0,0 +1,50 @@
@@ -21270,7 +21270,7 @@ index 0000000000000..4b16eb549722d
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/dla_sched.h b/drivers/soc/eswin/ai_driver/npu/include/dla_sched.h
 new file mode 100644
-index 0000000000000..71afd1064ec3e
+index 000000000000..71afd1064ec3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/dla_sched.h
 @@ -0,0 +1,61 @@
@@ -21337,7 +21337,7 @@ index 0000000000000..71afd1064ec3e
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h b/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h
 new file mode 100644
-index 0000000000000..13391ad7f5518
+index 000000000000..13391ad7f551
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/npu_top_csr.h
 @@ -0,0 +1,51 @@
@@ -21394,7 +21394,7 @@ index 0000000000000..13391ad7f5518
 +#endif /* __NPU_TOP_CSR_H_ */
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h b/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h
 new file mode 100644
-index 0000000000000..c93fa38366fd2
+index 000000000000..c93fa38366fd
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/nvdla_interface.h
 @@ -0,0 +1,113 @@
@@ -21513,7 +21513,7 @@ index 0000000000000..c93fa38366fd2
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h b/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h
 new file mode 100644
-index 0000000000000..b69353d66d8c6
+index 000000000000..b69353d66d8c
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/nvdla_linux.h
 @@ -0,0 +1,46 @@
@@ -21565,7 +21565,7 @@ index 0000000000000..b69353d66d8c6
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/opendla.h b/drivers/soc/eswin/ai_driver/npu/include/opendla.h
 new file mode 100644
-index 0000000000000..e58e29aa2321e
+index 000000000000..e58e29aa2321
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/opendla.h
 @@ -0,0 +1,40 @@
@@ -21611,7 +21611,7 @@ index 0000000000000..e58e29aa2321e
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/include/opendla_initial.h b/drivers/soc/eswin/ai_driver/npu/include/opendla_initial.h
 new file mode 100644
-index 0000000000000..aa2b5d7702b91
+index 000000000000..aa2b5d7702b9
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/include/opendla_initial.h
 @@ -0,0 +1,15426 @@
@@ -37043,7 +37043,7 @@ index 0000000000000..aa2b5d7702b91
 +#endif	// ifndef ___ARH_INC_
 diff --git a/drivers/soc/eswin/ai_driver/npu/internal_interface.h b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
 new file mode 100644
-index 0000000000000..f5a4dfba861b4
+index 000000000000..f5a4dfba861b
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/internal_interface.h
 @@ -0,0 +1,567 @@
@@ -37616,7 +37616,7 @@ index 0000000000000..f5a4dfba861b4
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_e31.c b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 new file mode 100644
-index 0000000000000..3494f170fc681
+index 000000000000..3494f170fc68
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_e31.c
 @@ -0,0 +1,170 @@
@@ -37792,7 +37792,7 @@ index 0000000000000..3494f170fc681
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_frame.c b/drivers/soc/eswin/ai_driver/npu/npu_frame.c
 new file mode 100644
-index 0000000000000..b5434913324cf
+index 000000000000..b5434913324c
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_frame.c
 @@ -0,0 +1,409 @@
@@ -38207,7 +38207,7 @@ index 0000000000000..b5434913324cf
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 new file mode 100644
-index 0000000000000..e83f7c9c85f3e
+index 000000000000..e83f7c9c85f3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -0,0 +1,724 @@
@@ -38937,7 +38937,7 @@ index 0000000000000..e83f7c9c85f3e
 +MODULE_DESCRIPTION("Eswin Deep Learning Accelerator driver");
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_spram.c b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 new file mode 100644
-index 0000000000000..2592597fabc5a
+index 000000000000..2592597fabc5
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_spram.c
 @@ -0,0 +1,220 @@
@@ -39163,7 +39163,7 @@ index 0000000000000..2592597fabc5a
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_spram.h b/drivers/soc/eswin/ai_driver/npu/npu_spram.h
 new file mode 100644
-index 0000000000000..6bf9e2c369c49
+index 000000000000..6bf9e2c369c4
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_spram.h
 @@ -0,0 +1,17 @@
@@ -39186,7 +39186,7 @@ index 0000000000000..6bf9e2c369c49
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 new file mode 100644
-index 0000000000000..3ccaec7130fd8
+index 000000000000..3ccaec7130fd
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -0,0 +1,1022 @@
@@ -40214,7 +40214,7 @@ index 0000000000000..3ccaec7130fd8
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 new file mode 100644
-index 0000000000000..08bd5f77fe5b6
+index 000000000000..08bd5f77fe5b
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 @@ -0,0 +1,40 @@
@@ -40260,7 +40260,7 @@ index 0000000000000..08bd5f77fe5b6
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 new file mode 100644
-index 0000000000000..91d47bae97d24
+index 000000000000..91d47bae97d2
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 @@ -0,0 +1,369 @@
@@ -40635,7 +40635,7 @@ index 0000000000000..91d47bae97d24
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h
 new file mode 100644
-index 0000000000000..be2e45cee6631
+index 000000000000..be2e45cee663
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.h
 @@ -0,0 +1,16 @@
@@ -40657,7 +40657,7 @@ index 0000000000000..be2e45cee6631
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c b/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c
 new file mode 100644
-index 0000000000000..eaf6de2c74fb7
+index 000000000000..eaf6de2c74fb
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_sim.c
 @@ -0,0 +1,590 @@
@@ -41253,7 +41253,7 @@ index 0000000000000..eaf6de2c74fb7
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/parse_dep.c b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 new file mode 100644
-index 0000000000000..36b48dd376b0e
+index 000000000000..36b48dd376b0
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 @@ -0,0 +1,461 @@
@@ -41720,7 +41720,7 @@ index 0000000000000..36b48dd376b0e
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/pdp.c b/drivers/soc/eswin/ai_driver/npu/pdp.c
 new file mode 100644
-index 0000000000000..e32a4dfb27ee0
+index 000000000000..e32a4dfb27ee
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/pdp.c
 @@ -0,0 +1,583 @@
@@ -42309,7 +42309,7 @@ index 0000000000000..e32a4dfb27ee0
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/post_drp.h b/drivers/soc/eswin/ai_driver/npu/post_drp.h
 new file mode 100644
-index 0000000000000..51d11e560fe56
+index 000000000000..51d11e560fe5
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/post_drp.h
 @@ -0,0 +1,58 @@
@@ -42373,7 +42373,7 @@ index 0000000000000..51d11e560fe56
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/rubik.c b/drivers/soc/eswin/ai_driver/npu/rubik.c
 new file mode 100644
-index 0000000000000..1e08b06480ad8
+index 000000000000..1e08b06480ad
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/rubik.c
 @@ -0,0 +1,301 @@
@@ -42680,7 +42680,7 @@ index 0000000000000..1e08b06480ad8
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
 new file mode 100644
-index 0000000000000..0f23eb00b11fd
+index 000000000000..0f23eb00b11f
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
 @@ -0,0 +1,301 @@
@@ -42987,7 +42987,7 @@ index 0000000000000..0f23eb00b11fd
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/sdp.c b/drivers/soc/eswin/ai_driver/npu/sdp.c
 new file mode 100644
-index 0000000000000..fcb4dcfaffa89
+index 000000000000..fcb4dcfaffa8
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/sdp.c
 @@ -0,0 +1,1058 @@
@@ -44051,7 +44051,7 @@ index 0000000000000..fcb4dcfaffa89
 +}
 diff --git a/drivers/soc/eswin/ai_driver/npu/sdp.h b/drivers/soc/eswin/ai_driver/npu/sdp.h
 new file mode 100644
-index 0000000000000..ee013c2fb7e38
+index 000000000000..ee013c2fb7e3
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/sdp.h
 @@ -0,0 +1,98 @@
@@ -44155,7 +44155,7 @@ index 0000000000000..ee013c2fb7e38
 +#endif
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
 new file mode 100644
-index 0000000000000..1d58f190a7a77
+index 000000000000..1d58f190a7a7
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -0,0 +1,1203 @@

@@ -16,7 +16,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 5 insertions(+), 11 deletions(-)
 
 diff --git a/Documentation/riscv/vm-layout.rst b/Documentation/riscv/vm-layout.rst
-index 69ff6da1dbf8f..e476b4386bd9d 100644
+index 69ff6da1dbf8..e476b4386bd9 100644
 --- a/Documentation/riscv/vm-layout.rst
 +++ b/Documentation/riscv/vm-layout.rst
 @@ -144,14 +144,8 @@ passing 0 into the hint address parameter of mmap. On CPUs with an address space

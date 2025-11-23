@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
-index e49d6957cda1b..8024b9d2241be 100644
+index e49d6957cda1..8024b9d2241b 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.c
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.c
 @@ -1924,6 +1924,7 @@ static const struct of_device_id es_dvp2axi_plat_of_match[] = {

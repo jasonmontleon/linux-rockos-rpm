@@ -14,7 +14,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 
 diff --git a/.github/workflows/build.yml b/.github/workflows/build.yml
 new file mode 100644
-index 0000000000000..bb5b2915c1f8f
+index 000000000000..bb5b2915c1f8
 --- /dev/null
 +++ b/.github/workflows/build.yml
 @@ -0,0 +1,76 @@
@@ -96,7 +96,7 @@ index 0000000000000..bb5b2915c1f8f
 +          retention-days: 30
 diff --git a/.github/workflows/native-build.yml b/.github/workflows/native-build.yml
 new file mode 100644
-index 0000000000000..881379558a099
+index 000000000000..881379558a09
 --- /dev/null
 +++ b/.github/workflows/native-build.yml
 @@ -0,0 +1,80 @@

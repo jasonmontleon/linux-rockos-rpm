@@ -13,7 +13,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 10 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 8fc5a00472d36..9e3648863be60 100755
+index 8fc5a00472d3..9e3648863be6 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -436,10 +436,6 @@ static int i2s_startup(struct snd_pcm_substream *substream,

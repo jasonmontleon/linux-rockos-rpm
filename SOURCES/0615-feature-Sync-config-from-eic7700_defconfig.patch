@@ -12,7 +12,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  1 file changed, 60 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 9e634f09e222a..fdbad29cf77e3 100644
+index 9e634f09e222..fdbad29cf77e 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -38,12 +38,14 @@ CONFIG_RISCV_SBI_V01=y

@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
-index 33e02628614a2..c4a9d6f97f95f 100644
+index 33e02628614a..c4a9d6f97f95 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 @@ -674,7 +674,7 @@ &d0_aon_i2c1 {

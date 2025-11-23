@@ -16,7 +16,7 @@ Change-Id: I5be0477a7ab59c20cf712298d23e221d998934cc
  3 files changed, 43 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 2403d2c604fda..ecfff2bf03348 100644
+index 2403d2c604fd..ecfff2bf0334 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -392,7 +392,7 @@ d0_aon_dmac: dma-controller-aon@0x518c0000 {
@@ -29,7 +29,7 @@ index 2403d2c604fda..ecfff2bf03348 100644
  			#address-cells = <2>;
  			dma-ranges = <0x0 0x80000000 0x0 0x80000000 0x100 0x0>;
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 78fbfd5d8f8c2..152ef71673186 100644
+index 78fbfd5d8f8c..152ef7167318 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -129,6 +129,8 @@ static inline void axi_chan_config_write(struct axi_dma_chan *chan,
@@ -149,7 +149,7 @@ index 78fbfd5d8f8c2..152ef71673186 100644
  }
  
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
-index 3bd0e65ed010c..738954532c938 100644
+index 3bd0e65ed010..738954532c93 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac.h
 @@ -49,6 +49,7 @@ struct dw_axi_dma_hcfg {

@@ -10,7 +10,7 @@ ref: https://github.com/torvalds/linux/commit/7938f421
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c
-index 576980ed45cf4..a90b3b5879d00 100644
+index 576980ed45cf..a90b3b5879d0 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c
 @@ -170,7 +170,7 @@ typedef struct _PMR_DMA_BUF_DATA_

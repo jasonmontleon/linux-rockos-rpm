@@ -8,7 +8,7 @@ Subject: [PATCH 652/652] remove makefile reference for non existent directory
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index d0f8b180c1de6..f782c9be9d26d 100644
+index d0f8b180c1de..f782c9be9d26 100644
 --- a/drivers/media/i2c/Makefile
 +++ b/drivers/media/i2c/Makefile
 @@ -23,7 +23,6 @@ obj-$(CONFIG_VIDEO_BT819) += bt819.o

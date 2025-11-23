@@ -12,7 +12,7 @@ Signed-off-by: ouyanghui <ouyanghui@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/ata/ahci_eswin.c b/drivers/ata/ahci_eswin.c
-index 47240248f4683..ff22d11488d75 100644
+index 47240248f468..ff22d11488d7 100644
 --- a/drivers/ata/ahci_eswin.c
 +++ b/drivers/ata/ahci_eswin.c
 @@ -65,7 +65,7 @@

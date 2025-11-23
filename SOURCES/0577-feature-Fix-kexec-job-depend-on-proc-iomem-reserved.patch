@@ -12,7 +12,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 6584317decd52..3d783bfb05ed0 100644
+index 6584317decd5..3d783bfb05ed 100644
 --- a/arch/riscv/mm/init.c
 +++ b/arch/riscv/mm/init.c
 @@ -1511,6 +1511,8 @@ static void __init reserve_crashkernel(void)

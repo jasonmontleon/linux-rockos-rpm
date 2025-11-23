@@ -14,7 +14,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index 2926d780b79c0..d9dc8a8afd6a1 100644
+index 2926d780b79c..d9dc8a8afd6a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -59,7 +59,7 @@ &pcie {

@@ -17,7 +17,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/configs/eic7700_defconfig
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 27b8bd0457751..a6150c3b05db4 100644
+index 27b8bd045775..a6150c3b05db 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -90,54 +90,26 @@ npu0_reserved: sprammemory@59000000 {
@@ -83,7 +83,7 @@ index 27b8bd0457751..a6150c3b05db4 100644
  
  	leds {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 8cc13e04a2d4d..2a85265960a34 100644
+index 8cc13e04a2d4..2a85265960a3 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1211,7 +1211,7 @@ d0_ipc_scpu:ipc@0 {
@@ -96,7 +96,7 @@ index 8cc13e04a2d4d..2a85265960a34 100644
  					<&d0_clock WIN2030_CLK_CLK_LPCPU_BUS>;
  			clock-names = "core_clk", "bus_clk";
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 1a9ded7f2c325..27b1121d9a523 100644
+index 1a9ded7f2c32..27b1121d9a52 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -26,7 +26,7 @@
@@ -155,7 +155,7 @@ index 1a9ded7f2c325..27b1121d9a523 100644
  };
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
 new file mode 100644
-index 0000000000000..0911327327a84
+index 000000000000..0911327327a8
 --- /dev/null
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -0,0 +1,840 @@

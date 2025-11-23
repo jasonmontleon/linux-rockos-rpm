@@ -32,7 +32,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
 
 diff --git a/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml b/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
 new file mode 100644
-index 0000000000000..8b0b3b867011b
+index 000000000000..8b0b3b867011
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
 @@ -0,0 +1,51 @@
@@ -88,7 +88,7 @@ index 0000000000000..8b0b3b867011b
 +...
 +
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index e4663a6e1be6b..03d601fe90143 100644
+index e4663a6e1be6..03d601fe9014 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -23,7 +23,7 @@
@@ -110,7 +110,7 @@ index e4663a6e1be6b..03d601fe90143 100644
  				numa-node-id = <0>;
  			};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index cf93f0a96878a..3a7d3f05c4614 100644
+index cf93f0a96878..3a7d3f05c461 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -22,7 +22,7 @@
@@ -132,7 +132,7 @@ index cf93f0a96878a..3a7d3f05c4614 100644
  				numa-node-id = <1>;
  			};
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index ed5d3e6ea9e3e..9f6e51f2cc8c7 100644
+index ed5d3e6ea9e3..9f6e51f2cc8c 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -745,7 +745,7 @@ CONFIG_ESWIN_DEV_DMA_BUF=y
@@ -145,7 +145,7 @@ index ed5d3e6ea9e3e..9f6e51f2cc8c7 100644
  CONFIG_EXT4_FS=y
  CONFIG_EXT4_FS_POSIX_ACL=y
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 72cc0c1c597c3..7dcdf43edd4ec 100644
+index 72cc0c1c597c..7dcdf43edd4e 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -771,7 +771,7 @@ CONFIG_ESWIN_IOMMU_RSV=y
@@ -158,7 +158,7 @@ index 72cc0c1c597c3..7dcdf43edd4ec 100644
  CONFIG_EXT4_FS=y
  CONFIG_EXT4_FS_POSIX_ACL=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 4298fe7b06c6a..ac24ed1fb4708 100644
+index 4298fe7b06c6..ac24ed1fb470 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -757,7 +757,7 @@ CONFIG_ESWIN_IOMMU_RSV=y
@@ -171,7 +171,7 @@ index 4298fe7b06c6a..ac24ed1fb4708 100644
  CONFIG_EXT4_FS=y
  CONFIG_EXT4_FS_POSIX_ACL=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 9e2a3c4483ce5..67eb3b63fd12d 100644
+index 9e2a3c4483ce..67eb3b63fd12 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -812,7 +812,7 @@ CONFIG_ESWIN_IOMMU_RSV=y
@@ -184,7 +184,7 @@ index 9e2a3c4483ce5..67eb3b63fd12d 100644
  CONFIG_EXT4_FS=y
  CONFIG_EXT4_FS_POSIX_ACL=y
 diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
-index 93cb6c6c85076..adb21e26fba3a 100755
+index 93cb6c6c8507..adb21e26fba3 100755
 --- a/drivers/clk/eswin/clk-win2030.c
 +++ b/drivers/clk/eswin/clk-win2030.c
 @@ -25,9 +25,8 @@
@@ -200,7 +200,7 @@ index 93cb6c6c85076..adb21e26fba3a 100755
  /* clock parent list */
 diff --git a/drivers/clk/eswin/clk_eic770x.h b/drivers/clk/eswin/clk_eic770x.h
 new file mode 100644
-index 0000000000000..156601fdd2678
+index 000000000000..156601fdd267
 --- /dev/null
 +++ b/drivers/clk/eswin/clk_eic770x.h
 @@ -0,0 +1,204 @@
@@ -409,7 +409,7 @@ index 0000000000000..156601fdd2678
 +#define WIN2030_REG_OFFSET_LNOC_RST_CTRL                        0X4E0
 +#endif
 diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 5f714eb0a9142..6017c11332cba 100644
+index 5f714eb0a914..6017c11332cb 100644
 --- a/drivers/reset/Kconfig
 +++ b/drivers/reset/Kconfig
 @@ -320,11 +320,11 @@ config RESET_ZYNQ
@@ -428,7 +428,7 @@ index 5f714eb0a9142..6017c11332cba 100644
  source "drivers/reset/hisilicon/Kconfig"
  source "drivers/reset/tegra/Kconfig"
 diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 30d55a7f0fb93..c10a4d085ca43 100644
+index 30d55a7f0fb9..c10a4d085ca4 100644
 --- a/drivers/reset/Makefile
 +++ b/drivers/reset/Makefile
 @@ -41,5 +41,5 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
@@ -439,7 +439,7 @@ index 30d55a7f0fb93..c10a4d085ca43 100644
 +obj-$(CONFIG_RESET_ESWIN) += reset-eswin.o
  
 diff --git a/drivers/reset/reset-eswin.c b/drivers/reset/reset-eswin.c
-index 9ad472bca4330..799795b267bc4 100755
+index 9ad472bca433..799795b267bc 100755
 --- a/drivers/reset/reset-eswin.c
 +++ b/drivers/reset/reset-eswin.c
 @@ -3,7 +3,6 @@
@@ -537,7 +537,7 @@ index 9ad472bca4330..799795b267bc4 100755
 +arch_initcall(eswin_reset_init);
 diff --git a/include/dt-bindings/reset/eswin,eic770x-reset.h b/include/dt-bindings/reset/eswin,eic770x-reset.h
 new file mode 100755
-index 0000000000000..e544fa4da7484
+index 000000000000..e544fa4da748
 --- /dev/null
 +++ b/include/dt-bindings/reset/eswin,eic770x-reset.h
 @@ -0,0 +1,473 @@
@@ -1016,7 +1016,7 @@ index 0000000000000..e544fa4da7484
 +#endif /*endif __DT_ESWIN_EIC770X_RESET_H__*/
 diff --git a/include/dt-bindings/reset/eswin,win2030-syscrg.h b/include/dt-bindings/reset/eswin,win2030-syscrg.h
 deleted file mode 100755
-index 3c27a51c18aef..0000000000000
+index 3c27a51c18ae..000000000000
 --- a/include/dt-bindings/reset/eswin,win2030-syscrg.h
 +++ /dev/null
 @@ -1,693 +0,0 @@

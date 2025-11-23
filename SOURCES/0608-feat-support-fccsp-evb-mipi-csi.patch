@@ -14,7 +14,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-fccsp-camera-imx219.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-fccsp-camera-imx219.dtsi
 new file mode 100644
-index 0000000000000..87da239d0bcbb
+index 000000000000..87da239d0bcb
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-fccsp-camera-imx219.dtsi
 @@ -0,0 +1,487 @@
