@@ -1,4 +1,4 @@
-From 2340d41bdcb1a04dd960f9628c244139245ff92a Mon Sep 17 00:00:00 2001
+From e37c86720861a882c8a19ee37c0eb8a26d9855e2 Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:58:02 +0800
 Subject: [PATCH 627/652] fix(2d):process stuck,cherry-pick 164de56 from pm
@@ -50,5 +50,5 @@ index 52907911bf20..377ac7d0acad 100644
          } while (idle != 0x7FFFFFFF);
      }
 -- 
-2.51.1
+2.52.0
 

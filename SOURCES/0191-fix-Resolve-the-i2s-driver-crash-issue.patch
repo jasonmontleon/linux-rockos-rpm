@@ -1,4 +1,4 @@
-From f75730bf7c7582ba08c3c08ab70214aed5d29791 Mon Sep 17 00:00:00 2001
+From 690cf034b3f01920d4264b34bbd6cd92d13c207c Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 14 Oct 2024 14:35:38 +0800
 Subject: [PATCH 191/652] fix:Resolve the i2s driver crash issue.
@@ -71,5 +71,5 @@ index 4c5d33faade4..5774a03a270b 100755
  	}
  	return 0;
 -- 
-2.51.1
+2.52.0
 

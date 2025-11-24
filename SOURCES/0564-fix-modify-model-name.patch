@@ -1,4 +1,4 @@
-From cded0734e85cdd1c1c1237cabf699a475afe822e Mon Sep 17 00:00:00 2001
+From 903ff7dc88135c8a482ec274cb0dc6828724f2e5 Mon Sep 17 00:00:00 2001
 From: lijiayi <lijiayi@eswincomputing.com>
 Date: Tue, 17 Jun 2025 10:09:59 +0800
 Subject: [PATCH 564/652] fix:modify model name
@@ -27,5 +27,5 @@ index c0ae9e0f4518..c31a7615cb6c 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 -- 
-2.51.1
+2.52.0
 

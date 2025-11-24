@@ -1,4 +1,4 @@
-From 16b08c1dbec0173d6c90a1e53abce4a2984acbf0 Mon Sep 17 00:00:00 2001
+From 4a25e92f099d3e73784231ad5e448c9166a5b27c Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Mon, 27 May 2024 16:19:01 +0800
 Subject: [PATCH 047/652] feat(ISP): Add VI dev to linux 6.6
@@ -165,5 +165,5 @@ index 47122461e3fc..65b68c9e1d27 100644
  # CONFIG_DRM_I2C_CH7006 is not set
  # CONFIG_DRM_I2C_SIL164 is not set
 -- 
-2.51.1
+2.52.0
 

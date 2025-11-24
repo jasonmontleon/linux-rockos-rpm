@@ -1,4 +1,4 @@
-From 2022690ddc05d72c540d025c356184f8106c6ce7 Mon Sep 17 00:00:00 2001
+From 80af6d8e688c65f02779a211d9f6740ec3369534 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:07:39 +0800
 Subject: [PATCH 427/652] config: net: disable realtek phy for eic7700x
@@ -37,5 +37,5 @@ index 33c92223468f..db1039b3d49a 100644
  # CONFIG_NET_VENDOR_ROCKER is not set
  # CONFIG_NET_VENDOR_SAMSUNG is not set
 -- 
-2.51.1
+2.52.0
 

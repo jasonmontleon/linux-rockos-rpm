@@ -1,4 +1,4 @@
-From 40d620dc800530716158ccac609de5fc0792bbc7 Mon Sep 17 00:00:00 2001
+From 7963e87033580fec980cf10932a7647aa18a02bf Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 23 Oct 2024 17:22:11 +0800
 Subject: [PATCH 324/652] WIN2030-16551:feat: npu drv support device frequency
@@ -505,5 +505,5 @@ index a7d7b58cc849..a33c8efbcceb 100644
  }
  
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 7c743c2dc3a109c489ebaedcce420eaae5894c3e Mon Sep 17 00:00:00 2001
+From 923f411e0a21ee6ffe345a13204f9dcf4b0ba61c Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 28 Nov 2024 10:41:03 +0800
 Subject: [PATCH 298/652] WIN2030-16678:fix:add hsp clock for usb
@@ -74,5 +74,5 @@ index c05df53e7bf5..f0f24cad97a4 100644
  			resets = <&d1_reset HSPDMA_RST_CTRL SW_USB1_VAUX_RSTN>;
  			reset-names = "vaux";
 -- 
-2.51.1
+2.52.0
 

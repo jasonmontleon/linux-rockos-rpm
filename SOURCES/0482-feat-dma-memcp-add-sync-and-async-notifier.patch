@@ -1,4 +1,4 @@
-From 5aff32b73e68d9fbdb0bb982921ea0423be30d7a Mon Sep 17 00:00:00 2001
+From bf0f5b5621dce087832001e765c275760c3f0d54 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Wed, 19 Feb 2025 16:24:27 +0800
 Subject: [PATCH 482/652] feat:dma memcp add sync and async notifier
@@ -149,5 +149,5 @@ index 3cb75a348ba8..7d0ffdca4d99 100644
  
  #define ESW_MEMCP_MAGIC 			'M'
 -- 
-2.51.1
+2.52.0
 

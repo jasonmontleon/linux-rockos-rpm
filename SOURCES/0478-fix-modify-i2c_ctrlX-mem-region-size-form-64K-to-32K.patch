@@ -1,4 +1,4 @@
-From 3b5fe6454fedb089974d78068d9bcfc3725ebe47 Mon Sep 17 00:00:00 2001
+From 569fcaba2e958a74726e33f2d00eeef0ea9453ef Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 17 Apr 2025 16:04:08 +0800
 Subject: [PATCH 478/652] fix:modify i2c_ctrlX mem region size form 64K to 32K
@@ -137,5 +137,5 @@ index 3a6fe0d1240c..8320fb4207c7 100644
  				interrupt-parent = <&plic1>;
  				numa-node-id = <1>;
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 2376b8d6c328b61bd5ee3a1c70b7aa41767b9932 Mon Sep 17 00:00:00 2001
+From 89bae288e986482f2083ed5eb1287c039ad18f5f Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Mon, 10 Mar 2025 17:08:42 +0800
 Subject: [PATCH 452/652] feature:add 7702vpu dts
@@ -1828,5 +1828,5 @@ index 000000000000..124aceffac84
 +	status = "disabled";
 +};
 -- 
-2.51.1
+2.52.0
 

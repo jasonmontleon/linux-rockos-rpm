@@ -1,4 +1,4 @@
-From 5dcdaefd4cbcfba2302382db209aa511e5103781 Mon Sep 17 00:00:00 2001
+From 7f684974878dad689da9e632329595c147cf253b Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 28 Nov 2024 15:29:26 +0800
 Subject: [PATCH 326/652] WIN2030-16230:feat:audio add sof func.
@@ -3382,5 +3382,5 @@ index 000000000000..41cb55ba8d71
 +MODULE_LICENSE("GPL");
 +MODULE_ALIAS("platform:eswin dsp driver");
 -- 
-2.51.1
+2.52.0
 

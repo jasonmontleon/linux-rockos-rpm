@@ -1,4 +1,4 @@
-From f3a156594d1289ac719c7616bb74bc8b66da835c Mon Sep 17 00:00:00 2001
+From 0b7367dbfe3e2c57e2178ada48501a7057122c33 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 28 May 2024 13:14:44 +0800
 Subject: [PATCH 037/652] fix(llc_spram):Removed linux version check
@@ -28,5 +28,5 @@ index 01744360937c..e84f3650ae37 100644
  	 (spram->virt_base + phys - spram->phys_addr)
  
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From a50c3c42d4608657ff50783a198bd448e3513465 Mon Sep 17 00:00:00 2001
+From 4571fedcb22f74594dd0e73ed7f8ee7a6697f977 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 12 Jun 2025 13:49:35 +0800
 Subject: [PATCH 553/652] feat: use dev_dbg to print the uart noc err log
@@ -106,5 +106,5 @@ index cc232396f842..c6d44719db36 100644
  {
  	struct win2030_noc_device *noc_device = dev;
 -- 
-2.51.1
+2.52.0
 

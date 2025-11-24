@@ -1,4 +1,4 @@
-From 7be3fc2d7c98a08a328c0a96621ac20a139aed20 Mon Sep 17 00:00:00 2001
+From 00fd9fae6892f4fa6b538f79fd863975c2356a5f Mon Sep 17 00:00:00 2001
 From: Shenlin Liang <liangshenlin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 16:48:22 +0800
 Subject: [PATCH 552/652] feat:add vpu7702_pcie_factory.dts
@@ -1134,5 +1134,5 @@ index 000000000000..cf7b8dbc7680
 +	status = "okay";
 +};
 -- 
-2.51.1
+2.52.0
 

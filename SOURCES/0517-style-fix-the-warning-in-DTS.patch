@@ -1,4 +1,4 @@
-From 53eb4dbd24c56ba2cbf124b3bb3ae661c1fcfd0c Mon Sep 17 00:00:00 2001
+From 2e1604e520d3b756dd17b928da534e277d478458 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 27 May 2025 10:17:42 +0800
 Subject: [PATCH 517/652] style:fix the warning in DTS
@@ -434,5 +434,5 @@ index d35198469b21..766dcb95bb71 100644
  			reg = <2>;
  			hdmi_in_i2s: endpoint@1 {
 -- 
-2.51.1
+2.52.0
 

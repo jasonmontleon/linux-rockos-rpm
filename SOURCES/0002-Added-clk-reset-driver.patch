@@ -1,4 +1,4 @@
-From 12cd4d06ce39c3741d6e9704d8c8c3424579ea2d Mon Sep 17 00:00:00 2001
+From 6efc5745bc35ca878f5db3a8a1c0dc8ece39168f Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 11 Mar 2024 18:50:41 +0800
 Subject: [PATCH 002/652] Added clk & reset driver
@@ -3194,5 +3194,5 @@ index 000000000000..9ad472bca433
 +}
 +arch_initcall(win2030_reset_init);
 -- 
-2.51.1
+2.52.0
 

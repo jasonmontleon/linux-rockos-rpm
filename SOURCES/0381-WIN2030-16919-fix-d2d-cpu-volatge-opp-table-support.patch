@@ -1,4 +1,4 @@
-From 8fccc7c920d926f40f485e7c94eceb6f9486fb11 Mon Sep 17 00:00:00 2001
+From b5bae1179653c765d56ef4131ec2b38224d2a21c Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 10:55:39 +0800
 Subject: [PATCH 381/652] WIN2030-16919:fix:d2d cpu volatge & opp table support
@@ -401,5 +401,5 @@ index e243673c771d..425056d394b6 100755
  		dev_warn(dev, "failed to get cpu volatge gpio\n");
  		cpu_voltage_gpio = NULL;
 -- 
-2.51.1
+2.52.0
 

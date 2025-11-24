@@ -1,4 +1,4 @@
-From cba55799a6ea73514be0229c26e156a0034bb4d0 Mon Sep 17 00:00:00 2001
+From 0b67a46e04515210e98a60272b3f761aa9cc719a Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 11:15:06 +0800
 Subject: [PATCH 069/652] img gpu kmd: migrate from 5.17 to 6.6
@@ -419602,5 +419602,5 @@ index 000000000000..adbef2a038b4
 +
 +#endif /* PVRVERSION_H */
 -- 
-2.51.1
+2.52.0
 

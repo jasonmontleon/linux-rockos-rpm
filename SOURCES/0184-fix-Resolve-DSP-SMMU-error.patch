@@ -1,4 +1,4 @@
-From 1a43d2fca07b3917578620a30d506baa59a0a680 Mon Sep 17 00:00:00 2001
+From f76694d2ae1ac0d5b113443c4e512d6c44626e0a Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 27 Sep 2024 17:11:20 +0800
 Subject: [PATCH 184/652] fix:Resolve DSP SMMU error.
@@ -167,5 +167,5 @@ index 4933411fde94..644ff4b26c20 100644
  #endif
 \ No newline at end of file
 -- 
-2.51.1
+2.52.0
 

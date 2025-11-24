@@ -1,4 +1,4 @@
-From ef998d22bc6b514652aefe275e7d3e6c5f81fdbd Mon Sep 17 00:00:00 2001
+From 4e4304c25f1f7a30cf2fdc9e7fc132ed132fe66d Mon Sep 17 00:00:00 2001
 From: guozeyang <guozeyang@eswincomputing.com>
 Date: Fri, 20 Jun 2025 17:25:01 +0800
 Subject: [PATCH 573/652] fix:fix EVB MIPI spupport MP test
@@ -2089,5 +2089,5 @@ index 000000000000..8d5029ac2aa1
 +};
 \ No newline at end of file
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 72eee55cc51bec92f62672d0047af75615aafd86 Mon Sep 17 00:00:00 2001
+From 048ba26a17d29edbc0cf10ba7db9fa5cdb495bfa Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Tue, 1 Jul 2025 10:06:00 +0800
 Subject: [PATCH 590/652] feat: add aicard feature Changelogs:
@@ -2040,5 +2040,5 @@ index 000000000000..4f9eb65c2353
 +CONFIG_ESWIN_MALLOC_DMABUF=y
 +CONFIG_ESWIN_AICARD=y
 -- 
-2.51.1
+2.52.0
 

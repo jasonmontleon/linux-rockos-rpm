@@ -1,4 +1,4 @@
-From c0c7fe9c0fc69b93d3f9315afdc1eef771005bea Mon Sep 17 00:00:00 2001
+From f99fb213364f54b0817606f402a1f1b37342a5d0 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 10:39:21 +0800
@@ -720,5 +720,5 @@ index 000000000000..c8fbc1b3fc91
 +MODULE_DESCRIPTION("Eswin Boot SPI Controller Driver for EIC770X SoCs");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.51.1
+2.52.0
 

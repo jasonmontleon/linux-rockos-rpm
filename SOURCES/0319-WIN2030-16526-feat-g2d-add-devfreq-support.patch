@@ -1,4 +1,4 @@
-From ac75df769369407b13d48a5a766d2cfc6dc415a5 Mon Sep 17 00:00:00 2001
+From 39b1c974002192a29fcf9fb93e436574968add62 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 22 Oct 2024 14:46:26 +0800
 Subject: [PATCH 319/652] WIN2030-16526:feat:g2d add devfreq support
@@ -260,5 +260,5 @@ index 580267770992..970ea4314919 100644
      }
      return gcvSTATUS_OK;
 -- 
-2.51.1
+2.52.0
 

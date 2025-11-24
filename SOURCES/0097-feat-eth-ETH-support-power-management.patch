@@ -1,4 +1,4 @@
-From 3c1b3b46b3615da5c1be7d16b0763cfb4de8ea52 Mon Sep 17 00:00:00 2001
+From ca104813f45296a0911a4d92129118173cbb3d84 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Thu, 11 Jul 2024 14:04:35 +0800
 Subject: [PATCH 097/652] feat(eth): ETH support power management
@@ -126,5 +126,5 @@ index 0b37eabd6334..5a83b55357fb 100644
  	devm_gpiod_put(&pdev->dev, dwc_priv->phy_reset);
  
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From db5a992d718443b3acaa745d68c33137c1166174 Mon Sep 17 00:00:00 2001
+From 9bbdc82bb37c7324c85568410ce81de1edde91c6 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:34:21 +0800
 Subject: [PATCH 361/652] vvcam_dwe_driver: sync eswin 20241230 code
@@ -56,5 +56,5 @@ index d7b7695b9144..d462277fecc6 100644
  
  	if (pdev->id >= NUM_DEVICES) {
 -- 
-2.51.1
+2.52.0
 

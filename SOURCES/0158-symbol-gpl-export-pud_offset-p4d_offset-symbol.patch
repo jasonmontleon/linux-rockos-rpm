@@ -1,4 +1,4 @@
-From 7251905bf9cb75531aa17d9b31e37451531371d9 Mon Sep 17 00:00:00 2001
+From 6dcc60cbbc28ef45aaf481af54fdfdc120c9b1f5 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 7 Aug 2024 18:18:57 +0800
 Subject: [PATCH 158/652] symbol: gpl: export pud_offset/p4d_offset symbol
@@ -32,5 +32,5 @@ index ef887efcb679..21ea6ed76470 100644
  
  #ifdef CONFIG_HAVE_ARCH_HUGE_VMAP
 -- 
-2.51.1
+2.52.0
 

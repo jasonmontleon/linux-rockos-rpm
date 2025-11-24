@@ -1,4 +1,4 @@
-From b3105bfb914a75fcbae774282fe67b806143a9d5 Mon Sep 17 00:00:00 2001
+From 10d402ff1581980d1b299abcce62ec7116d2754b Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 10 Apr 2025 09:56:22 +0800
 Subject: [PATCH 466/652] fix:Resolve the issue of system crashes.
@@ -81,5 +81,5 @@ index f98ae647cd7c..99aab26af20f 100644
  
  #define DSP_FIRMWARE_IOVA 0xfe000000
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 2398a3d90794b88bbabd40d6881e76365746c2b7 Mon Sep 17 00:00:00 2001
+From 1679bceaaf6e401aa5d65b807bd3721110302701 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 16 Apr 2025 19:48:47 +0800
 Subject: [PATCH 491/652] feat: vpu7702 smmu cfg modify
@@ -32,5 +32,5 @@ index 4134802ddc5e..0a54b5c27bb6 100644
  			iommu-map = <0x000000 &smmu0 0xff0000 0xffffff>;
  			tbus = <WIN2030_TBUID_PCIE>;
 -- 
-2.51.1
+2.52.0
 

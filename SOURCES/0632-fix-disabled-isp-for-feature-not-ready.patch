@@ -1,4 +1,4 @@
-From fa4830a7c7ca49158f08c4c69044d0a682883d8c Mon Sep 17 00:00:00 2001
+From 04e299d75054f095d9a20cc54ef23bec248db34d Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Tue, 15 Jul 2025 14:46:08 +0800
 Subject: [PATCH 632/652] fix: disabled isp for feature not ready
@@ -38,5 +38,5 @@ index 466fc878547d..5f83942fd303 100644
  
  &dewarp {
 -- 
-2.51.1
+2.52.0
 

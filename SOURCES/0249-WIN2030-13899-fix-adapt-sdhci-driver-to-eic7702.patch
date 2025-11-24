@@ -1,4 +1,4 @@
-From 2a98c8781c39cdb37b2802a549c2e8ab12cdfb06 Mon Sep 17 00:00:00 2001
+From ba6cd8e78087d1492097e9a021d0c872ce60d99d Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 4 Sep 2024 14:56:47 +0800
 Subject: [PATCH 249/652] WIN2030-13899:fix:adapt sdhci driver to eic7702.
@@ -90,5 +90,5 @@ index a2afa1dbe862..242961e9d459 100644
  			compatible = "audio-graph-card";
  		};
 -- 
-2.51.1
+2.52.0
 

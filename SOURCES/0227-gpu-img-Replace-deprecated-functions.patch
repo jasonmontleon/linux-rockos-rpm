@@ -1,4 +1,4 @@
-From 77ce225b30ce9e81292c357f579b25e5666945da Mon Sep 17 00:00:00 2001
+From 295da66a21ede5ea4a7b5cc2b81464571f6d9262 Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Tue, 17 Sep 2024 10:18:04 +0000
 Subject: [PATCH 227/652] gpu: img: Replace deprecated functions
@@ -110,5 +110,5 @@ index e3656108e963..e29c4dfeac61 100644
  
  enum PVRSRV_ERROR_TAG pvr_sync_device_init(struct device *dev)
 -- 
-2.51.1
+2.52.0
 

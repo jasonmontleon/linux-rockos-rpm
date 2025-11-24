@@ -1,4 +1,4 @@
-From 5c332251c00246d8ee1486333f9331802ee046de Mon Sep 17 00:00:00 2001
+From ddb84cc44b3ead4c44e21435a56210aa22330d78 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 16 Apr 2025 10:19:42 +0800
 Subject: [PATCH 477/652] feat:make dma period size under 500ms
@@ -40,5 +40,5 @@ index 80787986d26d..36f35cf22997 100644
  	hw.fifo_size = dma_data->fifo_size;
  	hw.info |= SNDRV_PCM_INFO_BATCH;
 -- 
-2.51.1
+2.52.0
 

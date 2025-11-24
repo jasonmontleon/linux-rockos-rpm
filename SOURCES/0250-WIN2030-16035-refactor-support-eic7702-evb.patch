@@ -1,4 +1,4 @@
-From 72c498c9b6ecc27135784c040ceafd09c19757b2 Mon Sep 17 00:00:00 2001
+From 5bf3f3919d70016e07649060d1d3f224cc67b64b Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 5 Sep 2024 16:14:07 +0800
 Subject: [PATCH 250/652] WIN2030-16035:refactor:support eic7702 evb
@@ -1108,5 +1108,5 @@ index a88123c81ace..f73cda043cbc 100644
 -
  device_initcall(sifive_ccache_init);
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 2b0e5ba1c08e03b653952b360b804abe6d3a8a5f Mon Sep 17 00:00:00 2001
+From 29d542522285f1e2594a9af5d1bf4e805989b819 Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/652] Merge patch series "membarrier: riscv: Core
@@ -126,7 +126,7 @@ index 000000000000..2387804b1c63
 +The barrier matches a full barrier in the proximity of the membarrier system call
 +entry, cf. membarrier_{private,global}_expedited().
 diff --git a/MAINTAINERS b/MAINTAINERS
-index 294d2ce29b73..45778c833e51 100644
+index c1aafeb3babf..36bf8abdc0d4 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -13703,7 +13703,9 @@ M:	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
@@ -348,5 +348,5 @@ index 4e715b9b278e..809194cd779f 100644
  	 */
  	smp_mb();	/* exit from system call is not a mb */
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 6a2291f9b4518a24ec4249cab4ebd1282191c649 Mon Sep 17 00:00:00 2001
+From 9c33f6dbfc68a38caecba6c50d6b1ce84af64f43 Mon Sep 17 00:00:00 2001
 From: HanGao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:26:32 +0800
 Subject: [PATCH 404/652] iommu: eswin: sync remove internal arguments from
@@ -50,5 +50,5 @@ index 7a4d5fe5002e..e3308e4e35ee 100644
  		if (0 == win2030_get_tbu_priv(nid, tbu_id, &tbu_priv_p)) {
  			tbu_client_p = tbu_priv_p->tbu_client_p;
 -- 
-2.51.1
+2.52.0
 

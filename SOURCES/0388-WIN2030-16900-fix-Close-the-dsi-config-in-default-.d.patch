@@ -1,4 +1,4 @@
-From 1ffef4a0fc41d7ff9648eaa4241601ebdca4ea8d Mon Sep 17 00:00:00 2001
+From b25471a9ab124a0718be5358b733134785216799 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 21 Jan 2025 13:10:51 +0800
 Subject: [PATCH 388/652] WIN2030-16900:fix:Close the dsi config in default
@@ -44,5 +44,5 @@ index eb5fb2350a9d..ce1ca4a3b815 100644
  #include <dt-bindings/interrupt-controller/irq.h>
  #include <dt-bindings/gpio/gpio.h>
 -- 
-2.51.1
+2.52.0
 

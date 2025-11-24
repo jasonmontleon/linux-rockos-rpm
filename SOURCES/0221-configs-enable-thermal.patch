@@ -1,4 +1,4 @@
-From 1e3c662cf2c6de0d3a4937e0e7e5b064abd11169 Mon Sep 17 00:00:00 2001
+From 7b250c7ae1ede02ced88dd95a531363937b24cad Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 4 Nov 2024 21:38:53 +0800
 Subject: [PATCH 221/652] configs: enable thermal
@@ -384,5 +384,5 @@ index 7030600cba92..39409f08c222 100644
 -CONFIG_VIDEO_ESWIN_VDEC=y
 -CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 -- 
-2.51.1
+2.52.0
 

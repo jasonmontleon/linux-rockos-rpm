@@ -1,4 +1,4 @@
-From 84e3836351a3b6ae37b9374557658123cccd44f4 Mon Sep 17 00:00:00 2001
+From 549b989cef8c52a4ae25b2308af1b4d90db2b8f3 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Mon, 30 Dec 2024 20:30:39 +0800
 Subject: [PATCH 369/652] WIN2030-16708:fix:Fix squeezenet bug
@@ -28,5 +28,5 @@ index 8c91949cb9da..5207c17be540 100644
  			}
  		}
 -- 
-2.51.1
+2.52.0
 

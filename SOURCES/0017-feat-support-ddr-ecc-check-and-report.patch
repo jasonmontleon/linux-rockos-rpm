@@ -1,4 +1,4 @@
-From d9e171e9f5d965ae4cb265842ac742ce94f7af36 Mon Sep 17 00:00:00 2001
+From 2cc850cd71ffa4f401e032c72bddfe79045f5096 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 11:01:05 +0800
 Subject: [PATCH 017/652] feat:support ddr ecc check and report
@@ -1473,5 +1473,5 @@ index 000000000000..82d75406cc48
 +MODULE_DESCRIPTION("Synopsys DDR ECC driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.51.1
+2.52.0
 

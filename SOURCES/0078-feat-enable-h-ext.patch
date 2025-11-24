@@ -1,4 +1,4 @@
-From f17a6190db5cbe84f57fb3d3a6ee4283bf7d898f Mon Sep 17 00:00:00 2001
+From 0268d99fc0dee785836fba0cfe3329c492fcdcb6 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 26 Jun 2024 21:42:42 +0800
 Subject: [PATCH 078/652] feat: enable h ext
@@ -126,5 +126,5 @@ index 3571f134aacc..cde282a61863 100644
  			riscv,pmpregions = <8>;
  			sifive,buserror = <&L31>;
 -- 
-2.51.1
+2.52.0
 

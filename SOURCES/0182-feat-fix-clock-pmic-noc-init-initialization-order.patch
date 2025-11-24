@@ -1,4 +1,4 @@
-From 6784d148c1d083eb93e3c31558765750726a37dc Mon Sep 17 00:00:00 2001
+From ef79b1b2195d45edb6b8ca8a6252e4427d096a4a Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 25 Sep 2024 16:04:43 +0800
 Subject: [PATCH 182/652] feat:fix clock&pmic&noc init initialization order
@@ -182,5 +182,5 @@ index c26567e5aa80..ed71d83c3060 100644
  			mdelay(10);
  		}
 -- 
-2.51.1
+2.52.0
 

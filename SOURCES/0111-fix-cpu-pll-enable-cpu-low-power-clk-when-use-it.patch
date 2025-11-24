@@ -1,4 +1,4 @@
-From fcdb8a61ce4d4e5625e9cbf05058917a7da434fc Mon Sep 17 00:00:00 2001
+From 5e79376af92cc1ba0f1d910c2423c008565f9fba Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 10:11:52 +0800
 Subject: [PATCH 111/652] fix(cpu pll): enable cpu low power clk when use it.
@@ -59,5 +59,5 @@ index 685f6377d9f8..06569c72ba37 100755
  
  static unsigned long clk_pll_recalc_rate(struct clk_hw *hw,
 -- 
-2.51.1
+2.52.0
 

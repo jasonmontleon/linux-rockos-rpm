@@ -1,4 +1,4 @@
-From 8225798e71346d324e87b40110ac8fbda15be765 Mon Sep 17 00:00:00 2001
+From 4b369e679dfaf65bf601b645322ff33f94aee537 Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Wed, 2 Jul 2025 16:45:52 +0800
 Subject: [PATCH 593/652] feat:Update vpu7702-pcie-a2.dts.
@@ -165,5 +165,5 @@ index c31a7615cb6c..5c4cd1f6f851 100644
  	status = "disabled";
  };
 -- 
-2.51.1
+2.52.0
 

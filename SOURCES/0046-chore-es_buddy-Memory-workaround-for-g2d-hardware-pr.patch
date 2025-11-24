@@ -1,4 +1,4 @@
-From ba4bf64cab1294471569e3686691b7e4103f9251 Mon Sep 17 00:00:00 2001
+From 2de7ba4643310f8daa5083a0f733e00865a5b40b Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 4 Jun 2024 14:23:32 +0800
 Subject: [PATCH 046/652] chore(es_buddy):Memory workaround for g2d hardware
@@ -64,5 +64,5 @@ index e3c509a511c6..bc0fd6eb6ddb 100644
  							   unsigned long start_addr,
  							   unsigned long page_num);
 -- 
-2.51.1
+2.52.0
 

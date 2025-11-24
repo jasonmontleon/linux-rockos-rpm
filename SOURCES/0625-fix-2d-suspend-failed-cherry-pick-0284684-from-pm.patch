@@ -1,4 +1,4 @@
-From 293df47279ee850cdd237fd5d508ce910f7c4ade Mon Sep 17 00:00:00 2001
+From 7948fcbcbb0638bdee2d0f027a0f7a088dc95e15 Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Wed, 16 Apr 2025 13:26:22 +0800
 Subject: [PATCH 625/652] fix(2d):suspend failed,cherry-pick 0284684 from pm
@@ -94,5 +94,5 @@ index 81dc4fcb6a6e..b7481fdb4a01 100644
          }
      }
 -- 
-2.51.1
+2.52.0
 

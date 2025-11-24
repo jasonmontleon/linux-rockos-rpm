@@ -1,4 +1,4 @@
-From 66d86316b94b0d2e7ded32d6756c534056424383 Mon Sep 17 00:00:00 2001
+From a742003f0325f72c6cd23fd249f4a97f157a5329 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 14 May 2025 18:21:01 +0800
 Subject: [PATCH 508/652] fix: fix dc endpoint index
@@ -33,5 +33,5 @@ index 3095384d7279..0472c026c77f 100644
  		};
  	};
 -- 
-2.51.1
+2.52.0
 

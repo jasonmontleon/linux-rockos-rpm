@@ -1,4 +1,4 @@
-From 67b6d9e7ea6fa628ca23b5179d527ee2c69bf020 Mon Sep 17 00:00:00 2001
+From 16ddb436f58057c598b91eb2d1246432c89d720f Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 19 Jun 2024 15:53:32 +0800
 Subject: [PATCH 056/652] fix(vo): Fix cursor layer resolution
@@ -120,5 +120,5 @@ index 885d225c9203..1578aad0d79c 100644
  	bool dirty;
  };
 -- 
-2.51.1
+2.52.0
 

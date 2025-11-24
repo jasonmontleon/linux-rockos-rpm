@@ -1,4 +1,4 @@
-From db62ac3b3a0b51c14b3c15edda863d726ed1c4fb Mon Sep 17 00:00:00 2001
+From 898670b5900f18b0e403f29a2226be638e678e3b Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Tue, 30 Jul 2024 14:03:46 +0800
 Subject: [PATCH 131/652] fix:fix regulator warning print
@@ -193,5 +193,5 @@ index d9495dfe9887..c97431f008a2 100644
  static const struct of_device_id ahci_of_match[] = {
      { .compatible = "snps,eswin-ahci", },
 -- 
-2.51.1
+2.52.0
 

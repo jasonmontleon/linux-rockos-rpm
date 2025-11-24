@@ -1,4 +1,4 @@
-From 25766d6e159417d19258be274f96aaa78be1c4ac Mon Sep 17 00:00:00 2001
+From b3c6ca28f2e0163af3d7a868bff53e28a95be35b Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Wed, 21 May 2025 13:45:33 +0800
 Subject: [PATCH 511/652] feat: update escl linux dependency
@@ -32,5 +32,5 @@ index 1585a666d16f..c151e2f411bb 100644
  CONFIG_TI_ADS1015=y
 +CONFIG_ESWIN_MALLOC_DMABUF=y
 -- 
-2.51.1
+2.52.0
 

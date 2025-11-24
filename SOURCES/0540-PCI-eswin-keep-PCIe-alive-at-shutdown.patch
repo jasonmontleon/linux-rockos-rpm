@@ -1,4 +1,4 @@
-From 1c9fbfa8ca45d00d3c711a97965ba3771464ce14 Mon Sep 17 00:00:00 2001
+From 4a9acca738386dda3a998f581a98f103ab6e86ae Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Tue, 8 Jul 2025 11:37:06 +0800
 Subject: [PATCH 540/652] PCI: eswin: keep PCIe alive at shutdown
@@ -38,5 +38,5 @@ index 9b59531abe9a..de90f5b57971 100644
 \ No newline at end of file
 +MODULE_LICENSE("GPL v2");
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 9d43a9ac5b24cd4559886b79feab090cbf3241bd Mon Sep 17 00:00:00 2001
+From c162414d5d238c24fc8b3aaf1d9f6b5c6144760b Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 22 May 2024 17:27:11 +0800
 Subject: [PATCH 014/652] feat:Add emmc and sdio driver.
@@ -2894,5 +2894,5 @@ index 000000000000..591315f48cbc
 +MODULE_AUTHOR("liangshuang@eswin.com");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.51.1
+2.52.0
 

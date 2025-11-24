@@ -1,4 +1,4 @@
-From 11e2e8065ddc96de7e62d5c75f455e335b818e32 Mon Sep 17 00:00:00 2001
+From 48df9e7c59f50c3aa7cbbf89d9acc880fd682d93 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 17 Mar 2025 17:46:39 +0800
 Subject: [PATCH 444/652] fix:disable regulator-always-on feature
@@ -118,5 +118,5 @@ index 93da8eba92f1..a8ac0f6b857c 100644
  		};
  	};
 -- 
-2.51.1
+2.52.0
 

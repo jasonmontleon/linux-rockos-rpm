@@ -1,4 +1,4 @@
-From 729af806caa4d3bc0e6978169730e29f9445376b Mon Sep 17 00:00:00 2001
+From e9447d254f3b9c2f22702cec0f4ff05ec63bfc01 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 24 Oct 2024 15:02:58 +0800
 Subject: [PATCH 338/652] WIN2030-14758:feat:add interleave dts
@@ -1564,5 +1564,5 @@ index 000000000000..8e0d8e10a664
 +	gpio111 : lcd touch resetn(O)
 +*/
 -- 
-2.51.1
+2.52.0
 

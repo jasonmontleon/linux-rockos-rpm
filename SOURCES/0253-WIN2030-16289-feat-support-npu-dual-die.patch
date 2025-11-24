@@ -1,4 +1,4 @@
-From d4b5c781affab51ae08156be2b23bca36eff8f9b Mon Sep 17 00:00:00 2001
+From 77aa3b79624e54d5d402b7614dd9bbe96ec09996 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Mon, 9 Sep 2024 14:09:30 +0800
 Subject: [PATCH 253/652] WIN2030-16289:feat:support npu dual die
@@ -122,5 +122,5 @@ index 5be5d6f3d76a..95cc804403c9 100644
  			interrupt-parent = <&plic1>;
  			interrupts = <387 16>;
 -- 
-2.51.1
+2.52.0
 

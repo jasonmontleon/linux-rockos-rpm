@@ -1,4 +1,4 @@
-From 9be43999a4953de83e76a009a6a21e42b6bd674c Mon Sep 17 00:00:00 2001
+From f26c9e6dd95936dbc8f50f3ebf998f0982f20f0c Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Tue, 21 May 2024 15:57:24 +0800
 Subject: [PATCH 013/652] feat: Add VO support for linux 6.6
@@ -18481,5 +18481,5 @@ index 000000000000..0cde34421994
 +
 +#endif // _HOST_LIB_DRIVER_LINUX_IF_H_
 -- 
-2.51.1
+2.52.0
 

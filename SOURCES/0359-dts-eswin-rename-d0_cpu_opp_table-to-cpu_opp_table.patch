@@ -1,4 +1,4 @@
-From 8cdbb88dc93581637b9dd937f9668c045aee3d6d Mon Sep 17 00:00:00 2001
+From fa0aff98f18f9445e555faf1974d525792aa4918 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:30:25 +0800
 Subject: [PATCH 359/652] dts: eswin: rename d0_cpu_opp_table to cpu_opp_table
@@ -64,5 +64,5 @@ index 4f93ff6213e8..8975632b0325 100644
  		opp-hz = /bits/ 64 <CLK_FREQ_1500M>;
  		opp-microvolt = <900000>;
 -- 
-2.51.1
+2.52.0
 

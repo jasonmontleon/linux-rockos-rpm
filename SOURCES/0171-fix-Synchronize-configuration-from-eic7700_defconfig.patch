@@ -1,4 +1,4 @@
-From f61f38c4335b85b7ac7c9f5cf51b91002f2283c0 Mon Sep 17 00:00:00 2001
+From 13c07dbd1ac88c349b3fb127ec0afbb9b7000a6e Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 9 Sep 2024 10:29:47 +0800
 Subject: [PATCH 171/652] fix:Synchronize configuration from eic7700_defconfig
@@ -41,5 +41,5 @@ index 328c51187781..ed5d3e6ea9e3 100644
  CONFIG_PRINTK_TIME=y
  CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
 -- 
-2.51.1
+2.52.0
 

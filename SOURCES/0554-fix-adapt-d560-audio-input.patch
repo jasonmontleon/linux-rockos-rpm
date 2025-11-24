@@ -1,4 +1,4 @@
-From 92f972fe1044395ad9a4b68a2cff2b7e9d17d27c Mon Sep 17 00:00:00 2001
+From 82690420b8795a1b5e0a156bd54712a0d7e5c7b4 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Mon, 12 May 2025 11:27:02 +0800
 Subject: [PATCH 554/652] fix:adapt d560 audio input
@@ -37,5 +37,5 @@ index 29c7fbc030fe..a31f359283ed 100644
      /* pin header default function for GPIO
         D0_SPI1 (CS0,SCLK,MOSI,MISO,D2,D3): GPIO 35,36,37,38,39,40
 -- 
-2.51.1
+2.52.0
 

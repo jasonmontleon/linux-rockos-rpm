@@ -1,4 +1,4 @@
-From 1268656c8d717692c556782c74aed50bb12e2e85 Mon Sep 17 00:00:00 2001
+From f8858e4cb9fd0d0e97dd22f9a94e7aa2695e592e Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 14:20:11 -0500
 Subject: [PATCH 646/652] uninvert the fan...
@@ -20,5 +20,5 @@ index 614e8f708b6d..aa4741af7aba 100644
  
  &d0_i2c0 {
 -- 
-2.51.1
+2.52.0
 

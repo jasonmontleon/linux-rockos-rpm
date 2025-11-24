@@ -1,4 +1,4 @@
-From 9c5932f0899d4938949c41efee7e3f76aee92e86 Mon Sep 17 00:00:00 2001
+From 008c3ce2018e59bcbae3774365442f224873155c Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 2 Jan 2025 20:13:04 +0800
 Subject: [PATCH 372/652] WIN2030-16607:feat:adapt new eth params to 7702-evb.
@@ -140,5 +140,5 @@ index ef4dd86c24e2..6141c93d92d0 100644
  	dly-param-10m = <0 0 0>;
  	status = "okay";
 -- 
-2.51.1
+2.52.0
 

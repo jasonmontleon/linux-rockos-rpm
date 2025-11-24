@@ -1,4 +1,4 @@
-From 4940ed099518a25a423b427aa3687776be4e90dc Mon Sep 17 00:00:00 2001
+From 0a4996e3803e76f805e5cfbd04b72c0304623a9e Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Wed, 11 Sep 2024 17:21:40 +0800
 Subject: [PATCH 263/652] WIN2030-16286:feat:fix 2d cannot alloc die0 cma addr
@@ -94,5 +94,5 @@ index 2f36205bc50e..e23aace10f03 100644
  		d1_sdhci_emmc: mmc@70450000 {
  			compatible = "eswin,emmc-sdhci-5.1";
 -- 
-2.51.1
+2.52.0
 

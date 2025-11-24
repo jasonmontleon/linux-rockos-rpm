@@ -1,4 +1,4 @@
-From ceb433e0aa81ee155cb7a4ae9f76f357c8ac2683 Mon Sep 17 00:00:00 2001
+From 910e50a1da8a902d18c02420ee1e1acf049bed3a Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 4 Jul 2025 17:10:14 +0800
 Subject: [PATCH 610/652] feat:support IPA in VPU
@@ -396,5 +396,5 @@ index eb06fee59706..45b98b871a63 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.51.1
+2.52.0
 

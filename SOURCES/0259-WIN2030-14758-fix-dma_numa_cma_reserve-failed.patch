@@ -1,4 +1,4 @@
-From e40d832e6d459f05273251218e87350187884575 Mon Sep 17 00:00:00 2001
+From f5c087269fbd92913881d3e41467091b8011ac3d Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 10 Sep 2024 13:11:44 +0800
 Subject: [PATCH 259/652] WIN2030-14758:fix:dma_numa_cma_reserve failed
@@ -82,5 +82,5 @@ index bdf8ac6c7e30..6584317decd5 100644
  	memblock_dump_all();
  }
 -- 
-2.51.1
+2.52.0
 

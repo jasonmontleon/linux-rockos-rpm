@@ -1,4 +1,4 @@
-From 8aeada699e64f30e9f251115dcf3a05c7ee59911 Mon Sep 17 00:00:00 2001
+From b94af9c013cafde13eb348552d7ca13c5dba68a4 Mon Sep 17 00:00:00 2001
 From: hehuan1 <hehuan1@eswincomputing.com>
 Date: Mon, 16 Jun 2025 14:01:19 +0800
 Subject: [PATCH 581/652] fix: pvt0 label info inaccurate
@@ -33,5 +33,5 @@ index fd8dec5db85e..f4842c96bbb2 100644
  
  static const struct pvt_sensor_info pvt_info_ddr[] = {
 -- 
-2.51.1
+2.52.0
 

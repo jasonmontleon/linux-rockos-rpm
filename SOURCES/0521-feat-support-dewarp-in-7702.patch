@@ -1,4 +1,4 @@
-From de3fa706d466cb0475d400c40d8efe6a995106cc Mon Sep 17 00:00:00 2001
+From 46673b0851f67dc9b11250498b8a5befef1f0ff9 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 29 May 2025 10:30:27 +0800
 Subject: [PATCH 521/652] feat:support dewarp in 7702
@@ -67,5 +67,5 @@ index e6a2e0400b91..af10604c71d3 100644
 +CONFIG_VIDEO_ESWIN_VI_TOP=y
 +CONFIG_VIDEO_ESWIN_DVP2AXI=y
 -- 
-2.51.1
+2.52.0
 

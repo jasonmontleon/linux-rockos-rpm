@@ -1,4 +1,4 @@
-From 89d18e0ca74492a7a01eeac417ce69f19561eaa7 Mon Sep 17 00:00:00 2001
+From cd7ced3d4d60a98bce41ff28a74837897acb4bdc Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Thu, 25 Jul 2024 18:13:06 +0800
 Subject: [PATCH 119/652] feat:PCIe Controller PM support power on/off.
@@ -44,5 +44,5 @@ index 498a26304aea..e8d60d183d2b 100644
  
  	return err;
 -- 
-2.51.1
+2.52.0
 

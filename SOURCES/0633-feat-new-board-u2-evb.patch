@@ -1,4 +1,4 @@
-From bdb9707cd654971a1f6cdb47c655e2fb54211a35 Mon Sep 17 00:00:00 2001
+From b62157ca8367dea8b1b77155d6c7397ab755297a Mon Sep 17 00:00:00 2001
 From: Joey Zheng <zhengyu@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:24:25 +0800
 Subject: [PATCH 633/652] feat:new board u2 evb
@@ -2692,5 +2692,5 @@ index 000000000000..63c898d93c77
 +CONFIG_VIDEO_ESWIN_VI_TOP=y
 +CONFIG_VIDEO_ESWIN_DVP2AXI=y
 -- 
-2.51.1
+2.52.0
 

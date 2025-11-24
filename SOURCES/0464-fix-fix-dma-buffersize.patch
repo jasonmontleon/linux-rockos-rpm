@@ -1,4 +1,4 @@
-From 3c5586db2676e5cd6f9fa7270cf93b5681a618ca Mon Sep 17 00:00:00 2001
+From 76e3f57e873b2caac4d4a1f16b4938f5c1444ef1 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Tue, 8 Apr 2025 15:14:28 +0800
 Subject: [PATCH 464/652] fix:fix dma buffersize
@@ -49,5 +49,5 @@ index 14a365e84718..0603030cc424 100644
  	memset(&slave_config, 0, sizeof(slave_config));
  
 -- 
-2.51.1
+2.52.0
 

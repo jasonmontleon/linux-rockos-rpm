@@ -1,4 +1,4 @@
-From 11b92c7f1d21dbf7c001bcabe880439cfc17086f Mon Sep 17 00:00:00 2001
+From 7f647e1e2827b416bf9c2f642fded2dba3c61429 Mon Sep 17 00:00:00 2001
 From: hejiean <hejiean@eswincomputing.com>
 Date: Mon, 17 Mar 2025 18:55:55 +0800
 Subject: [PATCH 447/652] feat(kernel): Add CacheFlushAll API for lib_memory
@@ -435,5 +435,5 @@ index 1bb76ebb5aa8..27a5f0a94352 100644
  
  //corresponding to MMZ_VB_IOCTL_DMABUF_SIZE
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 963e18b526989676a64eb235e60faf1f8126d940 Mon Sep 17 00:00:00 2001
+From a56cc1583de9e483b9d76b386c433c2bf9faf459 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 15 Jul 2025 16:33:18 +0800
 Subject: [PATCH 634/652] fix: fix no dewarp dev node
@@ -26,5 +26,5 @@ index 6a419ddbc324..c2c51545ae2a 100644
  				interrupts = <26 25>;
  				#size-cells = <2>;
 -- 
-2.51.1
+2.52.0
 

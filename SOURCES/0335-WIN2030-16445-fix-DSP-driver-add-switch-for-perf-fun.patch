@@ -1,4 +1,4 @@
-From a7d0c81d3dbe77c6c22c401b0f23a7e2a43fa470 Mon Sep 17 00:00:00 2001
+From 80dd4483a9d153b27ee30aa6988abed6564221f5 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 12 Dec 2024 10:03:21 +0800
 Subject: [PATCH 335/652] WIN2030-16445:fix:DSP driver add switch for perf
@@ -52,5 +52,5 @@ index e433e1af883b..d9fb51b3c14d 100755
 +
  ccflags-y += -DDSP_ENV_SIM=${DSP_ENV_SIM} -DBUILD_RELEASE=${BUILD_RELEASE} -DDEBUG_LEVEL=${DEBUG_LEVEL} -w
 -- 
-2.51.1
+2.52.0
 

@@ -1,4 +1,4 @@
-From 10ecb494b0c1bb6835eb06f0e9f8900f5080ceec Mon Sep 17 00:00:00 2001
+From c23e79461e67ffebb88b449dd59732c4e9106608 Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:50:20 +0800
 Subject: [PATCH 626/652] fix(2d):power off delay,cherry-pick c81694e from pm
@@ -123,5 +123,5 @@ index b7481fdb4a01..eae6ecbf41a0 100644
                  status = gckHARDWARE_SetPowerState(device->kernels[i]->hardware, statesStored);
                  if (gcmIS_ERROR(status)) {
 -- 
-2.51.1
+2.52.0
 

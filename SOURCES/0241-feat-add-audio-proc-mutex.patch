@@ -1,4 +1,4 @@
-From 5b2e08511abcd15ae81d2ad374d26417dbc3b53f Mon Sep 17 00:00:00 2001
+From e2edc7e04df45a0a271fb9c2e136e85a45b1768b Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Fri, 8 Nov 2024 14:56:51 +0800
 Subject: [PATCH 241/652] feat:add audio proc mutex.
@@ -87,5 +87,5 @@ index f0c0cbe10f56..83c3bbb26c73 100644
  	pr_info("es_audio_proc: uninitialized\n");
  }
 -- 
-2.51.1
+2.52.0
 

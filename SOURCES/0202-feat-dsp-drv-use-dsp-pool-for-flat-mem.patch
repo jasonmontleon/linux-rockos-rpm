@@ -1,4 +1,4 @@
-From fac8b770507ed025862e03eda8afe45a48a515c1 Mon Sep 17 00:00:00 2001
+From 9151d2884068edf45073a04ec976d2362f121208 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 23 Oct 2024 18:23:02 +0800
 Subject: [PATCH 202/652] feat: dsp drv use dsp pool for flat mem
@@ -327,5 +327,5 @@ index 000000000000..946bf3840680
 +void dsp_pool_destroy(struct dsp_pool *pool);
 +#endif
 -- 
-2.51.1
+2.52.0
 

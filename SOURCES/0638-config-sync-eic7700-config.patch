@@ -1,4 +1,4 @@
-From d89ceff9876f0c562f7c565a0aeea8d1431b0e7b Mon Sep 17 00:00:00 2001
+From ac6f961aa51d31222e59801523fc63ab1d5f8338 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Tue, 12 Aug 2025 22:54:06 +0800
 Subject: [PATCH 638/652] config: sync eic7700 config
@@ -46,5 +46,5 @@ index 31bc21c2496f..a3d3b8f07f15 100644
  CONFIG_DEBUG_PAGEALLOC=y
  CONFIG_SCHED_STACK_END_CHECK=y
 -- 
-2.51.1
+2.52.0
 

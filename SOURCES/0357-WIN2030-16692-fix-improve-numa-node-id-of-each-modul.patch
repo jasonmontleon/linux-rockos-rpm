@@ -1,4 +1,4 @@
-From 88c599e32dabf726021b64f037d2960acf323b1c Mon Sep 17 00:00:00 2001
+From 27a6029127a35ca96d23f5b788bd52dee93569d3 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 24 Dec 2024 20:19:31 +0800
 Subject: [PATCH 357/652] WIN2030-16692:fix:improve numa-node-id of each module
@@ -1066,5 +1066,5 @@ index b7405c6d6e49..454427d67f0c 100644
  
  		d1_numa_sample:numa_sample@1 {
 -- 
-2.51.1
+2.52.0
 

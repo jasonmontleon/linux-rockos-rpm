@@ -1,4 +1,4 @@
-From 45beaa74ead3469a45d351c1ca216657a27a1958 Mon Sep 17 00:00:00 2001
+From a1023b01108616ec8142e8f77017669c944d9021 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 11 Nov 2024 23:30:40 +0800
 Subject: [PATCH 231/652] HACK: reject sscofpmf for kvm
@@ -25,5 +25,5 @@ index e2e2a115afb5..0a8ab8c3700f 100644
  	ret = riscv_pmu_get_hpm_info(&hpm_width, &num_hw_ctrs);
  	if (ret < 0 || !hpm_width || !num_hw_ctrs)
 -- 
-2.51.1
+2.52.0
 

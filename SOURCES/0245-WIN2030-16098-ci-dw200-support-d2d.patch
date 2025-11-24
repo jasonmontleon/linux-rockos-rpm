@@ -1,4 +1,4 @@
-From b5676709e5273b5741ac826e67cbb559df30a136 Mon Sep 17 00:00:00 2001
+From 7ec6d11179046fb40743cd6ce1a41aa6cc7b1769 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Mon, 12 Aug 2024 18:41:31 +0800
 Subject: [PATCH 245/652] WIN2030-16098:ci:dw200 support d2d
@@ -875,5 +875,5 @@ index 78a843e5f85d..f1ab8835ceac 100644
  MODULE_DESCRIPTION("DWE");
  MODULE_LICENSE("GPL");
 -- 
-2.51.1
+2.52.0
 
