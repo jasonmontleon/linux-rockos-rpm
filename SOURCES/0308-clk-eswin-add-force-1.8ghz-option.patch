@@ -1,4 +1,4 @@
-From 602e3f3c16568b277e234a5a6048309552e8f929 Mon Sep 17 00:00:00 2001
+From 859188506f9300ba4504483236b03052cd2009a9 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 23:48:41 +0800
 Subject: [PATCH 308/652] clk: eswin: add force 1.8ghz option

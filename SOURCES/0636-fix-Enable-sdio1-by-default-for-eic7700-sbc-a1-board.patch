@@ -1,4 +1,4 @@
-From c9d52d4f8e9cf8eb030ce7ad45c31ef4ef4f5623 Mon Sep 17 00:00:00 2001
+From 4657bec73dd0963ab2d423da303c87778be8f14f Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Fri, 25 Jul 2025 11:18:52 +0800
 Subject: [PATCH 636/652] fix:Enable sdio1 by default for eic7700-sbc-a1 board

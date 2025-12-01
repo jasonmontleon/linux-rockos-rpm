@@ -1,4 +1,4 @@
-From ef2c5944b72aef5b06440c3785afe24cc8671d06 Mon Sep 17 00:00:00 2001
+From e6cabcc3ad75389b5f1eddc6e753f83c67fa1904 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:04:57 +0800
 Subject: [PATCH 224/652] enable CONFIG_CRYPTO_DEV_ESWIN_EIC770x=y

@@ -1,4 +1,4 @@
-From a251259ecfba4a94b06063e22b69b55edc6a4367 Mon Sep 17 00:00:00 2001
+From 979858133459812c450c9eb637f89a6bbeb5add8 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 6 Dec 2024 14:04:05 +0800
 Subject: [PATCH 330/652] WIN2030-16445:fix:audio driver add 24 bits support.

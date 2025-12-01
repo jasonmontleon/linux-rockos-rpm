@@ -1,4 +1,4 @@
-From dbf72009c6d6ae1a9c1b5d06d8ef9d7f268a414a Mon Sep 17 00:00:00 2001
+From dd1c140a9b8e6d2f05558036dd355116a4fa722f Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 16:45:33 +0800
 Subject: [PATCH 382/652] WIN2030-16919:fix:select HAVE_SETUP_PER_CPU_AREA if

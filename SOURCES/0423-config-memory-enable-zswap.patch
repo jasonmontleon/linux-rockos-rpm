@@ -1,4 +1,4 @@
-From 9f27afd9d3b4e30bbc270dace00223df166870c0 Mon Sep 17 00:00:00 2001
+From 90b02da7c8fe91860072d3c57ccfaefa1127d335 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:15:41 +0800
 Subject: [PATCH 423/652] config: memory: enable zswap

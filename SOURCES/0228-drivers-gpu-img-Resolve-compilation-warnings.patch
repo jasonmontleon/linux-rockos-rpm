@@ -1,4 +1,4 @@
-From c1319976648179a9f043d7bb7fc03661715f317e Mon Sep 17 00:00:00 2001
+From f9a866cebfc307e751a0ecc52a35766643432088 Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Thu, 19 Sep 2024 11:52:55 +0000
 Subject: [PATCH 228/652] drivers: gpu: img: Resolve compilation warnings
