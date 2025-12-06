@@ -1,4 +1,4 @@
-From 767d75bbfea3a2c0c14df6b8cae8a6568278578b Mon Sep 17 00:00:00 2001
+From 4ae4924ae25a40ee2e62f31929ee1c8cde9f8955 Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Fri, 11 Jul 2025 15:57:11 +0800
 Subject: [PATCH 617/652] fix fix MIPI DSI reboot panic

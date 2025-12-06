@@ -1,4 +1,4 @@
-From 9ccd31491fdbcb1271186f6d088df43e20974aee Mon Sep 17 00:00:00 2001
+From 39bf1fb50a5f1abbdb6f4d6c304ab37cb5cb445c Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 10:39:21 +0800
@@ -27,7 +27,7 @@ index 725ad2400def..6733030403b9 100644
  CONFIG_PINCTRL=y
  CONFIG_PINCTRL_EIC7700=y
 diff --git a/drivers/spi/Kconfig b/drivers/spi/Kconfig
-index 3ce0fd5df8e9..07e874de0ebf 100644
+index cda333f226b6..a88811e03f27 100644
 --- a/drivers/spi/Kconfig
 +++ b/drivers/spi/Kconfig
 @@ -360,6 +360,12 @@ config SPI_EP93XX

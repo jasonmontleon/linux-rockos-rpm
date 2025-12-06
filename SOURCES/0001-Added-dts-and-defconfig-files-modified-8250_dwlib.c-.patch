@@ -1,4 +1,4 @@
-From 069102bd979c07a51a9c225ae67d5b5a301600ce Mon Sep 17 00:00:00 2001
+From f419e5185fd55f578448795194ca47e2675fb856 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 11 Mar 2024 14:43:40 +0800
 Subject: [PATCH 001/652] Added dts and defconfig files,modified 8250_dwlib.c

@@ -1,4 +1,4 @@
-From 8aaa0e52c751779b396ff752227c6ea94fd9a8f8 Mon Sep 17 00:00:00 2001
+From 6eac84c6d694d084fac4012cbf9567de7153a912 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 14 Jul 2025 09:35:34 +0800
 Subject: [PATCH 622/652] fix(venc):venc run in D1 cause system hang

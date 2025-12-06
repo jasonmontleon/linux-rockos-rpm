@@ -1,4 +1,4 @@
-From 7131521ae49539db728af8ba8734bc4ffadb4406 Mon Sep 17 00:00:00 2001
+From c3bd2c90171ed6e48958a1fe993a4169abbeba36 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 2 Jul 2025 18:01:39 +0800
 Subject: [PATCH 600/652] feature: Support trigger kdump when rcu stall
