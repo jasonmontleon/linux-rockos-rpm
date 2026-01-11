@@ -1,4 +1,4 @@
-From 79226bc321df299cf0f34e2af20eca674787fa73 Mon Sep 17 00:00:00 2001
+From 284449e9e0f7c97b56f36010e9c881d91d80cbe5 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 14 Feb 2025 15:15:18 +0800
 Subject: [PATCH 413/652] feat:clk driver fit for upstream
@@ -2531,7 +2531,7 @@ index 67eb3b63fd12..8c625a339091 100644
  CONFIG_MAILBOX=y
  CONFIG_ESWIN_MBOX=y
 diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index ab090bd57a4e..a41095b98844 100644
+index 33a6b666be22..4b93c4de9f08 100644
 --- a/drivers/clk/Makefile
 +++ b/drivers/clk/Makefile
 @@ -91,7 +91,7 @@ obj-$(CONFIG_CLK_BAIKAL_T1)		+= baikal-t1/

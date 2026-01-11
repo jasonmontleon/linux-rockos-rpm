@@ -1,4 +1,4 @@
-From 0ec3df4188a9635afab99671850861d9a73e4944 Mon Sep 17 00:00:00 2001
+From cdc09c4ff79a43d92b2ed4d28e15349e90600d5d Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 26 Mar 2025 09:56:25 +0800
 Subject: [PATCH 449/652] fix:use rgmii-txid as phy mode for gmac

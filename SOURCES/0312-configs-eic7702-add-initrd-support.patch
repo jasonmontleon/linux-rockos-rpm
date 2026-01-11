@@ -1,4 +1,4 @@
-From 89d94006f89d9d865998fb22daefc0f1008103d9 Mon Sep 17 00:00:00 2001
+From 3678f8aabfc07bb223ecc363e47ce5e0c4e83bab Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 17:51:00 +0800
 Subject: [PATCH 312/652] configs: eic7702: add initrd support

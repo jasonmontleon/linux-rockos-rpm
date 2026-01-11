@@ -1,4 +1,4 @@
-From d9445d24ea48dc6c9ee258227b775ae115b98d5c Mon Sep 17 00:00:00 2001
+From 41bf07372b8d978793be15d148265c020037d731 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 22 May 2024 17:27:11 +0800
 Subject: [PATCH 014/652] feat:Add emmc and sdio driver.
@@ -74,7 +74,7 @@ index d3baea543371..550a8cc2fbaf 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/drivers/mmc/host/Kconfig b/drivers/mmc/host/Kconfig
-index bc7e2ad37002..2fb029a80648 100644
+index 9dea5111d48c..9092e7b0a371 100644
 --- a/drivers/mmc/host/Kconfig
 +++ b/drivers/mmc/host/Kconfig
 @@ -150,6 +150,34 @@ config MMC_SDHCI_PLTFM

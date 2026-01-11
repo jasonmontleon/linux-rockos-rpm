@@ -1,4 +1,4 @@
-From da65780e8d6817db929559abac833c712dbaa33c Mon Sep 17 00:00:00 2001
+From 9bd22c60d1a91073ab602cdf7ac27763500e6361 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 11 Mar 2024 18:50:41 +0800
 Subject: [PATCH 002/652] Added clk & reset driver
@@ -41,7 +41,7 @@ index c30099866174..151de7e16525 100644
  source "drivers/clk/imgtec/Kconfig"
  source "drivers/clk/imx/Kconfig"
 diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 18969cbd4bb1..ab090bd57a4e 100644
+index 8d572021977f..33a6b666be22 100644
 --- a/drivers/clk/Makefile
 +++ b/drivers/clk/Makefile
 @@ -91,6 +91,7 @@ obj-$(CONFIG_CLK_BAIKAL_T1)		+= baikal-t1/

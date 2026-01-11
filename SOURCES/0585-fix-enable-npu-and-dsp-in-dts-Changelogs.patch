@@ -1,4 +1,4 @@
-From 427bd59d7afa8f3761e161fbae5659a0e7dc8cb5 Mon Sep 17 00:00:00 2001
+From cd204b0db9c85b66234308e4c3659b1717e9334c Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Wed, 18 Jun 2025 15:10:18 +0800
 Subject: [PATCH 585/652] fix : enable npu and dsp in dts Changelogs:

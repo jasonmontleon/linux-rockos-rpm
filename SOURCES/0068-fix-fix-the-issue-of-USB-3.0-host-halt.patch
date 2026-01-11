@@ -1,4 +1,4 @@
-From fc7a14f018f3eee5181935b596ad275bebb2d095 Mon Sep 17 00:00:00 2001
+From ec606d09a8865455a38cdb21e5c1c50b1fb7f1a4 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 10 Jul 2024 09:56:00 +0800
 Subject: [PATCH 068/652] fix:fix the issue of USB 3.0 host halt.

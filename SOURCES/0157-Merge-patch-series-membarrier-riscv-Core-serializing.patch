@@ -1,4 +1,4 @@
-From d65229a9f96a6d512563004aab62f68026670f0b Mon Sep 17 00:00:00 2001
+From 79a419b8a01064d0a67854bdd092cd1f36f1ff5c Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/652] Merge patch series "membarrier: riscv: Core
@@ -266,10 +266,10 @@ index 461591503bf4..a1e6ef3b1352 100644
  	bool
  
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index 1b5e4389f788..5f0b82502b2c 100644
+index c4a9797e9eff..cd52a64a65ff 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
-@@ -6608,7 +6608,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
+@@ -6609,7 +6609,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
  	 *     if (signal_pending_state())	    if (p->state & @state)
  	 *
  	 * Also, the membarrier system call requires a full memory barrier
@@ -280,7 +280,7 @@ index 1b5e4389f788..5f0b82502b2c 100644
  	 */
  	rq_lock(rq, &rf);
  	smp_mb__after_spinlock();
-@@ -6686,6 +6688,13 @@ static void __sched notrace __schedule(unsigned int sched_mode)
+@@ -6687,6 +6689,13 @@ static void __sched notrace __schedule(unsigned int sched_mode)
  		 *   architectures where spin_unlock is a full barrier,
  		 * - switch_to() for arm64 (weakly-ordered, spin_unlock
  		 *   is a RELEASE barrier),
