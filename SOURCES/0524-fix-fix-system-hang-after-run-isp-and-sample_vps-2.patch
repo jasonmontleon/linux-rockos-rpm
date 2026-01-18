@@ -1,4 +1,4 @@
-From 8d31b7bf32dd6c4f3e7f1e489305f61aca850a57 Mon Sep 17 00:00:00 2001
+From 602c8703014f501d299bd374ccbb024f017ad830 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 28 May 2025 14:43:45 +0800
 Subject: [PATCH 524/652] fix: fix system hang after run isp and sample_vps 2

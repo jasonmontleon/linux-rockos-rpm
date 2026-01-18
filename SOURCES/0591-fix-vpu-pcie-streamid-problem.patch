@@ -1,4 +1,4 @@
-From c97811d95936a4c7d40b5089361ad5d79236103d Mon Sep 17 00:00:00 2001
+From 2c7c17b95346a3ddafa4e016deb3e32cc2b85418 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 27 Jun 2025 18:35:29 +0800
 Subject: [PATCH 591/652] fix: vpu pcie streamid problem

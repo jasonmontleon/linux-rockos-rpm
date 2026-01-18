@@ -1,4 +1,4 @@
-From f5c5b47201369dd76c3abd51f32494ecc68487ee Mon Sep 17 00:00:00 2001
+From 38e54ad70d1cb45594cc2245fc6db54aa090e776 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 8 Apr 2025 19:45:16 -0700
 Subject: [PATCH 473/652] riscv: module: Optimize PLT/GOT entry counting

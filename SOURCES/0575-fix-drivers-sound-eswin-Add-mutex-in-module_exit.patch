@@ -1,4 +1,4 @@
-From 8f107c25118023f710b8491ebeb112c73eed3e69 Mon Sep 17 00:00:00 2001
+From 9e12df494cbacc75fdabd37f4a331b9fbcefcfb0 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:10:18 +0800
 Subject: [PATCH 575/652] fix:drivers: sound: eswin: Add mutex in module_exit
