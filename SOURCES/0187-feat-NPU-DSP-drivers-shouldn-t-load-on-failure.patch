@@ -1,4 +1,4 @@
-From fe05608b3fef98750ce83b147e10051b47df88f5 Mon Sep 17 00:00:00 2001
+From 6553494bebec3ba22ef7243ce67f623b1906b10c Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Thu, 26 Sep 2024 13:07:50 +0800
 Subject: [PATCH 187/652] feat:NPU & DSP drivers shouldn't load on failure.

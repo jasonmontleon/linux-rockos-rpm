@@ -1,4 +1,4 @@
-From 43a6f11ab4e9b631aa9b0ffd40442d965216974f Mon Sep 17 00:00:00 2001
+From 5d29e9d8089c6100d88900a8c70ac13f71c848b9 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Fri, 20 Jun 2025 09:38:03 +0800
 Subject: [PATCH 577/652] feature: Fix kexec job depend on proc/iomem reserved

@@ -1,4 +1,4 @@
-From a1a45b1222a8ad2aae8197b42bae4c4874680bbb Mon Sep 17 00:00:00 2001
+From 2fdb8ac80a369f1dd6fc1438a548b824c9c9aecc Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 21 Mar 2025 15:51:57 +0800
 Subject: [PATCH 431/652] Revert "riscv: dts: eswin: Add 1.8G support for
