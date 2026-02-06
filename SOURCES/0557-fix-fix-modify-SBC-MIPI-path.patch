@@ -1,4 +1,4 @@
-From 2e7fab43b76657c4efa47e3279063f59ef6059dc Mon Sep 17 00:00:00 2001
+From ba61fa7dcf86a534bd40a415d819efb4aa7b1121 Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Thu, 12 Jun 2025 17:38:59 +0800
 Subject: [PATCH 557/652] fix:fix modify SBC MIPI path
@@ -39,5 +39,5 @@ index a0eb704642c5..9261a4b9cbf7 100644
  CONFIG_ESWIN_DW_HDMI=y
  CONFIG_DW_HDMI_I2S_AUDIO=y
 -- 
-2.52.0
+2.53.0
 

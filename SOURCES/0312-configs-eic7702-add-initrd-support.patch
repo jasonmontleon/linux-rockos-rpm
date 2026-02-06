@@ -1,4 +1,4 @@
-From 51995449db47a02d72a3d39dbfbc7a8a7d508d25 Mon Sep 17 00:00:00 2001
+From c5e30bd54b97177752ca62aa57383a0d1cef30e2 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 17:51:00 +0800
 Subject: [PATCH 312/652] configs: eic7702: add initrd support
@@ -21,5 +21,5 @@ index 2f468cfeba8d..78b45bbf24ab 100644
  # CONFIG_SYSFS_SYSCALL is not set
  CONFIG_PERF_EVENTS=y
 -- 
-2.52.0
+2.53.0
 

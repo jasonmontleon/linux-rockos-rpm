@@ -1,4 +1,4 @@
-From e33b2d762c8d5906a0ab2705f546d1c7133f4c6d Mon Sep 17 00:00:00 2001
+From 0794affd448100cf4ef8a5eacd737581a12e6a61 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Fri, 25 Jul 2025 11:18:52 +0800
 Subject: [PATCH 636/652] fix:Enable sdio1 by default for eic7700-sbc-a1 board
@@ -24,5 +24,5 @@ index 04ffef051e20..5bba96c792d8 100644
  };
 \ No newline at end of file
 -- 
-2.52.0
+2.53.0
 

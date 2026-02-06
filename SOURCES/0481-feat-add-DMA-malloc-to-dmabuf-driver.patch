@@ -1,4 +1,4 @@
-From 41f5a8562c0793887f70c96e2b63210853ae4e4c Mon Sep 17 00:00:00 2001
+From 720eb0fd4e2802f7757755c18b4dac4f37a55c25 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 23 Jan 2025 17:16:48 +0800
 Subject: [PATCH 481/652] feat:add DMA malloc to dmabuf driver.
@@ -788,5 +788,5 @@ index 000000000000..bf66ff0230ea
 +#endif
 \ No newline at end of file
 -- 
-2.52.0
+2.53.0
 

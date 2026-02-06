@@ -1,4 +1,4 @@
-From 9e171a21ee2d6dcdc2ee19d48cae505773984cb1 Mon Sep 17 00:00:00 2001
+From c5d9da29d54c3100c5b78d3d1ba42969d1151111 Mon Sep 17 00:00:00 2001
 From: Joey Zheng <zhengyu@eswincomputing.com>
 Date: Thu, 24 Apr 2025 16:53:28 +0800
 Subject: [PATCH 486/652] feat:adapt to vpu7702 smmu cfg drv
@@ -26,5 +26,5 @@ index 4bdb2da8ba3f..25c74eaa6960 100644
  			dma-ranges = <0x0 0x20000000 0x0 0xc0000000 0x0 0x40000000>;
  			iommus = <&smmu0 WIN2030_SID_DEV_FOO_B>;
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From 320ade0e4f4afec85cb79bbb2e926bbc7e136c10 Mon Sep 17 00:00:00 2001
+From dc599ce57005e41504c3e68d85aa7bc7ceeff2d3 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 10 Feb 2025 18:26:41 +0800
 Subject: [PATCH 402/652] fix:power down all tbus at start up
@@ -61,5 +61,5 @@ index 36fc0651f938..7a4d5fe5002e 100644
     win2030_tbu_power(struct device *dev, bool is_powerUp) is for powering up or down
     the tbus of the device module which is under smmu.
 -- 
-2.52.0
+2.53.0
 

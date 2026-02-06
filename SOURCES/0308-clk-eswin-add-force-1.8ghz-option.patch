@@ -1,4 +1,4 @@
-From a6ed1ecb2f59d7d1a097bf5d401061d1ce1fb649 Mon Sep 17 00:00:00 2001
+From 95bd9d81ff794b1f5bd79cb3c7fe149cd30a4765 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 23:48:41 +0800
 Subject: [PATCH 308/652] clk: eswin: add force 1.8ghz option
@@ -80,5 +80,5 @@ index 95e222d5194c..a0e72c67e598 100755
  
  struct eswin_clock_data *eswin_clk_init(struct platform_device *, int);
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From 59476acb555d6dd461c2534097cbfeefc5cd31ee Mon Sep 17 00:00:00 2001
+From 77cbd7753cf64b67e5f274852ec2b910856f5d21 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sat, 8 Mar 2025 03:04:33 +0800
 Subject: [PATCH 420/652] fix: eswin: ai: dsp: fix gcc-14 build error
@@ -105,5 +105,5 @@ index e5967e94da47..f77995d442a2 100644
  #endif
  	return ret;
 -- 
-2.52.0
+2.53.0
 

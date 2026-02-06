@@ -1,4 +1,4 @@
-From 22bdcb0329b52fbeb54fdd921d4829b787a455f7 Mon Sep 17 00:00:00 2001
+From 1b9983cadf043dc07461d17ed61679cdfbe0e123 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Fri, 22 Nov 2024 10:08:37 +0800
 Subject: [PATCH 293/652] WIN2030-15186:fix:change voltage of 7702 npu to 1.08V
@@ -182,5 +182,5 @@ index 44784eeefba3..1b226c3dfe17 100644
  #define NPU_CORE_CLK_1P5G_RATE	1500000000  //npu and e31
  #define NPU_E31_CLK_RATE	1040000000  //llc
 -- 
-2.52.0
+2.53.0
 

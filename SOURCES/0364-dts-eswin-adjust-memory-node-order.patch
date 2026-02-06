@@ -1,4 +1,4 @@
-From e4629a7928fa988043e2e6bb519e3d0dd077eb43 Mon Sep 17 00:00:00 2001
+From 7dcec2c21f3a13ff8f67ae5b380245305703f4a4 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sun, 26 Jan 2025 11:00:50 +0800
 Subject: [PATCH 364/652] dts: eswin: adjust memory node order
@@ -423,5 +423,5 @@ index 8d9e0e76c350..d35198469b21 100644
  		#address-cells = <2>;
  		#size-cells = <2>;
 -- 
-2.52.0
+2.53.0
 

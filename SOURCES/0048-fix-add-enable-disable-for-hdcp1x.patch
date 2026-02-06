@@ -1,4 +1,4 @@
-From 75e2e4a6382b910b26d725aff5ee3b5dac9cc03c Mon Sep 17 00:00:00 2001
+From 3ae286df3d799dde9545778ae47e41567df600bb Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Thu, 6 Jun 2024 17:04:36 +0800
 Subject: [PATCH 048/652] fix:add enable/disable for hdcp1x
@@ -27,5 +27,5 @@ index 1ad77afba9c3..de77dc0d9101 100644
  config ESWIN_MIPI_DSI
      tristate "Eswin mipi dsi and 1080p panel driver"
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From 7a0dd7e07ad34c48ee2fb849f11be4759a5e963c Mon Sep 17 00:00:00 2001
+From 2e405d6a996f5e367a60b1c31cfbab2785ac160d Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 2 Jul 2024 20:09:02 +0800
 Subject: [PATCH 062/652] fix:set npu default freq to 1.5G
@@ -100,5 +100,5 @@ index e84f3650ae37..4e9027dd5db9 100644
  		dev_err(&pdev->dev, "llc_clk_set_frq error: %d\n", ret);
  		return ret;
 -- 
-2.52.0
+2.53.0
 

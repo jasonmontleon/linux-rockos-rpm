@@ -1,4 +1,4 @@
-From 02a02b2343b377b38eb1e1691d32e1ed9876845e Mon Sep 17 00:00:00 2001
+From 5e304cc2f0025802d7a56b84cd6a5378879ba4e9 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 11 Sep 2024 13:58:01 +0800
 Subject: [PATCH 261/652] WIN2030-16098:fix:Drm driver add component failed
@@ -72,5 +72,5 @@ index d5547aef615c..2e0d2fb3838f 100644
  	pinctrl-0 = <&pinctrl_die1_gpio69_default &pinctrl_die1_gpio21_default>;
  	backlight0-gpios = <&d1_portc 5 GPIO_ACTIVE_HIGH>;
 -- 
-2.52.0
+2.53.0
 

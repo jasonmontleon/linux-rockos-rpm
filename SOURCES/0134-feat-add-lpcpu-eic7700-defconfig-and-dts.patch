@@ -1,4 +1,4 @@
-From 866a8a6333045bfb430ebb9c9aedd3d02be2859b Mon Sep 17 00:00:00 2001
+From 7036028d8c2e26d857ed395233270f16d564ea7e Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Thu, 1 Aug 2024 13:42:23 +0800
 Subject: [PATCH 134/652] feat:add lpcpu eic7700 defconfig and dts
@@ -39,5 +39,5 @@ index 0911327327a8..24819c7dd1e7 100644
  CONFIG_RPMSG_VIRTIO=y
  CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
 -- 
-2.52.0
+2.53.0
 

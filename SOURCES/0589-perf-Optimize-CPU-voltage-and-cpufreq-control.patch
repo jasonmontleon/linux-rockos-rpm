@@ -1,4 +1,4 @@
-From 6c5ec1bdfc12d1ac3fbe5f1fb6c47a0d9ecf307d Mon Sep 17 00:00:00 2001
+From d72ab16ea5761fa31cc17705dbf7ce667b6d6c8f Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Mon, 30 Jun 2025 19:20:30 +0800
 Subject: [PATCH 589/652] perf: Optimize CPU voltage and cpufreq control
@@ -173,5 +173,5 @@ index 2569c06b4c0a..18ece1f2da59 100644
  		char *name = kzalloc(strlen(clks[i].name) + 2 * sizeof(char) +
  					     sizeof(int),
 -- 
-2.52.0
+2.53.0
 

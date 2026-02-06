@@ -1,4 +1,4 @@
-From f5f271fe51f57a552e9f3ab4a57fb0f33a6a6a2c Mon Sep 17 00:00:00 2001
+From 8bd99d197267bb59789b508ad4cdfea873576066 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 19 Aug 2024 19:16:55 +0800
 Subject: [PATCH 155/652] fix:add i2c hold time for aon i2c
@@ -25,5 +25,5 @@ index 33e02628614a..c4a9d6f97f95 100644
  		compatible = "microchip,pac1934";
  		/*update all register data*/
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From f15c470cb0ba1d1fa142cf44e27e24479a1fe5ef Mon Sep 17 00:00:00 2001
+From 754655dc4c3374f35440b324adb1d88d811ea4fc Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Tue, 1 Jul 2025 14:00:00 +0800
 Subject: [PATCH 609/652] fix: fix some vi warning in 0630
@@ -69,5 +69,5 @@ index b8d68edbe239..6a419ddbc324 100644
  				interrupt-parent = <&plic1>;
  				interrupts = <30>;
 -- 
-2.52.0
+2.53.0
 

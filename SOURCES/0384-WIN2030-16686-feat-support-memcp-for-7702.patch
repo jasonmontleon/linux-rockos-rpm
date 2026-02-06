@@ -1,4 +1,4 @@
-From b13ff4549d6b78e290a08cde0ab85cfa1a0ca0bb Mon Sep 17 00:00:00 2001
+From 70308b0156c25d8fb76aef3994210600570997c2 Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Mon, 13 Jan 2025 10:39:37 +0800
 Subject: [PATCH 384/652] WIN2030-16686:feat:support memcp for 7702
@@ -25,5 +25,5 @@ index d86411ce75d4..176e8c08f175 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN_WIN2030=y
 -- 
-2.52.0
+2.53.0
 

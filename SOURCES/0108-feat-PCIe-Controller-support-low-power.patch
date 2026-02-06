@@ -1,4 +1,4 @@
-From c1a0ba875f48a9936d00c2ea502afa1ee5b42903 Mon Sep 17 00:00:00 2001
+From f29866478afdf376fecad83ced4321124ec3ae53 Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Thu, 18 Jul 2024 19:22:23 +0800
 Subject: [PATCH 108/652] feat:PCIe Controller support low power.
@@ -151,5 +151,5 @@ index ab1f4b421eab..498a26304aea 100644
  	.probe = eswin_pcie_probe,
  	.remove = __exit_p(eswin_pcie_remove),
 -- 
-2.52.0
+2.53.0
 

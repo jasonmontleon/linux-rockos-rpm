@@ -1,4 +1,4 @@
-From eacd269ca8f35f4f265c7e354dd9a7cc7e97bfdd Mon Sep 17 00:00:00 2001
+From 88c631755132dd8df9357aaea68827041ef0bb1f Mon Sep 17 00:00:00 2001
 From: gengzonglin <gengzonglin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 09:41:33 +0800
 Subject: [PATCH 551/652] fix:Fix 'invalid GPIO' for D560 gmac
@@ -57,5 +57,5 @@ index 12ef6270c441..80ad529aafc0 100644
  	eswin,led-cfgs = <0x6100 0xa40 0x420>;
  	dly-param-1000m = <0x20202020 0x46205A20 0x20202020>;
 -- 
-2.52.0
+2.53.0
 

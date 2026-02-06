@@ -1,4 +1,4 @@
-From 28974315df3bf165b1492a0aee812f9a31f3f18d Mon Sep 17 00:00:00 2001
+From 30de0ae853645d13130688e1fc37a5a6463c9609 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Fri, 26 Jul 2024 13:54:16 +0800
 Subject: [PATCH 123/652] fix:fix the issue of sd resuming fail.
@@ -199,5 +199,5 @@ index 3e2912aca476..66e9e02bfb26 100644
  
  static struct platform_driver eswin_sdhci_driver =
 -- 
-2.52.0
+2.53.0
 

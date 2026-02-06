@@ -1,4 +1,4 @@
-From e1895a6d29d5590b8ca96dec43e8ded5f3ba9f6d Mon Sep 17 00:00:00 2001
+From 973d5a508fdd43f5787c60ab5ed3094eb97f849b Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 19 Mar 2025 14:52:40 +0800
 Subject: [PATCH 454/652] fix:modify evb-AX/dvb/d314 eth para to fit 0.9V
@@ -127,5 +127,5 @@ index e9c6bb6e261b..9d5fa38e0f26 100644
  };
  
 -- 
-2.52.0
+2.53.0
 

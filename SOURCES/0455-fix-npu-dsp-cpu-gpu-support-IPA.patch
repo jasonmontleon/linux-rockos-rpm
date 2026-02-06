@@ -1,4 +1,4 @@
-From 9e164e2c5f697a0aeee4b7ad547ce02449f24cd1 Mon Sep 17 00:00:00 2001
+From 182047def1c6b471b4118236c31a70daf81d62d4 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 11 Mar 2025 11:08:49 +0800
 Subject: [PATCH 455/652] fix:npu,dsp,cpu,gpu support IPA
@@ -719,5 +719,5 @@ index 04a8e7b4f77a..24e9c95160fa 100644
  
  
 -- 
-2.52.0
+2.53.0
 

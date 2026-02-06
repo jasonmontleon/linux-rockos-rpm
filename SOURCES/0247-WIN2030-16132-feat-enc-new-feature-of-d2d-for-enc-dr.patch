@@ -1,4 +1,4 @@
-From 663e156fa54840d5e85751889ec4cd2df3c4318a Mon Sep 17 00:00:00 2001
+From 214733b038337c4f127fd8dfbf4122b0291ab731 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 13 Aug 2024 15:32:51 +0800
 Subject: [PATCH 247/652] <WIN2030-16132>:feat(enc):new feature of d2d for
@@ -69,5 +69,5 @@ index 5f88db259b5c..66cf710ff470 100644
  		LOG_ERR("vcmd: error return from select_vcmd\n");
  		return return_value;
 -- 
-2.52.0
+2.53.0
 

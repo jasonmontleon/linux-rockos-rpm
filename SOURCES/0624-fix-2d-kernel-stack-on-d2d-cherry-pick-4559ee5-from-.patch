@@ -1,4 +1,4 @@
-From 37e15b52e13952a517019277db98f1ad061cc9b0 Mon Sep 17 00:00:00 2001
+From e2fc95f207904d9b2cd17f596c2d24625279cdfe Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Tue, 15 Apr 2025 15:37:32 +0800
 Subject: [PATCH 624/652] fix(2d):kernel stack on d2d,cherry-pick 4559ee5 from
@@ -219,5 +219,5 @@ index 25f1c2e3b5f9..d0bdc1a449e7 100644
  }
  
 -- 
-2.52.0
+2.53.0
 

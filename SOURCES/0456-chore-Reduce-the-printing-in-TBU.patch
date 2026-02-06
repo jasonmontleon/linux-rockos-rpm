@@ -1,4 +1,4 @@
-From 56fcf60cb4a125fb649d0be3023f8efbb4e475d5 Mon Sep 17 00:00:00 2001
+From 72ae4944bcbd2e2a106283c07880ed9911df5986 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:23:16 +0800
 Subject: [PATCH 456/652] chore:Reduce the printing in TBU
@@ -85,5 +85,5 @@ index d109b45f33f1..7308e0dcabda 100644
  }
  EXPORT_SYMBOL(print_tcu_node_status);
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From e86d483e02789039c17c3e80c5a588f5f0501b26 Mon Sep 17 00:00:00 2001
+From 89e9c37e70f05bb1c9bd30c18aa9560b58975b0c Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Wed, 24 Jul 2024 16:08:13 +0800
 Subject: [PATCH 117/652] fix:put power on if the interrupt came
@@ -34,5 +34,5 @@ index 9e8f6bcbbfd7..21e9513d8347 100644
  }
  
 -- 
-2.52.0
+2.53.0
 

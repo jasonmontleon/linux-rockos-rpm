@@ -1,4 +1,4 @@
-From 76785685c53f4e606f658f0cd1d5bb07ad850d8a Mon Sep 17 00:00:00 2001
+From 4cd3597ee94570a625234f90f1fdf88885f50943 Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Wed, 2 Jul 2025 14:00:27 +0800
 Subject: [PATCH 594/652] fix(2d): hardware usage timer func release mutex
@@ -54,5 +54,5 @@ index 78ebbed1cb00..c9c0812f1061 100644
      return status;
  }
 -- 
-2.52.0
+2.53.0
 

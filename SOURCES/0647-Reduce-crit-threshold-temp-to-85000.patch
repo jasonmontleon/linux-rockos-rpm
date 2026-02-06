@@ -1,4 +1,4 @@
-From c1163251bc41320c495f89b1c1f6c89324d40947 Mon Sep 17 00:00:00 2001
+From f170eb568f2499a0d326e4a15f1e3b1f64463511 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Tue, 18 Feb 2025 12:49:37 -0500
 Subject: [PATCH 647/652] Reduce crit threshold temp to 85000
@@ -21,5 +21,5 @@ index ddc23330610a..981ef91ef58f 100644
  					type            = "critical";
  				};
 -- 
-2.52.0
+2.53.0
 

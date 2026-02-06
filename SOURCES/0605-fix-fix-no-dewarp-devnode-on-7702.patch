@@ -1,4 +1,4 @@
-From 6a24ea29bc84671a8e719ef10d1ceeaa7ae9878f Mon Sep 17 00:00:00 2001
+From d918c1be823ecd875e885046c48e08d74c2f6370 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 4 Jul 2025 11:15:15 +0800
 Subject: [PATCH 605/652] fix: fix no dewarp devnode on 7702
@@ -219,5 +219,5 @@ index b0f01ad7b689..cbf611921d6c 100644
  
      return 0;
 -- 
-2.52.0
+2.53.0
 

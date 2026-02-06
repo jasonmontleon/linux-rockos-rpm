@@ -1,4 +1,4 @@
-From db9516d138632c8059b43e614b1144fa6bba9458 Mon Sep 17 00:00:00 2001
+From 36a39a4949d428f3abcf938ee833176054a184f7 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 25 Dec 2024 11:51:07 +0800
 Subject: [PATCH 356/652] WIN2030-16883:fix:npu die1 clock miss
@@ -42,5 +42,5 @@ index a15a50825f39..b7405c6d6e49 100644
  			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
  			reset-names = "e31_core";
 -- 
-2.52.0
+2.53.0
 

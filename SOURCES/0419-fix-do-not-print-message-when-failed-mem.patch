@@ -1,4 +1,4 @@
-From 0cbac087866c2ab7664d97a56b9d2f127c9c9a4e Mon Sep 17 00:00:00 2001
+From a4862e22879ec50302d277b2d6f81248de93ebaa Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 28 Feb 2025 15:42:16 +0800
 Subject: [PATCH 419/652] fix: do not print message when failed mem
@@ -98,5 +98,5 @@ index 6b567365de80..c79b5748242e 100644
  }
  static long dsp_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
 -- 
-2.52.0
+2.53.0
 

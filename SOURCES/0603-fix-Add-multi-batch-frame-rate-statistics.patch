@@ -1,4 +1,4 @@
-From 17f3801cbf6516f78cf72e52c671f06ab8b225d1 Mon Sep 17 00:00:00 2001
+From 22499f57de4d3eba9225ecf8ece70287ec1d1290 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 1 Jul 2025 15:18:58 +0800
 Subject: [PATCH 603/652] fix:Add multi batch frame rate statistics.
@@ -52,5 +52,5 @@ index a29b0532de8a..6dfca2a5c0fc 100644
  				      &model->uctx->lock_status);
  	if (last_state == NPU_RT_MUTX_FRAME_DONE) {
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From 1fdd155a36c1ff8d5e40a0e936fa905aa835c6d0 Mon Sep 17 00:00:00 2001
+From 894d02047be32fde9b141ec90a8e012f6f09d2ae Mon Sep 17 00:00:00 2001
 From: weishangjuan <weishangjuan@eswincomputing.com>
 Date: Fri, 23 May 2025 09:47:13 +0800
 Subject: [PATCH 529/652] fix: resolve the issue of slow fan speed
@@ -39,5 +39,5 @@ index 1bb6616b2a91..29c7fbc030fe 100644
  	status = "okay";
  	pinctrl-names = "default";
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From ec6d8eda6a1c251ae4e56173f025225bafac1eb3 Mon Sep 17 00:00:00 2001
+From a01faec5261ec89d7819c7adaff958e9b220316b Mon Sep 17 00:00:00 2001
 From: zhangyizhong <zhangyizhong@eswincomputing.com>
 Date: Fri, 10 Jan 2025 09:41:27 +0800
 Subject: [PATCH 383/652] WIN2030-16962:feat:enable dual 4K display for Xorg.
@@ -26,5 +26,5 @@ index 28b2a7b8f93f..4ba66b5bba2e 100644
  			.rotation = DRM_MODE_ROTATE_0 | DRM_MODE_ROTATE_180,
  			.color_encoding = BIT(DRM_COLOR_YCBCR_BT601) |
 -- 
-2.52.0
+2.53.0
 

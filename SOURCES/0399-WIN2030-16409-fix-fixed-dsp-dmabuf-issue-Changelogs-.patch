@@ -1,4 +1,4 @@
-From 4fee40e6f50aed977d020937c2fa43c8da328f85 Mon Sep 17 00:00:00 2001
+From 9ff6772c516a89bdf7abb3d8d976f3bbde886e25 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Fri, 7 Feb 2025 09:44:47 +0800
 Subject: [PATCH 399/652] WIN2030-16409: fix: fixed dsp dmabuf issue
@@ -189,5 +189,5 @@ index 5207c17be540..15e43027b1a5 100644
  				dla_debug("%s, %d, i=%d, addr=0x%x.\n",
  					  __func__, __LINE__, i,
 -- 
-2.52.0
+2.53.0
 

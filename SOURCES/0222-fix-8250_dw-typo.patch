@@ -1,4 +1,4 @@
-From 53e385b3009e86b91c5598b6a3042f7e8a609340 Mon Sep 17 00:00:00 2001
+From 48651e0ecf7f3554a8cce437adff6f805d3e956e Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 28 Oct 2024 18:46:15 +0800
 Subject: [PATCH 222/652] fix: 8250_dw typo
@@ -22,5 +22,5 @@ index a88488dc29ee..496922b756ab 100644
  
  static const struct dw8250_platform_data dw8250_octeon_3860_data = {
 -- 
-2.52.0
+2.53.0
 

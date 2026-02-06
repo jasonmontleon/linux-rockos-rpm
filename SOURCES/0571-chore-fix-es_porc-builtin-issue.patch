@@ -1,4 +1,4 @@
-From 4a313ca074f364e8abfed9096cd5a8f4a6fa3194 Mon Sep 17 00:00:00 2001
+From 1646bafda6770ad9debc2c070699c3417e62cf8d Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Thu, 19 Jun 2025 10:05:25 +0800
 Subject: [PATCH 571/652] chore:fix es_porc builtin issue
@@ -180,5 +180,5 @@ index 4e7f2bca6e10..569b9cf307d8 100644
 -MODULE_AUTHOR("huangyifeng@eswincomputing.com");
 -MODULE_LICENSE("GPL v2");
 -- 
-2.52.0
+2.53.0
 

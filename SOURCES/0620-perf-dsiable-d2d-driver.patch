@@ -1,4 +1,4 @@
-From f1a0db2fdbe086ee610a5d5d79c1d3fb5232b68c Mon Sep 17 00:00:00 2001
+From 27f69ec608c58fa4dc54cb06e7b59861174a99f7 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 4 Jul 2025 11:00:45 +0800
 Subject: [PATCH 620/652] perf:dsiable d2d driver
@@ -85,5 +85,5 @@ index 2be51435f591..767eccef2e04 100644
  
  /* die0 GPIO Function Description
 -- 
-2.52.0
+2.53.0
 

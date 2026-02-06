@@ -1,4 +1,4 @@
-From e863d0f639f0601f320a7c1b67996a4283f00a18 Mon Sep 17 00:00:00 2001
+From 0f4164dc39f84b0a4ecdbe768b96a44225a18484 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 19:16:26 +0800
 Subject: [PATCH 435/652] drm: eswin: clean hwcursor state when enabling the
@@ -37,5 +37,5 @@ index 7c608e29d25b..799fdd18d5cb 100644
  
  static void es_dc_disable(struct device *dev)
 -- 
-2.52.0
+2.53.0
 

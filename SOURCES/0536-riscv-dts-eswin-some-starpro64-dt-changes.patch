@@ -1,4 +1,4 @@
-From 216f68c0582e35808e8cfc612e62cd450254a22f Mon Sep 17 00:00:00 2001
+From 9f768a7d7ea35b0eb128d15dab1ce4799e8f163b Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Jun 2025 14:27:46 +0800
 Subject: [PATCH 536/652] riscv: dts: eswin: some starpro64 dt changes
@@ -55,5 +55,5 @@ index 2860c4b37162..4e440aa2f43e 100644
  
  &d0_usbdrd_dwc3_1 {
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From b478f16ea0a99db3d330a130129dd1b32a0704d1 Mon Sep 17 00:00:00 2001
+From 9e6354f592614b901de032848917526a3b42d1d6 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 20 Dec 2024 10:08:03 +0800
 Subject: [PATCH 365/652] WIN2030-14758:feat:L3 cache flush all
@@ -523,5 +523,5 @@ index 49ebac96f6e1..1bb76ebb5aa8 100644
  
  #endif
 -- 
-2.52.0
+2.53.0
 

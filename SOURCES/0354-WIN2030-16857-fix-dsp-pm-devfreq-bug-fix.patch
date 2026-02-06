@@ -1,4 +1,4 @@
-From 43bff2d1f9716431659605d09932e6fddd95981a Mon Sep 17 00:00:00 2001
+From 56ade5ba98252a323dd018bbf6b5f47283936f16 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 24 Dec 2024 16:02:46 +0800
 Subject: [PATCH 354/652] WIN2030-16857:fix:dsp pm devfreq bug fix
@@ -73,5 +73,5 @@ index 1a5a1a0d7e16..5a2f3e97d9d8 100644
  err_mbox_clk:
  	es_dsp_unmap_resource(dsp);
 -- 
-2.52.0
+2.53.0
 

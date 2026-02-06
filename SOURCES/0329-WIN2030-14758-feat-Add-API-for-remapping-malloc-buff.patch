@@ -1,4 +1,4 @@
-From b83675febb37817784d1294856676cc93877d936 Mon Sep 17 00:00:00 2001
+From b66305d0d2693c505e97bbf5d34f82148ed3b013 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 3 Dec 2024 14:21:54 +0800
 Subject: [PATCH 329/652] WIN2030-14758:feat:Add API for remapping malloc
@@ -224,5 +224,5 @@ index 9a474f6594e7..d4acd7c5177c 100644
 +
  #endif
 -- 
-2.52.0
+2.53.0
 

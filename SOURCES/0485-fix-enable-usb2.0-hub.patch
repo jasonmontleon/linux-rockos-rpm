@@ -1,4 +1,4 @@
-From b081cbc90f22b12866d9392cc8f629da86cdb1eb Mon Sep 17 00:00:00 2001
+From c9eb2e65f130f99a51aa3e1020cbcdbb9704b8ab Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 23 Apr 2025 14:40:47 +0800
 Subject: [PATCH 485/652] fix:enable usb2.0 hub
@@ -62,5 +62,5 @@ index fcb3d855c105..88b7a0e850b0 100644
              pinctrl_die1_gpio31_default: gpio31-default{
  				mux {
 -- 
-2.52.0
+2.53.0
 

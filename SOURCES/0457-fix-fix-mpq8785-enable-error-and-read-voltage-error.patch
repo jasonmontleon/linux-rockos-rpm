@@ -1,4 +1,4 @@
-From 83bdf98d8906dda88b95945b0848ea44e2919c74 Mon Sep 17 00:00:00 2001
+From 2dc2a6339eb0f6e5145d3c411b6e0dac95bf38e7 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 2 Apr 2025 13:45:41 +0800
 Subject: [PATCH 457/652] fix:fix mpq8785 enable error and read voltage error
@@ -200,5 +200,5 @@ index 2e4e95e3d98b..a2bfd04af41b 100644
  
  int mpq8785_regulator_disable(struct regulator_dev *rdev)
 -- 
-2.52.0
+2.53.0
 

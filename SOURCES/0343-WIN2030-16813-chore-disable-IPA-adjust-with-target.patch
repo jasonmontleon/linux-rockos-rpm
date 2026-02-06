@@ -1,4 +1,4 @@
-From 189c65dc43777c16976fb412a90c4f7dbb3e15eb Mon Sep 17 00:00:00 2001
+From ddd37aa600f55191e237f79acc5ed288601ebe56 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 16 Dec 2024 17:00:09 +0800
 Subject: [PATCH 343/652] WIN2030-16813:chore:disable IPA adjust with target
@@ -120,5 +120,5 @@ index 5f4cbafe5a48..65146bf6141a 100644
  		};
  	};
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From 02cd163b84c5b223c6b15cecf5289738d0ef0515 Mon Sep 17 00:00:00 2001
+From 1c33f3bc35d5692d84937a531cee7bcc6f2f42b2 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 30 Oct 2024 11:14:04 +0800
 Subject: [PATCH 325/652] WIN2030-16578:fix:npu opp dts node modify
@@ -103,5 +103,5 @@ index c1d0a7c28574..d216ce3c784c 100644
  			numa-node-id = <1>;
  			firmware-name = "eic7700_die1_e31_fw";
 -- 
-2.52.0
+2.53.0
 

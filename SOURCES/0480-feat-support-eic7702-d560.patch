@@ -1,4 +1,4 @@
-From 5a56f11ec47180eaa478eac114f4e75954d219b8 Mon Sep 17 00:00:00 2001
+From 17df36e3eaa9d660003d2d6c9b3d48061c70a020 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 18 Apr 2025 11:04:35 +0800
 Subject: [PATCH 480/652] feat:support eic7702 d560
@@ -1797,5 +1797,5 @@ index 000000000000..de69bc2359e4
 +	status = "okay";
 +};
 -- 
-2.52.0
+2.53.0
 

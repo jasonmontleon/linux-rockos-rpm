@@ -1,4 +1,4 @@
-From 38a0fc5e0169375f15592cd810b140c48906f9ae Mon Sep 17 00:00:00 2001
+From 903e014c464a2f0da9dca8aae2add9df398852cc Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Wed, 28 May 2025 10:41:07 +0800
 Subject: [PATCH 530/652] fix: fix isp isp_media_server error in debian
@@ -308,5 +308,5 @@ index c8483857beb3..cf1b1877c08f 100644
      vb_dev = devm_kzalloc(&pdev->dev,
                  sizeof(struct vvcam_vb_dev), GFP_KERNEL);
 -- 
-2.52.0
+2.53.0
 

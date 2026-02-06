@@ -1,4 +1,4 @@
-From 4cd673346a57b5fa8fc88fc235dae6e0b4b96d32 Mon Sep 17 00:00:00 2001
+From 18569ddb1a081f0dd16e551a180c28be0ffec5a4 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Thu, 18 Jul 2024 16:24:24 +0800
 Subject: [PATCH 125/652] feat(VE): VE support power management
@@ -802,5 +802,5 @@ index c85d919fe750..b66055e26c3b 100644
  };
  
 -- 
-2.52.0
+2.53.0
 

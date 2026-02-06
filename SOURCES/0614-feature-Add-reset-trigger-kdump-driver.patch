@@ -1,4 +1,4 @@
-From c5f6860429401db8381c9f4a40b68955dd152bee Mon Sep 17 00:00:00 2001
+From b165073872da5bab8621c7b0ee2806ce80b17754 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 25 Jun 2025 14:11:56 +0800
 Subject: [PATCH 614/652] feature: Add reset trigger kdump driver
@@ -261,5 +261,5 @@ index 000000000000..0c80b534271d
 +MODULE_AUTHOR("chenzhanzhan@eswincomputing.com");
 \ No newline at end of file
 -- 
-2.52.0
+2.53.0
 

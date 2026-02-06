@@ -1,4 +1,4 @@
-From 9042cae38361653224683b0beef916fb9842d900 Mon Sep 17 00:00:00 2001
+From 009d94719157e74a3d4a85f38119c5978cbc67df Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 11 Mar 2025 08:39:04 +0800
 Subject: [PATCH 443/652] fix:disable cca pvt0 and timer1
@@ -108,5 +108,5 @@ index 2b60e5eb4a6b..b9a58bd146da 100644
  
  free_d2d_err_dev:
 -- 
-2.52.0
+2.53.0
 

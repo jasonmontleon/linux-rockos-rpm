@@ -1,4 +1,4 @@
-From 16afdb3c5ec6425ee31a0bc9e80f679c5e456de4 Mon Sep 17 00:00:00 2001
+From bc1186c21267c0982dcffc64bc8061a7a87ad7ef Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 25 Jun 2025 19:43:35 +0800
 Subject: [PATCH 582/652] feature: Remove CONFIG_DEBUG_INFO
@@ -966,5 +966,5 @@ index 9e9ddbbf21aa..88aca18d7bc1 100644
  CONFIG_DEBUG_PAGEALLOC=y
  CONFIG_SCHED_STACK_END_CHECK=y
 -- 
-2.52.0
+2.53.0
 

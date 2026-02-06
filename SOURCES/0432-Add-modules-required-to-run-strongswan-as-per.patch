@@ -1,4 +1,4 @@
-From 12c35e6b9bbac7dde430beadd38126a135d52fd1 Mon Sep 17 00:00:00 2001
+From 7e01a5b070851e7b5d1d45b1fb91e16483a070b9 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Viktar=20Siarhiej=C4=8Dyk?= <a@gk.lc>
 Date: Sun, 23 Mar 2025 14:59:46 +0300
 Subject: [PATCH 432/652] Add modules required to run strongswan as per
@@ -35,5 +35,5 @@ index 4e586f315d0a..0ccf54cecfea 100644
  CONFIG_TCP_CONG_HSTCP=m
  CONFIG_TCP_CONG_HYBLA=m
 -- 
-2.52.0
+2.53.0
 

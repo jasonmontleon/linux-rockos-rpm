@@ -1,4 +1,4 @@
-From 88fb3801eca68ba7e7fd0b43efa0d52c84f5191b Mon Sep 17 00:00:00 2001
+From 49148778415e5e3a7a78afcdac436a6c34bd7063 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 13 May 2025 15:17:59 +0800
 Subject: [PATCH 503/652] feature: Add kernel eic7702 d560 interleave dts
@@ -1849,5 +1849,5 @@ index 000000000000..41ea1b44401b
 +	status = "okay";
 +};
 -- 
-2.52.0
+2.53.0
 

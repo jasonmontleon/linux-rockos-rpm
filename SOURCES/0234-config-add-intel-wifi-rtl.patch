@@ -1,4 +1,4 @@
-From 590b5b4edf04f5b436d7fbda7b73370ade9765b8 Mon Sep 17 00:00:00 2001
+From 8fc423bc4e04cf4187c0376e571fa3887a1741b5 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 17:14:08 +0800
 Subject: [PATCH 234/652] config: add intel wifi & rtl
@@ -61,5 +61,5 @@ index fe6b5b7f98ef..c1ce4ce9ed4c 100644
  # CONFIG_WLAN_VENDOR_SILABS is not set
  # CONFIG_WLAN_VENDOR_ST is not set
 -- 
-2.52.0
+2.53.0
 

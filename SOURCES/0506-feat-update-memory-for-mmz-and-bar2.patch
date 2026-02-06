@@ -1,4 +1,4 @@
-From 836806926eda1d8fdd869b2f94b7c6397d51968a Mon Sep 17 00:00:00 2001
+From b0e7798a3449ca2ad0ab3d1a27657802b0fed2ad Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Wed, 14 May 2025 13:50:20 +0800
 Subject: [PATCH 506/652] feat:update memory for mmz and bar2
@@ -203,5 +203,5 @@ index 03f548efbc80..85080a0dd008 100644
  		};
  
 -- 
-2.52.0
+2.53.0
 

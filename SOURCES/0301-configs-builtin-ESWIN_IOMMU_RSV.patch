@@ -1,4 +1,4 @@
-From d3766090cb4d86722eb946197372cc1c94ece1b5 Mon Sep 17 00:00:00 2001
+From 8a642de3fef2b949ef3c3b7ee159dfd83f5d0279 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 3 Dec 2024 19:51:07 +0800
 Subject: [PATCH 301/652] configs: builtin ESWIN_IOMMU_RSV
@@ -21,5 +21,5 @@ index 0d21bb6bf614..4849013e0e22 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN_WIN2030=y
 -- 
-2.52.0
+2.53.0
 

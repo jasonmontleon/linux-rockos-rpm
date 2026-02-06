@@ -1,4 +1,4 @@
-From 1c0fa2c0db5d27016a7c16f6dccee8b3ee58520b Mon Sep 17 00:00:00 2001
+From 37a89cb583c73e3f6f1ba971390eb12668508a60 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 3 Dec 2024 19:35:48 +0800
 Subject: [PATCH 300/652] dts: sync eic7x device tree
@@ -42,5 +42,5 @@ index f0f24cad97a4..e0eb8522a10b 100644
  				<&d1_reset DSP_RST_CTRL SW_DSP_CFG_RSTN>,
  				<&d1_reset DSP_RST_CTRL SW_DSP_DIV4_RSTN>,
 -- 
-2.52.0
+2.53.0
 

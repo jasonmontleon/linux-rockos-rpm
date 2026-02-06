@@ -1,4 +1,4 @@
-From 3a535eec02ab2d0a6c09319882e3d05ee6bfce2a Mon Sep 17 00:00:00 2001
+From 90ad7511d264b20e861e6c8767d6e435aafae38e Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Fri, 27 Dec 2024 14:46:35 +0800
 Subject: [PATCH 314/652] megrez: support rtc m41t11
@@ -42,5 +42,5 @@ index f71a973a7da9..477f2406826e 100644
  CONFIG_RTC_DRV_ESWIN=y
  CONFIG_DMADEVICES=y
 -- 
-2.52.0
+2.53.0
 

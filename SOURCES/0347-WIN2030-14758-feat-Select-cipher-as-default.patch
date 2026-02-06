@@ -1,4 +1,4 @@
-From 4e9c832302d76b0c96aa13fb70387c88af033357 Mon Sep 17 00:00:00 2001
+From 2b91c31382de2f9ea528b5ea20c287e833c535b1 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 20 Dec 2024 11:27:20 +0800
 Subject: [PATCH 347/652] WIN2030-14758:feat:Select cipher as default
@@ -62,5 +62,5 @@ index 10811521fe52..e2cb568415e9 100644
  CONFIG_CRC7=y
  CONFIG_DMA_CMA=y
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From b8de793c5ede218ad1d592c04677642fe59eb202 Mon Sep 17 00:00:00 2001
+From 06ac75d011f031670cf1128258184258e6d597c2 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Wed, 30 Apr 2025 19:55:01 +0800
 Subject: [PATCH 496/652] feat:to support both evb and televpu
@@ -3011,5 +3011,5 @@ similarity index 100%
 rename from arch/riscv/configs/eic7700_vpu7702_defconfig
 rename to arch/riscv/configs/vpu7702_pcie_defconfig
 -- 
-2.52.0
+2.53.0
 

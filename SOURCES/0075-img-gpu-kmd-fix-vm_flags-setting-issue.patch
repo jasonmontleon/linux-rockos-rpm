@@ -1,4 +1,4 @@
-From c92380c4b6ea1377a7dc3017eab4ad79b4ea6ea4 Mon Sep 17 00:00:00 2001
+From 3c4bcace7a65b78e439f76baa1b9b72af490ac27 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 11:34:07 +0800
 Subject: [PATCH 075/652] img gpu kmd: fix vm_flags setting issue
@@ -76,5 +76,5 @@ index fac2bd45a371..7cf4df444089 100644
  
  	/* For each PMR page-size contiguous bytes, map page(s) into user VMA */
 -- 
-2.52.0
+2.53.0
 

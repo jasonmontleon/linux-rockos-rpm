@@ -1,4 +1,4 @@
-From 6f6e4c1199db290cb7e85fcbf5aefaef62bb879d Mon Sep 17 00:00:00 2001
+From 650f0299dbcf19066767624b1e8128984e645369 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 5 Dec 2024 20:05:27 +0800
 Subject: [PATCH 331/652] WIN2030-16740:feat:support z530 board
@@ -1005,5 +1005,5 @@ index 7fb7d3b28df2..e6d2005d854b 100644
  		};
  
 -- 
-2.52.0
+2.53.0
 

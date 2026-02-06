@@ -1,4 +1,4 @@
-From 2c847b5f49a82d9957d7b0a07b435e85a1b9f5ad Mon Sep 17 00:00:00 2001
+From 484f61346a6b4207a04aac9436a0092dd2695b19 Mon Sep 17 00:00:00 2001
 From: lizhi2 <lizhi2@eswincomputing.com>
 Date: Wed, 30 Apr 2025 13:26:06 +0800
 Subject: [PATCH 492/652] feat(eth): ETH tuning in EIC7702_D560
@@ -60,5 +60,5 @@ index de69bc2359e4..ed5392ae9035 100644
  	status = "okay";
  };
 -- 
-2.52.0
+2.53.0
 

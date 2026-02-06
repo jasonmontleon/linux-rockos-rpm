@@ -1,4 +1,4 @@
-From f55817cfef78aee56aa0fcc4f0804aeeb2896025 Mon Sep 17 00:00:00 2001
+From d1fda9b00254c0eee2ed12c0114edb43c04b91c3 Mon Sep 17 00:00:00 2001
 From: lihuihui <lihuihui@eswincomputing.com>
 Date: Thu, 3 Jul 2025 18:57:19 +0800
 Subject: [PATCH 611/652] feat:support eswin's hwrng
@@ -51,5 +51,5 @@ index 45b98b871a63..6c20799e4b52 100644
  CONFIG_CRC7=y
  CONFIG_DMA_CMA=y
 -- 
-2.52.0
+2.53.0
 

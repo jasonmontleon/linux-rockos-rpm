@@ -1,4 +1,4 @@
-From eb8cbe1fea264d6c9625c62231702b789679f5c0 Mon Sep 17 00:00:00 2001
+From 87d250c3cfffeb560bb6eb14c02a284b722dc3f2 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 5 Nov 2024 10:24:03 +0800
 Subject: [PATCH 279/652] WIN2030-16035:refactor:Support ECC mode
@@ -53,5 +53,5 @@ index 2e99b78abc91..629626b35c4b 100644
  		};
  	};
 -- 
-2.52.0
+2.53.0
 

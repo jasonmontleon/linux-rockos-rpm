@@ -1,4 +1,4 @@
-From c3a7d92ef3c7973a36993200f11306d986992de2 Mon Sep 17 00:00:00 2001
+From caaf0ff1713ee1ed1f4d2f14e43a2ba5d4a9a9bf Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 5 Feb 2025 19:57:56 +0800
 Subject: [PATCH 392/652] WIN2030-17068:fix:dsp drv mem leak
@@ -31,5 +31,5 @@ index 2250f2cfd476..60e9a2ea5a04 100644
  
  	spin_lock_irqsave(&dsp->complete_lock, flags);
 -- 
-2.52.0
+2.53.0
 

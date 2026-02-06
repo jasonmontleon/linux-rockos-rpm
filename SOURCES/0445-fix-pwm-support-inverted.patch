@@ -1,4 +1,4 @@
-From b83db4204f0bf2211e1d964e9f26063d9fe237f7 Mon Sep 17 00:00:00 2001
+From dbfada158b279bd628f7719c16ce07d473ed6d38 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 17 Mar 2025 19:54:53 +0800
 Subject: [PATCH 445/652] fix:pwm support inverted
@@ -194,5 +194,5 @@ index 1873b8351b0c..23e8b6388264 100644
  	 * Specification says timer usage flow is to disable timer, then
  	 * program it followed by enable. It also says Load Count is loaded
 -- 
-2.52.0
+2.53.0
 

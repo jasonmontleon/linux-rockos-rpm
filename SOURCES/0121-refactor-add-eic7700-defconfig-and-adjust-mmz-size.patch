@@ -1,4 +1,4 @@
-From adb145ce3e3b880127e0a859319c08b31932d214 Mon Sep 17 00:00:00 2001
+From ee5c5390d0059f28a4d8d9eccbf85ee7039efdc8 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 26 Jul 2024 14:49:38 +0800
 Subject: [PATCH 121/652] refactor:add eic7700 defconfig and adjust mmz size
@@ -1000,5 +1000,5 @@ index 000000000000..0911327327a8
 +CONFIG_VIDEO_ESWIN_VDEC=y
 +CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 -- 
-2.52.0
+2.53.0
 

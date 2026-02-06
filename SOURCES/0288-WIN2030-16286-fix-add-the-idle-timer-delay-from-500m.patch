@@ -1,4 +1,4 @@
-From c0a985b6d509c8b81a689c5142cf372af8cb6485 Mon Sep 17 00:00:00 2001
+From 6f56a9843202200d84717326714a1f474a27ff21 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 29 Oct 2024 13:26:18 +0800
 Subject: [PATCH 288/652] <WIN2030-16286>:fix:add the idle timer delay from
@@ -59,5 +59,5 @@ index c210a5237740..b58544de1fb4 100644
  
      /* End of event handling. */
 -- 
-2.52.0
+2.53.0
 

@@ -1,4 +1,4 @@
-From db55a9bacb6cf77104d6724a7cbe25234584fdf3 Mon Sep 17 00:00:00 2001
+From e6bbcd750ee4c58b580b753927d41dc24a6466fd Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 29 Oct 2024 09:41:49 +0800
 Subject: [PATCH 277/652] WIN2030-16445:fix:Resolve DSP & NPU driver
@@ -106,5 +106,5 @@ index 02a17f2b892c..2e8b78a88e73 100644
  // At least one way must be reserved for cache
  #define MAX_CACHE_SIZE (2 * 0x100000)  //2MB
 -- 
-2.52.0
+2.53.0
 
