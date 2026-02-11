@@ -1,4 +1,4 @@
-From b8afe522fc6fa928da2afb6aa4f7eecd280684ac Mon Sep 17 00:00:00 2001
+From b97163c5ab632429ea4ff31f3b7c42c505c3da80 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 27 Sep 2024 17:11:20 +0800
 Subject: [PATCH 184/652] fix:Resolve DSP SMMU error.

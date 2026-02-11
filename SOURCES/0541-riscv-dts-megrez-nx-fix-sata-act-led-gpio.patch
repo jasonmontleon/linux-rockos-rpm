@@ -1,4 +1,4 @@
-From 2e99536da3436e078fe6d3fba279d12675e48e00 Mon Sep 17 00:00:00 2001
+From dba90d898085f367e33d7637fd510c1c2846e772 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Tue, 15 Jul 2025 14:27:52 +0800
 Subject: [PATCH 541/652] riscv: dts: megrez-nx: fix sata act led gpio
