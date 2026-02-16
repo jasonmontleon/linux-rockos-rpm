@@ -1,4 +1,4 @@
-From 1235c2f8f95e7bd8c72248901bd94eeb9b912fac Mon Sep 17 00:00:00 2001
+From ce2ead90d5d9bcddfd49ebd516b514a225de13af Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 23 Jul 2024 16:10:17 +0800
 Subject: [PATCH 113/652] feat:linux-6.6 add npu & dsp driver.

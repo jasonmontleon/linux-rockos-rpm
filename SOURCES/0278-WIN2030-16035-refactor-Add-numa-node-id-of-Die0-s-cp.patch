@@ -1,4 +1,4 @@
-From 8134ca132ae7a87f3dd5a42e27d6e36103f1f93c Mon Sep 17 00:00:00 2001
+From e5a18bb449e152ada3ffce687246f0bb0c6208a1 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 1 Nov 2024 16:33:03 +0800
 Subject: [PATCH 278/652] WIN2030-16035:refactor:Add numa node id of Die0's cpu
