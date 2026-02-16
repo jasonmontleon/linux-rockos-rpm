@@ -1,4 +1,4 @@
-From 320b16c6340ebd5ddc1f437c9d89f074033c48b7 Mon Sep 17 00:00:00 2001
+From c909b2ca04259fbd62fd0cc03fbd0720ec625da1 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:51:58 +0800
 Subject: [PATCH 425/652] config: net: enable net device for eic7700x

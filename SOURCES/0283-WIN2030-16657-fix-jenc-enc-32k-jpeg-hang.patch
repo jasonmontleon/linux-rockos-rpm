@@ -1,4 +1,4 @@
-From b706e78d13c12b4449204b3ab881262991468cc1 Mon Sep 17 00:00:00 2001
+From 3199473a8a0762ab3985febf46739ff40e0622aa Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 19 Nov 2024 14:25:46 +0800
 Subject: [PATCH 283/652] WIN2030-16657:fix(jenc):enc 32k jpeg hang

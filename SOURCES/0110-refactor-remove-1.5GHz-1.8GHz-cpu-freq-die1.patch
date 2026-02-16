@@ -1,4 +1,4 @@
-From 036cc838c74ccb1b65f20aad95457027b230c70c Mon Sep 17 00:00:00 2001
+From a90c6ef2702b8286fc2f3a6a0d1c1ad7669250d0 Mon Sep 17 00:00:00 2001
 From: chenshuo <chenshuo@eswincomputing.com>
 Date: Tue, 23 Jul 2024 15:23:14 +0800
 Subject: [PATCH 110/652] refactor:remove 1.5GHz~1.8GHz cpu freq(die1)
