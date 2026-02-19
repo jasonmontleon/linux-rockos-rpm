@@ -1,4 +1,4 @@
-From 4a777c48bfeefe4a664e66aeec45e24e28338a7c Mon Sep 17 00:00:00 2001
+From e9d33bc88352c6e9d9d18779a0a79d4ee2f181f0 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 28 Jun 2024 17:27:25 +0800
 Subject: [PATCH 091/652] configs: enable MEDIA_USB_SUPPORT & MEDIA_PCI_SUPPORT

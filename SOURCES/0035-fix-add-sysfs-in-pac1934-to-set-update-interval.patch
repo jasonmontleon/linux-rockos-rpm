@@ -1,4 +1,4 @@
-From 856f6e17208044c6c40286d2423f491df1d3f638 Mon Sep 17 00:00:00 2001
+From 9f75f650cb12cc4ecced5789f9bcbd8178db36d6 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 27 May 2024 14:44:34 +0800
 Subject: [PATCH 035/652] fix:add sysfs in pac1934 to set update interval

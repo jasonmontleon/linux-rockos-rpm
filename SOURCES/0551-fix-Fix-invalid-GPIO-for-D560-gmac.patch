@@ -1,4 +1,4 @@
-From b2d65161bcb408b6459297e97bb12592ab7ce026 Mon Sep 17 00:00:00 2001
+From 6a736c56c09c2ff8acbe0cdfd8462be746c44ef6 Mon Sep 17 00:00:00 2001
 From: gengzonglin <gengzonglin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 09:41:33 +0800
 Subject: [PATCH 551/652] fix:Fix 'invalid GPIO' for D560 gmac

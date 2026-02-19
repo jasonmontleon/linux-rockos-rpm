@@ -1,4 +1,4 @@
-From 88d228f550ced9b6ea9a4e573f20555557ffbd2e Mon Sep 17 00:00:00 2001
+From e23d9274962bd099812ad0a7b3166d50d8ba594d Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 24 May 2024 13:24:28 +0800
 Subject: [PATCH 030/652] feat:add fan,rtc,wdt,dw-spi,pwm

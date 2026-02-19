@@ -1,4 +1,4 @@
-From d5e6a00b347513d28d271440661a1ce1236fa912 Mon Sep 17 00:00:00 2001
+From 0aee6739c20df2965b7822fb3e6d38b3554383f4 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 17 Jun 2025 15:06:57 +0800
 Subject: [PATCH 578/652] feature: Add CONFIG_KEXEC and SYSRQ config

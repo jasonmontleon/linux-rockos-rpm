@@ -1,4 +1,4 @@
-From a860f9ae160fa52a7f35ae2214365bdf880c89c1 Mon Sep 17 00:00:00 2001
+From d722128aaa7b9475f594a6ea44dc32aba3b34108 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:09:10 +0800
 Subject: [PATCH 421/652] config: fs: enable xfs/gfs/f2fs/zonefs for eic7700x

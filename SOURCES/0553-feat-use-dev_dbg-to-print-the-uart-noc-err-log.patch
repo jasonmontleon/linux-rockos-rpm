@@ -1,4 +1,4 @@
-From a33ab267c5fb43bcd361306499d3997c39703c2b Mon Sep 17 00:00:00 2001
+From 6a523d56a9572f0a4b620a62d2d9fa0da6a303ff Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 12 Jun 2025 13:49:35 +0800
 Subject: [PATCH 553/652] feat: use dev_dbg to print the uart noc err log
