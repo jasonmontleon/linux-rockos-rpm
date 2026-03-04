@@ -1,4 +1,4 @@
-From 8bca074a79c76eb1b8c280e17cebfaa86e354a05 Mon Sep 17 00:00:00 2001
+From 53ca55ab6bcf4ec4b1334ad61f0a657885bbb131 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Fri, 7 Feb 2025 09:44:47 +0800
 Subject: [PATCH 399/652] WIN2030-16409: fix: fixed dsp dmabuf issue
@@ -15,7 +15,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  5 files changed, 64 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 0569d1579eba..6b567365de80 100644
+index 0569d1579eba4..6b567365de802 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -180,6 +180,7 @@ static u32 dsp_get_dma_addr(struct es_dsp *dsp, int fd,
@@ -56,7 +56,7 @@ index 0569d1579eba..6b567365de80 100644
  		dsp_err("%s, %d, task num below zero, err,\n", __func__,
  			__LINE__);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 5a2f3e97d9d8..9cd6a5686515 100644
+index 5a2f3e97d9d8b..9cd6a56865155 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -940,6 +940,7 @@ static int es_dsp_hw_probe(struct platform_device *pdev)
@@ -68,7 +68,7 @@ index 5a2f3e97d9d8..9cd6a5686515 100644
  
  	ret = dsp_alloc_hw(pdev, dsp);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
-index af85e992634f..f98ae647cd7c 100644
+index af85e992634fa..f98ae647cd7c5 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 @@ -190,6 +190,7 @@ struct es_dsp {
@@ -80,7 +80,7 @@ index af85e992634f..f98ae647cd7c 100644
  
  #define DSP_FIRMWARE_IOVA 0xfe000000
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-index 54d9169a3515..e21212fecb6b 100644
+index 54d9169a35151..e21212fecb6bb 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 @@ -376,6 +376,48 @@ static int proc_stats_open(struct inode *inode, struct file *file)
@@ -143,7 +143,7 @@ index 54d9169a3515..e21212fecb6b 100644
  }
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
-index 5207c17be540..15e43027b1a5 100644
+index 5207c17be5405..15e43027b1a56 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dsp.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
 @@ -295,6 +295,7 @@ static int processor_dsp_program(struct win_executor *executor, int idx,

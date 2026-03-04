@@ -1,4 +1,4 @@
-From d18c7492f051a82119fc849edc379b3957ca10d2 Mon Sep 17 00:00:00 2001
+From b18036336b2c53bf02ce8e46fb691e89410caf5e Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 28 May 2024 09:37:29 +0800
 Subject: [PATCH 034/652] fix:Add rtc(pcf8573) driver in win2030_defconfig
@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 8d5ad3f19306..7311283d7c6d 100644
+index 8d5ad3f193064..7311283d7c6d9 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -247,6 +247,7 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y

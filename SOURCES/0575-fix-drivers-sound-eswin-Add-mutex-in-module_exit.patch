@@ -1,4 +1,4 @@
-From 8a623e5e9bbcef44022bb3a674d16426a562a557 Mon Sep 17 00:00:00 2001
+From 8e42e6f1545c91582e394eae84a036d46221fde1 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:10:18 +0800
 Subject: [PATCH 575/652] fix:drivers: sound: eswin: Add mutex in module_exit
@@ -12,7 +12,7 @@ Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/sound/soc/eswin/esw-audio-proc.c b/sound/soc/eswin/esw-audio-proc.c
-index f21e269af657..276356c57e8d 100644
+index f21e269af6578..276356c57e8d5 100644
 --- a/sound/soc/eswin/esw-audio-proc.c
 +++ b/sound/soc/eswin/esw-audio-proc.c
 @@ -477,6 +477,7 @@ void audio_proc_module_exit(void)

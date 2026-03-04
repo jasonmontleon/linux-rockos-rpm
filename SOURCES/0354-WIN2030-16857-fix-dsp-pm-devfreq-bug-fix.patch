@@ -1,4 +1,4 @@
-From 5038f3a3fb6b624ca3c85eb358be965867b2e05c Mon Sep 17 00:00:00 2001
+From d482fd9e3bdcd01d2796b8593cffd3aacefba228 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 24 Dec 2024 16:02:46 +0800
 Subject: [PATCH 354/652] WIN2030-16857:fix:dsp pm devfreq bug fix
@@ -13,7 +13,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 9 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 1a5a1a0d7e16..5a2f3e97d9d8 100644
+index 1a5a1a0d7e16e..5a2f3e97d9d8b 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -884,6 +884,7 @@ static void dsp_init_prio_array(struct es_dsp *dsp)

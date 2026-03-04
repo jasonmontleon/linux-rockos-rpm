@@ -1,4 +1,4 @@
-From 3a6af0b721a766232e98496b928320c8235c9305 Mon Sep 17 00:00:00 2001
+From 9e0ec2dcac30e5c54f8f66cd1ac587b532d3c10d Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 3 Dec 2024 19:51:07 +0800
 Subject: [PATCH 301/652] configs: builtin ESWIN_IOMMU_RSV
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0d21bb6bf614..4849013e0e22 100644
+index 0d21bb6bf6146..4849013e0e221 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -793,6 +793,7 @@ CONFIG_ESWIN_PROC=y

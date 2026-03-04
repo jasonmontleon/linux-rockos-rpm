@@ -1,4 +1,4 @@
-From 83d5b9259baa054ca74489dfd718a6b58ffd9bba Mon Sep 17 00:00:00 2001
+From 8012e46e34aee57747ae0107b384f4ea6e4037c2 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 25 Dec 2024 17:51:00 +0800
 Subject: [PATCH 312/652] configs: eic7702: add initrd support
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 2f468cfeba8d..78b45bbf24ab 100644
+index 2f468cfeba8d6..78b45bbf24abf 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -26,6 +26,7 @@ CONFIG_CGROUP_MISC=y

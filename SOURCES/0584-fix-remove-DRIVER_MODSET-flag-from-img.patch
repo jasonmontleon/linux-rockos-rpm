@@ -1,4 +1,4 @@
-From 3c3680419f0c018310243a51669156fdef984ab2 Mon Sep 17 00:00:00 2001
+From e0ea21e9a5c2d14f392df7776a12ff42e00ffe21 Mon Sep 17 00:00:00 2001
 From: zhang yizhong <zhangyizhong@eswincomputing.com>
 Date: Wed, 25 Jun 2025 13:30:30 +0800
 Subject: [PATCH 584/652] fix:remove DRIVER_MODSET flag from img.
@@ -15,7 +15,7 @@ Signed-off-by: zhangyizhong <zhangyizhong@eswincomputing.com>
  1 file changed, 1 insertion(+), 3 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index 6dd85240ea67..2f250b946a7a 100644
+index 6dd85240ea67c..2f250b946a7ad 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -262,7 +262,6 @@ void SysDevDeInit(PVRSRV_DEVICE_CONFIG *psDevConfig)

@@ -1,4 +1,4 @@
-From af29f95ea67f79a982972424f2ee6a7972420749 Mon Sep 17 00:00:00 2001
+From 0548b26dfcef4327f8b2972b410072c5b6723795 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 22:44:44 +0800
 Subject: [PATCH 307/652] eic7700: megrez: add opp table for 1.5G-1.8G
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 20 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 0df73dab566b..3fbee7bee395 100644
+index 0df73dab566b6..3fbee7bee3950 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -880,9 +880,24 @@ &dev_llc_d0{

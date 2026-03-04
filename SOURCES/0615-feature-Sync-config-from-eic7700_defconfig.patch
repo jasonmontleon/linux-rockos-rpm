@@ -1,4 +1,4 @@
-From 8b4d5fc5bb7e9c4d3875ba4ca60e9b190f09bcda Mon Sep 17 00:00:00 2001
+From 312957aa8e3c2a6a0cac818645d3122dada6d126 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 8 Jul 2025 18:01:36 +0800
 Subject: [PATCH 615/652] feature: Sync config from eic7700_defconfig
@@ -12,7 +12,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  1 file changed, 60 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 9e634f09e222..fdbad29cf77e 100644
+index 9e634f09e222a..fdbad29cf77e3 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -38,12 +38,14 @@ CONFIG_RISCV_SBI_V01=y

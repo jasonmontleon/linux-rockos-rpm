@@ -1,4 +1,4 @@
-From ce17270b19674204fec5d0b951377875b2f10ae4 Mon Sep 17 00:00:00 2001
+From 32cd5b84ffb42365483d7825c030f4294587d1d7 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:11:10 +0800
 Subject: [PATCH 422/652] config: drm: nouveau: as module for eic7700x
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 623624112dff..ce7255a46970 100644
+index 623624112dffe..ce7255a469703 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -485,6 +485,7 @@ CONFIG_HW_RANDOM_VIRTIO=y

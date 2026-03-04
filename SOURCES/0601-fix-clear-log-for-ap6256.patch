@@ -1,4 +1,4 @@
-From e9799c28c33419a759af50fa4b3fa9278ae6e173 Mon Sep 17 00:00:00 2001
+From eb4fd460645ebf0465c46332909006312dadcb31 Mon Sep 17 00:00:00 2001
 From: wangjinlong <wangjinlong@eswincomputing.com>
 Date: Wed, 2 Jul 2025 15:12:04 +0800
 Subject: [PATCH 601/652] fix: clear log for ap6256
@@ -41,7 +41,7 @@ Signed-off-by: wangjinlong <wangjinlong@eswincomputing.com>
  30 files changed, 199 insertions(+), 167 deletions(-)
 
 diff --git a/drivers/net/wireless/ap12275/Makefile b/drivers/net/wireless/ap12275/Makefile
-index 7ed068b81d95..5107db727388 100644
+index 7ed068b81d95d..5107db7273889 100644
 --- a/drivers/net/wireless/ap12275/Makefile
 +++ b/drivers/net/wireless/ap12275/Makefile
 @@ -64,7 +64,7 @@ DHDCFLAGS = -Wall -Wstrict-prototypes -Wno-date-time                      \
@@ -54,7 +54,7 @@ index 7ed068b81d95..5107db727388 100644
  DHDOFILES = aiutils.o siutils.o sbutils.o                                 \
  	bcmutils.o bcmwifi_channels.o bcmxtlv.o bcm_app_utils.o bcmstdlib_s.o \
 diff --git a/drivers/net/wireless/ap12275/bcmsdh_linux.c b/drivers/net/wireless/ap12275/bcmsdh_linux.c
-index fe34db51186e..521141b1999d 100644
+index fe34db51186e8..521141b1999d2 100644
 --- a/drivers/net/wireless/ap12275/bcmsdh_linux.c
 +++ b/drivers/net/wireless/ap12275/bcmsdh_linux.c
 @@ -79,6 +79,7 @@ typedef struct bcmsdh_os_info {
@@ -78,7 +78,7 @@ index fe34db51186e..521141b1999d 100644
   * Checks to see if vendor and device IDs match a supported SDIO Host Controller.
   */
 diff --git a/drivers/net/wireless/ap12275/bcmsdh_sdmmc.c b/drivers/net/wireless/ap12275/bcmsdh_sdmmc.c
-index ca5bcd75e562..4acc1c25a57d 100644
+index ca5bcd75e5628..4acc1c25a57d8 100644
 --- a/drivers/net/wireless/ap12275/bcmsdh_sdmmc.c
 +++ b/drivers/net/wireless/ap12275/bcmsdh_sdmmc.c
 @@ -316,7 +316,7 @@ sdioh_attach(osl_t *osh, struct sdio_func *func)
@@ -145,7 +145,7 @@ index ca5bcd75e562..4acc1c25a57d 100644
  					if (ret) {
  						sd_err(("bcmsdh_sdmmc: Failed to set F2 blocksize"
 diff --git a/drivers/net/wireless/ap12275/bcmsdh_sdmmc_linux.c b/drivers/net/wireless/ap12275/bcmsdh_sdmmc_linux.c
-index 4e3e52aad5e0..78d0067413c9 100644
+index 4e3e52aad5e08..78d0067413c92 100644
 --- a/drivers/net/wireless/ap12275/bcmsdh_sdmmc_linux.c
 +++ b/drivers/net/wireless/ap12275/bcmsdh_sdmmc_linux.c
 @@ -89,11 +89,11 @@ static int sdioh_probe(struct sdio_func *func)
@@ -198,7 +198,7 @@ index 4e3e52aad5e0..78d0067413c9 100644
  		if ((id->vendor != SDIO_VENDOR_ID_BROADCOM) &&
  			(id->vendor != SDIO_VENDOR_ID_SYNAPTICS))
 diff --git a/drivers/net/wireless/ap12275/bcmutils.c b/drivers/net/wireless/ap12275/bcmutils.c
-index 7b47d8475d07..cf2c0b8d8dbe 100644
+index 7b47d8475d07c..cf2c0b8d8dbe8 100644
 --- a/drivers/net/wireless/ap12275/bcmutils.c
 +++ b/drivers/net/wireless/ap12275/bcmutils.c
 @@ -1674,6 +1674,12 @@ bcm_iovar_lencheck(const bcm_iovar_t *vi, void *arg, uint len, bool set)
@@ -224,7 +224,7 @@ index 7b47d8475d07..cf2c0b8d8dbe 100644
  }
  
 diff --git a/drivers/net/wireless/ap12275/dbus.c b/drivers/net/wireless/ap12275/dbus.c
-index 9b65c3c04ab8..260b93788956 100644
+index 9b65c3c04ab8e..260b937889564 100644
 --- a/drivers/net/wireless/ap12275/dbus.c
 +++ b/drivers/net/wireless/ap12275/dbus.c
 @@ -3050,7 +3050,7 @@ dhd_bus_devreset(dhd_pub_t *dhdp, uint8 flag)
@@ -262,7 +262,7 @@ index 9b65c3c04ab8..260b93788956 100644
  				DBUSERR(("%s: failed to dbus_up with code %d\n", __FUNCTION__, bcmerror));
  			}
 diff --git a/drivers/net/wireless/ap12275/dhd.h b/drivers/net/wireless/ap12275/dhd.h
-index 025e8184e20c..84dc41ac1357 100644
+index 025e8184e20cd..84dc41ac1357a 100644
 --- a/drivers/net/wireless/ap12275/dhd.h
 +++ b/drivers/net/wireless/ap12275/dhd.h
 @@ -2399,16 +2399,16 @@ extern struct mutex _dhd_mutex_lock_;
@@ -287,7 +287,7 @@ index 025e8184e20c..84dc41ac1357 100644
  	} while (0)
  #else
 diff --git a/drivers/net/wireless/ap12275/dhd_cdc.c b/drivers/net/wireless/ap12275/dhd_cdc.c
-index 668d11389e56..7ab331c53449 100644
+index 668d11389e569..7ab331c534490 100644
 --- a/drivers/net/wireless/ap12275/dhd_cdc.c
 +++ b/drivers/net/wireless/ap12275/dhd_cdc.c
 @@ -713,7 +713,7 @@ dhd_sync_with_dongle(dhd_pub_t *dhd)
@@ -300,7 +300,7 @@ index 668d11389e56..7ab331c53449 100644
  #if defined(BCMDBUS) && defined(BCMDHDUSB)
  	/* dbus_set_revinfo(dhd->dbus, revinfo.chipnum, revinfo.chiprev); */
 diff --git a/drivers/net/wireless/ap12275/dhd_common.c b/drivers/net/wireless/ap12275/dhd_common.c
-index 6ad487f0bb49..6a1cfe9c3175 100644
+index 6ad487f0bb49c..6a1cfe9c3175f 100644
 --- a/drivers/net/wireless/ap12275/dhd_common.c
 +++ b/drivers/net/wireless/ap12275/dhd_common.c
 @@ -6198,7 +6198,7 @@ wl_process_host_event(dhd_pub_t *dhd_pub, int *ifidx, void *pktdata, uint pktlen
@@ -363,7 +363,7 @@ index 6ad487f0bb49..6a1cfe9c3175 100644
  	* core capture logs will contain FW version read from the file
  	*/
 diff --git a/drivers/net/wireless/ap12275/dhd_config.c b/drivers/net/wireless/ap12275/dhd_config.c
-index 6a7caa18a088..480f11632739 100644
+index 6a7caa18a0885..480f116327398 100644
 --- a/drivers/net/wireless/ap12275/dhd_config.c
 +++ b/drivers/net/wireless/ap12275/dhd_config.c
 @@ -40,9 +40,13 @@
@@ -383,7 +383,7 @@ index 6a7caa18a088..480f11632739 100644
  
  #define CONFIG_MSG(x, args...) \
 diff --git a/drivers/net/wireless/ap12275/dhd_custom_hikey.c b/drivers/net/wireless/ap12275/dhd_custom_hikey.c
-index 070fc5695932..a148c51891c3 100644
+index 070fc56959329..a148c51891c3b 100644
 --- a/drivers/net/wireless/ap12275/dhd_custom_hikey.c
 +++ b/drivers/net/wireless/ap12275/dhd_custom_hikey.c
 @@ -71,11 +71,11 @@ dhd_wifi_deinit_gpio(void)
@@ -447,7 +447,7 @@ index 070fc5695932..a148c51891c3 100644
  			__FUNCTION__, wlan_host_wake_up));
  	}
 diff --git a/drivers/net/wireless/ap12275/dhd_gpio.c b/drivers/net/wireless/ap12275/dhd_gpio.c
-index 76aea8350814..8449b9bf626f 100644
+index 76aea83508143..8449b9bf626f4 100644
 --- a/drivers/net/wireless/ap12275/dhd_gpio.c
 +++ b/drivers/net/wireless/ap12275/dhd_gpio.c
 @@ -8,6 +8,7 @@
@@ -580,7 +580,7 @@ index 76aea8350814..8449b9bf626f 100644
  
  #ifdef DHD_STATIC_IN_DRIVER
 diff --git a/drivers/net/wireless/ap12275/dhd_ip.c b/drivers/net/wireless/ap12275/dhd_ip.c
-index f226e4a343d3..32788cccf560 100644
+index f226e4a343d33..32788cccf560e 100644
 --- a/drivers/net/wireless/ap12275/dhd_ip.c
 +++ b/drivers/net/wireless/ap12275/dhd_ip.c
 @@ -394,10 +394,10 @@ int dhd_tcpack_suppress_set(dhd_pub_t *dhdp, uint8 mode)
@@ -599,7 +599,7 @@ index f226e4a343d3..32788cccf560 100644
  	/* Pre-process routines to change a new mode as per previous mode */
  	switch (prev_mode) {
 diff --git a/drivers/net/wireless/ap12275/dhd_linux.c b/drivers/net/wireless/ap12275/dhd_linux.c
-index 2c82c69daa18..fea959ba921d 100644
+index 2c82c69daa18b..fea959ba921d1 100644
 --- a/drivers/net/wireless/ap12275/dhd_linux.c
 +++ b/drivers/net/wireless/ap12275/dhd_linux.c
 @@ -6486,7 +6486,7 @@ dhd_stop(struct net_device *net)
@@ -923,7 +923,7 @@ index 2c82c69daa18..fea959ba921d 100644
  		return -EINVAL;
  	}
 diff --git a/drivers/net/wireless/ap12275/dhd_linux_platdev.c b/drivers/net/wireless/ap12275/dhd_linux_platdev.c
-index ef79a8a8027f..c2ce2cc9b94e 100644
+index ef79a8a8027f1..c2ce2cc9b94e4 100644
 --- a/drivers/net/wireless/ap12275/dhd_linux_platdev.c
 +++ b/drivers/net/wireless/ap12275/dhd_linux_platdev.c
 @@ -247,12 +247,12 @@ int wifi_platform_set_power(wifi_adapter_info_t *adapter, bool on, unsigned long
@@ -1017,7 +1017,7 @@ index ef79a8a8027f..c2ce2cc9b94e 100644
  #if defined(OEM_ANDROID)
  	wl_android_init();
 diff --git a/drivers/net/wireless/ap12275/dhd_linux_rx.c b/drivers/net/wireless/ap12275/dhd_linux_rx.c
-index f70bc7ddeb5e..ae2044be6a42 100644
+index f70bc7ddeb5e9..ae2044be6a42b 100644
 --- a/drivers/net/wireless/ap12275/dhd_linux_rx.c
 +++ b/drivers/net/wireless/ap12275/dhd_linux_rx.c
 @@ -402,7 +402,7 @@ dhd_rx_frame(dhd_pub_t *dhdp, int ifidx, void *pktbuf, int numpkt, uint8 chan)
@@ -1030,7 +1030,7 @@ index f70bc7ddeb5e..ae2044be6a42 100644
  			RX_PKTFREE(dhdp->osh, eh->ether_type, pktbuf, FALSE);
  			continue;
 diff --git a/drivers/net/wireless/ap12275/dhd_linux_wq.c b/drivers/net/wireless/ap12275/dhd_linux_wq.c
-index c642853ff081..1904d0e24b8b 100644
+index c642853ff081b..1904d0e24b8b3 100644
 --- a/drivers/net/wireless/ap12275/dhd_linux_wq.c
 +++ b/drivers/net/wireless/ap12275/dhd_linux_wq.c
 @@ -174,7 +174,7 @@ dhd_deferred_work_init(void *dhd_info)
@@ -1043,7 +1043,7 @@ index c642853ff081..1904d0e24b8b 100644
  
  return_null:
 diff --git a/drivers/net/wireless/ap12275/dhd_msgbuf.c b/drivers/net/wireless/ap12275/dhd_msgbuf.c
-index d614e648fdf6..3624247d80be 100644
+index d614e648fdf66..3624247d80be3 100644
 --- a/drivers/net/wireless/ap12275/dhd_msgbuf.c
 +++ b/drivers/net/wireless/ap12275/dhd_msgbuf.c
 @@ -5082,7 +5082,7 @@ int dhd_sync_with_dongle(dhd_pub_t *dhd)
@@ -1056,7 +1056,7 @@ index d614e648fdf6..3624247d80be 100644
  #ifndef OEM_ANDROID
  	/* Get the device MAC address */
 diff --git a/drivers/net/wireless/ap12275/dhd_pcie.c b/drivers/net/wireless/ap12275/dhd_pcie.c
-index 027bebf96a90..bd9f5a2d8191 100644
+index 027bebf96a903..bd9f5a2d8191a 100644
 --- a/drivers/net/wireless/ap12275/dhd_pcie.c
 +++ b/drivers/net/wireless/ap12275/dhd_pcie.c
 @@ -2470,7 +2470,7 @@ dhdpcie_dongle_attach(dhd_bus_t *bus)
@@ -1095,7 +1095,7 @@ index 027bebf96a90..bd9f5a2d8191 100644
  upload_err:
  		if (ulblock)
 diff --git a/drivers/net/wireless/ap12275/dhd_sdio.c b/drivers/net/wireless/ap12275/dhd_sdio.c
-index 98f8d8e4ffa3..84daa46d1269 100644
+index 98f8d8e4ffa3f..84daa46d12693 100644
 --- a/drivers/net/wireless/ap12275/dhd_sdio.c
 +++ b/drivers/net/wireless/ap12275/dhd_sdio.c
 @@ -4091,13 +4091,13 @@ dhd_bus_check_srmemsize(dhd_pub_t *dhdp)
@@ -1337,7 +1337,7 @@ index 98f8d8e4ffa3..84daa46d1269 100644
  				DHD_LINUX_GENERAL_UNLOCK(bus->dhd, flags);
  				/* Attempt to download binary to the dongle */
 diff --git a/drivers/net/wireless/ap12275/dhd_static_buf.c b/drivers/net/wireless/ap12275/dhd_static_buf.c
-index a247a42691d5..1f1f0c8af570 100644
+index a247a42691d5b..1f1f0c8af5704 100644
 --- a/drivers/net/wireless/ap12275/dhd_static_buf.c
 +++ b/drivers/net/wireless/ap12275/dhd_static_buf.c
 @@ -9,8 +9,13 @@
@@ -1355,7 +1355,7 @@ index a247a42691d5..1f1f0c8af570 100644
  #define DHD_STATIC_MSG(x, args...) \
  do { \
 diff --git a/drivers/net/wireless/ap12275/dhd_wlfc.c b/drivers/net/wireless/ap12275/dhd_wlfc.c
-index 8c5081ba0bf3..011e4bd9eaba 100644
+index 8c5081ba0bf37..011e4bd9eabaf 100644
 --- a/drivers/net/wireless/ap12275/dhd_wlfc.c
 +++ b/drivers/net/wireless/ap12275/dhd_wlfc.c
 @@ -3825,7 +3825,7 @@ dhd_wlfc_hostreorder_init(dhd_pub_t *dhd)
@@ -1368,7 +1368,7 @@ index 8c5081ba0bf3..011e4bd9eaba 100644
  	}
  
 diff --git a/drivers/net/wireless/ap12275/include/linuxver.h b/drivers/net/wireless/ap12275/include/linuxver.h
-index c427c783f9a0..ba4e8b4c17b5 100644
+index c427c783f9a04..ba4e8b4c17b53 100644
 --- a/drivers/net/wireless/ap12275/include/linuxver.h
 +++ b/drivers/net/wireless/ap12275/include/linuxver.h
 @@ -672,6 +672,7 @@ extern char* dhd_dbg_get_system_timestamp(void);
@@ -1390,7 +1390,7 @@ index c427c783f9a0..ba4e8b4c17b5 100644
  #define DBG_THR(x)
  #endif /* DHD_DEBUG */
 diff --git a/drivers/net/wireless/ap12275/linux_pkt.c b/drivers/net/wireless/ap12275/linux_pkt.c
-index 22e05a4d0cb1..3a35a56e1dda 100644
+index 22e05a4d0cb1a..3a35a56e1dda2 100644
 --- a/drivers/net/wireless/ap12275/linux_pkt.c
 +++ b/drivers/net/wireless/ap12275/linux_pkt.c
 @@ -45,6 +45,7 @@ bcm_static_pkt_t *bcm_static_skb = 0;
@@ -1413,7 +1413,7 @@ index 22e05a4d0cb1..3a35a56e1dda 100644
  /* don't clear the first 4 byte that is the pkt sn */
  #define OSL_PKTTAG_CLEAR(p) \
 diff --git a/drivers/net/wireless/ap12275/wl_android.c b/drivers/net/wireless/ap12275/wl_android.c
-index 2d070aa823ba..bb871fa2b40a 100644
+index 2d070aa823bab..bb871fa2b40aa 100644
 --- a/drivers/net/wireless/ap12275/wl_android.c
 +++ b/drivers/net/wireless/ap12275/wl_android.c
 @@ -8884,12 +8884,12 @@ void wl_android_post_init(void)
@@ -1432,7 +1432,7 @@ index 2d070aa823ba..bb871fa2b40a 100644
  }
  
 diff --git a/drivers/net/wireless/ap12275/wl_android.h b/drivers/net/wireless/ap12275/wl_android.h
-index 35df083769d7..0b3e73c15df6 100644
+index 35df083769d7f..0b3e73c15df69 100644
 --- a/drivers/net/wireless/ap12275/wl_android.h
 +++ b/drivers/net/wireless/ap12275/wl_android.h
 @@ -91,8 +91,11 @@ typedef struct _compat_android_wifi_priv_cmd {
@@ -1449,7 +1449,7 @@ index 35df083769d7..0b3e73c15df6 100644
  	do { \
  		if (android_msg_level & ANDROID_MSG_LEVEL) { \
 diff --git a/drivers/net/wireless/ap12275/wl_android_ext.c b/drivers/net/wireless/ap12275/wl_android_ext.c
-index 1e821df15c02..1b7e27fd0560 100644
+index 1e821df15c02d..1b7e27fd05604 100644
 --- a/drivers/net/wireless/ap12275/wl_android_ext.c
 +++ b/drivers/net/wireless/ap12275/wl_android_ext.c
 @@ -32,7 +32,12 @@
@@ -1466,7 +1466,7 @@ index 1e821df15c02..1b7e27fd0560 100644
  #define AEXT_ERROR(name, arg1, args...) \
  	do { \
 diff --git a/drivers/net/wireless/ap12275/wl_cfg80211.c b/drivers/net/wireless/ap12275/wl_cfg80211.c
-index 262159ebc8b4..2012dee635af 100644
+index 262159ebc8b40..2012dee635af8 100644
 --- a/drivers/net/wireless/ap12275/wl_cfg80211.c
 +++ b/drivers/net/wireless/ap12275/wl_cfg80211.c
 @@ -5524,11 +5524,11 @@ wl_is_fils_supported(struct net_device *ndev)
@@ -1511,7 +1511,7 @@ index 262159ebc8b4..2012dee635af 100644
  		} else {
  			/* Check current ID whether it is set */
 diff --git a/drivers/net/wireless/ap12275/wl_cfgp2p.c b/drivers/net/wireless/ap12275/wl_cfgp2p.c
-index 971148400ba4..1a503a5907d1 100644
+index 971148400ba49..1a503a5907d12 100644
 --- a/drivers/net/wireless/ap12275/wl_cfgp2p.c
 +++ b/drivers/net/wireless/ap12275/wl_cfgp2p.c
 @@ -978,7 +978,7 @@ wl_cfgp2p_disable_discovery(struct bcm_cfg80211 *cfg)
@@ -1560,7 +1560,7 @@ index 971148400ba4..1a503a5907d1 100644
  	return 0;
  }
 diff --git a/drivers/net/wireless/ap12275/wl_roam.c b/drivers/net/wireless/ap12275/wl_roam.c
-index e061b342c51d..0f5175e40141 100644
+index e061b342c51d2..0f5175e401413 100644
 --- a/drivers/net/wireless/ap12275/wl_roam.c
 +++ b/drivers/net/wireless/ap12275/wl_roam.c
 @@ -497,7 +497,7 @@ int init_roam_cache(struct bcm_cfg80211 *cfg, int ioctl_ver)

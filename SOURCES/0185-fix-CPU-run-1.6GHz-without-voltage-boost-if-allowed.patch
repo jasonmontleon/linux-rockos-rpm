@@ -1,4 +1,4 @@
-From 56d8ab6f185c02601101ae8ffb3db5bf8e97c1b4 Mon Sep 17 00:00:00 2001
+From d3187312a719793b7291c31b6ef1835ad9d62c0b Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 30 Sep 2024 13:26:53 +0800
 Subject: [PATCH 185/652] fix:CPU run 1.6GHz without voltage boost if allowed
@@ -19,7 +19,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 34 insertions(+), 7 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index b944a5e6ec44..c035da206e7b 100755
+index b944a5e6ec446..c035da206e7bd 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -281,6 +281,14 @@ static int eswin_calc_pll(u32 *frac_val, u32 *postdiv1_val,

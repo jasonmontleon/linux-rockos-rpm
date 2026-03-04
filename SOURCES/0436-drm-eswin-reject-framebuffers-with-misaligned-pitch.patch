@@ -1,4 +1,4 @@
-From 02e75199c7e80361f022934c3a98ac09b911044e Mon Sep 17 00:00:00 2001
+From b08b412db99a47d57515753e550b47401b2b8b93 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 22:20:04 +0800
 Subject: [PATCH 436/652] drm: eswin: reject framebuffers with misaligned pitch
@@ -16,7 +16,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 7 insertions(+)
 
 diff --git a/drivers/gpu/drm/eswin/es_plane.c b/drivers/gpu/drm/eswin/es_plane.c
-index 93b97db5cb73..e2e01ac5fa3f 100644
+index 93b97db5cb736..e2e01ac5fa3f4 100644
 --- a/drivers/gpu/drm/eswin/es_plane.c
 +++ b/drivers/gpu/drm/eswin/es_plane.c
 @@ -252,10 +252,17 @@ static int es_plane_atomic_check(struct drm_plane *plane,

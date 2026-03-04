@@ -1,4 +1,4 @@
-From d7801641ee7380a62a8e3d44fbcf9ed4a22ef1d9 Mon Sep 17 00:00:00 2001
+From a553dae3ac2914ae6cc97c8928497b37fad0c1f5 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:45:57 +0800
 Subject: [PATCH 576/652] fix(smmu):lockdep_assert_held error in groups
@@ -13,10 +13,10 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index f287afb2b46e..0afb2507c882 100644
+index cc5700f453fcc..670e236559e04 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -2889,13 +2889,14 @@ static struct iommu_group *arm_smmu_group_lookup(struct device *dev)
+@@ -2900,13 +2900,14 @@ static struct iommu_group *arm_smmu_group_lookup(struct device *dev)
  	struct arm_smmu_group *smmu_group;
  	u32 sid;
  
@@ -34,7 +34,7 @@ index f287afb2b46e..0afb2507c882 100644
  
  	node = smmu->smmu_groups.rb_node;
  	while (node) {
-@@ -2920,11 +2921,11 @@ static struct arm_smmu_group *arm_smmu_insert_to_group_lookup(struct device *dev
+@@ -2931,11 +2932,11 @@ static struct arm_smmu_group *arm_smmu_insert_to_group_lookup(struct device *dev
  	struct arm_smmu_group *new_smmu_group, *cur_smmu_group;
  	struct rb_node **new_node, *parent_node = NULL;
  

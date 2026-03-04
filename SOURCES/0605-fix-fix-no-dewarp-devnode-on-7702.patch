@@ -1,4 +1,4 @@
-From 55e46e56c834aab573ebf261ffd9e7608756a6d7 Mon Sep 17 00:00:00 2001
+From e23da8421a3d1c2b191f6a3ed1739dd9cd7b0fdb Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 4 Jul 2025 11:15:15 +0800
 Subject: [PATCH 605/652] fix: fix no dewarp devnode on 7702
@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 76 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/vi_top/eswin_vi.c b/drivers/media/platform/eswin/vi_top/eswin_vi.c
-index b0f01ad7b689..cbf611921d6c 100644
+index b0f01ad7b6893..cbf611921d6ca 100644
 --- a/drivers/media/platform/eswin/vi_top/eswin_vi.c
 +++ b/drivers/media/platform/eswin/vi_top/eswin_vi.c
 @@ -113,16 +113,13 @@ static int vitop_intf_cfg(struct eswin_vi_device *es_vi_dev)

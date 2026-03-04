@@ -1,4 +1,4 @@
-From 531c7baba9cd5b51dda2af5b4942bd1c52065bed Mon Sep 17 00:00:00 2001
+From 90a9bb0b0b1baa1ff947b4db4fff470cbfaa11b2 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 16:16:05 +0800
 Subject: [PATCH 025/652] feat:add support pac1934 to get som voltage info
@@ -14,7 +14,7 @@ Changelogs:
  create mode 100644 drivers/hwmon/pac193x.c
 
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 550a8cc2fbaf..f0883f403393 100644
+index 550a8cc2fbaf2..f0883f4033939 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -663,13 +663,14 @@ &d0_aon_i2c1 {
@@ -35,7 +35,7 @@ index 550a8cc2fbaf..f0883f403393 100644
  	};
  	sic451@11 {
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index f57a7581943b..82c00984fe52 100644
+index f57a7581943ba..82c00984fe525 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -149,6 +149,7 @@ CONFIG_GPIOLIB=y
@@ -47,7 +47,7 @@ index f57a7581943b..82c00984fe52 100644
  CONFIG_DW_WATCHDOG=y
  CONFIG_REGULATOR=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index a4c361b6619c..14e8320b5c07 100644
+index a4c361b6619c1..14e8320b5c07d 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -2371,6 +2371,12 @@ config SENSORS_INTEL_M10_BMC_HWMON
@@ -64,7 +64,7 @@ index a4c361b6619c..14e8320b5c07 100644
  
  comment "ACPI drivers"
 diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 4ac9452b5430..6b5643ef316a 100644
+index 4ac9452b54304..6b5643ef316a0 100644
 --- a/drivers/hwmon/Makefile
 +++ b/drivers/hwmon/Makefile
 @@ -220,6 +220,7 @@ obj-$(CONFIG_SENSORS_W83L786NG)	+= w83l786ng.o
@@ -77,7 +77,7 @@ index 4ac9452b5430..6b5643ef316a 100644
  obj-$(CONFIG_SENSORS_PECI)	+= peci/
 diff --git a/drivers/hwmon/pac193x.c b/drivers/hwmon/pac193x.c
 new file mode 100644
-index 000000000000..ebad3bde611e
+index 0000000000000..ebad3bde611e1
 --- /dev/null
 +++ b/drivers/hwmon/pac193x.c
 @@ -0,0 +1,938 @@

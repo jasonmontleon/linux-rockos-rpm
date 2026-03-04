@@ -1,4 +1,4 @@
-From e9d33bc88352c6e9d9d18779a0a79d4ee2f181f0 Mon Sep 17 00:00:00 2001
+From 190dad3adb560b2444bef55d7f032b10ba717fe2 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 28 Jun 2024 17:27:25 +0800
 Subject: [PATCH 091/652] configs: enable MEDIA_USB_SUPPORT & MEDIA_PCI_SUPPORT
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 145 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 9854a9a16996..c30b74940c05 100644
+index 9854a9a169969..c30b74940c053 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -444,9 +444,153 @@ CONFIG_WATCHDOG=y

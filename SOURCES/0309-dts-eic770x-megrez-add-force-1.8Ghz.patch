@@ -1,4 +1,4 @@
-From 9928ee6d1aff3d24f62a2ecafa47f3673be06aaf Mon Sep 17 00:00:00 2001
+From be3bf2070c690330dc39d92e1187573143d752c8 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 23:50:58 +0800
 Subject: [PATCH 309/652] dts: eic770x: megrez: add force 1.8Ghz
@@ -11,7 +11,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 5 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 3fbee7bee395..7839bd28d00f 100644
+index 3fbee7bee3950..7839bd28d00f5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -879,6 +879,11 @@ &dev_llc_d0{

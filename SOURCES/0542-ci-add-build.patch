@@ -1,4 +1,4 @@
-From 083e5535dee07e1ed2972a5aad1b4629fdc3767a Mon Sep 17 00:00:00 2001
+From 5569c9fe45d9a049e65c0a484652e35ba56d76ce Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 18 Nov 2024 03:55:15 +0800
 Subject: [PATCH 542/652] ci: add build
@@ -14,7 +14,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 
 diff --git a/.github/workflows/build.yml b/.github/workflows/build.yml
 new file mode 100644
-index 000000000000..bb5b2915c1f8
+index 0000000000000..bb5b2915c1f8f
 --- /dev/null
 +++ b/.github/workflows/build.yml
 @@ -0,0 +1,76 @@
@@ -96,7 +96,7 @@ index 000000000000..bb5b2915c1f8
 +          retention-days: 30
 diff --git a/.github/workflows/native-build.yml b/.github/workflows/native-build.yml
 new file mode 100644
-index 000000000000..881379558a09
+index 0000000000000..881379558a099
 --- /dev/null
 +++ b/.github/workflows/native-build.yml
 @@ -0,0 +1,80 @@

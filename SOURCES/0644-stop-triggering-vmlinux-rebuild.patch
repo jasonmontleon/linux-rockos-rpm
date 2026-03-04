@@ -1,4 +1,4 @@
-From 49e277a27e51d563974793ef53a1312366e5a964 Mon Sep 17 00:00:00 2001
+From 8c022ea0e92431a17c279c168237b57642d32312 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 09:03:43 -0500
 Subject: [PATCH 644/652] stop triggering vmlinux rebuild
@@ -14,7 +14,7 @@ Subject: [PATCH 644/652] stop triggering vmlinux rebuild
  create mode 100644 include/linux/eswin_memblock.h
 
 diff --git a/drivers/memory/eswin/es_dev_buf/Makefile b/drivers/memory/eswin/es_dev_buf/Makefile
-index 854348e41f91..391af838aada 100644
+index 854348e41f912..391af838aada1 100644
 --- a/drivers/memory/eswin/es_dev_buf/Makefile
 +++ b/drivers/memory/eswin/es_dev_buf/Makefile
 @@ -1,5 +1 @@
@@ -25,7 +25,7 @@ index 854348e41f91..391af838aada 100644
 -
 diff --git a/include/linux/buddy.h b/include/linux/buddy.h
 new file mode 100644
-index 000000000000..ff47325f2d27
+index 0000000000000..ff47325f2d27c
 --- /dev/null
 +++ b/include/linux/buddy.h
 @@ -0,0 +1,217 @@
@@ -248,7 +248,7 @@ index 000000000000..ff47325f2d27
 +#endif
 diff --git a/include/linux/dsp_dma_buf.h b/include/linux/dsp_dma_buf.h
 new file mode 100644
-index 000000000000..ab6962ad1ccf
+index 0000000000000..ab6962ad1ccfa
 --- /dev/null
 +++ b/include/linux/dsp_dma_buf.h
 @@ -0,0 +1,44 @@
@@ -298,7 +298,7 @@ index 000000000000..ab6962ad1ccf
 +#endif
 diff --git a/include/linux/eswin_memblock.h b/include/linux/eswin_memblock.h
 new file mode 100644
-index 000000000000..6c18444599de
+index 0000000000000..6c18444599de8
 --- /dev/null
 +++ b/include/linux/eswin_memblock.h
 @@ -0,0 +1,18 @@

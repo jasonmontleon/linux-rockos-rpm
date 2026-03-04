@@ -1,4 +1,4 @@
-From b194b2d337d1b2910ca3823453519145a6bd353c Mon Sep 17 00:00:00 2001
+From ef6bdc884e52b12b2a604b50230b5193de8933ec Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 30 Apr 2025 10:53:23 +0800
 Subject: [PATCH 494/652] fix:pcie-check-clk-before-init
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 9 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 4da79e854ea4..399e2a203d05 100644
+index 4da79e854ea46..399e2a203d050 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -260,12 +260,19 @@ static int eswin_pcie_host_init(struct dw_pcie_rp *pp)

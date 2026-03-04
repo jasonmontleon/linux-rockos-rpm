@@ -1,4 +1,4 @@
-From a24a489d48e1bbdfde142fbee799e40a0c639d9c Mon Sep 17 00:00:00 2001
+From 1ce72d1b345e8973c537a0a5bbc9829597cc4259 Mon Sep 17 00:00:00 2001
 From: fanxiaping <fanxiaping@eswincomputing.com>
 Date: Thu, 12 Jun 2025 17:38:59 +0800
 Subject: [PATCH 557/652] fix:fix modify SBC MIPI path
@@ -11,7 +11,7 @@ Signed-off-by: fanxiaping <fanxiaping@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index a0eb704642c5..9261a4b9cbf7 100644
+index a0eb704642c5a..9261a4b9cbf77 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -488,7 +488,7 @@ CONFIG_REGULATOR_MPQ8785=y

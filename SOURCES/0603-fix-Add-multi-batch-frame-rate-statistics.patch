@@ -1,4 +1,4 @@
-From 8ece49dc5e8692703b301f6563e798bf84c18f15 Mon Sep 17 00:00:00 2001
+From 5d08990cf1100d257af86f59f72dad574adc946f Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 1 Jul 2025 15:18:58 +0800
 Subject: [PATCH 603/652] fix:Add multi batch frame rate statistics.
@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  3 files changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
-index 6dff5245a0b8..89bfbef6a808 100644
+index 6dff5245a0b82..89bfbef6a8083 100644
 --- a/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/common/hetero_ioctl.h
 @@ -280,6 +280,7 @@ typedef struct _modelShmDesc {
@@ -26,7 +26,7 @@ index 6dff5245a0b8..89bfbef6a808 100644
  } modelShmDesc_t;
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/parse_dep.c b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
-index 5a09746e08dc..c097ef2af355 100644
+index 5a09746e08dc6..c097ef2af3555 100644
 --- a/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 +++ b/drivers/soc/eswin/ai_driver/npu/parse_dep.c
 @@ -230,7 +230,7 @@ static void dependency_consumer2producer(struct win_executor *executor,
@@ -39,7 +39,7 @@ index 5a09746e08dc..c097ef2af355 100644
  		}
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/scheduler.c b/drivers/soc/eswin/ai_driver/npu/scheduler.c
-index a29b0532de8a..6dfca2a5c0fc 100644
+index a29b0532de8a3..6dfca2a5c0fc7 100644
 --- a/drivers/soc/eswin/ai_driver/npu/scheduler.c
 +++ b/drivers/soc/eswin/ai_driver/npu/scheduler.c
 @@ -309,7 +309,7 @@ void mbx_irq_frame_done(struct win_engine *priv, u32 tiktok, u32 stat)

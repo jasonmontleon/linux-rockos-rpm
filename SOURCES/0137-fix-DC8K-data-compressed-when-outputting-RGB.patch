@@ -1,4 +1,4 @@
-From 71d2736d3016e42d0a7058ece6eda5addb73686a Mon Sep 17 00:00:00 2001
+From fee9a6046ce48979627aec65010d117367b3d5b7 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 31 Jul 2024 16:23:32 +0800
 Subject: [PATCH 137/652] fix(DC8K):data compressed when outputting RGB
@@ -14,7 +14,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc_hw.c b/drivers/gpu/drm/eswin/es_dc_hw.c
-index 30bcfb6b759c..440fd1645694 100644
+index 30bcfb6b759c2..440fd16456941 100644
 --- a/drivers/gpu/drm/eswin/es_dc_hw.c
 +++ b/drivers/gpu/drm/eswin/es_dc_hw.c
 @@ -1211,10 +1211,10 @@ static void plane_ex_commit(struct dc_hw *hw)

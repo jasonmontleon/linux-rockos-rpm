@@ -1,4 +1,4 @@
-From d3f39cfb5b962bc5cf8f6453a43ac1727ed09ef0 Mon Sep 17 00:00:00 2001
+From 4f6f0f0b62a79459ae89d11ae854878f4d62d5d1 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Mon, 23 Sep 2024 17:47:12 +0800
 Subject: [PATCH 178/652] feat: add trylock for npu ioctl Changelogs: add
@@ -11,7 +11,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  2 files changed, 14 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h b/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
-index f18e7dd29948..77974acb3b0b 100644
+index f18e7dd299484..77974acb3b0b8 100644
 --- a/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_ioctl.h
 @@ -258,7 +258,7 @@ typedef struct _modelShmDesc {
@@ -33,7 +33,7 @@ index f18e7dd29948..77974acb3b0b 100644
  #define NPU_HETERO_CMD_BASE 'h'
  #define NPU_HETERO_IOWR(nr, type) _IOWR(NPU_HETERO_CMD_BASE, nr, type)
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 1d58f190a7a7..b32f9484d98d 100644
+index 1d58f190a7a77..b32f9484d98d8 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -592,7 +592,15 @@ static int runtime_lock_request(struct user_context *uctx, struct file *file,

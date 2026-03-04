@@ -1,4 +1,4 @@
-From d8c39aa5faa59ec564a4331881e93c974e5a3390 Mon Sep 17 00:00:00 2001
+From 7db02f8a7ec18472ae1d32452ba881f721c51121 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 13 Jun 2024 14:55:45 +0800
 Subject: [PATCH 053/652] fix:optimize SDHCI driver tuning.
@@ -13,7 +13,7 @@ Changelogs:
  4 files changed, 47 insertions(+), 138 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 7a3702e88b19..3b90f64fcdb2 100644
+index 7a3702e88b195..3b90f64fcdb2f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -482,12 +482,10 @@ &sdhci_emmc {
@@ -52,7 +52,7 @@ index 7a3702e88b19..3b90f64fcdb2 100644
 \ No newline at end of file
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 5e18922ba44a..fd94c6a3aeea 100644
+index 5e18922ba44a6..fd94c6a3aeeac 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -453,11 +453,10 @@ &sdhci_emmc {
@@ -89,7 +89,7 @@ index 5e18922ba44a..fd94c6a3aeea 100644
 \ No newline at end of file
 +};
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 2b08a6bbfd2a..bfb59b7d6eb5 100644
+index 2b08a6bbfd2a4..bfb59b7d6eb52 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -390,12 +390,10 @@ &sdhci_emmc {
@@ -120,7 +120,7 @@ index 2b08a6bbfd2a..bfb59b7d6eb5 100644
  	no-sd;
  	no-mmc;
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index badbee00b39e..d5ae6a5694f6 100644
+index badbee00b39ee..d5ae6a5694f67 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -42,12 +42,7 @@

@@ -1,4 +1,4 @@
-From 441f91d491437233f91cfe975247ceff85887c8e Mon Sep 17 00:00:00 2001
+From 0990669b4576c4cf960ee5902acf97b0bf3984b9 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 16 Dec 2024 17:00:09 +0800
 Subject: [PATCH 343/652] WIN2030-16813:chore:disable IPA adjust with target
@@ -14,7 +14,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  2 files changed, 18 insertions(+), 10 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index cf19b169cdc9..2e72cf2fd61c 100644
+index cf19b169cdc9b..2e72cf2fd61c2 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -41,9 +41,10 @@ thermal0 {
@@ -67,7 +67,7 @@ index cf19b169cdc9..2e72cf2fd61c 100644
  		};
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 5f4cbafe5a48..65146bf6141a 100644
+index 5f4cbafe5a480..65146bf6141a9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -38,9 +38,10 @@ d1_thermal0 {

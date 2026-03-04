@@ -1,4 +1,4 @@
-From 2dc9b8dfe688c136a702f1a402dea2adabbcad56 Mon Sep 17 00:00:00 2001
+From 00e9ec6d0f4faeba17a968801916aa40890c0dc6 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Fri, 27 Dec 2024 14:46:35 +0800
 Subject: [PATCH 314/652] megrez: support rtc m41t11
@@ -13,7 +13,7 @@ Signed-off-by: carbon <carbon@milkv.io>
  2 files changed, 7 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index cb35446dd403..1a77bb521dc8 100644
+index cb35446dd4035..1a77bb521dc8e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -763,6 +763,11 @@ pcf_rtc:rtc@51 {
@@ -29,7 +29,7 @@ index cb35446dd403..1a77bb521dc8 100644
  
  &d0_aon_i2c1 {
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index f71a973a7da9..477f2406826e 100644
+index f71a973a7da9e..477f2406826e8 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -754,6 +754,8 @@ CONFIG_LEDS_TRIGGER_DEFAULT_ON=y

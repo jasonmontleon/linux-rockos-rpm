@@ -1,4 +1,4 @@
-From 925018b94d0f9671444ebe382b21f0fcfa0715bf Mon Sep 17 00:00:00 2001
+From 0f4bf7bc86d9cccbc875459305e4fb6c91f4bdc8 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 1 Oct 2024 23:09:44 +0800
 Subject: [PATCH 212/652] config: enable tun/tap
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index cc2484e64c2c..3f122dd04f2f 100644
+index cc2484e64c2c7..3f122dd04f2f2 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -366,6 +366,7 @@ CONFIG_IPVLAN=m

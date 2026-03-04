@@ -1,4 +1,4 @@
-From c3ecd64540b89bf847bbbede7548a5a55685cb3a Mon Sep 17 00:00:00 2001
+From 7f6096ddd81decde96aa29b85b01d04291b7f66c Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Thu, 12 Jun 2025 15:47:52 +0800
 Subject: [PATCH 567/652] chore:Make es_proc as common interfaces
@@ -16,7 +16,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  3 files changed, 81 insertions(+), 71 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index dfbfa2783c8c..76f440b124d9 100644
+index dfbfa2783c8c3..76f440b124d9d 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -1711,7 +1711,7 @@ void mmz_vb_vb_dbg_init(void)
@@ -29,7 +29,7 @@ index dfbfa2783c8c..76f440b124d9 100644
  	if (proc == NULL) {
  		vb_err("Kernel: Register vb proc failed!\n");
 diff --git a/drivers/memory/eswin/es_proc/es_proc.c b/drivers/memory/eswin/es_proc/es_proc.c
-index b0eb521b247c..4e7f2bca6e10 100644
+index b0eb521b247cf..4e7f2bca6e103 100644
 --- a/drivers/memory/eswin/es_proc/es_proc.c
 +++ b/drivers/memory/eswin/es_proc/es_proc.c
 @@ -27,7 +27,7 @@ static int es_seq_show(struct seq_file *s, void *p)
@@ -257,7 +257,7 @@ index b0eb521b247c..4e7f2bca6e10 100644
  
  module_init(es_proc_init);
 diff --git a/drivers/memory/eswin/es_proc/include/linux/es_proc.h b/drivers/memory/eswin/es_proc/include/linux/es_proc.h
-index 65c73460e11b..255db4cd2508 100644
+index 65c73460e11bc..255db4cd25085 100644
 --- a/drivers/memory/eswin/es_proc/include/linux/es_proc.h
 +++ b/drivers/memory/eswin/es_proc/include/linux/es_proc.h
 @@ -10,16 +10,23 @@

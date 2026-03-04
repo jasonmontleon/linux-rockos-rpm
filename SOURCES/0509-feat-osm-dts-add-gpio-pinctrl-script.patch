@@ -1,4 +1,4 @@
-From e6f5d17dee3aaa2137992d17d1dd4dd44b7fe535 Mon Sep 17 00:00:00 2001
+From 04dc4a063060132c0bd6761dc27ef9d8e1cd14fb Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Fri, 16 May 2025 13:28:57 +0800
 Subject: [PATCH 509/652] feat: osm dts add gpio pinctrl script
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
-index 420ff1e42117..ae1af65fcc40 100644
+index 420ff1e421178..ae1af65fcc401 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -870,8 +870,13 @@ &timer3 {

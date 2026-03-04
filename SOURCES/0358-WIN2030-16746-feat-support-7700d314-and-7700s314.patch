@@ -1,4 +1,4 @@
-From 642c8370123f74b7d1f72bb6ebbd3193990603dd Mon Sep 17 00:00:00 2001
+From 6ceee76b88090ae3f4194b3c4b2b87a1c7a6f787 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 20 Dec 2024 23:09:07 +0800
 Subject: [PATCH 358/652] WIN2030-16746:feat:support 7700d314 and 7700s314
@@ -18,7 +18,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 13ef45a272d3..69074a4a1451 100644
+index 13ef45a272d3f..69074a4a14512 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -10,6 +10,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -31,7 +31,7 @@ index 13ef45a272d3..69074a4a1451 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 new file mode 100644
-index 000000000000..f8bfb293fcfa
+index 0000000000000..f8bfb293fcfa5
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -0,0 +1,335 @@
@@ -372,7 +372,7 @@ index 000000000000..f8bfb293fcfa
 +*/
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 new file mode 100644
-index 000000000000..79a885bb2c62
+index 0000000000000..79a885bb2c62c
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -0,0 +1,688 @@

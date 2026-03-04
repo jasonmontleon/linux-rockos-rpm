@@ -1,4 +1,4 @@
-From eb04394abec9e514b97169994eb4b103f9a76bbd Mon Sep 17 00:00:00 2001
+From 4096740138e3cbf2c45033f7cd5a49db27305281 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 23 May 2024 16:53:55 +0800
 Subject: [PATCH 021/652] feat:Select emmc/sdio/wireless drivers by default.
@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 4 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 7f8075d825bc..d3524b132481 100644
+index 7f8075d825bca..d3524b1324816 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -47,7 +47,8 @@ CONFIG_IP_PNP_BOOTP=y

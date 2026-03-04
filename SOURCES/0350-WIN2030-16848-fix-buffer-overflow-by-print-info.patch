@@ -1,4 +1,4 @@
-From 063dd851ae39b4ad04a0ab28ce01d698e3801fe4 Mon Sep 17 00:00:00 2001
+From 0e147f3426211a32a7085e3790f1bc090756d7bc Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Mon, 23 Dec 2024 17:04:26 +0800
 Subject: [PATCH 350/652] WIN2030-16848:fix:buffer overflow by print info
@@ -13,7 +13,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
-index 2bcbe3f48f59..cc232396f842 100644
+index 2bcbe3f48f598..cc232396f842e 100644
 --- a/drivers/interconnect/eswin/noc.c
 +++ b/drivers/interconnect/eswin/noc.c
 @@ -515,7 +515,7 @@ static int win2030_noc_get_error(struct win2030_noc_device *noc_device)

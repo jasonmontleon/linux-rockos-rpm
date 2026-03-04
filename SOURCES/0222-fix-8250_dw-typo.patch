@@ -1,4 +1,4 @@
-From eb9f4bbbe83b06793d9f8e96edecf81a72b30d49 Mon Sep 17 00:00:00 2001
+From 6dceba2ee3d28b05287504c46919f4a27513a977 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 28 Oct 2024 18:46:15 +0800
 Subject: [PATCH 222/652] fix: 8250_dw typo
@@ -9,10 +9,10 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index a88488dc29ee..496922b756ab 100644
+index 7f57137a8f77b..091267b50f172 100644
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
-@@ -769,7 +769,7 @@ static const struct dev_pm_ops dw8250_pm_ops = {
+@@ -776,7 +776,7 @@ static const struct dev_pm_ops dw8250_pm_ops = {
  
  static const struct dw8250_platform_data dw8250_dw_apb = {
  	.usr_reg = DW_UART_USR,

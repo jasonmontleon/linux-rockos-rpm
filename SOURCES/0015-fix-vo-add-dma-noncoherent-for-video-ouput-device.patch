@@ -1,4 +1,4 @@
-From 6fb4690b80d1e175f7f7aa18a3adc47a54786722 Mon Sep 17 00:00:00 2001
+From 9dbfb183f3fd5eb2f430a1ec022875b3812d42db Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Thu, 23 May 2024 13:14:03 +0800
 Subject: [PATCH 015/652] fix(vo): add dma-noncoherent for video ouput device
@@ -11,7 +11,7 @@ Changelogs:
  2 files changed, 2 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 453f15acbd15..1e813abf0819 100644
+index 453f15acbd158..1e813abf0819d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1739,6 +1739,7 @@ d0_graphcard2: graphcard2 {
@@ -23,7 +23,7 @@ index 453f15acbd15..1e813abf0819 100644
  
  		dvb_widgets: dvb-subsystem {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index b1b077ceea0e..5a55de6c7b2a 100644
+index b1b077ceea0ed..5a55de6c7b2aa 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1647,6 +1647,7 @@ d1_spi_demo: spi-demo@0 {

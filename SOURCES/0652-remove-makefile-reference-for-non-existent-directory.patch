@@ -1,4 +1,4 @@
-From 44c64a09755e0c61dd61158afcb5e60153c15b1b Mon Sep 17 00:00:00 2001
+From e6a971c04546d47e2978256b3865f41eeef0b29d Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Thu, 10 Jul 2025 14:51:04 -0400
 Subject: [PATCH 652/652] remove makefile reference for non existent directory
@@ -8,7 +8,7 @@ Subject: [PATCH 652/652] remove makefile reference for non existent directory
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index d0f8b180c1de..f782c9be9d26 100644
+index d0f8b180c1de6..f782c9be9d26d 100644
 --- a/drivers/media/i2c/Makefile
 +++ b/drivers/media/i2c/Makefile
 @@ -23,7 +23,6 @@ obj-$(CONFIG_VIDEO_BT819) += bt819.o

@@ -1,4 +1,4 @@
-From dd64a3c04c0c24cc8a3f63470594efaad49d8317 Mon Sep 17 00:00:00 2001
+From bab0536f5b984a8627dc8ceaccf788f9e3fe36c3 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 15 Oct 2024 10:25:20 +0800
 Subject: [PATCH 242/652] feat:skip the user memory cache flush
@@ -13,7 +13,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  1 file changed, 34 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
-index 2fca3da9c727..151e006da98f 100644
+index 2fca3da9c7270..151e006da98f7 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 @@ -114,6 +114,7 @@ struct um_desc {

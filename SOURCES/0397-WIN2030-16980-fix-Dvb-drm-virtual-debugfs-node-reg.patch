@@ -1,4 +1,4 @@
-From 159acdc6e45f5dbf8a5b6fdaf78658f23d243ecc Mon Sep 17 00:00:00 2001
+From 97f7c8f4207a3efe543c08d5a6e876fa1f86ca86 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 7 Feb 2025 13:12:01 +0800
 Subject: [PATCH 397/652] WIN2030-16980:fix:Dvb drm virtual debugfs node reg
@@ -15,7 +15,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
-index 4b5eb4c16220..61514cfcce99 100644
+index 4b5eb4c16220b..61514cfcce99d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
 @@ -37,8 +37,8 @@ panel_in: endpoint {
@@ -30,7 +30,7 @@ index 4b5eb4c16220..61514cfcce99 100644
  		};
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 6c3220cb4737..5e0df61988f5 100644
+index 6c3220cb47379..5e0df61988f58 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -294,12 +294,12 @@ &dc {

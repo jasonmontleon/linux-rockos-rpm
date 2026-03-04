@@ -1,4 +1,4 @@
-From 00922222a9b7a558741302073c4fcbc6cb4e36b4 Mon Sep 17 00:00:00 2001
+From 6ee5d5abfd6abfb30c6170b793d0877ccb128923 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 4 Nov 2024 21:38:53 +0800
 Subject: [PATCH 221/652] configs: enable thermal
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 96 insertions(+), 101 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 7030600cba92..39409f08c222 100644
+index 7030600cba927..39409f08c2220 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -2,7 +2,6 @@

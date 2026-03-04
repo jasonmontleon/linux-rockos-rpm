@@ -1,4 +1,4 @@
-From 55c451430e3d25ae6edca71b32bdc6b17c947849 Mon Sep 17 00:00:00 2001
+From 3aca2236435ab56b9f23a5ee086633871ceb8bf9 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 19 Jun 2025 06:51:58 +0800
 Subject: [PATCH 539/652] riscv: dts: eswin: starpro64: tweak GMAC0 RX delay
@@ -9,7 +9,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 4e440aa2f43e..7f71dd33b71f 100644
+index 4e440aa2f43e1..7f71dd33b71fd 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -507,7 +507,7 @@ &d0_gmac0 {

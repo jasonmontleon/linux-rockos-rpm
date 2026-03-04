@@ -1,4 +1,4 @@
-From de45c8c769eb9d4b373615c4b5ef75e475ae5119 Mon Sep 17 00:00:00 2001
+From 74dd94e27aa8f9d0b89e3ae8ae18be5b364c7fe2 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 4 Jun 2024 14:23:32 +0800
 Subject: [PATCH 046/652] chore(es_buddy):Memory workaround for g2d hardware
@@ -19,7 +19,7 @@ Changelogs:
  3 files changed, 11 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index f5c4712de03e..3f35d2201584 100644
+index f5c4712de03e2..3f35d2201584d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -112,6 +112,11 @@ secure_memory_nid_0_part_1 {
@@ -35,7 +35,7 @@ index f5c4712de03e..3f35d2201584 100644
  			compatible = "eswin-reserve-memory";
  			reg = <0x1 0x40000000 0x2 0x80000000>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index e3c9de0ada5d..f41705285b0b 100644
+index e3c9de0ada5d8..f41705285b0b3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -111,6 +111,11 @@ secure_memory_nid_0_part_1 {
@@ -51,7 +51,7 @@ index e3c9de0ada5d..f41705285b0b 100644
  			compatible = "eswin-reserve-memory";
  			reg = <0x1 0x40000000 0x2 0x80000000>;
 diff --git a/drivers/memory/eswin/buddy.h b/drivers/memory/eswin/buddy.h
-index e3c509a511c6..bc0fd6eb6ddb 100644
+index e3c509a511c69..bc0fd6eb6ddbf 100644
 --- a/drivers/memory/eswin/buddy.h
 +++ b/drivers/memory/eswin/buddy.h
 @@ -105,7 +105,7 @@ struct mem_block {

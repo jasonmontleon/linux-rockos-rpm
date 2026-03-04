@@ -1,4 +1,4 @@
-From 40c07797fce3cc2bd76c209adbea44aaf018762f Mon Sep 17 00:00:00 2001
+From c2a8e23322b9e22a31d8324595bbc52ff21aee6b Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 17 Apr 2025 16:37:15 +0800
 Subject: [PATCH 479/652] fix:Modify tps549d22 enable sequence of software cfg
@@ -11,7 +11,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/regulator/tps549d22-regulator.c b/drivers/regulator/tps549d22-regulator.c
-index dd0052525c36..42de6234b289 100644
+index dd0052525c36a..42de6234b2891 100644
 --- a/drivers/regulator/tps549d22-regulator.c
 +++ b/drivers/regulator/tps549d22-regulator.c
 @@ -462,10 +462,10 @@ static s32 tps549d22_init_data(struct TPS549D22_DRIVER_DATA *data,

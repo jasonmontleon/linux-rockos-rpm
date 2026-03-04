@@ -1,4 +1,4 @@
-From 2994c2741abc1fb8e6830b4ae52515e0262ba6f9 Mon Sep 17 00:00:00 2001
+From 70a2d7a97e52846a843f9d97ce26cf49c975771e Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Thu, 18 Jul 2024 16:24:24 +0800
 Subject: [PATCH 125/652] feat(VE): VE support power management
@@ -15,7 +15,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  4 files changed, 381 insertions(+), 74 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_driver.h b/drivers/staging/media/eswin/venc/vc8000_driver.h
-index aadd259d1752..2863a47ff0ff 100644
+index aadd259d1752c..2863a47ff0ffd 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_driver.h
 +++ b/drivers/staging/media/eswin/venc/vc8000_driver.h
 @@ -71,6 +71,9 @@
@@ -51,7 +51,7 @@ index aadd259d1752..2863a47ff0ff 100644
  #define ENC_HW_ID1                  0x48320100
  #define ENC_HW_ID2                  0x80006000
 diff --git a/drivers/staging/media/eswin/venc/vc8000_normal_driver.c b/drivers/staging/media/eswin/venc/vc8000_normal_driver.c
-index 6aae8a725c2d..7ef36c148f81 100644
+index 6aae8a725c2da..7ef36c148f816 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_normal_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_normal_driver.c
 @@ -836,7 +836,7 @@ static long hantroenc_ioctl(struct file *filp, unsigned int cmd,
@@ -197,7 +197,7 @@ index 6aae8a725c2d..7ef36c148f81 100644
 +#endif
 +}
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 6442cd2c0a54..9e5e388ef990 100644
+index 6442cd2c0a547..9e5e388ef9901 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -255,6 +255,7 @@ static int vcmd_type_core_num[MAX_VCMD_TYPE];
@@ -443,7 +443,7 @@ index 6442cd2c0a54..9e5e388ef990 100644
 +    return ret;
 +}
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index c85d919fe750..b66055e26c3b 100644
+index c85d919fe7508..b66055e26c3b2 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -7,6 +7,7 @@

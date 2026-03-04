@@ -1,4 +1,4 @@
-From 662020b80e46b5eb5b9657cac0a60bb5a0929b96 Mon Sep 17 00:00:00 2001
+From 33d3810a7fa5d12b222d7da911385dbe3e726c44 Mon Sep 17 00:00:00 2001
 From: zhangdongchuan <zhangdongchuan@eswincomputing.com>
 Date: Tue, 8 Jul 2025 08:32:18 +0800
 Subject: [PATCH 621/652] feat: Refactor PACMSG
@@ -17,7 +17,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  5 files changed, 208 deletions(-)
 
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
-index 2540daea5e45..06307be90b44 100644
+index 2540daea5e454..06307be90b449 100644
 --- a/arch/riscv/configs/vpu7702_evb_defconfig
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -839,7 +839,6 @@ CONFIG_CRC_ITU_T=y
@@ -29,7 +29,7 @@ index 2540daea5e45..06307be90b44 100644
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
  CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
 diff --git a/arch/riscv/configs/vpu7702_pcie_a2_defconfig b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
-index 0ebdbaeda9df..781a13eb6f3d 100644
+index 0ebdbaeda9dff..781a13eb6f3da 100644
 --- a/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 @@ -839,7 +839,6 @@ CONFIG_CRC_ITU_T=y
@@ -41,7 +41,7 @@ index 0ebdbaeda9df..781a13eb6f3d 100644
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
  CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
 diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
-index 1a8adf41681e..e5b63d83ce1a 100644
+index 1a8adf41681ea..e5b63d83ce1aa 100644
 --- a/arch/riscv/configs/vpu7702_pcie_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_defconfig
 @@ -839,7 +839,6 @@ CONFIG_CRC_ITU_T=y
@@ -53,7 +53,7 @@ index 1a8adf41681e..e5b63d83ce1a 100644
  CONFIG_CONSOLE_LOGLEVEL_QUIET=15
  CONFIG_MESSAGE_LOGLEVEL_DEFAULT=7
 diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-index c10dc4bc3e65..22e302081b7b 100644
+index c10dc4bc3e65a..22e302081b7b6 100644
 --- a/kernel/printk/printk.c
 +++ b/kernel/printk/printk.c
 @@ -55,41 +55,11 @@
@@ -281,7 +281,7 @@ index c10dc4bc3e65..22e302081b7b 100644
  
  /*
 diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index 7ee564282545..1aae81c57b2c 100644
+index 5e28f053393ec..e56f9e1b18fdf 100644
 --- a/lib/Kconfig.debug
 +++ b/lib/Kconfig.debug
 @@ -35,20 +35,6 @@ config PRINTK_CALLER

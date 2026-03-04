@@ -1,4 +1,4 @@
-From a3fa7e99b67b4ac2c3ddb5a2e1c02328d8602566 Mon Sep 17 00:00:00 2001
+From 97ba1fd1ee6c2685c5e807dbedf05133ee5ebdaf Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Tue, 15 Oct 2024 14:00:44 +0800
 Subject: [PATCH 194/652] fix:The wrong dev id was used for vcmd release
@@ -12,7 +12,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  1 file changed, 62 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 7fd375c41006..ee87be45c346 100644
+index 7fd375c410069..ee87be45c3464 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -788,7 +788,7 @@ static int vcmd_type_core_num[MAX_VCMD_TYPE];

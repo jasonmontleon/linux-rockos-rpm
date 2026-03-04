@@ -1,4 +1,4 @@
-From 1394ad32cc384af757cf3dc0d0f5a35efc0fbcae Mon Sep 17 00:00:00 2001
+From d9ff3f127513d74a0860345288c298fd0d5c6648 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Fri, 27 Sep 2024 17:11:20 +0800
 Subject: [PATCH 184/652] fix:Resolve DSP SMMU error.
@@ -16,7 +16,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  5 files changed, 39 insertions(+), 14 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index fc1bb85f2289..50a9383989b4 100644
+index fc1bb85f22895..50a9383989b48 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -544,8 +544,8 @@ d0_dsp_subsys:dsp_subsys@52280400 {
@@ -31,7 +31,7 @@ index fc1bb85f2289..50a9383989b4 100644
  					<&d0_reset DSP_RST_CTRL SW_DSP_CFG_RSTN>,
  					<&d0_reset DSP_RST_CTRL SW_DSP_DIV4_RSTN>,
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 067c9488efd5..01a325bd598f 100644
+index 067c9488efd51..01a325bd598fb 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1243,8 +1243,8 @@ d1_dsp_subsys:dsp_subsys@72280400 {
@@ -46,7 +46,7 @@ index 067c9488efd5..01a325bd598f 100644
  				<&d1_reset DSP_RST_CTRL SW_DSP_CFG_RSTN>,
  				<&d1_reset DSP_RST_CTRL SW_DSP_DIV4_RSTN>,
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 055428dfaba1..9732a204a4e6 100644
+index 055428dfaba15..9732a204a4e6c 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -248,14 +248,24 @@ int es_dsp_clk_disable(struct es_dsp *dsp)
@@ -109,7 +109,7 @@ index 055428dfaba1..9732a204a4e6 100644
  	}
  
 diff --git a/drivers/soc/eswin/dsp_subsys.c b/drivers/soc/eswin/dsp_subsys.c
-index acf33631926a..b5a95f20c061 100644
+index acf33631926aa..b5a95f20c061f 100644
 --- a/drivers/soc/eswin/dsp_subsys.c
 +++ b/drivers/soc/eswin/dsp_subsys.c
 @@ -68,6 +68,14 @@ static inline int dsp_subsys_clk_init(struct platform_device *pdev,
@@ -154,7 +154,7 @@ index acf33631926a..b5a95f20c061 100644
  		return ret;
  	}
 diff --git a/drivers/soc/eswin/eswin-dsp-subsys.h b/drivers/soc/eswin/eswin-dsp-subsys.h
-index 4933411fde94..644ff4b26c20 100644
+index 4933411fde94e..644ff4b26c20c 100644
 --- a/drivers/soc/eswin/eswin-dsp-subsys.h
 +++ b/drivers/soc/eswin/eswin-dsp-subsys.h
 @@ -39,6 +39,7 @@ struct es_dsp_subsys {

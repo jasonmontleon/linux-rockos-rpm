@@ -1,4 +1,4 @@
-From 60723192d835dae1c1025860bcc975592f52eae8 Mon Sep 17 00:00:00 2001
+From c18cf43327137e0f87205cc58148a1ed7a39324e Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 9 Sep 2024 10:29:47 +0800
 Subject: [PATCH 171/652] fix:Synchronize configuration from eic7700_defconfig
@@ -13,7 +13,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 3 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 328c51187781..ed5d3e6ea9e3 100644
+index 328c51187781d..ed5d3e6ea9e3e 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -32,12 +32,12 @@ CONFIG_PERF_EVENTS=y

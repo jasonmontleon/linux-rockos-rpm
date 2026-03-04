@@ -1,4 +1,4 @@
-From b409d5f85d64945db272886253da08bf62ed57d3 Mon Sep 17 00:00:00 2001
+From 25e661f403d936105a840a0e53792f55901e0807 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 10 Sep 2024 13:11:44 +0800
 Subject: [PATCH 259/652] WIN2030-14758:fix:dma_numa_cma_reserve failed
@@ -23,7 +23,7 @@ Change-Id: Ife33c1d822cd2c2a048beb5b689929525d1f432c
  3 files changed, 10 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 2019957d4530..d5547aef615c 100644
+index 2019957d4530f..d5547aef615cf 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -140,11 +140,6 @@ d1_g2d_8GB_boundary_reserved_4k {
@@ -39,7 +39,7 @@ index 2019957d4530..d5547aef615c 100644
  			compatible = "eswin-reserve-memory";
  			reg = <0x22 0x80000000 0x1 0x80000000>;
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 724605bbb530..bb996acd43d9 100644
+index 724605bbb5307..bb996acd43d9e 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -36,9 +36,10 @@ CONFIG_SMP=y
@@ -55,7 +55,7 @@ index 724605bbb530..bb996acd43d9 100644
  # CONFIG_SUSPEND is not set
  CONFIG_CPU_FREQ=y
 diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index bdf8ac6c7e30..6584317decd5 100644
+index bdf8ac6c7e309..6584317decd52 100644
 --- a/arch/riscv/mm/init.c
 +++ b/arch/riscv/mm/init.c
 @@ -295,7 +295,6 @@ static void __init setup_bootmem(void)

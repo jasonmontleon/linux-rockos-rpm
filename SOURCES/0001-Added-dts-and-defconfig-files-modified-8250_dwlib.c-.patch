@@ -1,4 +1,4 @@
-From 57f10116d31f251a313d90f9838185639262d439 Mon Sep 17 00:00:00 2001
+From adf049b1b27e0cfeb71a7132d2faaa9429e8749c Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 11 Mar 2024 14:43:40 +0800
 Subject: [PATCH 001/652] Added dts and defconfig files,modified 8250_dwlib.c
@@ -47,7 +47,7 @@ Changelogs:
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
 new file mode 100644
-index 000000000000..dd52dd167996
+index 0000000000000..dd52dd1679960
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -0,0 +1,4 @@
@@ -57,7 +57,7 @@ index 000000000000..dd52dd167996
 +obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 new file mode 100644
-index 000000000000..07976356e5b5
+index 0000000000000..07976356e5b54
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -0,0 +1,860 @@
@@ -923,7 +923,7 @@ index 000000000000..07976356e5b5
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 new file mode 100644
-index 000000000000..a6dd5aaeee00
+index 0000000000000..a6dd5aaeee00b
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 @@ -0,0 +1,1234 @@
@@ -2164,7 +2164,7 @@ index 000000000000..a6dd5aaeee00
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 new file mode 100644
-index 000000000000..08b35addb5b7
+index 0000000000000..08b35addb5b73
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -0,0 +1,869 @@
@@ -3039,7 +3039,7 @@ index 000000000000..08b35addb5b7
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 new file mode 100644
-index 000000000000..997afe1fa6a2
+index 0000000000000..997afe1fa6a2d
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -0,0 +1,484 @@
@@ -3529,7 +3529,7 @@ index 000000000000..997afe1fa6a2
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
 new file mode 100644
-index 000000000000..fe81f8e622e6
+index 0000000000000..fe81f8e622e65
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
 @@ -0,0 +1,2804 @@
@@ -6339,7 +6339,7 @@ index 000000000000..fe81f8e622e6
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 new file mode 100644
-index 000000000000..0a81e221150c
+index 0000000000000..0a81e221150c2
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -0,0 +1,2403 @@
@@ -8748,7 +8748,7 @@ index 000000000000..0a81e221150c
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
 new file mode 100644
-index 000000000000..e1f621d9889e
+index 0000000000000..e1f621d9889e1
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
 @@ -0,0 +1,2804 @@
@@ -11558,7 +11558,7 @@ index 000000000000..e1f621d9889e
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 new file mode 100644
-index 000000000000..6c887ecdc68a
+index 0000000000000..6c887ecdc68af
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -0,0 +1,2322 @@
@@ -13886,7 +13886,7 @@ index 000000000000..6c887ecdc68a
 +
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi
 new file mode 100644
-index 000000000000..6d8817dfc2b6
+index 0000000000000..6d8817dfc2b63
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-platform.dtsi
 @@ -0,0 +1,83 @@
@@ -13975,7 +13975,7 @@ index 000000000000..6d8817dfc2b6
 +#endif /* end of (CHIPLET_NUM==0) */
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 new file mode 100644
-index 000000000000..88696f5cba89
+index 0000000000000..88696f5cba89f
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -0,0 +1,1503 @@
@@ -15484,7 +15484,7 @@ index 000000000000..88696f5cba89
 +#endif
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
 new file mode 100644
-index 000000000000..d5ba4ef1772b
+index 0000000000000..d5ba4ef1772bb
 --- /dev/null
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -0,0 +1,327 @@
@@ -15816,7 +15816,7 @@ index 000000000000..d5ba4ef1772b
 +# CONFIG_RUNTIME_TESTING_MENU is not set
 +CONFIG_MEMTEST=y
 diff --git a/drivers/tty/serial/8250/8250_dwlib.c b/drivers/tty/serial/8250/8250_dwlib.c
-index 8fc8b6753148..23bb5a2c9c25 100644
+index 8fc8b6753148b..23bb5a2c9c25d 100644
 --- a/drivers/tty/serial/8250/8250_dwlib.c
 +++ b/drivers/tty/serial/8250/8250_dwlib.c
 @@ -262,12 +262,12 @@ void dw8250_setup_port(struct uart_port *p)
@@ -15837,7 +15837,7 @@ index 8fc8b6753148..23bb5a2c9c25 100644
  	old_dlf = dw8250_readl_ext(p, DW_UART_DLF);
 diff --git a/include/dt-bindings/clock/win2030-clock.h b/include/dt-bindings/clock/win2030-clock.h
 new file mode 100755
-index 000000000000..6c85b4b980f2
+index 0000000000000..6c85b4b980f21
 --- /dev/null
 +++ b/include/dt-bindings/clock/win2030-clock.h
 @@ -0,0 +1,624 @@
@@ -16467,7 +16467,7 @@ index 000000000000..6c85b4b980f2
 +#endif /*endif __DTS_WIN2030_CLOCK_H*/
 diff --git a/include/dt-bindings/interconnect/eswin,win2030.h b/include/dt-bindings/interconnect/eswin,win2030.h
 new file mode 100644
-index 000000000000..9e44657848c9
+index 0000000000000..9e44657848c90
 --- /dev/null
 +++ b/include/dt-bindings/interconnect/eswin,win2030.h
 @@ -0,0 +1,160 @@
@@ -16633,7 +16633,7 @@ index 000000000000..9e44657848c9
 +#endif /* _DT_BINDINGS_INTERCONNECT_ESWIN_WIN2030_H_ */
 diff --git a/include/dt-bindings/mailbox/eswin-mailbox.h b/include/dt-bindings/mailbox/eswin-mailbox.h
 new file mode 100755
-index 000000000000..1c82418dbadc
+index 0000000000000..1c82418dbadc0
 --- /dev/null
 +++ b/include/dt-bindings/mailbox/eswin-mailbox.h
 @@ -0,0 +1,88 @@
@@ -16727,7 +16727,7 @@ index 000000000000..1c82418dbadc
 +#endif /* _DTS_ESWIN_MAILBOX_H_ */
 diff --git a/include/dt-bindings/memory/eswin-win2030-sid.h b/include/dt-bindings/memory/eswin-win2030-sid.h
 new file mode 100644
-index 000000000000..df2e20cdfb01
+index 0000000000000..df2e20cdfb014
 --- /dev/null
 +++ b/include/dt-bindings/memory/eswin-win2030-sid.h
 @@ -0,0 +1,164 @@
@@ -16897,7 +16897,7 @@ index 000000000000..df2e20cdfb01
 +#endif
 diff --git a/include/dt-bindings/reset/eswin,win2030-syscrg.h b/include/dt-bindings/reset/eswin,win2030-syscrg.h
 new file mode 100755
-index 000000000000..3c27a51c18ae
+index 0000000000000..3c27a51c18aef
 --- /dev/null
 +++ b/include/dt-bindings/reset/eswin,win2030-syscrg.h
 @@ -0,0 +1,693 @@

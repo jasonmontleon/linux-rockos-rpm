@@ -1,4 +1,4 @@
-From 16eb8cce325373ea5f011864ae300afdef959653 Mon Sep 17 00:00:00 2001
+From e8452b4b913999d3def95d2ff074798e70f90cc4 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Fri, 25 Jul 2025 11:18:52 +0800
 Subject: [PATCH 636/652] fix:Enable sdio1 by default for eic7700-sbc-a1 board
@@ -12,7 +12,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 04ffef051e20..5bba96c792d8 100644
+index 04ffef051e20f..5bba96c792d8e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -93,5 +93,5 @@ &d0_i2c2 {

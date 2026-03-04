@@ -1,4 +1,4 @@
-From d3606bdecfa557e57e43d907c4bb2e7e2c8ec39e Mon Sep 17 00:00:00 2001
+From 5ca36f4275dc9c1454a0a3fbd88a4d1d50adcb83 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Thu, 3 Jul 2025 16:44:41 +0800
 Subject: [PATCH 598/652] fix: fix smmu print level
@@ -12,10 +12,10 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 39691049512d..b06aee3686b3 100644
+index 86f7c096c2ece..d1fcba4be0717 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -1700,9 +1700,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+@@ -1711,9 +1711,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
  			if (!ret || !__ratelimit(&rs))
  				continue;
  

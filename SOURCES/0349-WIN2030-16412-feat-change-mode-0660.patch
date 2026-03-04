@@ -1,4 +1,4 @@
-From 9ff0cc1c4a9daec6b93d5d70e59b7220926b1e5d Mon Sep 17 00:00:00 2001
+From dea41ca06cf40ce68463d8b3c4a35e6a992dcb91 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 19 Dec 2024 11:29:42 +0800
 Subject: [PATCH 349/652] WIN2030-16412:feat:change mode 0660
@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
-index 2901a5e8525e..7d0772bf03cd 100644
+index 2901a5e8525e4..7d0772bf03cdf 100644
 --- a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 +++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 @@ -566,6 +566,7 @@ static struct file_operations esw_memcp_fops = {

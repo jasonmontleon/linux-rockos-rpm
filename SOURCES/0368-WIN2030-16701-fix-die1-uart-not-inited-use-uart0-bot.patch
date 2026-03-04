@@ -1,4 +1,4 @@
-From 7c5f412dc5c6e81586ba2332e969213c504c171a Mon Sep 17 00:00:00 2001
+From 58777f78dff934e2b729ac0565acf261bf1218a9 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Mon, 16 Dec 2024 19:57:03 +0800
 Subject: [PATCH 368/652] WIN2030-16701: fix : die1 uart not inited, use uart0
@@ -11,7 +11,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 46a70eb15886..f4c173ccb408 100644
+index 46a70eb15886c..f4c173ccb4080 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1352,7 +1352,7 @@ ESWIN_MAILBOX_WR_LOCK_BIT_DSP_0

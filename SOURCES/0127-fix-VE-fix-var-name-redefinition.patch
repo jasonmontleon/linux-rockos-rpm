@@ -1,4 +1,4 @@
-From c9a56a0785ac6f50da7b6e725922277ff8591893 Mon Sep 17 00:00:00 2001
+From 95ba191fc95fac85d86786ef62da8bf1a0cfbc3f Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 30 Jul 2024 15:42:23 +0800
 Subject: [PATCH 127/652] fix(VE): fix var name redefinition
@@ -13,7 +13,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 9e5e388ef990..0d6ac28f9981 100644
+index 9e5e388ef9901..0d6ac28f9981e 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -4078,7 +4078,7 @@ static int check_dev_idle(struct hantrovcmd_dev *dev)
@@ -26,7 +26,7 @@ index 9e5e388ef990..0d6ac28f9981 100644
  	struct hantrovcmd_dev *dev = NULL;
      int ret;
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index b66055e26c3b..09c4195a60af 100644
+index b66055e26c3b2..09c4195a60af2 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -72,7 +72,7 @@ extern void hantroenc_normal_cleanup(void);

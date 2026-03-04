@@ -1,4 +1,4 @@
-From 9b68307cbd99448e631b7bb8a5002059301316d6 Mon Sep 17 00:00:00 2001
+From 52843faec30c26836bca887ce979abf9a54f2c5b Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 17 Jan 2025 17:26:22 +0800
 Subject: [PATCH 386/652] WIN2030-16900:feature:support sbc display
@@ -18,7 +18,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index f4f2418da886..6594a31ce579 100644
+index f4f2418da8864..6594a31ce5796 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -12,6 +12,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -31,7 +31,7 @@ index f4f2418da886..6594a31ce579 100644
  
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
-index 26aa840c9882..285b3bb9bcdb 100644
+index 26aa840c98828..285b3bb9bcdb7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 @@ -625,6 +625,11 @@ mux {
@@ -48,7 +48,7 @@ index 26aa840c9882..285b3bb9bcdb 100644
  				mux {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 new file mode 100644
-index 000000000000..af42c22de94b
+index 0000000000000..af42c22de94bd
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -0,0 +1,804 @@
@@ -858,7 +858,7 @@ index 000000000000..af42c22de94b
 +};
 \ No newline at end of file
 diff --git a/drivers/usb/dwc3/dwc3-eswin.c b/drivers/usb/dwc3/dwc3-eswin.c
-index 4ea7003b0339..0f4231b585a9 100755
+index 4ea7003b03392..0f4231b585a92 100755
 --- a/drivers/usb/dwc3/dwc3-eswin.c
 +++ b/drivers/usb/dwc3/dwc3-eswin.c
 @@ -4,7 +4,6 @@

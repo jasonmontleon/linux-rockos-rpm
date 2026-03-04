@@ -1,4 +1,4 @@
-From 4292bc858205b04e729b24757861390806818393 Mon Sep 17 00:00:00 2001
+From d48aadc5cb35861030172a3c598ba4a10612defe Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 7 May 2025 17:33:03 +0800
 Subject: [PATCH 498/652] fix: pcie tbu error
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 399e2a203d05..9b59531abe9a 100644
+index 399e2a203d050..9b59531abe9ac 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -270,6 +270,7 @@ static int eswin_pcie_host_init(struct dw_pcie_rp *pp)

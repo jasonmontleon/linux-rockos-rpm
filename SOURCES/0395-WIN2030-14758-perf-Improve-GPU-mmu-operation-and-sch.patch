@@ -1,4 +1,4 @@
-From 213fd04450e17cf7190a8706769334a8a3d5bf8a Mon Sep 17 00:00:00 2001
+From 939e440c5bb86384f9f46410c49a8462b212b1db Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 10 Jan 2025 18:58:10 +0800
 Subject: [PATCH 395/652] WIN2030-14758:perf:Improve GPU mmu operation and
@@ -41,7 +41,7 @@ Change-Id: I04beae946a20aa56e2e821f714215299fd8cc06e
  17 files changed, 338 insertions(+), 131 deletions(-)
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 02d015d8850e..7d26860e5616 100644
+index 02d015d8850ea..7d26860e5616d 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -381,6 +381,22 @@ config SCHED_MC
@@ -89,7 +89,7 @@ index 02d015d8850e..7d26860e5616 100644
  	help
  	  Specify the maximum number of NUMA Nodes available on the target
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 2e3228e16ccd..8a6110d6fcb9 100644
+index 2e3228e16ccd7..8a6110d6fcb94 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -24,39 +24,41 @@
@@ -175,7 +175,7 @@ index 2e3228e16ccd..8a6110d6fcb9 100644
  		reg-names = "control", "sideband";
  		sifive,a-mshr-count = <60>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 80c512ffa74a..9ad8702f5547 100644
+index 80c512ffa74a8..9ad8702f55479 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -331,7 +331,6 @@ D0CACHE: cache-controller@2010000 {
@@ -187,7 +187,7 @@ index 80c512ffa74a..9ad8702f5547 100644
  			reg-names = "control", "sideband";
  			sifive,a-mshr-count = <60>;
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 176e8c08f175..4298fe7b06c6 100644
+index 176e8c08f1759..4298fe7b06c6a 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -9,7 +9,6 @@ CONFIG_PREEMPT_VOLUNTARY=y
@@ -252,7 +252,7 @@ index 176e8c08f175..4298fe7b06c6 100644
 -CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 diff --git a/arch/riscv/include/asm/dma-noncoherent.h b/arch/riscv/include/asm/dma-noncoherent.h
-index 312cfa0858fb..7a9fe8a0e2db 100644
+index 312cfa0858fbe..7a9fe8a0e2dbb 100644
 --- a/arch/riscv/include/asm/dma-noncoherent.h
 +++ b/arch/riscv/include/asm/dma-noncoherent.h
 @@ -21,8 +21,48 @@ struct riscv_nonstd_cache_ops {
@@ -305,7 +305,7 @@ index 312cfa0858fb..7a9fe8a0e2db 100644
 +}
  #endif	/* __ASM_DMA_NONCOHERENT_H */
 diff --git a/arch/riscv/include/asm/pgtable.h b/arch/riscv/include/asm/pgtable.h
-index 2cfa65e87cd4..90e1fd734f7d 100644
+index 2cfa65e87cd49..90e1fd734f7d0 100644
 --- a/arch/riscv/include/asm/pgtable.h
 +++ b/arch/riscv/include/asm/pgtable.h
 @@ -305,6 +305,8 @@ extern struct pt_alloc_ops pt_ops __initdata;
@@ -318,7 +318,7 @@ index 2cfa65e87cd4..90e1fd734f7d 100644
  static inline unsigned long convert_pfn_from_mem_to_sys_port(unsigned long pfn)
  {
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index ba27d4765fb7..eec109eaf89f 100644
+index ba27d4765fb7d..eec109eaf89f8 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -12,6 +12,7 @@
@@ -382,7 +382,7 @@ index ba27d4765fb7..eec109eaf89f 100644
  #endif
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/common/mmu_common.c b/drivers/gpu/drm/img/img-volcanic/services/server/common/mmu_common.c
-index e9df944b8546..e94d52a4ffe7 100644
+index e9df944b85460..e94d52a4ffe70 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/common/mmu_common.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/common/mmu_common.c
 @@ -840,8 +840,10 @@ static PVRSRV_ERROR _MMU_PhysMem_RAImportAlloc(RA_PERARENA_HANDLE hArenaHandle,
@@ -398,7 +398,7 @@ index e9df944b8546..e94d52a4ffe7 100644
  	OSFreeMem(psMapping);
  e0:
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/common/physmem.c b/drivers/gpu/drm/img/img-volcanic/services/server/common/physmem.c
-index ec05b472cc70..36dfff83c0e1 100644
+index ec05b472cc702..36dfff83c0e11 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/common/physmem.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/common/physmem.c
 @@ -175,7 +175,9 @@ PVRSRV_ERROR DevPhysMemAlloc(PVRSRV_DEVICE_NODE	*psDevNode,
@@ -413,7 +413,7 @@ index ec05b472cc70..36dfff83c0e1 100644
  		eError = PhysHeapPagesClean(psDevNode->psMMUPhysHeap,
  		                            psMemHandle,
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
-index 3f9b2effcf7f..55e1c828e634 100644
+index 3f9b2effcf7fb..55e1c828e6348 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/osfunc.c
 @@ -333,8 +333,35 @@ PVRSRV_ERROR OSPhyContigPagesMap(PHYS_HEAP *psPhysHeap, PG_HANDLE *psMemHandle,
@@ -484,7 +484,7 @@ index 3f9b2effcf7f..55e1c828e634 100644
  
  #if defined(__GNUC__)
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/include/osfunc.h b/drivers/gpu/drm/img/img-volcanic/services/server/include/osfunc.h
-index 67ed3d24895b..2e051fcda35c 100644
+index 67ed3d24895b9..2e051fcda35c7 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/include/osfunc.h
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/include/osfunc.h
 @@ -92,6 +92,8 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
@@ -497,7 +497,7 @@ index 67ed3d24895b..2e051fcda35c 100644
   * Static defines
   *****************************************************************************/
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
-index d3dec65f39c9..9102b4ec61ae 100644
+index d3dec65f39c9a..9102b4ec61aef 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/system/eswin_cpu/sysconfig.c
 @@ -42,10 +42,12 @@
@@ -564,7 +564,7 @@ index d3dec65f39c9..9102b4ec61ae 100644
  	case PVRSRV_CACHE_OP_CLEAN:
  		riscv_flush_addr(bStart, (bEnd - bStart), IMG_FALSE);
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index b1f201aeaf88..635ee815b7e7 100644
+index b1f201aeaf888..635ee815b7e74 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -45,7 +45,8 @@
@@ -729,7 +729,7 @@ index b1f201aeaf88..635ee815b7e7 100644
  
  	return ret;
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 55e69e613a25..24b0859ea482 100644
+index 55e69e613a25a..24b0859ea482e 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -45,7 +45,20 @@ enum {
@@ -894,7 +894,7 @@ index 55e69e613a25..24b0859ea482 100644
  	return 0;
  err_free_irq:
 diff --git a/include/linux/dma-map-ops.h b/include/linux/dma-map-ops.h
-index f2fc203fb8a1..fe8778de7829 100644
+index f2fc203fb8a1a..fe8778de78291 100644
 --- a/include/linux/dma-map-ops.h
 +++ b/include/linux/dma-map-ops.h
 @@ -366,6 +366,10 @@ static inline pgprot_t dma_pgprot(struct device *dev, pgprot_t prot,
@@ -909,7 +909,7 @@ index f2fc203fb8a1..fe8778de7829 100644
  static inline void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
  		enum dma_data_direction dir)
 diff --git a/include/linux/mem_perf_api.h b/include/linux/mem_perf_api.h
-index a0357b43d914..110497d4d5af 100644
+index a0357b43d9142..110497d4d5af0 100644
 --- a/include/linux/mem_perf_api.h
 +++ b/include/linux/mem_perf_api.h
 @@ -1,12 +1,24 @@
@@ -960,7 +960,7 @@ index a0357b43d914..110497d4d5af 100644
          PRINT_INFO("cycle_elapsed:%lld---%%\%lld.%2lld, %s\n",
              m_perf_i->cycles_elapased, (100*m_perf_i->cycles_elapased)/total_cycles,
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index cd52a64a65ff..f385097f2b6e 100644
+index cd52a64a65ff3..f385097f2b6eb 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
 @@ -8431,6 +8431,7 @@ long sched_setaffinity(pid_t pid, const struct cpumask *in_mask)

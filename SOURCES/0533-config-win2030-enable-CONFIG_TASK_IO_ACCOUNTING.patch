@@ -1,4 +1,4 @@
-From 8b833352d0e973af9af14a22efbc5a932ac5500f Mon Sep 17 00:00:00 2001
+From 3343ab79806bde835e14f63bb2e54808a73af715 Mon Sep 17 00:00:00 2001
 From: "Kevin.MX" <zhengjingkun@iscas.ac.cn>
 Date: Wed, 11 Jun 2025 22:03:32 +0800
 Subject: [PATCH 533/652] config: win2030: enable CONFIG_TASK_IO_ACCOUNTING
@@ -9,7 +9,7 @@ Signed-off-by: Jingkun Zheng <zhengjingkun@iscas.ac.cn>
  1 file changed, 4 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 3fab118c0bb2..383bc4438249 100644
+index 3fab118c0bb28..383bc4438249e 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -6,6 +6,10 @@ CONFIG_NO_HZ_IDLE=y

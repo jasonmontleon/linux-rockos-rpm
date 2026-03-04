@@ -1,4 +1,4 @@
-From be8061d76b93c283172e6b2155ededed1aedbdbe Mon Sep 17 00:00:00 2001
+From f4502e975eb3bd25f25e07c79de2f66a87b32f6d Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 28 May 2024 10:37:37 +0800
 Subject: [PATCH 036/652] feat(llc_spram):set npu default freq to 1.5G
@@ -17,7 +17,7 @@ Changelogs:
  6 files changed, 110 insertions(+), 23 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 922db5ee1d4c..584338c8ad4c 100644
+index 922db5ee1d4c4..584338c8ad4cc 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -902,3 +902,6 @@ gpio111 : mipi dsi resetn(O)
@@ -29,7 +29,7 @@ index 922db5ee1d4c..584338c8ad4c 100644
 +};
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 642a62246b54..4ed625ef7bd3 100644
+index 642a62246b548..4ed625ef7bd36 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -879,3 +879,6 @@ gpio111 : mipi dsi resetn(O)
@@ -41,7 +41,7 @@ index 642a62246b54..4ed625ef7bd3 100644
 +};
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 0371d532d2ec..7c742eb16669 100644
+index 0371d532d2ec4..7c742eb16669d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -533,9 +533,11 @@ dev_llc_d0: llc@51c00000 {
@@ -59,7 +59,7 @@ index 0371d532d2ec..7c742eb16669 100644
  				<&d0_reset NPU_RST_CTRL SW_NPU_CFG_RSTN>,
  				<&d0_reset NPU_RST_CTRL SW_NPU_CORE_RSTN>,
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 9e12379cc7d3..971b506eaf0b 100644
+index 9e12379cc7d39..971b506eaf0b5 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -940,9 +940,11 @@ dev_llc_d1: llc@71c00000 {
@@ -77,7 +77,7 @@ index 9e12379cc7d3..971b506eaf0b 100644
  				 <&d1_reset NPU_RST_CTRL SW_NPU_CFG_RSTN>,
  				 <&d1_reset NPU_RST_CTRL SW_NPU_CORE_RSTN>,
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 2e343f1da43f..01744360937c 100644
+index 2e343f1da43f9..01744360937cf 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -40,7 +40,7 @@
@@ -266,7 +266,7 @@ index 2e343f1da43f..01744360937c 100644
  		dev_err(&pdev->dev, "llc_clk_set_frq error: %d\n", ret);
  		return ret;
 diff --git a/include/linux/eswin_npu.h b/include/linux/eswin_npu.h
-index d7f3c91491f1..44784eeefba3 100644
+index d7f3c91491f1b..44784eeefba3b 100644
 --- a/include/linux/eswin_npu.h
 +++ b/include/linux/eswin_npu.h
 @@ -14,8 +14,12 @@

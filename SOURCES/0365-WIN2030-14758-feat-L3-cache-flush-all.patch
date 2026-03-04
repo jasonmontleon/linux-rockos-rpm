@@ -1,4 +1,4 @@
-From 2b722b521970a40c123d7edad0f7951fe4d7e5a5 Mon Sep 17 00:00:00 2001
+From a418e6a4b4a347ea837df6d6c939527a0617a3ac Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 20 Dec 2024 10:08:03 +0800
 Subject: [PATCH 365/652] WIN2030-14758:feat:L3 cache flush all
@@ -26,7 +26,7 @@ Change-Id: Ifed39391d86908bc4ad5008786f05191db5852df
  8 files changed, 235 insertions(+), 16 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 8e38dc5e7f59..1c0820e01cfb 100644
+index 8e38dc5e7f590..1c0820e01cfb8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -178,7 +178,10 @@ d1_dc_reserved: d1_dc_reserved@2260000000 {
@@ -58,7 +58,7 @@ index 8e38dc5e7f59..1c0820e01cfb 100644
  	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 3b483f2dd6e7..76bb244c3250 100644
+index 3b483f2dd6e7b..76bb244c32506 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -133,6 +133,11 @@ mmz_nid_0_part_0 {
@@ -90,7 +90,7 @@ index 3b483f2dd6e7..76bb244c3250 100644
  	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 23eb2a5424d3..48f72db0adfa 100644
+index 23eb2a5424d3e..48f72db0adfa6 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -309,6 +309,8 @@ d1_bus_err3: bus-error-unit@21703000 {
@@ -111,7 +111,7 @@ index 23eb2a5424d3..48f72db0adfa 100644
  
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 1bcfba13d1a3..9fa246a5898f 100644
+index 1bcfba13d1a39..9fa246a5898f4 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -321,6 +321,8 @@ d0_bus_err3: bus-error-unit@hart3 {
@@ -136,7 +136,7 @@ index 1bcfba13d1a3..9fa246a5898f 100644
  		L34: debug-controller@0 {
  			compatible = "sifive,debug-100", "riscv,debug-100";
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index 9876cc2fe319..b1f201aeaf88 100644
+index 9876cc2fe3191..b1f201aeaf888 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -45,6 +45,7 @@
@@ -303,7 +303,7 @@ index 9876cc2fe319..b1f201aeaf88 100644
  
  	return ret;
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index f73cda043cbc..55e69e613a25 100644
+index f73cda043cbcb..55e69e613a25a 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -7,6 +7,7 @@
@@ -500,7 +500,7 @@ index f73cda043cbc..55e69e613a25 100644
  		#if IS_ENABLED(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY)
  		ccache_way_enable(node_index);
 diff --git a/include/soc/sifive/sifive_ccache.h b/include/soc/sifive/sifive_ccache.h
-index 4d4ed49388a0..022ae61dd309 100644
+index 4d4ed49388a0a..022ae61dd3096 100644
 --- a/include/soc/sifive/sifive_ccache.h
 +++ b/include/soc/sifive/sifive_ccache.h
 @@ -9,6 +9,7 @@
@@ -512,7 +512,7 @@ index 4d4ed49388a0..022ae61dd309 100644
  #define SIFIVE_CCACHE_ERR_TYPE_CE 0
  #define SIFIVE_CCACHE_ERR_TYPE_UE 1
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
-index 49ebac96f6e1..1bb76ebb5aa8 100644
+index 49ebac96f6e17..1bb76ebb5aa8f 100644
 --- a/include/uapi/linux/mmz_vb.h
 +++ b/include/uapi/linux/mmz_vb.h
 @@ -171,5 +171,6 @@ typedef struct esVB_DMABUF_SIZE_CMD_S

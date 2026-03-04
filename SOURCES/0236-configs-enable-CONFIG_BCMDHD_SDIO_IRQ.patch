@@ -1,4 +1,4 @@
-From add7a73626854bbb2b7e5ca68c534b2c569dae1f Mon Sep 17 00:00:00 2001
+From 94fe3bdae4d6652191802554a33690e483465cae Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 18:04:21 +0800
 Subject: [PATCH 236/652] configs: enable CONFIG_BCMDHD_SDIO_IRQ
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index c1ce4ce9ed4c..7d9b96993252 100644
+index c1ce4ce9ed4cc..7d9b969932529 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -457,6 +457,7 @@ CONFIG_RTW89_8852CE=m

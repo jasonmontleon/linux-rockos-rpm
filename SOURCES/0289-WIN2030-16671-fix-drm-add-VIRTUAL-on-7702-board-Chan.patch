@@ -1,4 +1,4 @@
-From 8329d0afc358fad6832de998c32496641d69a5ac Mon Sep 17 00:00:00 2001
+From 59bc6075eaebdd0f738cd6a019913828fe914124 Mon Sep 17 00:00:00 2001
 From: liwenkai <liwenkai@eswincomputing.com>
 Date: Thu, 21 Nov 2024 18:16:01 +0800
 Subject: [PATCH 289/652] WIN2030-16671:fix(drm):add VIRTUAL on 7702 board
@@ -11,7 +11,7 @@ Signed-off-by: liwenkai <liwenkai@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 5ae50b34eea1..830481fffc7e 100644
+index 5ae50b34eea18..830481fffc7ec 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -634,6 +634,7 @@ CONFIG_DRM_SIMPLEDRM=m

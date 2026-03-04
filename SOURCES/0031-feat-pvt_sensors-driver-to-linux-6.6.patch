@@ -1,4 +1,4 @@
-From 1607a622bac29eaf5242fbb3aa275adf630f2772 Mon Sep 17 00:00:00 2001
+From f25d015feb5988a0216c17932e46858a99bf1252 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 24 May 2024 16:51:46 +0800
 Subject: [PATCH 031/652] feat:pvt_sensors driver to linux 6.6.
@@ -16,7 +16,7 @@ Changelogs:
  create mode 100644 drivers/hwmon/eswin_pvt.h
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index d0362cdd1b1e..8d5ad3f19306 100644
+index d0362cdd1b1ef..8d5ad3f193064 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -268,6 +268,7 @@ CONFIG_MEMORY=y
@@ -28,7 +28,7 @@ index d0362cdd1b1e..8d5ad3f19306 100644
  CONFIG_RESET_ESWIN_WIN2030=y
  CONFIG_INTERCONNECT=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 39185cb8e3df..655ce8348386 100644
+index 39185cb8e3df6..655ce83483869 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -568,6 +568,12 @@ config SENSORS_DA9055
@@ -45,7 +45,7 @@ index 39185cb8e3df..655ce8348386 100644
  	tristate "FB-DIMM AMB temperature sensor on Intel 5000 series chipsets"
  	depends on PCI
 diff --git a/drivers/hwmon/Makefile b/drivers/hwmon/Makefile
-index 60f32f51eeb9..273e8f758fbe 100644
+index 60f32f51eeb95..273e8f758fbe4 100644
 --- a/drivers/hwmon/Makefile
 +++ b/drivers/hwmon/Makefile
 @@ -222,7 +222,7 @@ obj-$(CONFIG_SENSORS_WM8350)	+= wm8350-hwmon.o
@@ -59,7 +59,7 @@ index 60f32f51eeb9..273e8f758fbe 100644
  obj-$(CONFIG_PMBUS)		+= pmbus/
 diff --git a/drivers/hwmon/eswin_pvt.c b/drivers/hwmon/eswin_pvt.c
 new file mode 100644
-index 000000000000..fd8dec5db85e
+index 0000000000000..fd8dec5db85eb
 --- /dev/null
 +++ b/drivers/hwmon/eswin_pvt.c
 @@ -0,0 +1,930 @@
@@ -995,7 +995,7 @@ index 000000000000..fd8dec5db85e
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/hwmon/eswin_pvt.h b/drivers/hwmon/eswin_pvt.h
 new file mode 100644
-index 000000000000..aaf7c55171e9
+index 0000000000000..aaf7c55171e9c
 --- /dev/null
 +++ b/drivers/hwmon/eswin_pvt.h
 @@ -0,0 +1,242 @@

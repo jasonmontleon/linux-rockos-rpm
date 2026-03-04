@@ -1,4 +1,4 @@
-From c73d961e9ff310c4cf4f4181e435155ae63fb375 Mon Sep 17 00:00:00 2001
+From ddee70e265c40689cbca905e1464a890ea5e7b35 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 19 Jul 2024 10:11:52 +0800
 Subject: [PATCH 111/652] fix(cpu pll): enable cpu low power clk when use it.
@@ -15,7 +15,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 11 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index 685f6377d9f8..06569c72ba37 100755
+index 685f6377d9f8b..06569c72ba379 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -308,9 +308,16 @@ static int clk_pll_set_rate(struct clk_hw *hw,

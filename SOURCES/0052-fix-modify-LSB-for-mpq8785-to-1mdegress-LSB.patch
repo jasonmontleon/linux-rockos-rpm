@@ -1,4 +1,4 @@
-From 3a98795264f1b9b08891251c9c4e8f5aba6dfa74 Mon Sep 17 00:00:00 2001
+From 639c987fc6d262886468f9ba622115becb731a2c Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Fri, 14 Jun 2024 16:39:47 +0800
 Subject: [PATCH 052/652] fix:modify LSB for mpq8785 to 1mdegress/LSB
@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 6 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index 60c48ae47d31..d5dae70d3d50 100644
+index 60c48ae47d313..d5dae70d3d505 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -187,6 +187,7 @@ struct MPQ8785_DRIVER_DATA

@@ -1,4 +1,4 @@
-From 74182eb1da05a3f6858e7e486c89f486a31ab60c Mon Sep 17 00:00:00 2001
+From 63f0558e2e9904dd1c7f85fcb8e1169e125c8d9a Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 10 Jul 2024 09:56:00 +0800
 Subject: [PATCH 068/652] fix:fix the issue of USB 3.0 host halt.
@@ -13,7 +13,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  2 files changed, 4 insertions(+), 16 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 0879dcca2527..79a64e2abaf3 100644
+index 0879dcca2527a..79a64e2abaf3c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1933,10 +1933,7 @@ d0_usbdrd_dwc3_0: dwc3@50480000 {
@@ -41,7 +41,7 @@ index 0879dcca2527..79a64e2abaf3 100644
  				numa-node-id = <0>;
  				tbus = <WIN2030_TBUID_USB>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 1417c6298a3c..aff6298f851e 100644
+index 1417c6298a3c2..aff6298f851e6 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1931,10 +1931,7 @@ d1_usbdrd_dwc3_0: dwc3@70480000 {

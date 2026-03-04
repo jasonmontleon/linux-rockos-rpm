@@ -1,4 +1,4 @@
-From 6292681d76817a95af14d2ec0af3864f3d701e91 Mon Sep 17 00:00:00 2001
+From 597146d53e2cf36c88e7bd1c228a95aa0a2fcb24 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 23 May 2024 18:06:28 +0800
 Subject: [PATCH 023/652] feat(cma heap):Select CONFIG_DMABUF_HEAPS_CMA
@@ -10,7 +10,7 @@ Changelogs:
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index d3524b132481..0c9b6e662ed4 100644
+index d3524b1324816..0c9b6e662ed4f 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -180,7 +180,6 @@ CONFIG_SND_SOC=y

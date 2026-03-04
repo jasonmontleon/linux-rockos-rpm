@@ -1,4 +1,4 @@
-From 2ef2632df57d1ba699c0a2a6e5ef197dfbc80762 Mon Sep 17 00:00:00 2001
+From ab01fbc20eb06559187cccaab88554da54585ada Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
 Subject: [PATCH 005/652] feat(SMMU support):Support SMMU
@@ -40,7 +40,7 @@ Changelogs:
  create mode 100644 drivers/iommu/eswin/eswin-win2030-sid.c
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 1304992232ad..baefecd75016 100644
+index 1304992232adb..baefecd750167 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -334,7 +334,7 @@ config ARCH_RV64I
@@ -53,7 +53,7 @@ index 1304992232ad..baefecd75016 100644
  endchoice
  
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0fc2a5f9522b..2e2e4e419bd3 100644
+index 0fc2a5f9522b3..2e2e4e419bd3a 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -223,6 +223,7 @@ CONFIG_VIRTIO_MMIO=y
@@ -65,7 +65,7 @@ index 0fc2a5f9522b..2e2e4e419bd3 100644
  CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
  CONFIG_EXTCON=y
 diff --git a/arch/riscv/include/asm/barrier.h b/arch/riscv/include/asm/barrier.h
-index 110752594228..600abcec3631 100644
+index 110752594228e..600abcec36315 100644
 --- a/arch/riscv/include/asm/barrier.h
 +++ b/arch/riscv/include/asm/barrier.h
 @@ -71,6 +71,10 @@ do {									\
@@ -80,7 +80,7 @@ index 110752594228..600abcec3631 100644
  
  #endif /* __ASSEMBLY__ */
 diff --git a/arch/riscv/include/asm/io.h b/arch/riscv/include/asm/io.h
-index 42497d487a17..0c3c9507dca1 100644
+index 42497d487a174..0c3c9507dca18 100644
 --- a/arch/riscv/include/asm/io.h
 +++ b/arch/riscv/include/asm/io.h
 @@ -52,6 +52,9 @@
@@ -94,7 +94,7 @@ index 42497d487a17..0c3c9507dca1 100644
   * Accesses from a single hart to a single I/O address must be ordered.  This
   * allows us to use the raw read macros, but we still need to fence before and
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 898a9c8facd4..75d3f1e6f884 100644
+index 898a9c8facd40..75d3f1e6f8847 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -11,6 +11,9 @@
@@ -120,7 +120,7 @@ index 898a9c8facd4..75d3f1e6f884 100644
  
  void riscv_noncoherent_supported(void)
 diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-index 20aa5ed80aa3..7999c71c4612 100644
+index 20aa5ed80aa38..7999c71c46124 100644
 --- a/drivers/iommu/Kconfig
 +++ b/drivers/iommu/Kconfig
 @@ -28,7 +28,7 @@ config IOMMU_IO_PGTABLE
@@ -142,7 +142,7 @@ index 20aa5ed80aa3..7999c71c4612 100644
  	select IOMMU_IO_PGTABLE_LPAE
  	select GENERIC_MSI_IRQ
 diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-index 769e43d780ce..42b2d74869aa 100644
+index 769e43d780ce8..42b2d74869aa8 100644
 --- a/drivers/iommu/Makefile
 +++ b/drivers/iommu/Makefile
 @@ -1,5 +1,5 @@
@@ -153,7 +153,7 @@ index 769e43d780ce..42b2d74869aa 100644
  obj-$(CONFIG_IOMMU_API) += iommu-traces.o
  obj-$(CONFIG_IOMMU_API) += iommu-sysfs.o
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index f2260f45728e..54e5018782f0 100644
+index bb7365b432198..92b13c4d67a5e 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 @@ -30,8 +30,26 @@
@@ -205,7 +205,7 @@ index f2260f45728e..54e5018782f0 100644
  /*
   * Special value used by SVA when a process dies, to quiesce a CD without
   * disabling it.
-@@ -840,11 +873,20 @@ static int arm_smmu_cmdq_issue_cmdlist(struct arm_smmu_device *smmu,
+@@ -851,11 +884,20 @@ static int arm_smmu_cmdq_issue_cmdlist(struct arm_smmu_device *smmu,
  		llq.prod = queue_inc_prod_n(&llq, n);
  		ret = arm_smmu_cmdq_poll_until_sync(smmu, &llq);
  		if (ret) {
@@ -226,7 +226,7 @@ index f2260f45728e..54e5018782f0 100644
  		}
  
  		/*
-@@ -1348,7 +1390,14 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+@@ -1359,7 +1401,14 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
  		u64 strw = smmu->features & ARM_SMMU_FEAT_E2H ?
  			STRTAB_STE_1_STRW_EL2 : STRTAB_STE_1_STRW_NSEL1;
  
@@ -241,7 +241,7 @@ index f2260f45728e..54e5018782f0 100644
  		dst[1] = cpu_to_le64(
  			 FIELD_PREP(STRTAB_STE_1_S1DSS, STRTAB_STE_1_S1DSS_SSID0) |
  			 FIELD_PREP(STRTAB_STE_1_S1CIR, STRTAB_STE_1_S1C_CACHE_WBRA) |
-@@ -1367,7 +1416,14 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
+@@ -1378,7 +1427,14 @@ static void arm_smmu_write_strtab_ent(struct arm_smmu_master *master, u32 sid,
  	}
  
  	if (s2_cfg) {
@@ -256,7 +256,7 @@ index f2260f45728e..54e5018782f0 100644
  		dst[2] = cpu_to_le64(
  			 FIELD_PREP(STRTAB_STE_2_S2VMID, s2_cfg->vmid) |
  			 FIELD_PREP(STRTAB_STE_2_VTCR, s2_cfg->vtcr) |
-@@ -1571,6 +1627,33 @@ static int arm_smmu_handle_evt(struct arm_smmu_device *smmu, u64 *evt)
+@@ -1582,6 +1638,33 @@ static int arm_smmu_handle_evt(struct arm_smmu_device *smmu, u64 *evt)
  	return ret;
  }
  
@@ -290,7 +290,7 @@ index f2260f45728e..54e5018782f0 100644
  static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
  {
  	int i, ret;
-@@ -1675,6 +1758,10 @@ static irqreturn_t arm_smmu_gerror_handler(int irq, void *dev)
+@@ -1686,6 +1769,10 @@ static irqreturn_t arm_smmu_gerror_handler(int irq, void *dev)
  	u32 gerror, gerrorn, active;
  	struct arm_smmu_device *smmu = dev;
  
@@ -301,7 +301,7 @@ index f2260f45728e..54e5018782f0 100644
  	gerror = readl_relaxed(smmu->base + ARM_SMMU_GERROR);
  	gerrorn = readl_relaxed(smmu->base + ARM_SMMU_GERRORN);
  
-@@ -2397,6 +2484,15 @@ static void arm_smmu_disable_pasid(struct arm_smmu_master *master)
+@@ -2408,6 +2495,15 @@ static void arm_smmu_disable_pasid(struct arm_smmu_master *master)
  	pci_disable_pasid(pdev);
  }
  
@@ -317,7 +317,7 @@ index f2260f45728e..54e5018782f0 100644
  static void arm_smmu_detach_dev(struct arm_smmu_master *master)
  {
  	unsigned long flags;
-@@ -2413,6 +2509,19 @@ static void arm_smmu_detach_dev(struct arm_smmu_master *master)
+@@ -2424,6 +2520,19 @@ static void arm_smmu_detach_dev(struct arm_smmu_master *master)
  
  	master->domain = NULL;
  	master->ats_enabled = false;
@@ -337,7 +337,7 @@ index f2260f45728e..54e5018782f0 100644
  	arm_smmu_install_ste_for_dev(master);
  }
  
-@@ -2441,7 +2550,14 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
+@@ -2452,7 +2561,14 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
  		return -EBUSY;
  	}
  
@@ -352,7 +352,7 @@ index f2260f45728e..54e5018782f0 100644
  
  	mutex_lock(&smmu_domain->init_mutex);
  
-@@ -2452,6 +2568,11 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
+@@ -2463,6 +2579,11 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
  			smmu_domain->smmu = NULL;
  			goto out_unlock;
  		}
@@ -364,7 +364,7 @@ index f2260f45728e..54e5018782f0 100644
  	} else if (smmu_domain->smmu != smmu) {
  		ret = -EINVAL;
  		goto out_unlock;
-@@ -2464,6 +2585,17 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
+@@ -2475,6 +2596,17 @@ static int arm_smmu_attach_dev(struct iommu_domain *domain, struct device *dev)
  		ret = -EINVAL;
  		goto out_unlock;
  	}
@@ -382,7 +382,7 @@ index f2260f45728e..54e5018782f0 100644
  
  	master->domain = smmu_domain;
  
-@@ -2728,6 +2860,146 @@ static void arm_smmu_release_device(struct device *dev)
+@@ -2739,6 +2871,146 @@ static void arm_smmu_release_device(struct device *dev)
  	kfree(master);
  }
  
@@ -529,7 +529,7 @@ index f2260f45728e..54e5018782f0 100644
  static struct iommu_group *arm_smmu_device_group(struct device *dev)
  {
  	struct iommu_group *group;
-@@ -2744,6 +3016,7 @@ static struct iommu_group *arm_smmu_device_group(struct device *dev)
+@@ -2755,6 +3027,7 @@ static struct iommu_group *arm_smmu_device_group(struct device *dev)
  
  	return group;
  }
@@ -537,7 +537,7 @@ index f2260f45728e..54e5018782f0 100644
  
  static int arm_smmu_enable_nesting(struct iommu_domain *domain)
  {
-@@ -3104,6 +3377,11 @@ static int arm_smmu_init_structures(struct arm_smmu_device *smmu)
+@@ -3115,6 +3388,11 @@ static int arm_smmu_init_structures(struct arm_smmu_device *smmu)
  	mutex_init(&smmu->streams_mutex);
  	smmu->streams = RB_ROOT;
  
@@ -549,7 +549,7 @@ index f2260f45728e..54e5018782f0 100644
  	ret = arm_smmu_init_queues(smmu);
  	if (ret)
  		return ret;
-@@ -3210,10 +3488,17 @@ static void arm_smmu_setup_unique_irqs(struct arm_smmu_device *smmu)
+@@ -3221,10 +3499,17 @@ static void arm_smmu_setup_unique_irqs(struct arm_smmu_device *smmu)
  	/* Request interrupt lines */
  	irq = smmu->evtq.q.irq;
  	if (irq) {
@@ -567,7 +567,7 @@ index f2260f45728e..54e5018782f0 100644
  		if (ret < 0)
  			dev_warn(smmu->dev, "failed to enable evtq irq\n");
  	} else {
-@@ -3233,11 +3518,19 @@ static void arm_smmu_setup_unique_irqs(struct arm_smmu_device *smmu)
+@@ -3244,11 +3529,19 @@ static void arm_smmu_setup_unique_irqs(struct arm_smmu_device *smmu)
  	if (smmu->features & ARM_SMMU_FEAT_PRI) {
  		irq = smmu->priq.q.irq;
  		if (irq) {
@@ -587,7 +587,7 @@ index f2260f45728e..54e5018782f0 100644
  			if (ret < 0)
  				dev_warn(smmu->dev,
  					 "failed to enable priq irq\n");
-@@ -3528,8 +3821,10 @@ static int arm_smmu_device_hw_probe(struct arm_smmu_device *smmu)
+@@ -3539,8 +3832,10 @@ static int arm_smmu_device_hw_probe(struct arm_smmu_device *smmu)
  
  	if (reg & IDR0_HYP) {
  		smmu->features |= ARM_SMMU_FEAT_HYP;
@@ -598,7 +598,7 @@ index f2260f45728e..54e5018782f0 100644
  	}
  
  	/*
-@@ -3802,6 +4097,87 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
+@@ -3813,6 +4108,87 @@ static void arm_smmu_rmr_install_bypass_ste(struct arm_smmu_device *smmu)
  	iort_put_rmr_sids(dev_fwnode(smmu->dev), &rmr_list);
  }
  
@@ -686,7 +686,7 @@ index f2260f45728e..54e5018782f0 100644
  static int arm_smmu_device_probe(struct platform_device *pdev)
  {
  	int irq, ret;
-@@ -3854,6 +4230,34 @@ static int arm_smmu_device_probe(struct platform_device *pdev)
+@@ -3865,6 +4241,34 @@ static int arm_smmu_device_probe(struct platform_device *pdev)
  		smmu->page1 = smmu->base;
  	}
  
@@ -721,7 +721,7 @@ index f2260f45728e..54e5018782f0 100644
  	/* Interrupt lines */
  
  	irq = platform_get_irq_byname_optional(pdev, "combined");
-@@ -3925,6 +4329,11 @@ static void arm_smmu_device_remove(struct platform_device *pdev)
+@@ -3936,6 +4340,11 @@ static void arm_smmu_device_remove(struct platform_device *pdev)
  	arm_smmu_device_disable(smmu);
  	iopf_queue_free(smmu->evtq.iopf);
  	ida_destroy(&smmu->vmid_map);
@@ -734,7 +734,7 @@ index f2260f45728e..54e5018782f0 100644
  
  static void arm_smmu_device_shutdown(struct platform_device *pdev)
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-index 9915850dd4db..25a73a177b59 100644
+index 9915850dd4dbf..25a73a177b59c 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
 @@ -160,6 +160,19 @@
@@ -827,7 +827,7 @@ index 9915850dd4db..25a73a177b59 100644
  static inline struct arm_smmu_domain *to_smmu_domain(struct iommu_domain *dom)
 diff --git a/drivers/iommu/eswin/Makefile b/drivers/iommu/eswin/Makefile
 new file mode 100644
-index 000000000000..563a2ca1a91d
+index 0000000000000..563a2ca1a91d0
 --- /dev/null
 +++ b/drivers/iommu/eswin/Makefile
 @@ -0,0 +1,2 @@
@@ -835,7 +835,7 @@ index 000000000000..563a2ca1a91d
 +obj-$(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY) 		+= eswin-win2030-sid.o
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
 new file mode 100644
-index 000000000000..24fc76fe7272
+index 0000000000000..24fc76fe7272a
 --- /dev/null
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -0,0 +1,886 @@
@@ -1726,7 +1726,7 @@ index 000000000000..24fc76fe7272
 +	return 0;
 +}
 diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-index 290b961eb729..d78b8c3f72a8 100644
+index 290b961eb729b..d78b8c3f72a8c 100644
 --- a/drivers/soc/sifive/Kconfig
 +++ b/drivers/soc/sifive/Kconfig
 @@ -19,6 +19,7 @@ config ARCH_ESWIN_EIC770X_SOC_FAMILY

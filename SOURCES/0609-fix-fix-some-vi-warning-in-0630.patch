@@ -1,4 +1,4 @@
-From bb4799eda7205f3efd6605d2855bc663613da0f8 Mon Sep 17 00:00:00 2001
+From 7e3443a5fe2fc05acb043813dc420b4ec739fd66 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Tue, 1 Jul 2025 14:00:00 +0800
 Subject: [PATCH 609/652] fix: fix some vi warning in 0630
@@ -12,7 +12,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  1 file changed, 6 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index b8d68edbe239..6a419ddbc324 100644
+index b8d68edbe239d..6a419ddbc3248 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2122,7 +2122,7 @@ d1_vi_subsys: d1-vi-subsys@71000000 {

@@ -1,4 +1,4 @@
-From 84a46fc7a754b6bf4f198436a5af6cd6bb41d274 Mon Sep 17 00:00:00 2001
+From e5a9214107d6242aed0f8a8d198a5f76bb1c6236 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Fri, 21 Feb 2025 03:13:29 -0500
 Subject: [PATCH 648/652] eswin dsp fixes
@@ -11,7 +11,7 @@ Subject: [PATCH 648/652] eswin dsp fixes
  4 files changed, 7 insertions(+)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index df24ad88695c..3cd29272e671 100644
+index df24ad88695c6..3cd29272e671a 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -59,6 +59,7 @@
@@ -23,7 +23,7 @@ index df24ad88695c..3cd29272e671 100644
  #include <linux/eswin-win2030-sid-cfg.h>
  #include "eswin-khandle.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 80f49a3edf8b..a145d6e05f7b 100644
+index 80f49a3edf8b5..a145d6e05f7b1 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -39,6 +39,7 @@
@@ -35,7 +35,7 @@ index 80f49a3edf8b..a145d6e05f7b 100644
  
  #include "dsp_platform.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-index 238bddc4c9eb..173a7467076f 100644
+index 238bddc4c9ebf..173a7467076fc 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 @@ -31,11 +31,15 @@ int es_dsp_reboot_core(struct es_dsp_hw *);
@@ -55,7 +55,7 @@ index 238bddc4c9eb..173a7467076f 100644
  int es_dsp_platform_init(void);
  int es_dsp_platform_uninit(void);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
-index 6797e819176f..68796939f0e9 100644
+index 6797e819176f4..68796939f0e9d 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_proc.c
 @@ -26,6 +26,7 @@

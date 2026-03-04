@@ -1,4 +1,4 @@
-From 252aee6012a92506ba669bf863e8d7e7c218f0f8 Mon Sep 17 00:00:00 2001
+From 3b3c426f5fe6cc09aef1cfb2548e5b7648cbbedb Mon Sep 17 00:00:00 2001
 From: yangqiang <yangqiang1@eswincomputing.com>
 Date: Wed, 12 Mar 2025 15:28:49 +0800
 Subject: [PATCH 441/652] feat:support capture for osm codec
@@ -12,7 +12,7 @@ Signed-off-by: yangqiang <yangqiang1@eswincomputing.com>
  1 file changed, 27 insertions(+), 6 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/tlv320aic3x.c b/sound/soc/codecs/eswin/tlv320aic3x.c
-index e829b0110363..18329fc835d7 100644
+index e829b01103630..18329fc835d7d 100644
 --- a/sound/soc/codecs/eswin/tlv320aic3x.c
 +++ b/sound/soc/codecs/eswin/tlv320aic3x.c
 @@ -1425,7 +1425,6 @@ static int aic3x_set_bias_level(struct snd_soc_component *component,

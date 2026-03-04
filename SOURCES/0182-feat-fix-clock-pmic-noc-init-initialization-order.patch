@@ -1,4 +1,4 @@
-From d56c08fcbc06c8af70826a945ed1d59e40c1eafb Mon Sep 17 00:00:00 2001
+From 52e701dfe93296a3e163ccdf44702bc7f4418b14 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 25 Sep 2024 16:04:43 +0800
 Subject: [PATCH 182/652] feat:fix clock&pmic&noc init initialization order
@@ -28,7 +28,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  8 files changed, 29 insertions(+), 24 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 5a979e84d2c9..83b656f6c481 100644
+index 5a979e84d2c9a..83b656f6c4819 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -895,5 +895,7 @@ &gpio0 {
@@ -41,7 +41,7 @@ index 5a979e84d2c9..83b656f6c481 100644
 +	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 20fe88d55119..d99fe95e2a31 100644
+index 20fe88d551193..d99fe95e2a313 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -875,5 +875,7 @@ &gpio0 {
@@ -54,7 +54,7 @@ index 20fe88d55119..d99fe95e2a31 100644
 +	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 9cacb373b3bc..573b1e7d148d 100644
+index 9cacb373b3bc4..573b1e7d148d7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -818,8 +818,10 @@ &gpio0 {
@@ -71,7 +71,7 @@ index 9cacb373b3bc..573b1e7d148d 100644
  
  &d0_clock {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 52cec742b771..8c558119a286 100644
+index 52cec742b7711..8c558119a286e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -808,6 +808,8 @@ &gpio0 {
@@ -85,7 +85,7 @@ index 52cec742b771..8c558119a286 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index d065b67d3dda..2733649b4c3f 100644
+index d065b67d3ddad..2733649b4c3f2 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -823,6 +823,8 @@ &gpio0 {
@@ -99,7 +99,7 @@ index d065b67d3dda..2733649b4c3f 100644
  };
  
 diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
-index b7c382133ccc..ccb7dade5475 100755
+index b7c382133ccc3..ccb7dade5475a 100755
 --- a/drivers/clk/eswin/clk-win2030.c
 +++ b/drivers/clk/eswin/clk-win2030.c
 @@ -1222,8 +1222,7 @@ static struct platform_driver eswin_clock_driver = {
@@ -116,7 +116,7 @@ index b7c382133ccc..ccb7dade5475 100755
 +MODULE_AUTHOR("huangyifeng<huangyifeng@eswincomputing.com>");
 +MODULE_DESCRIPTION("Eswin EIC770X clock controller driver");
 diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
-index cd577ec7c116..2bcbe3f48f59 100644
+index cd577ec7c1165..2bcbe3f48f598 100644
 --- a/drivers/interconnect/eswin/noc.c
 +++ b/drivers/interconnect/eswin/noc.c
 @@ -2323,19 +2323,14 @@ static struct platform_driver win2030_noc_driver = {
@@ -143,7 +143,7 @@ index cd577ec7c116..2bcbe3f48f59 100644
 -MODULE_LICENSE("GPL");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index c26567e5aa80..ed71d83c3060 100644
+index c26567e5aa805..ed71d83c30604 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -751,13 +751,13 @@ static int llc_clk_set_parent(struct platform_device *pdev, u8 *is_low_freq)

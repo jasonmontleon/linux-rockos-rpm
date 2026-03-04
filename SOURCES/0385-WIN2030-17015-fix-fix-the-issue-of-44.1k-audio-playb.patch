@@ -1,4 +1,4 @@
-From 84b71babaf83be1ca61364a1f9dd537180bb9d12 Mon Sep 17 00:00:00 2001
+From de4a4a6c62576c5f39a4d3cc18cf34e711fa90cb Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 16 Jan 2025 11:01:39 +0800
 Subject: [PATCH 385/652] WIN2030-17015:fix:fix the issue of 44.1k audio
@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 9 insertions(+), 8 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 2fee4120acd2..14a365e84718 100644
+index 2fee4120acd2a..14a365e84718e 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -26,6 +26,10 @@

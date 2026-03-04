@@ -1,4 +1,4 @@
-From cfe1807c62ec44f8d0a8ea35d7a19ad02235297d Mon Sep 17 00:00:00 2001
+From ccc7b18881ebd0b1c944a75d0c75036428aca23a Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Mon, 22 Apr 2024 16:15:37 +0800
 Subject: [PATCH 008/652] feat: Add support for ethernet driver
@@ -19,7 +19,7 @@ Changelogs:
  create mode 100644 drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 358ea4e7ac84..25bdb68ef921 100644
+index 358ea4e7ac842..25bdb68ef921d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -476,12 +476,20 @@ &sdio1 {
@@ -46,7 +46,7 @@ index 358ea4e7ac84..25bdb68ef921 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
-index a6dd5aaeee00..1b194f9d04ee 100644
+index a6dd5aaeee00b..1b194f9d04ee2 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 @@ -25,7 +25,7 @@ / {
@@ -66,7 +66,7 @@ index a6dd5aaeee00..1b194f9d04ee 100644
 \ No newline at end of file
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index c3bbfab6fb47..e56ff06664f1 100644
+index c3bbfab6fb47e..e56ff06664f1e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -438,7 +438,7 @@ d0_gmac0: ethernet@50400000 {
@@ -88,7 +88,7 @@ index c3bbfab6fb47..e56ff06664f1 100644
  			dma-noncoherent;
  			eswin,hsp_sp_csr = <&d0_hsp_sp_csr 0x1034 0x200 0x208>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index acd83f4bb20d..9c24a81da4f8 100644
+index acd83f4bb20d6..9c24a81da4f8b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1501,7 +1501,7 @@ d1_gmac0: ethernet@70400000 {
@@ -110,7 +110,7 @@ index acd83f4bb20d..9c24a81da4f8 100644
  			dma-noncoherent;
  			eswin,hsp_sp_csr = <&d1_hsp_sp_csr 0x1034 0x200 0x208>;
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index c7a983e1e21f..c0695f06820c 100644
+index c7a983e1e21fc..c0695f06820cc 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -23,7 +23,7 @@ CONFIG_SMP=y
@@ -131,7 +131,7 @@ index c7a983e1e21f..c0695f06820c 100644
  # CONFIG_NET_VENDOR_SYNOPSYS is not set
  # CONFIG_NET_VENDOR_VERTEXCOM is not set
 diff --git a/drivers/net/ethernet/stmicro/stmmac/Kconfig b/drivers/net/ethernet/stmicro/stmmac/Kconfig
-index 92d7d5a00b84..7b5ff1129461 100644
+index 92d7d5a00b84c..7b5ff1129461c 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/Kconfig
 +++ b/drivers/net/ethernet/stmicro/stmmac/Kconfig
 @@ -49,6 +49,14 @@ config DWMAC_DWC_QOS_ETH
@@ -150,7 +150,7 @@ index 92d7d5a00b84..7b5ff1129461 100644
  	tristate "Generic driver for DWMAC"
  	default STMMAC_PLATFORM
 diff --git a/drivers/net/ethernet/stmicro/stmmac/Makefile b/drivers/net/ethernet/stmicro/stmmac/Makefile
-index 5b57aee19267..4b22312c5ea8 100644
+index 5b57aee19267f..4b22312c5ea81 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/Makefile
 +++ b/drivers/net/ethernet/stmicro/stmmac/Makefile
 @@ -33,6 +33,7 @@ obj-$(CONFIG_DWMAC_GENERIC)	+= dwmac-generic.o
@@ -163,7 +163,7 @@ index 5b57aee19267..4b22312c5ea8 100644
  
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 new file mode 100644
-index 000000000000..0b37eabd6334
+index 0000000000000..0b37eabd63343
 --- /dev/null
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -0,0 +1,597 @@

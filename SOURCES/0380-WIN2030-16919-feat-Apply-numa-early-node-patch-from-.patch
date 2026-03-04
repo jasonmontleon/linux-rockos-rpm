@@ -1,4 +1,4 @@
-From e2f63d699bf1325c598b46c5ea578a14b7e7ba47 Mon Sep 17 00:00:00 2001
+From 82b75753134770c4ee7e4ba7ad85236da7028142 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 10 Jan 2025 13:21:56 +0800
 Subject: [PATCH 380/652] WIN2030-16919:feat:Apply numa early node patch from
@@ -34,7 +34,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  2 files changed, 15 insertions(+)
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 37e9be504566..d69a7dc8a022 100644
+index 37e9be5045669..d69a7dc8a0225 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -153,6 +153,7 @@ config RISCV
@@ -46,7 +46,7 @@ index 37e9be504566..d69a7dc8a022 100644
  	select PCI_DOMAINS_GENERIC if PCI
  	select PCI_MSI if PCI
 diff --git a/init/main.c b/init/main.c
-index 20d2dd4d9b40..52f6494d4d07 100644
+index 20d2dd4d9b40f..52f6494d4d07c 100644
 --- a/init/main.c
 +++ b/init/main.c
 @@ -884,6 +884,19 @@ static void __init print_unknown_bootoptions(void)

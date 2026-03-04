@@ -1,4 +1,4 @@
-From e097d73d07bfa26cf126e53cc6e0194f6e3974ab Mon Sep 17 00:00:00 2001
+From a0482d3fef8f7427695ceaf23699efa3fcf18a3a Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Fri, 27 Jun 2025 10:22:09 +0800
 Subject: [PATCH 586/652] fix:dmabuf dma_resv lock was not held
@@ -19,7 +19,7 @@ Signed-off-by: hejiean <hejiean@eswincomputing.com>
  5 files changed, 48 insertions(+), 19 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c
-index 97f84d6095bc..e82b0d5cebe6 100644
+index 97f84d6095bc4..e82b0d5cebe69 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/physmem_dmabuf.c
 @@ -1382,7 +1382,10 @@ PMRAcquireKernelMappingDataDmaBuf(PMR_IMPL_PRIVDATA pvPriv,
@@ -44,7 +44,7 @@ index 97f84d6095bc..e82b0d5cebe6 100644
  	do {
  		err = dma_buf_end_cpu_access(psDmaBuf, DMA_BIDIRECTIONAL);
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
-index 76f440b124d9..4e45d6bf4ffd 100644
+index 76f440b124d9d..4e45d6bf4ffda 100644
 --- a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -40,6 +40,7 @@
@@ -110,7 +110,7 @@ index 76f440b124d9..4e45d6bf4ffd 100644
  {
  	int ret = 0;
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
-index f0d67b27ae4b..c4ce2e01a61f 100644
+index f0d67b27ae4ba..c4ce2e01a61f6 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -28,6 +28,7 @@
@@ -183,7 +183,7 @@ index f0d67b27ae4b..c4ce2e01a61f 100644
      }
  }
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index e0099786ac87..6bb0a4a6a06c 100644
+index e0099786ac874..6bb0a4a6a06cc 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -73,7 +73,7 @@
@@ -283,7 +283,7 @@ index e0099786ac87..6bb0a4a6a06c 100644
  	if (IS_ERR(df)) {
  		err = PTR_ERR(df);
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c
-index 28b07d9b1431..4836c62ab6ac 100644
+index 28b07d9b1431a..4836c62ab6ac0 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_dmabuf.c
 @@ -217,7 +217,11 @@ _DmabufAttach(gckALLOCATOR Allocator, gcsATTACH_DESC_PTR Desc, PLINUX_MDL Mdl)

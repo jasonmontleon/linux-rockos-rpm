@@ -1,4 +1,4 @@
-From a978c534b427fc6510350ad4861f3fac0cf0d863 Mon Sep 17 00:00:00 2001
+From 9ec55707556c6ab2e26541c1bdc9b47846d7aa5a Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:51:58 +0800
 Subject: [PATCH 425/652] config: net: enable net device for eic7700x
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 18 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 381dec16e843..07ee8a6b05f9 100644
+index 381dec16e8438..07ee8a6b05f93 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -463,7 +463,18 @@ CONFIG_VIRTIO_NET=m

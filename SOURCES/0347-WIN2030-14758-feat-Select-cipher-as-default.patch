@@ -1,4 +1,4 @@
-From 0ad871f12f7c1cc4e6e04a13d236c3e8abd2e2d6 Mon Sep 17 00:00:00 2001
+From d175ad9bf69973f9c322e696181c390828762443 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 20 Dec 2024 11:27:20 +0800
 Subject: [PATCH 347/652] WIN2030-14758:feat:Select cipher as default
@@ -16,7 +16,7 @@ Change-Id: I9c2654a07c12727c6321a19f278a68dafcbf0a9d
  3 files changed, 4 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 1470d3990cd5..b7ea2eea76cb 100644
+index 1470d3990cd5b..b7ea2eea76cb0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -395,7 +395,7 @@ &d0_ipc_scpu {
@@ -29,7 +29,7 @@ index 1470d3990cd5..b7ea2eea76cb 100644
  
  &d0_lpcpu {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 058a28049e0f..12dbdb1c7418 100644
+index 058a28049e0fd..12dbdb1c74182 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -373,7 +373,7 @@ &d0_ipc_scpu {
@@ -42,7 +42,7 @@ index 058a28049e0f..12dbdb1c7418 100644
  
  &d0_lpcpu {
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 10811521fe52..e2cb568415e9 100644
+index 10811521fe52c..e2cb568415e99 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -9,6 +9,7 @@ CONFIG_PREEMPT_VOLUNTARY=y

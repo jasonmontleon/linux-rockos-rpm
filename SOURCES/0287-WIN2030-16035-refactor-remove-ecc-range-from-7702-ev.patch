@@ -1,4 +1,4 @@
-From f6dce0df67797972e06d7e0c84470ae604babc32 Mon Sep 17 00:00:00 2001
+From 5b1d7d32173176775be135c99f50f777eeb30441 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 21 Nov 2024 20:09:03 +0800
 Subject: [PATCH 287/652] WIN2030-16035:refactor:remove ecc range from 7702 evb
@@ -13,7 +13,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 9 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index f6b416a65a95..d26e6e5f505f 100644
+index f6b416a65a95b..d26e6e5f505f0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -24,8 +24,8 @@

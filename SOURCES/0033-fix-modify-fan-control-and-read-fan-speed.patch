@@ -1,4 +1,4 @@
-From 8148822af382671ee6fcafbdf5a382547705ff9a Mon Sep 17 00:00:00 2001
+From 1534a14fdfbd93b131fa700972c84602b46d30a5 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Fri, 24 May 2024 19:55:33 +0800
 Subject: [PATCH 033/652] fix:modify fan control and read fan speed
@@ -12,7 +12,7 @@ Changelogs:
  3 files changed, 33 insertions(+), 12 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 93fa224c75b7..922db5ee1d4c 100644
+index 93fa224c75b75..922db5ee1d4c4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -688,6 +688,7 @@ &d0_mbox7 {
@@ -24,7 +24,7 @@ index 93fa224c75b7..922db5ee1d4c 100644
  
  &d0_i2c0 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 430c5410bdda..0371d532d2ec 100644
+index 430c5410bdda5..0371d532d2ec4 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1289,7 +1289,7 @@ fan_control: fan_control@50b50000 {
@@ -37,7 +37,7 @@ index 430c5410bdda..0371d532d2ec 100644
  			pwms = <&pwm0 0 100000>;
  			pinctrl-names = "default";
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 9c8ab39dee30..f7ca5c29520b 100644
+index 9c8ab39dee302..f7ca5c29520b6 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -62,6 +62,7 @@ struct eswin_fan_control_data {

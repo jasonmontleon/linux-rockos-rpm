@@ -1,4 +1,4 @@
-From 25330ccb1c858ca3abcde79885bf8e3e7f53e74d Mon Sep 17 00:00:00 2001
+From 2b719b951aaa4a7f9f43f22f81d28f693f80dd5a Mon Sep 17 00:00:00 2001
 From: tanshanshan <tanshanshan@eswincomputing.com>
 Date: Thu, 5 Jun 2025 15:54:35 +0800
 Subject: [PATCH 546/652] feat:update dts for eic7702_pcie
@@ -13,7 +13,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 39 insertions(+), 39 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 3cbfe77eeac1..2e6733f627cf 100644
+index 3cbfe77eeac1c..2e6733f627cfa 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -367,36 +367,36 @@ &pcie {

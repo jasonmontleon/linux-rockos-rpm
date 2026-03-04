@@ -1,4 +1,4 @@
-From 678266b340014b481ee6e7bd59356ff3495c3f82 Mon Sep 17 00:00:00 2001
+From e00a260764d057b23c7ba240206109301298bcdf Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sun, 26 Jan 2025 11:00:50 +0800
 Subject: [PATCH 364/652] dts: eswin: adjust memory node order
@@ -22,7 +22,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  12 files changed, 72 insertions(+), 73 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 42a2eb700568..38e593b4c97c 100644
+index 42a2eb700568b..38e593b4c97c0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -63,15 +63,15 @@ cpus {
@@ -46,7 +46,7 @@ index 42a2eb700568..38e593b4c97c 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 64fac2c5906c..7842d5136303 100644
+index 64fac2c5906c0..7842d5136303f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -62,15 +62,15 @@ cpus {
@@ -70,7 +70,7 @@ index 64fac2c5906c..7842d5136303 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 66f5621a146f..94ea752f5e05 100644
+index 66f5621a146f5..94ea752f5e055 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -59,15 +59,15 @@ cpus {
@@ -94,7 +94,7 @@ index 66f5621a146f..94ea752f5e05 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index bd6120c66ab7..1809b384d0be 100644
+index bd6120c66ab76..1809b384d0be8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -63,15 +63,15 @@ cpus {
@@ -118,7 +118,7 @@ index bd6120c66ab7..1809b384d0be 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index f02a7936cc60..0d2d03ac73aa 100644
+index f02a7936cc609..0d2d03ac73aaf 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -51,15 +51,15 @@ cpus {
@@ -142,7 +142,7 @@ index f02a7936cc60..0d2d03ac73aa 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index 8975632b0325..ee83ad1ee128 100644
+index 8975632b0325c..ee83ad1ee1286 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -61,15 +61,15 @@ cpus {
@@ -166,7 +166,7 @@ index 8975632b0325..ee83ad1ee128 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index 79a885bb2c62..2b7360126921 100644
+index 79a885bb2c62c..2b73601269211 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -59,15 +59,15 @@ cpus {
@@ -190,7 +190,7 @@ index 79a885bb2c62..2b7360126921 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 0dd1eaa522a4..45fb6aca84c0 100644
+index 0dd1eaa522a4b..45fb6aca84c0f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -58,15 +58,15 @@ cpus {
@@ -214,7 +214,7 @@ index 0dd1eaa522a4..45fb6aca84c0 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index 0b2d07df055c..453dcea70155 100644
+index 0b2d07df055c2..453dcea701557 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -58,15 +58,15 @@ cpus {
@@ -238,7 +238,7 @@ index 0b2d07df055c..453dcea70155 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 12dbdb1c7418..3b483f2dd6e7 100644
+index 12dbdb1c74182..3b483f2dd6e7b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -64,27 +64,27 @@ cpus {
@@ -278,7 +278,7 @@ index 12dbdb1c7418..3b483f2dd6e7 100644
  	};
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 88b00f5478cc..b6d4e88e747c 100644
+index 88b00f5478ccc..b6d4e88e747ca 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -32,7 +32,6 @@
@@ -309,7 +309,7 @@ index 88b00f5478cc..b6d4e88e747c 100644
  
  		gpu0: gpu@51400000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
-index 8d9e0e76c350..d35198469b21 100644
+index 8d9e0e76c3506..d35198469b21f 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -60,6 +60,12 @@ cpus {

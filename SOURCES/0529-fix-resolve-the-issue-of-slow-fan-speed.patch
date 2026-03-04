@@ -1,4 +1,4 @@
-From 0dfae7b2a16c9652ed86be3e70ead560498fec3d Mon Sep 17 00:00:00 2001
+From a38774af62e2b82ec47d643d31ba9c0500acf45a Mon Sep 17 00:00:00 2001
 From: weishangjuan <weishangjuan@eswincomputing.com>
 Date: Fri, 23 May 2025 09:47:13 +0800
 Subject: [PATCH 529/652] fix: resolve the issue of slow fan speed
@@ -13,7 +13,7 @@ Signed-off-by: weishangjuan <weishangjuan@eswincomputing.com>
  1 file changed, 8 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index 1bb6616b2a91..29c7fbc030fe 100644
+index 1bb6616b2a916..29c7fbc030fe8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -177,6 +177,10 @@ aon_eeprom@50 {

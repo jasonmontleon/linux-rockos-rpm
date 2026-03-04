@@ -1,4 +1,4 @@
-From d6f52866b9519a0425e6b5345134df721bd48cef Mon Sep 17 00:00:00 2001
+From 17491d98d6b9e4a48a16efabf72238aa3a6848e8 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 12 Feb 2025 10:50:51 +0800
 Subject: [PATCH 403/652] fix:sifive ccache_flush64_range
@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 23 insertions(+), 85 deletions(-)
 
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 24b0859ea482..55e69e613a25 100644
+index 24b0859ea482e..55e69e613a25a 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -45,20 +45,7 @@ enum {

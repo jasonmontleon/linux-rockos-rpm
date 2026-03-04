@@ -1,4 +1,4 @@
-From 28f996da68b48c181f7e1c31ffa85014a3b22fa7 Mon Sep 17 00:00:00 2001
+From 52bf8f24918010519595d38d74f6b7a786b54157 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Wed, 7 May 2025 11:17:25 +0800
 Subject: [PATCH 500/652] feat:add es-fand function
@@ -16,7 +16,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  3 files changed, 45 insertions(+), 11 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 4b62e47caa11..e0bedeec731a 100644
+index 4b62e47caa11d..e0bedeec731a2 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1333,7 +1333,7 @@ pvt1: pvt@0x52360000 {
@@ -29,7 +29,7 @@ index 4b62e47caa11..e0bedeec731a 100644
  			clock-names = "pclk";
  			resets = <&d0_reset FAN_RST_CTRL SW_FAN_RST_N>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 8320fb4207c7..7127f851b105 100644
+index 8320fb4207c7b..7127f851b1050 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -709,7 +709,7 @@ d1_pvt1: pvt@0x72360000 {
@@ -42,7 +42,7 @@ index 8320fb4207c7..7127f851b105 100644
  			clock-names = "pclk";
  			resets = <&d1_reset FAN_RST_CTRL SW_FAN_RST_N>;
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 5e39c7b49eb5..f1a28dba76b3 100644
+index 5e39c7b49eb52..f1a28dba76b3f 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -34,13 +34,19 @@

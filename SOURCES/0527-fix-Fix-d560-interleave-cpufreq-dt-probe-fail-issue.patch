@@ -1,4 +1,4 @@
-From 5ee07283cf14cd24389f7ad157ecc4152d61ff9c Mon Sep 17 00:00:00 2001
+From 8b39743beac1f84e0ba62269023f1a48a0388585 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Fri, 23 May 2025 09:30:33 +0800
 Subject: [PATCH 527/652] fix: Fix d560 interleave cpufreq-dt probe fail issue
@@ -13,7 +13,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  2 files changed, 6 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
-index 7e65b902c779..2e55ba76ad50 100644
+index 7e65b902c7793..2e55ba76ad50d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560-interleave.dtsi
 @@ -266,9 +266,9 @@ opp-1800000000 {
@@ -30,7 +30,7 @@ index 7e65b902c779..2e55ba76ad50 100644
  &d0_clock {
  	status = "okay";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index ed5392ae9035..1c1a11ff2ee7 100644
+index ed5392ae9035f..1c1a11ff2ee70 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -224,9 +224,9 @@ opp-1800000000 {

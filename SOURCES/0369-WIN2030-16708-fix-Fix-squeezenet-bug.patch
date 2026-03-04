@@ -1,4 +1,4 @@
-From ec1a1a4b0d4b70da638b4265e700999e5c9fbb42 Mon Sep 17 00:00:00 2001
+From e39c238a14f32f3e0faab69fb500ee0c42ad1e94 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Mon, 30 Dec 2024 20:30:39 +0800
 Subject: [PATCH 369/652] WIN2030-16708:fix:Fix squeezenet bug
@@ -13,7 +13,7 @@ Signed-off-by: yiguo <yiguo@eswincomputing.com>
  1 file changed, 2 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/dsp.c b/drivers/soc/eswin/ai_driver/npu/dsp.c
-index 8c91949cb9da..5207c17be540 100644
+index 8c91949cb9dac..5207c17be5405 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dsp.c
 +++ b/drivers/soc/eswin/ai_driver/npu/dsp.c
 @@ -770,8 +770,9 @@ int npu_set_dsp_iobuf(struct win_executor *executor, struct host_frame_desc *f)

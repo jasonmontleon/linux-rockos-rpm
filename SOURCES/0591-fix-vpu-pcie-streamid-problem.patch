@@ -1,4 +1,4 @@
-From 88c7eaae6ab1b39e559f24728b94e58396c7adec Mon Sep 17 00:00:00 2001
+From 4c774706d1c1d8173deae5c2a949c2e99eb4be3b Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 27 Jun 2025 18:35:29 +0800
 Subject: [PATCH 591/652] fix: vpu pcie streamid problem
@@ -19,7 +19,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  6 files changed, 39 insertions(+), 258 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi b/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi
-index 0ee4c1ab5eb3..f067df5a1014 100644
+index 0ee4c1ab5eb30..f067df5a10143 100644
 --- a/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi
 +++ b/arch/riscv/boot/dts/eswin/smmu_cfg.dtsi
 @@ -254,259 +254,3 @@
@@ -283,7 +283,7 @@ index 0ee4c1ab5eb3..f067df5a1014 100644
 -smmu_cfg_510: smmu_cfg510@510 {};
 -smmu_cfg_511: smmu_cfg511@511 {};
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
-index 13c9e8291ed2..bd2d85a0e7cb 100644
+index 13c9e8291ed28..bd2d85a0e7cb3 100644
 --- a/arch/riscv/configs/vpu7702_evb_defconfig
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -312,6 +312,7 @@ CONFIG_PCIEAER=y
@@ -295,7 +295,7 @@ index 13c9e8291ed2..bd2d85a0e7cb 100644
  CONFIG_DEVTMPFS_MOUNT=y
  CONFIG_MTD=y
 diff --git a/arch/riscv/configs/vpu7702_pcie_a2_defconfig b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
-index c151e2f411bb..aeee72205a4e 100644
+index c151e2f411bbe..aeee72205a4ef 100644
 --- a/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 @@ -736,6 +736,7 @@ CONFIG_MAILBOX=y
@@ -307,7 +307,7 @@ index c151e2f411bb..aeee72205a4e 100644
  CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
  CONFIG_ESWIN_DSP=m
 diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
-index c151e2f411bb..eb06fee59706 100644
+index c151e2f411bbe..eb06fee59706a 100644
 --- a/arch/riscv/configs/vpu7702_pcie_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_defconfig
 @@ -749,6 +749,7 @@ CONFIG_ESWIN_MMZ_VB=y
@@ -319,7 +319,7 @@ index c151e2f411bb..eb06fee59706 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN=y
 diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-index 7999c71c4612..956c9d54f7a0 100644
+index 7999c71c46124..956c9d54f7a01 100644
 --- a/drivers/iommu/Kconfig
 +++ b/drivers/iommu/Kconfig
 @@ -411,6 +411,12 @@ config ARM_SMMU_V3_SVA
@@ -336,10 +336,10 @@ index 7999c71c4612..956c9d54f7a0 100644
  	def_bool y if S390 && PCI
  	depends on S390 && PCI
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 0afb2507c882..39691049512d 100644
+index 670e236559e04..86f7c096c2ece 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -1471,6 +1471,28 @@ static void arm_smmu_init_bypass_stes(__le64 *strtab, unsigned int nent, bool fo
+@@ -1482,6 +1482,28 @@ static void arm_smmu_init_bypass_stes(__le64 *strtab, unsigned int nent, bool fo
  	}
  }
  
@@ -368,7 +368,7 @@ index 0afb2507c882..39691049512d 100644
  static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
  {
  	size_t size;
-@@ -1496,6 +1518,12 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
+@@ -1507,6 +1529,12 @@ static int arm_smmu_init_l2_strtab(struct arm_smmu_device *smmu, u32 sid)
  
  	arm_smmu_init_bypass_stes(desc->l2ptr, 1 << STRTAB_SPLIT, false);
  	arm_smmu_write_strtab_l1_desc(strtab, desc);
@@ -381,7 +381,7 @@ index 0afb2507c882..39691049512d 100644
  	return 0;
  }
  
-@@ -1672,9 +1700,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+@@ -1683,9 +1711,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
  			if (!ret || !__ratelimit(&rs))
  				continue;
  

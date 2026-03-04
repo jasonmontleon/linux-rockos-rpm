@@ -1,4 +1,4 @@
-From 14bc8bc3d084fb59d746f8ce47a05be8a2ac6305 Mon Sep 17 00:00:00 2001
+From 38842ba1cc7eb49a176290b3af0b352f49355104 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 14 Feb 2025 15:15:18 +0800
 Subject: [PATCH 413/652] feat:clk driver fit for upstream
@@ -69,7 +69,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
 
 diff --git a/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
 new file mode 100644
-index 000000000000..f5b6c197e648
+index 0000000000000..f5b6c197e6482
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/clock/eswin,eic7700-clock.yaml
 @@ -0,0 +1,55 @@
@@ -130,7 +130,7 @@ index 000000000000..f5b6c197e648
 +...
 diff --git a/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml b/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
 new file mode 100644
-index 000000000000..a452bce02852
+index 0000000000000..a452bce028521
 --- /dev/null
 +++ b/Documentation/devicetree/bindings/reset/eswin,eic7700-reset.yaml
 @@ -0,0 +1,60 @@
@@ -196,7 +196,7 @@ index 000000000000..a452bce02852
 +    };
 diff --git a/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml b/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
 deleted file mode 100644
-index 8b0b3b867011..000000000000
+index 8b0b3b867011b..0000000000000
 --- a/Documentation/devicetree/bindings/reset/eswin,eic770x-reset.yaml
 +++ /dev/null
 @@ -1,51 +0,0 @@
@@ -252,7 +252,7 @@ index 8b0b3b867011..000000000000
 -...
 -
 diff --git a/arch/riscv/Kconfig.socs b/arch/riscv/Kconfig.socs
-index 30fd6a512828..01bf493e0d80 100644
+index 30fd6a5128285..01bf493e0d80f 100644
 --- a/arch/riscv/Kconfig.socs
 +++ b/arch/riscv/Kconfig.socs
 @@ -49,6 +49,15 @@ config ARCH_THEAD
@@ -272,7 +272,7 @@ index 30fd6a512828..01bf493e0d80 100644
  	def_bool SOC_VIRT
  
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 6594a31ce579..c1d32b8077e5 100644
+index 6594a31ce5796..c1d32b8077e5e 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -1,5 +1,5 @@
@@ -283,7 +283,7 @@ index 6594a31ce579..c1d32b8077e5 100644
  							eic7700-evb-a2.dtb \
  							eic7700-evb-a3.dtb \
 diff --git a/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
-index 2f4deaf21d95..c8f0d48745ca 100644
+index 2f4deaf21d958..c8f0d48745ca0 100644
 --- a/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic770x-opptable.dtsi
 @@ -18,7 +18,26 @@
@@ -315,7 +315,7 @@ index 2f4deaf21d95..c8f0d48745ca 100644
  	d0_cpu_opp_table: opp-table-d0@cpu {
  		compatible = "operating-points-v2";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 8a6110d6fcb9..22f78801825e 100644
+index 8a6110d6fcb94..22f78801825e9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -106,7 +106,7 @@ cpu_4: cpu@4 {
@@ -355,7 +355,7 @@ index 8a6110d6fcb9..22f78801825e 100644
  		cpu-idle-states = <&CPU_RET>;
  		cpu7_intc: interrupt-controller {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 9ad8702f5547..693a82515c87 100644
+index 9ad8702f55479..693a82515c871 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -18,7 +18,7 @@
@@ -404,7 +404,7 @@ index 9ad8702f5547..693a82515c87 100644
  			#cooling-cells = <2>;
  			dynamic-power-coefficient = <324>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
-index 77243ae1b93f..644210d666c2 100644
+index 77243ae1b93f7..644210d666c2d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-noc.dtsi
 @@ -301,7 +301,7 @@ sideband_manager@52082000 {
@@ -552,7 +552,7 @@ index 77243ae1b93f..644210d666c2 100644
  		interrupts = <447>;
  		interrupt-names = "stat";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 03d601fe9014..d376461d273d 100644
+index 03d601fe90143..d376461d273dc 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -23,8 +23,8 @@
@@ -1422,7 +1422,7 @@ index 03d601fe9014..d376461d273d 100644
  			resets = <&d0_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
  			         <&d0_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
-index 1f4a1a693b45..375a4f3ea279 100644
+index 1f4a1a693b45e..375a4f3ea279d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-noc.dtsi
 @@ -300,7 +300,7 @@ sideband_manager@72082000 {
@@ -1570,7 +1570,7 @@ index 1f4a1a693b45..375a4f3ea279 100644
  		interrupts = <447>;
  		interrupt-names = "stat";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 3a7d3f05c461..8823590fc9fa 100644
+index 3a7d3f05c4614..8823590fc9fab 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -22,8 +22,8 @@
@@ -2443,7 +2443,7 @@ index 3a7d3f05c461..8823590fc9fa 100644
  			resets = <&d1_reset VI_RST_CTRL SW_VI_AXI_RSTN>,
  					 <&d1_reset VI_RST_CTRL SW_VI_CFG_RSTN>,
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 9f6e51f2cc8c..2788e39f1b35 100644
+index 9f6e51f2cc8c7..2788e39f1b35b 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -29,7 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -2465,7 +2465,7 @@ index 9f6e51f2cc8c..2788e39f1b35 100644
  CONFIG_MAILBOX=y
  CONFIG_ESWIN_MBOX=y
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 7dcdf43edd4e..3ad8e1438425 100644
+index 7dcdf43edd4ec..3ad8e14384255 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -29,7 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -2487,7 +2487,7 @@ index 7dcdf43edd4e..3ad8e1438425 100644
  CONFIG_MAILBOX=y
  CONFIG_ESWIN_MBOX=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index ac24ed1fb470..9da3898179d6 100644
+index ac24ed1fb4708..9da3898179d62 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -30,7 +30,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -2509,7 +2509,7 @@ index ac24ed1fb470..9da3898179d6 100644
  CONFIG_MAILBOX=y
  CONFIG_ESWIN_MBOX=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 67eb3b63fd12..8c625a339091 100644
+index 67eb3b63fd12d..8c625a339091e 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -29,7 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -2531,7 +2531,7 @@ index 67eb3b63fd12..8c625a339091 100644
  CONFIG_MAILBOX=y
  CONFIG_ESWIN_MBOX=y
 diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 33a6b666be22..4b93c4de9f08 100644
+index 33a6b666be225..4b93c4de9f08c 100644
 --- a/drivers/clk/Makefile
 +++ b/drivers/clk/Makefile
 @@ -91,7 +91,7 @@ obj-$(CONFIG_CLK_BAIKAL_T1)		+= baikal-t1/
@@ -2546,7 +2546,7 @@ index 33a6b666be22..4b93c4de9f08 100644
 diff --git a/drivers/clk/eswin/Kconfig b/drivers/clk/eswin/Kconfig
 old mode 100755
 new mode 100644
-index 9460f2d68d2c..8e3045a15a51
+index 9460f2d68d2c6..8e3045a15a515
 --- a/drivers/clk/eswin/Kconfig
 +++ b/drivers/clk/eswin/Kconfig
 @@ -1,10 +1,12 @@
@@ -2570,7 +2570,7 @@ index 9460f2d68d2c..8e3045a15a51
 diff --git a/drivers/clk/eswin/Makefile b/drivers/clk/eswin/Makefile
 old mode 100755
 new mode 100644
-index 98c12676b63a..23cc1d811bf5
+index 98c12676b63a1..23cc1d811bf50
 --- a/drivers/clk/eswin/Makefile
 +++ b/drivers/clk/eswin/Makefile
 @@ -5,5 +5,5 @@
@@ -2585,7 +2585,7 @@ index 98c12676b63a..23cc1d811bf5
 \ No newline at end of file
 diff --git a/drivers/clk/eswin/clk-eic7700.c b/drivers/clk/eswin/clk-eic7700.c
 new file mode 100644
-index 000000000000..ee01dd2d1890
+index 0000000000000..ee01dd2d18905
 --- /dev/null
 +++ b/drivers/clk/eswin/clk-eic7700.c
 @@ -0,0 +1,3808 @@
@@ -6399,7 +6399,7 @@ index 000000000000..ee01dd2d1890
 +MODULE_DESCRIPTION("Eswin EIC7700 clock controller driver");
 diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
 deleted file mode 100755
-index adb21e26fba3..000000000000
+index adb21e26fba3a..0000000000000
 --- a/drivers/clk/eswin/clk-win2030.c
 +++ /dev/null
 @@ -1,1266 +0,0 @@
@@ -7672,7 +7672,7 @@ index adb21e26fba3..000000000000
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
 old mode 100755
 new mode 100644
-index 425056d394b6..2569c06b4c0a
+index 425056d394b6f..2569c06b4c0a7
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -1,23 +1,8 @@
@@ -8964,7 +8964,7 @@ index 425056d394b6..2569c06b4c0a
 diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
 old mode 100755
 new mode 100644
-index a0e72c67e598..167e2a627a7a
+index a0e72c67e5980..167e2a627a7a1
 --- a/drivers/clk/eswin/clk.h
 +++ b/drivers/clk/eswin/clk.h
 @@ -1,206 +1,207 @@
@@ -9339,7 +9339,7 @@ index a0e72c67e598..167e2a627a7a
 +#endif /* __ESWIN_CLK_H__ */
 diff --git a/drivers/clk/eswin/clk_eic7700.h b/drivers/clk/eswin/clk_eic7700.h
 new file mode 100644
-index 000000000000..fbaca02e9a4c
+index 0000000000000..fbaca02e9a4c0
 --- /dev/null
 +++ b/drivers/clk/eswin/clk_eic7700.h
 @@ -0,0 +1,191 @@
@@ -9536,7 +9536,7 @@ index 000000000000..fbaca02e9a4c
 +#endif
 diff --git a/drivers/clk/eswin/clk_eic770x.h b/drivers/clk/eswin/clk_eic770x.h
 deleted file mode 100644
-index 156601fdd267..000000000000
+index 156601fdd2678..0000000000000
 --- a/drivers/clk/eswin/clk_eic770x.h
 +++ /dev/null
 @@ -1,204 +0,0 @@
@@ -9745,7 +9745,7 @@ index 156601fdd267..000000000000
 -#define WIN2030_REG_OFFSET_LNOC_RST_CTRL                        0X4E0
 -#endif
 diff --git a/drivers/clk/eswin/test/Kconfig b/drivers/clk/eswin/test/Kconfig
-index a109429dbee7..ed2c606fc8d9 100755
+index a109429dbee7a..ed2c606fc8d93 100755
 --- a/drivers/clk/eswin/test/Kconfig
 +++ b/drivers/clk/eswin/test/Kconfig
 @@ -1,7 +1,7 @@
@@ -9760,7 +9760,7 @@ index a109429dbee7..ed2c606fc8d9 100755
 -	  Build the Eswin Win2030 clock test driver
 +	  Build the Eswin clock test driver
 diff --git a/drivers/clk/eswin/test/Makefile b/drivers/clk/eswin/test/Makefile
-index 9659df895494..721c9d8ffa22 100755
+index 9659df895494f..721c9d8ffa226 100755
 --- a/drivers/clk/eswin/test/Makefile
 +++ b/drivers/clk/eswin/test/Makefile
 @@ -3,4 +3,4 @@
@@ -9770,7 +9770,7 @@ index 9659df895494..721c9d8ffa22 100755
 -obj-$(CONFIG_COMMON_CLK_WIN2030_TEST)	+= clk_test_kmd.o
 +obj-$(CONFIG_COMMON_CLK_EIC7700_TEST)	+= clk_test_kmd.o
 diff --git a/drivers/edac/Kconfig b/drivers/edac/Kconfig
-index 432e31b65636..95e8f7b8e909 100644
+index 432e31b65636a..95e8f7b8e9091 100644
 --- a/drivers/edac/Kconfig
 +++ b/drivers/edac/Kconfig
 @@ -563,7 +563,7 @@ config EDAC_NPCM
@@ -9783,7 +9783,7 @@ index 432e31b65636..95e8f7b8e909 100644
  	  Support for error detection and correction on the Synopsys DDR
  	  memory controller.
 diff --git a/drivers/pci/controller/dwc/Kconfig b/drivers/pci/controller/dwc/Kconfig
-index 09f44434f854..5a2de002017c 100644
+index 09f44434f8547..5a2de002017cf 100644
 --- a/drivers/pci/controller/dwc/Kconfig
 +++ b/drivers/pci/controller/dwc/Kconfig
 @@ -418,7 +418,7 @@ config PCIE_VISCONTI_HOST
@@ -9796,7 +9796,7 @@ index 09f44434f854..5a2de002017c 100644
  	help
  	  Say Y here if you want PCIe controller support for the ESWIN.
 diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 6017c11332cb..ba98c6bb4725 100644
+index 6017c11332cba..ba98c6bb4725a 100644
 --- a/drivers/reset/Kconfig
 +++ b/drivers/reset/Kconfig
 @@ -322,9 +322,12 @@ source "drivers/reset/starfive/Kconfig"
@@ -9815,7 +9815,7 @@ index 6017c11332cb..ba98c6bb4725 100644
  source "drivers/reset/hisilicon/Kconfig"
  source "drivers/reset/tegra/Kconfig"
 diff --git a/drivers/reset/reset-eswin.c b/drivers/reset/reset-eswin.c
-index 799795b267bc..a95225be6be6 100755
+index 799795b267bc4..a95225be6be6e 100755
 --- a/drivers/reset/reset-eswin.c
 +++ b/drivers/reset/reset-eswin.c
 @@ -1,22 +1,10 @@
@@ -9975,7 +9975,7 @@ index 799795b267bc..a95225be6be6 100755
  	platform_set_drvdata(pdev, data);
  
 diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
-index cf0b6ca3f31c..a886b27762f4 100644
+index cf0b6ca3f31c7..a886b27762f41 100644
 --- a/drivers/soc/eswin/Kconfig
 +++ b/drivers/soc/eswin/Kconfig
 @@ -1,6 +1,6 @@
@@ -9987,7 +9987,7 @@ index cf0b6ca3f31c..a886b27762f4 100644
  config ESWIN_KHANDLE
      bool "eswin kernel khandle functions"
 diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-index f10259ca60ae..ac73368b5406 100644
+index f10259ca60ae8..ac73368b54064 100644
 --- a/drivers/soc/sifive/Kconfig
 +++ b/drivers/soc/sifive/Kconfig
 @@ -1,6 +1,6 @@
@@ -10009,7 +10009,7 @@ index f10259ca60ae..ac73368b5406 100644
  	select DMA_DIRECT_REMAP
 diff --git a/include/dt-bindings/clock/eswin,eic7700-clock.h b/include/dt-bindings/clock/eswin,eic7700-clock.h
 new file mode 100644
-index 000000000000..24c15cc2f0f3
+index 0000000000000..24c15cc2f0f3f
 --- /dev/null
 +++ b/include/dt-bindings/clock/eswin,eic7700-clock.h
 @@ -0,0 +1,585 @@
@@ -10600,7 +10600,7 @@ index 000000000000..24c15cc2f0f3
 +#endif /*endif _DT_BINDINGS_ESWIN_EIC7700_CLOCK_H_*/
 diff --git a/include/dt-bindings/clock/win2030-clock.h b/include/dt-bindings/clock/win2030-clock.h
 deleted file mode 100755
-index 7793f3925932..000000000000
+index 7793f39259324..0000000000000
 --- a/include/dt-bindings/clock/win2030-clock.h
 +++ /dev/null
 @@ -1,626 +0,0 @@
@@ -11232,7 +11232,7 @@ index 7793f3925932..000000000000
 -#endif /*endif __DTS_WIN2030_CLOCK_H*/
 diff --git a/include/dt-bindings/reset/eswin,eic7700-reset.h b/include/dt-bindings/reset/eswin,eic7700-reset.h
 new file mode 100755
-index 000000000000..84d705c2ce2d
+index 0000000000000..84d705c2ce2d9
 --- /dev/null
 +++ b/include/dt-bindings/reset/eswin,eic7700-reset.h
 @@ -0,0 +1,458 @@
@@ -11696,7 +11696,7 @@ index 000000000000..84d705c2ce2d
 +#endif /*endif __DT_ESWIN_EIC7700_RESET_H__*/
 diff --git a/include/dt-bindings/reset/eswin,eic770x-reset.h b/include/dt-bindings/reset/eswin,eic770x-reset.h
 deleted file mode 100755
-index e544fa4da748..000000000000
+index e544fa4da7484..0000000000000
 --- a/include/dt-bindings/reset/eswin,eic770x-reset.h
 +++ /dev/null
 @@ -1,473 +0,0 @@

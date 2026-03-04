@@ -1,4 +1,4 @@
-From a6d2e2b58c6a7bfbcf94cbf795b05c5de2291c91 Mon Sep 17 00:00:00 2001
+From 5f13550c614e95fc2ff8ed367c4724c5f5095f0d Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 10 Sep 2024 10:55:04 +0800
 Subject: [PATCH 260/652] WIN2030-16035:fix(enc&dec):fix dma heap error for d2d
@@ -14,7 +14,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 47 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 47ef2f26489a..24ceb91b868a 100644
+index 47ef2f26489af..24ceb91b868ac 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -332,6 +332,10 @@ int is_clk_on;
@@ -115,7 +115,7 @@ index 47ef2f26489a..24ceb91b868a 100644
  	vcrt = platform_get_drvdata(pdev);
  	vdec_hardware_reset(vcrt);
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 66cf710ff470..44d3f79ce197 100644
+index 66cf710ff470f..44d3f79ce197e 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -249,6 +249,10 @@ struct hantrovcmd_dev {

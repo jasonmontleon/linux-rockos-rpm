@@ -1,4 +1,4 @@
-From 6a2960a3696643e89da754836505d44327ca0cdf Mon Sep 17 00:00:00 2001
+From adecfe2dc8c03da1ee86e8d4ad82924298e038fa Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/652] Merge patch series "membarrier: riscv: Core
@@ -33,7 +33,7 @@ Signed-off-by: Palmer Dabbelt <palmer@rivosinc.com>
  create mode 100644 arch/riscv/include/asm/sync_core.h
 
 diff --git a/Documentation/features/sched/membarrier-sync-core/arch-support.txt b/Documentation/features/sched/membarrier-sync-core/arch-support.txt
-index 23260ca44946..76597adfb7d5 100644
+index 23260ca449468..76597adfb7d5a 100644
 --- a/Documentation/features/sched/membarrier-sync-core/arch-support.txt
 +++ b/Documentation/features/sched/membarrier-sync-core/arch-support.txt
 @@ -10,6 +10,22 @@
@@ -69,7 +69,7 @@ index 23260ca44946..76597adfb7d5 100644
      |          sh: | TODO |
      |       sparc: | TODO |
 diff --git a/Documentation/scheduler/index.rst b/Documentation/scheduler/index.rst
-index 3170747226f6..43bd8a145b7a 100644
+index 3170747226f6d..43bd8a145b7a9 100644
 --- a/Documentation/scheduler/index.rst
 +++ b/Documentation/scheduler/index.rst
 @@ -7,6 +7,7 @@ Scheduler
@@ -82,7 +82,7 @@ index 3170747226f6..43bd8a145b7a 100644
      sched-deadline
 diff --git a/Documentation/scheduler/membarrier.rst b/Documentation/scheduler/membarrier.rst
 new file mode 100644
-index 000000000000..2387804b1c63
+index 0000000000000..2387804b1c633
 --- /dev/null
 +++ b/Documentation/scheduler/membarrier.rst
 @@ -0,0 +1,39 @@
@@ -126,7 +126,7 @@ index 000000000000..2387804b1c63
 +The barrier matches a full barrier in the proximity of the membarrier system call
 +entry, cf. membarrier_{private,global}_expedited().
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e700dca4974b..656373b207f4 100644
+index e700dca4974b3..656373b207f44 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
 @@ -13703,7 +13703,9 @@ M:	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
@@ -140,7 +140,7 @@ index e700dca4974b..656373b207f4 100644
  F:	kernel/sched/membarrier.c
  
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 1db237dc24cf..37e9be504566 100644
+index 1db237dc24cf4..37e9be5045669 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -28,14 +28,17 @@ config RISCV
@@ -162,7 +162,7 @@ index 1db237dc24cf..37e9be504566 100644
  	select ARCH_HAS_TICK_BROADCAST if GENERIC_CLOCKEVENTS_BROADCAST
  	select ARCH_HAS_UBSAN_SANITIZE_ALL
 diff --git a/arch/riscv/include/asm/membarrier.h b/arch/riscv/include/asm/membarrier.h
-index 6c016ebb5020..47b240d0d596 100644
+index 6c016ebb5020a..47b240d0d596a 100644
 --- a/arch/riscv/include/asm/membarrier.h
 +++ b/arch/riscv/include/asm/membarrier.h
 @@ -22,6 +22,25 @@ static inline void membarrier_arch_switch_mm(struct mm_struct *prev,
@@ -193,7 +193,7 @@ index 6c016ebb5020..47b240d0d596 100644
  	 */
 diff --git a/arch/riscv/include/asm/sync_core.h b/arch/riscv/include/asm/sync_core.h
 new file mode 100644
-index 000000000000..9153016da8f1
+index 0000000000000..9153016da8f14
 --- /dev/null
 +++ b/arch/riscv/include/asm/sync_core.h
 @@ -0,0 +1,29 @@
@@ -227,7 +227,7 @@ index 000000000000..9153016da8f1
 +
 +#endif /* _ASM_RISCV_SYNC_CORE_H */
 diff --git a/include/linux/sync_core.h b/include/linux/sync_core.h
-index 013da4b8b327..67bb9794b875 100644
+index 013da4b8b3272..67bb9794b8758 100644
 --- a/include/linux/sync_core.h
 +++ b/include/linux/sync_core.h
 @@ -17,5 +17,19 @@ static inline void sync_core_before_usermode(void)
@@ -252,7 +252,7 @@ index 013da4b8b327..67bb9794b875 100644
  
 +#endif /* _LINUX_SYNC_CORE_H */
 diff --git a/init/Kconfig b/init/Kconfig
-index 461591503bf4..a1e6ef3b1352 100644
+index 461591503bf43..a1e6ef3b1352b 100644
 --- a/init/Kconfig
 +++ b/init/Kconfig
 @@ -1995,6 +1995,9 @@ source "kernel/Kconfig.locks"
@@ -266,7 +266,7 @@ index 461591503bf4..a1e6ef3b1352 100644
  	bool
  
 diff --git a/kernel/sched/core.c b/kernel/sched/core.c
-index c4a9797e9eff..cd52a64a65ff 100644
+index c4a9797e9effd..cd52a64a65ff3 100644
 --- a/kernel/sched/core.c
 +++ b/kernel/sched/core.c
 @@ -6609,7 +6609,9 @@ static void __sched notrace __schedule(unsigned int sched_mode)
@@ -295,7 +295,7 @@ index c4a9797e9eff..cd52a64a65ff 100644
  		++*switch_count;
  
 diff --git a/kernel/sched/membarrier.c b/kernel/sched/membarrier.c
-index 4e715b9b278e..809194cd779f 100644
+index 4e715b9b278e7..809194cd779f4 100644
 --- a/kernel/sched/membarrier.c
 +++ b/kernel/sched/membarrier.c
 @@ -254,7 +254,7 @@ static int membarrier_global_expedited(void)

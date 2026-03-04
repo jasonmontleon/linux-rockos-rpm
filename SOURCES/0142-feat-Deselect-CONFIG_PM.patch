@@ -1,4 +1,4 @@
-From f11b30bfe68d8e940de4cb8f777ac450c7a0256a Mon Sep 17 00:00:00 2001
+From ed1f80e4d10e4d7c5bc14c1a63b0bcaaf6571c7e Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 8 Aug 2024 19:28:10 +0800
 Subject: [PATCH 142/652] feat:Deselect CONFIG_PM
@@ -13,7 +13,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 94 insertions(+), 108 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 1472511bd299..1e00c6863ffd 100644
+index 1472511bd299a..1e00c6863ffdd 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -1,8 +1,8 @@

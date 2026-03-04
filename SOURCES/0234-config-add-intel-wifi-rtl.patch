@@ -1,4 +1,4 @@
-From 70830e7e9e466a780fc715c58ac89ff2df9ecce9 Mon Sep 17 00:00:00 2001
+From 608f68b34929009ba3c635eb9073691f7e168871 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 17:14:08 +0800
 Subject: [PATCH 234/652] config: add intel wifi & rtl
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 33 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index fe6b5b7f98ef..c1ce4ce9ed4c 100644
+index fe6b5b7f98efb..c1ce4ce9ed4cc 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -411,14 +411,46 @@ CONFIG_DWMAC_WIN2030=y

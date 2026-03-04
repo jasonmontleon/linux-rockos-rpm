@@ -1,4 +1,4 @@
-From 293fbb410096250e1f52f39f5d1b7b713f05cd38 Mon Sep 17 00:00:00 2001
+From d11267356d34a48bed4764a05b53c5b1b341de28 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Wed, 17 Apr 2024 13:48:05 +0800
@@ -20,7 +20,7 @@ Changelogs:
  create mode 100755 include/linux/mailbox/eswin-mailbox.h
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 2e2e4e419bd3..5d701e98d635 100644
+index 2e2e4e419bd3a..5d701e98d635f 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -223,6 +223,7 @@ CONFIG_VIRTIO_MMIO=y
@@ -32,7 +32,7 @@ index 2e2e4e419bd3..5d701e98d635 100644
  CONFIG_RPMSG_VIRTIO=y
  CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
 diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index bc2e265cb02d..3cc765e1ce8e 100644
+index bc2e265cb02d2..3cc765e1ce8ef 100644
 --- a/drivers/mailbox/Kconfig
 +++ b/drivers/mailbox/Kconfig
 @@ -294,5 +294,14 @@ config QCOM_IPCC
@@ -51,7 +51,7 @@ index bc2e265cb02d..3cc765e1ce8e 100644
  
  endif
 diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index fc9376117111..157518a5d716 100644
+index fc93761171113..157518a5d716a 100644
 --- a/drivers/mailbox/Makefile
 +++ b/drivers/mailbox/Makefile
 @@ -62,3 +62,5 @@ obj-$(CONFIG_SPRD_MBOX)		+= sprd-mailbox.o
@@ -62,7 +62,7 @@ index fc9376117111..157518a5d716 100644
 +obj-$(CONFIG_ESWIN_MBOX)	+= eswin-mailbox.o
 diff --git a/drivers/mailbox/eswin-mailbox.c b/drivers/mailbox/eswin-mailbox.c
 new file mode 100755
-index 000000000000..4e9b6b224469
+index 0000000000000..4e9b6b2244698
 --- /dev/null
 +++ b/drivers/mailbox/eswin-mailbox.c
 @@ -0,0 +1,518 @@
@@ -586,7 +586,7 @@ index 000000000000..4e9b6b224469
 +MODULE_AUTHOR("Huang Yifeng <huangyifeng@eswincomputing.com>");
 diff --git a/include/linux/mailbox/eswin-mailbox.h b/include/linux/mailbox/eswin-mailbox.h
 new file mode 100755
-index 000000000000..6389befb5b90
+index 0000000000000..6389befb5b90d
 --- /dev/null
 +++ b/include/linux/mailbox/eswin-mailbox.h
 @@ -0,0 +1,15 @@

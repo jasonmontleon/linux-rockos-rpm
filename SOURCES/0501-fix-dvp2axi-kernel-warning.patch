@@ -1,4 +1,4 @@
-From a4bdc326d6e24a6585e1174e560ee2655918aa35 Mon Sep 17 00:00:00 2001
+From 61985e57dab7b92eb54b7d33162646d15e699ad9 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 9 May 2025 09:46:58 +0800
 Subject: [PATCH 501/652] fix: dvp2axi kernel warning
@@ -20,7 +20,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  8 files changed, 66 insertions(+), 559 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
-index b4a8638c00d0..6df6dd5b0c1c 100644
+index b4a8638c00d09..6df6dd5b0c1cb 100644
 --- a/drivers/media/platform/eswin/dvp2axi/capture.c
 +++ b/drivers/media/platform/eswin/dvp2axi/capture.c
 @@ -854,7 +854,7 @@ static struct v4l2_subdev *get_remote_sensor(struct es_dvp2axi_stream *stream,
@@ -885,7 +885,7 @@ index b4a8638c00d0..6df6dd5b0c1c 100644
  		stream->buf_owner = ES_DVP2AXI_DMAEN_BY_ISP_TO_VICAP;
  
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
-index e19690b47b9a..e49d6957cda1 100644
+index e19690b47b9a2..e49d6957cda1b 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.c
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.c
 @@ -1272,11 +1272,7 @@ static int es_dvp2axi_create_link(struct es_dvp2axi_device *dev,
@@ -1275,7 +1275,7 @@ index e19690b47b9a..e49d6957cda1 100644
  }
  
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.h b/drivers/media/platform/eswin/dvp2axi/dev.h
-index 1a17c02258f2..d8fc9ec69bba 100644
+index 1a17c02258f27..d8fc9ec69bbad 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.h
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.h
 @@ -976,7 +976,6 @@ void es_dvp2axi_buf_queue(struct vb2_buffer *vb);
@@ -1287,7 +1287,7 @@ index 1a17c02258f2..d8fc9ec69bba 100644
  
  void es_irq_oneframe_new(struct device *dev, struct es_dvp2axi_device *dvp2axi_dev);
 diff --git a/drivers/media/platform/eswin/dvp2axi/hw.c b/drivers/media/platform/eswin/dvp2axi/hw.c
-index c399554208d9..d0719bae0ca5 100644
+index c399554208d93..d0719bae0ca55 100644
 --- a/drivers/media/platform/eswin/dvp2axi/hw.c
 +++ b/drivers/media/platform/eswin/dvp2axi/hw.c
 @@ -301,17 +301,6 @@ void bmtest_dvp2axi_hw_program(struct es_dvp2axi_hw *dvp2axi_hw)
@@ -1467,7 +1467,7 @@ index c399554208d9..d0719bae0ca5 100644
  	dvp2axi_hw->is_dma_contig = true;
  	mutex_init(&dvp2axi_hw->dev_lock);
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
-index 33f7834a6a93..92dd6fd50039 100755
+index 33f7834a6a939..92dd6fd50039f 100755
 --- a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 @@ -495,15 +495,15 @@ static int csi2_notifier_bound(struct v4l2_async_notifier *notifier,
@@ -1506,7 +1506,7 @@ index 33f7834a6a93..92dd6fd50039 100755
  	return 0;
  }
 diff --git a/drivers/media/platform/eswin/vi_top/eswin_vi.c b/drivers/media/platform/eswin/vi_top/eswin_vi.c
-index 2afdbc5b0f18..7f85d82d2871 100644
+index 2afdbc5b0f181..7f85d82d28711 100644
 --- a/drivers/media/platform/eswin/vi_top/eswin_vi.c
 +++ b/drivers/media/platform/eswin/vi_top/eswin_vi.c
 @@ -71,14 +71,13 @@ static int major_number;
@@ -1609,7 +1609,7 @@ index 2afdbc5b0f18..7f85d82d2871 100644
  	return 0;
  }
 diff --git a/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c b/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c
-index e0edce55d510..5063c5ff33b9 100644
+index e0edce55d5104..5063c5ff33b98 100644
 --- a/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c
 +++ b/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c
 @@ -527,7 +527,7 @@ static int eic770x_csi2_dphy_init(struct csi2_dphy_hw *dphy_hw)
@@ -1631,7 +1631,7 @@ index e0edce55d510..5063c5ff33b9 100644
      eic770x_write_csi2_dphy_reg(hw, 0x1cf2      , 0x444 ) ;//CORE_DIG_ANACTRL_RW_COMMON_ANACTRL_2
      eic770x_write_csi2_dphy_reg(hw, 0x1cf2      , 0x1444) ;//CORE_DIG_ANACTRL_RW_COMMON_ANACTRL_2
 diff --git a/drivers/phy/eswin/phy-eswin-csi2-dphy.c b/drivers/phy/eswin/phy-eswin-csi2-dphy.c
-index b6096c905575..cb8951e5517d 100644
+index b6096c905575d..cb8951e5517d6 100644
 --- a/drivers/phy/eswin/phy-eswin-csi2-dphy.c
 +++ b/drivers/phy/eswin/phy-eswin-csi2-dphy.c
 @@ -529,7 +529,6 @@ static int csi2_dphy_get_set_fmt(struct v4l2_subdev *sd,

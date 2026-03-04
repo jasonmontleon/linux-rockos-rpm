@@ -1,4 +1,4 @@
-From ca447153017119c28044daf12ba9e7eef6c30f65 Mon Sep 17 00:00:00 2001
+From 8a33e77724e18242a7e481ee42547aa6c234e906 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 19 Jun 2025 09:38:05 +0800
 Subject: [PATCH 568/652] fix:lspci issue after reboot
@@ -13,7 +13,7 @@ Signed-off-by: zhouliang1 <zhouliang1@eswincomputing.com>
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
-index 0dad82e8e581..4217d1712555 100644
+index 0dad82e8e5817..4217d17125551 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 @@ -840,7 +840,7 @@ ina226@44 {
@@ -26,7 +26,7 @@ index 0dad82e8e581..4217d1712555 100644
  		compatible = "ti,tps549d22";
  		reg = <0x10>;
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 30aa28ee5b0e..59ec21fbda7b 100644
+index 30aa28ee5b0ee..59ec21fbda7b0 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -840,7 +840,7 @@ ina226@44 {

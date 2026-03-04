@@ -1,4 +1,4 @@
-From 54579be728ef892aed2d4ced23d84296ff11d6f5 Mon Sep 17 00:00:00 2001
+From dba00a6eb73d06ea0861caf31b12f799fb225091 Mon Sep 17 00:00:00 2001
 From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
 Date: Thu, 22 Aug 2024 17:33:25 +0800
 Subject: [PATCH 251/652] WIN2030-16122: feat: e31 support dual die Changelogs:
@@ -11,7 +11,7 @@ Signed-off-by: yuzaiqiang <yuzaiqiang@eswincomputing.com>
  2 files changed, 2 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 62d91800185b..ea0f74325103 100644
+index 62d91800185b8..ea0f743251032 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -556,6 +556,7 @@ d0_npu: eswin-npu@51c00000 {
@@ -23,7 +23,7 @@ index 62d91800185b..ea0f74325103 100644
  
  			#cooling-cells = <2>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index e9fe4bc75031..2e4419128df6 100644
+index e9fe4bc750312..2e4419128df68 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -962,6 +962,7 @@ d1_npu: eswin-npu@71c00000 {

@@ -1,4 +1,4 @@
-From 5b2da3f14bdee5f7b90468d98890fa6066f78533 Mon Sep 17 00:00:00 2001
+From 0b5d9c3a6b3898c1f441346a8a8f0d5a52bb2b14 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 12 Aug 2024 16:04:58 +0800
 Subject: [PATCH 147/652] feat:KASAN warnning & bootspi region protection
@@ -15,7 +15,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  3 files changed, 172 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
-index 64bf0476b4bc..b7c382133ccc 100755
+index 64bf0476b4bc4..b7c382133ccc3 100755
 --- a/drivers/clk/eswin/clk-win2030.c
 +++ b/drivers/clk/eswin/clk-win2030.c
 @@ -277,14 +277,18 @@ static struct eswin_mux_clock win2030_mux_clks[] = {
@@ -60,7 +60,7 @@ index 64bf0476b4bc..b7c382133ccc 100755
  }
  
 diff --git a/drivers/interconnect/eswin/noc_sysfs.c b/drivers/interconnect/eswin/noc_sysfs.c
-index e3b24a258818..fac895eedcb6 100644
+index e3b24a258818a..fac895eedcb65 100644
 --- a/drivers/interconnect/eswin/noc_sysfs.c
 +++ b/drivers/interconnect/eswin/noc_sysfs.c
 @@ -38,7 +38,7 @@
@@ -73,7 +73,7 @@ index e3b24a258818..fac895eedcb6 100644
  	int i;
  	int count = 1;
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
-index ee28701ab1b8..0cf0d34ea315 100644
+index ee28701ab1b84..0cf0d34ea3152 100644
 --- a/drivers/spi/spi-eswin-bootspi.c
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -54,6 +54,14 @@

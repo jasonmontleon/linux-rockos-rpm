@@ -1,4 +1,4 @@
-From 8427e499d9e8589bcc275039a2930b607872eb39 Mon Sep 17 00:00:00 2001
+From 3c25341fa636bbc3f6290b8d971cdb8096a56a67 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 28 Oct 2024 16:44:02 +0800
 Subject: [PATCH 205/652] perf:change smmu print level,optimize ccache flush
@@ -16,10 +16,10 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index 54e5018782f0..f287afb2b46e 100644
+index 92b13c4d67a5e..cc5700f453fcc 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-@@ -1672,9 +1672,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
+@@ -1683,9 +1683,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
  			if (!ret || !__ratelimit(&rs))
  				continue;
  
@@ -32,7 +32,7 @@ index 54e5018782f0..f287afb2b46e 100644
  
  			cond_resched();
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index a88123c81ace..2010ccd64f86 100644
+index a88123c81ace6..2010ccd64f867 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -130,8 +130,8 @@ static void ccache_flush64_range(phys_addr_t paddr, size_t size)

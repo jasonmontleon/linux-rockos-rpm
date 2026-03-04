@@ -1,4 +1,4 @@
-From 810986d7cf9824b5adaed894fc13474625c1ff95 Mon Sep 17 00:00:00 2001
+From 2b29c4b58fcccde3a8becf956ac0f1c6d07f39d4 Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Thu, 9 Jan 2025 09:44:00 +0800
 Subject: [PATCH 377/652] WIN2030-16686:feat:add dma channel & device filter
@@ -15,7 +15,7 @@ Signed-off-by: hujiamiao <hujiamiao@eswincomputing.com>
  3 files changed, 87 insertions(+), 60 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index cc651302b4a0..720d8b672af2 100644
+index cc651302b4a09..720d8b672af20 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -347,33 +347,6 @@ d0_pmu_dsp3: win2030-pmu-controller-port@240 {
@@ -87,7 +87,7 @@ index cc651302b4a0..720d8b672af2 100644
  			compatible = "eswin,win2030-qos-eth";
  			reg = <0x0 0x50400000 0x0 0x10000>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 2eb71e5e8525..96cf2b22d8d5 100644
+index 2eb71e5e85258..96cf2b22d8d5d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -317,33 +317,6 @@ d1_pmu_dsp3: win2030-pmu-controller-port@240 {
@@ -160,7 +160,7 @@ index 2eb71e5e8525..96cf2b22d8d5 100644
  			compatible = "eswin,noc","simple-bus";
  			#address-cells = <2>;
 diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
-index 7d0772bf03cd..3eec1aa413f2 100644
+index 7d0772bf03cdf..3eec1aa413f28 100644
 --- a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 +++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 @@ -69,6 +69,11 @@ struct esw_cmdq_task {

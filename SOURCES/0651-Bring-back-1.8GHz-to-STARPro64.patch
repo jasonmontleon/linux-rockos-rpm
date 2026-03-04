@@ -1,4 +1,4 @@
-From 503735fb7172d180272d6e2c934d44221bef0732 Mon Sep 17 00:00:00 2001
+From ad1fe69a93300f1560c888ae4d1282da2def4f8a Mon Sep 17 00:00:00 2001
 From: Yanko Kaneti <yaneti@declera.com>
 Date: Sun, 29 Jun 2025 22:49:20 +0300
 Subject: [PATCH 651/652] Bring back 1.8GHz to STARPro64
@@ -10,7 +10,7 @@ Running with this on a V02 revision of the board and its been fine
  2 files changed, 50 insertions(+), 10 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
-index 57fc6dcc6bb0..58ec5768451e 100644
+index 57fc6dcc6bb01..58ec5768451ef 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64-npu.dts
 @@ -864,10 +864,30 @@ &dev_llc_d0{
@@ -50,7 +50,7 @@ index 57fc6dcc6bb0..58ec5768451e 100644
 +        };
  };
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 3f24c8829310..4614f55ca71c 100644
+index 3f24c8829310d..4614f55ca71c4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -858,10 +858,30 @@ &dev_llc_d0{

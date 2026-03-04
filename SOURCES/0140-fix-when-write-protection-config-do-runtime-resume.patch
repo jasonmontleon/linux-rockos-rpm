@@ -1,4 +1,4 @@
-From 8e3c0a74366a0071af03cfc90e41411aa4b85a9d Mon Sep 17 00:00:00 2001
+From 153ebd7b87482da56e8d4a8ab10b1e22e7269871 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 7 Aug 2024 17:01:33 +0800
 Subject: [PATCH 140/652] fix:when write protection config, do runtime resume
@@ -12,7 +12,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
-index 9d3447538e38..ee28701ab1b8 100644
+index 9d3447538e38b..ee28701ab1b84 100644
 --- a/drivers/spi/spi-eswin-bootspi.c
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -477,6 +477,7 @@ void eswin_bootspi_wp_cfg(struct es_spi_priv *priv, int enable)

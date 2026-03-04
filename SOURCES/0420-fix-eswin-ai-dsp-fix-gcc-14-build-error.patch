@@ -1,4 +1,4 @@
-From d63f16c18a5b30c863ee16b7aea41840582f7cb3 Mon Sep 17 00:00:00 2001
+From 24ada304c1f15f5acec51aae78cd8d3794dfe958 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Sat, 8 Mar 2025 03:04:33 +0800
 Subject: [PATCH 420/652] fix: eswin: ai: dsp: fix gcc-14 build error
@@ -13,7 +13,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  5 files changed, 11 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index c79b5748242e..1cc31a98eb58 100644
+index c79b5748242e3..1cc31a98eb58a 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -509,8 +509,8 @@ static struct dsp_user_req_async *dsp_set_task_info(struct dsp_file *dsp_file,
@@ -46,7 +46,7 @@ index c79b5748242e..1cc31a98eb58 100644
  	}
  	INIT_LIST_HEAD(&dsp_file->async_ll_complete);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index 9cd6a5686515..c5f6f2a83b12 100644
+index 9cd6a56865155..c5f6f2a83b120 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -61,6 +61,7 @@
@@ -58,7 +58,7 @@ index 9cd6a5686515..c5f6f2a83b12 100644
  
  #include "dsp_main.h"
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 9754713ea389..45d4821e902b 100644
+index 9754713ea3895..45d4821e902b1 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -36,6 +36,7 @@
@@ -70,7 +70,7 @@ index 9754713ea389..45d4821e902b 100644
  #include <linux/iommu.h>
  #include <linux/es_iommu_rsv.h>
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
-index 40740cdfe21e..238bddc4c9eb 100644
+index 40740cdfe21e9..238bddc4c9ebf 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.h
 @@ -64,6 +64,7 @@ int dsp_get_resource(struct platform_device *pdev, struct es_dsp *dsp);
@@ -89,7 +89,7 @@ index 40740cdfe21e..238bddc4c9eb 100644
 +int es_dsp_unmap_resource(struct es_dsp *dsp);
  #endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
-index e5967e94da47..f77995d442a2 100644
+index e5967e94da47a..f77995d442a22 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/mloader/xt_mld_loader.c
 @@ -212,9 +212,9 @@ static xtmld_ptr align_ptr(xtmld_ptr ptr, uint32_t t_align, uint32_t t_paddr)

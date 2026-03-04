@@ -1,4 +1,4 @@
-From 31288083f7c5e90c1b9b9a15085ccbca57152c5d Mon Sep 17 00:00:00 2001
+From 59d5e44307cf0ad71b94d22392a6b63cde62c881 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Wed, 12 Mar 2025 09:18:01 +0800
 Subject: [PATCH 442/652] feat:npu proc add voltage and frequency
@@ -12,7 +12,7 @@ Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
  1 file changed, 43 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
-index d7e1270e4a7d..6ed17e6af550 100644
+index d7e1270e4a7d6..6ed17e6af5504 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_proc.c
 @@ -280,6 +280,30 @@ static int stat_open(struct inode *inode, struct file *flip)

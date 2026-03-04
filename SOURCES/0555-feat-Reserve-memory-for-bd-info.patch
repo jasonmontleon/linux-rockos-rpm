@@ -1,4 +1,4 @@
-From 9f6e0de3058d79ff9da8686b701781ae9c3de577 Mon Sep 17 00:00:00 2001
+From df7e19aaa94ba3f6e81e72c50fc0972a718fbc23 Mon Sep 17 00:00:00 2001
 From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
 Date: Fri, 13 Jun 2025 14:34:45 +0800
 Subject: [PATCH 555/652] feat:Reserve memory for bd info
@@ -15,7 +15,7 @@ Signed-off-by: Dongdong Zhang <zhangdongdong@eswincomputing.com>
  1 file changed, 16 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
-index 0b21ee68c452..40a64648d88f 100644
+index 0b21ee68c4526..40a64648d88f4 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -157,7 +157,17 @@ ipcm_vdev0buffer:vdev0buffer@100412000 {

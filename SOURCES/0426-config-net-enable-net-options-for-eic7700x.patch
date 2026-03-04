@@ -1,4 +1,4 @@
-From e6601c0e4ba2f49d37c955b82a2ed544b2fcba10 Mon Sep 17 00:00:00 2001
+From 2b9bb415db246b4855d4784c3506435b28ac3c02 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 7 Mar 2025 00:14:11 +0800
 Subject: [PATCH 426/652] config: net: enable net options for eic7700x
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 35 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 07ee8a6b05f9..33c92223468f 100644
+index 07ee8a6b05f93..33c92223468ff 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -176,7 +176,6 @@ CONFIG_NETFILTER_XT_MATCH_CONNLIMIT=m

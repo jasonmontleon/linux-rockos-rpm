@@ -1,4 +1,4 @@
-From 691dd2e3544aeec1660078e245c193aa289dfc84 Mon Sep 17 00:00:00 2001
+From 868db8e336dbe3f871ff9aac0df5701dda2cab24 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 22 Oct 2024 09:53:00 +0800
 Subject: [PATCH 198/652] fix:Solving hdmi display compatibility issues.
@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 552b80ccacdb..ba5aae273162 100644
+index 552b80ccacdb1..ba5aae2731621 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -311,7 +311,9 @@ static void repo_hpd_event(struct work_struct *p_work)

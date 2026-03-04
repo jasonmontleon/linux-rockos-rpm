@@ -1,4 +1,4 @@
-From 5dec9816f7e0c097252b703ba9786046de2963d9 Mon Sep 17 00:00:00 2001
+From 0bce7d5012d5114324d53ddb1d7b447deb70677e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 19 Aug 2024 19:16:55 +0800
 Subject: [PATCH 155/652] fix:add i2c hold time for aon i2c
@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
-index 33e02628614a..c4a9d6f97f95 100644
+index 33e02628614a2..c4a9d6f97f95f 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 @@ -674,7 +674,7 @@ &d0_aon_i2c1 {

@@ -1,4 +1,4 @@
-From 5e9539d1581330092a93563dbdd8ebcfd7813a50 Mon Sep 17 00:00:00 2001
+From 0ae9ed4ba377a5ca2369183c50d26ff125fa2720 Mon Sep 17 00:00:00 2001
 From: luoxianke <luoxianke@eswincomputing.com>
 Date: Tue, 3 Jun 2025 16:01:34 +0800
 Subject: [PATCH 531/652] feat: d314 isp support
@@ -12,7 +12,7 @@ Signed-off-by: luoxianke <luoxianke@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-d314.dts b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
-index 92ce38d3db41..685702bdb4f4 100644
+index 92ce38d3db411..685702bdb4f4c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-d314.dts
 @@ -86,7 +86,7 @@ &d0_graphcard2 {

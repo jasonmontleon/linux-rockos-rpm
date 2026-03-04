@@ -1,4 +1,4 @@
-From d57b2e38c3399d94ebc6e72ec4966086757ff668 Mon Sep 17 00:00:00 2001
+From b175700fc76c5a10337fd57ea1553900658d70d0 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Tue, 15 Jul 2025 14:27:52 +0800
 Subject: [PATCH 541/652] riscv: dts: megrez-nx: fix sata act led gpio
@@ -11,7 +11,7 @@ Signed-off-by: carbon <carbon@milkv.io>
  1 file changed, 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
-index e8e09df6105a..aef0c0a61efd 100644
+index e8e09df6105ae..aef0c0a61efda 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 @@ -935,7 +935,6 @@ &pinctrl_gpio21_default

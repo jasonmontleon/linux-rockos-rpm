@@ -1,4 +1,4 @@
-From 4a7b85c637f08c2a35e543a01a4d15a36716d07e Mon Sep 17 00:00:00 2001
+From c94bd6c0087d68ca9f1fb88d0a6720937a2cc78b Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 5 Nov 2024 10:24:03 +0800
 Subject: [PATCH 279/652] WIN2030-16035:refactor:Support ECC mode
@@ -13,7 +13,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 4 insertions(+), 9 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 2e99b78abc91..629626b35c4b 100644
+index 2e99b78abc919..629626b35c4b1 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -24,8 +24,8 @@

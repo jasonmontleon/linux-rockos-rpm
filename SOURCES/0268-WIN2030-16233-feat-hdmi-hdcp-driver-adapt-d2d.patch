@@ -1,4 +1,4 @@
-From 0dcf791f36b4f82a67051950d4745ce3b2373098 Mon Sep 17 00:00:00 2001
+From 83e8163eba47ff9067281bb04c3577d6d87936b8 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 10 Sep 2024 16:54:31 +0800
 Subject: [PATCH 268/652] WIN2030-16233:feat:hdmi & hdcp driver adapt d2d.
@@ -22,7 +22,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  10 files changed, 428 insertions(+), 267 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 5750ea1646ca..b14fec6ad256 100644
+index 5750ea1646ca7..b14fec6ad2563 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1966,9 +1966,9 @@ dw_hdmi_hdcp2: hdmi-hdcp2@50290000 {
@@ -38,7 +38,7 @@ index 5750ea1646ca..b14fec6ad256 100644
  				numa-node-id = <0>;
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index d8a5da7a0d39..ca0d63978d78 100644
+index d8a5da7a0d393..ca0d63978d788 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1912,9 +1912,9 @@ d1_dw_hdmi_hdcp2: hdmi-hdcp2@70290000 {
@@ -54,7 +54,7 @@ index d8a5da7a0d39..ca0d63978d78 100644
  			numa-node-id = <1>;
  		};
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
-index 77733cd77352..7edd441f446d 100644
+index 77733cd77352a..7edd441f446de 100644
 --- a/drivers/gpu/drm/eswin/Kconfig
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -73,13 +73,6 @@ config DW_HDMI_HDCP2
@@ -72,7 +72,7 @@ index 77733cd77352..7edd441f446d 100644
      tristate "Eswin mipi dsi and 1080p panel driver"
      select DRM_ESWIN
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 8c73453d2beb..a54dddc63d30 100644
+index 8c73453d2beb6..a54dddc63d302 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -71,7 +71,7 @@
@@ -205,7 +205,7 @@ index 8c73453d2beb..a54dddc63d30 100644
  MODULE_AUTHOR("Andy Yan <andy.yan@rock-chips.com>");
  MODULE_AUTHOR("Yakir Yang <ykk@rock-chips.com>");
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.h b/drivers/gpu/drm/eswin/dw-hdmi.h
-index dcfeaada7f1d..880e51f246b0 100644
+index dcfeaada7f1df..880e51f246b09 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.h
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.h
 @@ -1286,4 +1286,5 @@ enum supported_eotf_type {
@@ -215,7 +215,7 @@ index dcfeaada7f1d..880e51f246b0 100644
 +void dw_hdmi_resume_early(struct dw_hdmi *hdmi);
  #endif /* __DW_HDMI_H__ */
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
-index e342e766cb25..12933da6568b 100644
+index e342e766cb253..12933da6568bf 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.c
 @@ -132,7 +132,7 @@ enum {
@@ -385,7 +385,7 @@ index e342e766cb25..12933da6568b 100644
  	return 0;
  
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
-index f11b259c1731..239a41809cc9 100644
+index f11b259c1731f..239a41809cc9d 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp.h
 @@ -23,6 +23,7 @@
@@ -461,7 +461,7 @@ index f11b259c1731..239a41809cc9 100644
 +extern void dw_hdmi_hdcp2_start(int enable, int numa_id);
  #endif
 diff --git a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
-index 63c01abfb2af..6c3b0af804f8 100644
+index 63c01abfb2afe..6c3b0af804f84 100644
 --- a/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 +++ b/drivers/gpu/drm/eswin/dw_hdmi_hdcp2.c
 @@ -83,48 +83,26 @@
@@ -1257,7 +1257,7 @@ index 63c01abfb2af..6c3b0af804f8 100644
  }
  
 diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
-index 77c1481b2d2e..62373b2b7eb5 100644
+index 77c1481b2d2e5..62373b2b7eb5e 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 @@ -955,8 +955,19 @@ static int __maybe_unused dw_hdmi_eswin_resume(struct device *dev)
@@ -1283,7 +1283,7 @@ index 77c1481b2d2e..62373b2b7eb5 100644
  struct platform_driver dw_hdmi_eswin_pltfm_driver = {
      .probe  = dw_hdmi_eswin_probe,
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index dcb552d2331a..a0e200271175 100755
+index dcb552d2331a9..a0e2002711756 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -866,7 +866,6 @@ static int i2s_probe(struct platform_device *pdev)

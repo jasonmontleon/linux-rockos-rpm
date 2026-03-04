@@ -1,4 +1,4 @@
-From 08b3343d806d06c77432ef19cd5a5e8eee78a3d5 Mon Sep 17 00:00:00 2001
+From 532f201e662c89c36c3169a8ec2165999118c2af Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 29 Aug 2024 16:17:29 +0800
 Subject: [PATCH 175/652] feat:add cpu volatge adjust
@@ -15,7 +15,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  3 files changed, 97 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index f20c86264c3e..9cacb373b3bc 100644
+index f20c86264c3e2..9cacb373b3bc4 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -772,7 +772,8 @@ &pinctrl_gpio37_default &pinctrl_gpio38_default &pinctrl_gpio39_default &pinctrl
@@ -56,7 +56,7 @@ index f20c86264c3e..9cacb373b3bc 100644
  };
 \ No newline at end of file
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index 06569c72ba37..b944a5e6ec44 100755
+index 06569c72ba379..b944a5e6ec446 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -30,8 +30,8 @@
@@ -194,7 +194,7 @@ index 06569c72ba37..b944a5e6ec44 100755
  		if (parent_name) {
  			kfree(parent_name);
 diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
-index c5906c420769..95e222d5194c 100755
+index c5906c4207693..95e222d5194c9 100755
 --- a/drivers/clk/eswin/clk.h
 +++ b/drivers/clk/eswin/clk.h
 @@ -128,6 +128,11 @@ struct eswin_pll_clock {

@@ -1,4 +1,4 @@
-From f405a809b7d16f87bb61299ed4ea25c3ed31db3e Mon Sep 17 00:00:00 2001
+From 99225f375ee094313bbb4bb1112210c96c38176d Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Thu, 26 Jun 2025 17:45:11 +0800
 Subject: [PATCH 588/652] feature: Add kdb config and ftrace config
@@ -13,7 +13,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  2 files changed, 8 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 2dbc8bd0bfa5..4db3ce7e6f6f 100644
+index 2dbc8bd0bfa59..4db3ce7e6f6fd 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -36,7 +36,7 @@ CONFIG_SMP=y
@@ -49,7 +49,7 @@ index 2dbc8bd0bfa5..4db3ce7e6f6f 100644
  CONFIG_MEMTEST=y
  CONFIG_BCMDHD=m
 diff --git a/arch/riscv/configs/eic7702_dbg_defconfig b/arch/riscv/configs/eic7702_dbg_defconfig
-index caf1d0cba4cb..174f6aac9374 100644
+index caf1d0cba4cbe..174f6aac9374a 100644
 --- a/arch/riscv/configs/eic7702_dbg_defconfig
 +++ b/arch/riscv/configs/eic7702_dbg_defconfig
 @@ -41,7 +41,7 @@ CONFIG_HOTPLUG_CPU=y

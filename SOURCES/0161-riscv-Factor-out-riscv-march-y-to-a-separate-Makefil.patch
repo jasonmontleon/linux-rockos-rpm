@@ -1,4 +1,4 @@
-From b0301c815a593a9cda059642526c31a0b68e1139 Mon Sep 17 00:00:00 2001
+From f05c7209536816664e18594301a3883e1163b0e1 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:14 -0800
 Subject: [PATCH 161/652] riscv: Factor out riscv-march-y to a separate
@@ -20,7 +20,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  create mode 100644 arch/riscv/Makefile.isa
 
 diff --git a/arch/riscv/Makefile b/arch/riscv/Makefile
-index 4d06f3402674..a040fd5f83ad 100644
+index 4d06f34026740..a040fd5f83ad6 100644
 --- a/arch/riscv/Makefile
 +++ b/arch/riscv/Makefile
 @@ -54,22 +54,7 @@ endif
@@ -49,7 +49,7 @@ index 4d06f3402674..a040fd5f83ad 100644
  # matching non-v and non-multi-letter extensions out with the filter ([^v_]*)
 diff --git a/arch/riscv/Makefile.isa b/arch/riscv/Makefile.isa
 new file mode 100644
-index 000000000000..322a83958b96
+index 0000000000000..322a83958b968
 --- /dev/null
 +++ b/arch/riscv/Makefile.isa
 @@ -0,0 +1,18 @@

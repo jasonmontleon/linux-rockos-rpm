@@ -1,4 +1,4 @@
-From a943c28e786fca4d62df627a0d289cea7d906a62 Mon Sep 17 00:00:00 2001
+From a7e33d9dd2db1eccf4386555716386350f7c3487 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 16 Jul 2024 10:15:29 +0800
 Subject: [PATCH 098/652] feat: npu drv support low power
@@ -13,7 +13,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  2 files changed, 58 insertions(+), 1 deletion(-)
 
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 4e9027dd5db9..c26567e5aa80 100644
+index 4e9027dd5db97..c26567e5aa805 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -38,6 +38,7 @@
@@ -87,7 +87,7 @@ index 4e9027dd5db9..c26567e5aa80 100644
  {
  	struct platform_device *pdev = pdevs[nid];
 diff --git a/drivers/memory/eswin/codacache/llc_spram.h b/drivers/memory/eswin/codacache/llc_spram.h
-index 40dd35efec5c..44863a70efbd 100644
+index 40dd35efec5c0..44863a70efbd2 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.h
 +++ b/drivers/memory/eswin/codacache/llc_spram.h
 @@ -84,7 +84,8 @@ struct llc_cache_ops {

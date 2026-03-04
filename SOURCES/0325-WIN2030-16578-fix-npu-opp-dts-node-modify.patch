@@ -1,4 +1,4 @@
-From 5fd54383da07edf073ec18048884f8236b3bf54b Mon Sep 17 00:00:00 2001
+From 6a58db95bee7b15ada56ffca34c2f501843d9f01 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 30 Oct 2024 11:14:04 +0800
 Subject: [PATCH 325/652] WIN2030-16578:fix:npu opp dts node modify
@@ -15,7 +15,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  3 files changed, 14 insertions(+), 27 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
-index 9f1da7ec26ce..e6adc2e30072 100644
+index 9f1da7ec26ce4..e6adc2e30072c 100644
 --- a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 @@ -102,6 +102,18 @@ opp@1040000000 {
@@ -38,7 +38,7 @@ index 9f1da7ec26ce..e6adc2e30072 100644
  	g2d_opp_table: opp-table@g2d {
  		compatible = "operating-points-v2";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 49dcfe4d8eab..00b59b71b9e7 100644
+index 49dcfe4d8eabd..00b59b71b9e79 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -462,18 +462,6 @@ noc {
@@ -70,7 +70,7 @@ index 49dcfe4d8eab..00b59b71b9e7 100644
  			numa-node-id = <0>;
  			firmware-name = "eic7700_die0_e31_fw";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index c1d0a7c28574..d216ce3c784c 100644
+index c1d0a7c285741..d216ce3c784cc 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -904,19 +904,6 @@ d1_aon_i2c1: i2c@71838000 {

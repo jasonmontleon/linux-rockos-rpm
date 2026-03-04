@@ -1,4 +1,4 @@
-From 992c5999f25894ccd57d220f158aeefec6a75d99 Mon Sep 17 00:00:00 2001
+From d1f56e705e893535474c3a25ff6a2745420d3c39 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Mon, 12 May 2025 11:27:02 +0800
 Subject: [PATCH 554/652] fix:adapt d560 audio input
@@ -12,7 +12,7 @@ Signed-off-by: yiguo <yiguo@eswincomputing.com>
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index 29c7fbc030fe..a31f359283ed 100644
+index 29c7fbc030fe8..a31f359283ed7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -148,6 +148,11 @@ d0_es8388_0: es8388-0@11 {

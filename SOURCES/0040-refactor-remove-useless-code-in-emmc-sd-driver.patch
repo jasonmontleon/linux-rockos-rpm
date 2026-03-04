@@ -1,4 +1,4 @@
-From 97864b3456ae00628d84806b98f6d4f45cd7956a Mon Sep 17 00:00:00 2001
+From 926fd4f9846bee12c6197f38c47a858b136f1e4c Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 30 May 2024 09:50:56 +0800
 Subject: [PATCH 040/652] refactor:remove useless code in emmc/sd driver.
@@ -15,7 +15,7 @@ Changelogs:
  5 files changed, 13 insertions(+), 38 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 584338c8ad4c..008c21b95a6f 100644
+index 584338c8ad4cc..008c21b95a6f3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -482,6 +482,8 @@ &sdhci_emmc {
@@ -44,7 +44,7 @@ index 584338c8ad4c..008c21b95a6f 100644
  
  &d0_gmac0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 4ed625ef7bd3..4d9aeafa93f7 100644
+index 4ed625ef7bd36..4d9aeafa93f78 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -453,6 +453,8 @@ &sdhci_emmc {
@@ -73,7 +73,7 @@ index 4ed625ef7bd3..4d9aeafa93f7 100644
  
  &d0_gmac0 {
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index f0883f403393..e2a203812d12 100644
+index f0883f4033939..e2a203812d12d 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -394,6 +394,8 @@ &sdhci_emmc {
@@ -108,7 +108,7 @@ index f0883f403393..e2a203812d12 100644
  
  &d0_gmac0 {
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index fa23d1ded51c..83cbdb61c936 100644
+index fa23d1ded51c8..83cbdb61c9361 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -851,23 +851,6 @@ static int eswin_sdhci_sdio_probe(struct platform_device *pdev)
@@ -136,7 +136,7 @@ index fa23d1ded51c..83cbdb61c936 100644
  
  	eswin_sdhci_sdio->clk_ops = data->clk_ops;
 diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
-index 591315f48cbc..41aa80f8dbe3 100644
+index 591315f48cbca..41aa80f8dbe31 100644
 --- a/drivers/mmc/host/sdhci-of-eswin.c
 +++ b/drivers/mmc/host/sdhci-of-eswin.c
 @@ -87,7 +87,6 @@ static void eswin_sdhci_set_clock(struct sdhci_host *host, unsigned int clock)

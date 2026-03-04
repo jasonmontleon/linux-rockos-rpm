@@ -1,4 +1,4 @@
-From f7f3a16bec304d2b1c8c12abc84777cff4c51f9a Mon Sep 17 00:00:00 2001
+From d69a3213c24901e74b3d2b94aefa172b6f853041 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 19 Jun 2024 16:23:06 +0800
 Subject: [PATCH 101/652] refactor(MMZ vb and heap):MMZ code moved in kernel
@@ -69,7 +69,7 @@ Reviewed-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 include/uapi/linux/mmz_vb.h
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 370b8dbe4a2e..32b31b28bdbd 100644
+index 370b8dbe4a2e4..32b31b28bdbd4 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -736,6 +736,10 @@ CONFIG_RPMSG_VIRTIO=y
@@ -84,7 +84,7 @@ index 370b8dbe4a2e..32b31b28bdbd 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN_WIN2030=y
 diff --git a/drivers/memory/eswin/Kconfig b/drivers/memory/eswin/Kconfig
-index 8f85e3cb466b..013e2f376dd3 100644
+index 8f85e3cb466bc..013e2f376dd30 100644
 --- a/drivers/memory/eswin/Kconfig
 +++ b/drivers/memory/eswin/Kconfig
 @@ -25,5 +25,9 @@ config ESWIN_RSV_MEMBLOCK
@@ -98,7 +98,7 @@ index 8f85e3cb466b..013e2f376dd3 100644
  
  endif
 diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
-index 1b732b2a439d..3e5e09bab5dd 100644
+index 1b732b2a439d9..3e5e09bab5dd0 100644
 --- a/drivers/memory/eswin/Makefile
 +++ b/drivers/memory/eswin/Makefile
 @@ -2,3 +2,11 @@
@@ -115,7 +115,7 @@ index 1b732b2a439d..3e5e09bab5dd 100644
 +COPY_HEADERS := $(shell cp $(ES_MEM_HEADER)/*.h include/linux)
 \ No newline at end of file
 diff --git a/drivers/memory/eswin/buddy.h b/drivers/memory/eswin/buddy.h
-index 2c40d1116ad8..ff47325f2d27 100644
+index 2c40d1116ad89..ff47325f2d27c 100644
 --- a/drivers/memory/eswin/buddy.h
 +++ b/drivers/memory/eswin/buddy.h
 @@ -1,3 +1,13 @@
@@ -212,7 +212,7 @@ index 2c40d1116ad8..ff47325f2d27 100644
  
 diff --git a/drivers/memory/eswin/es_buddy/Kconfig b/drivers/memory/eswin/es_buddy/Kconfig
 new file mode 100644
-index 000000000000..94d755f4ba86
+index 0000000000000..94d755f4ba864
 --- /dev/null
 +++ b/drivers/memory/eswin/es_buddy/Kconfig
 @@ -0,0 +1,6 @@
@@ -224,7 +224,7 @@ index 000000000000..94d755f4ba86
 +	  buddy allocator api.
 diff --git a/drivers/memory/eswin/es_buddy/Makefile b/drivers/memory/eswin/es_buddy/Makefile
 new file mode 100644
-index 000000000000..4115fd0901d7
+index 0000000000000..4115fd0901d7b
 --- /dev/null
 +++ b/drivers/memory/eswin/es_buddy/Makefile
 @@ -0,0 +1,3 @@
@@ -233,7 +233,7 @@ index 000000000000..4115fd0901d7
 +
 diff --git a/drivers/memory/eswin/es_buddy/buddy_allocator/buddy.c b/drivers/memory/eswin/es_buddy/buddy_allocator/buddy.c
 new file mode 100644
-index 000000000000..56f084d0fc46
+index 0000000000000..56f084d0fc463
 --- /dev/null
 +++ b/drivers/memory/eswin/es_buddy/buddy_allocator/buddy.c
 @@ -0,0 +1,222 @@
@@ -461,7 +461,7 @@ index 000000000000..56f084d0fc46
 +}
 diff --git a/drivers/memory/eswin/es_buddy/es_buddy.c b/drivers/memory/eswin/es_buddy/es_buddy.c
 new file mode 100644
-index 000000000000..bc05cf473af6
+index 0000000000000..bc05cf473af63
 --- /dev/null
 +++ b/drivers/memory/eswin/es_buddy/es_buddy.c
 @@ -0,0 +1,186 @@
@@ -654,7 +654,7 @@ index 000000000000..bc05cf473af6
 \ No newline at end of file
 diff --git a/drivers/memory/eswin/es_buddy/es_buddy.h b/drivers/memory/eswin/es_buddy/es_buddy.h
 new file mode 100644
-index 000000000000..7861a6cbcab8
+index 0000000000000..7861a6cbcab83
 --- /dev/null
 +++ b/drivers/memory/eswin/es_buddy/es_buddy.h
 @@ -0,0 +1,52 @@
@@ -712,7 +712,7 @@ index 000000000000..7861a6cbcab8
 +#endif
 diff --git a/drivers/memory/eswin/es_mmz_vb/Kconfig b/drivers/memory/eswin/es_mmz_vb/Kconfig
 new file mode 100644
-index 000000000000..e290be281abe
+index 0000000000000..e290be281abe4
 --- /dev/null
 +++ b/drivers/memory/eswin/es_mmz_vb/Kconfig
 @@ -0,0 +1,6 @@
@@ -724,7 +724,7 @@ index 000000000000..e290be281abe
 +	  ESWIN MMZ reserved memory VB device.
 diff --git a/drivers/memory/eswin/es_mmz_vb/Makefile b/drivers/memory/eswin/es_mmz_vb/Makefile
 new file mode 100644
-index 000000000000..fe2bfe6291b1
+index 0000000000000..fe2bfe6291b14
 --- /dev/null
 +++ b/drivers/memory/eswin/es_mmz_vb/Makefile
 @@ -0,0 +1,5 @@
@@ -735,7 +735,7 @@ index 000000000000..fe2bfe6291b1
 +
 diff --git a/drivers/memory/eswin/es_mmz_vb/include/linux/mmz_vb.h b/drivers/memory/eswin/es_mmz_vb/include/linux/mmz_vb.h
 new file mode 100644
-index 000000000000..e167311a238d
+index 0000000000000..e167311a238d0
 --- /dev/null
 +++ b/drivers/memory/eswin/es_mmz_vb/include/linux/mmz_vb.h
 @@ -0,0 +1,58 @@
@@ -799,7 +799,7 @@ index 000000000000..e167311a238d
 +#endif
 diff --git a/drivers/memory/eswin/es_mmz_vb/include/linux/mmz_vb_type.h b/drivers/memory/eswin/es_mmz_vb/include/linux/mmz_vb_type.h
 new file mode 100644
-index 000000000000..8adecbbc4d6b
+index 0000000000000..8adecbbc4d6b5
 --- /dev/null
 +++ b/drivers/memory/eswin/es_mmz_vb/include/linux/mmz_vb_type.h
 @@ -0,0 +1,17 @@
@@ -822,7 +822,7 @@ index 000000000000..8adecbbc4d6b
 +#endif
 diff --git a/drivers/memory/eswin/es_mmz_vb/mmz_vb.c b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 new file mode 100644
-index 000000000000..2c2f829817ad
+index 0000000000000..2c2f829817adf
 --- /dev/null
 +++ b/drivers/memory/eswin/es_mmz_vb/mmz_vb.c
 @@ -0,0 +1,2375 @@
@@ -3203,7 +3203,7 @@ index 000000000000..2c2f829817ad
 +}
 diff --git a/drivers/memory/eswin/es_proc/Kconfig b/drivers/memory/eswin/es_proc/Kconfig
 new file mode 100644
-index 000000000000..d1a2f8220e9b
+index 0000000000000..d1a2f8220e9b3
 --- /dev/null
 +++ b/drivers/memory/eswin/es_proc/Kconfig
 @@ -0,0 +1,7 @@
@@ -3216,7 +3216,7 @@ index 000000000000..d1a2f8220e9b
 +
 diff --git a/drivers/memory/eswin/es_proc/Makefile b/drivers/memory/eswin/es_proc/Makefile
 new file mode 100644
-index 000000000000..2afd49103e81
+index 0000000000000..2afd49103e81f
 --- /dev/null
 +++ b/drivers/memory/eswin/es_proc/Makefile
 @@ -0,0 +1,7 @@
@@ -3229,7 +3229,7 @@ index 000000000000..2afd49103e81
 +COPY_HEADERS := $(shell cp $(ES_PROC_HEADER)/*.h include/linux)
 diff --git a/drivers/memory/eswin/es_proc/es_proc.c b/drivers/memory/eswin/es_proc/es_proc.c
 new file mode 100644
-index 000000000000..b0eb521b247c
+index 0000000000000..b0eb521b247cf
 --- /dev/null
 +++ b/drivers/memory/eswin/es_proc/es_proc.c
 @@ -0,0 +1,233 @@
@@ -3468,7 +3468,7 @@ index 000000000000..b0eb521b247c
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/memory/eswin/es_proc/include/linux/es_proc.h b/drivers/memory/eswin/es_proc/include/linux/es_proc.h
 new file mode 100644
-index 000000000000..65c73460e11b
+index 0000000000000..65c73460e11bc
 --- /dev/null
 +++ b/drivers/memory/eswin/es_proc/include/linux/es_proc.h
 @@ -0,0 +1,40 @@
@@ -3514,7 +3514,7 @@ index 000000000000..65c73460e11b
 +#endif
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/Kconfig b/drivers/memory/eswin/es_rsvmem_heap/Kconfig
 new file mode 100644
-index 000000000000..3b425da42e2f
+index 0000000000000..3b425da42e2f0
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/Kconfig
 @@ -0,0 +1,6 @@
@@ -3526,7 +3526,7 @@ index 000000000000..3b425da42e2f
 +	  ESWIN reserved memory heap device.
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/Makefile b/drivers/memory/eswin/es_rsvmem_heap/Makefile
 new file mode 100644
-index 000000000000..e468c514bb7b
+index 0000000000000..e468c514bb7b9
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/Makefile
 @@ -0,0 +1,8 @@
@@ -3540,7 +3540,7 @@ index 000000000000..e468c514bb7b
 +
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 new file mode 100644
-index 000000000000..fdbcfe7e6c70
+index 0000000000000..fdbcfe7e6c700
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -0,0 +1,652 @@
@@ -4198,7 +4198,7 @@ index 000000000000..fdbcfe7e6c70
 +EXPORT_SYMBOL(esw_common_dmabuf_split_export);
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/eswin_rsvmem_common.c b/drivers/memory/eswin/es_rsvmem_heap/eswin_rsvmem_common.c
 new file mode 100644
-index 000000000000..067f30627a46
+index 0000000000000..067f30627a46b
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/eswin_rsvmem_common.c
 @@ -0,0 +1,447 @@
@@ -4651,7 +4651,7 @@ index 000000000000..067f30627a46
 +}
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/eswin_rsvmem_heap.c b/drivers/memory/eswin/es_rsvmem_heap/eswin_rsvmem_heap.c
 new file mode 100644
-index 000000000000..804258f5ec74
+index 0000000000000..804258f5ec740
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/eswin_rsvmem_heap.c
 @@ -0,0 +1,634 @@
@@ -5291,7 +5291,7 @@ index 000000000000..804258f5ec74
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/include/linux/mem_perf_api.h b/drivers/memory/eswin/es_rsvmem_heap/include/linux/mem_perf_api.h
 new file mode 100644
-index 000000000000..a0357b43d914
+index 0000000000000..a0357b43d9142
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/include/linux/mem_perf_api.h
 @@ -0,0 +1,123 @@
@@ -5420,7 +5420,7 @@ index 000000000000..a0357b43d914
 +#endif
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/include/uapi/linux/eswin_rsvmem_common.h b/drivers/memory/eswin/es_rsvmem_heap/include/uapi/linux/eswin_rsvmem_common.h
 new file mode 100644
-index 000000000000..7d863001cfc3
+index 0000000000000..7d863001cfc3f
 --- /dev/null
 +++ b/drivers/memory/eswin/es_rsvmem_heap/include/uapi/linux/eswin_rsvmem_common.h
 @@ -0,0 +1,56 @@
@@ -5482,7 +5482,7 @@ index 000000000000..7d863001cfc3
 +#endif /* _UAPI_ESWIN_HEAPS_H */
 diff --git a/include/linux/dmabuf-heap-import-helper.h b/include/linux/dmabuf-heap-import-helper.h
 new file mode 100644
-index 000000000000..6fd339ee8ff3
+index 0000000000000..6fd339ee8ff3d
 --- /dev/null
 +++ b/include/linux/dmabuf-heap-import-helper.h
 @@ -0,0 +1,100 @@
@@ -5588,7 +5588,7 @@ index 000000000000..6fd339ee8ff3
 +#endif
 diff --git a/include/linux/eswin_rsvmem_common.h b/include/linux/eswin_rsvmem_common.h
 new file mode 100644
-index 000000000000..33862d7292d7
+index 0000000000000..33862d7292d7b
 --- /dev/null
 +++ b/include/linux/eswin_rsvmem_common.h
 @@ -0,0 +1,94 @@
@@ -5688,7 +5688,7 @@ index 000000000000..33862d7292d7
 +#endif /* _ESWIN_HEAPS_H */
 diff --git a/include/uapi/linux/es_vb_user.h b/include/uapi/linux/es_vb_user.h
 new file mode 100644
-index 000000000000..db3bda6d0d69
+index 0000000000000..db3bda6d0d693
 --- /dev/null
 +++ b/include/uapi/linux/es_vb_user.h
 @@ -0,0 +1,58 @@
@@ -5752,7 +5752,7 @@ index 000000000000..db3bda6d0d69
 +#endif
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
 new file mode 100644
-index 000000000000..49ebac96f6e1
+index 0000000000000..49ebac96f6e17
 --- /dev/null
 +++ b/include/uapi/linux/mmz_vb.h
 @@ -0,0 +1,175 @@

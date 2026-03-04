@@ -1,4 +1,4 @@
-From 713aba24bff6cb6a47057f17c548a4c12df002e0 Mon Sep 17 00:00:00 2001
+From 84a99b1c9bb3a831ed590e3ae98f5d8d4c478950 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 22 May 2024 14:27:49 +0800
 Subject: [PATCH 029/652] feat(DRM): Add DSI support for linux 6.6
@@ -24,7 +24,7 @@ Changelogs:
  create mode 100644 drivers/gpu/drm/eswin/es_panel.h
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index a9f269bd9325..70f8a9d9af3b 100644
+index a9f269bd93250..70f8a9d9af3b3 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1507,7 +1507,7 @@ portd: gpio-port@3 {
@@ -115,7 +115,7 @@ index a9f269bd9325..70f8a9d9af3b 100644
  				};
  
 diff --git a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
-index 04d4a1a10698..3f3bf54f5da3 100644
+index 04d4a1a106981..3f3bf54f5da38 100644
 --- a/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
 +++ b/drivers/gpu/drm/bridge/synopsys/dw-mipi-dsi.c
 @@ -29,6 +29,7 @@
@@ -136,7 +136,7 @@ index 04d4a1a10698..3f3bf54f5da3 100644
  			  PHY_HS2LP_TIME_V131(timing.data_hs2lp) |
  			  PHY_LP2HS_TIME_V131(timing.data_lp2hs));
 diff --git a/drivers/gpu/drm/eswin/Kconfig b/drivers/gpu/drm/eswin/Kconfig
-index d518575e9bb3..1ad77afba9c3 100644
+index d518575e9bb35..1ad77afba9c3f 100644
 --- a/drivers/gpu/drm/eswin/Kconfig
 +++ b/drivers/gpu/drm/eswin/Kconfig
 @@ -70,3 +70,11 @@ config DW_HDMI_HDCP2
@@ -152,7 +152,7 @@ index d518575e9bb3..1ad77afba9c3 100644
 +    help
 +      Support mipi dsi 4-lanes panel output
 diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
-index 099597edf619..6d4043ca833c 100644
+index 099597edf6190..6d4043ca833cb 100644
 --- a/drivers/gpu/drm/eswin/Makefile
 +++ b/drivers/gpu/drm/eswin/Makefile
 @@ -20,4 +20,6 @@ es_drm-$(CONFIG_DW_HDMI_HDCP) += dw_hdmi_hdcp.o
@@ -166,7 +166,7 @@ index 099597edf619..6d4043ca833c 100644
 +obj-$(CONFIG_ESWIN_MIPI_DSI)+= es_mipi_dsi.o es_panel.o
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/eswin/es_drv.c b/drivers/gpu/drm/eswin/es_drv.c
-index 885b8d6fa5ab..936198b1c351 100644
+index 885b8d6fa5ab0..936198b1c3513 100644
 --- a/drivers/gpu/drm/eswin/es_drv.c
 +++ b/drivers/gpu/drm/eswin/es_drv.c
 @@ -35,6 +35,8 @@
@@ -192,7 +192,7 @@ index 885b8d6fa5ab..936198b1c351 100644
  	(sizeof(drm_sub_drivers) / sizeof(struct platform_driver *))
 diff --git a/drivers/gpu/drm/eswin/es_mipi_dsi.c b/drivers/gpu/drm/eswin/es_mipi_dsi.c
 new file mode 100644
-index 000000000000..8aa3c69378f2
+index 0000000000000..8aa3c69378f23
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_mipi_dsi.c
 @@ -0,0 +1,661 @@
@@ -859,7 +859,7 @@ index 000000000000..8aa3c69378f2
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/gpu/drm/eswin/es_mipi_dsi.h b/drivers/gpu/drm/eswin/es_mipi_dsi.h
 new file mode 100644
-index 000000000000..4a757e527736
+index 0000000000000..4a757e527736b
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_mipi_dsi.h
 @@ -0,0 +1,11 @@
@@ -877,7 +877,7 @@ index 000000000000..4a757e527736
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/eswin/es_panel.c b/drivers/gpu/drm/eswin/es_panel.c
 new file mode 100644
-index 000000000000..7c2bd90393e2
+index 0000000000000..7c2bd90393e26
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_panel.c
 @@ -0,0 +1,943 @@
@@ -1826,7 +1826,7 @@ index 000000000000..7c2bd90393e2
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/gpu/drm/eswin/es_panel.h b/drivers/gpu/drm/eswin/es_panel.h
 new file mode 100644
-index 000000000000..96ae0171f379
+index 0000000000000..96ae0171f379c
 --- /dev/null
 +++ b/drivers/gpu/drm/eswin/es_panel.h
 @@ -0,0 +1,67 @@

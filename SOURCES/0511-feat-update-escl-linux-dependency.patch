@@ -1,4 +1,4 @@
-From adc0177806eb84b50b4444c7a04dd0713eacb7c7 Mon Sep 17 00:00:00 2001
+From a9aae409e28fb1e319c764a094869e6f866a2a3d Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Wed, 21 May 2025 13:45:33 +0800
 Subject: [PATCH 511/652] feat: update escl linux dependency
@@ -14,7 +14,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  2 files changed, 2 insertions(+)
 
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
-index ca6a63a49950..13c9e8291ed2 100644
+index ca6a63a499504..13c9e8291ed28 100644
 --- a/arch/riscv/configs/vpu7702_evb_defconfig
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -848,3 +848,4 @@ CONFIG_VIDEO_ESWIN_DEWARP=y
@@ -23,7 +23,7 @@ index ca6a63a49950..13c9e8291ed2 100644
  CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 +CONFIG_ESWIN_MALLOC_DMABUF=y
 diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
-index 1585a666d16f..c151e2f411bb 100644
+index 1585a666d16f0..c151e2f411bbe 100644
 --- a/arch/riscv/configs/vpu7702_pcie_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_defconfig
 @@ -852,3 +852,4 @@ CONFIG_SENSORS_TMP102=y

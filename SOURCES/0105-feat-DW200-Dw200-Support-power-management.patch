@@ -1,4 +1,4 @@
-From 8bc669617d0bc977568b84f8cf1749b9435662be Mon Sep 17 00:00:00 2001
+From 14b5f0bd4a59e6a4c815c34c4a9b33e0e72ab000 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 17 Jul 2024 10:14:04 +0800
 Subject: [PATCH 105/652] feat(DW200): Dw200 Support power management
@@ -13,7 +13,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 148 insertions(+), 32 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_subdev.h b/drivers/staging/media/eswin/dewarp/dw200_subdev.h
-index f95b7561465f..2d599f840cc5 100644
+index f95b7561465f4..2d599f840cc58 100644
 --- a/drivers/staging/media/eswin/dewarp/dw200_subdev.h
 +++ b/drivers/staging/media/eswin/dewarp/dw200_subdev.h
 @@ -310,6 +310,7 @@ enum {
@@ -25,7 +25,7 @@ index f95b7561465f..2d599f840cc5 100644
  	struct clk *cfg_clk;
  	struct clk *dw_aclk;
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index 2810f0a57d80..7ee5a88a803c 100644
+index 2810f0a57d801..7ee5a88a803c7 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -72,6 +72,8 @@

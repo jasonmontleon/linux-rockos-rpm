@@ -1,4 +1,4 @@
-From d05564d7ae7ae27340f9e188ea85ea6d1744d339 Mon Sep 17 00:00:00 2001
+From fbe7a3886a405fddc9dd7b60c409e446b0418d34 Mon Sep 17 00:00:00 2001
 From: luyulin <luyulin@eswincomputing.com>
 Date: Fri, 24 May 2024 10:47:11 +0800
 Subject: [PATCH 024/652] feat:sata driver to linux 6.6.
@@ -14,7 +14,7 @@ Changelogs:
  create mode 100644 drivers/ata/ahci_eswin.c
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0c9b6e662ed4..f57a7581943b 100644
+index 0c9b6e662ed4f..f57a7581943ba 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -73,6 +73,7 @@ CONFIG_BLK_DEV_SD=y
@@ -26,7 +26,7 @@ index 0c9b6e662ed4..f57a7581943b 100644
  # CONFIG_NET_VENDOR_ALACRITECH is not set
  # CONFIG_NET_VENDOR_AMAZON is not set
 diff --git a/drivers/ata/Kconfig b/drivers/ata/Kconfig
-index 188707d2970e..0f9cdda96215 100644
+index 188707d2970ef..0f9cdda962154 100644
 --- a/drivers/ata/Kconfig
 +++ b/drivers/ata/Kconfig
 @@ -153,6 +153,15 @@ config SATA_MOBILE_LPM_POLICY
@@ -46,7 +46,7 @@ index 188707d2970e..0f9cdda96215 100644
  	tristate "Platform AHCI SATA support"
  	select SATA_HOST
 diff --git a/drivers/ata/Makefile b/drivers/ata/Makefile
-index 20e6645ab737..a596e5ea5134 100644
+index 20e6645ab7371..a596e5ea5134e 100644
 --- a/drivers/ata/Makefile
 +++ b/drivers/ata/Makefile
 @@ -13,6 +13,7 @@ obj-$(CONFIG_SATA_INIC162X)	+= sata_inic162x.o
@@ -59,7 +59,7 @@ index 20e6645ab737..a596e5ea5134 100644
  obj-$(CONFIG_AHCI_DA850)	+= ahci_da850.o libahci.o libahci_platform.o
 diff --git a/drivers/ata/ahci_eswin.c b/drivers/ata/ahci_eswin.c
 new file mode 100644
-index 000000000000..d9495dfe9887
+index 0000000000000..d9495dfe9887b
 --- /dev/null
 +++ b/drivers/ata/ahci_eswin.c
 @@ -0,0 +1,341 @@

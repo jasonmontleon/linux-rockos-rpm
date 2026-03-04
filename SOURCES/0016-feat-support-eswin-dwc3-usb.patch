@@ -1,4 +1,4 @@
-From 9b5bddeec6f35ab5a72a944060049cbad41606ec Mon Sep 17 00:00:00 2001
+From 3becea7e74107b3da72794819ac1e7bcdd26d6ca Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 22 May 2024 20:20:01 +0800
 Subject: [PATCH 016/652] feat:support eswin dwc3 usb
@@ -12,7 +12,7 @@ Changelogs:
  create mode 100755 drivers/usb/dwc3/dwc3-eswin.c
 
 diff --git a/drivers/usb/dwc3/Kconfig b/drivers/usb/dwc3/Kconfig
-index 98efcbb76c88..3571543e8348 100644
+index 98efcbb76c882..3571543e83483 100644
 --- a/drivers/usb/dwc3/Kconfig
 +++ b/drivers/usb/dwc3/Kconfig
 @@ -118,6 +118,15 @@ config USB_DWC3_OF_SIMPLE
@@ -32,7 +32,7 @@ index 98efcbb76c88..3571543e8348 100644
  	tristate "STMicroelectronics Platforms"
  	depends on (ARCH_STI || COMPILE_TEST) && OF
 diff --git a/drivers/usb/dwc3/Makefile b/drivers/usb/dwc3/Makefile
-index fe1493d4bbe5..946f9a2b7819 100644
+index fe1493d4bbe58..946f9a2b78199 100644
 --- a/drivers/usb/dwc3/Makefile
 +++ b/drivers/usb/dwc3/Makefile
 @@ -50,6 +50,7 @@ obj-$(CONFIG_USB_DWC3_HAPS)		+= dwc3-haps.o
@@ -45,7 +45,7 @@ index fe1493d4bbe5..946f9a2b7819 100644
  obj-$(CONFIG_USB_DWC3_IMX8MP)		+= dwc3-imx8mp.o
 diff --git a/drivers/usb/dwc3/dwc3-eswin.c b/drivers/usb/dwc3/dwc3-eswin.c
 new file mode 100755
-index 000000000000..1769d9a7ff5f
+index 0000000000000..1769d9a7ff5f3
 --- /dev/null
 +++ b/drivers/usb/dwc3/dwc3-eswin.c
 @@ -0,0 +1,671 @@

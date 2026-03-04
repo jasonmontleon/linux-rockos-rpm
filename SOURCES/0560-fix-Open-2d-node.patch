@@ -1,4 +1,4 @@
-From 38e750225ba3931b031ef4161a81da1d94a6c9cd Mon Sep 17 00:00:00 2001
+From a174f9c87eecd5d51d59a3fb0057704bdde5e69a Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Sun, 15 Jun 2025 10:47:13 +0800
 Subject: [PATCH 560/652] fix:Open 2d node.
@@ -12,7 +12,7 @@ Signed-off-by: taohaitao <taohaitao@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 22a63047b779..30aa28ee5b0e 100644
+index 22a63047b779c..30aa28ee5b0ee 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -405,7 +405,7 @@ &gpu0 {

@@ -1,4 +1,4 @@
-From 8cdcfb9fab91d807985782058aec50785a3c6800 Mon Sep 17 00:00:00 2001
+From eeec37ecb91089d0de4ca36a3b11a7d7b2cf12fe Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 24 Jul 2024 16:21:05 +0800
 Subject: [PATCH 116/652] fix:Fix a fan duty cycle error
@@ -13,7 +13,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index dada3492fe11..27b8bd045775 100644
+index dada3492fe110..27b8bd0457751 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -683,7 +683,6 @@ &d0_mbox7 {
@@ -25,7 +25,7 @@ index dada3492fe11..27b8bd045775 100644
  
  &d0_i2c0 {
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 31a1b673b89c..1a9ded7f2c32 100644
+index 31a1b673b89c3..1a9ded7f2c325 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -582,6 +582,7 @@ &d0_mbox7 {

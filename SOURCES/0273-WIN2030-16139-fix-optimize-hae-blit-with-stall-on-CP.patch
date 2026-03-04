@@ -1,4 +1,4 @@
-From 5a12c00bb7484e9b268e35c8265379973dcf7869 Mon Sep 17 00:00:00 2001
+From 5ee02788f10b096defd15e23d7c9928581e938f0 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Thu, 26 Sep 2024 17:20:56 +0800
 Subject: [PATCH 273/652] WIN2030-16139:fix:optimize hae blit with stall on CPU
@@ -16,7 +16,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  3 files changed, 27 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
-index bebbbd4a7edf..0cd8c0ab4dae 100644
+index bebbbd4a7edfa..0cd8c0ab4daed 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware.c
 @@ -2033,7 +2033,8 @@ gckHARDWARE_Construct(gckOS Os, gckKERNEL Kernel, gckHARDWARE *Hardware)
@@ -38,7 +38,7 @@ index bebbbd4a7edf..0cd8c0ab4dae 100644
  
  #if gcdLINK_QUEUE_SIZE
 diff --git a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
-index bb92f5f58e0a..52907911bf20 100644
+index bb92f5f58e0a5..52907911bf206 100644
 --- a/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 +++ b/drivers/staging/media/eswin/hae/hal/kernel/arch/gc_hal_kernel_hardware_waitlink_fe.c
 @@ -1130,7 +1130,7 @@ gckWLFE_Execute(gckHARDWARE Hardware, gctADDRESS Address, gctUINT32 Bytes)
@@ -59,7 +59,7 @@ index bb92f5f58e0a..52907911bf20 100644
                                            0x00658, control));
      } else {
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
-index 151e006da98f..84734b7cbe81 100644
+index 151e006da98f7..84734b7cbe813 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/allocator/default/gc_hal_kernel_allocator_user_memory.c
 @@ -334,6 +334,7 @@ import_pfn_map(gckOS Os, struct device *dev, struct um_desc *um,

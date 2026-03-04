@@ -1,4 +1,4 @@
-From 33031d7c249b6534da8c546f4a4baf9e924dbf54 Mon Sep 17 00:00:00 2001
+From 4745f76f78bf828c228a15a577d3d6cdca65c7d4 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 29 Apr 2024 08:59:44 +0800
 Subject: [PATCH 027/652] fix(IOMMU):Add ARCH_HAS_TEARDOWN_DMA_OPS
@@ -13,7 +13,7 @@ Changelogs:
  2 files changed, 8 insertions(+)
 
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 75d3f1e6f884..ba27d4765fb7 100644
+index 75d3f1e6f8847..ba27d4765fb7d 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -138,6 +138,13 @@ void arch_dma_prep_coherent(struct page *page, size_t size)
@@ -31,7 +31,7 @@ index 75d3f1e6f884..ba27d4765fb7 100644
  		const struct iommu_ops *iommu, bool coherent)
  {
 diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-index d78b8c3f72a8..f10259ca60ae 100644
+index d78b8c3f72a8c..f10259ca60ae8 100644
 --- a/drivers/soc/sifive/Kconfig
 +++ b/drivers/soc/sifive/Kconfig
 @@ -20,6 +20,7 @@ config ARCH_ESWIN_EIC770X_SOC_FAMILY

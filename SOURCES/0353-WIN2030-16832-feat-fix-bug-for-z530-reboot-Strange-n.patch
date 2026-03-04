@@ -1,4 +1,4 @@
-From 6950507efb6d88c722c437adbc471e00bcb56eb9 Mon Sep 17 00:00:00 2001
+From 8395aeee227d47851e7cb260132cd9cb4381f2ed Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 18 Dec 2024 11:00:57 +0800
 Subject: [PATCH 353/652] WIN2030-16832:feat:fix bug for z530 reboot Strange
@@ -14,7 +14,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 5 insertions(+)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 77f225e11a2d..26aedb86a7c9 100644
+index 77f225e11a2d8..26aedb86a7c90 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -700,6 +700,10 @@ static const struct snd_soc_dapm_route es8328_dapm_routes[] = {

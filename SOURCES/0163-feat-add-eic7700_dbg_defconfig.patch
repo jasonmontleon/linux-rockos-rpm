@@ -1,4 +1,4 @@
-From b9e29db70e7845d7e7e0986da134c9985cef2580 Mon Sep 17 00:00:00 2001
+From 2557ecdd717ebb409076fd1e4d1e438e3c8ff7c9 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 28 Aug 2024 16:01:05 +0800
 Subject: [PATCH 163/652] feat:add eic7700_dbg_defconfig
@@ -16,7 +16,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
 new file mode 100644
-index 000000000000..16397c4ba2f4
+index 0000000000000..16397c4ba2f4f
 --- /dev/null
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -0,0 +1,835 @@

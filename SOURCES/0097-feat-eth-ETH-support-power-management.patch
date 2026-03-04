@@ -1,4 +1,4 @@
-From ad33803f97d83f4ad1c53963d7a1d66b74c980f3 Mon Sep 17 00:00:00 2001
+From 6b1227a19feb6fee974298ad73de4effc4ad65b9 Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Thu, 11 Jul 2024 14:04:35 +0800
 Subject: [PATCH 097/652] feat(eth): ETH support power management
@@ -13,7 +13,7 @@ Signed-off-by: fanglifei <fanglifei@eswincomputing.com>
  1 file changed, 39 insertions(+), 24 deletions(-)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
-index 0b37eabd6334..5a83b55357fb 100644
+index 0b37eabd63343..5a83b55357fbf 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -278,13 +278,44 @@ static void dwc_qos_fix_speed(void *priv, unsigned int speed, unsigned int mode)
