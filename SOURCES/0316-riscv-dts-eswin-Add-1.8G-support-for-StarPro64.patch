@@ -1,4 +1,4 @@
-From f5bd9d7d40075486415ce4b0b94a1a8387d1a641 Mon Sep 17 00:00:00 2001
+From b283195bfb0a40a6cc2b82c029a1bb8b82a01d94 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sun, 5 Jan 2025 23:47:58 +0800
 Subject: [PATCH 316/652] riscv: dts: eswin: Add 1.8G support for StarPro64

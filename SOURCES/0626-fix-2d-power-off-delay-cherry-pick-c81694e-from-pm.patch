@@ -1,4 +1,4 @@
-From 7eb07bcc37629ae06cfeb652dc3f77f49dc8b643 Mon Sep 17 00:00:00 2001
+From 0036efd0182b25e1e3ac253b0e61ba300fa68960 Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:50:20 +0800
 Subject: [PATCH 626/652] fix(2d):power off delay,cherry-pick c81694e from pm

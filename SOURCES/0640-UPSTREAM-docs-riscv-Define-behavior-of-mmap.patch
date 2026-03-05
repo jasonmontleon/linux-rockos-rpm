@@ -1,4 +1,4 @@
-From 0e4a2faf6a0e36d5adc593028124a0ee5b1407f7 Mon Sep 17 00:00:00 2001
+From dbc1ba03a3c1ee06f7381cd49f41a9520c581a2c Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:02 -0800
 Subject: [PATCH 640/652] UPSTREAM: docs: riscv: Define behavior of mmap

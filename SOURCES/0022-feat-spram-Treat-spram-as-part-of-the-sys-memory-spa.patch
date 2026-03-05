@@ -1,4 +1,4 @@
-From 326b2a8501dd08ec0716074ee73ffe0dd22c4c7b Mon Sep 17 00:00:00 2001
+From 3d4a001f378cc9fb3c5d15b4b61d863390ec5615 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 23 May 2024 16:30:23 +0800
 Subject: [PATCH 022/652] feat(spram):Treat spram as part of the sys memory
