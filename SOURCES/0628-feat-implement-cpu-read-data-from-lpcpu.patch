@@ -1,4 +1,4 @@
-From 9f120097a12a575f233ae3fc9770ba4d6a5ae016 Mon Sep 17 00:00:00 2001
+From 8514d0d209d492ab39973db277d05745b7b4b902 Mon Sep 17 00:00:00 2001
 From: hehuan1 <hehuan1@eswincomputing.com>
 Date: Tue, 10 Jun 2025 21:51:57 +0800
 Subject: [PATCH 628/652] feat: implement cpu read data from lpcpu
@@ -48,7 +48,7 @@ index 88aca18d7bc16..0637f2b612f63 100644
  CONFIG_SENSORS_TMP102=y
  CONFIG_SENSORS_PAC1934=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 655ce83483869..88735efccb694 100644
+index ae20edaaf84e5..2f78c97e9289b 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -568,6 +568,12 @@ config SENSORS_DA9055

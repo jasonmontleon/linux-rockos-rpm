@@ -1,4 +1,4 @@
-From 913a2e69a2f3887e68854e9d448664471f50101a Mon Sep 17 00:00:00 2001
+From 332e55dc6826a4a5364d261d2ee3aa6ef5922615 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 23 May 2024 16:16:05 +0800
 Subject: [PATCH 025/652] feat:add support pac1934 to get som voltage info
@@ -47,7 +47,7 @@ index f57a7581943ba..82c00984fe525 100644
  CONFIG_DW_WATCHDOG=y
  CONFIG_REGULATOR=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index a4c361b6619c1..14e8320b5c07d 100644
+index 2b090dbd836c5..ca8ea7a5ea5a2 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -2371,6 +2371,12 @@ config SENSORS_INTEL_M10_BMC_HWMON

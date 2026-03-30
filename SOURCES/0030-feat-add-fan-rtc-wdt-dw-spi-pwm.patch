@@ -1,4 +1,4 @@
-From cf6974785bc51aaa54e8a9d24d296d8409f605f6 Mon Sep 17 00:00:00 2001
+From 6eced6f06120388b85454157137e94ac92c64011 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 24 May 2024 13:24:28 +0800
 Subject: [PATCH 030/652] feat:add fan,rtc,wdt,dw-spi,pwm
@@ -78,7 +78,7 @@ index 0a03d049eff90..d0362cdd1b1ef 100644
  CONFIG_INTERCONNECT=y
  CONFIG_EXT4_FS=y
 diff --git a/drivers/hwmon/Kconfig b/drivers/hwmon/Kconfig
-index 14e8320b5c07d..39185cb8e3df6 100644
+index ca8ea7a5ea5a2..58e4442dea883 100644
 --- a/drivers/hwmon/Kconfig
 +++ b/drivers/hwmon/Kconfig
 @@ -312,6 +312,15 @@ config SENSORS_AXI_FAN_CONTROL

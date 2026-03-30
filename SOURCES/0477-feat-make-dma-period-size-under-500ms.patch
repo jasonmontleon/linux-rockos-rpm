@@ -1,4 +1,4 @@
-From f6e85201d1bea62b8f57d95e731d967507d59a8c Mon Sep 17 00:00:00 2001
+From 3d5301a008061b7c808a8dc0b5a9ce52bc71dadc Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 16 Apr 2025 10:19:42 +0800
 Subject: [PATCH 477/652] feat:make dma period size under 500ms

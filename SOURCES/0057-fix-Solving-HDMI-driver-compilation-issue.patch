@@ -1,4 +1,4 @@
-From cbde0ec7e9088a38ac3891b065fef4e547cd4269 Mon Sep 17 00:00:00 2001
+From bb658a084138cdfebb5bc4e9b6dd9bd141d3feb3 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 20 Jun 2024 08:56:15 +0800
 Subject: [PATCH 057/652] fix:Solving HDMI driver compilation issue.

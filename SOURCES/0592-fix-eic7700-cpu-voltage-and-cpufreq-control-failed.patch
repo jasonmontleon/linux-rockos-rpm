@@ -1,4 +1,4 @@
-From 15a972ff97fd7317c8a0a59d55fddc47d5dd0be6 Mon Sep 17 00:00:00 2001
+From 7c04c2a42eeae0a0ce7c9d7346ea967eb02bac73 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 2 Jul 2025 09:43:31 +0800
 Subject: [PATCH 592/652] fix: eic7700 cpu voltage and cpufreq control failed
