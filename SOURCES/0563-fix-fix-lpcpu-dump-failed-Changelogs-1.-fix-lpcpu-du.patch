@@ -1,4 +1,4 @@
-From 0870c39d6a88d8e8f58fa7c7854f5b9efde1e68d Mon Sep 17 00:00:00 2001
+From fec0f2ddd624f34608f546e89341a3879b0b13eb Mon Sep 17 00:00:00 2001
 From: yuzaiqiang <yuzaiqiang@eswincomputing.com>
 Date: Mon, 16 Jun 2025 15:07:27 +0800
 Subject: [PATCH 563/652] fix:fix lpcpu dump failed Changelogs: 1. fix lpcpu
