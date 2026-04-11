@@ -1,4 +1,4 @@
-From bf0569c984b254ecc829bb8544bf4f061bfc32a9 Mon Sep 17 00:00:00 2001
+From 49a34adeb22d5038112fbfe5b7ff5708a6f16e7c Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Mon, 2 Dec 2024 17:13:54 +0800
 Subject: [PATCH 339/652] WIN2030-16412:feat: DMA memcopy kernel driver.

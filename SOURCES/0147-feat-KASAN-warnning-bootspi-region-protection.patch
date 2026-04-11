@@ -1,4 +1,4 @@
-From 2eaf4c99dc52ba25763f47e6972a452b44c3e025 Mon Sep 17 00:00:00 2001
+From 0879a29de042e33576de9b83046e3cfb9d832887 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 12 Aug 2024 16:04:58 +0800
 Subject: [PATCH 147/652] feat:KASAN warnning & bootspi region protection

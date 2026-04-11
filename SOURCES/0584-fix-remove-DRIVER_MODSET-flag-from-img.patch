@@ -1,4 +1,4 @@
-From bcb85ecc383ca91173cd5ad42596ffbba409a4b6 Mon Sep 17 00:00:00 2001
+From 432ee8bd876e5db25f974b9b11694c6c19fda0fa Mon Sep 17 00:00:00 2001
 From: zhang yizhong <zhangyizhong@eswincomputing.com>
 Date: Wed, 25 Jun 2025 13:30:30 +0800
 Subject: [PATCH 584/652] fix:remove DRIVER_MODSET flag from img.

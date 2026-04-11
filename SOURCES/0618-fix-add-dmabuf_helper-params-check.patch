@@ -1,4 +1,4 @@
-From 62c9b0772f45f5863def5760806c1bb7f75170f7 Mon Sep 17 00:00:00 2001
+From 3edaa64705f4fbfba959cf6745ad8a2f06f0fd0a Mon Sep 17 00:00:00 2001
 From: He jiean <hejiean@eswincomputing.com>
 Date: Wed, 9 Jul 2025 16:43:28 +0800
 Subject: [PATCH 618/652] fix: add dmabuf_helper params check
