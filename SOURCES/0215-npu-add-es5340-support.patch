@@ -1,4 +1,4 @@
-From c5011b53c7844cfd7a9a3730348b6dc532717a6d Mon Sep 17 00:00:00 2001
+From f14d58d2474cf27ff2edecc3182a18a1f7a271bb Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:12:28 +0800
 Subject: [PATCH 215/652] npu: add es5340 support
