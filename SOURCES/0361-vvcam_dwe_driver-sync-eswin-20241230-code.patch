@@ -1,4 +1,4 @@
-From f77ec51e6302bcc6e9c3dc4ae25c429702ced1d7 Mon Sep 17 00:00:00 2001
+From 4a764d76ccb1e4b3a463833626c43205c19099f1 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Mon, 6 Jan 2025 01:34:21 +0800
 Subject: [PATCH 361/652] vvcam_dwe_driver: sync eswin 20241230 code
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 13 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index d7b7695b91445..d462277fecc6b 100644
+index d7b7695b9144..d462277fecc6 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -183,7 +183,7 @@ static unsigned int dewarp_poll(struct file *filp, poll_table *wait)
@@ -56,5 +56,5 @@ index d7b7695b91445..d462277fecc6b 100644
  
  	if (pdev->id >= NUM_DEVICES) {
 -- 
-2.53.0
+2.54.0
 

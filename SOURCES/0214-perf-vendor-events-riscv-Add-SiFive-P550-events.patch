@@ -1,4 +1,4 @@
-From a2dfd2216e0d18dddcffe727d7bb3daf0002fc78 Mon Sep 17 00:00:00 2001
+From f10654c28f1b55477f9150efc2c4ad4f4e59c538 Mon Sep 17 00:00:00 2001
 From: Eric Lin <eric.lin@sifive.com>
 Date: Tue, 16 Jul 2024 10:32:03 +0000
 Subject: [PATCH 214/652] perf vendor events riscv: Add SiFive P550 events
@@ -25,7 +25,7 @@ Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
  create mode 100644 tools/perf/pmu-events/arch/riscv/sifive/p550/microarch.json
 
 diff --git a/tools/perf/pmu-events/arch/riscv/mapfile.csv b/tools/perf/pmu-events/arch/riscv/mapfile.csv
-index c61b3d6ef6166..6328fd3f45ee3 100644
+index c61b3d6ef616..6328fd3f45ee 100644
 --- a/tools/perf/pmu-events/arch/riscv/mapfile.csv
 +++ b/tools/perf/pmu-events/arch/riscv/mapfile.csv
 @@ -15,3 +15,4 @@
@@ -35,7 +35,7 @@ index c61b3d6ef6166..6328fd3f45ee3 100644
 +0x489-0x8000000000000008-0x[[:xdigit:]]+,v1,sifive/p550,core
 diff --git a/tools/perf/pmu-events/arch/riscv/sifive/p550/cycle-and-instruction-count.json b/tools/perf/pmu-events/arch/riscv/sifive/p550/cycle-and-instruction-count.json
 new file mode 100644
-index 0000000000000..b530032994d9e
+index 000000000000..b530032994d9
 --- /dev/null
 +++ b/tools/perf/pmu-events/arch/riscv/sifive/p550/cycle-and-instruction-count.json
 @@ -0,0 +1,12 @@
@@ -53,7 +53,7 @@ index 0000000000000..b530032994d9e
 +]
 diff --git a/tools/perf/pmu-events/arch/riscv/sifive/p550/firmware.json b/tools/perf/pmu-events/arch/riscv/sifive/p550/firmware.json
 new file mode 100644
-index 0000000000000..9b4a032186a7b
+index 000000000000..9b4a032186a7
 --- /dev/null
 +++ b/tools/perf/pmu-events/arch/riscv/sifive/p550/firmware.json
 @@ -0,0 +1,68 @@
@@ -127,7 +127,7 @@ index 0000000000000..9b4a032186a7b
 +]
 diff --git a/tools/perf/pmu-events/arch/riscv/sifive/p550/instruction.json b/tools/perf/pmu-events/arch/riscv/sifive/p550/instruction.json
 new file mode 100644
-index 0000000000000..284e4c1566e03
+index 000000000000..284e4c1566e0
 --- /dev/null
 +++ b/tools/perf/pmu-events/arch/riscv/sifive/p550/instruction.json
 @@ -0,0 +1,92 @@
@@ -225,7 +225,7 @@ index 0000000000000..284e4c1566e03
 +]
 diff --git a/tools/perf/pmu-events/arch/riscv/sifive/p550/memory.json b/tools/perf/pmu-events/arch/riscv/sifive/p550/memory.json
 new file mode 100644
-index 0000000000000..9351c9074ed70
+index 000000000000..9351c9074ed7
 --- /dev/null
 +++ b/tools/perf/pmu-events/arch/riscv/sifive/p550/memory.json
 @@ -0,0 +1,47 @@
@@ -278,7 +278,7 @@ index 0000000000000..9351c9074ed70
 +]
 diff --git a/tools/perf/pmu-events/arch/riscv/sifive/p550/microarch.json b/tools/perf/pmu-events/arch/riscv/sifive/p550/microarch.json
 new file mode 100644
-index 0000000000000..d9cdb7d747eed
+index 000000000000..d9cdb7d747ee
 --- /dev/null
 +++ b/tools/perf/pmu-events/arch/riscv/sifive/p550/microarch.json
 @@ -0,0 +1,57 @@
@@ -340,5 +340,5 @@ index 0000000000000..d9cdb7d747eed
 +  }
 +]
 -- 
-2.53.0
+2.54.0
 

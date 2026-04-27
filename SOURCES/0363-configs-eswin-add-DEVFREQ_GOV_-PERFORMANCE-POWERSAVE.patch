@@ -1,4 +1,4 @@
-From 3b404cd6ba49ead2feab6ac6ee3e1d1357e5d4aa Mon Sep 17 00:00:00 2001
+From bf0fd1ad66e8cd36fba7af9367590577701da1cf Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 24 Jan 2025 17:16:08 +0800
 Subject: [PATCH 363/652] configs: eswin: add
@@ -15,7 +15,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 4 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 7601a3cf4932e..6af7ca38d0c99 100644
+index 7601a3cf4932..6af7ca38d0c9 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -787,6 +787,10 @@ CONFIG_ESWIN_DSP=m
@@ -30,5 +30,5 @@ index 7601a3cf4932e..6af7ca38d0c99 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.53.0
+2.54.0
 

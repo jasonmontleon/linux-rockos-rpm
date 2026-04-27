@@ -1,4 +1,4 @@
-From 235f206ccceab706b900216eb716912e422c15c6 Mon Sep 17 00:00:00 2001
+From 2ca16bc10bdf8afee203543cb884ec707690e343 Mon Sep 17 00:00:00 2001
 From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
 Date: Fri, 18 Apr 2025 09:28:00 +0800
 Subject: [PATCH 499/652] feat: Export die idx pin
@@ -43,7 +43,7 @@ Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
  1 file changed, 54 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 0a54b5c27bb6b..fd7737b62c61c 100644
+index 0a54b5c27bb6..fd7737b62c61 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -998,6 +998,54 @@ &timer3 {
@@ -116,5 +116,5 @@ index 0a54b5c27bb6b..fd7737b62c61c 100644
  	/* apply_npu_1G_freq; */
  	npu-supply=<&npu_vcc1>;
 -- 
-2.53.0
+2.54.0
 

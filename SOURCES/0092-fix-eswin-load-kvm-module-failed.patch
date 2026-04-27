@@ -1,4 +1,4 @@
-From 1d231d6c9ea6ed28cfba6fcaf2f507ad240e2a58 Mon Sep 17 00:00:00 2001
+From 0426dfd88640dab25e648be85d2251e9427da25d Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 15 Jul 2024 23:51:22 +0800
 Subject: [PATCH 092/652] fix: eswin: load kvm module failed
@@ -44,7 +44,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 8 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/errata/sifive/errata.c b/arch/riscv/errata/sifive/errata.c
-index 20dcbd9e76f4c..57fac9c2ccbaa 100644
+index 20dcbd9e76f4..57fac9c2ccba 100644
 --- a/arch/riscv/errata/sifive/errata.c
 +++ b/arch/riscv/errata/sifive/errata.c
 @@ -63,12 +63,6 @@ static u32 __init_or_module sifive_errata_probe(unsigned long archid,
@@ -76,5 +76,5 @@ index 20dcbd9e76f4c..57fac9c2ccbaa 100644
  
  	for (alt = begin; alt < end; alt++) {
 -- 
-2.53.0
+2.54.0
 

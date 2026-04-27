@@ -1,4 +1,4 @@
-From 6db042ff2810c049e5e3fae5522d151f5a1023a1 Mon Sep 17 00:00:00 2001
+From 78912bb1d2ba2d5329ffdf24a15a848f9dfd7341 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Tue, 17 Jun 2025 15:06:57 +0800
 Subject: [PATCH 578/652] feature: Add CONFIG_KEXEC and SYSRQ config
@@ -13,7 +13,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  2 files changed, 6 insertions(+)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 8166eb144e00b..8b6396856ff89 100644
+index 8166eb144e00..8b6396856ff8 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -29,6 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -34,7 +34,7 @@ index 8166eb144e00b..8b6396856ff89 100644
  CONFIG_SCHED_STACK_END_CHECK=y
  CONFIG_DEBUG_VM=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 4fcedf262fd25..9e9ddbbf21aa1 100644
+index 4fcedf262fd2..9e9ddbbf21aa 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -30,6 +30,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -55,5 +55,5 @@ index 4fcedf262fd25..9e9ddbbf21aa1 100644
  CONFIG_SCHED_STACK_END_CHECK=y
  CONFIG_DEBUG_VM=y
 -- 
-2.53.0
+2.54.0
 

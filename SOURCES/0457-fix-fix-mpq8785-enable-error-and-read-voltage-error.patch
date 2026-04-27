@@ -1,4 +1,4 @@
-From 4ab5c4c38376aa732e168d8e69d2697ce1063c22 Mon Sep 17 00:00:00 2001
+From 4f658a3d0e51e6922da3020d1c755b187f8124fa Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 2 Apr 2025 13:45:41 +0800
 Subject: [PATCH 457/652] fix:fix mpq8785 enable error and read voltage error
@@ -11,7 +11,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 89 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index 2e4e95e3d98b0..a2bfd04af41b3 100644
+index 2e4e95e3d98b..a2bfd04af41b 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -192,7 +192,7 @@ struct MPQ8785_DRIVER_DATA
@@ -200,5 +200,5 @@ index 2e4e95e3d98b0..a2bfd04af41b3 100644
  
  int mpq8785_regulator_disable(struct regulator_dev *rdev)
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From b12b3388836ee50baa943b07a5fa337fd66423b5 Mon Sep 17 00:00:00 2001
+From df1f12bc62837ce0b46f6b56095b6d16c2dfac30 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 24 Jun 2025 10:40:42 +0800
 Subject: [PATCH 580/652] fix:modify temperature to 65-75-105
@@ -14,7 +14,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  3 files changed, 44 insertions(+), 22 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
-index 47cbe32e59474..df4b8dac0ec10 100644
+index 47cbe32e5947..df4b8dac0ec1 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch-d2d.dtsi
 @@ -109,6 +109,7 @@ cpu_4: cpu@4 {
@@ -50,7 +50,7 @@ index 47cbe32e59474..df4b8dac0ec10 100644
  		cpu7_intc: interrupt-controller {
  			#interrupt-cells = <1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 9d132f6e42847..5f27110b940b6 100644
+index 9d132f6e4284..5f27110b940b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -40,18 +40,16 @@ thermal0 {
@@ -92,7 +92,7 @@ index 9d132f6e42847..5f27110b940b6 100644
  			label = "pvt1";
  			numa-node-id = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index ec38ce8bf5d84..610cddc7a6d90 100644
+index ec38ce8bf5d8..610cddc7a6d9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -32,24 +32,22 @@
@@ -261,5 +261,5 @@ index ec38ce8bf5d84..610cddc7a6d90 100644
  		};
  
 -- 
-2.53.0
+2.54.0
 

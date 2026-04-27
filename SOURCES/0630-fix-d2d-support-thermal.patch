@@ -1,4 +1,4 @@
-From b4ed5797f001ffd4bb13a373436345c81562e409 Mon Sep 17 00:00:00 2001
+From da9d433ea43240fd9c124e8bae024b05a107c0db Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Mon, 14 Jul 2025 18:01:21 +0800
 Subject: [PATCH 630/652] fix:d2d support thermal
@@ -12,7 +12,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  1 file changed, 20 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 0637f2b612f63..32b36f7a820b1 100644
+index 0637f2b612f6..32b36f7a820b 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -42,9 +42,12 @@ CONFIG_RISCV_SBI_V01=y
@@ -60,5 +60,5 @@ index 0637f2b612f63..32b36f7a820b1 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.53.0
+2.54.0
 

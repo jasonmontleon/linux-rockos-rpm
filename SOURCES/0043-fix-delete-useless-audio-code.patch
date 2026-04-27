@@ -1,4 +1,4 @@
-From 8fd50f65c176f99ecca1d534f9fb2251069542b6 Mon Sep 17 00:00:00 2001
+From 356a5da9c711264681afb4c263a1f38ae642513b Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 3 Jun 2024 14:28:29 +0800
 Subject: [PATCH 043/652] fix:delete useless audio code.
@@ -14,7 +14,7 @@ Changelogs:
  5 files changed, 10 insertions(+), 245 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 41fb37364295d..a92e182c073a4 100644
+index 41fb37364295..a92e182c073a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -90,20 +90,6 @@ npu0_reserved: sprammemory@59000000 {
@@ -39,7 +39,7 @@ index 41fb37364295d..a92e182c073a4 100644
  			reg = <0 0x91200000 0 0x2000000>;
  			no-map;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 2aebb21a51a0e..bec9f0b543678 100644
+index 2aebb21a51a0..bec9f0b54367 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -89,20 +89,6 @@ npu0_reserved: sprammemory@59000000 {
@@ -64,7 +64,7 @@ index 2aebb21a51a0e..bec9f0b543678 100644
  			reg = <0 0x91200000 0 0x2000000>;
  			no-map;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 48a042d05e8eb..2c19ffd3893e5 100644
+index 48a042d05e8e..2c19ffd3893e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1198,7 +1198,7 @@ d1_pwm0: pwm@0x70818000 {
@@ -275,7 +275,7 @@ index 48a042d05e8eb..2c19ffd3893e5 100644
  
  		d1_usbdrd3_0: usb0@70480000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
-index 8e7769e5b509a..4f8c9f146ce3f 100644
+index 8e7769e5b509..4f8c9f146ce3 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -100,20 +100,6 @@ npu1_reserved: sprammemory@79000000 {
@@ -389,7 +389,7 @@ index 8e7769e5b509a..4f8c9f146ce3f 100644
  	status = "disabled";
  	aon_eeprom@50 {
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index e2a203812d12d..271a5881d3ded 100644
+index e2a203812d12..271a5881d3de 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -81,11 +81,6 @@ linux,cma {
@@ -405,5 +405,5 @@ index e2a203812d12d..271a5881d3ded 100644
  			no-map;
  			reg = <0x0 0xa0000000 0x0 0x100000>;
 -- 
-2.53.0
+2.54.0
 

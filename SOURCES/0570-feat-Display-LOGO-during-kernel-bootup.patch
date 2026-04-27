@@ -1,4 +1,4 @@
-From d83a7ae3220207d475f2acd68ccd8b76a29a5ad7 Mon Sep 17 00:00:00 2001
+From ec4cf7efb2df1e65ddc47663cd625f82e90870c6 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 19 Jun 2025 09:40:38 +0800
 Subject: [PATCH 570/652] feat:Display LOGO during kernel bootup.
@@ -13,7 +13,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 22 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 9261a4b9cbf77..8166eb144e00b 100644
+index 9261a4b9cbf7..8166eb144e00 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -666,6 +666,16 @@ CONFIG_DRM_LEGACY=y
@@ -43,7 +43,7 @@ index 9261a4b9cbf77..8166eb144e00b 100644
  CONFIG_DYNAMIC_DEBUG=y
  CONFIG_DEBUG_FS=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 48d08ffb7203e..4fcedf262fd25 100644
+index 48d08ffb7203..4fcedf262fd2 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -651,6 +651,16 @@ CONFIG_DRM_LEGACY=y
@@ -73,5 +73,5 @@ index 48d08ffb7203e..4fcedf262fd25 100644
  CONFIG_DYNAMIC_DEBUG=y
  CONFIG_DEBUG_PAGEALLOC=y
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From c0506df338e2f6e590733365afc0654a34c568bc Mon Sep 17 00:00:00 2001
+From fc0f2c21fa1b46a1e6019ec8bd29baa0b19aa4ec Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 1 Aug 2024 16:47:31 +0800
 Subject: [PATCH 136/652] feat:Introduce system suspend support
@@ -28,7 +28,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  create mode 100644 drivers/soc/eswin/pm_eic770x.c
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index baefecd750167..1db237dc24cf4 100644
+index baefecd75016..1db237dc24cf 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -64,7 +64,7 @@ config RISCV
@@ -41,7 +41,7 @@ index baefecd750167..1db237dc24cf4 100644
  	select FRAME_POINTER if PERF_EVENTS || (FUNCTION_TRACER && !DYNAMIC_FTRACE)
  	select GENERIC_ARCH_TOPOLOGY
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index c6927bc6814f1..120fc44ae3f84 100644
+index c6927bc6814f..120fc44ae3f8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -53,6 +53,10 @@ aliases {
@@ -56,7 +56,7 @@ index c6927bc6814f1..120fc44ae3f84 100644
  
  	cpus {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 0e10a72e31ecb..5171c76ec825b 100644
+index 0e10a72e31ec..5171c76ec825 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -52,6 +52,10 @@ aliases {
@@ -71,7 +71,7 @@ index 0e10a72e31ecb..5171c76ec825b 100644
  
  	cpus {
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 5dd4d1e4380b5..db6520a2e6de7 100644
+index 5dd4d1e4380b..db6520a2e6de 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -50,6 +50,10 @@ aliases {
@@ -86,7 +86,7 @@ index 5dd4d1e4380b5..db6520a2e6de7 100644
  
  	cpus {
 diff --git a/arch/riscv/include/asm/sbi.h b/arch/riscv/include/asm/sbi.h
-index 3ed853b8a8c85..8d261a3171754 100644
+index 3ed853b8a8c8..8d261a317175 100644
 --- a/arch/riscv/include/asm/sbi.h
 +++ b/arch/riscv/include/asm/sbi.h
 @@ -29,6 +29,7 @@ enum sbi_ext_id {
@@ -113,7 +113,7 @@ index 3ed853b8a8c85..8d261a3171754 100644
  	SBI_EXT_PMU_NUM_COUNTERS = 0,
  	SBI_EXT_PMU_COUNTER_GET_INFO,
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 6d8602c478054..8e89b75e71eaf 100644
+index 6d8602c47805..8e89b75e71ea 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -754,7 +754,7 @@ int win2030_tbu_power(struct device *dev, bool is_powerUp)
@@ -126,7 +126,7 @@ index 6d8602c478054..8e89b75e71eaf 100644
  	#endif
  	}
 diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
-index bc4e41370dc16..391ab603d23af 100644
+index bc4e41370dc1..391ab603d23a 100644
 --- a/drivers/soc/eswin/Makefile
 +++ b/drivers/soc/eswin/Makefile
 @@ -1,3 +1,4 @@
@@ -139,7 +139,7 @@ index bc4e41370dc16..391ab603d23af 100644
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/pm_eic770x.c b/drivers/soc/eswin/pm_eic770x.c
 new file mode 100644
-index 0000000000000..ac5aa4928b6c6
+index 000000000000..ac5aa4928b6c
 --- /dev/null
 +++ b/drivers/soc/eswin/pm_eic770x.c
 @@ -0,0 +1,82 @@
@@ -226,5 +226,5 @@ index 0000000000000..ac5aa4928b6c6
 +
 +arch_initcall(eic770x_system_suspend_init);
 -- 
-2.53.0
+2.54.0
 

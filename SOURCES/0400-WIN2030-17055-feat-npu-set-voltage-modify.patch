@@ -1,4 +1,4 @@
-From 956768cfac176c06cc1d9d1259cf0db8e3095ded Mon Sep 17 00:00:00 2001
+From 7216ef5f0753caefe2b7f8afb5740a65294fac58 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 7 Feb 2025 20:00:25 +0800
 Subject: [PATCH 400/652] WIN2030-17055:feat: npu set voltage modify
@@ -16,7 +16,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  4 files changed, 6 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index ce1ca4a3b8156..bfffe51b7a6a3 100644
+index ce1ca4a3b815..bfffe51b7a6a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -297,6 +297,7 @@ &pcie {
@@ -28,7 +28,7 @@ index ce1ca4a3b8156..bfffe51b7a6a3 100644
  
  &d0_dsp_subsys {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index bbee71eff0991..5d0d8de19f0eb 100644
+index bbee71eff099..5d0d8de19f0e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -239,6 +239,7 @@ &pcie {
@@ -40,7 +40,7 @@ index bbee71eff0991..5d0d8de19f0eb 100644
  
  &d0_dsp_subsys {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 6141c93d92d05..564272a1e8e3a 100644
+index 6141c93d92d0..564272a1e8e3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -406,9 +406,11 @@ &d1_pcie {
@@ -56,7 +56,7 @@ index 6141c93d92d05..564272a1e8e3a 100644
  
  &d0_dsp_subsys {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index aa3be74f7e387..e4b6eca924830 100644
+index aa3be74f7e38..e4b6eca92483 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -459,9 +459,11 @@ &d1_pcie {
@@ -72,5 +72,5 @@ index aa3be74f7e387..e4b6eca924830 100644
  
  &d0_dsp_subsys {
 -- 
-2.53.0
+2.54.0
 

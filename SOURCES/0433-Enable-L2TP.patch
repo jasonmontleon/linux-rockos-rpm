@@ -1,4 +1,4 @@
-From 04ea8f31756f07f766777290f1b50044b3ff04c5 Mon Sep 17 00:00:00 2001
+From 24436e5722b6bdede176e5536737cc43853ad56b Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?Viktar=20Siarhiej=C4=8Dyk?= <a@gk.lc>
 Date: Mon, 24 Mar 2025 15:43:56 +0300
 Subject: [PATCH 433/652] Enable L2TP.
@@ -8,7 +8,7 @@ Subject: [PATCH 433/652] Enable L2TP.
  1 file changed, 5 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0ccf54cecfead..2eff323df5b31 100644
+index 0ccf54cecfea..2eff323df5b3 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -540,6 +540,11 @@ CONFIG_TXGBE=m
@@ -24,5 +24,5 @@ index 0ccf54cecfead..2eff323df5b31 100644
  # CONFIG_WLAN_VENDOR_ATH is not set
  # CONFIG_WLAN_VENDOR_ATMEL is not set
 -- 
-2.53.0
+2.54.0
 

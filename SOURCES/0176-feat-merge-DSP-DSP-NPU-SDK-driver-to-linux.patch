@@ -1,4 +1,4 @@
-From 07e439709746e80deb428cf1ebc1a7e4bd863bdc Mon Sep 17 00:00:00 2001
+From 31491b06e63d373b71f4f07b8dbe113aabc975f2 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 18 Sep 2024 16:34:12 +0800
 Subject: [PATCH 176/652] feat:merge DSP DSP & NPU SDK driver to linux.
@@ -21,7 +21,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  7 files changed, 251 insertions(+), 72 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 5bfd429001bb5..1edac591f642f 100644
+index 5bfd429001bb..1edac591f642 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -345,6 +345,12 @@ static int dsp_set_task_req(struct es_dsp *dsp, dsp_request_t *dsp_req,
@@ -385,7 +385,7 @@ index 5bfd429001bb5..1edac591f642f 100644
  	}
  	dsp_file = devm_kzalloc(dsp->dev, sizeof(*dsp_file), GFP_KERNEL);
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
-index 76a88f2399dc9..e7ad498934929 100644
+index 76a88f2399dc..e7ad49893492 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl_if.h
 @@ -36,6 +36,7 @@
@@ -405,7 +405,7 @@ index 76a88f2399dc9..e7ad498934929 100644
      ES_S32 result;
  } __attribute__((packed)) dsp_ioctl_task_s;
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index dcfd23a6f205b..4a68e4bf3559b 100644
+index dcfd23a6f205..4a68e4bf3559 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -56,7 +56,7 @@
@@ -484,7 +484,7 @@ index dcfd23a6f205b..4a68e4bf3559b 100644
  		dev_err(dsp->dev, "couldn't enable DSP\n");
  		goto out;
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
-index 308a5b1758fb3..d71d1ac3ecaae 100644
+index 308a5b1758fb..d71d1ac3ecaa 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.h
 @@ -85,6 +85,7 @@ struct dsp_user_req_async {
@@ -503,7 +503,7 @@ index 308a5b1758fb3..d71d1ac3ecaae 100644
 +void dsp_schedule_task(struct es_dsp *dsp);
  #endif
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 5051f7585dc8b..a2a360d181e90 100644
+index 5051f7585dc8..a2a360d181e9 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -255,7 +255,8 @@ int es_dsp_clk_disable(struct es_dsp *dsp)
@@ -542,7 +542,7 @@ index 5051f7585dc8b..a2a360d181e90 100644
  	if (ret) {
  		clk_disable_unprepare(hw->aclk);
 diff --git a/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h b/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h
-index 3fd15afae0c83..2ecbd0e0a0dd0 100644
+index 3fd15afae0c8..2ecbd0e0a0dd 100644
 --- a/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h
 +++ b/drivers/soc/eswin/ai_driver/include/es_dsp_internal.h
 @@ -8,6 +8,7 @@
@@ -584,7 +584,7 @@ index 3fd15afae0c83..2ecbd0e0a0dd0 100644
  #if __cplusplus
  }
 diff --git a/drivers/soc/eswin/ai_driver/include/hetero_ipc.h b/drivers/soc/eswin/ai_driver/include/hetero_ipc.h
-index 791132cfd645b..1a1bf833e668d 100644
+index 791132cfd645..1a1bf833e668 100644
 --- a/drivers/soc/eswin/ai_driver/include/hetero_ipc.h
 +++ b/drivers/soc/eswin/ai_driver/include/hetero_ipc.h
 @@ -446,14 +446,14 @@ static void messagebox_send_dsp(u32 op_type, u64 payload)
@@ -605,5 +605,5 @@ index 791132cfd645b..1a1bf833e668d 100644
              break;
          }
 -- 
-2.53.0
+2.54.0
 

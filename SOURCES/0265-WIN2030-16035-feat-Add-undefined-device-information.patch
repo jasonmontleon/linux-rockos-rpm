@@ -1,4 +1,4 @@
-From 5ce0424b325d12ae4eb16600243c4f19fe0162df Mon Sep 17 00:00:00 2001
+From 5fcaacde4701edba8a36af38e3983bc423d4c512 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 13 Sep 2024 10:13:48 +0800
 Subject: [PATCH 265/652] WIN2030-16035:feat:Add undefined device information
@@ -14,7 +14,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  2 files changed, 99 insertions(+), 22 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index d1c9d8cbd5b3c..0c360b4c90ac8 100644
+index d1c9d8cbd5b3..0c360b4c90ac 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -50,7 +50,10 @@ aliases {
@@ -173,7 +173,7 @@ index d1c9d8cbd5b3c..0c360b4c90ac8 100644
  
  &pinctrl {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index e23aace10f03b..b48b2b84020d2 100644
+index e23aace10f03..b48b2b84020d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -30,13 +30,6 @@
@@ -266,5 +266,5 @@ index e23aace10f03b..b48b2b84020d2 100644
  			compatible = "eswin,bootspi";
  			reg = <0x0 0x71800000 0x0 0x8000>,
 -- 
-2.53.0
+2.54.0
 

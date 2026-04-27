@@ -1,4 +1,4 @@
-From 2ce3ac0405c2c78d8ae04c0b7865b979e84e1e99 Mon Sep 17 00:00:00 2001
+From 76647e1e9ae313664f4257f576800833cc8610d2 Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 25 Dec 2024 11:51:07 +0800
 Subject: [PATCH 356/652] WIN2030-16883:fix:npu die1 clock miss
@@ -13,7 +13,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index a15a50825f392..b7405c6d6e49b 100644
+index a15a50825f39..b7405c6d6e49 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -913,7 +913,7 @@ d1_npu: eswin-npu@71c00000 {
@@ -42,5 +42,5 @@ index a15a50825f392..b7405c6d6e49b 100644
  			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
  			reset-names = "e31_core";
 -- 
-2.53.0
+2.54.0
 

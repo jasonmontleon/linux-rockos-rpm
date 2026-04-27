@@ -1,4 +1,4 @@
-From e1adca5d84f44fbe184d624c979d63e069e8e95d Mon Sep 17 00:00:00 2001
+From c67cf1ab02857072381253465e4662f15b31664b Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Fri, 21 Jun 2024 15:09:46 +0800
 Subject: [PATCH 059/652] fix:BootSpi contronller check flash status register.
@@ -11,7 +11,7 @@ is finished.
  1 file changed, 31 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/spi/spi-eswin-bootspi.c b/drivers/spi/spi-eswin-bootspi.c
-index 977bc6487e991..1205ce3941ae1 100644
+index 977bc6487e99..1205ce3941ae 100644
 --- a/drivers/spi/spi-eswin-bootspi.c
 +++ b/drivers/spi/spi-eswin-bootspi.c
 @@ -147,6 +147,9 @@ struct es_spi_priv {
@@ -123,5 +123,5 @@ index 977bc6487e991..1205ce3941ae1 100644
  	eswin_bootspi_write(priv, ES_SPI_CSR_08, 0x0);
  	return ret;
 -- 
-2.53.0
+2.54.0
 

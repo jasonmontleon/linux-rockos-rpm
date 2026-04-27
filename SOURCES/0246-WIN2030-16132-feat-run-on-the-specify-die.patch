@@ -1,4 +1,4 @@
-From ae9e014a0d17ecc70daf84fca72586b38485f381 Mon Sep 17 00:00:00 2001
+From 400e1c9640bfa67ffa2793471b143d34e73dafdd Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Tue, 13 Aug 2024 14:44:47 +0800
 Subject: [PATCH 246/652] WIN2030-16132:feat:run on the specify die
@@ -14,7 +14,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  2 files changed, 15 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index ee87be45c3464..50b6f7d740cbb 100644
+index ee87be45c346..50b6f7d740cb 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -1153,7 +1153,7 @@ static int wait_abort_rdy(struct hantrovcmd_dev *dev)
@@ -54,7 +54,7 @@ index ee87be45c3464..50b6f7d740cbb 100644
  		return return_value;
  
 diff --git a/drivers/staging/media/eswin/vdec/hantrovcmd.h b/drivers/staging/media/eswin/vdec/hantrovcmd.h
-index aa6bc6abb367f..5febac70d8dc8 100644
+index aa6bc6abb367..5febac70d8dc 100644
 --- a/drivers/staging/media/eswin/vdec/hantrovcmd.h
 +++ b/drivers/staging/media/eswin/vdec/hantrovcmd.h
 @@ -227,6 +227,8 @@ struct exchange_parameter {
@@ -67,5 +67,5 @@ index aa6bc6abb367f..5febac70d8dc8 100644
  
  #define DEC_DRIVER_NAME "es_vdec_drv"
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From c2addc48d586c1a5f6a25e15142305d6b0efdaab Mon Sep 17 00:00:00 2001
+From 532b4af5e20ebcdd92bde4e72b5e5c81879f02f0 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 25 Jun 2025 19:43:35 +0800
 Subject: [PATCH 582/652] feature: Remove CONFIG_DEBUG_INFO
@@ -17,7 +17,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  create mode 100644 arch/riscv/configs/eic7702_dbg_defconfig
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 521ff848073d7..2dbc8bd0bfa59 100644
+index 521ff848073d..2dbc8bd0bfa5 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -29,6 +29,7 @@ CONFIG_BLK_DEV_INITRD=y
@@ -49,7 +49,7 @@ index 521ff848073d7..2dbc8bd0bfa59 100644
  CONFIG_DEBUG_PAGEALLOC=y
  CONFIG_DEBUG_KMEMLEAK=y
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 8b6396856ff89..81721d25cce9c 100644
+index 8b6396856ff8..81721d25cce9 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -867,7 +867,6 @@ CONFIG_CONSOLE_LOGLEVEL_QUIET=7
@@ -62,7 +62,7 @@ index 8b6396856ff89..81721d25cce9c 100644
  CONFIG_SCHED_STACK_END_CHECK=y
 diff --git a/arch/riscv/configs/eic7702_dbg_defconfig b/arch/riscv/configs/eic7702_dbg_defconfig
 new file mode 100644
-index 0000000000000..caf1d0cba4cbe
+index 000000000000..caf1d0cba4cb
 --- /dev/null
 +++ b/arch/riscv/configs/eic7702_dbg_defconfig
 @@ -0,0 +1,887 @@
@@ -954,7 +954,7 @@ index 0000000000000..caf1d0cba4cbe
 +CONFIG_VIDEO_ESWIN_VI_TOP=y
 +CONFIG_VIDEO_ESWIN_DVP2AXI=y
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 9e9ddbbf21aa1..88aca18d7bc16 100644
+index 9e9ddbbf21aa..88aca18d7bc1 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -848,7 +848,6 @@ CONFIG_CONSOLE_LOGLEVEL_DEFAULT=15
@@ -966,5 +966,5 @@ index 9e9ddbbf21aa1..88aca18d7bc16 100644
  CONFIG_DEBUG_PAGEALLOC=y
  CONFIG_SCHED_STACK_END_CHECK=y
 -- 
-2.53.0
+2.54.0
 

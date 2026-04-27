@@ -1,4 +1,4 @@
-From 91852425fbaa8dc2593684ea8b71fc0ba473d1ff Mon Sep 17 00:00:00 2001
+From 6dcc702cd7690f0cd9f66c728cd4736683898a0b Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 24 Oct 2024 10:36:41 +0800
 Subject: [PATCH 201/652] feat:NOC driver adapt to bandwidth test.
@@ -16,7 +16,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  4 files changed, 31 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 83b656f6c4819..bf2bf5e2c9205 100644
+index 83b656f6c481..bf2bf5e2c920 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -210,6 +210,7 @@ &d0_sys_noc {
@@ -44,7 +44,7 @@ index 83b656f6c4819..bf2bf5e2c9205 100644
  	latency,0 = "TracePort:sysnoc_trans_probe_0", "AddrSize:0x0";
  	latency,1 = "TracePort:sysnoc_trans_probe_1","Mode:latency","AddrBase:0x82000000","AddrSize:0x28","Opcode:RdWr";
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index d99fe95e2a313..456890a19c8c6 100644
+index d99fe95e2a31..456890a19c8c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -167,6 +167,7 @@ &d0_sys_noc {
@@ -72,7 +72,7 @@ index d99fe95e2a313..456890a19c8c6 100644
  	latency,0 = "TracePort:sysnoc_trans_probe_0", "AddrSize:0x0";
  	latency,1 = "TracePort:sysnoc_trans_probe_1","Mode:latency","AddrBase:0x82000000","AddrSize:0x28","Opcode:RdWr";
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 573b1e7d148d7..4b6772710ab6a 100644
+index 573b1e7d148d..4b6772710ab6 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -164,6 +164,7 @@ &d0_sys_noc {
@@ -100,7 +100,7 @@ index 573b1e7d148d7..4b6772710ab6a 100644
  	latency,0 = "TracePort:sysnoc_trans_probe_0", "AddrSize:0x0";
  	latency,1 = "TracePort:sysnoc_trans_probe_1","Mode:latency","AddrBase:0x82000000","AddrSize:0x28","Opcode:RdWr";
 diff --git a/drivers/interconnect/eswin/noc.h b/drivers/interconnect/eswin/noc.h
-index 37cbf964169aa..92a86788b0d0d 100644
+index 37cbf964169a..92a86788b0d0 100644
 --- a/drivers/interconnect/eswin/noc.h
 +++ b/drivers/interconnect/eswin/noc.h
 @@ -26,7 +26,7 @@
@@ -113,5 +113,5 @@ index 37cbf964169aa..92a86788b0d0d 100644
  #define WIN2030_NOC_BIN_CNT	4
  #define SIZE_BIG_BUF	4096
 -- 
-2.53.0
+2.54.0
 

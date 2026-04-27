@@ -1,4 +1,4 @@
-From e93ad8cdc2f89bb57889d98777a7ccbfa9db5fc0 Mon Sep 17 00:00:00 2001
+From b601655659d7f2ccb0f2fbae96015c5436bcdceb Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Wed, 25 Jun 2025 14:11:56 +0800
 Subject: [PATCH 614/652] feature: Add reset trigger kdump driver
@@ -21,7 +21,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  create mode 100644 drivers/reset-kdump/reset_kdump.c
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index dd0d599ed96d6..9e634f09e222a 100644
+index dd0d599ed96d..9e634f09e222 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -756,6 +756,7 @@ CONFIG_PWM=y
@@ -33,7 +33,7 @@ index dd0d599ed96d6..9e634f09e222a 100644
  CONFIG_EXT4_FS_POSIX_ACL=y
  CONFIG_EXT4_FS_SECURITY=y
 diff --git a/arch/riscv/configs/eic7702_dbg_defconfig b/arch/riscv/configs/eic7702_dbg_defconfig
-index a2bd1daf22bc8..f8c0ab4d33acc 100644
+index a2bd1daf22bc..f8c0ab4d33ac 100644
 --- a/arch/riscv/configs/eic7702_dbg_defconfig
 +++ b/arch/riscv/configs/eic7702_dbg_defconfig
 @@ -784,6 +784,7 @@ CONFIG_PWM=y
@@ -45,7 +45,7 @@ index a2bd1daf22bc8..f8c0ab4d33acc 100644
  CONFIG_EXT4_FS_POSIX_ACL=y
  CONFIG_EXT4_FS_SECURITY=y
 diff --git a/drivers/Kconfig b/drivers/Kconfig
-index efb66e25fa2dd..fbcc3b7a35805 100644
+index efb66e25fa2d..fbcc3b7a3580 100644
 --- a/drivers/Kconfig
 +++ b/drivers/Kconfig
 @@ -243,4 +243,5 @@ source "drivers/hte/Kconfig"
@@ -55,7 +55,7 @@ index efb66e25fa2dd..fbcc3b7a35805 100644
 +source "drivers/reset-kdump/Kconfig"
  endmenu
 diff --git a/drivers/Makefile b/drivers/Makefile
-index 1bec7819a837a..83f1b3ee5e5d4 100644
+index 1bec7819a837..83f1b3ee5e5d 100644
 --- a/drivers/Makefile
 +++ b/drivers/Makefile
 @@ -199,3 +199,4 @@ obj-$(CONFIG_DRM_ACCEL)		+= accel/
@@ -65,7 +65,7 @@ index 1bec7819a837a..83f1b3ee5e5d4 100644
 +obj-$(CONFIG_RSTKDUMP)  += reset-kdump/
 diff --git a/drivers/reset-kdump/Kconfig b/drivers/reset-kdump/Kconfig
 new file mode 100644
-index 0000000000000..d0b8731175579
+index 000000000000..d0b873117557
 --- /dev/null
 +++ b/drivers/reset-kdump/Kconfig
 @@ -0,0 +1,9 @@
@@ -80,14 +80,14 @@ index 0000000000000..d0b8731175579
 +	  Eswin reset to trigger kdump.
 diff --git a/drivers/reset-kdump/Makefile b/drivers/reset-kdump/Makefile
 new file mode 100644
-index 0000000000000..b4d493386495c
+index 000000000000..b4d493386495
 --- /dev/null
 +++ b/drivers/reset-kdump/Makefile
 @@ -0,0 +1 @@
 +obj-$(CONFIG_RSTKDUMP) += reset_kdump.o
 diff --git a/drivers/reset-kdump/reset_kdump.c b/drivers/reset-kdump/reset_kdump.c
 new file mode 100644
-index 0000000000000..0c80b534271d4
+index 000000000000..0c80b534271d
 --- /dev/null
 +++ b/drivers/reset-kdump/reset_kdump.c
 @@ -0,0 +1,168 @@
@@ -261,5 +261,5 @@ index 0000000000000..0c80b534271d4
 +MODULE_AUTHOR("chenzhanzhan@eswincomputing.com");
 \ No newline at end of file
 -- 
-2.53.0
+2.54.0
 

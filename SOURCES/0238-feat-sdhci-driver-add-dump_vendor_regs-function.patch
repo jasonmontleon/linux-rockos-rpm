@@ -1,4 +1,4 @@
-From a1752bfb678b2e6053853f4fccaf63ae053674ac Mon Sep 17 00:00:00 2001
+From a8c705153836b840ef43d60148bd0dda17cc79e5 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Thu, 7 Nov 2024 11:02:15 +0800
 Subject: [PATCH 238/652] feat:sdhci driver add dump_vendor_regs function.
@@ -17,7 +17,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  6 files changed, 212 insertions(+), 116 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ad9cd4db58022..244d3b3424a8d 100644
+index ad9cd4db5802..244d3b3424a8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -927,7 +927,8 @@ sdhci_emmc: mmc@50450000 {
@@ -68,7 +68,7 @@ index ad9cd4db58022..244d3b3424a8d 100644
  			sdio-id = <1>;
  			numa-node-id = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index e8a5c18b54593..1a275707a259f 100644
+index e8a5c18b5459..1a275707a259 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1548,6 +1548,43 @@ d1_stmmac_axi_setup_gmac1: stmmac-axi-config {
@@ -191,7 +191,7 @@ index e8a5c18b54593..1a275707a259f 100644
  			compatible = "audio-graph-card";
  		};
 diff --git a/drivers/mmc/host/sdhci-eswin.c b/drivers/mmc/host/sdhci-eswin.c
-index e75d8b77acdb1..861a1467623bc 100644
+index e75d8b77acdb..861a1467623b 100644
 --- a/drivers/mmc/host/sdhci-eswin.c
 +++ b/drivers/mmc/host/sdhci-eswin.c
 @@ -21,6 +21,7 @@
@@ -300,7 +300,7 @@ index e75d8b77acdb1..861a1467623bc 100644
 +}
 +
 diff --git a/drivers/mmc/host/sdhci-eswin.h b/drivers/mmc/host/sdhci-eswin.h
-index 08ddfdf8932ee..65b0b69bfda7a 100644
+index 08ddfdf8932e..65b0b69bfda7 100644
 --- a/drivers/mmc/host/sdhci-eswin.h
 +++ b/drivers/mmc/host/sdhci-eswin.h
 @@ -209,7 +209,16 @@ struct eswin_sdhci_data {
@@ -329,7 +329,7 @@ index 08ddfdf8932ee..65b0b69bfda7a 100644
  
  #endif /* _DRIVERS_MMC_SDHCI_ESWIN_H */
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index 8cd8deb339b04..01779e01cd61e 100644
+index 8cd8deb339b0..01779e01cd61 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -37,11 +37,6 @@
@@ -482,7 +482,7 @@ index 8cd8deb339b04..01779e01cd61e 100644
  	return 0;
  }
 diff --git a/drivers/mmc/host/sdhci-of-eswin.c b/drivers/mmc/host/sdhci-of-eswin.c
-index 66e9e02bfb26c..585d30259cdde 100644
+index 66e9e02bfb26..585d30259cdd 100644
 --- a/drivers/mmc/host/sdhci-of-eswin.c
 +++ b/drivers/mmc/host/sdhci-of-eswin.c
 @@ -36,9 +36,6 @@
@@ -617,5 +617,5 @@ index 66e9e02bfb26c..585d30259cdde 100644
  	return 0;
  }
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 80d1d7244880da158e05bab0c98a41e52adfe71e Mon Sep 17 00:00:00 2001
+From a31697c737b2c7972ee8a582ad731e95bc5ab078 Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Thu, 15 Aug 2024 10:02:04 +0800
 Subject: [PATCH 152/652] fix(enc):opt log in enc driver
@@ -13,7 +13,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 21 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 0d6ac28f9981e..33137277dda62 100644
+index 0d6ac28f9981..33137277dda6 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -4064,16 +4064,16 @@ int vc8000e_vcmd_cleanup(void)
@@ -62,7 +62,7 @@ index 0d6ac28f9981e..33137277dda62 100644
 +	return ret;
  }
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index 008166eeb8cc0..5ed832b391329 100644
+index 008166eeb8cc..5ed832b39132 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -781,7 +781,7 @@ static int venc_dev_open(struct device *dev)
@@ -147,5 +147,5 @@ index 008166eeb8cc0..5ed832b391329 100644
  	}
  	return venc_dev_open(dev);
 -- 
-2.53.0
+2.54.0
 

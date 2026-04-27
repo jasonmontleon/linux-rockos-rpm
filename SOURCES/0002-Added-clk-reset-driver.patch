@@ -1,4 +1,4 @@
-From 5811618831c1fd7a630220962884b774821607d9 Mon Sep 17 00:00:00 2001
+From 65d205a36ab802dc685cc5039cdf70e74535ef36 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Mon, 11 Mar 2024 18:50:41 +0800
 Subject: [PATCH 002/652] Added clk & reset driver
@@ -29,7 +29,7 @@ Subject: [PATCH 002/652] Added clk & reset driver
  create mode 100755 drivers/reset/reset-eswin.c
 
 diff --git a/drivers/clk/Kconfig b/drivers/clk/Kconfig
-index c30099866174d..151de7e16525b 100644
+index c30099866174..151de7e16525 100644
 --- a/drivers/clk/Kconfig
 +++ b/drivers/clk/Kconfig
 @@ -471,6 +471,7 @@ source "drivers/clk/actions/Kconfig"
@@ -41,7 +41,7 @@ index c30099866174d..151de7e16525b 100644
  source "drivers/clk/imgtec/Kconfig"
  source "drivers/clk/imx/Kconfig"
 diff --git a/drivers/clk/Makefile b/drivers/clk/Makefile
-index 8d572021977fd..33a6b666be225 100644
+index 8d572021977f..33a6b666be22 100644
 --- a/drivers/clk/Makefile
 +++ b/drivers/clk/Makefile
 @@ -91,6 +91,7 @@ obj-$(CONFIG_CLK_BAIKAL_T1)		+= baikal-t1/
@@ -54,7 +54,7 @@ index 8d572021977fd..33a6b666be225 100644
  obj-y					+= imx/
 diff --git a/drivers/clk/eswin/Kconfig b/drivers/clk/eswin/Kconfig
 new file mode 100755
-index 0000000000000..9460f2d68d2c6
+index 000000000000..9460f2d68d2c
 --- /dev/null
 +++ b/drivers/clk/eswin/Kconfig
 @@ -0,0 +1,10 @@
@@ -70,7 +70,7 @@ index 0000000000000..9460f2d68d2c6
 +endif
 diff --git a/drivers/clk/eswin/Makefile b/drivers/clk/eswin/Makefile
 new file mode 100755
-index 0000000000000..98c12676b63a1
+index 000000000000..98c12676b63a
 --- /dev/null
 +++ b/drivers/clk/eswin/Makefile
 @@ -0,0 +1,9 @@
@@ -86,7 +86,7 @@ index 0000000000000..98c12676b63a1
 \ No newline at end of file
 diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
 new file mode 100755
-index 0000000000000..2ff82f4feba1a
+index 000000000000..2ff82f4feba1
 --- /dev/null
 +++ b/drivers/clk/eswin/clk-win2030.c
 @@ -0,0 +1,1219 @@
@@ -1311,7 +1311,7 @@ index 0000000000000..2ff82f4feba1a
 +arch_initcall(win2030_clk_init);
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
 new file mode 100755
-index 0000000000000..685f6377d9f8b
+index 000000000000..685f6377d9f8
 --- /dev/null
 +++ b/drivers/clk/eswin/clk.c
 @@ -0,0 +1,915 @@
@@ -2232,7 +2232,7 @@ index 0000000000000..685f6377d9f8b
 +EXPORT_SYMBOL_GPL(eswin_clk_register_clk);
 diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
 new file mode 100755
-index 0000000000000..c5906c4207693
+index 000000000000..c5906c420769
 --- /dev/null
 +++ b/drivers/clk/eswin/clk.h
 @@ -0,0 +1,198 @@
@@ -2436,7 +2436,7 @@ index 0000000000000..c5906c4207693
 +#endif	/* __ESWIN_CLK_H */
 diff --git a/drivers/clk/eswin/test/Kconfig b/drivers/clk/eswin/test/Kconfig
 new file mode 100755
-index 0000000000000..a109429dbee7a
+index 000000000000..a109429dbee7
 --- /dev/null
 +++ b/drivers/clk/eswin/test/Kconfig
 @@ -0,0 +1,7 @@
@@ -2449,7 +2449,7 @@ index 0000000000000..a109429dbee7a
 +	  Build the Eswin Win2030 clock test driver
 diff --git a/drivers/clk/eswin/test/Makefile b/drivers/clk/eswin/test/Makefile
 new file mode 100755
-index 0000000000000..9659df895494f
+index 000000000000..9659df895494
 --- /dev/null
 +++ b/drivers/clk/eswin/test/Makefile
 @@ -0,0 +1,6 @@
@@ -2461,7 +2461,7 @@ index 0000000000000..9659df895494f
 +obj-$(CONFIG_COMMON_CLK_WIN2030_TEST)	+= clk_test_kmd.o
 diff --git a/drivers/clk/eswin/test/clk_test_kmd.c b/drivers/clk/eswin/test/clk_test_kmd.c
 new file mode 100755
-index 0000000000000..a330e73393824
+index 000000000000..a330e7339382
 --- /dev/null
 +++ b/drivers/clk/eswin/test/clk_test_kmd.c
 @@ -0,0 +1,425 @@
@@ -2891,7 +2891,7 @@ index 0000000000000..a330e73393824
 +MODULE_AUTHOR("Shunli Wang <wangshunli@cambricon.com>");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/reset/Kconfig b/drivers/reset/Kconfig
-index 9f25eb3aec256..5f714eb0a9142 100644
+index 9f25eb3aec25..5f714eb0a914 100644
 --- a/drivers/reset/Kconfig
 +++ b/drivers/reset/Kconfig
 @@ -319,6 +319,12 @@ config RESET_ZYNQ
@@ -2908,7 +2908,7 @@ index 9f25eb3aec256..5f714eb0a9142 100644
  source "drivers/reset/hisilicon/Kconfig"
  source "drivers/reset/tegra/Kconfig"
 diff --git a/drivers/reset/Makefile b/drivers/reset/Makefile
-index 8270da8a4baa6..30d55a7f0fb93 100644
+index 8270da8a4baa..30d55a7f0fb9 100644
 --- a/drivers/reset/Makefile
 +++ b/drivers/reset/Makefile
 @@ -41,3 +41,5 @@ obj-$(CONFIG_RESET_UNIPHIER) += reset-uniphier.o
@@ -2919,7 +2919,7 @@ index 8270da8a4baa6..30d55a7f0fb93 100644
 +
 diff --git a/drivers/reset/reset-eswin.c b/drivers/reset/reset-eswin.c
 new file mode 100755
-index 0000000000000..9ad472bca4330
+index 000000000000..9ad472bca433
 --- /dev/null
 +++ b/drivers/reset/reset-eswin.c
 @@ -0,0 +1,270 @@
@@ -3194,5 +3194,5 @@ index 0000000000000..9ad472bca4330
 +}
 +arch_initcall(win2030_reset_init);
 -- 
-2.53.0
+2.54.0
 

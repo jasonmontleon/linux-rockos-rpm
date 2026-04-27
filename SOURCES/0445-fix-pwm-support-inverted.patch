@@ -1,4 +1,4 @@
-From 7307010933119fda08e612aab35ecf952f3a56c1 Mon Sep 17 00:00:00 2001
+From e1ab6040a02f61e333087b3243a65d45e5528ca8 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 17 Mar 2025 19:54:53 +0800
 Subject: [PATCH 445/652] fix:pwm support inverted
@@ -16,7 +16,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  6 files changed, 30 insertions(+), 28 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index e3124c608630b..024bd9d6cac87 100644
+index e3124c608630..024bd9d6cac8 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -623,7 +623,7 @@ &d0_mbox7 {
@@ -29,7 +29,7 @@ index e3124c608630b..024bd9d6cac87 100644
  
  &d0_i2c0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
-index 8482de2b7a991..e98c77b9e5a0f 100644
+index 8482de2b7a99..e98c77b9e5a0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -598,7 +598,7 @@ &d0_mbox7 {
@@ -42,7 +42,7 @@ index 8482de2b7a991..e98c77b9e5a0f 100644
  
  &d0_i2c0 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
-index 5d0d8de19f0eb..e9c6bb6e261b4 100644
+index 5d0d8de19f0e..e9c6bb6e261b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som314.dtsi
 @@ -561,7 +561,7 @@ &d0_mbox7 {
@@ -55,7 +55,7 @@ index 5d0d8de19f0eb..e9c6bb6e261b4 100644
  
  &d0_i2c0 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index aa7268c544107..f718ceea26b59 100644
+index aa7268c54410..f718ceea26b5 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -29,7 +29,7 @@
@@ -86,7 +86,7 @@ index aa7268c544107..f718ceea26b59 100644
  			clock-names = "pclk";
  			clocks = <&d0_clock EIC7700_CLK_LSP_TIMER_PCLK>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 474355f36098a..3a6fe0d1240c6 100644
+index 474355f36098..3a6fe0d1240c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -28,7 +28,7 @@
@@ -117,7 +117,7 @@ index 474355f36098a..3a6fe0d1240c6 100644
  			pinctrl-0 = <&d1_pinctrl_pwm0_default &d1_pinctrl_pwm1_default &d1_pinctrl_pwm2_default>;
  			status = "disabled";
 diff --git a/drivers/pwm/pwm-dwc-eswin.c b/drivers/pwm/pwm-dwc-eswin.c
-index 1873b8351b0cc..23e8b6388264e 100644
+index 1873b8351b0c..23e8b6388264 100644
 --- a/drivers/pwm/pwm-dwc-eswin.c
 +++ b/drivers/pwm/pwm-dwc-eswin.c
 @@ -1,19 +1,9 @@
@@ -194,5 +194,5 @@ index 1873b8351b0cc..23e8b6388264e 100644
  	 * Specification says timer usage flow is to disable timer, then
  	 * program it followed by enable. It also says Load Count is loaded
 -- 
-2.53.0
+2.54.0
 

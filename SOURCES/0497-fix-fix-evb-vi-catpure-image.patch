@@ -1,4 +1,4 @@
-From e20e1262721771c6e14900dfb775a09c393e9008 Mon Sep 17 00:00:00 2001
+From 678252f07bb2e0a878514caafe43dc766313dbda Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Wed, 7 May 2025 19:46:49 +0800
 Subject: [PATCH 497/652] fix: fix evb vi catpure image
@@ -13,7 +13,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  2 files changed, 3 insertions(+), 26 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
-index 296416df4e9f7..b4a8638c00d09 100644
+index 296416df4e9f..b4a8638c00d0 100644
 --- a/drivers/media/platform/eswin/dvp2axi/capture.c
 +++ b/drivers/media/platform/eswin/dvp2axi/capture.c
 @@ -82,7 +82,7 @@
@@ -148,7 +148,7 @@ index 296416df4e9f7..b4a8638c00d09 100644
  
  		// do software reset
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
-index e841e682e55ec..e19690b47b9a2 100644
+index e841e682e55e..e19690b47b9a 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.c
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.c
 @@ -49,7 +49,7 @@
@@ -161,5 +161,5 @@ index e841e682e55ec..e19690b47b9a2 100644
  MODULE_PARM_DESC(debug, "Debug level (0-1)");
  
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 1ebe14afe9bc76349f62a2e6433a5666dac3f8a6 Mon Sep 17 00:00:00 2001
+From 901ed9416067c2f20717ebea7d20d70895c80841 Mon Sep 17 00:00:00 2001
 From: zhang dongdong <zhangdongdong@eswincomputing.com>
 Date: Wed, 2 Apr 2025 11:21:03 +0800
 Subject: [PATCH 463/652] Revert "feature:add 7702vpu dts"
@@ -16,7 +16,7 @@ useless at present, revert it.
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts
 deleted file mode 100644
-index b2433137f6712..0000000000000
+index b2433137f671..000000000000
 --- a/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts
 +++ /dev/null
 @@ -1,921 +0,0 @@
@@ -943,7 +943,7 @@ index b2433137f6712..0000000000000
 -};
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts
 deleted file mode 100644
-index 124aceffac84d..0000000000000
+index 124aceffac84..000000000000
 --- a/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts
 +++ /dev/null
 @@ -1,880 +0,0 @@
@@ -1828,5 +1828,5 @@ index 124aceffac84d..0000000000000
 -	status = "disabled";
 -};
 -- 
-2.53.0
+2.54.0
 

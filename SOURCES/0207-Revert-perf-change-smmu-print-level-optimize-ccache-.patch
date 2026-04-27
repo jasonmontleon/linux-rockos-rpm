@@ -1,4 +1,4 @@
-From ac143b1d909eee24049c87ee651a3147b47c9547 Mon Sep 17 00:00:00 2001
+From df71efba9c7f837da88a9f39a009b060a7f9f4d0 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 31 Oct 2024 10:18:06 +0800
 Subject: [PATCH 207/652] Revert "perf:change smmu print level,optimize ccache
@@ -17,7 +17,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  2 files changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index cc5700f453fcc..92b13c4d67a5e 100644
+index cc5700f453fc..92b13c4d67a5 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 @@ -1683,9 +1683,9 @@ static irqreturn_t arm_smmu_evtq_thread(int irq, void *dev)
@@ -33,7 +33,7 @@ index cc5700f453fcc..92b13c4d67a5e 100644
  
  			cond_resched();
 diff --git a/drivers/soc/sifive/sifive_ccache.c b/drivers/soc/sifive/sifive_ccache.c
-index 2010ccd64f867..a88123c81ace6 100644
+index 2010ccd64f86..a88123c81ace 100644
 --- a/drivers/soc/sifive/sifive_ccache.c
 +++ b/drivers/soc/sifive/sifive_ccache.c
 @@ -130,8 +130,8 @@ static void ccache_flush64_range(phys_addr_t paddr, size_t size)
@@ -47,5 +47,5 @@ index 2010ccd64f867..a88123c81ace6 100644
  
  static const struct riscv_nonstd_cache_ops ccache_cmo_ops __initdata = {
 -- 
-2.53.0
+2.54.0
 

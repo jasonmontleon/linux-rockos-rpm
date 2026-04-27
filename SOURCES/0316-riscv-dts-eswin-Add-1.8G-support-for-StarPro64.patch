@@ -1,4 +1,4 @@
-From ff9977d5d9c401db256cf746bbbf1356781f98ca Mon Sep 17 00:00:00 2001
+From 71dfc602bd1b1cc3d6fc735d2d73b20154cdc357 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Sun, 5 Jan 2025 23:47:58 +0800
 Subject: [PATCH 316/652] riscv: dts: eswin: Add 1.8G support for StarPro64
@@ -9,7 +9,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 6 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index b7a5998786855..fdcd551ef5c57 100644
+index b7a599878685..fdcd551ef5c5 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -127,6 +127,7 @@ status {
@@ -31,5 +31,5 @@ index b7a5998786855..fdcd551ef5c57 100644
 +	};
  };
 -- 
-2.53.0
+2.54.0
 

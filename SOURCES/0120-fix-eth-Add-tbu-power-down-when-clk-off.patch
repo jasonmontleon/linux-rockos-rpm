@@ -1,4 +1,4 @@
-From a154993fbac025ce0482f4488f6d3ee404219ba2 Mon Sep 17 00:00:00 2001
+From 2e691c3d92371e805ae9b9892db0bd86f8f4871d Mon Sep 17 00:00:00 2001
 From: fanglifei <fanglifei@eswincomputing.com>
 Date: Fri, 26 Jul 2024 10:41:37 +0800
 Subject: [PATCH 120/652] fix(eth): Add tbu power down when clk off
@@ -12,7 +12,7 @@ Signed-off-by: fanglifei <fanglifei@eswincomputing.com>
  1 file changed, 13 insertions(+)
 
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
-index 5a83b55357fbf..e80061c956395 100644
+index 5a83b55357fb..e80061c95639 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -301,7 +301,20 @@ static int dwc_clks_config(void *priv, bool enabled)
@@ -37,5 +37,5 @@ index 5a83b55357fbf..e80061c956395 100644
  		clk_disable_unprepare(dwc_priv->clk_csr);
  		clk_disable_unprepare(dwc_priv->clk_app);
 -- 
-2.53.0
+2.54.0
 

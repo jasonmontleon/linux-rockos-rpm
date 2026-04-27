@@ -1,4 +1,4 @@
-From 10cf4ec2bc5e91bcfa33852950c6a61f9bc817bf Mon Sep 17 00:00:00 2001
+From 20d1694d9f746ec1b8a735bb44a9f8a8ee2cca3e Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Wed, 20 Nov 2024 15:48:28 +0800
 Subject: [PATCH 232/652] drivers: eswin: fix out-of-tree compilation
@@ -13,7 +13,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  5 files changed, 14 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
-index c07fadc64d443..d8b6f2868e091 100644
+index c07fadc64d44..d8b6f2868e09 100644
 --- a/drivers/memory/eswin/Makefile
 +++ b/drivers/memory/eswin/Makefile
 @@ -9,6 +9,6 @@ obj-$(CONFIG_ESWIN_RSVMEM_HEAP)			+= es_mmz_vb/
@@ -26,7 +26,7 @@ index c07fadc64d443..d8b6f2868e091 100644
 -COPY_HEADERS := $(shell cp $(ES_MEM_HEADER)/*.h include/linux)
 +COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_MEM_HEADER)/*.h include/linux)
 diff --git a/drivers/memory/eswin/es_dev_buf/Makefile b/drivers/memory/eswin/es_dev_buf/Makefile
-index 3ba183ff62bd7..854348e41f912 100644
+index 3ba183ff62bd..854348e41f91 100644
 --- a/drivers/memory/eswin/es_dev_buf/Makefile
 +++ b/drivers/memory/eswin/es_dev_buf/Makefile
 @@ -1,5 +1,5 @@
@@ -38,7 +38,7 @@ index 3ba183ff62bd7..854348e41f912 100644
 +COPY_HEADERS:=$(shell mkdir -p include/linux && cp $(ES_DEV_DMA_BUF_HEADER)/*.h include/linux)
  
 diff --git a/drivers/memory/eswin/es_iommu_rsv/Makefile b/drivers/memory/eswin/es_iommu_rsv/Makefile
-index a4fa098eb5183..25f75be421e64 100644
+index a4fa098eb518..25f75be421e6 100644
 --- a/drivers/memory/eswin/es_iommu_rsv/Makefile
 +++ b/drivers/memory/eswin/es_iommu_rsv/Makefile
 @@ -1,5 +1,5 @@
@@ -50,7 +50,7 @@ index a4fa098eb5183..25f75be421e64 100644
 -COPY_HEADERS := $(shell cp $(ES_IOMMU_RSV_HEADER)/*h include/linux)
 +COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_IOMMU_RSV_HEADER)/*h include/linux)
 diff --git a/drivers/memory/eswin/es_proc/Makefile b/drivers/memory/eswin/es_proc/Makefile
-index 2afd49103e81f..9dc204e89fb8e 100644
+index 2afd49103e81..9dc204e89fb8 100644
 --- a/drivers/memory/eswin/es_proc/Makefile
 +++ b/drivers/memory/eswin/es_proc/Makefile
 @@ -2,6 +2,6 @@
@@ -63,7 +63,7 @@ index 2afd49103e81f..9dc204e89fb8e 100644
 -COPY_HEADERS := $(shell cp $(ES_PROC_HEADER)/*.h include/linux)
 +COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_PROC_HEADER)/*.h include/linux)
 diff --git a/drivers/staging/media/eswin/es-media-ext/Makefile b/drivers/staging/media/eswin/es-media-ext/Makefile
-index 326e4316fbd33..aa7ffe338c34c 100644
+index 326e4316fbd3..aa7ffe338c34 100644
 --- a/drivers/staging/media/eswin/es-media-ext/Makefile
 +++ b/drivers/staging/media/eswin/es-media-ext/Makefile
 @@ -1,10 +1,10 @@
@@ -84,5 +84,5 @@ index 326e4316fbd33..aa7ffe338c34c 100644
  es_media_ext_drv-objs := es_media_ext_drv_main.o \
  						./chn/dev_channel.o	\
 -- 
-2.53.0
+2.54.0
 

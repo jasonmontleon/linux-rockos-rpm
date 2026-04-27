@@ -1,4 +1,4 @@
-From 2e96e758190641541c4baec9920796b1d4143fae Mon Sep 17 00:00:00 2001
+From 4b9426a1191906d90061e3f2236c1a1e3e0aa636 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 24 Sep 2024 09:59:34 +0800
 Subject: [PATCH 272/652] WIN2030-16035:refactor:implement d2d interrupts
@@ -22,7 +22,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 drivers/soc/eswin/d2d.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 60a60f3b7f309..78a78d0ca9a68 100644
+index 60a60f3b7f30..78a78d0ca9a6 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -202,6 +202,14 @@ &ddr1 {
@@ -56,7 +56,7 @@ index 60a60f3b7f309..78a78d0ca9a68 100644
  
  	gpio0   : pcie prstn(I)
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index b14fec6ad2563..3477386176687 100644
+index b14fec6ad256..347738617668 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2315,6 +2315,7 @@ ddr0: ddr-controller@0 {
@@ -86,7 +86,7 @@ index b14fec6ad2563..3477386176687 100644
  		};
  };
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index ca0d63978d788..34c5a22cdf268 100644
+index ca0d63978d78..34c5a22cdf26 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -2362,5 +2362,37 @@ d1_numa_sample:numa_sample@1 {
@@ -128,7 +128,7 @@ index ca0d63978d788..34c5a22cdf268 100644
  };
  
 diff --git a/arch/riscv/configs/eic7702_defconfig b/arch/riscv/configs/eic7702_defconfig
-index 01d1b3969200e..9318fc21eaa9d 100644
+index 01d1b3969200..9318fc21eaa9 100644
 --- a/arch/riscv/configs/eic7702_defconfig
 +++ b/arch/riscv/configs/eic7702_defconfig
 @@ -742,6 +742,7 @@ CONFIG_ARM_SMMU_V3=y
@@ -140,7 +140,7 @@ index 01d1b3969200e..9318fc21eaa9d 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/drivers/soc/eswin/Kconfig b/drivers/soc/eswin/Kconfig
-index 256bfa5d85eb2..ed45c8ff1d8b5 100644
+index 256bfa5d85eb..ed45c8ff1d8b 100644
 --- a/drivers/soc/eswin/Kconfig
 +++ b/drivers/soc/eswin/Kconfig
 @@ -19,4 +19,10 @@ config ESWIN_DSP_SUBSYS
@@ -155,7 +155,7 @@ index 256bfa5d85eb2..ed45c8ff1d8b5 100644
 +
  endif
 diff --git a/drivers/soc/eswin/Makefile b/drivers/soc/eswin/Makefile
-index 391ab603d23af..07df48f987ec1 100644
+index 391ab603d23a..07df48f987ec 100644
 --- a/drivers/soc/eswin/Makefile
 +++ b/drivers/soc/eswin/Makefile
 @@ -1,4 +1,5 @@
@@ -169,7 +169,7 @@ index 391ab603d23af..07df48f987ec1 100644
 \ No newline at end of file
 diff --git a/drivers/soc/eswin/d2d.c b/drivers/soc/eswin/d2d.c
 new file mode 100644
-index 0000000000000..e237641177b77
+index 000000000000..e237641177b7
 --- /dev/null
 +++ b/drivers/soc/eswin/d2d.c
 @@ -0,0 +1,210 @@
@@ -384,5 +384,5 @@ index 0000000000000..e237641177b77
 +
 +subsys_initcall(init_d2d_unit);
 -- 
-2.53.0
+2.54.0
 

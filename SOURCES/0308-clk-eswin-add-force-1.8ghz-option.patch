@@ -1,4 +1,4 @@
-From 2ec238b9a14972267c8aa0181762771620db3a37 Mon Sep 17 00:00:00 2001
+From 5d05f14744a343a4a0cabad36038823fd62bbb01 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 17 Dec 2024 23:48:41 +0800
 Subject: [PATCH 308/652] clk: eswin: add force 1.8ghz option
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  2 files changed, 10 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index 3c3ba2be4bfa3..e243673c771d1 100755
+index 3c3ba2be4bfa..e243673c771d 100755
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -307,6 +307,7 @@ static int clk_pll_set_rate(struct clk_hw *hw,
@@ -68,7 +68,7 @@ index 3c3ba2be4bfa3..e243673c771d1 100755
  		if (IS_ERR(clk)) {
  			devm_kfree(dev, p_clk);
 diff --git a/drivers/clk/eswin/clk.h b/drivers/clk/eswin/clk.h
-index 95e222d5194c9..a0e72c67e5980 100755
+index 95e222d5194c..a0e72c67e598 100755
 --- a/drivers/clk/eswin/clk.h
 +++ b/drivers/clk/eswin/clk.h
 @@ -160,6 +160,7 @@ struct eswin_clk_pll {
@@ -80,5 +80,5 @@ index 95e222d5194c9..a0e72c67e5980 100755
  
  struct eswin_clock_data *eswin_clk_init(struct platform_device *, int);
 -- 
-2.53.0
+2.54.0
 

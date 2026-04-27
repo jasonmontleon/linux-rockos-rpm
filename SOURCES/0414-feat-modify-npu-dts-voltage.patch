@@ -1,4 +1,4 @@
-From 7303d6369b342b9d184c97e995615211373327eb Mon Sep 17 00:00:00 2001
+From a411cd18eb528ef7dd7aeb0f271d68617a70759e Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 18 Feb 2025 16:40:28 +0800
 Subject: [PATCH 414/652] feat: modify npu dts voltage
@@ -18,7 +18,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  5 files changed, 25 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index e4b6eca924830..f3b13d7ca9838 100644
+index e4b6eca92483..f3b13d7ca983 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -464,6 +464,7 @@ &d0_npu{
@@ -30,7 +30,7 @@ index e4b6eca924830..f3b13d7ca9838 100644
  
  &d0_dsp_subsys {
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 1a55d0dbcfadb..bc26aaa10e003 100644
+index 1a55d0dbcfad..bc26aaa10e00 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -771,6 +771,12 @@ static int llc_clk_set_parent(struct platform_device *pdev)
@@ -47,7 +47,7 @@ index 1a55d0dbcfadb..bc26aaa10e003 100644
  	if (ret < 0)
  	{
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index e9930f432a9b2..cce6f8429c803 100644
+index e9930f432a9b..cce6f8429c80 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -64,6 +64,7 @@ struct nvdla_device {
@@ -59,7 +59,7 @@ index e9930f432a9b2..cce6f8429c803 100644
  	struct reset_control *rstc_e31_core;
  	struct clk *e31_core_clk;
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index d55fb1a8dbffe..04a8e7b4f77a4 100644
+index d55fb1a8dbff..04a8e7b4f77a 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -480,6 +480,9 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
@@ -103,7 +103,7 @@ index d55fb1a8dbffe..04a8e7b4f77a4 100644
                  }
                  mdelay(10);
 diff --git a/include/linux/eswin_npu.h b/include/linux/eswin_npu.h
-index 1b226c3dfe17a..edf3959e8d64b 100644
+index 1b226c3dfe17..edf3959e8d64 100644
 --- a/include/linux/eswin_npu.h
 +++ b/include/linux/eswin_npu.h
 @@ -22,14 +22,10 @@
@@ -123,5 +123,5 @@ index 1b226c3dfe17a..edf3959e8d64b 100644
  #define NPU_CORE_CLK_1P5G_RATE	1500000000  //npu and e31
  #define NPU_E31_CLK_RATE	1040000000  //llc
 -- 
-2.53.0
+2.54.0
 

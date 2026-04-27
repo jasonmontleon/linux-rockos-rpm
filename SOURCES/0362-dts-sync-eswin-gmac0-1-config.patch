@@ -1,4 +1,4 @@
-From 1677b68c18126c4d2407f233df08d4f62ce7fec7 Mon Sep 17 00:00:00 2001
+From 243163413fb79cce52935b5ed3c7d56b5f07ed16 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Wed, 8 Jan 2025 01:41:49 +0800
 Subject: [PATCH 362/652] dts: sync eswin gmac0/1 config
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  2 files changed, 12 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index 58fe3d6356167..bd6120c66ab76 100644
+index 58fe3d635616..bd6120c66ab7 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -479,7 +479,9 @@ &d0_gmac0 {
@@ -36,7 +36,7 @@ index 58fe3d6356167..bd6120c66ab76 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index b03f4c8c25973..f02a7936cc609 100644
+index b03f4c8c2597..f02a7936cc60 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -445,7 +445,9 @@ &d0_gmac0 {
@@ -62,5 +62,5 @@ index b03f4c8c25973..f02a7936cc609 100644
  };
  
 -- 
-2.53.0
+2.54.0
 

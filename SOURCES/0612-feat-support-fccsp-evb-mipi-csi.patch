@@ -1,4 +1,4 @@
-From 88b53d0540274726d3c9f7f83479e3820c4ff48d Mon Sep 17 00:00:00 2001
+From e14a0c08d0f449ff2aef3accb2294860e1cf0789 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Tue, 8 Jul 2025 17:09:02 +0800
 Subject: [PATCH 612/652] feat: support fccsp evb mipi csi
@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-ce1.dts b/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
-index 2a37c22f7c30b..db34692de19be 100644
+index 2a37c22f7c30..db34692de19b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-ce1.dts
 @@ -30,10 +30,10 @@
@@ -28,5 +28,5 @@ index 2a37c22f7c30b..db34692de19be 100644
  
  / {
 -- 
-2.53.0
+2.54.0
 

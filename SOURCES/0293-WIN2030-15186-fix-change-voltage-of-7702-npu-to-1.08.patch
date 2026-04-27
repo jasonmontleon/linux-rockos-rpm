@@ -1,4 +1,4 @@
-From 67e349566a3daeafa3c93d8e7aa286ae022aa801 Mon Sep 17 00:00:00 2001
+From f37b5865fa9b7a3b0a0f2978824be0970c302d9e Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Fri, 22 Nov 2024 10:08:37 +0800
 Subject: [PATCH 293/652] WIN2030-15186:fix:change voltage of 7702 npu to 1.08V
@@ -14,7 +14,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 33 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/regulator/es5340.c b/drivers/regulator/es5340.c
-index c49fcfbf4dc07..359f9a6ead15b 100644
+index c49fcfbf4dc0..359f9a6ead15 100644
 --- a/drivers/regulator/es5340.c
 +++ b/drivers/regulator/es5340.c
 @@ -2,8 +2,7 @@
@@ -137,7 +137,7 @@ index c49fcfbf4dc07..359f9a6ead15b 100644
  	regulator_cnt = of_regulator_match(dev, parent, es5340_matches, ARRAY_SIZE(es5340_matches));
  	of_node_put(parent);
 diff --git a/include/linux/eswin_npu.h b/include/linux/eswin_npu.h
-index 44784eeefba3b..1b226c3dfe17a 100644
+index 44784eeefba3..1b226c3dfe17 100644
 --- a/include/linux/eswin_npu.h
 +++ b/include/linux/eswin_npu.h
 @@ -1,14 +1,22 @@
@@ -182,5 +182,5 @@ index 44784eeefba3b..1b226c3dfe17a 100644
  #define NPU_CORE_CLK_1P5G_RATE	1500000000  //npu and e31
  #define NPU_E31_CLK_RATE	1040000000  //llc
 -- 
-2.53.0
+2.54.0
 

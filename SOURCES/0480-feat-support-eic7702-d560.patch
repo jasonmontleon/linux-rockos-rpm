@@ -1,4 +1,4 @@
-From a0c0b37f13f03eb89632ef10c5a89401756cbfc6 Mon Sep 17 00:00:00 2001
+From ca93e3e26c148c017791828f046420b77979b0d3 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 18 Apr 2025 11:04:35 +0800
 Subject: [PATCH 480/652] feat:support eic7702 d560
@@ -16,7 +16,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index a973f47481aae..3f40204e48dba 100644
+index a973f47481aa..3f40204e48db 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -15,5 +15,6 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -29,7 +29,7 @@ index a973f47481aae..3f40204e48dba 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 new file mode 100644
-index 0000000000000..bdedf42533279
+index 000000000000..bdedf4253327
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -0,0 +1,323 @@
@@ -358,7 +358,7 @@ index 0000000000000..bdedf42533279
 +*/
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 new file mode 100644
-index 0000000000000..de69bc2359e4b
+index 000000000000..de69bc2359e4
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -0,0 +1,1434 @@
@@ -1797,5 +1797,5 @@ index 0000000000000..de69bc2359e4b
 +	status = "okay";
 +};
 -- 
-2.53.0
+2.54.0
 

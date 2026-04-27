@@ -1,4 +1,4 @@
-From b00a4f6e68bfee4c73765ccf00273e2a9885f9e2 Mon Sep 17 00:00:00 2001
+From d0eed20421b102e8fea2c2684212615ed9291845 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 13 Sep 2024 16:57:31 +0800
 Subject: [PATCH 270/652] WIN2030-14758:fix(venc driver):iova allocation for
@@ -26,7 +26,7 @@ Change-Id: I425964a00b491715ab55bdb2984b542eb81d0b81
  rename {drivers/memory/eswin/es_iommu_rsv/include => include}/linux/es_iommu_rsv.h (77%)
 
 diff --git a/drivers/memory/eswin/es_iommu_rsv/Makefile b/drivers/memory/eswin/es_iommu_rsv/Makefile
-index 25f75be421e64..361a05e9f9004 100644
+index 25f75be421e6..361a05e9f900 100644
 --- a/drivers/memory/eswin/es_iommu_rsv/Makefile
 +++ b/drivers/memory/eswin/es_iommu_rsv/Makefile
 @@ -1,5 +1 @@
@@ -36,7 +36,7 @@ index 25f75be421e64..361a05e9f9004 100644
 -
 -COPY_HEADERS := $(shell mkdir -p include/linux && cp $(ES_IOMMU_RSV_HEADER)/*h include/linux)
 diff --git a/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c b/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
-index 397601410e6e7..9bcbec3fa4e70 100644
+index 397601410e6e..9bcbec3fa4e7 100644
 --- a/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
 +++ b/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
 @@ -370,8 +370,8 @@ int iommu_unmap_rsv_iova(struct device *dev, void *cpu_addr, dma_addr_t iova, un
@@ -113,7 +113,7 @@ index 397601410e6e7..9bcbec3fa4e70 100644
  {
  	if (__iommu_dma_free)
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
-index fdbcfe7e6c700..8e1e14487a313 100644
+index fdbcfe7e6c70..8e1e14487a31 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -24,6 +24,13 @@ struct drm_prime_member {
@@ -267,7 +267,7 @@ index fdbcfe7e6c700..8e1e14487a313 100644
  	struct heap_mem *hmem;
  	struct sg_table table;
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 44d3f79ce197e..5e24f087817df 100644
+index 44d3f79ce197..5e24f087817d 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -249,9 +249,6 @@ struct hantrovcmd_dev {
@@ -510,7 +510,7 @@ index 44d3f79ce197e..5e24f087817df 100644
  
  int hantroenc_vcmd_init(void)
 diff --git a/include/linux/dmabuf-heap-import-helper.h b/include/linux/dmabuf-heap-import-helper.h
-index 6fd339ee8ff3d..0b0e5824f19f3 100644
+index 6fd339ee8ff3..0b0e5824f19f 100644
 --- a/include/linux/dmabuf-heap-import-helper.h
 +++ b/include/linux/dmabuf-heap-import-helper.h
 @@ -7,6 +7,7 @@
@@ -543,7 +543,7 @@ diff --git a/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h b/in
 similarity index 77%
 rename from drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h
 rename to include/linux/es_iommu_rsv.h
-index 3e11a64215027..cda1c83d47a2e 100644
+index 3e11a6421502..cda1c83d47a2 100644
 --- a/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h
 +++ b/include/linux/es_iommu_rsv.h
 @@ -6,5 +6,6 @@
@@ -554,5 +554,5 @@ index 3e11a64215027..cda1c83d47a2e 100644
  
  #endif
 -- 
-2.53.0
+2.54.0
 

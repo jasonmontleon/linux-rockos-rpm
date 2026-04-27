@@ -1,4 +1,4 @@
-From 5fb6690b632b10c2ab52e2e9d6804c277b151b2c Mon Sep 17 00:00:00 2001
+From 5175aa947dff56decebb137379de048975ca706f Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 16 Oct 2024 16:46:21 +0800
 Subject: [PATCH 195/652] feat:support IPA thermal control
@@ -17,7 +17,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  5 files changed, 135 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 3f2582159f83a..bde485b4abfaf 100644
+index 3f2582159f83..bde485b4abfa 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -84,6 +84,8 @@ L17: cpu@0 {
@@ -57,7 +57,7 @@ index 3f2582159f83a..bde485b4abfaf 100644
  			L29: interrupt-controller {
  				#interrupt-cells = <1>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 50a9383989b48..14d5b4b0df6a6 100644
+index 50a9383989b4..14d5b4b0df6a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -31,6 +31,7 @@
@@ -153,7 +153,7 @@ index 50a9383989b48..14d5b4b0df6a6 100644
  			label = "pvt0";
  		};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 01a325bd598fb..8351a81c605ab 100644
+index 01a325bd598f..8351a81c605a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -29,6 +29,7 @@
@@ -249,7 +249,7 @@ index 01a325bd598fb..8351a81c605ab 100644
  
  		d1_sata: sata@0x70420000 {
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 71765f0bea493..dcb4a252da20f 100644
+index 71765f0bea49..dcb4a252da20 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -38,6 +38,7 @@ CONFIG_RISCV_SBI_V01=y
@@ -285,7 +285,7 @@ index 71765f0bea493..dcb4a252da20f 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/kernel/power/energy_model.c b/kernel/power/energy_model.c
-index 7b44f5b89fa15..cbc638479e46a 100644
+index 7b44f5b89fa1..cbc638479e46 100644
 --- a/kernel/power/energy_model.c
 +++ b/kernel/power/energy_model.c
 @@ -173,7 +173,8 @@ static int em_create_perf_table(struct device *dev, struct em_perf_domain *pd,
@@ -299,5 +299,5 @@ index 7b44f5b89fa15..cbc638479e46a 100644
  			dev_dbg(dev, "EM: OPP:%lu is inefficient\n",
  				table[i].frequency);
 -- 
-2.53.0
+2.54.0
 

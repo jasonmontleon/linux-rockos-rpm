@@ -1,4 +1,4 @@
-From 38477d92e3a28d4a8e5922228aa92d33357417fb Mon Sep 17 00:00:00 2001
+From 597ea14958c6d4ec713aef8c4bbaa1637acf077d Mon Sep 17 00:00:00 2001
 From: Pritesh Patel <pritesh.patel@einfochips.com>
 Date: Tue, 17 Sep 2024 10:18:04 +0000
 Subject: [PATCH 227/652] gpu: img: Replace deprecated functions
@@ -15,7 +15,7 @@ Signed-off-by: Pritesh Patel <pritesh.patel@einfochips.com>
  4 files changed, 10 insertions(+), 12 deletions(-)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c
-index f1442074b9c2c..3dbe76134b652 100644
+index f1442074b9c2..3dbe76134b65 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/module_common.c
 @@ -353,8 +353,6 @@ void PVRSRVDeviceDeinit(PVRSRV_DEVICE_NODE *psDeviceNode)
@@ -28,7 +28,7 @@ index f1442074b9c2c..3dbe76134b652 100644
  
  /**************************************************************************/ /*!
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c
-index e94522a647aea..51000fbf70b5a 100644
+index e94522a647ae..51000fbf70b5 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.c
 @@ -354,6 +354,7 @@ pvr_fence_context_create_internal(struct workqueue_struct *fence_status_wq,
@@ -49,7 +49,7 @@ index e94522a647aea..51000fbf70b5a 100644
  
  /**
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h
-index 21870ba9113e5..2047719c6a9ec 100644
+index 21870ba9113e..2047719c6a9e 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_fence.h
 @@ -47,7 +47,7 @@
@@ -88,7 +88,7 @@ index 21870ba9113e5..2047719c6a9ec 100644
  
  #if defined(PVR_FENCE_DEBUG)
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c
-index e3656108e9637..e29c4dfeac61b 100644
+index e3656108e963..e29c4dfeac61 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_sync_file.c
 @@ -826,7 +826,7 @@ int pvr_sync_init(void)
@@ -110,5 +110,5 @@ index e3656108e9637..e29c4dfeac61b 100644
  
  enum PVRSRV_ERROR_TAG pvr_sync_device_init(struct device *dev)
 -- 
-2.53.0
+2.54.0
 

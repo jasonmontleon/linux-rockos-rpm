@@ -1,4 +1,4 @@
-From ff65f5a0e449c37f8223f2b50482423f1071237e Mon Sep 17 00:00:00 2001
+From 6c703ceb2a4467098e29ea61e04a187d6e029c99 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 30 May 2024 20:48:25 +0800
 Subject: [PATCH 085/652] configs: enable hd audio pci support
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 5 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 2b7beb5b34955..a739278985ab6 100644
+index 2b7beb5b3495..a739278985ab 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -217,6 +217,11 @@ CONFIG_BACKLIGHT_CLASS_DEVICE=y
@@ -36,5 +36,5 @@ index 2b7beb5b34955..a739278985ab6 100644
  CONFIG_LEDS_TRIGGER_ONESHOT=y
  CONFIG_LEDS_TRIGGER_HEARTBEAT=y
 -- 
-2.53.0
+2.54.0
 

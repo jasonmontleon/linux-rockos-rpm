@@ -1,4 +1,4 @@
-From a2c19cf41484729c0404c234d4aa84d02351f07e Mon Sep 17 00:00:00 2001
+From 424b6db3f1aba225edda44f54a6e69e1cec101f7 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:03:38 +0800
 Subject: [PATCH 223/652] Revert "sync:drm support debugfs control virtual"
@@ -11,7 +11,7 @@ This reverts commit 8eea49810100bbab479b74207f06bd28777eea0d.
  3 files changed, 3 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
-index 069888c4aeedf..ed5d3e6ea9e3e 100644
+index 069888c4aeed..ed5d3e6ea9e3 100644
 --- a/arch/riscv/configs/eic7700_dbg_defconfig
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -626,7 +626,6 @@ CONFIG_DRM_SIMPLEDRM=m
@@ -23,7 +23,7 @@ index 069888c4aeedf..ed5d3e6ea9e3e 100644
  CONFIG_DW_HDMI_CEC=y
  CONFIG_DRM_IMG_VOLCANIC=m
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 6068b4f766a73..4381b03d08cf7 100644
+index 6068b4f766a7..4381b03d08cf 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -643,7 +643,6 @@ CONFIG_DRM_SIMPLEDRM=m
@@ -35,7 +35,7 @@ index 6068b4f766a73..4381b03d08cf7 100644
  CONFIG_DW_HDMI_CEC=y
  CONFIG_DRM_IMG_VOLCANIC=m
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 39409f08c2220..079152612a36d 100644
+index 39409f08c222..079152612a36 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -637,7 +637,6 @@ CONFIG_DRM_SIMPLEDRM=m
@@ -47,5 +47,5 @@ index 39409f08c2220..079152612a36d 100644
  CONFIG_DW_HDMI_CEC=y
  CONFIG_DRM_IMG_VOLCANIC=m
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 3e02a9a502ea2ad36f850ab648f839db91f23d17 Mon Sep 17 00:00:00 2001
+From ed88c3cddfc2b710205fde04b486835656890cd6 Mon Sep 17 00:00:00 2001
 From: caohang <caohang@eswincomputing.com>
 Date: Fri, 13 Jun 2025 13:38:36 +0800
 Subject: [PATCH 607/652] feat: Support ESWIN's TRNG
@@ -14,7 +14,7 @@ Signed-off-by: caohang <caohang@eswincomputing.com>
  2 files changed, 174 insertions(+), 37 deletions(-)
 
 diff --git a/drivers/crypto/eswin/eswin-ipc-scpu.c b/drivers/crypto/eswin/eswin-ipc-scpu.c
-index 76270dbc1e9d0..7ac1eae6ee8e2 100644
+index 76270dbc1e9d..7ac1eae6ee8e 100644
 --- a/drivers/crypto/eswin/eswin-ipc-scpu.c
 +++ b/drivers/crypto/eswin/eswin-ipc-scpu.c
 @@ -48,6 +48,8 @@
@@ -330,7 +330,7 @@ index 76270dbc1e9d0..7ac1eae6ee8e2 100644
  	if (ret)
  		return ret;
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
-index e8fa083a2c7f0..bd339c496476e 100644
+index e8fa083a2c7f..bd339c496476 100644
 --- a/include/uapi/linux/eswin-ipc-scpu.h
 +++ b/include/uapi/linux/eswin-ipc-scpu.h
 @@ -697,6 +697,9 @@ typedef struct {
@@ -344,5 +344,5 @@ index e8fa083a2c7f0..bd339c496476e 100644
  #define SCPU_IOC_ALLOCATE_MEM_BY_DRIVER_WITH_DMA_HEAP	_IOWR(SCPU_IOC_MAGIC, 0x1, struct dmabuf_bank_info)
  #define SCPU_IOC_FREE_MEM_BY_DRIVER_WITH_DMA_HEAP	_IOWR(SCPU_IOC_MAGIC, 0x2, struct dmabuf_bank_info)
 -- 
-2.53.0
+2.54.0
 

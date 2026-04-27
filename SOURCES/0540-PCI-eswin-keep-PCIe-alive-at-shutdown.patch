@@ -1,4 +1,4 @@
-From 49430efc66b34c116ba018f2fdfc69cc9c25a76e Mon Sep 17 00:00:00 2001
+From 2737b7efd630e1b7a60088fc844121f56d2c1610 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Tue, 8 Jul 2025 11:37:06 +0800
 Subject: [PATCH 540/652] PCI: eswin: keep PCIe alive at shutdown
@@ -15,7 +15,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 2 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 9b59531abe9ac..de90f5b579713 100644
+index 9b59531abe9a..de90f5b57971 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -77,10 +77,7 @@ struct eswin_pcie {
@@ -38,5 +38,5 @@ index 9b59531abe9ac..de90f5b579713 100644
 \ No newline at end of file
 +MODULE_LICENSE("GPL v2");
 -- 
-2.53.0
+2.54.0
 

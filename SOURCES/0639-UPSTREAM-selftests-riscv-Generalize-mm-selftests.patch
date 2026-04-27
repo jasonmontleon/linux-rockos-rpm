@@ -1,4 +1,4 @@
-From e704519ce8a712ae456e838ab958c816ec223045 Mon Sep 17 00:00:00 2001
+From ec23e844a84ac5c61635bf515083bbca33f5dbcc Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:01 -0800
 Subject: [PATCH 639/652] UPSTREAM: selftests: riscv: Generalize mm selftests
@@ -19,7 +19,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  3 files changed, 67 insertions(+), 86 deletions(-)
 
 diff --git a/tools/testing/selftests/riscv/mm/mmap_bottomup.c b/tools/testing/selftests/riscv/mm/mmap_bottomup.c
-index 1757d19ca89b1..7f7d3eb8b9c92 100644
+index 1757d19ca89b..7f7d3eb8b9c9 100644
 --- a/tools/testing/selftests/riscv/mm/mmap_bottomup.c
 +++ b/tools/testing/selftests/riscv/mm/mmap_bottomup.c
 @@ -6,30 +6,9 @@
@@ -55,7 +55,7 @@ index 1757d19ca89b1..7f7d3eb8b9c92 100644
  
  TEST_HARNESS_MAIN
 diff --git a/tools/testing/selftests/riscv/mm/mmap_default.c b/tools/testing/selftests/riscv/mm/mmap_default.c
-index c63c60b9397e7..2ba3ec9900064 100644
+index c63c60b9397e..2ba3ec990006 100644
 --- a/tools/testing/selftests/riscv/mm/mmap_default.c
 +++ b/tools/testing/selftests/riscv/mm/mmap_default.c
 @@ -6,30 +6,9 @@
@@ -91,7 +91,7 @@ index c63c60b9397e7..2ba3ec9900064 100644
  
  TEST_HARNESS_MAIN
 diff --git a/tools/testing/selftests/riscv/mm/mmap_test.h b/tools/testing/selftests/riscv/mm/mmap_test.h
-index 2e0db9c5be6c3..f170c62cc2ca8 100644
+index 2e0db9c5be6c..f170c62cc2ca 100644
 --- a/tools/testing/selftests/riscv/mm/mmap_test.h
 +++ b/tools/testing/selftests/riscv/mm/mmap_test.h
 @@ -4,63 +4,86 @@
@@ -224,5 +224,5 @@ index 2e0db9c5be6c3..f170c62cc2ca8 100644
  	return value2 > value1;
  }
 -- 
-2.53.0
+2.54.0
 

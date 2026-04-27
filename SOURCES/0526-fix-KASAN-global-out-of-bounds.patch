@@ -1,4 +1,4 @@
-From 8e478de2d558a5c7cdb19aa87739ddd96e384fe2 Mon Sep 17 00:00:00 2001
+From 0edabc9c2d58945eb0ee932979352f957583a825 Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Thu, 29 May 2025 15:14:32 +0800
 Subject: [PATCH 526/652] fix: KASAN:global out of bounds
@@ -12,7 +12,7 @@ Signed-off-by: yufangxian <yufangxian@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
-index e49d6957cda1b..8024b9d2241be 100644
+index e49d6957cda1..8024b9d2241b 100644
 --- a/drivers/media/platform/eswin/dvp2axi/dev.c
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.c
 @@ -1924,6 +1924,7 @@ static const struct of_device_id es_dvp2axi_plat_of_match[] = {
@@ -24,5 +24,5 @@ index e49d6957cda1b..8024b9d2241be 100644
  
  static void es_dvp2axi_parse_dts(struct es_dvp2axi_device *dvp2axi_dev)
 -- 
-2.53.0
+2.54.0
 

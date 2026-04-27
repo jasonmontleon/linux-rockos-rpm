@@ -1,4 +1,4 @@
-From 5e01c99d29bc1b1ad8b84c7de7431812c87ad01d Mon Sep 17 00:00:00 2001
+From 03e09a0db05c9ea77654f6f3f2cb694503154152 Mon Sep 17 00:00:00 2001
 From: Sakura286 <sakura286@outlook.com>
 Date: Fri, 5 Jul 2024 13:47:09 +0800
 Subject: [PATCH 071/652] img gpu kmd: update kernel api of dma_resv
@@ -10,7 +10,7 @@ ref: https://github.com/starfive-tech/linux/commit/8180dc82
  1 file changed, 156 insertions(+)
 
 diff --git a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_buffer_sync.c b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_buffer_sync.c
-index b5426d402eed5..5d9ec73376d2d 100644
+index b5426d402eed..5d9ec73376d2 100644
 --- a/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_buffer_sync.c
 +++ b/drivers/gpu/drm/img/img-volcanic/services/server/env/linux/pvr_buffer_sync.c
 @@ -172,6 +172,145 @@ pvr_buffer_sync_pmrs_unlock(struct pvr_buffer_sync_context *ctx,
@@ -203,5 +203,5 @@ index b5426d402eed5..5d9ec73376d2d 100644
  	}
  
 -- 
-2.53.0
+2.54.0
 

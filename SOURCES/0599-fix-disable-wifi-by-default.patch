@@ -1,4 +1,4 @@
-From f5ca983707d07310cd793bee4c761e60b387e586 Mon Sep 17 00:00:00 2001
+From 33ed00034e8c2d44bb54648e4082aa6664599834 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 2 Jul 2025 17:38:30 +0800
 Subject: [PATCH 599/652] fix:disable wifi by default
@@ -11,7 +11,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 76 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 36366cc3642eb..04ffef051e20f 100644
+index 36366cc3642e..04ffef051e20 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -19,3 +19,79 @@
@@ -96,5 +96,5 @@ index 36366cc3642eb..04ffef051e20f 100644
 +};
 \ No newline at end of file
 -- 
-2.53.0
+2.54.0
 

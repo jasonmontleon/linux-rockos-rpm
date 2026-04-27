@@ -1,4 +1,4 @@
-From 970c17e5d7e9d655325e1508a090a33cc3258644 Mon Sep 17 00:00:00 2001
+From 3835456e058fb4dd33ba09687b6959173fc69fc3 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Tue, 1 Jul 2025 10:06:00 +0800
 Subject: [PATCH 590/652] feat: add aicard feature Changelogs:
@@ -14,7 +14,7 @@ Signed-off-by: luoshanggui <luoshanggui@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin_aicard.dts b/arch/riscv/boot/dts/eswin/eswin_aicard.dts
 new file mode 100644
-index 0000000000000..c82d35f115ad6
+index 000000000000..c82d35f115ad
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eswin_aicard.dts
 @@ -0,0 +1,1116 @@
@@ -1135,7 +1135,7 @@ index 0000000000000..c82d35f115ad6
 +	status = "okay";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index c82d35f115ad6..59ec21fbda7b0 100644
+index c82d35f115ad..59ec21fbda7b 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -375,29 +375,29 @@ &pcie {
@@ -1183,7 +1183,7 @@ index c82d35f115ad6..59ec21fbda7b0 100644
  };
 diff --git a/arch/riscv/configs/eswin_aicard_defconfig b/arch/riscv/configs/eswin_aicard_defconfig
 new file mode 100644
-index 0000000000000..4f9eb65c23530
+index 000000000000..4f9eb65c2353
 --- /dev/null
 +++ b/arch/riscv/configs/eswin_aicard_defconfig
 @@ -0,0 +1,852 @@
@@ -2040,5 +2040,5 @@ index 0000000000000..4f9eb65c23530
 +CONFIG_ESWIN_MALLOC_DMABUF=y
 +CONFIG_ESWIN_AICARD=y
 -- 
-2.53.0
+2.54.0
 

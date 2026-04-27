@@ -1,4 +1,4 @@
-From 861cf898fedf4db14a5c6883a77e2104628d62cd Mon Sep 17 00:00:00 2001
+From 1022497ce9b4b4ed056cecf02d8ec923ed5d24f7 Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 20 Feb 2025 19:32:11 +0800
 Subject: [PATCH 406/652] iommu: eswin: lower the priority of TBU dump
@@ -12,7 +12,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index e3308e4e35eec..d109b45f33f1e 100644
+index e3308e4e35ee..d109b45f33f1 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -694,12 +694,12 @@ static void eic770x_tbu_dump_attachment(struct tbu_priv *tbu_priv_p)
@@ -77,5 +77,5 @@ index e3308e4e35eec..d109b45f33f1e 100644
  	#endif
  	}
 -- 
-2.53.0
+2.54.0
 

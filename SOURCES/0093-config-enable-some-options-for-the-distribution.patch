@@ -1,4 +1,4 @@
-From 8f92935b327d9f2b0aacbeaf81d9558ca22abaae Mon Sep 17 00:00:00 2001
+From 1e8b7a04ba02b7072fadec7bb222253df1a2098f Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 22 Jul 2024 17:32:51 +0800
 Subject: [PATCH 093/652] config: enable some options for the distribution
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 41 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index c30b74940c053..c9ffac16a2866 100644
+index c30b74940c05..c9ffac16a286 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -2,7 +2,7 @@
@@ -102,5 +102,5 @@ index c30b74940c053..c9ffac16a2866 100644
  # CONFIG_CRYPTO_CTS is not set
  CONFIG_CRYPTO_ECB=m
 -- 
-2.53.0
+2.54.0
 

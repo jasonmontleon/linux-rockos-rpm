@@ -1,4 +1,4 @@
-From b727dff38ab32c39e9e540e23172a239e76cece3 Mon Sep 17 00:00:00 2001
+From 9028e18d3cca470d46741a8a66e76693e809e214 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jason@montleon.com>
 Date: Sat, 22 Feb 2025 21:33:23 -0500
 Subject: [PATCH 649/652] remove mmz vb reserved memory ranges
@@ -10,7 +10,7 @@ Subject: [PATCH 649/652] remove mmz vb reserved memory ranges
  3 files changed, 17 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index 5bae80d59cdf8..2127b9dc38386 100644
+index 5bae80d59cdf..2127b9dc3838 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -112,11 +112,6 @@ g2d_12GB_boundary_reserved_4k {
@@ -26,7 +26,7 @@ index 5bae80d59cdf8..2127b9dc38386 100644
  
  	reg_vcc1v8: vcc1v8 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index aa4741af7aba7..1c3894b3da8a1 100644
+index aa4741af7aba..1c3894b3da8a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -113,12 +113,6 @@ g2d_12GB_boundary_reserved_4k {
@@ -43,7 +43,7 @@ index aa4741af7aba7..1c3894b3da8a1 100644
  
  	leds {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
-index 57fc6dcc6bb01..3f24c8829310d 100644
+index 57fc6dcc6bb0..3f24c8829310 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pine64-starpro64.dts
 @@ -101,12 +101,6 @@ g2d_12GB_boundary_reserved_4k {
@@ -60,5 +60,5 @@ index 57fc6dcc6bb01..3f24c8829310d 100644
  
  	leds {
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 0b3e8f0f67b616f742a36696ced1747ea57ee500 Mon Sep 17 00:00:00 2001
+From 1fa18309468bc22040e95b3e465714d7ec3d469c Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Mon, 16 Dec 2024 11:25:50 +0800
 Subject: [PATCH 340/652] WIN2030-16810:fix: npu devfeq bug fix
@@ -17,7 +17,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  2 files changed, 44 insertions(+), 24 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
-index e6adc2e30072c..471984153c447 100644
+index e6adc2e30072..471984153c44 100644
 --- a/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic770x-ooptable.dtsi
 @@ -106,7 +106,7 @@ npu_opp_table: opp-table@npu {
@@ -30,7 +30,7 @@ index e6adc2e30072c..471984153c447 100644
  		opp@1500000000 {
  			opp-hz = /bits/ 64 <1500000000>;
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 026a89f803b87..825c432cf2f2a 100644
+index 026a89f803b8..825c432cf2f2 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -353,35 +353,55 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
@@ -113,5 +113,5 @@ index 026a89f803b87..825c432cf2f2a 100644
  	if (nvdla_dev->rate != target_rate) {
  		dev_err(dev, "Got wrong frequency, Request %lu, Current %lu.\n", target_rate, nvdla_dev->rate);
 -- 
-2.53.0
+2.54.0
 

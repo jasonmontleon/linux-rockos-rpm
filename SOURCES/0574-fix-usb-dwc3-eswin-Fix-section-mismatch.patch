@@ -1,4 +1,4 @@
-From cfe901ec19d42fa236892c75dc9d5e1cd0d77879 Mon Sep 17 00:00:00 2001
+From 4024ffd2babd5ab35ec985604dde821bf0271009 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:06:00 +0800
 Subject: [PATCH 574/652] fix:usb: dwc3: eswin: Fix section mismatch
@@ -12,7 +12,7 @@ Signed-off-by: Samuel Holland <samuel.holland@sifive.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/usb/dwc3/dwc3-eswin.c b/drivers/usb/dwc3/dwc3-eswin.c
-index 0f4231b585a92..edd51751d1768 100755
+index 0f4231b585a9..edd51751d176 100755
 --- a/drivers/usb/dwc3/dwc3-eswin.c
 +++ b/drivers/usb/dwc3/dwc3-eswin.c
 @@ -255,7 +255,7 @@ static int dwc3_eswin_get_extcon_dev(struct dwc3_eswin *eswin)
@@ -25,5 +25,5 @@ index 0f4231b585a92..edd51751d1768 100755
  	int rc;
  
 -- 
-2.53.0
+2.54.0
 

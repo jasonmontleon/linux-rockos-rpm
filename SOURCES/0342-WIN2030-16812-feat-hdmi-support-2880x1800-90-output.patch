@@ -1,4 +1,4 @@
-From 511d74fbff439f63259725051cdeb00bf36e062a Mon Sep 17 00:00:00 2001
+From ba1073b7809dddc821e4649103bd6a2956d9cf51 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 8 Jul 2024 09:24:31 +0800
 Subject: [PATCH 342/652] WIN2030-16812:feat:hdmi support 2880x1800@90 output.
@@ -20,7 +20,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  rename drivers/gpu/drm/eswin/{eswin_dw_hdmi.c => es_dw_hdmi.c} (99%)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 05e8a597d2251..cf19b169cdc9b 100644
+index 05e8a597d225..cf19b169cdc9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1790,8 +1790,12 @@ dc: display_control@502c0000 {
@@ -39,7 +39,7 @@ index 05e8a597d2251..cf19b169cdc9b 100644
  					 <&d0_reset VO_RST_CTRL SW_VO_CFG_RSTN>,
  					 <&d0_reset VO_RST_CTRL SW_VO_DC_RSTN>,
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index d7935bb5ec3bb..5f4cbafe5a480 100644
+index d7935bb5ec3b..5f4cbafe5a48 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1699,8 +1699,12 @@ d1_dc: display_control@702c0000 {
@@ -58,7 +58,7 @@ index d7935bb5ec3bb..5f4cbafe5a480 100644
  					 <&d1_reset VO_RST_CTRL SW_VO_CFG_RSTN>,
  					 <&d1_reset VO_RST_CTRL SW_VO_DC_RSTN>,
 diff --git a/drivers/gpu/drm/eswin/Makefile b/drivers/gpu/drm/eswin/Makefile
-index 09cb7092e2e5b..b96f169eedfe1 100644
+index 09cb7092e2e5..b96f169eedfe 100644
 --- a/drivers/gpu/drm/eswin/Makefile
 +++ b/drivers/gpu/drm/eswin/Makefile
 @@ -13,7 +13,7 @@ es_drm-objs := es_dc_hw.o \
@@ -71,7 +71,7 @@ index 09cb7092e2e5b..b96f169eedfe1 100644
  es_drm-$(CONFIG_DW_HDMI_I2S_AUDIO) += dw_hdmi_i2s_audio.o
  es_drm-$(CONFIG_DW_HDMI_CEC) += dw_hdmi_cec.o
 diff --git a/drivers/gpu/drm/eswin/dw-hdmi.c b/drivers/gpu/drm/eswin/dw-hdmi.c
-index 84819ec2eadde..82a3cc3f69aab 100644
+index 84819ec2eadd..82a3cc3f69aa 100644
 --- a/drivers/gpu/drm/eswin/dw-hdmi.c
 +++ b/drivers/gpu/drm/eswin/dw-hdmi.c
 @@ -2549,6 +2549,9 @@ static int dw_hdmi_setup(struct dw_hdmi *hdmi,
@@ -94,7 +94,7 @@ index 84819ec2eadde..82a3cc3f69aab 100644
  	}
  
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index daf98bda21056..80538ae9aa9ec 100644
+index daf98bda2105..80538ae9aa9e 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -345,6 +345,7 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
@@ -164,7 +164,7 @@ index daf98bda21056..80538ae9aa9ec 100644
  	if (IS_ERR_OR_NULL(dc->vo_arst)) {
  		dev_err(dev, "Failed to vo_arst handle\n");
 diff --git a/drivers/gpu/drm/eswin/es_dc.h b/drivers/gpu/drm/eswin/es_dc.h
-index 89b203eebc980..63c5c8d79aa46 100644
+index 89b203eebc98..63c5c8d79aa4 100644
 --- a/drivers/gpu/drm/eswin/es_dc.h
 +++ b/drivers/gpu/drm/eswin/es_dc.h
 @@ -47,6 +47,9 @@ struct es_dc {
@@ -181,7 +181,7 @@ diff --git a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c b/drivers/gpu/drm/eswin/es_dw
 similarity index 99%
 rename from drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 rename to drivers/gpu/drm/eswin/es_dw_hdmi.c
-index 03c4f9b8cfb9f..84f75833aa622 100644
+index 03c4f9b8cfb9..84f75833aa62 100644
 --- a/drivers/gpu/drm/eswin/eswin_dw_hdmi.c
 +++ b/drivers/gpu/drm/eswin/es_dw_hdmi.c
 @@ -151,6 +151,14 @@ static const struct dw_hdmi_mpll_config eswin_mpll_cfg[] = {
@@ -211,5 +211,5 @@ index 03c4f9b8cfb9f..84f75833aa622 100644
  		594000000,
  		{ 0x3080, 0x31c0, 0x3100 },
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 550f93c0259d7aa81bd800eda5fc0232a5fc340d Mon Sep 17 00:00:00 2001
+From 2488b383763b22d824eb4f713e875d881279d231 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:45:57 +0800
 Subject: [PATCH 576/652] fix(smmu):lockdep_assert_held error in groups
@@ -13,7 +13,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index cc5700f453fcc..670e236559e04 100644
+index cc5700f453fc..670e236559e0 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 @@ -2900,13 +2900,14 @@ static struct iommu_group *arm_smmu_group_lookup(struct device *dev)
@@ -48,5 +48,5 @@ index cc5700f453fcc..670e236559e04 100644
  	new_smmu_group = kzalloc(sizeof(*new_smmu_group), GFP_KERNEL);
  	if (!new_smmu_group)
 -- 
-2.53.0
+2.54.0
 

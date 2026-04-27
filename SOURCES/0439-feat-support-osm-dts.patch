@@ -1,4 +1,4 @@
-From 0598429732e3bde89747ddeea3dd046b45ea8777 Mon Sep 17 00:00:00 2001
+From 82c94ea3d705adfc226123ddda6cdad0ee9dfbcc Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 21 Feb 2025 17:35:41 +0800
 Subject: [PATCH 439/652] feat:support osm dts
@@ -28,7 +28,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 sound/soc/codecs/eswin/tlv320aic3x.h
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index eaa0648b0bb7e..a973f47481aae 100644
+index eaa0648b0bb7..a973f47481aa 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -14,5 +14,6 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -41,7 +41,7 @@ index eaa0648b0bb7e..a973f47481aae 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 new file mode 100644
-index 0000000000000..3cae16114cd20
+index 000000000000..3cae16114cd2
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -0,0 +1,867 @@
@@ -913,7 +913,7 @@ index 0000000000000..3cae16114cd20
 +	status = "okay";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
-index 285b3bb9bcdb7..5ccd4dfcf817c 100644
+index 285b3bb9bcdb..5ccd4dfcf817 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-pinctrl.dtsi
 @@ -882,6 +882,11 @@ mux {
@@ -929,7 +929,7 @@ index 285b3bb9bcdb7..5ccd4dfcf817c 100644
              pinctrl_gpio56_default: gpio56-default{
  				mux {
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 3ad8e14384255..a82f71b58a6e2 100644
+index 3ad8e1438425..a82f71b58a6e 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -668,6 +668,7 @@ CONFIG_SND_SOC_SOF_OF=y
@@ -949,7 +949,7 @@ index 3ad8e14384255..a82f71b58a6e2 100644
  CONFIG_RTC_DRV_ESWIN=y
  CONFIG_DMADEVICES=y
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
-index 6ae7b0ecfb86a..2b4fe08a5f587 100644
+index 6ae7b0ecfb86..2b4fe08a5f58 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -82,6 +82,7 @@ struct dwc_qos_priv {
@@ -990,7 +990,7 @@ index 6ae7b0ecfb86a..2b4fe08a5f587 100644
  
  	return ret;
 diff --git a/sound/soc/codecs/eswin/Kconfig b/sound/soc/codecs/eswin/Kconfig
-index d3c7039aa8e93..b84c9c15065b2 100755
+index d3c7039aa8e9..b84c9c15065b 100755
 --- a/sound/soc/codecs/eswin/Kconfig
 +++ b/sound/soc/codecs/eswin/Kconfig
 @@ -17,4 +17,13 @@ config ESWIN_SND_ES8388_CODEC
@@ -1008,7 +1008,7 @@ index d3c7039aa8e93..b84c9c15065b2 100755
 +
  #endif #ESWIN_SND_SOC_CODECS
 diff --git a/sound/soc/codecs/eswin/Makefile b/sound/soc/codecs/eswin/Makefile
-index ee696d62096cd..cedfbe27621f1 100755
+index ee696d62096c..cedfbe27621f 100755
 --- a/sound/soc/codecs/eswin/Makefile
 +++ b/sound/soc/codecs/eswin/Makefile
 @@ -1,3 +1,7 @@
@@ -1023,7 +1023,7 @@ index ee696d62096cd..cedfbe27621f1 100755
 +obj-$(CONFIG_ESWIN_SND_TLV320AIC3106_CODEC) += esw_tlv320aic3106_codec.o
 diff --git a/sound/soc/codecs/eswin/tlv320aic3x-i2c.c b/sound/soc/codecs/eswin/tlv320aic3x-i2c.c
 new file mode 100644
-index 0000000000000..b3a76634bea2c
+index 000000000000..b3a76634bea2
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/tlv320aic3x-i2c.c
 @@ -0,0 +1,94 @@
@@ -1123,7 +1123,7 @@ index 0000000000000..b3a76634bea2c
 +MODULE_LICENSE("GPL");
 diff --git a/sound/soc/codecs/eswin/tlv320aic3x.c b/sound/soc/codecs/eswin/tlv320aic3x.c
 new file mode 100644
-index 0000000000000..e829b01103630
+index 000000000000..e829b0110363
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/tlv320aic3x.c
 @@ -0,0 +1,1818 @@
@@ -2947,7 +2947,7 @@ index 0000000000000..e829b01103630
 +MODULE_LICENSE("GPL");
 diff --git a/sound/soc/codecs/eswin/tlv320aic3x.h b/sound/soc/codecs/eswin/tlv320aic3x.h
 new file mode 100644
-index 0000000000000..4cd5da8dfc828
+index 000000000000..4cd5da8dfc82
 --- /dev/null
 +++ b/sound/soc/codecs/eswin/tlv320aic3x.h
 @@ -0,0 +1,365 @@
@@ -3317,5 +3317,5 @@ index 0000000000000..4cd5da8dfc828
 +
 +#endif /* _AIC3X_H */
 -- 
-2.53.0
+2.54.0
 

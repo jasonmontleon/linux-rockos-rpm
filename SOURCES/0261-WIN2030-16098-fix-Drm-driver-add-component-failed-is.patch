@@ -1,4 +1,4 @@
-From b33ef86e00fc2ed9e58da2892f9b1edc0d63f32b Mon Sep 17 00:00:00 2001
+From 05753208e9d3d879c606f6ac8b73ac774fa05831 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 11 Sep 2024 13:58:01 +0800
 Subject: [PATCH 261/652] WIN2030-16098:fix:Drm driver add component failed
@@ -15,7 +15,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index d5547aef615cf..2e0d2fb3838fd 100644
+index d5547aef615c..2e0d2fb3838f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -439,14 +439,14 @@ &vdec0 {
@@ -72,5 +72,5 @@ index d5547aef615cf..2e0d2fb3838fd 100644
  	pinctrl-0 = <&pinctrl_die1_gpio69_default &pinctrl_die1_gpio21_default>;
  	backlight0-gpios = <&d1_portc 5 GPIO_ACTIVE_HIGH>;
 -- 
-2.53.0
+2.54.0
 

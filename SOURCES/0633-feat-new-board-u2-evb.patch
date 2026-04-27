@@ -1,4 +1,4 @@
-From dcf6065a4cdcd7644ba942b4b52c9ee52826f3c3 Mon Sep 17 00:00:00 2001
+From 82812386b909999fb989520ff48f7d9544deb2dc Mon Sep 17 00:00:00 2001
 From: Joey Zheng <zhengyu@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:24:25 +0800
 Subject: [PATCH 633/652] feat:new board u2 evb
@@ -17,7 +17,7 @@ Signed-off-by: Joey Zheng <zhengyu@eswincomputing.com>
  create mode 100644 arch/riscv/configs/u2_evb_defconfig
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 19ca06fb8171a..81c75d1011768 100644
+index 19ca06fb8171..81c75d101176 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -23,5 +23,6 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -30,7 +30,7 @@ index 19ca06fb8171a..81c75d1011768 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/u2-evb.dts b/arch/riscv/boot/dts/eswin/u2-evb.dts
 new file mode 100644
-index 0000000000000..7309a3496b298
+index 000000000000..7309a3496b29
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/u2-evb.dts
 @@ -0,0 +1,1745 @@
@@ -1781,7 +1781,7 @@ index 0000000000000..7309a3496b298
 +*/
 diff --git a/arch/riscv/configs/u2_evb_defconfig b/arch/riscv/configs/u2_evb_defconfig
 new file mode 100644
-index 0000000000000..63c898d93c77e
+index 000000000000..63c898d93c77
 --- /dev/null
 +++ b/arch/riscv/configs/u2_evb_defconfig
 @@ -0,0 +1,906 @@
@@ -2692,5 +2692,5 @@ index 0000000000000..63c898d93c77e
 +CONFIG_VIDEO_ESWIN_VI_TOP=y
 +CONFIG_VIDEO_ESWIN_DVP2AXI=y
 -- 
-2.53.0
+2.54.0
 

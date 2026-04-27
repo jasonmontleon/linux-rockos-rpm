@@ -1,4 +1,4 @@
-From 47f0012c94ff645ed45e6df9af9f720caf1d8b26 Mon Sep 17 00:00:00 2001
+From f0a6f1caab3aebab8875dc6cf2c6a21db3e334b1 Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 18 Sep 2024 11:10:06 +0800
 Subject: [PATCH 177/652] feat:support bluetooth.
@@ -13,7 +13,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  2 files changed, 11 insertions(+), 7 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 4de22fc5228ac..020bae903781e 100644
+index 4de22fc5228a..020bae903781 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -286,12 +286,17 @@ CONFIG_NET_CLS_CGROUP=m
@@ -59,7 +59,7 @@ index 4de22fc5228ac..020bae903781e 100644
  CONFIG_CRC_ITU_T=y
  CONFIG_CRC7=y
 diff --git a/drivers/tty/serial/8250/8250_dw.c b/drivers/tty/serial/8250/8250_dw.c
-index 60a05bfecde39..7f57137a8f77b 100644
+index 60a05bfecde3..7f57137a8f77 100644
 --- a/drivers/tty/serial/8250/8250_dw.c
 +++ b/drivers/tty/serial/8250/8250_dw.c
 @@ -776,6 +776,7 @@ static const struct dev_pm_ops dw8250_pm_ops = {
@@ -71,5 +71,5 @@ index 60a05bfecde39..7f57137a8f77b 100644
  
  static const struct dw8250_platform_data dw8250_octeon_3860_data = {
 -- 
-2.53.0
+2.54.0
 

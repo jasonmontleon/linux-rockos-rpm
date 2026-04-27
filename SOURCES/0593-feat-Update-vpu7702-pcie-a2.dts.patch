@@ -1,4 +1,4 @@
-From 5c58d901ba25e67f8ba17de26a6160d5a9281c27 Mon Sep 17 00:00:00 2001
+From d563dd96bbbf39d26f7148f8ac14df4f67f7f8ae Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Wed, 2 Jul 2025 16:45:52 +0800
 Subject: [PATCH 593/652] feat:Update vpu7702-pcie-a2.dts.
@@ -13,7 +13,7 @@ Signed-off-by: taohaitao <taohaitao@eswincomputing.com>
  2 files changed, 42 insertions(+), 42 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
-index 4217d17125551..cdc86bcf6b301 100644
+index 4217d1712555..cdc86bcf6b30 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 @@ -405,7 +405,7 @@ &gpu0 {
@@ -62,7 +62,7 @@ index 4217d17125551..cdc86bcf6b301 100644
  	eeprom@50 {
  		compatible = "atmel,24c02";
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
-index c31a7615cb6c8..5c4cd1f6f8517 100644
+index c31a7615cb6c..5c4cd1f6f851 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702_pcie_factory.dts
 @@ -826,7 +826,7 @@ &fan_control {
@@ -165,5 +165,5 @@ index c31a7615cb6c8..5c4cd1f6f8517 100644
  	status = "disabled";
  };
 -- 
-2.53.0
+2.54.0
 

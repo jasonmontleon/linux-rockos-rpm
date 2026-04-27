@@ -1,4 +1,4 @@
-From b3d2e438fed45535436959c3c6689198e9a90c69 Mon Sep 17 00:00:00 2001
+From c32687ccd2861d0ea84712c1510fce36b2d10111 Mon Sep 17 00:00:00 2001
 From: yiguo <yiguo@eswincomputing.com>
 Date: Mon, 12 May 2025 11:27:02 +0800
 Subject: [PATCH 554/652] fix:adapt d560 audio input
@@ -12,7 +12,7 @@ Signed-off-by: yiguo <yiguo@eswincomputing.com>
  1 file changed, 6 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560.dts b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
-index 29c7fbc030fe8..a31f359283ed7 100644
+index 29c7fbc030fe..a31f359283ed 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560.dts
 @@ -148,6 +148,11 @@ d0_es8388_0: es8388-0@11 {
@@ -37,5 +37,5 @@ index 29c7fbc030fe8..a31f359283ed7 100644
      /* pin header default function for GPIO
         D0_SPI1 (CS0,SCLK,MOSI,MISO,D2,D3): GPIO 35,36,37,38,39,40
 -- 
-2.53.0
+2.54.0
 

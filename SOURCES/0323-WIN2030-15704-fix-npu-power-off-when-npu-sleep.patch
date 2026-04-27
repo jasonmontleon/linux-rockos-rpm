@@ -1,4 +1,4 @@
-From da83af99218474446395e6bb1218fb35654b96d7 Mon Sep 17 00:00:00 2001
+From 3f4b72668880980d8b7ff8a5eccd09c4496d11dc Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Wed, 23 Oct 2024 17:07:29 +0800
 Subject: [PATCH 323/652] WIN2030-15704:fix:npu power off when npu sleep
@@ -25,7 +25,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  12 files changed, 308 insertions(+), 63 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 1ea82a170c60a..576aa7fa317bc 100644
+index 1ea82a170c60..576aa7fa317b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -285,6 +285,7 @@ &pcie {
@@ -45,7 +45,7 @@ index 1ea82a170c60a..576aa7fa317bc 100644
  		};
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index aba11f7d5040d..99068867bd15f 100644
+index aba11f7d5040..99068867bd15 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -246,6 +246,7 @@ &pcie {
@@ -65,7 +65,7 @@ index aba11f7d5040d..99068867bd15f 100644
  		};
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index b30953a9f27c6..b19e3e67dd7a0 100644
+index b30953a9f27c..b19e3e67dd7a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -240,6 +240,7 @@ &pcie {
@@ -85,7 +85,7 @@ index b30953a9f27c6..b19e3e67dd7a0 100644
  		};
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 3bf4332d267a3..7688d0071ba16 100644
+index 3bf4332d267a..7688d0071ba1 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -228,6 +228,7 @@ &pcie {
@@ -105,7 +105,7 @@ index 3bf4332d267a3..7688d0071ba16 100644
  		};
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index 4154b2da9d220..110e4eab9a6d0 100644
+index 4154b2da9d22..110e4eab9a6d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -240,6 +240,7 @@ &pcie {
@@ -125,7 +125,7 @@ index 4154b2da9d220..110e4eab9a6d0 100644
  		};
  	};
 diff --git a/drivers/dma-buf/dma-heap.c b/drivers/dma-buf/dma-heap.c
-index 84ae708fafe75..c5634708c9a49 100644
+index 84ae708fafe7..c5634708c9a4 100644
 --- a/drivers/dma-buf/dma-heap.c
 +++ b/drivers/dma-buf/dma-heap.c
 @@ -300,6 +300,7 @@ struct dma_heap *dma_heap_add(const struct dma_heap_export_info *exp_info)
@@ -137,7 +137,7 @@ index 84ae708fafe75..c5634708c9a49 100644
  static char *dma_heap_devnode(const struct device *dev, umode_t *mode)
  {
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index ed71d83c30604..7b43016883837 100644
+index ed71d83c3060..7b4301688383 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -42,6 +42,7 @@
@@ -566,7 +566,7 @@ index ed71d83c30604..7b43016883837 100644
  MODULE_LICENSE("GPL");
 +
 diff --git a/drivers/soc/eswin/ai_driver/npu/Makefile b/drivers/soc/eswin/ai_driver/npu/Makefile
-index 29cbe78dd0267..9e85f48c355bd 100644
+index 29cbe78dd026..9e85f48c355b 100644
 --- a/drivers/soc/eswin/ai_driver/npu/Makefile
 +++ b/drivers/soc/eswin/ai_driver/npu/Makefile
 @@ -22,7 +22,7 @@ ccflags-y += -DNPU_DBG
@@ -579,7 +579,7 @@ index 29cbe78dd0267..9e85f48c355bd 100644
  
  obj-$(CONFIG_ESWIN_NPU) += eic7700_npu.o
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index 7604d1e9c406b..b098833d2e40a 100644
+index 7604d1e9c406..b098833d2e40 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -31,7 +31,7 @@
@@ -600,7 +600,7 @@ index 7604d1e9c406b..b098833d2e40a 100644
  
  void dla_reg_write(struct nvdla_device *dev, uint32_t addr, uint32_t value);
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index a742cbc584527..8a42a21bd79d4 100644
+index a742cbc58452..8a42a21bd79d 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -346,6 +346,15 @@ static int32_t edla_probe(struct platform_device *pdev)
@@ -767,7 +767,7 @@ index a742cbc584527..8a42a21bd79d4 100644
  }
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index c00b3fdb61108..a7d7b58cc849e 100644
+index c00b3fdb6110..a7d7b58cc849 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -260,6 +260,35 @@ int npu_dev_reset(struct nvdla_device *nvdla_dev)
@@ -807,7 +807,7 @@ index c00b3fdb61108..a7d7b58cc849e 100644
  {
  	struct platform_device *pdev = nvdla_dev->pdev;
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
-index 6d26b94701521..a5d3ab9b088e4 100644
+index 6d26b9470152..a5d3ab9b088e 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_lowlevel.h
 @@ -42,6 +42,7 @@ int npu_create_sysfs(struct platform_device *pdev);
@@ -819,5 +819,5 @@ index 6d26b94701521..a5d3ab9b088e4 100644
  void npu_dma_sid_cfg(void __iomem *npu_subsys_base, u32 sid);
  
 -- 
-2.53.0
+2.54.0
 

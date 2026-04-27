@@ -1,4 +1,4 @@
-From 896bb8cac000344da2f7af5ff3c1182deb816386 Mon Sep 17 00:00:00 2001
+From 1416ee981ba28e1498796c4aaba213283820f9be Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 23 May 2024 16:30:23 +0800
 Subject: [PATCH 022/652] feat(spram):Treat spram as part of the sys memory
@@ -15,7 +15,7 @@ Changelogs:
  3 files changed, 17 insertions(+), 58 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index cddfc166e851a..8c2b945ed8a9f 100644
+index cddfc166e851..8c2b945ed8a9 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -56,13 +56,13 @@ chosen {
@@ -60,7 +60,7 @@ index cddfc166e851a..8c2b945ed8a9f 100644
  	leds {
  		compatible = "gpio-leds";
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 34bc531d58f9b..c627133f179cb 100644
+index 34bc531d58f9..c627133f179c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -55,13 +55,13 @@ chosen {
@@ -105,7 +105,7 @@ index 34bc531d58f9b..c627133f179cb 100644
  
  &d0_clock {
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 8bd0912af4b77..2e343f1da43f9 100644
+index 8bd0912af4b7..2e343f1da43f 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -895,13 +895,6 @@ static int llc_resource_parse(struct platform_device *pdev)
@@ -237,5 +237,5 @@ index 8bd0912af4b77..2e343f1da43f9 100644
  }
  
 -- 
-2.53.0
+2.54.0
 

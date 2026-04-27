@@ -1,4 +1,4 @@
-From ca9b988cbc5b7cba07d0cdcdbfa28aff36f7fbd9 Mon Sep 17 00:00:00 2001
+From 95ca9223b9cb92ca7a81da021fe2be1678ff65e1 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 24 Dec 2024 10:29:33 +0800
 Subject: [PATCH 355/652] WIN2030-14758:feat:clk support set default cpu freq
@@ -16,7 +16,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  2 files changed, 41 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
-index 47b490f8c6c1b..9631c73e0bd35 100644
+index 47b490f8c6c1..9631c73e0bd3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a3.dts
 @@ -29,6 +29,7 @@ &d0_clock {
@@ -28,7 +28,7 @@ index 47b490f8c6c1b..9631c73e0bd35 100644
  
  &d0_cpu_opp_table {
 diff --git a/drivers/clk/eswin/clk-win2030.c b/drivers/clk/eswin/clk-win2030.c
-index ccb7dade5475a..93cb6c6c85076 100755
+index ccb7dade5475..93cb6c6c8507 100755
 --- a/drivers/clk/eswin/clk-win2030.c
 +++ b/drivers/clk/eswin/clk-win2030.c
 @@ -24,7 +24,7 @@
@@ -94,5 +94,5 @@ index ccb7dade5475a..93cb6c6c85076 100755
  }
  
 -- 
-2.53.0
+2.54.0
 

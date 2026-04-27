@@ -1,4 +1,4 @@
-From feb995784e3c9f694751831b2ece69d58ee30fc6 Mon Sep 17 00:00:00 2001
+From 624411e8b101033f0a4094a331bcccb66d14e970 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 4 Sep 2024 15:13:10 +0800
 Subject: [PATCH 170/652] feat:Support mmz partition resize
@@ -16,7 +16,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 11 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/memory/eswin/eswin_memblock.c b/drivers/memory/eswin/eswin_memblock.c
-index c99b0b0b100d9..06c8635c6a60c 100644
+index c99b0b0b100d..06c8635c6a60 100644
 --- a/drivers/memory/eswin/eswin_memblock.c
 +++ b/drivers/memory/eswin/eswin_memblock.c
 @@ -82,6 +82,8 @@ static int __init eswin_rsvmem_init_reserved_mem(phys_addr_t base, phys_addr_t s
@@ -57,5 +57,5 @@ index c99b0b0b100d9..06c8635c6a60c 100644
  	return 0;
  }
 -- 
-2.53.0
+2.54.0
 

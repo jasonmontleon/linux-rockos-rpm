@@ -1,4 +1,4 @@
-From 1bf229f3576a4184a6cd205db4b5bbdd413e88aa Mon Sep 17 00:00:00 2001
+From 82d10845ca591844403ab9f153710c107cadc4e1 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 14 Feb 2025 16:48:39 +0800
 Subject: [PATCH 437/652] feat:merge feature-vpu7702 branch
@@ -20,7 +20,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  create mode 100644 arch/riscv/configs/eic7700_vpu7702_defconfig
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index c1d32b8077e5e..eaa0648b0bb7e 100644
+index c1d32b8077e5..eaa0648b0bb7 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -13,6 +13,6 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -34,7 +34,7 @@ index c1d32b8077e5e..eaa0648b0bb7e 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 new file mode 100644
-index 0000000000000..642e6f05311fa
+index 000000000000..642e6f05311f
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 @@ -0,0 +1,1084 @@
@@ -1124,7 +1124,7 @@ index 0000000000000..642e6f05311fa
 +};
 diff --git a/arch/riscv/configs/eic7700_vpu7702_defconfig b/arch/riscv/configs/eic7700_vpu7702_defconfig
 new file mode 100644
-index 0000000000000..ca6a63a499504
+index 000000000000..ca6a63a49950
 --- /dev/null
 +++ b/arch/riscv/configs/eic7700_vpu7702_defconfig
 @@ -0,0 +1,850 @@
@@ -1979,7 +1979,7 @@ index 0000000000000..ca6a63a499504
 +CONFIG_VIDEO_ESWIN_VDEC=y
 +CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 diff --git a/kernel/dma/coherent.c b/kernel/dma/coherent.c
-index ff5683a57f771..e51697ee439ef 100644
+index ff5683a57f77..e51697ee439e 100644
 --- a/kernel/dma/coherent.c
 +++ b/kernel/dma/coherent.c
 @@ -129,6 +129,7 @@ int dma_declare_coherent_memory(struct device *dev, phys_addr_t phys_addr,
@@ -1991,7 +1991,7 @@ index ff5683a57f771..e51697ee439ef 100644
  void dma_release_coherent_memory(struct device *dev)
  {
 diff --git a/kernel/printk/printk.c b/kernel/printk/printk.c
-index 51c43e0f9b29b..9d25640e85250 100644
+index 51c43e0f9b29..9d25640e8525 100644
 --- a/kernel/printk/printk.c
 +++ b/kernel/printk/printk.c
 @@ -55,11 +55,40 @@
@@ -2199,7 +2199,7 @@ index 51c43e0f9b29b..9d25640e85250 100644
  
  /*
 diff --git a/lib/Kconfig.debug b/lib/Kconfig.debug
-index e56f9e1b18fdf..5e28f053393ec 100644
+index e56f9e1b18fd..5e28f053393e 100644
 --- a/lib/Kconfig.debug
 +++ b/lib/Kconfig.debug
 @@ -35,6 +35,20 @@ config PRINTK_CALLER
@@ -2224,5 +2224,5 @@ index e56f9e1b18fdf..5e28f053393ec 100644
  	bool "Show build ID information in stacktraces"
  	depends on PRINTK
 -- 
-2.53.0
+2.54.0
 

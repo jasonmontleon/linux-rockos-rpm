@@ -1,4 +1,4 @@
-From 14a42e04b697aecec1e21abb30e7ae1e99f0b283 Mon Sep 17 00:00:00 2001
+From f16880c64fbb6fa7caec93a0cfffec93c0573436 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 13 May 2025 13:47:57 +0800
 Subject: [PATCH 502/652] fix:modify the reading method of rpm
@@ -12,7 +12,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  1 file changed, 28 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index f1a28dba76b3f..d3f0342a74b03 100644
+index f1a28dba76b3..d3f0342a74b0 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -33,12 +33,17 @@
@@ -79,5 +79,5 @@ index f1a28dba76b3f..d3f0342a74b03 100644
  	default:
  		return -ENOTSUPP;
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 4f3df4fdf6a774d00c0106bc382faccbc93ee1be Mon Sep 17 00:00:00 2001
+From 12d14a94043d54807976d14c555f7e01010366c9 Mon Sep 17 00:00:00 2001
 From: repo sync <hejiean@eswincomputing.com>
 Date: Thu, 19 Jun 2025 10:05:25 +0800
 Subject: [PATCH 571/652] chore:fix es_porc builtin issue
@@ -13,7 +13,7 @@ Signed-off-by: hejiean <hejiean@eswincomputing.com>
  1 file changed, 60 insertions(+), 54 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_proc/es_proc.c b/drivers/memory/eswin/es_proc/es_proc.c
-index 4e7f2bca6e103..569b9cf307d88 100644
+index 4e7f2bca6e10..569b9cf307d8 100644
 --- a/drivers/memory/eswin/es_proc/es_proc.c
 +++ b/drivers/memory/eswin/es_proc/es_proc.c
 @@ -18,9 +18,12 @@
@@ -180,5 +180,5 @@ index 4e7f2bca6e103..569b9cf307d88 100644
 -MODULE_AUTHOR("huangyifeng@eswincomputing.com");
 -MODULE_LICENSE("GPL v2");
 -- 
-2.53.0
+2.54.0
 

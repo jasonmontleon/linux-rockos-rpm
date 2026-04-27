@@ -1,4 +1,4 @@
-From da1b19389414e06c8c8decc0e97f4a278811d814 Mon Sep 17 00:00:00 2001
+From a6b25d5f73932a803e4646833f8ad323816e4808 Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Tue, 15 Jul 2025 14:46:08 +0800
 Subject: [PATCH 632/652] fix: disabled isp for feature not ready
@@ -12,7 +12,7 @@ Signed-off-by: shenzhenya <shenzhenya@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
-index 466fc878547d3..5f83942fd3030 100644
+index 466fc878547d..5f83942fd303 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-som560.dtsi
 @@ -825,17 +825,17 @@ &d1_graphcard2 {
@@ -38,5 +38,5 @@ index 466fc878547d3..5f83942fd3030 100644
  
  &dewarp {
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 1b1e0636b7f31940565be6f01408f44125496a3e Mon Sep 17 00:00:00 2001
+From 081f246e7ba167b7aa842253453962bb5d491e13 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Fri, 31 May 2024 08:52:35 +0800
@@ -13,7 +13,7 @@ Changelogs:
  2 files changed, 6 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 008c21b95a6f3..41fb37364295d 100644
+index 008c21b95a6f..41fb37364295 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -47,6 +47,8 @@ aliases {
@@ -35,7 +35,7 @@ index 008c21b95a6f3..41fb37364295d 100644
  		reg = <0x51>;
  	};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 4d9aeafa93f78..2aebb21a51a0e 100644
+index 4d9aeafa93f7..2aebb21a51a0 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -46,6 +46,8 @@ aliases {
@@ -57,5 +57,5 @@ index 4d9aeafa93f78..2aebb21a51a0e 100644
  		reg = <0x51>;
  	};
 -- 
-2.53.0
+2.54.0
 

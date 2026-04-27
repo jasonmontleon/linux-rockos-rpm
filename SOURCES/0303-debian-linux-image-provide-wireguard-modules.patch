@@ -1,4 +1,4 @@
-From 3285beb32951095e852e8b734c70732df39a660a Mon Sep 17 00:00:00 2001
+From c6609bab532f787445d6a0b2613f169d08c020ec Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 14 Oct 2024 16:13:35 +0800
 Subject: [PATCH 303/652] debian: linux-image provide wireguard-modules
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/scripts/package/mkdebian b/scripts/package/mkdebian
-index c1a36da85e84f..420c1e4c2d401 100755
+index c1a36da85e84..420c1e4c2d40 100755
 --- a/scripts/package/mkdebian
 +++ b/scripts/package/mkdebian
 @@ -220,6 +220,7 @@ Homepage: https://www.kernel.org/
@@ -22,5 +22,5 @@ index c1a36da85e84f..420c1e4c2d401 100755
   This package contains the Linux kernel, modules and corresponding other
   files, version: $version.
 -- 
-2.53.0
+2.54.0
 

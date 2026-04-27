@@ -1,4 +1,4 @@
-From 9992fa5a2aecb01fd07ee2279cb15e2a53e36f4b Mon Sep 17 00:00:00 2001
+From 56847240e766e866391b187038d477f4b45453a6 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Tue, 26 Nov 2024 14:03:48 +0800
 Subject: [PATCH 292/652] WIN2030-16664:fix:modify machine model of 7702
@@ -13,7 +13,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index d26e6e5f505f0..642ebf79f2ddf 100644
+index d26e6e5f505f..642ebf79f2dd 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -42,7 +42,7 @@
@@ -26,5 +26,5 @@ index d26e6e5f505f0..642ebf79f2ddf 100644
  		     "sifive,fu740", "eswin,eic7700";
  
 -- 
-2.53.0
+2.54.0
 

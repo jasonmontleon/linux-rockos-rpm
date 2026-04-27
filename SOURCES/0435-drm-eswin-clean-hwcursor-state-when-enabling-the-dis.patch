@@ -1,4 +1,4 @@
-From 996d5e15594b5f1d6e58a54e92dd299e07d8c5a0 Mon Sep 17 00:00:00 2001
+From 3e1205e4cd02ff9018f8df72a4a48130bc40b0cf Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Thu, 3 Apr 2025 19:16:26 +0800
 Subject: [PATCH 435/652] drm: eswin: clean hwcursor state when enabling the
@@ -15,7 +15,7 @@ Signed-off-by: Icenowy Zheng <uwu@icenowy.me>
  1 file changed, 4 insertions(+)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 7c608e29d25ba..799fdd18d5cb2 100644
+index 7c608e29d25b..799fdd18d5cb 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -345,6 +345,7 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
@@ -37,5 +37,5 @@ index 7c608e29d25ba..799fdd18d5cb2 100644
  
  static void es_dc_disable(struct device *dev)
 -- 
-2.53.0
+2.54.0
 

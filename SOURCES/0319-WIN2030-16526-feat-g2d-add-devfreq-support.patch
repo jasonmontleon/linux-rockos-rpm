@@ -1,4 +1,4 @@
-From 77f206a965710c2257e5889ee38f1c3a13427d0c Mon Sep 17 00:00:00 2001
+From 850fb051d2a6519c5ff0138056793833a7ae592a Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 22 Oct 2024 14:46:26 +0800
 Subject: [PATCH 319/652] WIN2030-16526:feat:g2d add devfreq support
@@ -13,7 +13,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  3 files changed, 117 insertions(+), 12 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 685eda496ec47..ab9c07cb01d94 100644
+index 685eda496ec4..ab9c07cb01d9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -114,6 +114,25 @@ opp@1040000000 {
@@ -51,7 +51,7 @@ index 685eda496ec47..ab9c07cb01d94 100644
  
  		gpu0: gpu@51400000 {
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
-index a428dcd84af58..37027e6966106 100644
+index a428dcd84af5..37027e696610 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 @@ -1393,11 +1393,15 @@ static int __devinit viv_dev_probe(struct platform_device *pdev)
@@ -73,7 +73,7 @@ index a428dcd84af58..37027e6966106 100644
      }
  
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
-index 5802677709927..970ea43149198 100644
+index 580267770992..970ea4314919 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/platform/eswin/gc_hal_kernel_platform_win2030.c
 @@ -90,6 +90,9 @@
@@ -260,5 +260,5 @@ index 5802677709927..970ea43149198 100644
      }
      return gcvSTATUS_OK;
 -- 
-2.53.0
+2.54.0
 

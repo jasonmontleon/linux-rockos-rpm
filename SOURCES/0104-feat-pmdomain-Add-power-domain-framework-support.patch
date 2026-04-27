@@ -1,4 +1,4 @@
-From 4fdc9e12f89702e6009cc0c882cab90bd0534a20 Mon Sep 17 00:00:00 2001
+From d79343f9bfb146dfd2fd9bbe2fc1d48425499f59 Mon Sep 17 00:00:00 2001
 From: gengzonglin <gengzonglin@eswincomputing.com>
 Date: Wed, 17 Jul 2024 17:15:31 +0800
 Subject: [PATCH 104/652] feat(pmdomain): Add power domain framework support.
@@ -20,7 +20,7 @@ Signed-off-by: gengzonglin <gengzonglin@eswincomputing.com>
  create mode 100644 include/dt-bindings/power/eswin,eic770x-pmu.h
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 79a64e2abaf3c..fea1f577fddcd 100644
+index 79a64e2abaf3..fea1f577fddc 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -30,6 +30,7 @@
@@ -114,7 +114,7 @@ index 79a64e2abaf3c..fea1f577fddcd 100644
  				clock_delay = <4 2 2 2>;
  				reset_delay = <2 4 2 2>;
 diff --git a/drivers/pmdomain/Makefile b/drivers/pmdomain/Makefile
-index 666753676e5c0..49aed0580d25a 100644
+index 666753676e5c..49aed0580d25 100644
 --- a/drivers/pmdomain/Makefile
 +++ b/drivers/pmdomain/Makefile
 @@ -15,3 +15,4 @@ obj-y					+= sunxi/
@@ -124,7 +124,7 @@ index 666753676e5c0..49aed0580d25a 100644
 +obj-y					+= eswin/
 diff --git a/drivers/pmdomain/eswin/Makefile b/drivers/pmdomain/eswin/Makefile
 new file mode 100644
-index 0000000000000..dcaed5c2aa795
+index 000000000000..dcaed5c2aa79
 --- /dev/null
 +++ b/drivers/pmdomain/eswin/Makefile
 @@ -0,0 +1,6 @@
@@ -136,7 +136,7 @@ index 0000000000000..dcaed5c2aa795
 +obj-y		+= eic770x-pmu.o
 diff --git a/drivers/pmdomain/eswin/eic770x-pmu.c b/drivers/pmdomain/eswin/eic770x-pmu.c
 new file mode 100644
-index 0000000000000..da8a09d21d8b8
+index 000000000000..da8a09d21d8b
 --- /dev/null
 +++ b/drivers/pmdomain/eswin/eic770x-pmu.c
 @@ -0,0 +1,406 @@
@@ -548,7 +548,7 @@ index 0000000000000..da8a09d21d8b8
 +MODULE_LICENSE("GPL v2");
 diff --git a/include/dt-bindings/power/eswin,eic770x-pmu.h b/include/dt-bindings/power/eswin,eic770x-pmu.h
 new file mode 100644
-index 0000000000000..aca28e5543fed
+index 000000000000..aca28e5543fe
 --- /dev/null
 +++ b/include/dt-bindings/power/eswin,eic770x-pmu.h
 @@ -0,0 +1,33 @@
@@ -586,5 +586,5 @@ index 0000000000000..aca28e5543fed
 +#define EIC770X_PD_DSP3         6
 +#endif
 -- 
-2.53.0
+2.54.0
 

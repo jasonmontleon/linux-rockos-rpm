@@ -1,4 +1,4 @@
-From b0aec4a1de55f65e3c4163c4924eaabaa920a92f Mon Sep 17 00:00:00 2001
+From a2617f3a456c57dc8588a10b59dad92372bc753b Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Tue, 29 Oct 2024 16:23:18 +0800
 Subject: [PATCH 275/652] WIN2030-16572:feat: dsp move dual die support to
@@ -16,7 +16,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  3 files changed, 16 insertions(+), 15 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 20ddace05a598..e5580ff203fbe 100644
+index 20ddace05a59..e5580ff203fb 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1368,7 +1368,7 @@ ESWIN_MAIBOX_U84_IRQ_BIT
@@ -56,7 +56,7 @@ index 20ddace05a598..e5580ff203fbe 100644
  				iommus = <&smmu1 WIN2030_SID_DSP_3>;
  				tbus = <WIN2030_TBUID_DSP3>;
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
-index 1e7871eb56b0e..2250f2cfd4767 100644
+index 1e7871eb56b0..2250f2cfd476 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_ioctl.c
 @@ -67,8 +67,9 @@ static struct dsp_user *dsp_op_add_user(struct dsp_file *dsp_file,
@@ -107,7 +107,7 @@ index 1e7871eb56b0e..2250f2cfd4767 100644
  		return ret;
  	}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 83c309dcae5ac..45c8bda644cc8 100644
+index 83c309dcae5a..45c8bda644cc 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -38,7 +38,7 @@
@@ -159,5 +159,5 @@ index 83c309dcae5ac..45c8bda644cc8 100644
  	if (ret != 0) {
  		dev_err(dsp->dev, "iommu map dsp pts phy error.\n");
 -- 
-2.53.0
+2.54.0
 

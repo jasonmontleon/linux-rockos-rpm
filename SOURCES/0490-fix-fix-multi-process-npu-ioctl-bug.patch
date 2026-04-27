@@ -1,4 +1,4 @@
-From 0f591e9f46d20f3ae9846cf04d9e9f37fe8191a2 Mon Sep 17 00:00:00 2001
+From 1a5c101f527d4195136fe188d230306ab8359513 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Fri, 25 Apr 2025 16:03:12 +0800
 Subject: [PATCH 490/652] fix:fix multi-process npu ioctl bug
@@ -12,7 +12,7 @@ Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
  1 file changed, 1 insertion(+), 2 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/user_context.c b/drivers/soc/eswin/ai_driver/npu/user_context.c
-index 8ea6ebe6768dc..12a2926c3aca6 100644
+index 8ea6ebe6768d..12a2926c3aca 100644
 --- a/drivers/soc/eswin/ai_driver/npu/user_context.c
 +++ b/drivers/soc/eswin/ai_driver/npu/user_context.c
 @@ -918,8 +918,7 @@ static long npu_dev_ioctl(struct file *file, unsigned int cmd,
@@ -26,5 +26,5 @@ index 8ea6ebe6768dc..12a2926c3aca6 100644
  		ret = npu_hetero_cmd(npu_cdev->nvdla_dev, &win_arg);
  		break;
 -- 
-2.53.0
+2.54.0
 

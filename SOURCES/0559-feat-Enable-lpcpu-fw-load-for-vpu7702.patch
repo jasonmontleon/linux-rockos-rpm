@@ -1,4 +1,4 @@
-From c233ed0aef6baedfe5bde353af0b673b21fe29f7 Mon Sep 17 00:00:00 2001
+From 6733f6b842284672e7a28a7e36312c494af33d7a Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Thu, 5 Jun 2025 18:26:54 +0800
 Subject: [PATCH 559/652] feat:Enable lpcpu fw load for vpu7702
@@ -13,7 +13,7 @@ Signed-off-by: taohaitao <taohaitao@eswincomputing.com>
  2 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
-index 40a64648d88f4..21d2c8c083b67 100644
+index 40a64648d88f..21d2c8c083b6 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -843,7 +843,7 @@ &fan_control {
@@ -53,7 +53,7 @@ index 40a64648d88f4..21d2c8c083b67 100644
  	pcf_rtc:rtc@51 {
  		compatible = "nxp,pcf8563";
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 81d0576394f36..22a63047b779c 100644
+index 81d0576394f3..22a63047b779 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -827,7 +827,7 @@ &fan_control {
@@ -93,5 +93,5 @@ index 81d0576394f36..22a63047b779c 100644
  	adc@48 {
  		compatible = "ti,ads1115";
 -- 
-2.53.0
+2.54.0
 

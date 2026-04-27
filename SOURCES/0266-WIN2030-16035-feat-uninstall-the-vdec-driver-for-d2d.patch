@@ -1,4 +1,4 @@
-From c82ff9ce54a6f020407fbbb424fe33f83c96ad5d Mon Sep 17 00:00:00 2001
+From e500958e5a6343e64706fbf8c722764874066b84 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 12 Sep 2024 17:53:11 +0800
 Subject: [PATCH 266/652] WIN2030-16035:feat:uninstall the vdec driver for d2d
@@ -15,7 +15,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  3 files changed, 48 insertions(+), 34 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 24ceb91b868ac..a806ffc41d943 100644
+index 24ceb91b868a..a806ffc41d94 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -325,6 +325,7 @@ static struct apbfilter_cfg apbfilter_cfg[MAX_SUBSYS_NUM][HW_CORE_MAX];
@@ -101,7 +101,7 @@ index 24ceb91b868ac..a806ffc41d943 100644
  	vcrt = platform_get_drvdata(pdev);
  	vdec_hardware_reset(vcrt);
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 575b8e36727bb..ac9a03b020318 100644
+index 575b8e36727b..ac9a03b02031 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -4287,13 +4287,15 @@ int hantrovcmd_init(void)
@@ -197,7 +197,7 @@ index 575b8e36727bb..ac9a03b020318 100644
  }
  
 diff --git a/drivers/staging/media/eswin/vdec/subsys.h b/drivers/staging/media/eswin/vdec/subsys.h
-index 17a82a6169b0e..92e777d403699 100644
+index 17a82a6169b0..92e777d40369 100644
 --- a/drivers/staging/media/eswin/vdec/subsys.h
 +++ b/drivers/staging/media/eswin/vdec/subsys.h
 @@ -171,7 +171,7 @@ int hantrovcmd_release(struct inode *inode, struct file *filp);
@@ -210,5 +210,5 @@ index 17a82a6169b0e..92e777d403699 100644
  int hantrovcmd_wait_core_idle(u32 core_id, long timeout);
  struct platform_device *vdec_get_platform_device(u32 core_id);
 -- 
-2.53.0
+2.54.0
 

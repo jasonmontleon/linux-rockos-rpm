@@ -1,4 +1,4 @@
-From 9f650986da6d483a2b6cdd183b42d0c788458a59 Mon Sep 17 00:00:00 2001
+From 1f1336eceb044bc985ebcca248f76edda28cfb5f Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:35:09 +0800
 Subject: [PATCH 405/652] config: sync from eic7700_defconfig
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 17 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 6af7ca38d0c99..9e2a3c4483ce5 100644
+index 6af7ca38d0c9..9e2a3c4483ce 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -32,9 +32,10 @@ CONFIG_PERF_EVENTS=y
@@ -79,5 +79,5 @@ index 6af7ca38d0c99..9e2a3c4483ce5 100644
 +CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 -- 
-2.53.0
+2.54.0
 

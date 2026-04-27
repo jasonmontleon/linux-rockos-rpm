@@ -1,4 +1,4 @@
-From a557871ad15a138944b2fcd577e043100b45b172 Mon Sep 17 00:00:00 2001
+From 54198541ad158cfadeedd80a259baa7b2cd2ed99 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 1 Aug 2024 17:32:12 +0800
 Subject: [PATCH 133/652] refactor:modify evb1 dts
@@ -12,7 +12,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  1 file changed, 10 insertions(+), 38 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index fc7dd40a4bc4f..854bd4a80e1df 100644
+index fc7dd40a4bc4..854bd4a80e1d 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -23,9 +23,9 @@
@@ -91,5 +91,5 @@ index fc7dd40a4bc4f..854bd4a80e1df 100644
  };
  
 -- 
-2.53.0
+2.54.0
 

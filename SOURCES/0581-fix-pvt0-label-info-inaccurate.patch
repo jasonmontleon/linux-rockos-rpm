@@ -1,4 +1,4 @@
-From 4726e9aa3b74145e616c9cd37cb25a17812398dc Mon Sep 17 00:00:00 2001
+From ecbc32d97d1d4fbc7ce0ed5cbf86858a39f3d7f1 Mon Sep 17 00:00:00 2001
 From: hehuan1 <hehuan1@eswincomputing.com>
 Date: Mon, 16 Jun 2025 14:01:19 +0800
 Subject: [PATCH 581/652] fix: pvt0 label info inaccurate
@@ -12,7 +12,7 @@ Signed-off-by: hehuan1 <hehuan1@eswincomputing.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/drivers/hwmon/eswin_pvt.c b/drivers/hwmon/eswin_pvt.c
-index fd8dec5db85eb..f4842c96bbb27 100644
+index fd8dec5db85e..f4842c96bbb2 100644
 --- a/drivers/hwmon/eswin_pvt.c
 +++ b/drivers/hwmon/eswin_pvt.c
 @@ -51,11 +51,11 @@
@@ -33,5 +33,5 @@ index fd8dec5db85eb..f4842c96bbb27 100644
  
  static const struct pvt_sensor_info pvt_info_ddr[] = {
 -- 
-2.53.0
+2.54.0
 

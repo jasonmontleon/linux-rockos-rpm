@@ -1,4 +1,4 @@
-From 14e7355041f0001fea463cd57c45ccb02f1687ba Mon Sep 17 00:00:00 2001
+From 530a598deed5e3515ba4ed52bbb3eb92df419d26 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 11 Apr 2024 18:09:23 +0800
 Subject: [PATCH 004/652] feat(eswin memory):Added eswin memory related changes
@@ -50,7 +50,7 @@ Changelogs:
  create mode 100644 include/linux/eswin_npu.h
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 07976356e5b54..358ea4e7ac842 100644
+index 07976356e5b5..358ea4e7ac84 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -180,10 +180,6 @@ &smmu_pmu0 {
@@ -65,7 +65,7 @@ index 07976356e5b54..358ea4e7ac842 100644
  	status = "okay";
  };
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 0a81e221150c2..c3bbfab6fb47e 100644
+index 0a81e221150c..c3bbfab6fb47 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -257,6 +257,7 @@ smmu0: iommu@50c00000 {
@@ -455,7 +455,7 @@ index 0a81e221150c2..c3bbfab6fb47e 100644
  
  		ddr0: ddr-controller@0 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 6c887ecdc68af..acd83f4bb20d6 100644
+index 6c887ecdc68a..acd83f4bb20d 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -211,6 +211,7 @@ smmu1: iommu@70c00000 {
@@ -803,7 +803,7 @@ index 6c887ecdc68af..acd83f4bb20d6 100644
  };
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030.dts b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
-index 88696f5cba89f..3b48155375605 100644
+index 88696f5cba89..3b4815537560 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030.dts
 @@ -488,10 +488,6 @@ &smmu_pmu0 {
@@ -818,7 +818,7 @@ index 88696f5cba89f..3b48155375605 100644
  	status = "okay";
  };
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 030907121d030..0fc2a5f9522b3 100644
+index 030907121d03..0fc2a5f9522b 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -226,6 +226,7 @@ CONFIG_MAILBOX=y
@@ -830,7 +830,7 @@ index 030907121d030..0fc2a5f9522b3 100644
  CONFIG_RESET_ESWIN_WIN2030=y
  CONFIG_INTERCONNECT=y
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 807cf361156e9..898a9c8facd40 100644
+index 807cf361156e..898a9c8facd4 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -95,6 +95,9 @@ void arch_sync_dma_for_device(phys_addr_t paddr, size_t size,
@@ -854,7 +854,7 @@ index 807cf361156e9..898a9c8facd40 100644
  void arch_dma_prep_coherent(struct page *page, size_t size)
  {
 diff --git a/drivers/memory/Kconfig b/drivers/memory/Kconfig
-index c82d8d8a16eaf..24faad30a79f1 100644
+index c82d8d8a16ea..24faad30a79f 100644
 --- a/drivers/memory/Kconfig
 +++ b/drivers/memory/Kconfig
 @@ -227,5 +227,6 @@ config STM32_FMC2_EBI
@@ -865,7 +865,7 @@ index c82d8d8a16eaf..24faad30a79f1 100644
  
  endif
 diff --git a/drivers/memory/Makefile b/drivers/memory/Makefile
-index d2e6ca9abbe02..e1459a3760a37 100644
+index d2e6ca9abbe0..e1459a3760a3 100644
 --- a/drivers/memory/Makefile
 +++ b/drivers/memory/Makefile
 @@ -27,6 +27,7 @@ obj-$(CONFIG_STM32_FMC2_EBI)	+= stm32-fmc2-ebi.o
@@ -878,7 +878,7 @@ index d2e6ca9abbe02..e1459a3760a37 100644
  
 diff --git a/drivers/memory/eswin/Kconfig b/drivers/memory/eswin/Kconfig
 new file mode 100644
-index 0000000000000..8f85e3cb466bc
+index 000000000000..8f85e3cb466b
 --- /dev/null
 +++ b/drivers/memory/eswin/Kconfig
 @@ -0,0 +1,29 @@
@@ -913,7 +913,7 @@ index 0000000000000..8f85e3cb466bc
 +endif
 diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
 new file mode 100644
-index 0000000000000..1b732b2a439d9
+index 000000000000..1b732b2a439d
 --- /dev/null
 +++ b/drivers/memory/eswin/Makefile
 @@ -0,0 +1,4 @@
@@ -923,7 +923,7 @@ index 0000000000000..1b732b2a439d9
 +obj-$(CONFIG_ESWIN_CODACACHE_CONTROLLER)	+= codacache/
 diff --git a/drivers/memory/eswin/buddy.h b/drivers/memory/eswin/buddy.h
 new file mode 100644
-index 0000000000000..e3c509a511c69
+index 000000000000..e3c509a511c6
 --- /dev/null
 +++ b/drivers/memory/eswin/buddy.h
 @@ -0,0 +1,226 @@
@@ -1155,7 +1155,7 @@ index 0000000000000..e3c509a511c69
 +#endif
 diff --git a/drivers/memory/eswin/codacache/Kconfig b/drivers/memory/eswin/codacache/Kconfig
 new file mode 100644
-index 0000000000000..104fdb4d08a24
+index 000000000000..104fdb4d08a2
 --- /dev/null
 +++ b/drivers/memory/eswin/codacache/Kconfig
 @@ -0,0 +1,16 @@
@@ -1177,7 +1177,7 @@ index 0000000000000..104fdb4d08a24
 +
 diff --git a/drivers/memory/eswin/codacache/Makefile b/drivers/memory/eswin/codacache/Makefile
 new file mode 100644
-index 0000000000000..f992e9a5eb898
+index 000000000000..f992e9a5eb89
 --- /dev/null
 +++ b/drivers/memory/eswin/codacache/Makefile
 @@ -0,0 +1,2 @@
@@ -1185,7 +1185,7 @@ index 0000000000000..f992e9a5eb898
 +obj-$(CONFIG_ESWIN_CODACACHE_CONTROLLER)	+= llc_spram.o
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
 new file mode 100644
-index 0000000000000..8bd0912af4b77
+index 000000000000..8bd0912af4b7
 --- /dev/null
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -0,0 +1,1576 @@
@@ -2767,7 +2767,7 @@ index 0000000000000..8bd0912af4b77
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/memory/eswin/codacache/llc_spram.h b/drivers/memory/eswin/codacache/llc_spram.h
 new file mode 100644
-index 0000000000000..40dd35efec5c0
+index 000000000000..40dd35efec5c
 --- /dev/null
 +++ b/drivers/memory/eswin/codacache/llc_spram.h
 @@ -0,0 +1,90 @@
@@ -2864,7 +2864,7 @@ index 0000000000000..40dd35efec5c0
 \ No newline at end of file
 diff --git a/drivers/memory/eswin/eswin_cpuid_hartid_convert.c b/drivers/memory/eswin/eswin_cpuid_hartid_convert.c
 new file mode 100644
-index 0000000000000..cfa2d6462d74c
+index 000000000000..cfa2d6462d74
 --- /dev/null
 +++ b/drivers/memory/eswin/eswin_cpuid_hartid_convert.c
 @@ -0,0 +1,39 @@
@@ -2910,7 +2910,7 @@ index 0000000000000..cfa2d6462d74c
 \ No newline at end of file
 diff --git a/drivers/memory/eswin/eswin_cpuid_hartid_convert.h b/drivers/memory/eswin/eswin_cpuid_hartid_convert.h
 new file mode 100644
-index 0000000000000..5bab0ea66f22b
+index 000000000000..5bab0ea66f22
 --- /dev/null
 +++ b/drivers/memory/eswin/eswin_cpuid_hartid_convert.h
 @@ -0,0 +1,32 @@
@@ -2948,7 +2948,7 @@ index 0000000000000..5bab0ea66f22b
 +#endif
 diff --git a/drivers/memory/eswin/eswin_memblock.c b/drivers/memory/eswin/eswin_memblock.c
 new file mode 100644
-index 0000000000000..c99b0b0b100d9
+index 000000000000..c99b0b0b100d
 --- /dev/null
 +++ b/drivers/memory/eswin/eswin_memblock.c
 @@ -0,0 +1,170 @@
@@ -3125,7 +3125,7 @@ index 0000000000000..c99b0b0b100d9
 \ No newline at end of file
 diff --git a/drivers/memory/eswin/eswin_memblock.h b/drivers/memory/eswin/eswin_memblock.h
 new file mode 100644
-index 0000000000000..6c18444599de8
+index 000000000000..6c18444599de
 --- /dev/null
 +++ b/drivers/memory/eswin/eswin_memblock.h
 @@ -0,0 +1,18 @@
@@ -3149,7 +3149,7 @@ index 0000000000000..6c18444599de8
 +#endif
 diff --git a/include/linux/eswin-win2030-sid-cfg.h b/include/linux/eswin-win2030-sid-cfg.h
 new file mode 100644
-index 0000000000000..c52268d06f7d5
+index 000000000000..c52268d06f7d
 --- /dev/null
 +++ b/include/linux/eswin-win2030-sid-cfg.h
 @@ -0,0 +1,12 @@
@@ -3167,7 +3167,7 @@ index 0000000000000..c52268d06f7d5
 +#endif
 diff --git a/include/linux/eswin_npu.h b/include/linux/eswin_npu.h
 new file mode 100644
-index 0000000000000..d7f3c91491f1b
+index 000000000000..d7f3c91491f1
 --- /dev/null
 +++ b/include/linux/eswin_npu.h
 @@ -0,0 +1,21 @@
@@ -3193,5 +3193,5 @@ index 0000000000000..d7f3c91491f1b
 +
 +#endif /* __LINUX_ESWIN_NPU_H */
 -- 
-2.53.0
+2.54.0
 

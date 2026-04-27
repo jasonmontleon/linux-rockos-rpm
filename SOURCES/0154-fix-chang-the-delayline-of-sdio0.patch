@@ -1,4 +1,4 @@
-From 994b05a502dc83a143dee0484936c5afc7dc39c8 Mon Sep 17 00:00:00 2001
+From cf3cef5647af848d48f34bd2c5aff49dab501b7c Mon Sep 17 00:00:00 2001
 From: liangshuang <liangshuang@eswincomputing.com>
 Date: Wed, 14 Aug 2024 10:50:26 +0800
 Subject: [PATCH 154/652] fix:chang the delayline of sdio0.
@@ -18,7 +18,7 @@ Signed-off-by: liangshuang <liangshuang@eswincomputing.com>
  6 files changed, 7 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 120fc44ae3f84..5a979e84d2c9a 100644
+index 120fc44ae3f8..5a979e84d2c9 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -458,7 +458,7 @@ &sdhci_emmc {
@@ -31,7 +31,7 @@ index 120fc44ae3f84..5a979e84d2c9a 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 5655e36926195..20fe88d551193 100644
+index 5655e3692619..20fe88d55119 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -430,7 +430,7 @@ &sdhci_emmc {
@@ -44,7 +44,7 @@ index 5655e36926195..20fe88d551193 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 870323d163ea7..52cec742b7711 100644
+index 870323d163ea..52cec742b771 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -409,7 +409,7 @@ &sdhci_emmc {
@@ -57,7 +57,7 @@ index 870323d163ea7..52cec742b7711 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index cd069bc2da760..d065b67d3ddad 100644
+index cd069bc2da76..d065b67d3dda 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -421,7 +421,7 @@ &sdhci_emmc {
@@ -70,7 +70,7 @@ index cd069bc2da760..d065b67d3ddad 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
-index db6520a2e6de7..33e02628614a2 100644
+index db6520a2e6de..33e02628614a 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-p550.dts
 @@ -408,7 +408,7 @@ &sdhci_emmc {
@@ -83,7 +83,7 @@ index db6520a2e6de7..33e02628614a2 100644
  	enable-cmd-pullup;
  	enable-data-pullup;
 diff --git a/drivers/mmc/host/sdhci-of-eswin-sdio.c b/drivers/mmc/host/sdhci-of-eswin-sdio.c
-index bff2897c17c08..8cd8deb339b04 100644
+index bff2897c17c0..8cd8deb339b0 100644
 --- a/drivers/mmc/host/sdhci-of-eswin-sdio.c
 +++ b/drivers/mmc/host/sdhci-of-eswin-sdio.c
 @@ -333,6 +333,7 @@ static const struct sdhci_ops eswin_sdhci_sdio_cqe_ops = {
@@ -104,5 +104,5 @@ index bff2897c17c08..8cd8deb339b04 100644
  		dev_err(dev, "runtime resume failed!\n");
  		goto clk_disable;
 -- 
-2.53.0
+2.54.0
 

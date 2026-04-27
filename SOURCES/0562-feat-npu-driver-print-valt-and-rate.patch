@@ -1,4 +1,4 @@
-From 768ff93bdc0ddf0172adae314955c1bf9496445d Mon Sep 17 00:00:00 2001
+From 0c7b6be7004ffe61aef9f9dbd1c3dfb1896a7d00 Mon Sep 17 00:00:00 2001
 From: chenyangxi <chenyangxi@eswincomputing.com>
 Date: Fri, 13 Jun 2025 14:41:23 +0800
 Subject: [PATCH 562/652] feat:npu driver print valt and rate
@@ -12,7 +12,7 @@ Signed-off-by: chenyangxi <chenyangxi@eswincomputing.com>
  1 file changed, 3 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index 24e9c95160fa3..e0099786ac874 100644
+index 24e9c95160fa..e0099786ac87 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -521,6 +521,7 @@ static int npu_devfreq_target(struct device *dev, unsigned long *freq, u32 flags
@@ -35,5 +35,5 @@ index 24e9c95160fa3..e0099786ac874 100644
  	stat->current_frequency = nvdla_dev->rate;
  
 -- 
-2.53.0
+2.54.0
 

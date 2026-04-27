@@ -1,4 +1,4 @@
-From 4723f6cc24d50c5d40ac68f9e975080354b2080e Mon Sep 17 00:00:00 2001
+From 2e867c98a0c8b8853bb5df149430af00f520a4a1 Mon Sep 17 00:00:00 2001
 From: carbon <carbon@milkv.io>
 Date: Tue, 27 May 2025 14:31:56 +0800
 Subject: [PATCH 535/652] dts: add milkv-megrez-nx.dts
@@ -11,7 +11,7 @@ Signed-off-by: carbon <carbon@milkv.io>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 0fcaa7ad3005a..e2f266a1cba60 100644
+index 0fcaa7ad3005..e2f266a1cba6 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -5,6 +5,7 @@ dtb-$(CONFIG_SOC_ESWIN) += eswin-win2030.dtb \
@@ -24,7 +24,7 @@ index 0fcaa7ad3005a..e2f266a1cba60 100644
  							eic7702-evb-a1-d1.dtb \
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 new file mode 100644
-index 0000000000000..e8e09df6105ae
+index 000000000000..e8e09df6105a
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez-nx.dts
 @@ -0,0 +1,960 @@
@@ -989,5 +989,5 @@ index 0000000000000..e8e09df6105ae
 +};
 +
 -- 
-2.53.0
+2.54.0
 

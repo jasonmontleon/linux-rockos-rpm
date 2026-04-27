@@ -1,4 +1,4 @@
-From c3443b236b420309f31701cbc9076fbedbc56599 Mon Sep 17 00:00:00 2001
+From b59c504a2af583708694a8bff6275bec91d2a41b Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Tue, 15 Jul 2025 14:20:57 +0800
 Subject: [PATCH 631/652] fix: disabled isp for feature not ready
@@ -13,7 +13,7 @@ Signed-off-by: shenzhenya <shenzhenya@eswincomputing.com>
  2 files changed, 8 insertions(+), 8 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
-index 8609a01c11c1c..aa903a98238e9 100644
+index 8609a01c11c1..aa903a98238e 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560-die0-camera.dtsi
 @@ -5,7 +5,7 @@ &vi_subsys {
@@ -53,7 +53,7 @@ index 8609a01c11c1c..aa903a98238e9 100644
  
  &isp_1 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
-index 366d7f52b4a06..6fefc408236cd 100644
+index 366d7f52b4a0..6fefc408236c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7702-d560-die1-camera.dtsi
 @@ -5,7 +5,7 @@ &d1_vi_subsys {
@@ -93,5 +93,5 @@ index 366d7f52b4a06..6fefc408236cd 100644
  
  &d1_isp_1 {
 -- 
-2.53.0
+2.54.0
 

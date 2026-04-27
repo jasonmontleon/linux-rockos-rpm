@@ -1,4 +1,4 @@
-From 6ac8e03e617a7e921bd9ea780305149ff071d62e Mon Sep 17 00:00:00 2001
+From fb4344491f1f8c37e9e14e0501e2abc2f376deff Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Thu, 2 Jan 2025 10:50:58 +0800
 Subject: [PATCH 371/652] WIN2030-16550:fix:Dewarp pm devfreq bug fix
@@ -13,7 +13,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 58 insertions(+), 21 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
-index d462277fecc6b..dd178b8e361d6 100644
+index d462277fecc6..dd178b8e361d 100644
 --- a/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 +++ b/drivers/staging/media/eswin/dewarp/vvcam_dwe_driver.c
 @@ -1,4 +1,25 @@
@@ -219,5 +219,5 @@ index d462277fecc6b..dd178b8e361d6 100644
  }
  
 -- 
-2.53.0
+2.54.0
 

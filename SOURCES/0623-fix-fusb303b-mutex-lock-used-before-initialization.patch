@@ -1,4 +1,4 @@
-From fc8c3acc34420281811bc7286a79c45a5bb70538 Mon Sep 17 00:00:00 2001
+From 39eee186bd8dd12f7997c52faab8ec5857461e28 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 14 Jul 2025 20:38:50 +0800
 Subject: [PATCH 623/652] fix(fusb303b):mutex lock used before initialization
@@ -14,7 +14,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/usb/typec/fusb303b.c b/drivers/usb/typec/fusb303b.c
-index 5ffc27640a05a..b0dd7c49b2c00 100644
+index 5ffc27640a05..b0dd7c49b2c0 100644
 --- a/drivers/usb/typec/fusb303b.c
 +++ b/drivers/usb/typec/fusb303b.c
 @@ -568,8 +568,8 @@ static int fusb303b_probe(struct i2c_client *client)
@@ -28,5 +28,5 @@ index 5ffc27640a05a..b0dd7c49b2c00 100644
  	{
  		chip->gpio_int_n_irq = client->irq;
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 3357e6780e21792acc59098d21419ef263ebeff1 Mon Sep 17 00:00:00 2001
+From 03644c60bf2b444314969256549285d0029175a1 Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Mon, 10 Mar 2025 17:08:42 +0800
 Subject: [PATCH 452/652] feature:add 7702vpu dts
@@ -16,7 +16,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts
 new file mode 100644
-index 0000000000000..b2433137f6712
+index 000000000000..b2433137f671
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-vpu-d0.dts
 @@ -0,0 +1,921 @@
@@ -943,7 +943,7 @@ index 0000000000000..b2433137f6712
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts
 new file mode 100644
-index 0000000000000..124aceffac84d
+index 000000000000..124aceffac84
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7702-vpu-d1.dts
 @@ -0,0 +1,880 @@
@@ -1828,5 +1828,5 @@ index 0000000000000..124aceffac84d
 +	status = "disabled";
 +};
 -- 
-2.53.0
+2.54.0
 

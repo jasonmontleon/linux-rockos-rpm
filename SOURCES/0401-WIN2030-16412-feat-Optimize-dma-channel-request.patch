@@ -1,4 +1,4 @@
-From 707ea0a86315e9638711d25b4b653927a49e51fc Mon Sep 17 00:00:00 2001
+From 8bf0ba579bb7df7fcb8d2eec79e38ce942635ebd Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Thu, 6 Feb 2025 16:26:16 +0800
 Subject: [PATCH 401/652] WIN2030-16412:feat: Optimize dma channel request
@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
-index 3eec1aa413f28..cc4b81e6ef15b 100644
+index 3eec1aa413f2..cc4b81e6ef15 100644
 --- a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 +++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 @@ -169,12 +169,12 @@ int esw_memcp_alloc_dma(struct esw_cmdq_task *task)
@@ -32,5 +32,5 @@ index 3eec1aa413f28..cc4b81e6ef15b 100644
          return -ENODEV;
      }
 -- 
-2.53.0
+2.54.0
 

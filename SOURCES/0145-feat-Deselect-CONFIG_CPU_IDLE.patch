@@ -1,4 +1,4 @@
-From 559879c9ce46cf9141cd0024598fb8cda6bb60c2 Mon Sep 17 00:00:00 2001
+From 7596fa50124cdeeb8cf171dafe1507481999f388 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 9 Aug 2024 16:16:21 +0800
 Subject: [PATCH 145/652] feat:Deselect CONFIG_CPU_IDLE
@@ -12,7 +12,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 91 insertions(+), 105 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 1472511bd299a..585d21eb8e08d 100644
+index 1472511bd299..585d21eb8e08 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -2,7 +2,6 @@
@@ -392,5 +392,5 @@ index 1472511bd299a..585d21eb8e08d 100644
 -CONFIG_VIDEO_ESWIN_VDEC=y
 -CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 -- 
-2.53.0
+2.54.0
 

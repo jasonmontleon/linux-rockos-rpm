@@ -1,4 +1,4 @@
-From 129e9b45e44957a05c3295e83d1b076ba1c55cf1 Mon Sep 17 00:00:00 2001
+From 0325e30a79343ecbde2f2d5f67140f32d16ec9b2 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 3 Apr 2025 16:23:23 +0800
 Subject: [PATCH 462/652] fix:resolve the dc cursor layer issue.
@@ -12,7 +12,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/gpu/drm/eswin/es_dc.c b/drivers/gpu/drm/eswin/es_dc.c
-index 799fdd18d5cb2..9ea5560062aab 100644
+index 799fdd18d5cb..9ea5560062aa 100644
 --- a/drivers/gpu/drm/eswin/es_dc.c
 +++ b/drivers/gpu/drm/eswin/es_dc.c
 @@ -407,7 +407,6 @@ static void es_dc_enable(struct device *dev, struct drm_crtc *crtc)
@@ -24,5 +24,5 @@ index 799fdd18d5cb2..9ea5560062aab 100644
  	dc_hw_update_cursor(&dc->hw, &cursor);
  }
 -- 
-2.53.0
+2.54.0
 

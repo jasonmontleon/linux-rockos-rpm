@@ -1,4 +1,4 @@
-From 267d7da7c189858bc9a5a44cbf02efe987100838 Mon Sep 17 00:00:00 2001
+From dc57a947cd695d57232e01affe7f77b93c1051b2 Mon Sep 17 00:00:00 2001
 From: lei <leizhilin@eswincomputing.com>
 Date: Wed, 16 Jul 2025 13:47:57 +0800
 Subject: [PATCH 635/652] fix(2d):close power mangemnet
@@ -17,7 +17,7 @@ Signed-off-by: lei zhilin <leizhilin@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
-index 22f6ebe226a67..dcc6b0558a338 100644
+index 22f6ebe226a6..dcc6b0558a33 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_parameter.h
 @@ -305,7 +305,7 @@ static int compression = -1;
@@ -30,5 +30,5 @@ index 22f6ebe226a67..dcc6b0558a338 100644
  MODULE_PARM_DESC(powerManagement, "Disable auto power saving if set it to 0, enabled by default");
  
 -- 
-2.53.0
+2.54.0
 

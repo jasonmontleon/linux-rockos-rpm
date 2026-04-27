@@ -1,4 +1,4 @@
-From a48f690852073b93c24a909b52d79601c43bebd5 Mon Sep 17 00:00:00 2001
+From c0a55479623206699f14dd3b07d9307f9bdd7411 Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Thu, 25 Jul 2024 18:13:06 +0800
 Subject: [PATCH 119/652] feat:PCIe Controller PM support power on/off.
@@ -12,7 +12,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
  1 file changed, 5 insertions(+), 4 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 498a26304aead..e8d60d183d2b9 100644
+index 498a26304aea..e8d60d183d2b 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -409,14 +409,15 @@ static const struct of_device_id eswin_pcie_of_match[] = {
@@ -44,5 +44,5 @@ index 498a26304aead..e8d60d183d2b9 100644
  
  	return err;
 -- 
-2.53.0
+2.54.0
 

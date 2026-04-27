@@ -1,4 +1,4 @@
-From d12a5b0d33c59edade6c2a630d821f85bbe9d3dc Mon Sep 17 00:00:00 2001
+From dc21bba306500584baa043e990451af61a3e3496 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Thu, 12 Jun 2025 13:49:35 +0800
 Subject: [PATCH 553/652] feat: use dev_dbg to print the uart noc err log
@@ -12,7 +12,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  1 file changed, 50 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
-index cc232396f842e..c6d44719db367 100644
+index cc232396f842..c6d44719db36 100644
 --- a/drivers/interconnect/eswin/noc.c
 +++ b/drivers/interconnect/eswin/noc.c
 @@ -509,6 +509,24 @@ void stack_dump(void)
@@ -106,5 +106,5 @@ index cc232396f842e..c6d44719db367 100644
  {
  	struct win2030_noc_device *noc_device = dev;
 -- 
-2.53.0
+2.54.0
 

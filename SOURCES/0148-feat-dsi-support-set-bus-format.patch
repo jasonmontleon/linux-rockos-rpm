@@ -1,4 +1,4 @@
-From 133c5124f760568a49f07a9cf47dcd82d470576f Mon Sep 17 00:00:00 2001
+From c603cf44e5014d585a06a564ef6d835660520ec3 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 14 Aug 2024 14:54:12 +0800
 Subject: [PATCH 148/652] feat:dsi support set bus-format
@@ -18,7 +18,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  4 files changed, 52 insertions(+), 25 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 2a85265960a34..13a40780a6191 100644
+index 2a85265960a3..13a40780a619 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1834,7 +1834,8 @@ mipi_dsi_out: endpoint {
@@ -32,7 +32,7 @@ index 2a85265960a34..13a40780a6191 100644
  					panel_in: endpoint {
  						remote-endpoint = <&mipi_dsi_out>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 92cddf1e756fb..be08ead18fa85 100644
+index 92cddf1e756f..be08ead18fa8 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1706,6 +1706,8 @@ d1_mipi_dsi_out: endpoint {
@@ -45,7 +45,7 @@ index 92cddf1e756fb..be08ead18fa85 100644
                  port {
                      d1_panel_in: endpoint {
 diff --git a/drivers/gpu/drm/eswin/es_mipi_dsi.c b/drivers/gpu/drm/eswin/es_mipi_dsi.c
-index 8aa3c69378f23..9f8d4c4a25b8c 100644
+index 8aa3c69378f2..9f8d4c4a25b8 100644
 --- a/drivers/gpu/drm/eswin/es_mipi_dsi.c
 +++ b/drivers/gpu/drm/eswin/es_mipi_dsi.c
 @@ -25,6 +25,7 @@
@@ -132,7 +132,7 @@ index 8aa3c69378f23..9f8d4c4a25b8c 100644
  	return 0;
  
 diff --git a/drivers/gpu/drm/eswin/es_panel.c b/drivers/gpu/drm/eswin/es_panel.c
-index 7c2bd90393e26..7342ab287c706 100644
+index 7c2bd90393e2..7342ab287c70 100644
 --- a/drivers/gpu/drm/eswin/es_panel.c
 +++ b/drivers/gpu/drm/eswin/es_panel.c
 @@ -3,6 +3,7 @@
@@ -257,5 +257,5 @@ index 7c2bd90393e26..7342ab287c706 100644
  	drm_panel_add(&ctx->panel);
  
 -- 
-2.53.0
+2.54.0
 

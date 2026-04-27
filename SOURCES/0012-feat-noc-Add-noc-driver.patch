@@ -1,4 +1,4 @@
-From 64c0340b955c8e3c951a65a6393e587d6724f9b9 Mon Sep 17 00:00:00 2001
+From f5ca872b48751cac800ba3b20121670fbbde5a50 Mon Sep 17 00:00:00 2001
 From: =?UTF-8?q?=E2=80=9Chuangyifeng=E2=80=9D?=
  <huangyifeng@eswincomputing.com>
 Date: Tue, 21 May 2024 14:17:38 +0800
@@ -40,7 +40,7 @@ Changelogs:
  create mode 100644 include/linux/win2030_noc.h
 
 diff --git a/drivers/interconnect/Kconfig b/drivers/interconnect/Kconfig
-index 5faa8d2aecff4..4fe3d24849198 100644
+index 5faa8d2aecff..4fe3d2484919 100644
 --- a/drivers/interconnect/Kconfig
 +++ b/drivers/interconnect/Kconfig
 @@ -14,7 +14,7 @@ if INTERCONNECT
@@ -53,7 +53,7 @@ index 5faa8d2aecff4..4fe3d24849198 100644
  	tristate
  	depends on COMMON_CLK
 diff --git a/drivers/interconnect/Makefile b/drivers/interconnect/Makefile
-index d0888babb9a15..4020594612268 100644
+index d0888babb9a1..402059461226 100644
 --- a/drivers/interconnect/Makefile
 +++ b/drivers/interconnect/Makefile
 @@ -7,5 +7,5 @@ obj-$(CONFIG_INTERCONNECT)		+= icc-core.o
@@ -65,7 +65,7 @@ index d0888babb9a15..4020594612268 100644
  obj-$(CONFIG_INTERCONNECT_CLK)		+= icc-clk.o
 diff --git a/drivers/interconnect/eswin/Kconfig b/drivers/interconnect/eswin/Kconfig
 new file mode 100644
-index 0000000000000..5c77446dfaa63
+index 000000000000..5c77446dfaa6
 --- /dev/null
 +++ b/drivers/interconnect/eswin/Kconfig
 @@ -0,0 +1,24 @@
@@ -95,7 +95,7 @@ index 0000000000000..5c77446dfaa63
 +	depends on INTERCONNECT_ESWIN
 diff --git a/drivers/interconnect/eswin/Makefile b/drivers/interconnect/eswin/Makefile
 new file mode 100644
-index 0000000000000..01e458b6e3c31
+index 000000000000..01e458b6e3c3
 --- /dev/null
 +++ b/drivers/interconnect/eswin/Makefile
 @@ -0,0 +1,10 @@
@@ -111,7 +111,7 @@ index 0000000000000..01e458b6e3c31
 +
 diff --git a/drivers/interconnect/eswin/noc.c b/drivers/interconnect/eswin/noc.c
 new file mode 100644
-index 0000000000000..6712cf02f5f26
+index 000000000000..6712cf02f5f2
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc.c
 @@ -0,0 +1,2341 @@
@@ -2458,7 +2458,7 @@ index 0000000000000..6712cf02f5f26
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/interconnect/eswin/noc.h b/drivers/interconnect/eswin/noc.h
 new file mode 100644
-index 0000000000000..37cbf964169aa
+index 000000000000..37cbf964169a
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc.h
 @@ -0,0 +1,363 @@
@@ -2827,7 +2827,7 @@ index 0000000000000..37cbf964169aa
 +#endif /* NOC_H_ */
 diff --git a/drivers/interconnect/eswin/noc_profiler.c b/drivers/interconnect/eswin/noc_profiler.c
 new file mode 100644
-index 0000000000000..c6621ba4155c6
+index 000000000000..c6621ba4155c
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc_profiler.c
 @@ -0,0 +1,695 @@
@@ -3528,7 +3528,7 @@ index 0000000000000..c6621ba4155c6
 +}
 diff --git a/drivers/interconnect/eswin/noc_profiler_sysfs.c b/drivers/interconnect/eswin/noc_profiler_sysfs.c
 new file mode 100644
-index 0000000000000..e36c6ff617061
+index 000000000000..e36c6ff61706
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc_profiler_sysfs.c
 @@ -0,0 +1,362 @@
@@ -3896,7 +3896,7 @@ index 0000000000000..e36c6ff617061
 +}
 diff --git a/drivers/interconnect/eswin/noc_regs.h b/drivers/interconnect/eswin/noc_regs.h
 new file mode 100644
-index 0000000000000..2dc67a042540d
+index 000000000000..2dc67a042540
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc_regs.h
 @@ -0,0 +1,633 @@
@@ -4535,7 +4535,7 @@ index 0000000000000..2dc67a042540d
 +#endif
 diff --git a/drivers/interconnect/eswin/noc_stat.c b/drivers/interconnect/eswin/noc_stat.c
 new file mode 100644
-index 0000000000000..a4f6a90f14262
+index 000000000000..a4f6a90f1426
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc_stat.c
 @@ -0,0 +1,966 @@
@@ -5507,7 +5507,7 @@ index 0000000000000..a4f6a90f14262
 +}
 diff --git a/drivers/interconnect/eswin/noc_stat_sysfs.c b/drivers/interconnect/eswin/noc_stat_sysfs.c
 new file mode 100644
-index 0000000000000..891e627dc2bf9
+index 000000000000..891e627dc2bf
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc_stat_sysfs.c
 @@ -0,0 +1,350 @@
@@ -5863,7 +5863,7 @@ index 0000000000000..891e627dc2bf9
 +}
 diff --git a/drivers/interconnect/eswin/noc_sysfs.c b/drivers/interconnect/eswin/noc_sysfs.c
 new file mode 100644
-index 0000000000000..e3b24a258818a
+index 000000000000..e3b24a258818
 --- /dev/null
 +++ b/drivers/interconnect/eswin/noc_sysfs.c
 @@ -0,0 +1,783 @@
@@ -6652,7 +6652,7 @@ index 0000000000000..e3b24a258818a
 +}
 diff --git a/drivers/interconnect/eswin/of_noc.c b/drivers/interconnect/eswin/of_noc.c
 new file mode 100644
-index 0000000000000..bc5d874593da8
+index 000000000000..bc5d874593da
 --- /dev/null
 +++ b/drivers/interconnect/eswin/of_noc.c
 @@ -0,0 +1,95 @@
@@ -6753,7 +6753,7 @@ index 0000000000000..bc5d874593da8
 +EXPORT_SYMBOL(of_noc_qos_populate);
 diff --git a/drivers/interconnect/eswin/win2030_noc_wdt.c b/drivers/interconnect/eswin/win2030_noc_wdt.c
 new file mode 100644
-index 0000000000000..ed9ed6827ad20
+index 000000000000..ed9ed6827ad2
 --- /dev/null
 +++ b/drivers/interconnect/eswin/win2030_noc_wdt.c
 @@ -0,0 +1,189 @@
@@ -6948,7 +6948,7 @@ index 0000000000000..ed9ed6827ad20
 +subsys_initcall(eswin_noc_wdt_init);
 diff --git a/drivers/interconnect/eswin/win2030_sideband_manager.c b/drivers/interconnect/eswin/win2030_sideband_manager.c
 new file mode 100644
-index 0000000000000..c694e34115ea1
+index 000000000000..c694e34115ea
 --- /dev/null
 +++ b/drivers/interconnect/eswin/win2030_sideband_manager.c
 @@ -0,0 +1,172 @@
@@ -7126,7 +7126,7 @@ index 0000000000000..c694e34115ea1
 +}
 diff --git a/include/linux/win2030_noc.h b/include/linux/win2030_noc.h
 new file mode 100644
-index 0000000000000..8705b17960de7
+index 000000000000..8705b17960de
 --- /dev/null
 +++ b/include/linux/win2030_noc.h
 @@ -0,0 +1,46 @@
@@ -7177,5 +7177,5 @@ index 0000000000000..8705b17960de7
 +
 +#endif
 -- 
-2.53.0
+2.54.0
 

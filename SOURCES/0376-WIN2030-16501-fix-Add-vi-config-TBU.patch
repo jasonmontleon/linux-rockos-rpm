@@ -1,4 +1,4 @@
-From db1e1d9ead659322a6a98c2b56b5afd02bad0161 Mon Sep 17 00:00:00 2001
+From 0adaae702d35960383dfe1acb475684cdcd5ca62 Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 8 Jan 2025 16:12:18 +0800
 Subject: [PATCH 376/652] WIN2030-16501:fix:Add vi config TBU
@@ -15,7 +15,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ecfff2bf03348..cc651302b4a09 100644
+index ecfff2bf0334..cc651302b4a0 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -2055,6 +2055,7 @@ vi_top_csr: vi_common_top_csr@0x51030000 {
@@ -27,5 +27,5 @@ index ecfff2bf03348..cc651302b4a09 100644
  
  
 -- 
-2.53.0
+2.54.0
 

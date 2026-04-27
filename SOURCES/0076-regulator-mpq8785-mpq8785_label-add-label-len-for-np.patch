@@ -1,4 +1,4 @@
-From c57ebad9ce911391a1a9161435012599e8ede7ce Mon Sep 17 00:00:00 2001
+From 451de29eef0c5fefcebc44a6bbac422bd3e8dcd7 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sun, 7 Jul 2024 00:45:36 +0800
 Subject: [PATCH 076/652] regulator: mpq8785: mpq8785_label: add label len for
@@ -36,7 +36,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index d5dae70d3d505..3787fe244618b 100644
+index d5dae70d3d50..3787fe244618 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -153,7 +153,7 @@ struct MPQ8785_DRIVER_DATA
@@ -56,5 +56,5 @@ index d5dae70d3d505..3787fe244618b 100644
 \ No newline at end of file
 +MODULE_LICENSE("GPL");
 -- 
-2.53.0
+2.54.0
 

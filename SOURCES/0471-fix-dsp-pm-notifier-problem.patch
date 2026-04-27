@@ -1,4 +1,4 @@
-From 564310ef81a618100e7deedc2790b9af33894e27 Mon Sep 17 00:00:00 2001
+From a70049ee914d9d2b44816947f896c3da13643fba Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 11 Apr 2025 10:31:07 +0800
 Subject: [PATCH 471/652] fix: dsp pm notifier problem
@@ -12,7 +12,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  1 file changed, 16 insertions(+), 25 deletions(-)
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
-index a5cc197fe1381..df24ad88695c6 100644
+index a5cc197fe138..df24ad88695c 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_main.c
 @@ -738,10 +738,6 @@ int __maybe_unused dsp_suspend(struct device *dev)
@@ -147,5 +147,5 @@ index a5cc197fe1381..df24ad88695c6 100644
  	dsp_free_hw(dsp);
  	return 0;
 -- 
-2.53.0
+2.54.0
 

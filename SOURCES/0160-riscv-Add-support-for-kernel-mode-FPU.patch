@@ -1,4 +1,4 @@
-From 0ef24f727068914840cc7a1283c65053b0ac113c Mon Sep 17 00:00:00 2001
+From 5df9dc603e1d3405c4f82c5a142c7af49d0b7a3d Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:13 -0800
 Subject: [PATCH 160/652] riscv: Add support for kernel-mode FPU
@@ -16,7 +16,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  2 files changed, 17 insertions(+)
 
 diff --git a/arch/riscv/include/asm/switch_to.h b/arch/riscv/include/asm/switch_to.h
-index a727be723c561..6fd519f9e364a 100644
+index a727be723c56..6fd519f9e364 100644
 --- a/arch/riscv/include/asm/switch_to.h
 +++ b/arch/riscv/include/asm/switch_to.h
 @@ -63,6 +63,20 @@ static __always_inline bool has_fpu(void)
@@ -41,7 +41,7 @@ index a727be723c561..6fd519f9e364a 100644
  static __always_inline bool has_fpu(void) { return false; }
  #define fstate_save(task, regs) do { } while (0)
 diff --git a/arch/riscv/kernel/process.c b/arch/riscv/kernel/process.c
-index 83e223318822a..dd973216e31cf 100644
+index 83e223318822..dd973216e31c 100644
 --- a/arch/riscv/kernel/process.c
 +++ b/arch/riscv/kernel/process.c
 @@ -204,3 +204,6 @@ int copy_thread(struct task_struct *p, const struct kernel_clone_args *args)
@@ -52,5 +52,5 @@ index 83e223318822a..dd973216e31cf 100644
 +EXPORT_SYMBOL_GPL(__fstate_save);
 +EXPORT_SYMBOL_GPL(__fstate_restore);
 -- 
-2.53.0
+2.54.0
 

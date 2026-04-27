@@ -1,4 +1,4 @@
-From 3b33c5715a4a28970a0e5c2422ffe9f5509d3000 Mon Sep 17 00:00:00 2001
+From 19465da04fdcca2156b4ee2db27e78dbff3399ec Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:44:41 +0800
 Subject: [PATCH 424/652] config: scsi: enable scsi config for eic7700x
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 79 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index b1223dff91aa3..381dec16e8438 100644
+index b1223dff91aa..381dec16e843 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -53,7 +53,6 @@ CONFIG_KVM=m
@@ -138,5 +138,5 @@ index b1223dff91aa3..381dec16e8438 100644
  # CONFIG_NET_VENDOR_RENESAS is not set
  # CONFIG_NET_VENDOR_ROCKER is not set
 -- 
-2.53.0
+2.54.0
 

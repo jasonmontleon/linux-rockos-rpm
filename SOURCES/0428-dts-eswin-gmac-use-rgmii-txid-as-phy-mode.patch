@@ -1,4 +1,4 @@
-From 85b87e9dd166a87bcaf5a398689d8fe06e3c32e4 Mon Sep 17 00:00:00 2001
+From 984b908726315d1d71c599de84c61dc6bcc58fe9 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:14:19 +0800
 Subject: [PATCH 428/652] dts: eswin: gmac: use rgmii-txid as phy mode
@@ -10,7 +10,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  2 files changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index d376461d273dc..aa7268c544107 100644
+index d376461d273d..aa7268c54410 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -409,7 +409,7 @@ d0_gmac0: ethernet@50400000 {
@@ -32,7 +32,7 @@ index d376461d273dc..aa7268c544107 100644
  			id = <1>;
  			status = "disabled";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 8823590fc9fab..0f1cc6970ffda 100644
+index 8823590fc9fa..0f1cc6970ffd 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1532,7 +1532,7 @@ d1_gmac0: ethernet@70400000 {
@@ -54,5 +54,5 @@ index 8823590fc9fab..0f1cc6970ffda 100644
  			id = <3>;
  			status = "disabled";
 -- 
-2.53.0
+2.54.0
 

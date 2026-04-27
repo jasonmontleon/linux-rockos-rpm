@@ -1,4 +1,4 @@
-From 8604cf9bdedcd08ab36d6248505823782ab7b1d1 Mon Sep 17 00:00:00 2001
+From 8d6887a0e87bf9c0d6683c2e73813fd20ef0f96b Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Thu, 21 Nov 2024 20:46:12 +0800
 Subject: [PATCH 286/652] WIN2030-15186:fix:fix slow command id error
@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/drivers/hwmon/pac193x.c b/drivers/hwmon/pac193x.c
-index ae2735139729c..c0d165a206c3b 100644
+index ae2735139729..c0d165a206c3 100644
 --- a/drivers/hwmon/pac193x.c
 +++ b/drivers/hwmon/pac193x.c
 @@ -73,7 +73,7 @@
@@ -25,5 +25,5 @@ index ae2735139729c..c0d165a206c3b 100644
  #define PAC193X_CMD_DIS_ACT 0x22
  #define PAC193X_CMD_NEG_PWR_ACT 0x23
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From bd82cdfe8915f80a4dce4b189db0892380a695f2 Mon Sep 17 00:00:00 2001
+From 2b23e47b3b2f8769767a78e9d2a9c888bd831194 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:47:04 +0800
 Subject: [PATCH 459/652] feat:support 22.01/11.025kHz
@@ -14,7 +14,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  mode change 100755 => 100644 sound/soc/eswin/esw-i2s.c
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 924190fcacfa9..3e937b7e64a46 100644
+index 924190fcacfa..3e937b7e64a4 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -240,16 +240,16 @@ int esw_codec_dump_put(struct snd_kcontrol *kcontrol,
@@ -53,7 +53,7 @@ index 924190fcacfa9..3e937b7e64a46 100644
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
 old mode 100755
 new mode 100644
-index eed2859387b11..e1aa30eeb5a9c
+index eed2859387b1..e1aa30eeb5a9
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -1,1186 +1,1204 @@
@@ -2448,5 +2448,5 @@ index eed2859387b11..e1aa30eeb5a9c
 +MODULE_DESCRIPTION("I2S driver");
 +MODULE_LICENSE("GPL");
 -- 
-2.53.0
+2.54.0
 

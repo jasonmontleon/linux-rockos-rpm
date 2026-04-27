@@ -1,4 +1,4 @@
-From 8685bf1fd3c8a8067b353e3629f19f3f48279143 Mon Sep 17 00:00:00 2001
+From 0d45436c3f2d4416bd39ab84bd9bc3f5aaa661b9 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:02 -0800
 Subject: [PATCH 640/652] UPSTREAM: docs: riscv: Define behavior of mmap
@@ -16,7 +16,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 5 insertions(+), 11 deletions(-)
 
 diff --git a/Documentation/riscv/vm-layout.rst b/Documentation/riscv/vm-layout.rst
-index 69ff6da1dbf8f..e476b4386bd9d 100644
+index 69ff6da1dbf8..e476b4386bd9 100644
 --- a/Documentation/riscv/vm-layout.rst
 +++ b/Documentation/riscv/vm-layout.rst
 @@ -144,14 +144,8 @@ passing 0 into the hint address parameter of mmap. On CPUs with an address space
@@ -40,5 +40,5 @@ index 69ff6da1dbf8f..e476b4386bd9d 100644
 +bits 41 through 63. If no mappable addresses are available in that range, mmap
 +will return `MAP_FAILED`.
 -- 
-2.53.0
+2.54.0
 

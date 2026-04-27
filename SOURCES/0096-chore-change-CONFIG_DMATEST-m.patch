@@ -1,4 +1,4 @@
-From 0a9b6924780ef9477e7f57b7e3dd5be45733019b Mon Sep 17 00:00:00 2001
+From 2aaa51b347a328d388f95ef6f1b3a115a7e7e388 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 15 Jul 2024 11:12:23 +0800
 Subject: [PATCH 096/652] chore:change CONFIG_DMATEST=m
@@ -12,7 +12,7 @@ Signed-off-by: xuxiang <xuxiang@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index e7c3b818c5982..370b8dbe4a2e4 100644
+index e7c3b818c598..370b8dbe4a2e 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -719,7 +719,7 @@ CONFIG_RTC_DRV_PCF8563=y
@@ -25,5 +25,5 @@ index e7c3b818c5982..370b8dbe4a2e4 100644
  CONFIG_DMABUF_HEAPS_SYSTEM=y
  CONFIG_DMABUF_HEAPS_CMA=y
 -- 
-2.53.0
+2.54.0
 

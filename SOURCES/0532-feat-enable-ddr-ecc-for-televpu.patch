@@ -1,4 +1,4 @@
-From e2ab31431059bc5f974b254f99abeb534f1b6d47 Mon Sep 17 00:00:00 2001
+From cb18c9835978396cc21212d0e7f44f83840c7a89 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 15 May 2025 16:29:52 +0800
 Subject: [PATCH 532/652] feat:enable ddr ecc for televpu
@@ -15,7 +15,7 @@ Tested-by: Guichao Zhou <zhouguichao@eswincomputing.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 8f19ec7f1925a..3cbfe77eeac1c 100644
+index 8f19ec7f1925..3cbfe77eeac1 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -24,8 +24,8 @@
@@ -39,5 +39,5 @@ index 8f19ec7f1925a..3cbfe77eeac1c 100644
  		};
  
 -- 
-2.53.0
+2.54.0
 

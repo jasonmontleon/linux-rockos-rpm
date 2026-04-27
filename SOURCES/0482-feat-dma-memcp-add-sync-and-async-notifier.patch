@@ -1,4 +1,4 @@
-From b8e40577b7bf9cc69d0a7e6bb60ebc51160a8486 Mon Sep 17 00:00:00 2001
+From 52f21ba3b968e0b942b9dd7edcd8994df08ec3e5 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Wed, 19 Feb 2025 16:24:27 +0800
 Subject: [PATCH 482/652] feat:dma memcp add sync and async notifier
@@ -13,7 +13,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  2 files changed, 39 insertions(+)
 
 diff --git a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
-index cc4b81e6ef15b..ba07f2bd38b54 100644
+index cc4b81e6ef15..ba07f2bd38b5 100644
 --- a/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 +++ b/drivers/memory/eswin/es_dma_memcp/es_dma_memcp.c
 @@ -37,6 +37,7 @@
@@ -132,7 +132,7 @@ index cc4b81e6ef15b..ba07f2bd38b54 100644
  
  static struct miscdevice esw_memcp_miscdev = {
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
-index 3cb75a348ba8d..7d0ffdca4d99a 100644
+index 3cb75a348ba8..7d0ffdca4d99 100644
 --- a/include/uapi/linux/dma_memcp.h
 +++ b/include/uapi/linux/dma_memcp.h
 @@ -48,10 +48,12 @@ struct esw_memcp_f2f_cmd {
@@ -149,5 +149,5 @@ index 3cb75a348ba8d..7d0ffdca4d99a 100644
  
  #define ESW_MEMCP_MAGIC 			'M'
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From ec429df9bedbb6ba2fa3b2e5fdf853404acff4cb Mon Sep 17 00:00:00 2001
+From b48ba36f2a4d322647f55471412eb9be116472a2 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Wed, 2 Apr 2025 14:23:16 +0800
 Subject: [PATCH 456/652] chore:Reduce the printing in TBU
@@ -12,7 +12,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 4 insertions(+), 11 deletions(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index d109b45f33f1e..7308e0dcabdac 100644
+index d109b45f33f1..7308e0dcabda 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -133,7 +133,7 @@ int win2030_dynm_sid_enable(int nid)
@@ -85,5 +85,5 @@ index d109b45f33f1e..7308e0dcabdac 100644
  }
  EXPORT_SYMBOL(print_tcu_node_status);
 -- 
-2.53.0
+2.54.0
 

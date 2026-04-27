@@ -1,4 +1,4 @@
-From df7dfa66d7c24e7b36f1fffe4125b4d8567af1c7 Mon Sep 17 00:00:00 2001
+From 33debd945763667a008143263cc30a87f3b1e679 Mon Sep 17 00:00:00 2001
 From: wangkuanhong <wangkuanhong@eswincomputing.com>
 Date: Wed, 17 Jul 2024 15:44:26 +0800
 Subject: [PATCH 103/652] refactor: move es_dev_buf and iommu_rsv into kernel
@@ -30,7 +30,7 @@ Signed-off-by: wangkuanhong <wangkuanhong@eswincomputing.com>
  create mode 100644 drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index e985f5c3732c3..1603e0ec1bf7c 100644
+index e985f5c3732c..1603e0ec1bf7 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -740,6 +740,8 @@ CONFIG_ESWIN_BUDDY=y
@@ -43,7 +43,7 @@ index e985f5c3732c3..1603e0ec1bf7c 100644
  CONFIG_PWM_ESWIN=y
  CONFIG_RESET_ESWIN_WIN2030=y
 diff --git a/drivers/memory/eswin/Kconfig b/drivers/memory/eswin/Kconfig
-index 013e2f376dd30..3078936326e4f 100644
+index 013e2f376dd3..3078936326e4 100644
 --- a/drivers/memory/eswin/Kconfig
 +++ b/drivers/memory/eswin/Kconfig
 @@ -29,5 +29,7 @@ source "drivers/memory/eswin/es_buddy/Kconfig"
@@ -55,7 +55,7 @@ index 013e2f376dd30..3078936326e4f 100644
  
  endif
 diff --git a/drivers/memory/eswin/Makefile b/drivers/memory/eswin/Makefile
-index 3e5e09bab5dd0..c07fadc64d443 100644
+index 3e5e09bab5dd..c07fadc64d44 100644
 --- a/drivers/memory/eswin/Makefile
 +++ b/drivers/memory/eswin/Makefile
 @@ -6,7 +6,9 @@ obj-$(CONFIG_ESWIN_BUDDY)			+= es_buddy/
@@ -72,7 +72,7 @@ index 3e5e09bab5dd0..c07fadc64d443 100644
 +COPY_HEADERS := $(shell cp $(ES_MEM_HEADER)/*.h include/linux)
 diff --git a/drivers/memory/eswin/es_dev_buf/Kconfig b/drivers/memory/eswin/es_dev_buf/Kconfig
 new file mode 100644
-index 0000000000000..78e59f570ac93
+index 000000000000..78e59f570ac9
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dev_buf/Kconfig
 @@ -0,0 +1,8 @@
@@ -86,7 +86,7 @@ index 0000000000000..78e59f570ac93
 +
 diff --git a/drivers/memory/eswin/es_dev_buf/Makefile b/drivers/memory/eswin/es_dev_buf/Makefile
 new file mode 100644
-index 0000000000000..3ba183ff62bd7
+index 000000000000..3ba183ff62bd
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dev_buf/Makefile
 @@ -0,0 +1,5 @@
@@ -97,7 +97,7 @@ index 0000000000000..3ba183ff62bd7
 +
 diff --git a/drivers/memory/eswin/es_dev_buf/es_dev_buf.c b/drivers/memory/eswin/es_dev_buf/es_dev_buf.c
 new file mode 100644
-index 0000000000000..02bb8e2de2daf
+index 000000000000..02bb8e2de2da
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dev_buf/es_dev_buf.c
 @@ -0,0 +1,194 @@
@@ -297,7 +297,7 @@ index 0000000000000..02bb8e2de2daf
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/memory/eswin/es_dev_buf/include/linux/dsp_dma_buf.h b/drivers/memory/eswin/es_dev_buf/include/linux/dsp_dma_buf.h
 new file mode 100644
-index 0000000000000..ab6962ad1ccfa
+index 000000000000..ab6962ad1ccf
 --- /dev/null
 +++ b/drivers/memory/eswin/es_dev_buf/include/linux/dsp_dma_buf.h
 @@ -0,0 +1,44 @@
@@ -347,7 +347,7 @@ index 0000000000000..ab6962ad1ccfa
 +#endif
 diff --git a/drivers/memory/eswin/es_iommu_rsv/Kconfig b/drivers/memory/eswin/es_iommu_rsv/Kconfig
 new file mode 100644
-index 0000000000000..f04159dd39dfb
+index 000000000000..f04159dd39df
 --- /dev/null
 +++ b/drivers/memory/eswin/es_iommu_rsv/Kconfig
 @@ -0,0 +1,7 @@
@@ -360,7 +360,7 @@ index 0000000000000..f04159dd39dfb
 +
 diff --git a/drivers/memory/eswin/es_iommu_rsv/Makefile b/drivers/memory/eswin/es_iommu_rsv/Makefile
 new file mode 100644
-index 0000000000000..a4fa098eb5183
+index 000000000000..a4fa098eb518
 --- /dev/null
 +++ b/drivers/memory/eswin/es_iommu_rsv/Makefile
 @@ -0,0 +1,5 @@
@@ -371,7 +371,7 @@ index 0000000000000..a4fa098eb5183
 +COPY_HEADERS := $(shell cp $(ES_IOMMU_RSV_HEADER)/*h include/linux)
 diff --git a/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h b/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h
 new file mode 100644
-index 0000000000000..3e11a64215027
+index 000000000000..3e11a6421502
 --- /dev/null
 +++ b/drivers/memory/eswin/es_iommu_rsv/include/linux/es_iommu_rsv.h
 @@ -0,0 +1,10 @@
@@ -387,7 +387,7 @@ index 0000000000000..3e11a64215027
 +#endif
 diff --git a/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c b/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
 new file mode 100644
-index 0000000000000..397601410e6e7
+index 000000000000..397601410e6e
 --- /dev/null
 +++ b/drivers/memory/eswin/es_iommu_rsv/iommu_rsv.c
 @@ -0,0 +1,506 @@
@@ -898,5 +898,5 @@ index 0000000000000..397601410e6e7
 +
 +MODULE_LICENSE("GPL");
 -- 
-2.53.0
+2.54.0
 

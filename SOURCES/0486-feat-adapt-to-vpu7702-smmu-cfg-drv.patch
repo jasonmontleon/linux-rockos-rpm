@@ -1,4 +1,4 @@
-From cc9148f81ed133ca1673f73a82436ff594712d31 Mon Sep 17 00:00:00 2001
+From ceac035c8efa3e762eea75e12f358a9c058d0e1c Mon Sep 17 00:00:00 2001
 From: Joey Zheng <zhengyu@eswincomputing.com>
 Date: Thu, 24 Apr 2025 16:53:28 +0800
 Subject: [PATCH 486/652] feat:adapt to vpu7702 smmu cfg drv
@@ -13,7 +13,7 @@ Signed-off-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
-index 4bdb2da8ba3fb..25c74eaa69605 100644
+index 4bdb2da8ba3f..25c74eaa6960 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-vpu7702.dts
 @@ -188,7 +188,7 @@ d0_ipcm:ipcm@0 {
@@ -26,5 +26,5 @@ index 4bdb2da8ba3fb..25c74eaa69605 100644
  			dma-ranges = <0x0 0x20000000 0x0 0xc0000000 0x0 0x40000000>;
  			iommus = <&smmu0 WIN2030_SID_DEV_FOO_B>;
 -- 
-2.53.0
+2.54.0
 

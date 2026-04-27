@@ -1,4 +1,4 @@
-From f3b8387c0bfc3817f8bc7727e922f6e30a3664a3 Mon Sep 17 00:00:00 2001
+From a61107577a75ff56d623c8402c1611894f00bb64 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 13 Jun 2024 18:12:38 +0800
 Subject: [PATCH 051/652] refactor:Implement pcie intx and pmu dtsi config
@@ -15,7 +15,7 @@ Changelogs:
  4 files changed, 80 insertions(+), 204 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 997afe1fa6a2d..3571f134aacca 100644
+index 997afe1fa6a2..3571f134aacc 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -66,7 +66,7 @@ L17: cpu@0 {
@@ -144,7 +144,7 @@ index 997afe1fa6a2d..3571f134aacca 100644
  			#interrupt-cells = <1>;
  			compatible = "sifive,plic-1.0.0";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 55aba79102eb2..9f76de5f01622 100644
+index 55aba79102eb..9f76de5f0162 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -784,22 +784,21 @@ pcie: pcie@0x54000000 {
@@ -179,7 +179,7 @@ index 55aba79102eb2..9f76de5f01622 100644
  			status = "disabled";
  			numa-node-id = <0>;
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 65b68c9e1d277..f12568c50271f 100644
+index 65b68c9e1d27..f12568c50271 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -49,6 +49,10 @@ CONFIG_NET_SCHED=y
@@ -221,7 +221,7 @@ index 65b68c9e1d277..f12568c50271f 100644
  # CONFIG_INPUT_KEYBOARD is not set
  # CONFIG_INPUT_MOUSE is not set
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index 66941cce9ddef..ab1f4b421eab7 100644
+index 66941cce9dde..ab1f4b421eab 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -40,26 +40,10 @@
@@ -545,5 +545,5 @@ index 66941cce9ddef..ab1f4b421eab7 100644
  
  	return dw_pcie_host_init(&pci->pp);
 -- 
-2.53.0
+2.54.0
 

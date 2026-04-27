@@ -1,4 +1,4 @@
-From 0a6f0fc29545be5d3003baf2ebb60bd4170a049b Mon Sep 17 00:00:00 2001
+From 488db452c6d6ad657d2f13838663f5940072c1d8 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Wed, 11 Sep 2024 17:21:40 +0800
 Subject: [PATCH 263/652] WIN2030-16286:feat:fix 2d cannot alloc die0 cma addr
@@ -15,7 +15,7 @@ Signed-off-by: liusheng <liusheng@eswincomputing.com>
  2 files changed, 29 insertions(+), 27 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index d87b845a09669..5750ea1646ca7 100644
+index d87b845a0966..5750ea1646ca 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -751,6 +751,7 @@ gc820: g2d@50140000 {
@@ -27,7 +27,7 @@ index d87b845a09669..5750ea1646ca7 100644
  
  		gpu0: gpu@51400000 {
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 2f36205bc50e2..e23aace10f03b 100644
+index 2f36205bc50e..e23aace10f03 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1912,34 +1912,35 @@ d1_wdt3: watchdog@0x7080c000 {
@@ -94,5 +94,5 @@ index 2f36205bc50e2..e23aace10f03b 100644
  		d1_sdhci_emmc: mmc@70450000 {
  			compatible = "eswin,emmc-sdhci-5.1";
 -- 
-2.53.0
+2.54.0
 

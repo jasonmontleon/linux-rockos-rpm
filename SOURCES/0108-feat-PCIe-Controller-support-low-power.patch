@@ -1,4 +1,4 @@
-From f14637a3a4ac9837f62a00fcf8891f44af5e2367 Mon Sep 17 00:00:00 2001
+From a869acced55283d57f15118c5d7772d9205e9942 Mon Sep 17 00:00:00 2001
 From: huzhixuan <huzhixuan@eswincomputing.com>
 Date: Thu, 18 Jul 2024 19:22:23 +0800
 Subject: [PATCH 108/652] feat:PCIe Controller support low power.
@@ -12,7 +12,7 @@ Signed-off-by: huzhixuan <huzhixuan@eswincomputing.com>
  1 file changed, 70 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/pci/controller/dwc/pcie-eswin.c b/drivers/pci/controller/dwc/pcie-eswin.c
-index ab1f4b421eab7..498a26304aead 100644
+index ab1f4b421eab..498a26304aea 100644
 --- a/drivers/pci/controller/dwc/pcie-eswin.c
 +++ b/drivers/pci/controller/dwc/pcie-eswin.c
 @@ -39,6 +39,7 @@
@@ -151,5 +151,5 @@ index ab1f4b421eab7..498a26304aead 100644
  	.probe = eswin_pcie_probe,
  	.remove = __exit_p(eswin_pcie_remove),
 -- 
-2.53.0
+2.54.0
 

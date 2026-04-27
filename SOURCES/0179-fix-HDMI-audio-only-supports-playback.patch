@@ -1,4 +1,4 @@
-From 2941cb5353e7ebabd73d31c5e23cd2127767f982 Mon Sep 17 00:00:00 2001
+From 1034b0dc2653663dcd5880ddd83dee29ff700eed Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 24 Sep 2024 14:29:26 +0800
 Subject: [PATCH 179/652] fix:HDMI audio only supports playback.
@@ -13,7 +13,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 8 insertions(+), 9 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index fb032ebd085e4..4c5d33faade49 100755
+index fb032ebd085e..4c5d33faade4 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -75,6 +75,8 @@
@@ -65,5 +65,5 @@ index fb032ebd085e4..4c5d33faade49 100755
  	{
  		.name = "i2s0",
 -- 
-2.53.0
+2.54.0
 

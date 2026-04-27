@@ -1,4 +1,4 @@
-From 76804f0c04d754a1c3f76ece4d2fecfb49941fc6 Mon Sep 17 00:00:00 2001
+From b703c78893e0a9ad1369e0d8a8a2ae1967486b5d Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 31 Mar 2025 17:39:31 +0800
 Subject: [PATCH 451/652] fix(vc):opt error log for redup interrupts
@@ -13,7 +13,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 6d6cb6dcb1ea1..3ccbc0da1a95e 100644
+index 6d6cb6dcb1ea..3ccbc0da1a95 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -4936,7 +4936,7 @@ static irqreturn_t hantrovcmd_isr(int irq, void *dev_id)
@@ -26,7 +26,7 @@ index 6d6cb6dcb1ea1..3ccbc0da1a95e 100644
  			return IRQ_HANDLED;
  		}
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 0686cc8dbd04d..39829260fa5d9 100644
+index 0686cc8dbd04..39829260fa5d 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -4505,7 +4505,7 @@ static irqreturn_t hantrovcmd_isr(int irq, void *dev_id)
@@ -39,5 +39,5 @@ index 0686cc8dbd04d..39829260fa5d9 100644
  			return IRQ_HANDLED;
  		}
 -- 
-2.53.0
+2.54.0
 

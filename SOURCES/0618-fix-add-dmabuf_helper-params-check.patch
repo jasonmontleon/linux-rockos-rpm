@@ -1,4 +1,4 @@
-From a22282dd01cfda1f43f6509883564b815e328f3a Mon Sep 17 00:00:00 2001
+From 99cb86ae9398f72c6fe619199d6605b305e27c2b Mon Sep 17 00:00:00 2001
 From: He jiean <hejiean@eswincomputing.com>
 Date: Wed, 9 Jul 2025 16:43:28 +0800
 Subject: [PATCH 618/652] fix: add dmabuf_helper params check
@@ -20,7 +20,7 @@ Signed-off-by: hejiean <hejiean@eswincomputing.com>
  3 files changed, 33 insertions(+), 10 deletions(-)
 
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
-index c4ce2e01a61f6..c634da8df58eb 100644
+index c4ce2e01a61f..c634da8df58e 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -342,7 +342,7 @@ struct heap_mem *common_dmabuf_lookup_heapobj_by_fd(struct heap_root *root, int
@@ -100,7 +100,7 @@ index c4ce2e01a61f6..c634da8df58eb 100644
  	kref_put(&heap_obj->refcount, __common_dmabuf_heap_rsv_iova_unmap);
  	mutex_unlock(&root->lock);
 diff --git a/drivers/staging/media/eswin/dewarp/dw200_ioctl.c b/drivers/staging/media/eswin/dewarp/dw200_ioctl.c
-index 0088cf5704e80..b28665ba1f3b2 100644
+index 0088cf5704e8..b28665ba1f3b 100644
 --- a/drivers/staging/media/eswin/dewarp/dw200_ioctl.c
 +++ b/drivers/staging/media/eswin/dewarp/dw200_ioctl.c
 @@ -179,7 +179,7 @@ static u64 get_dma_addr(struct dw200_subdev *dev, int dmabuf_fd,
@@ -122,7 +122,7 @@ index 0088cf5704e80..b28665ba1f3b2 100644
  		return -1;
  	}
 diff --git a/include/linux/dmabuf-heap-import-helper.h b/include/linux/dmabuf-heap-import-helper.h
-index d4acd7c5177c3..913134b88cc8c 100644
+index d4acd7c5177c..913134b88cc8 100644
 --- a/include/linux/dmabuf-heap-import-helper.h
 +++ b/include/linux/dmabuf-heap-import-helper.h
 @@ -114,20 +114,34 @@ static inline void common_dmabuf_heap_set_dir(struct heap_mem *heap_obj, enum dm
@@ -161,5 +161,5 @@ index d4acd7c5177c3..913134b88cc8c 100644
  void common_dmabuf_heap_rsv_iova_unmap(struct heap_mem *heap_obj);
  void common_dmabuf_heap_rsv_iova_uninit(struct heap_root *root);
 -- 
-2.53.0
+2.54.0
 

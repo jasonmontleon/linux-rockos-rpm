@@ -1,4 +1,4 @@
-From a97e2044b8d29a92b9ff094c17ac8398e1008607 Mon Sep 17 00:00:00 2001
+From a71298af4551d8422b9e47f20dd3223b04939be3 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 30 Dec 2024 10:38:49 +0800
 Subject: [PATCH 366/652] WIN2030-14758:fix(cipher):Add tbus property for
@@ -14,7 +14,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 454427d67f0ce..46a70eb15886c 100644
+index 454427d67f0c..46a70eb15886 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -641,6 +641,7 @@ d1_ipc_scpu:ipc@1 {
@@ -26,5 +26,5 @@ index 454427d67f0ce..46a70eb15886c 100644
  						   <&d1_sys_con CRYPT_SID_REG_OFFSET 0>;
  			mboxes = <&d1_mbox0 0>;
 -- 
-2.53.0
+2.54.0
 

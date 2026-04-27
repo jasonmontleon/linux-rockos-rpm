@@ -1,4 +1,4 @@
-From c297009e1e2383c6aef127888f878cdaa170fd33 Mon Sep 17 00:00:00 2001
+From 2c517164bea1b81d7c4e607bf507098792d856bc Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Thu, 29 Aug 2024 17:26:10 +0800
 Subject: [PATCH 165/652] fix:check_mc_cmdbuf_irq
@@ -14,7 +14,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  2 files changed, 31 insertions(+), 36 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_vcmd.c b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
-index 3e07e4a1f5cb1..80b75ffc9d787 100644
+index 3e07e4a1f5cb..80b75ffc9d78 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_vcmd.c
 @@ -788,6 +788,13 @@ static int vcmd_type_core_num[MAX_VCMD_TYPE];
@@ -193,7 +193,7 @@ index 3e07e4a1f5cb1..80b75ffc9d787 100644
  	for (i = 0; i < MAX_VCMD_TYPE; i++) {
  		if (vcmd_type_core_num[i] == 0)
 diff --git a/drivers/staging/media/eswin/vdec/hantrodec.h b/drivers/staging/media/eswin/vdec/hantrodec.h
-index 9991f4e2ed8e8..4f597b740eb2e 100644
+index 9991f4e2ed8e..4f597b740eb2 100644
 --- a/drivers/staging/media/eswin/vdec/hantrodec.h
 +++ b/drivers/staging/media/eswin/vdec/hantrodec.h
 @@ -164,7 +164,6 @@ struct filp_priv {
@@ -205,5 +205,5 @@ index 9991f4e2ed8e8..4f597b740eb2e 100644
  };
  #endif
 -- 
-2.53.0
+2.54.0
 

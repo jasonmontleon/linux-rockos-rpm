@@ -1,4 +1,4 @@
-From 7f46fa3714652059451ea3197cacd8a3149670bc Mon Sep 17 00:00:00 2001
+From 99c7f7236ffd2236929bd5a72add83245f8dcaba Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 29 Jul 2024 17:05:54 +0800
 Subject: [PATCH 156/652] fix(enc):fix hang issue of ve roi
@@ -20,7 +20,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  5 files changed, 820 insertions(+), 173 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 13a40780a6191..2785eb640b3a6 100644
+index 13a40780a619..2785eb640b3a 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1027,19 +1027,20 @@ venc0: video-encoder@50110000 {
@@ -46,7 +46,7 @@ index 13a40780a6191..2785eb640b3a6 100644
  		};
  
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index be08ead18fa85..9883a0b1a8bfc 100644
+index be08ead18fa8..9883a0b1a8bf 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -438,19 +438,20 @@ venc1: video-encoder@70110000 {
@@ -72,7 +72,7 @@ index be08ead18fa85..9883a0b1a8bfc 100644
  		};
  		/*mailbox between u84 & scpu*/
 diff --git a/drivers/staging/media/eswin/venc/Makefile b/drivers/staging/media/eswin/venc/Makefile
-index c14e399e3393c..745450bf20c66 100644
+index c14e399e3393..745450bf20c6 100644
 --- a/drivers/staging/media/eswin/venc/Makefile
 +++ b/drivers/staging/media/eswin/venc/Makefile
 @@ -1,6 +1,7 @@
@@ -84,7 +84,7 @@ index c14e399e3393c..745450bf20c66 100644
  
  obj-$(CONFIG_VIDEO_ESWIN_VENC) += es_venc.o
 diff --git a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
-index 33137277dda62..d08a8effc7f25 100644
+index 33137277dda6..d08a8effc7f2 100644
 --- a/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000_vcmd_driver.c
 @@ -93,6 +93,7 @@
@@ -1023,7 +1023,7 @@ index 33137277dda62..d08a8effc7f25 100644
  	if (cmdbuf_processed_num)
  		wake_up_interruptible_all(dev->wait_queue);
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index 5ed832b391329..97743c8172cd6 100644
+index 5ed832b39132..97743c8172cd 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -29,6 +29,9 @@
@@ -1579,5 +1579,5 @@ index 5ed832b391329..97743c8172cd6 100644
  	LOG_DBG("runtime suspend\n");
  	return venc_dev_close(dev);
 -- 
-2.53.0
+2.54.0
 

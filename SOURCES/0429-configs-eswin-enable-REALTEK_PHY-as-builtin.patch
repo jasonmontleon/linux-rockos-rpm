@@ -1,4 +1,4 @@
-From b5ac50e12e6fba9c3ef6c16ed51e039b21043149 Mon Sep 17 00:00:00 2001
+From 7ef4629d793898e4384c9650d2dcf35f39b65112 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:15:45 +0800
 Subject: [PATCH 429/652] configs: eswin: enable REALTEK_PHY as builtin
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 1 insertion(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index db1039b3d49a6..4e586f315d0ac 100644
+index db1039b3d49a..4e586f315d0a 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -532,6 +532,7 @@ CONFIG_NGBE=m
@@ -21,5 +21,5 @@ index db1039b3d49a6..4e586f315d0ac 100644
  # CONFIG_WLAN_VENDOR_ATH is not set
  # CONFIG_WLAN_VENDOR_ATMEL is not set
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 3d4ae0f14e7d522fa6732fe3bd5eea8f36dfad6e Mon Sep 17 00:00:00 2001
+From 49323a7b99c0358554ebdf9f34f59bdde4b05f57 Mon Sep 17 00:00:00 2001
 From: lei zhilin <leizhilin@eswincomputing.com>
 Date: Wed, 16 Apr 2025 13:26:22 +0800
 Subject: [PATCH 625/652] fix(2d):suspend failed,cherry-pick 0284684 from pm
@@ -13,7 +13,7 @@ Signed-off-by: lei zhilin <leizhilin@eswincomputing.com>
  1 file changed, 14 insertions(+), 14 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
-index 81dc4fcb6a6e2..b7481fdb4a01a 100644
+index 81dc4fcb6a6e..b7481fdb4a01 100644
 --- a/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 +++ b/drivers/staging/media/eswin/hae/hal/os/linux/kernel/gc_hal_kernel_driver.c
 @@ -1521,7 +1521,7 @@ static void viv_dev_shutdown(struct platform_device *pdev)
@@ -94,5 +94,5 @@ index 81dc4fcb6a6e2..b7481fdb4a01a 100644
          }
      }
 -- 
-2.53.0
+2.54.0
 

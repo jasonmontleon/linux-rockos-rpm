@@ -1,4 +1,4 @@
-From f14d58d2474cf27ff2edecc3182a18a1f7a271bb Mon Sep 17 00:00:00 2001
+From 68a752d4fd2f27fe8ec83c9e52f4349090e50d5e Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Thu, 31 Oct 2024 04:12:28 +0800
 Subject: [PATCH 215/652] npu: add es5340 support
@@ -15,7 +15,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  create mode 100644 drivers/regulator/es5340.c
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index ce5fb86d2d9b1..6068b4f766a73 100644
+index ce5fb86d2d9b..6068b4f766a7 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -70,6 +70,8 @@ CONFIG_TLS_TOE=y
@@ -45,7 +45,7 @@ index ce5fb86d2d9b1..6068b4f766a73 100644
  CONFIG_NLS_ISO8859_1=m
  CONFIG_SECURITY=y
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 801434d707a27..7030600cba927 100644
+index 801434d707a2..7030600cba92 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -468,6 +468,7 @@ CONFIG_WATCHDOG=y
@@ -57,7 +57,7 @@ index 801434d707a27..7030600cba927 100644
  CONFIG_MEDIA_SUPPORT=y
  CONFIG_MEDIA_SUPPORT_FILTER=y
 diff --git a/drivers/regulator/Kconfig b/drivers/regulator/Kconfig
-index 512ca2e53f1bc..1c469ddbe4647 100644
+index 512ca2e53f1b..1c469ddbe464 100644
 --- a/drivers/regulator/Kconfig
 +++ b/drivers/regulator/Kconfig
 @@ -800,7 +800,12 @@ config REGULATOR_MPQ8785
@@ -75,7 +75,7 @@ index 512ca2e53f1bc..1c469ddbe4647 100644
  	tristate "MediaTek MT6311 PMIC"
  	depends on I2C
 diff --git a/drivers/regulator/Makefile b/drivers/regulator/Makefile
-index a0b29a60d7f8d..c182cbff65485 100644
+index a0b29a60d7f8..c182cbff6548 100644
 --- a/drivers/regulator/Makefile
 +++ b/drivers/regulator/Makefile
 @@ -196,4 +196,5 @@ obj-$(CONFIG_REGULATOR_WM8350) += wm8350-regulator.o
@@ -86,7 +86,7 @@ index a0b29a60d7f8d..c182cbff65485 100644
  ccflags-$(CONFIG_REGULATOR_DEBUG) += -DDEBUG
 diff --git a/drivers/regulator/es5340.c b/drivers/regulator/es5340.c
 new file mode 100644
-index 0000000000000..c49fcfbf4dc07
+index 000000000000..c49fcfbf4dc0
 --- /dev/null
 +++ b/drivers/regulator/es5340.c
 @@ -0,0 +1,872 @@
@@ -964,5 +964,5 @@ index 0000000000000..c49fcfbf4dc07
 +MODULE_LICENSE("GPL");
 \ No newline at end of file
 -- 
-2.53.0
+2.54.0
 

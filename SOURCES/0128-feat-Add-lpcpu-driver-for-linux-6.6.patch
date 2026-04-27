@@ -1,4 +1,4 @@
-From 68007169d9215ee75786f4f9e0d066773429cb2d Mon Sep 17 00:00:00 2001
+From 20fd2dd38a7a19f5efd6eacf1c216651aca2ea6c Mon Sep 17 00:00:00 2001
 From: hujiamiao <hujiamiao@eswincomputing.com>
 Date: Fri, 12 Jul 2024 18:30:09 +0800
 Subject: [PATCH 128/652] feat:Add lpcpu driver for linux-6.6
@@ -19,7 +19,7 @@ Signed-off-by: hujiamiao <hujiamiao@eswincomputing.com>
  create mode 100644 drivers/mailbox/eswin-lpcpu.c
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index a6150c3b05db4..c6927bc6814f1 100644
+index a6150c3b05db..c6927bc6814f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -262,7 +262,7 @@ &d0_ipc_scpu {
@@ -32,7 +32,7 @@ index a6150c3b05db4..c6927bc6814f1 100644
  
  &pcie {
 diff --git a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
-index 27b1121d9a523..5dd4d1e4380b5 100644
+index 27b1121d9a52..5dd4d1e4380b 100644
 --- a/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 +++ b/arch/riscv/boot/dts/eswin/hifive-premier-550.dts
 @@ -217,7 +217,7 @@ &d0_ipc_scpu {
@@ -45,7 +45,7 @@ index 27b1121d9a523..5dd4d1e4380b5 100644
  
  &pcie {
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 2ef6525451ad7..0cfccd32280c9 100644
+index 2ef6525451ad..0cfccd32280c 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -733,6 +733,7 @@ CONFIG_COMMON_CLK_WIN2030=y
@@ -57,7 +57,7 @@ index 2ef6525451ad7..0cfccd32280c9 100644
  CONFIG_RPMSG_VIRTIO=y
  CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
 diff --git a/drivers/mailbox/Kconfig b/drivers/mailbox/Kconfig
-index 3cc765e1ce8ef..a44784068fafe 100644
+index 3cc765e1ce8e..a44784068faf 100644
 --- a/drivers/mailbox/Kconfig
 +++ b/drivers/mailbox/Kconfig
 @@ -304,4 +304,11 @@ config ESWIN_MBOX
@@ -73,7 +73,7 @@ index 3cc765e1ce8ef..a44784068fafe 100644
 +
  endif
 diff --git a/drivers/mailbox/Makefile b/drivers/mailbox/Makefile
-index 157518a5d716a..917a154a1b64a 100644
+index 157518a5d716..917a154a1b64 100644
 --- a/drivers/mailbox/Makefile
 +++ b/drivers/mailbox/Makefile
 @@ -64,3 +64,5 @@ obj-$(CONFIG_QCOM_IPCC)		+= qcom-ipcc.o
@@ -84,7 +84,7 @@ index 157518a5d716a..917a154a1b64a 100644
 +obj-$(CONFIG_ESWIN_LPCPU)	+= eswin-lpcpu.o
 diff --git a/drivers/mailbox/eswin-lpcpu.c b/drivers/mailbox/eswin-lpcpu.c
 new file mode 100644
-index 0000000000000..0568e1ef57f56
+index 000000000000..0568e1ef57f5
 --- /dev/null
 +++ b/drivers/mailbox/eswin-lpcpu.c
 @@ -0,0 +1,433 @@
@@ -522,5 +522,5 @@ index 0000000000000..0568e1ef57f56
 +MODULE_DESCRIPTION("ESWIN WIN2030 lpcpu driver");
 +MODULE_LICENSE("GPL v2");
 -- 
-2.53.0
+2.54.0
 

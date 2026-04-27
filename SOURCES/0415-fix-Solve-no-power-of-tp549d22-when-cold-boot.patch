@@ -1,4 +1,4 @@
-From 6eb4860b85a3ff26027b0e8bbe986840086f8549 Mon Sep 17 00:00:00 2001
+From 19085361e1ccb032f539474174344c91ec24cbe9 Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Mon, 24 Feb 2025 19:33:47 +0800
 Subject: [PATCH 415/652] fix:Solve no power of tp549d22 when cold boot
@@ -12,7 +12,7 @@ Signed-off-by: yangwei1 <yangwei1@eswincomputing.com>
  2 files changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index f3b13d7ca9838..c0dd0416b1167 100644
+index f3b13d7ca983..c0dd0416b116 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -460,11 +460,11 @@ &d1_pcie {
@@ -47,7 +47,7 @@ index f3b13d7ca9838..c0dd0416b1167 100644
  				regulator-max-microamp=<40000000>;
  				regulator-ov-protection-microvolt=<1100000>;
 diff --git a/drivers/regulator/tps549d22-regulator.c b/drivers/regulator/tps549d22-regulator.c
-index 1f247c14a50b2..dd0052525c36a 100644
+index 1f247c14a50b..dd0052525c36 100644
 --- a/drivers/regulator/tps549d22-regulator.c
 +++ b/drivers/regulator/tps549d22-regulator.c
 @@ -38,6 +38,7 @@
@@ -70,5 +70,5 @@ index 1f247c14a50b2..dd0052525c36a 100644
  }
  
 -- 
-2.53.0
+2.54.0
 

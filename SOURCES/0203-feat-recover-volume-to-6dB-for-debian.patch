@@ -1,4 +1,4 @@
-From fefb9445c68ef9c940f01aadf7f1989294913f1a Mon Sep 17 00:00:00 2001
+From 9257cacc2f8775f422f55cd1504afc38f4c2fb8a Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 18 Oct 2024 18:05:32 +0800
 Subject: [PATCH 203/652] feat:recover volume to -6dB for debian
@@ -12,7 +12,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 148 insertions(+), 7 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 3c01c33f27370..dee9086d612e2 100644
+index 3c01c33f2737..dee9086d612e 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -111,6 +111,11 @@ struct es8328_priv {
@@ -220,5 +220,5 @@ index 3c01c33f27370..dee9086d612e2 100644
  }
  EXPORT_SYMBOL_GPL(es8328_probe);
 -- 
-2.53.0
+2.54.0
 

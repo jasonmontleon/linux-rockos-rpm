@@ -1,4 +1,4 @@
-From b3e73d633577a6bec04d8a015f5116ea50843446 Mon Sep 17 00:00:00 2001
+From 5f07f98a478184ad7e52949d364df3ef29bbccec Mon Sep 17 00:00:00 2001
 From: HanGao <rabenda.cn@gmail.com>
 Date: Fri, 14 Feb 2025 18:26:32 +0800
 Subject: [PATCH 404/652] iommu: eswin: sync remove internal arguments from
@@ -10,7 +10,7 @@ Signed-off-by: HanGao <rabenda.cn@gmail.com>
  1 file changed, 2 insertions(+), 6 deletions(-)
 
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
-index 7a4d5fe5002e3..e3308e4e35eec 100644
+index 7a4d5fe5002e..e3308e4e35ee 100644
 --- a/drivers/iommu/eswin/eswin-win2030-sid.c
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -873,8 +873,6 @@ int win2030_tbu_power(struct device *dev, bool is_powerUp)
@@ -50,5 +50,5 @@ index 7a4d5fe5002e3..e3308e4e35eec 100644
  		if (0 == win2030_get_tbu_priv(nid, tbu_id, &tbu_priv_p)) {
  			tbu_client_p = tbu_priv_p->tbu_client_p;
 -- 
-2.53.0
+2.54.0
 

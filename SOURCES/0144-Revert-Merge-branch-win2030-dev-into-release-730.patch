@@ -1,4 +1,4 @@
-From 7c3832d9797800f2ba1a5a87ef399e9f1695e99d Mon Sep 17 00:00:00 2001
+From 9f4b2ff96d908e007de0e32dc82526a33b4d36fe Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Fri, 9 Aug 2024 13:22:29 +0800
 Subject: [PATCH 144/652] Revert "Merge branch 'win2030-dev' into release-730"
@@ -12,7 +12,7 @@ Signed-off-by: linmin <linmin@eswincomputing.com>
  1 file changed, 108 insertions(+), 94 deletions(-)
 
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index 1e00c6863ffdd..1472511bd299a 100644
+index 1e00c6863ffd..1472511bd299 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -1,8 +1,8 @@
@@ -408,5 +408,5 @@ index 1e00c6863ffdd..1472511bd299a 100644
 +CONFIG_VIDEO_ESWIN_VDEC=y
 +CONFIG_VIDEO_ESWIN_MEDIA_EXT_DRIVER=y
 -- 
-2.53.0
+2.54.0
 

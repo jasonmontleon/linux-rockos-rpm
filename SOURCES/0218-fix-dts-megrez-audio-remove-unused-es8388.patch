@@ -1,4 +1,4 @@
-From a57233b77b72d7e26486fc6c419b9ef1ef06482b Mon Sep 17 00:00:00 2001
+From 1f6ce6cb4a71fa9e02942fde2fba7de0e5734a36 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 2 Nov 2024 22:09:23 +0800
 Subject: [PATCH 218/652] fix: dts: megrez audio: remove unused es8388
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 4 insertions(+), 23 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
-index b060cebe874b8..fbab3ae40f53e 100644
+index b060cebe874b..fbab3ae40f53 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-milkv-megrez.dts
 @@ -383,13 +383,7 @@ d0_i2s1_endpoint: endpoint {
@@ -64,5 +64,5 @@ index b060cebe874b8..fbab3ae40f53e 100644
  
  &d0_i2c1 {
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 37bb099b8741dbea930cda600e01d48d159f6d2a Mon Sep 17 00:00:00 2001
+From 74964eb253755be5707c6a516fb0d25784e8b648 Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Fri, 29 Mar 2024 00:18:16 -0700
 Subject: [PATCH 475/652] arch: add ARCH_HAS_KERNEL_FPU_SUPPORT
@@ -52,7 +52,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 
 diff --git a/Documentation/core-api/floating-point.rst b/Documentation/core-api/floating-point.rst
 new file mode 100644
-index 0000000000000..a8d0d4b050529
+index 000000000000..a8d0d4b05052
 --- /dev/null
 +++ b/Documentation/core-api/floating-point.rst
 @@ -0,0 +1,78 @@
@@ -135,7 +135,7 @@ index 0000000000000..a8d0d4b050529
 +        caller expects to nest critical sections, it must implement its own
 +        reference counting.
 diff --git a/Documentation/core-api/index.rst b/Documentation/core-api/index.rst
-index 7a3a08d81f111..974beccd671f6 100644
+index 7a3a08d81f11..974beccd671f 100644
 --- a/Documentation/core-api/index.rst
 +++ b/Documentation/core-api/index.rst
 @@ -48,6 +48,7 @@ Library functionality that is used throughout the kernel.
@@ -147,7 +147,7 @@ index 7a3a08d81f111..974beccd671f6 100644
  Low level entry and exit
  ========================
 diff --git a/Makefile b/Makefile
-index 53144259e4962..cbfccf73475f1 100644
+index bed8bc23e68a..a1699ba6d8b9 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -980,6 +980,11 @@ KBUILD_CFLAGS	+= $(CC_FLAGS_CFI)
@@ -163,7 +163,7 @@ index 53144259e4962..cbfccf73475f1 100644
  KBUILD_CFLAGS += -falign-functions=$(CONFIG_FUNCTION_ALIGNMENT)
  endif
 diff --git a/arch/Kconfig b/arch/Kconfig
-index 09603e0bc2cc1..ae26a98428cd7 100644
+index 09603e0bc2cc..ae26a98428cd 100644
 --- a/arch/Kconfig
 +++ b/arch/Kconfig
 @@ -1488,6 +1488,12 @@ config ARCH_HAS_NONLEAF_PMD_YOUNG
@@ -181,7 +181,7 @@ index 09603e0bc2cc1..ae26a98428cd7 100644
  source "scripts/gcc-plugins/Kconfig"
 diff --git a/include/linux/fpu.h b/include/linux/fpu.h
 new file mode 100644
-index 0000000000000..2fb63e22913bc
+index 000000000000..2fb63e22913b
 --- /dev/null
 +++ b/include/linux/fpu.h
 @@ -0,0 +1,12 @@
@@ -198,5 +198,5 @@ index 0000000000000..2fb63e22913bc
 +
 +#endif
 -- 
-2.53.0
+2.54.0
 

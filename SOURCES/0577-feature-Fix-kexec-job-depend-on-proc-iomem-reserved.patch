@@ -1,4 +1,4 @@
-From 1e93a805768a2501e9666eaeef5eb5658f93427a Mon Sep 17 00:00:00 2001
+From f68afe5f174e550e1100420936c7b1cfea6c44d9 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Fri, 20 Jun 2025 09:38:03 +0800
 Subject: [PATCH 577/652] feature: Fix kexec job depend on proc/iomem reserved
@@ -12,7 +12,7 @@ Signed-off-by: chenzhanzhan <chenzhanzhan@eswincomputing.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/mm/init.c b/arch/riscv/mm/init.c
-index 6584317decd52..3d783bfb05ed0 100644
+index 6584317decd5..3d783bfb05ed 100644
 --- a/arch/riscv/mm/init.c
 +++ b/arch/riscv/mm/init.c
 @@ -1511,6 +1511,8 @@ static void __init reserve_crashkernel(void)
@@ -25,5 +25,5 @@ index 6584317decd52..3d783bfb05ed0 100644
  
  void __init paging_init(void)
 -- 
-2.53.0
+2.54.0
 

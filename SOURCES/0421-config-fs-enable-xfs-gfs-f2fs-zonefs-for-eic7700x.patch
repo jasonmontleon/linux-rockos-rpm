@@ -1,4 +1,4 @@
-From ba3eec92e2fc00a6d996042030d776041dcbbb3a Mon Sep 17 00:00:00 2001
+From cfc838397872e2f4b57532acc8a4e8443cb51213 Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:09:10 +0800
 Subject: [PATCH 421/652] config: fs: enable xfs/gfs/f2fs/zonefs for eic7700x
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 23 insertions(+), 9 deletions(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 8c625a339091e..623624112dffe 100644
+index 8c625a339091..623624112dff 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -32,7 +32,6 @@ CONFIG_PERF_EVENTS=y
@@ -115,5 +115,5 @@ index 8c625a339091e..623624112dffe 100644
 -CONFIG_I2C_MUX_PCA954x=y
 \ No newline at end of file
 -- 
-2.53.0
+2.54.0
 

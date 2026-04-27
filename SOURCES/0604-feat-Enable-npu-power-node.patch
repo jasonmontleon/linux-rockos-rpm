@@ -1,4 +1,4 @@
-From fcc1bed9b87bad9a00c2bdd8dbcb77ffccbb4723 Mon Sep 17 00:00:00 2001
+From 94e82812fb21d900be6a5f9935a83104da0b3d19 Mon Sep 17 00:00:00 2001
 From: taohaitao <taohaitao@eswincomputing.com>
 Date: Sat, 5 Jul 2025 18:05:56 +0800
 Subject: [PATCH 604/652] feat:Enable npu power node.
@@ -13,7 +13,7 @@ Signed-off-by: taohaitao <taohaitao@eswincomputing.com>
  2 files changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
-index cdc86bcf6b301..c21cb0f225ac3 100644
+index cdc86bcf6b30..c21cb0f225ac 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 @@ -840,7 +840,7 @@ ina226@44 {
@@ -26,7 +26,7 @@ index cdc86bcf6b301..c21cb0f225ac3 100644
  		compatible = "ti,tps549d22";
  		reg = <0x10>;
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 59ec21fbda7b0..30aa28ee5b0ee 100644
+index 59ec21fbda7b..30aa28ee5b0e 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -840,7 +840,7 @@ ina226@44 {
@@ -39,5 +39,5 @@ index 59ec21fbda7b0..30aa28ee5b0ee 100644
  		compatible = "ti,tps549d22";
  		reg = <0x10>;
 -- 
-2.53.0
+2.54.0
 

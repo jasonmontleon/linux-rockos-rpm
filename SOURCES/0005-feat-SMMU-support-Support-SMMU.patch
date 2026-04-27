@@ -1,4 +1,4 @@
-From fa5b5e23e5f62bb81a9c099b70dd47f4054c6fe0 Mon Sep 17 00:00:00 2001
+From 4993f4c4c4f680592331ce369f34ac95c3d64119 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Thu, 18 Apr 2024 14:39:33 +0800
 Subject: [PATCH 005/652] feat(SMMU support):Support SMMU
@@ -40,7 +40,7 @@ Changelogs:
  create mode 100644 drivers/iommu/eswin/eswin-win2030-sid.c
 
 diff --git a/arch/riscv/Kconfig b/arch/riscv/Kconfig
-index 1304992232adb..baefecd750167 100644
+index 1304992232ad..baefecd75016 100644
 --- a/arch/riscv/Kconfig
 +++ b/arch/riscv/Kconfig
 @@ -334,7 +334,7 @@ config ARCH_RV64I
@@ -53,7 +53,7 @@ index 1304992232adb..baefecd750167 100644
  endchoice
  
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 0fc2a5f9522b3..2e2e4e419bd3a 100644
+index 0fc2a5f9522b..2e2e4e419bd3 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -223,6 +223,7 @@ CONFIG_VIRTIO_MMIO=y
@@ -65,7 +65,7 @@ index 0fc2a5f9522b3..2e2e4e419bd3a 100644
  CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY=y
  CONFIG_EXTCON=y
 diff --git a/arch/riscv/include/asm/barrier.h b/arch/riscv/include/asm/barrier.h
-index 110752594228e..600abcec36315 100644
+index 110752594228..600abcec3631 100644
 --- a/arch/riscv/include/asm/barrier.h
 +++ b/arch/riscv/include/asm/barrier.h
 @@ -71,6 +71,10 @@ do {									\
@@ -80,7 +80,7 @@ index 110752594228e..600abcec36315 100644
  
  #endif /* __ASSEMBLY__ */
 diff --git a/arch/riscv/include/asm/io.h b/arch/riscv/include/asm/io.h
-index 42497d487a174..0c3c9507dca18 100644
+index 42497d487a17..0c3c9507dca1 100644
 --- a/arch/riscv/include/asm/io.h
 +++ b/arch/riscv/include/asm/io.h
 @@ -52,6 +52,9 @@
@@ -94,7 +94,7 @@ index 42497d487a174..0c3c9507dca18 100644
   * Accesses from a single hart to a single I/O address must be ordered.  This
   * allows us to use the raw read macros, but we still need to fence before and
 diff --git a/arch/riscv/mm/dma-noncoherent.c b/arch/riscv/mm/dma-noncoherent.c
-index 898a9c8facd40..75d3f1e6f8847 100644
+index 898a9c8facd4..75d3f1e6f884 100644
 --- a/arch/riscv/mm/dma-noncoherent.c
 +++ b/arch/riscv/mm/dma-noncoherent.c
 @@ -11,6 +11,9 @@
@@ -120,7 +120,7 @@ index 898a9c8facd40..75d3f1e6f8847 100644
  
  void riscv_noncoherent_supported(void)
 diff --git a/drivers/iommu/Kconfig b/drivers/iommu/Kconfig
-index 20aa5ed80aa38..7999c71c46124 100644
+index 20aa5ed80aa3..7999c71c4612 100644
 --- a/drivers/iommu/Kconfig
 +++ b/drivers/iommu/Kconfig
 @@ -28,7 +28,7 @@ config IOMMU_IO_PGTABLE
@@ -142,7 +142,7 @@ index 20aa5ed80aa38..7999c71c46124 100644
  	select IOMMU_IO_PGTABLE_LPAE
  	select GENERIC_MSI_IRQ
 diff --git a/drivers/iommu/Makefile b/drivers/iommu/Makefile
-index 769e43d780ce8..42b2d74869aa8 100644
+index 769e43d780ce..42b2d74869aa 100644
 --- a/drivers/iommu/Makefile
 +++ b/drivers/iommu/Makefile
 @@ -1,5 +1,5 @@
@@ -153,7 +153,7 @@ index 769e43d780ce8..42b2d74869aa8 100644
  obj-$(CONFIG_IOMMU_API) += iommu-traces.o
  obj-$(CONFIG_IOMMU_API) += iommu-sysfs.o
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
-index bb7365b432198..92b13c4d67a5e 100644
+index bb7365b43219..92b13c4d67a5 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.c
 @@ -30,8 +30,26 @@
@@ -734,7 +734,7 @@ index bb7365b432198..92b13c4d67a5e 100644
  
  static void arm_smmu_device_shutdown(struct platform_device *pdev)
 diff --git a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
-index 9915850dd4dbf..25a73a177b59c 100644
+index 9915850dd4db..25a73a177b59 100644
 --- a/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
 +++ b/drivers/iommu/arm/arm-smmu-v3/arm-smmu-v3.h
 @@ -160,6 +160,19 @@
@@ -827,7 +827,7 @@ index 9915850dd4dbf..25a73a177b59c 100644
  static inline struct arm_smmu_domain *to_smmu_domain(struct iommu_domain *dom)
 diff --git a/drivers/iommu/eswin/Makefile b/drivers/iommu/eswin/Makefile
 new file mode 100644
-index 0000000000000..563a2ca1a91d0
+index 000000000000..563a2ca1a91d
 --- /dev/null
 +++ b/drivers/iommu/eswin/Makefile
 @@ -0,0 +1,2 @@
@@ -835,7 +835,7 @@ index 0000000000000..563a2ca1a91d0
 +obj-$(CONFIG_ARCH_ESWIN_EIC770X_SOC_FAMILY) 		+= eswin-win2030-sid.o
 diff --git a/drivers/iommu/eswin/eswin-win2030-sid.c b/drivers/iommu/eswin/eswin-win2030-sid.c
 new file mode 100644
-index 0000000000000..24fc76fe7272a
+index 000000000000..24fc76fe7272
 --- /dev/null
 +++ b/drivers/iommu/eswin/eswin-win2030-sid.c
 @@ -0,0 +1,886 @@
@@ -1726,7 +1726,7 @@ index 0000000000000..24fc76fe7272a
 +	return 0;
 +}
 diff --git a/drivers/soc/sifive/Kconfig b/drivers/soc/sifive/Kconfig
-index 290b961eb729b..d78b8c3f72a8c 100644
+index 290b961eb729..d78b8c3f72a8 100644
 --- a/drivers/soc/sifive/Kconfig
 +++ b/drivers/soc/sifive/Kconfig
 @@ -19,6 +19,7 @@ config ARCH_ESWIN_EIC770X_SOC_FAMILY
@@ -1738,5 +1738,5 @@ index 290b961eb729b..d78b8c3f72a8c 100644
  menu "ESWIN EIC770X SoC Family Selection"
  	depends on ARCH_ESWIN_EIC770X_SOC_FAMILY
 -- 
-2.53.0
+2.54.0
 

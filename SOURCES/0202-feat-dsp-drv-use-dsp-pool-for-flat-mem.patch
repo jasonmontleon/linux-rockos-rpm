@@ -1,4 +1,4 @@
-From f7cd94b06b464584e7f4329a82ec924bb094d581 Mon Sep 17 00:00:00 2001
+From 304ff82d12618bce52df62984a2cccff75aeeaec Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Wed, 23 Oct 2024 18:23:02 +0800
 Subject: [PATCH 202/652] feat: dsp drv use dsp pool for flat mem
@@ -19,7 +19,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  create mode 100644 drivers/soc/eswin/ai_driver/dsp/dsp_pool.h
 
 diff --git a/drivers/soc/eswin/ai_driver/dsp/Makefile b/drivers/soc/eswin/ai_driver/dsp/Makefile
-index cb53bc1850f3b..ebacf5f1723ec 100755
+index cb53bc1850f3..ebacf5f1723e 100755
 --- a/drivers/soc/eswin/ai_driver/dsp/Makefile
 +++ b/drivers/soc/eswin/ai_driver/dsp/Makefile
 @@ -43,11 +43,12 @@ eic7700_dsp-y += dsp_platform_sim.o
@@ -37,7 +37,7 @@ index cb53bc1850f3b..ebacf5f1723ec 100755
  
  ccflags-y += -DDSP_ENV_SIM=${DSP_ENV_SIM} -DBUILD_RELEASE=${BUILD_RELEASE} -DDEBUG_LEVEL=${DEBUG_LEVEL} -w
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
-index 2e96a24e68995..652b640be2cce 100644
+index 2e96a24e6899..652b640be2cc 100644
 --- a/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_platform.c
 @@ -45,6 +45,7 @@
@@ -111,7 +111,7 @@ index 2e96a24e68995..652b640be2cce 100644
  
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c
 new file mode 100644
-index 0000000000000..9295b9ee0d996
+index 000000000000..9295b9ee0d99
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.c
 @@ -0,0 +1,173 @@
@@ -290,7 +290,7 @@ index 0000000000000..9295b9ee0d996
 +}
 diff --git a/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h
 new file mode 100644
-index 0000000000000..946bf38406800
+index 000000000000..946bf3840680
 --- /dev/null
 +++ b/drivers/soc/eswin/ai_driver/dsp/dsp_pool.h
 @@ -0,0 +1,32 @@
@@ -327,5 +327,5 @@ index 0000000000000..946bf38406800
 +void dsp_pool_destroy(struct dsp_pool *pool);
 +#endif
 -- 
-2.53.0
+2.54.0
 

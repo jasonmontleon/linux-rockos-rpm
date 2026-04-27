@@ -1,4 +1,4 @@
-From c7d87c0c8d82f673a4aa1e9f5bd725714fc82967 Mon Sep 17 00:00:00 2001
+From 439c029f5fca996da6642b20e611978d2772e63f Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Mon, 14 Jul 2025 09:35:34 +0800
 Subject: [PATCH 622/652] fix(venc):venc run in D1 cause system hang
@@ -20,7 +20,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 19 insertions(+), 60 deletions(-)
 
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 780b2561ab200..73df40a642a66 100644
+index 780b2561ab20..73df40a642a6 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -3933,23 +3933,6 @@ static int vdec_smmu_dynm_sid_init(struct platform_device *pdev, int numa_id)
@@ -59,7 +59,7 @@ index 780b2561ab200..73df40a642a66 100644
  	if (vdec_trans_device_nodes(pdev, numa_id)) {
  		LOG_ERR("Translates video decoder dts to subsys failed");
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index d241fb9096bf8..9b024aaaab99d 100644
+index d241fb9096bf..9b024aaaab99 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -624,23 +624,6 @@ static int venc_smmu_dynm_sid_init(struct platform_device *pdev, u16 module_type
@@ -139,5 +139,5 @@ index d241fb9096bf8..9b024aaaab99d 100644
  
  	ret = venc_trans_device_nodes(pdev, numa_id);
 -- 
-2.53.0
+2.54.0
 

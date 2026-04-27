@@ -1,4 +1,4 @@
-From d9743b221bf63224704c96acf35daa43066dc1b0 Mon Sep 17 00:00:00 2001
+From 26471ffa6949fba524cd2bdd3e929a574a42e726 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Fri, 11 Apr 2025 21:29:00 +0800
 Subject: [PATCH 488/652] feat:Merge branch 'feature-vi' into win2030-dev
@@ -681,7 +681,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  create mode 100644 include/media/eswin/eswin_vi.h
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
-index 47e30488bd8b8..f9ab3c3aaae24 100644
+index 47e30488bd8b..f9ab3c3aaae2 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-a2.dts
 @@ -30,6 +30,7 @@
@@ -862,7 +862,7 @@ index 47e30488bd8b8..f9ab3c3aaae24 100644
 +//#include "eic7700-evb-camera.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
 new file mode 100644
-index 0000000000000..8c6729abc63a8
+index 000000000000..8c6729abc63a
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
 @@ -0,0 +1,312 @@
@@ -1179,7 +1179,7 @@ index 0000000000000..8c6729abc63a8
 +
 +
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-evb.dts b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
-index 3e1a0a95d57a7..7b838e575eb38 100644
+index 3e1a0a95d57a..7b838e575eb3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-evb.dts
 @@ -781,27 +781,6 @@ &d0_i2c7 {
@@ -1212,7 +1212,7 @@ index 3e1a0a95d57a7..7b838e575eb38 100644
  &d0_i2c9 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
 new file mode 100644
-index 0000000000000..dc6947943a849
+index 000000000000..dc6947943a84
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
 @@ -0,0 +1,244 @@
@@ -1461,7 +1461,7 @@ index 0000000000000..dc6947943a849
 +	status = "disabled";
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
-index ffec40184fc0f..5fd3edb7f1f95 100644
+index ffec40184fc0..5fd3edb7f1f9 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550.dts
 @@ -29,7 +29,7 @@
@@ -1579,7 +1579,7 @@ index ffec40184fc0f..5fd3edb7f1f95 100644
 +#include "eic7700-hifive-premier-p550-camera.dtsi"
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
 new file mode 100644
-index 0000000000000..e88d667627d8d
+index 000000000000..e88d667627d8
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
 @@ -0,0 +1,227 @@
@@ -1812,7 +1812,7 @@ index 0000000000000..e88d667627d8d
 +};
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-osm.dts b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
-index 6c45243ba61f6..f3ec3d0916d30 100644
+index 6c45243ba61f..f3ec3d0916d3 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-osm.dts
 @@ -33,6 +33,7 @@
@@ -1942,7 +1942,7 @@ index 6c45243ba61f6..f3ec3d0916d30 100644
 +};
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index 038ee48f8ddf5..561501459f04c 100644
+index 038ee48f8ddf..561501459f04 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -160,8 +160,155 @@ gt911:touchscreen@14 {
@@ -2103,7 +2103,7 @@ index 038ee48f8ddf5..561501459f04c 100644
  
  /* GPIO Function Description
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
-index 5316b1e0d3926..8903f8a1cf077 100644
+index 5316b1e0d392..8903f8a1cf07 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d0.dts
 @@ -713,27 +713,6 @@ &d0_i2c4 {
@@ -2135,7 +2135,7 @@ index 5316b1e0d3926..8903f8a1cf077 100644
  
  &d0_i2c6 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
-index 257fa06fe5adc..f26a0ebeee9a0 100644
+index 257fa06fe5ad..f26a0ebeee9a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-d1.dts
 @@ -727,27 +727,6 @@ &d0_i2c4 {
@@ -2167,7 +2167,7 @@ index 257fa06fe5adc..f26a0ebeee9a0 100644
  
  &d0_i2c6 {
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
-index 642cdacf136c3..fc07f685c62b7 100644
+index 642cdacf136c..fc07f685c62b 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1-interleave.dts
 @@ -1428,27 +1428,6 @@ &d1_i2c7 {
@@ -2199,7 +2199,7 @@ index 642cdacf136c3..fc07f685c62b7 100644
  &d1_i2c8 {
  	status = "disabled";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
-index 74235230b528b..caca45ebbc83b 100644
+index 74235230b528..caca45ebbc83 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-evb-a1.dts
 @@ -1388,27 +1388,6 @@ &d1_i2c7 {
@@ -2231,7 +2231,7 @@ index 74235230b528b..caca45ebbc83b 100644
  &d1_i2c8 {
  	status = "disabled";
 diff --git a/arch/riscv/boot/dts/eswin/eic7702-tb.dts b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
-index e4500856aa358..39435e926c6a5 100644
+index e4500856aa35..39435e926c6a 100644
 --- a/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7702-tb.dts
 @@ -1441,27 +1441,6 @@ &d1_i2c7 {
@@ -2263,7 +2263,7 @@ index e4500856aa358..39435e926c6a5 100644
  &d1_i2c8 {
  	status = "disabled";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 46ab556a0c7df..4b62e47caa11d 100644
+index 46ab556a0c7d..4b62e47caa11 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -93,6 +93,8 @@ map3 {
@@ -2975,7 +2975,7 @@ index 46ab556a0c7df..4b62e47caa11d 100644
  			compatible = "eswin,dc";
  			reg = <0x0 0x502c0000 0x0 0x10000>;
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index f1d6bce1b850d..90d147a197ec7 100644
+index f1d6bce1b850..90d147a197ec 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -864,5 +864,14 @@ CONFIG_RCU_EQS_DEBUG=y
@@ -2994,7 +2994,7 @@ index f1d6bce1b850d..90d147a197ec7 100644
 +CONFIG_VIDEO_ESWIN_ISP=m
 +CONFIG_EIC7700_EVB_VI=n
 diff --git a/drivers/media/i2c/Kconfig b/drivers/media/i2c/Kconfig
-index d4082a86fcedb..7f9d123cd1519 100644
+index d4082a86fced..7f9d123cd151 100644
 --- a/drivers/media/i2c/Kconfig
 +++ b/drivers/media/i2c/Kconfig
 @@ -99,7 +99,7 @@ config VIDEO_IMX214
@@ -3043,7 +3043,7 @@ index d4082a86fcedb..7f9d123cd1519 100644
  	tristate "Sony IMX334 sensor support"
  	depends on OF_GPIO
 diff --git a/drivers/media/i2c/Makefile b/drivers/media/i2c/Makefile
-index 80b00d39b48f0..d0f8b180c1de6 100644
+index 80b00d39b48f..d0f8b180c1de 100644
 --- a/drivers/media/i2c/Makefile
 +++ b/drivers/media/i2c/Makefile
 @@ -23,6 +23,7 @@ obj-$(CONFIG_VIDEO_BT819) += bt819.o
@@ -3069,7 +3069,7 @@ index 80b00d39b48f0..d0f8b180c1de6 100644
 +obj-$(CONFIG_VIDEO_IMX327) += imx327.o
 \ No newline at end of file
 diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-index a3d5a8a7c660b..7caab5a79e657 100644
+index a3d5a8a7c660..7caab5a79e65 100644
 --- a/drivers/media/i2c/imx219.c
 +++ b/drivers/media/i2c/imx219.c
 @@ -12,7 +12,7 @@
@@ -4948,7 +4948,7 @@ index a3d5a8a7c660b..7caab5a79e657 100644
  static struct i2c_driver imx219_i2c_driver = {
 diff --git a/drivers/media/i2c/imx327.c b/drivers/media/i2c/imx327.c
 new file mode 100644
-index 0000000000000..ed1950868568d
+index 000000000000..ed1950868568
 --- /dev/null
 +++ b/drivers/media/i2c/imx327.c
 @@ -0,0 +1,2255 @@
@@ -7208,7 +7208,7 @@ index 0000000000000..ed1950868568d
 +MODULE_DESCRIPTION("Sony imx327 sensor driver");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/Kconfig b/drivers/media/platform/Kconfig
-index ee579916f8744..1e0124af0b73b 100644
+index ee579916f874..1e0124af0b73 100644
 --- a/drivers/media/platform/Kconfig
 +++ b/drivers/media/platform/Kconfig
 @@ -85,5 +85,6 @@ source "drivers/media/platform/ti/Kconfig"
@@ -7219,7 +7219,7 @@ index ee579916f8744..1e0124af0b73b 100644
  
  endif # MEDIA_PLATFORM_DRIVERS
 diff --git a/drivers/media/platform/Makefile b/drivers/media/platform/Makefile
-index 5453bb868e679..02d06ce4d6cdd 100644
+index 5453bb868e67..02d06ce4d6cd 100644
 --- a/drivers/media/platform/Makefile
 +++ b/drivers/media/platform/Makefile
 @@ -34,3 +34,7 @@ obj-y += xilinx/
@@ -7232,7 +7232,7 @@ index 5453bb868e679..02d06ce4d6cdd 100644
 +obj-$(CONFIG_VIDEO_ESWIN_ISP) += eswin/isp/
 diff --git a/drivers/media/platform/eswin/Kconfig b/drivers/media/platform/eswin/Kconfig
 new file mode 100644
-index 0000000000000..8de8f9daefdac
+index 000000000000..8de8f9daefda
 --- /dev/null
 +++ b/drivers/media/platform/eswin/Kconfig
 @@ -0,0 +1,9 @@
@@ -7248,7 +7248,7 @@ index 0000000000000..8de8f9daefdac
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/Kconfig b/drivers/media/platform/eswin/dvp2axi/Kconfig
 new file mode 100644
-index 0000000000000..edd144481e3d6
+index 000000000000..edd144481e3d
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/Kconfig
 @@ -0,0 +1,35 @@
@@ -7290,7 +7290,7 @@ index 0000000000000..edd144481e3d6
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/Makefile b/drivers/media/platform/eswin/dvp2axi/Makefile
 new file mode 100644
-index 0000000000000..038d62302199b
+index 000000000000..038d62302199
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/Makefile
 @@ -0,0 +1,10 @@
@@ -7306,7 +7306,7 @@ index 0000000000000..038d62302199b
 +			common.o \
 diff --git a/drivers/media/platform/eswin/dvp2axi/capture.c b/drivers/media/platform/eswin/dvp2axi/capture.c
 new file mode 100644
-index 0000000000000..296416df4e9f7
+index 000000000000..296416df4e9f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/capture.c
 @@ -0,0 +1,12861 @@
@@ -20173,7 +20173,7 @@ index 0000000000000..296416df4e9f7
 +EXPORT_SYMBOL(es_dvp2axi_sditf_disconnect);
 diff --git a/drivers/media/platform/eswin/dvp2axi/common.c b/drivers/media/platform/eswin/dvp2axi/common.c
 new file mode 100644
-index 0000000000000..c491abab495e8
+index 000000000000..c491abab495e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/common.c
 @@ -0,0 +1,419 @@
@@ -20598,7 +20598,7 @@ index 0000000000000..c491abab495e8
 +
 diff --git a/drivers/media/platform/eswin/dvp2axi/common.h b/drivers/media/platform/eswin/dvp2axi/common.h
 new file mode 100644
-index 0000000000000..1f0c1b41a8390
+index 000000000000..1f0c1b41a839
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/common.h
 @@ -0,0 +1,49 @@
@@ -20653,7 +20653,7 @@ index 0000000000000..1f0c1b41a8390
 +
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.c b/drivers/media/platform/eswin/dvp2axi/dev.c
 new file mode 100644
-index 0000000000000..e841e682e55ec
+index 000000000000..e841e682e55e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.c
 @@ -0,0 +1,2280 @@
@@ -22939,7 +22939,7 @@ index 0000000000000..e841e682e55ec
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/eswin/dvp2axi/dev.h b/drivers/media/platform/eswin/dvp2axi/dev.h
 new file mode 100644
-index 0000000000000..1a17c02258f27
+index 000000000000..1a17c02258f2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dev.h
 @@ -0,0 +1,1072 @@
@@ -24017,7 +24017,7 @@ index 0000000000000..1a17c02258f27
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/dvp2axi-luma.c b/drivers/media/platform/eswin/dvp2axi/dvp2axi-luma.c
 new file mode 100644
-index 0000000000000..400a70f630605
+index 000000000000..400a70f63060
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dvp2axi-luma.c
 @@ -0,0 +1,539 @@
@@ -24562,7 +24562,7 @@ index 0000000000000..400a70f630605
 +}
 diff --git a/drivers/media/platform/eswin/dvp2axi/dvp2axi-luma.h b/drivers/media/platform/eswin/dvp2axi/dvp2axi-luma.h
 new file mode 100644
-index 0000000000000..0aace2e971e01
+index 000000000000..0aace2e971e0
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dvp2axi-luma.h
 @@ -0,0 +1,101 @@
@@ -24669,7 +24669,7 @@ index 0000000000000..0aace2e971e01
 +#endif /* _ES_DVP2AXI_LUMA_H */
 diff --git a/drivers/media/platform/eswin/dvp2axi/dvp2axi-scale.c b/drivers/media/platform/eswin/dvp2axi/dvp2axi-scale.c
 new file mode 100644
-index 0000000000000..6006c597c31e5
+index 000000000000..6006c597c31e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dvp2axi-scale.c
 @@ -0,0 +1,1213 @@
@@ -25888,7 +25888,7 @@ index 0000000000000..6006c597c31e5
 +
 diff --git a/drivers/media/platform/eswin/dvp2axi/dvp2axi.h b/drivers/media/platform/eswin/dvp2axi/dvp2axi.h
 new file mode 100644
-index 0000000000000..7cd41703db2ca
+index 000000000000..7cd41703db2c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dvp2axi.h
 @@ -0,0 +1,291 @@
@@ -26185,7 +26185,7 @@ index 0000000000000..7cd41703db2ca
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/dvp2axi_reg.h b/drivers/media/platform/eswin/dvp2axi/dvp2axi_reg.h
 new file mode 100644
-index 0000000000000..bb52b40ceab78
+index 000000000000..bb52b40ceab7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dvp2axi_reg.h
 @@ -0,0 +1,278 @@
@@ -26469,7 +26469,7 @@ index 0000000000000..bb52b40ceab78
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/dw-mipi-csi-hal.h b/drivers/media/platform/eswin/dvp2axi/dw-mipi-csi-hal.h
 new file mode 100644
-index 0000000000000..e29a6bbef4849
+index 000000000000..e29a6bbef484
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/dw-mipi-csi-hal.h
 @@ -0,0 +1,235 @@
@@ -26710,7 +26710,7 @@ index 0000000000000..e29a6bbef4849
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/es-dvp2axi-externel.h b/drivers/media/platform/eswin/dvp2axi/es-dvp2axi-externel.h
 new file mode 100644
-index 0000000000000..37e8e3be70bfd
+index 000000000000..37e8e3be70bf
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/es-dvp2axi-externel.h
 @@ -0,0 +1,31 @@
@@ -26748,7 +26748,7 @@ index 0000000000000..37e8e3be70bfd
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/es-isp1-config.h b/drivers/media/platform/eswin/dvp2axi/es-isp1-config.h
 new file mode 100644
-index 0000000000000..0857da8aca00e
+index 000000000000..0857da8aca00
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/es-isp1-config.h
 @@ -0,0 +1,889 @@
@@ -27644,7 +27644,7 @@ index 0000000000000..0857da8aca00e
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/es-isp2-config.h b/drivers/media/platform/eswin/dvp2axi/es-isp2-config.h
 new file mode 100644
-index 0000000000000..22d1222ad9e7b
+index 000000000000..22d1222ad9e7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/es-isp2-config.h
 @@ -0,0 +1,2035 @@
@@ -29686,7 +29686,7 @@ index 0000000000000..22d1222ad9e7b
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/es-isp21-config.h b/drivers/media/platform/eswin/dvp2axi/es-isp21-config.h
 new file mode 100644
-index 0000000000000..2144008722167
+index 000000000000..214400872216
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/es-isp21-config.h
 @@ -0,0 +1,830 @@
@@ -30523,7 +30523,7 @@ index 0000000000000..2144008722167
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/es-isp3-config.h b/drivers/media/platform/eswin/dvp2axi/es-isp3-config.h
 new file mode 100644
-index 0000000000000..099ee57e0b838
+index 000000000000..099ee57e0b83
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/es-isp3-config.h
 @@ -0,0 +1,1094 @@
@@ -31624,7 +31624,7 @@ index 0000000000000..099ee57e0b838
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/es-isp32-config.h b/drivers/media/platform/eswin/dvp2axi/es-isp32-config.h
 new file mode 100644
-index 0000000000000..cf9670f60b9dc
+index 000000000000..cf9670f60b9d
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/es-isp32-config.h
 @@ -0,0 +1,1545 @@
@@ -33176,7 +33176,7 @@ index 0000000000000..cf9670f60b9dc
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/hw.c b/drivers/media/platform/eswin/dvp2axi/hw.c
 new file mode 100644
-index 0000000000000..c399554208d93
+index 000000000000..c399554208d9
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/hw.c
 @@ -0,0 +1,721 @@
@@ -33903,7 +33903,7 @@ index 0000000000000..c399554208d93
 +MODULE_IMPORT_NS(DMA_BUF);
 diff --git a/drivers/media/platform/eswin/dvp2axi/hw.h b/drivers/media/platform/eswin/dvp2axi/hw.h
 new file mode 100644
-index 0000000000000..e85cceb94fc19
+index 000000000000..e85cceb94fc1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/hw.h
 @@ -0,0 +1,192 @@
@@ -34101,7 +34101,7 @@ index 0000000000000..e85cceb94fc19
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/isp_external.h b/drivers/media/platform/eswin/dvp2axi/isp_external.h
 new file mode 100644
-index 0000000000000..0dd2601bc3b00
+index 000000000000..0dd2601bc3b0
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/isp_external.h
 @@ -0,0 +1,91 @@
@@ -34198,7 +34198,7 @@ index 0000000000000..0dd2601bc3b00
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/mipi-csi2.h b/drivers/media/platform/eswin/dvp2axi/mipi-csi2.h
 new file mode 100644
-index 0000000000000..5e79116dd3350
+index 000000000000..5e79116dd335
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/mipi-csi2.h
 @@ -0,0 +1,458 @@
@@ -34662,7 +34662,7 @@ index 0000000000000..5e79116dd3350
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/phy-es-csi2-dphy-common.h b/drivers/media/platform/eswin/dvp2axi/phy-es-csi2-dphy-common.h
 new file mode 100644
-index 0000000000000..a9c1a1051b0e5
+index 000000000000..a9c1a1051b0e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/phy-es-csi2-dphy-common.h
 @@ -0,0 +1,156 @@
@@ -34825,7 +34825,7 @@ index 0000000000000..a9c1a1051b0e5
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/dvp2axi/procfs.c b/drivers/media/platform/eswin/dvp2axi/procfs.c
 new file mode 100644
-index 0000000000000..f75c2ed77e3e2
+index 000000000000..f75c2ed77e3e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/procfs.c
 @@ -0,0 +1,445 @@
@@ -35276,7 +35276,7 @@ index 0000000000000..f75c2ed77e3e2
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/procfs.h b/drivers/media/platform/eswin/dvp2axi/procfs.h
 new file mode 100644
-index 0000000000000..02a0123730fc2
+index 000000000000..02a0123730fc
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/procfs.h
 @@ -0,0 +1,44 @@
@@ -35326,7 +35326,7 @@ index 0000000000000..02a0123730fc2
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/regs.h b/drivers/media/platform/eswin/dvp2axi/regs.h
 new file mode 100644
-index 0000000000000..4e7a1cea81afc
+index 000000000000..4e7a1cea81af
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/regs.h
 @@ -0,0 +1,1070 @@
@@ -36402,7 +36402,7 @@ index 0000000000000..4e7a1cea81afc
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/subdev-itf.c b/drivers/media/platform/eswin/dvp2axi/subdev-itf.c
 new file mode 100644
-index 0000000000000..e933957ee2363
+index 000000000000..e933957ee236
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/subdev-itf.c
 @@ -0,0 +1,1416 @@
@@ -37824,7 +37824,7 @@ index 0000000000000..e933957ee2363
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/eswin/dvp2axi/subdev-itf.h b/drivers/media/platform/eswin/dvp2axi/subdev-itf.h
 new file mode 100644
-index 0000000000000..b07acad787aff
+index 000000000000..b07acad787af
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/subdev-itf.h
 @@ -0,0 +1,104 @@
@@ -37934,7 +37934,7 @@ index 0000000000000..b07acad787aff
 +#endif
 diff --git a/drivers/media/platform/eswin/dvp2axi/version.h b/drivers/media/platform/eswin/dvp2axi/version.h
 new file mode 100644
-index 0000000000000..0ae6b27ac86d9
+index 000000000000..0ae6b27ac86d
 --- /dev/null
 +++ b/drivers/media/platform/eswin/dvp2axi/version.h
 @@ -0,0 +1,95 @@
@@ -38035,7 +38035,7 @@ index 0000000000000..0ae6b27ac86d9
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/Kconfig b/drivers/media/platform/eswin/isp/Kconfig
 new file mode 100644
-index 0000000000000..580dcded3b67f
+index 000000000000..580dcded3b67
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/Kconfig
 @@ -0,0 +1,13 @@
@@ -38054,7 +38054,7 @@ index 0000000000000..580dcded3b67f
 +      This driver is used for handling video input from ESWIN devices.
 diff --git a/drivers/media/platform/eswin/isp/Makefile b/drivers/media/platform/eswin/isp/Makefile
 new file mode 100644
-index 0000000000000..a53a584b81f12
+index 000000000000..a53a584b81f1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/Makefile
 @@ -0,0 +1,5 @@
@@ -38065,7 +38065,7 @@ index 0000000000000..a53a584b81f12
 +obj-y += vvcam/v4l2/video/
 diff --git a/drivers/media/platform/eswin/isp/vvcam/Makefile b/drivers/media/platform/eswin/isp/vvcam/Makefile
 new file mode 100644
-index 0000000000000..960e2f67bfc13
+index 000000000000..960e2f67bfc1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/Makefile
 @@ -0,0 +1,90 @@
@@ -38161,7 +38161,7 @@ index 0000000000000..960e2f67bfc13
 +	@ rm install -rf
 diff --git a/drivers/media/platform/eswin/isp/vvcam/Param.mk b/drivers/media/platform/eswin/isp/vvcam/Param.mk
 new file mode 100644
-index 0000000000000..fbf35bdf88942
+index 000000000000..fbf35bdf8894
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/Param.mk
 @@ -0,0 +1,286 @@
@@ -38453,7 +38453,7 @@ index 0000000000000..fbf35bdf88942
 +EXTRA_CFLAGS += -DVVCAM_ISP_DEV_MAX=2
 diff --git a/drivers/media/platform/eswin/isp/vvcam/common/vvcam_event.c b/drivers/media/platform/eswin/isp/vvcam/common/vvcam_event.c
 new file mode 100644
-index 0000000000000..5adb18e5800c3
+index 000000000000..5adb18e5800c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/common/vvcam_event.c
 @@ -0,0 +1,299 @@
@@ -38758,7 +38758,7 @@ index 0000000000000..5adb18e5800c3
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/common/vvcam_event.h b/drivers/media/platform/eswin/isp/vvcam/common/vvcam_event.h
 new file mode 100644
-index 0000000000000..ff31569f42668
+index 000000000000..ff31569f4266
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/common/vvcam_event.h
 @@ -0,0 +1,132 @@
@@ -38896,7 +38896,7 @@ index 0000000000000..ff31569f42668
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/Makefile b/drivers/media/platform/eswin/isp/vvcam/dwc/Makefile
 new file mode 100644
-index 0000000000000..d59dadfd11f10
+index 000000000000..d59dadfd11f1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/Makefile
 @@ -0,0 +1,35 @@
@@ -38937,7 +38937,7 @@ index 0000000000000..d59dadfd11f10
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-plat.c b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-plat.c
 new file mode 100644
-index 0000000000000..66873f7b11880
+index 000000000000..66873f7b1188
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-plat.c
 @@ -0,0 +1,817 @@
@@ -39760,7 +39760,7 @@ index 0000000000000..66873f7b11880
 +MODULE_DESCRIPTION("Synopsys DesignWare MIPI CSI-2 Host Platform driver");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-plat.h b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-plat.h
 new file mode 100644
-index 0000000000000..a4649383d73ff
+index 000000000000..a4649383d73f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-plat.h
 @@ -0,0 +1,147 @@
@@ -39913,7 +39913,7 @@ index 0000000000000..a4649383d73ff
 +#endif /* _DW_CSI_PLAT_H__ */
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-sysfs.c b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-sysfs.c
 new file mode 100644
-index 0000000000000..e8d2bb9d0eab2
+index 000000000000..e8d2bb9d0eab
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-csi-sysfs.c
 @@ -0,0 +1,624 @@
@@ -40543,7 +40543,7 @@ index 0000000000000..e8d2bb9d0eab2
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-data.h b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-data.h
 new file mode 100644
-index 0000000000000..0b489b17fbda9
+index 000000000000..0b489b17fbda
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-data.h
 @@ -0,0 +1,32 @@
@@ -40581,7 +40581,7 @@ index 0000000000000..0b489b17fbda9
 +};
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-plat.c b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-plat.c
 new file mode 100644
-index 0000000000000..538e34f3d1e23
+index 000000000000..538e34f3d1e2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-plat.c
 @@ -0,0 +1,238 @@
@@ -40825,7 +40825,7 @@ index 0000000000000..538e34f3d1e23
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-rx.c b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-rx.c
 new file mode 100644
-index 0000000000000..970d2b572c02a
+index 000000000000..970d2b572c02
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-rx.c
 @@ -0,0 +1,613 @@
@@ -41444,7 +41444,7 @@ index 0000000000000..970d2b572c02a
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-rx.h b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-rx.h
 new file mode 100644
-index 0000000000000..2e8d68c914c13
+index 000000000000..2e8d68c914c1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-rx.h
 @@ -0,0 +1,212 @@
@@ -41662,7 +41662,7 @@ index 0000000000000..2e8d68c914c13
 +#endif /*__PHY_SNPS_DPHY_RX_H__*/
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-sysfs.c b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-sysfs.c
 new file mode 100644
-index 0000000000000..d893e29f7adb2
+index 000000000000..d893e29f7adb
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-dphy-sysfs.c
 @@ -0,0 +1,232 @@
@@ -41900,7 +41900,7 @@ index 0000000000000..d893e29f7adb2
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-mipi-csi.c b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-mipi-csi.c
 new file mode 100644
-index 0000000000000..50274446c816e
+index 000000000000..50274446c816
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-mipi-csi.c
 @@ -0,0 +1,691 @@
@@ -42597,7 +42597,7 @@ index 0000000000000..50274446c816e
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/dw-mipi-csi.h b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-mipi-csi.h
 new file mode 100644
-index 0000000000000..698853802f82e
+index 000000000000..698853802f82
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/dw-mipi-csi.h
 @@ -0,0 +1,336 @@
@@ -42939,7 +42939,7 @@ index 0000000000000..698853802f82e
 +#endif /*_DW_MIPI_CSI_H__ */
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/eswin-mipi-dma.c b/drivers/media/platform/eswin/isp/vvcam/dwc/eswin-mipi-dma.c
 new file mode 100644
-index 0000000000000..8c2598bbde3f8
+index 000000000000..8c2598bbde3f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/eswin-mipi-dma.c
 @@ -0,0 +1,298 @@
@@ -43243,7 +43243,7 @@ index 0000000000000..8c2598bbde3f8
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-csi-data.h b/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-csi-data.h
 new file mode 100644
-index 0000000000000..08e7bacbae302
+index 000000000000..08e7bacbae30
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-csi-data.h
 @@ -0,0 +1,26 @@
@@ -43275,7 +43275,7 @@ index 0000000000000..08e7bacbae302
 +};
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-dphy-data.h b/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-dphy-data.h
 new file mode 100644
-index 0000000000000..afd27e64601bb
+index 000000000000..afd27e64601b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-dphy-data.h
 @@ -0,0 +1,32 @@
@@ -43313,7 +43313,7 @@ index 0000000000000..afd27e64601bb
 +};
 diff --git a/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-mipi-csi-pltfrm.h b/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-mipi-csi-pltfrm.h
 new file mode 100644
-index 0000000000000..948db4e5397ed
+index 000000000000..948db4e5397e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/dwc/include/dw-mipi-csi-pltfrm.h
 @@ -0,0 +1,104 @@
@@ -43423,7 +43423,7 @@ index 0000000000000..948db4e5397ed
 +#endif /* __DW_MIPI_CSI_PLTFRM_INCLUDES_H_ */
 diff --git a/drivers/media/platform/eswin/isp/vvcam/i2c/Makefile b/drivers/media/platform/eswin/isp/vvcam/i2c/Makefile
 new file mode 100644
-index 0000000000000..2d9e1b9c19d3a
+index 000000000000..2d9e1b9c19d3
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/i2c/Makefile
 @@ -0,0 +1,85 @@
@@ -43514,7 +43514,7 @@ index 0000000000000..2d9e1b9c19d3a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_driver.c b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_driver.c
 new file mode 100644
-index 0000000000000..c16a26f1d0e01
+index 000000000000..c16a26f1d0e0
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_driver.c
 @@ -0,0 +1,399 @@
@@ -43919,7 +43919,7 @@ index 0000000000000..c16a26f1d0e01
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_platform.c b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_platform.c
 new file mode 100644
-index 0000000000000..4d5073010e0af
+index 000000000000..4d5073010e0a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_platform.c
 @@ -0,0 +1,201 @@
@@ -44126,7 +44126,7 @@ index 0000000000000..4d5073010e0af
 +module_param(devices_mask, int, 0644);
 diff --git a/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_platform.h b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_platform.h
 new file mode 100644
-index 0000000000000..32a9a55e4b7f6
+index 000000000000..32a9a55e4b7f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_platform.h
 @@ -0,0 +1,62 @@
@@ -44194,7 +44194,7 @@ index 0000000000000..32a9a55e4b7f6
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_procfs.c b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_procfs.c
 new file mode 100644
-index 0000000000000..8959295c53d8d
+index 000000000000..8959295c53d8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_procfs.c
 @@ -0,0 +1,546 @@
@@ -44746,7 +44746,7 @@ index 0000000000000..8959295c53d8d
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_procfs.h b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_procfs.h
 new file mode 100644
-index 0000000000000..14cab7a7e82c6
+index 000000000000..14cab7a7e82c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/i2c/soc_i2c_procfs.h
 @@ -0,0 +1,66 @@
@@ -44818,7 +44818,7 @@ index 0000000000000..14cab7a7e82c6
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/insmod.sh b/drivers/media/platform/eswin/isp/vvcam/insmod.sh
 new file mode 100644
-index 0000000000000..9336b0b403d2b
+index 000000000000..9336b0b403d2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/insmod.sh
 @@ -0,0 +1,180 @@
@@ -45004,7 +45004,7 @@ index 0000000000000..9336b0b403d2b
 +fi
 diff --git a/drivers/media/platform/eswin/isp/vvcam/insmod_isp_dw.sh b/drivers/media/platform/eswin/isp/vvcam/insmod_isp_dw.sh
 new file mode 100644
-index 0000000000000..535d2075e601c
+index 000000000000..535d2075e601
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/insmod_isp_dw.sh
 @@ -0,0 +1,161 @@
@@ -45171,7 +45171,7 @@ index 0000000000000..535d2075e601c
 +insmod ./dw200/vvcam_dw.ko devices_mask=0x07
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/Makefile b/drivers/media/platform/eswin/isp/vvcam/isp/Makefile
 new file mode 100644
-index 0000000000000..d4f74c9b968c7
+index 000000000000..d4f74c9b968c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/Makefile
 @@ -0,0 +1,70 @@
@@ -45247,7 +45247,7 @@ index 0000000000000..d4f74c9b968c7
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp.h b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp.h
 new file mode 100644
-index 0000000000000..90171d943d186
+index 000000000000..90171d943d18
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp.h
 @@ -0,0 +1,104 @@
@@ -45357,7 +45357,7 @@ index 0000000000000..90171d943d186
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c
 new file mode 100644
-index 0000000000000..f573b39d5b010
+index 000000000000..f573b39d5b01
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.c
 @@ -0,0 +1,582 @@
@@ -45945,7 +45945,7 @@ index 0000000000000..f573b39d5b010
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.h b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.h
 new file mode 100644
-index 0000000000000..39854eec287c4
+index 000000000000..39854eec287c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_driver.h
 @@ -0,0 +1,104 @@
@@ -46055,7 +46055,7 @@ index 0000000000000..39854eec287c4
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_hal.c b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_hal.c
 new file mode 100644
-index 0000000000000..e455dd8dd91b2
+index 000000000000..e455dd8dd91b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_hal.c
 @@ -0,0 +1,669 @@
@@ -46730,7 +46730,7 @@ index 0000000000000..e455dd8dd91b2
 +module_param(rdc_enable, bool, 0644);
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_hal.h b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_hal.h
 new file mode 100644
-index 0000000000000..f3adfc7cb39b2
+index 000000000000..f3adfc7cb39b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_hal.h
 @@ -0,0 +1,173 @@
@@ -46909,7 +46909,7 @@ index 0000000000000..f3adfc7cb39b2
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_platform.c b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_platform.c
 new file mode 100644
-index 0000000000000..144f7997155fa
+index 000000000000..144f7997155f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_platform.c
 @@ -0,0 +1,249 @@
@@ -47164,7 +47164,7 @@ index 0000000000000..144f7997155fa
 +module_param(devices_mask, int, 0644);
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_platform.h b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_platform.h
 new file mode 100644
-index 0000000000000..247a57fad7311
+index 000000000000..247a57fad731
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_platform.h
 @@ -0,0 +1,62 @@
@@ -47232,7 +47232,7 @@ index 0000000000000..247a57fad7311
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_procfs.c b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_procfs.c
 new file mode 100644
-index 0000000000000..51ba3797e443c
+index 000000000000..51ba3797e443
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_procfs.c
 @@ -0,0 +1,718 @@
@@ -47956,7 +47956,7 @@ index 0000000000000..51ba3797e443c
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_procfs.h b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_procfs.h
 new file mode 100644
-index 0000000000000..190bfc9a0a77e
+index 000000000000..190bfc9a0a77
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp/vvcam_isp_procfs.h
 @@ -0,0 +1,63 @@
@@ -48025,7 +48025,7 @@ index 0000000000000..190bfc9a0a77e
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/isp_version/ISP8000_V2107.mk b/drivers/media/platform/eswin/isp/vvcam/isp_version/ISP8000_V2107.mk
 new file mode 100644
-index 0000000000000..8b6f1050d1799
+index 000000000000..8b6f1050d179
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/isp_version/ISP8000_V2107.mk
 @@ -0,0 +1,62 @@
@@ -48093,7 +48093,7 @@ index 0000000000000..8b6f1050d1799
 +EXTRA_CFLAGS += -DISP_HDR_V2_1
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/Makefile b/drivers/media/platform/eswin/isp/vvcam/mipi/Makefile
 new file mode 100644
-index 0000000000000..1aaced94db877
+index 000000000000..1aaced94db87
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/Makefile
 @@ -0,0 +1,87 @@
@@ -48186,7 +48186,7 @@ index 0000000000000..1aaced94db877
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi.h b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi.h
 new file mode 100644
-index 0000000000000..35299120efec0
+index 000000000000..35299120efec
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi.h
 @@ -0,0 +1,178 @@
@@ -48370,7 +48370,7 @@ index 0000000000000..35299120efec0
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_driver.c b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_driver.c
 new file mode 100644
-index 0000000000000..9d1aff02c6529
+index 000000000000..9d1aff02c652
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_driver.c
 @@ -0,0 +1,329 @@
@@ -48705,7 +48705,7 @@ index 0000000000000..9d1aff02c6529
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_driver.h b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_driver.h
 new file mode 100644
-index 0000000000000..06ecfd83f757f
+index 000000000000..06ecfd83f757
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_driver.h
 @@ -0,0 +1,83 @@
@@ -48794,7 +48794,7 @@ index 0000000000000..06ecfd83f757f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_dwc_hal.c b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_dwc_hal.c
 new file mode 100644
-index 0000000000000..6d04559506727
+index 000000000000..6d0455950672
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_dwc_hal.c
 @@ -0,0 +1,863 @@
@@ -49663,7 +49663,7 @@ index 0000000000000..6d04559506727
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_hal.c b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_hal.c
 new file mode 100644
-index 0000000000000..72f0e7fab74ba
+index 000000000000..72f0e7fab74b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_hal.c
 @@ -0,0 +1,495 @@
@@ -50164,7 +50164,7 @@ index 0000000000000..72f0e7fab74ba
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_platform.c b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_platform.c
 new file mode 100644
-index 0000000000000..59c7e5cbf6ef7
+index 000000000000..59c7e5cbf6ef
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_platform.c
 @@ -0,0 +1,281 @@
@@ -50451,7 +50451,7 @@ index 0000000000000..59c7e5cbf6ef7
 +module_param(devices_mask, int, 0644);
 diff --git a/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_platform.h b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_platform.h
 new file mode 100644
-index 0000000000000..fff239a5fd5cc
+index 000000000000..fff239a5fd5c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/mipi/vvcam_mipi_platform.h
 @@ -0,0 +1,62 @@
@@ -50519,7 +50519,7 @@ index 0000000000000..fff239a5fd5cc
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/rmmod.sh b/drivers/media/platform/eswin/isp/vvcam/rmmod.sh
 new file mode 100644
-index 0000000000000..547e75253c818
+index 000000000000..547e75253c81
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/rmmod.sh
 @@ -0,0 +1,90 @@
@@ -50615,7 +50615,7 @@ index 0000000000000..547e75253c818
 +fi
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/Makefile b/drivers/media/platform/eswin/isp/vvcam/soc/Makefile
 new file mode 100644
-index 0000000000000..2a96e7d42173f
+index 000000000000..2a96e7d42173
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/Makefile
 @@ -0,0 +1,29 @@
@@ -50650,7 +50650,7 @@ index 0000000000000..2a96e7d42173f
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/soc_ioctl.c b/drivers/media/platform/eswin/isp/vvcam/soc/soc_ioctl.c
 new file mode 100644
-index 0000000000000..8417b6ea185ac
+index 000000000000..8417b6ea185a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/soc_ioctl.c
 @@ -0,0 +1,389 @@
@@ -51045,7 +51045,7 @@ index 0000000000000..8417b6ea185ac
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/soc_ioctl.h b/drivers/media/platform/eswin/isp/vvcam/soc/soc_ioctl.h
 new file mode 100644
-index 0000000000000..f9d4bd066d9ea
+index 000000000000..f9d4bd066d9e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/soc_ioctl.h
 @@ -0,0 +1,360 @@
@@ -51411,7 +51411,7 @@ index 0000000000000..f9d4bd066d9ea
 +#endif // _SOC_IOC_H_
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_dvp2axi.c b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_dvp2axi.c
 new file mode 100644
-index 0000000000000..8f0921fde35e7
+index 000000000000..8f0921fde35e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_dvp2axi.c
 @@ -0,0 +1,203 @@
@@ -51620,7 +51620,7 @@ index 0000000000000..8f0921fde35e7
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_dvp2axi.h b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_dvp2axi.h
 new file mode 100644
-index 0000000000000..3915256f71498
+index 000000000000..3915256f7149
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_dvp2axi.h
 @@ -0,0 +1,150 @@
@@ -51776,7 +51776,7 @@ index 0000000000000..3915256f71498
 +#endif /* __VIVSOC_DVP2AXI_H__ */
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_hub.c b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_hub.c
 new file mode 100644
-index 0000000000000..77a321a48685e
+index 000000000000..77a321a48685
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_hub.c
 @@ -0,0 +1,1041 @@
@@ -52823,7 +52823,7 @@ index 0000000000000..77a321a48685e
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_hub.h b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_hub.h
 new file mode 100644
-index 0000000000000..eecd969ec093e
+index 000000000000..eecd969ec093
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vivsoc_hub.h
 @@ -0,0 +1,144 @@
@@ -52973,7 +52973,7 @@ index 0000000000000..eecd969ec093e
 +#endif /* _VIVSOC_HUB_H_ */
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vsi_core_gen6.c b/drivers/media/platform/eswin/isp/vvcam/soc/vsi_core_gen6.c
 new file mode 100644
-index 0000000000000..1876cb1fff198
+index 000000000000..1876cb1fff19
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vsi_core_gen6.c
 @@ -0,0 +1,250 @@
@@ -53229,7 +53229,7 @@ index 0000000000000..1876cb1fff198
 +};
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vsi_core_gen6.h b/drivers/media/platform/eswin/isp/vvcam/soc/vsi_core_gen6.h
 new file mode 100644
-index 0000000000000..8b1fd21231cc0
+index 000000000000..8b1fd21231cc
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vsi_core_gen6.h
 @@ -0,0 +1,68 @@
@@ -53303,7 +53303,7 @@ index 0000000000000..8b1fd21231cc0
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/soc/vvcam_soc_driver.c b/drivers/media/platform/eswin/isp/vvcam/soc/vvcam_soc_driver.c
 new file mode 100644
-index 0000000000000..a771a3ee58f15
+index 000000000000..a771a3ee58f1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/soc/vvcam_soc_driver.c
 @@ -0,0 +1,855 @@
@@ -54164,7 +54164,7 @@ index 0000000000000..a771a3ee58f15
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/Makefile b/drivers/media/platform/eswin/isp/vvcam/v4l2/Makefile
 new file mode 100644
-index 0000000000000..1596633309621
+index 000000000000..159663330962
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/Makefile
 @@ -0,0 +1,61 @@
@@ -54231,7 +54231,7 @@ index 0000000000000..1596633309621
 +	@cd video;   make clean;
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/common/vvcam_v4l2_common.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/common/vvcam_v4l2_common.h
 new file mode 100644
-index 0000000000000..dd968ee22302d
+index 000000000000..dd968ee22302
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/common/vvcam_v4l2_common.h
 @@ -0,0 +1,160 @@
@@ -54397,7 +54397,7 @@ index 0000000000000..dd968ee22302d
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/common/vvcam_v4l2_std_exts.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/common/vvcam_v4l2_std_exts.h
 new file mode 100644
-index 0000000000000..f665dbe291d8f
+index 000000000000..f665dbe291d8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/common/vvcam_v4l2_std_exts.h
 @@ -0,0 +1,384 @@
@@ -54787,7 +54787,7 @@ index 0000000000000..f665dbe291d8f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/Makefile b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/Makefile
 new file mode 100644
-index 0000000000000..79632305489a5
+index 000000000000..79632305489a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/Makefile
 @@ -0,0 +1,514 @@
@@ -55307,7 +55307,7 @@ index 0000000000000..79632305489a5
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v3/vvcam_isp_2dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v3/vvcam_isp_2dnr.c
 new file mode 100644
-index 0000000000000..260f99ff17d6c
+index 000000000000..260f99ff17d6
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v3/vvcam_isp_2dnr.c
 @@ -0,0 +1,310 @@
@@ -55623,7 +55623,7 @@ index 0000000000000..260f99ff17d6c
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v3/vvcam_isp_2dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v3/vvcam_isp_2dnr.h
 new file mode 100644
-index 0000000000000..19001d2e97988
+index 000000000000..19001d2e9798
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v3/vvcam_isp_2dnr.h
 @@ -0,0 +1,84 @@
@@ -55713,7 +55713,7 @@ index 0000000000000..19001d2e97988
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v5_2/vvcam_isp_2dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v5_2/vvcam_isp_2dnr.c
 new file mode 100644
-index 0000000000000..7ccc794230d8a
+index 000000000000..7ccc794230d8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v5_2/vvcam_isp_2dnr.c
 @@ -0,0 +1,530 @@
@@ -56249,7 +56249,7 @@ index 0000000000000..7ccc794230d8a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v5_2/vvcam_isp_2dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v5_2/vvcam_isp_2dnr.h
 new file mode 100644
-index 0000000000000..016007c74ad7d
+index 000000000000..016007c74ad7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v5_2/vvcam_isp_2dnr.h
 @@ -0,0 +1,111 @@
@@ -56366,7 +56366,7 @@ index 0000000000000..016007c74ad7d
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v6/vvcam_isp_2dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v6/vvcam_isp_2dnr.c
 new file mode 100644
-index 0000000000000..e7acb6e57f9f7
+index 000000000000..e7acb6e57f9f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v6/vvcam_isp_2dnr.c
 @@ -0,0 +1,1340 @@
@@ -57712,7 +57712,7 @@ index 0000000000000..e7acb6e57f9f7
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v6/vvcam_isp_2dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v6/vvcam_isp_2dnr.h
 new file mode 100644
-index 0000000000000..8bc6d11a7f07a
+index 000000000000..8bc6d11a7f07
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/2dnr/2dnr_v6/vvcam_isp_2dnr.h
 @@ -0,0 +1,233 @@
@@ -57951,7 +57951,7 @@ index 0000000000000..8bc6d11a7f07a
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v1_2/vvcam_isp_3dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v1_2/vvcam_isp_3dnr.c
 new file mode 100644
-index 0000000000000..05431c34cb5e3
+index 000000000000..05431c34cb5e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v1_2/vvcam_isp_3dnr.c
 @@ -0,0 +1,308 @@
@@ -58265,7 +58265,7 @@ index 0000000000000..05431c34cb5e3
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v1_2/vvcam_isp_3dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v1_2/vvcam_isp_3dnr.h
 new file mode 100644
-index 0000000000000..72523aef59f7c
+index 000000000000..72523aef59f7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v1_2/vvcam_isp_3dnr.h
 @@ -0,0 +1,81 @@
@@ -58352,7 +58352,7 @@ index 0000000000000..72523aef59f7c
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_1/vvcam_isp_3dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_1/vvcam_isp_3dnr.c
 new file mode 100644
-index 0000000000000..b6d2b9108c32d
+index 000000000000..b6d2b9108c32
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_1/vvcam_isp_3dnr.c
 @@ -0,0 +1,584 @@
@@ -58942,7 +58942,7 @@ index 0000000000000..b6d2b9108c32d
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_1/vvcam_isp_3dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_1/vvcam_isp_3dnr.h
 new file mode 100644
-index 0000000000000..e87d097fb4672
+index 000000000000..e87d097fb467
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_1/vvcam_isp_3dnr.h
 @@ -0,0 +1,119 @@
@@ -59067,7 +59067,7 @@ index 0000000000000..e87d097fb4672
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_4/vvcam_isp_3dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_4/vvcam_isp_3dnr.c
 new file mode 100644
-index 0000000000000..efca62af9e62a
+index 000000000000..efca62af9e62
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_4/vvcam_isp_3dnr.c
 @@ -0,0 +1,322 @@
@@ -59395,7 +59395,7 @@ index 0000000000000..efca62af9e62a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_4/vvcam_isp_3dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_4/vvcam_isp_3dnr.h
 new file mode 100644
-index 0000000000000..444747e8f477f
+index 000000000000..444747e8f477
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v2_4/vvcam_isp_3dnr.h
 @@ -0,0 +1,82 @@
@@ -59483,7 +59483,7 @@ index 0000000000000..444747e8f477f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3/vvcam_isp_3dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3/vvcam_isp_3dnr.c
 new file mode 100644
-index 0000000000000..7a2391c8aa0a3
+index 000000000000..7a2391c8aa0a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3/vvcam_isp_3dnr.c
 @@ -0,0 +1,929 @@
@@ -60418,7 +60418,7 @@ index 0000000000000..7a2391c8aa0a3
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3/vvcam_isp_3dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3/vvcam_isp_3dnr.h
 new file mode 100644
-index 0000000000000..b0cf35c062993
+index 000000000000..b0cf35c06299
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3/vvcam_isp_3dnr.h
 @@ -0,0 +1,148 @@
@@ -60572,7 +60572,7 @@ index 0000000000000..b0cf35c062993
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3_1/vvcam_isp_3dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3_1/vvcam_isp_3dnr.c
 new file mode 100644
-index 0000000000000..316dfe1ba60f4
+index 000000000000..316dfe1ba60f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3_1/vvcam_isp_3dnr.c
 @@ -0,0 +1,973 @@
@@ -61551,7 +61551,7 @@ index 0000000000000..316dfe1ba60f4
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3_1/vvcam_isp_3dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3_1/vvcam_isp_3dnr.h
 new file mode 100644
-index 0000000000000..fe1fab2c0c256
+index 000000000000..fe1fab2c0c25
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v3_1/vvcam_isp_3dnr.h
 @@ -0,0 +1,153 @@
@@ -61710,7 +61710,7 @@ index 0000000000000..fe1fab2c0c256
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v4/vvcam_isp_3dnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v4/vvcam_isp_3dnr.c
 new file mode 100644
-index 0000000000000..68df9346f3466
+index 000000000000..68df9346f346
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v4/vvcam_isp_3dnr.c
 @@ -0,0 +1,1089 @@
@@ -62805,7 +62805,7 @@ index 0000000000000..68df9346f3466
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v4/vvcam_isp_3dnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v4/vvcam_isp_3dnr.h
 new file mode 100644
-index 0000000000000..520ebcf9aecbd
+index 000000000000..520ebcf9aecb
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/3dnr/3dnr_v4/vvcam_isp_3dnr.h
 @@ -0,0 +1,181 @@
@@ -62992,7 +62992,7 @@ index 0000000000000..520ebcf9aecbd
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v3/vvcam_isp_ae.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v3/vvcam_isp_ae.c
 new file mode 100644
-index 0000000000000..6ce55c915362b
+index 000000000000..6ce55c915362
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v3/vvcam_isp_ae.c
 @@ -0,0 +1,716 @@
@@ -63714,7 +63714,7 @@ index 0000000000000..6ce55c915362b
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v3/vvcam_isp_ae.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v3/vvcam_isp_ae.h
 new file mode 100644
-index 0000000000000..dfbd043c0e128
+index 000000000000..dfbd043c0e12
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v3/vvcam_isp_ae.h
 @@ -0,0 +1,110 @@
@@ -63830,7 +63830,7 @@ index 0000000000000..dfbd043c0e128
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4/vvcam_isp_ae.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4/vvcam_isp_ae.c
 new file mode 100644
-index 0000000000000..cfe660acf6ff2
+index 000000000000..cfe660acf6ff
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4/vvcam_isp_ae.c
 @@ -0,0 +1,765 @@
@@ -64601,7 +64601,7 @@ index 0000000000000..cfe660acf6ff2
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4/vvcam_isp_ae.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4/vvcam_isp_ae.h
 new file mode 100644
-index 0000000000000..5db45a76b5e16
+index 000000000000..5db45a76b5e1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4/vvcam_isp_ae.h
 @@ -0,0 +1,114 @@
@@ -64721,7 +64721,7 @@ index 0000000000000..5db45a76b5e16
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4_1/vvcam_isp_ae.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4_1/vvcam_isp_ae.c
 new file mode 100644
-index 0000000000000..0678014bdc9b2
+index 000000000000..0678014bdc9b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4_1/vvcam_isp_ae.c
 @@ -0,0 +1,847 @@
@@ -65574,7 +65574,7 @@ index 0000000000000..0678014bdc9b2
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4_1/vvcam_isp_ae.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4_1/vvcam_isp_ae.h
 new file mode 100644
-index 0000000000000..4fd83e7fc178c
+index 000000000000..4fd83e7fc178
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ae/ae_v4_1/vvcam_isp_ae.h
 @@ -0,0 +1,120 @@
@@ -65700,7 +65700,7 @@ index 0000000000000..4fd83e7fc178c
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v3/vvcam_isp_af.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v3/vvcam_isp_af.c
 new file mode 100644
-index 0000000000000..0eac74aea8566
+index 000000000000..0eac74aea856
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v3/vvcam_isp_af.c
 @@ -0,0 +1,396 @@
@@ -66102,7 +66102,7 @@ index 0000000000000..0eac74aea8566
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v3/vvcam_isp_af.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v3/vvcam_isp_af.h
 new file mode 100644
-index 0000000000000..21d1de26f1b72
+index 000000000000..21d1de26f1b7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v3/vvcam_isp_af.h
 @@ -0,0 +1,90 @@
@@ -66198,7 +66198,7 @@ index 0000000000000..21d1de26f1b72
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4/vvcam_isp_af.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4/vvcam_isp_af.c
 new file mode 100644
-index 0000000000000..ed295e7b167b4
+index 000000000000..ed295e7b167b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4/vvcam_isp_af.c
 @@ -0,0 +1,410 @@
@@ -66614,7 +66614,7 @@ index 0000000000000..ed295e7b167b4
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4/vvcam_isp_af.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4/vvcam_isp_af.h
 new file mode 100644
-index 0000000000000..5fab28aed574a
+index 000000000000..5fab28aed574
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4/vvcam_isp_af.h
 @@ -0,0 +1,97 @@
@@ -66717,7 +66717,7 @@ index 0000000000000..5fab28aed574a
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_1_1/vvcam_isp_af.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_1_1/vvcam_isp_af.c
 new file mode 100644
-index 0000000000000..8c1e34ad914b2
+index 000000000000..8c1e34ad914b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_1_1/vvcam_isp_af.c
 @@ -0,0 +1,435 @@
@@ -67158,7 +67158,7 @@ index 0000000000000..8c1e34ad914b2
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_1_1/vvcam_isp_af.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_1_1/vvcam_isp_af.h
 new file mode 100644
-index 0000000000000..5cebe09adc865
+index 000000000000..5cebe09adc86
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_1_1/vvcam_isp_af.h
 @@ -0,0 +1,99 @@
@@ -67263,7 +67263,7 @@ index 0000000000000..5cebe09adc865
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_3/vvcam_isp_af.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_3/vvcam_isp_af.c
 new file mode 100644
-index 0000000000000..e09663eed7b86
+index 000000000000..e09663eed7b8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_3/vvcam_isp_af.c
 @@ -0,0 +1,424 @@
@@ -67693,7 +67693,7 @@ index 0000000000000..e09663eed7b86
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_3/vvcam_isp_af.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_3/vvcam_isp_af.h
 new file mode 100644
-index 0000000000000..56143c0985ce3
+index 000000000000..56143c0985ce
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/af/af_v4_3/vvcam_isp_af.h
 @@ -0,0 +1,98 @@
@@ -67797,7 +67797,7 @@ index 0000000000000..56143c0985ce3
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1/vvcam_isp_afm.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1/vvcam_isp_afm.c
 new file mode 100644
-index 0000000000000..b2e1aedff62c1
+index 000000000000..b2e1aedff62c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1/vvcam_isp_afm.c
 @@ -0,0 +1,327 @@
@@ -68130,7 +68130,7 @@ index 0000000000000..b2e1aedff62c1
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1/vvcam_isp_afm.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1/vvcam_isp_afm.h
 new file mode 100644
-index 0000000000000..cd35cb24762f7
+index 000000000000..cd35cb24762f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1/vvcam_isp_afm.h
 @@ -0,0 +1,82 @@
@@ -68218,7 +68218,7 @@ index 0000000000000..cd35cb24762f7
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1_1/vvcam_isp_afm.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1_1/vvcam_isp_afm.c
 new file mode 100644
-index 0000000000000..126349efbec80
+index 000000000000..126349efbec8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1_1/vvcam_isp_afm.c
 @@ -0,0 +1,711 @@
@@ -68935,7 +68935,7 @@ index 0000000000000..126349efbec80
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1_1/vvcam_isp_afm.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1_1/vvcam_isp_afm.h
 new file mode 100644
-index 0000000000000..3d0e705fa8eb7
+index 000000000000..3d0e705fa8eb
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v1_1/vvcam_isp_afm.h
 @@ -0,0 +1,148 @@
@@ -69089,7 +69089,7 @@ index 0000000000000..3d0e705fa8eb7
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v3/vvcam_isp_afm.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v3/vvcam_isp_afm.c
 new file mode 100644
-index 0000000000000..e607b9e59dda7
+index 000000000000..e607b9e59dda
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v3/vvcam_isp_afm.c
 @@ -0,0 +1,551 @@
@@ -69646,7 +69646,7 @@ index 0000000000000..e607b9e59dda7
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v3/vvcam_isp_afm.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v3/vvcam_isp_afm.h
 new file mode 100644
-index 0000000000000..1dcca99ef2769
+index 000000000000..1dcca99ef276
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/afm/afm_v3/vvcam_isp_afm.h
 @@ -0,0 +1,119 @@
@@ -69771,7 +69771,7 @@ index 0000000000000..1dcca99ef2769
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v3/vvcam_isp_awb.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v3/vvcam_isp_awb.c
 new file mode 100644
-index 0000000000000..c3778a6be66a0
+index 000000000000..c3778a6be66a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v3/vvcam_isp_awb.c
 @@ -0,0 +1,216 @@
@@ -69993,7 +69993,7 @@ index 0000000000000..c3778a6be66a0
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v3/vvcam_isp_awb.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v3/vvcam_isp_awb.h
 new file mode 100644
-index 0000000000000..f745665e852df
+index 000000000000..f745665e852d
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v3/vvcam_isp_awb.h
 @@ -0,0 +1,74 @@
@@ -70073,7 +70073,7 @@ index 0000000000000..f745665e852df
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4/vvcam_isp_awb.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4/vvcam_isp_awb.c
 new file mode 100644
-index 0000000000000..1796dc1d9b20f
+index 000000000000..1796dc1d9b20
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4/vvcam_isp_awb.c
 @@ -0,0 +1,713 @@
@@ -70792,7 +70792,7 @@ index 0000000000000..1796dc1d9b20f
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4/vvcam_isp_awb.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4/vvcam_isp_awb.h
 new file mode 100644
-index 0000000000000..7aef6aa63a603
+index 000000000000..7aef6aa63a60
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4/vvcam_isp_awb.h
 @@ -0,0 +1,111 @@
@@ -70909,7 +70909,7 @@ index 0000000000000..7aef6aa63a603
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4_1/vvcam_isp_awb.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4_1/vvcam_isp_awb.c
 new file mode 100644
-index 0000000000000..a74c47dfc8b25
+index 000000000000..a74c47dfc8b2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4_1/vvcam_isp_awb.c
 @@ -0,0 +1,779 @@
@@ -71694,7 +71694,7 @@ index 0000000000000..a74c47dfc8b25
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4_1/vvcam_isp_awb.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4_1/vvcam_isp_awb.h
 new file mode 100644
-index 0000000000000..4024cd990a63a
+index 000000000000..4024cd990a63
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/awb/awb_v4_1/vvcam_isp_awb.h
 @@ -0,0 +1,116 @@
@@ -71816,7 +71816,7 @@ index 0000000000000..4024cd990a63a
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/bls/bls/vvcam_isp_bls.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/bls/bls/vvcam_isp_bls.c
 new file mode 100644
-index 0000000000000..09cf6306fb60e
+index 000000000000..09cf6306fb60
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/bls/bls/vvcam_isp_bls.c
 @@ -0,0 +1,294 @@
@@ -72116,7 +72116,7 @@ index 0000000000000..09cf6306fb60e
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/bls/bls/vvcam_isp_bls.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/bls/bls/vvcam_isp_bls.h
 new file mode 100644
-index 0000000000000..b5c7880cb4f25
+index 000000000000..b5c7880cb4f2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/bls/bls/vvcam_isp_bls.h
 @@ -0,0 +1,80 @@
@@ -72202,7 +72202,7 @@ index 0000000000000..b5c7880cb4f25
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ccm/ccm/vvcam_isp_ccm.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ccm/ccm/vvcam_isp_ccm.c
 new file mode 100644
-index 0000000000000..aa8314988a060
+index 000000000000..aa8314988a06
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ccm/ccm/vvcam_isp_ccm.c
 @@ -0,0 +1,217 @@
@@ -72425,7 +72425,7 @@ index 0000000000000..aa8314988a060
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ccm/ccm/vvcam_isp_ccm.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ccm/ccm/vvcam_isp_ccm.h
 new file mode 100644
-index 0000000000000..6d5ca4745fd33
+index 000000000000..6d5ca4745fd3
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ccm/ccm/vvcam_isp_ccm.h
 @@ -0,0 +1,74 @@
@@ -72505,7 +72505,7 @@ index 0000000000000..6d5ca4745fd33
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v1/vvcam_isp_cnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v1/vvcam_isp_cnr.c
 new file mode 100644
-index 0000000000000..48c8755d12b2a
+index 000000000000..48c8755d12b2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v1/vvcam_isp_cnr.c
 @@ -0,0 +1,227 @@
@@ -72738,7 +72738,7 @@ index 0000000000000..48c8755d12b2a
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v1/vvcam_isp_cnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v1/vvcam_isp_cnr.h
 new file mode 100644
-index 0000000000000..e8804d70a3f21
+index 000000000000..e8804d70a3f2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v1/vvcam_isp_cnr.h
 @@ -0,0 +1,75 @@
@@ -72819,7 +72819,7 @@ index 0000000000000..e8804d70a3f21
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_1/vvcam_isp_cnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_1/vvcam_isp_cnr.c
 new file mode 100644
-index 0000000000000..439133285416c
+index 000000000000..439133285416
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_1/vvcam_isp_cnr.c
 @@ -0,0 +1,412 @@
@@ -73237,7 +73237,7 @@ index 0000000000000..439133285416c
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_1/vvcam_isp_cnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_1/vvcam_isp_cnr.h
 new file mode 100644
-index 0000000000000..d6ede46141be3
+index 000000000000..d6ede46141be
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_1/vvcam_isp_cnr.h
 @@ -0,0 +1,89 @@
@@ -73332,7 +73332,7 @@ index 0000000000000..d6ede46141be3
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_2/vvcam_isp_cnr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_2/vvcam_isp_cnr.c
 new file mode 100644
-index 0000000000000..f343d0c78fc10
+index 000000000000..f343d0c78fc1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_2/vvcam_isp_cnr.c
 @@ -0,0 +1,357 @@
@@ -73695,7 +73695,7 @@ index 0000000000000..f343d0c78fc10
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_2/vvcam_isp_cnr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_2/vvcam_isp_cnr.h
 new file mode 100644
-index 0000000000000..61736c3c09470
+index 000000000000..61736c3c0947
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cnr/cnr_v2_2/vvcam_isp_cnr.h
 @@ -0,0 +1,84 @@
@@ -73785,7 +73785,7 @@ index 0000000000000..61736c3c09470
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1/vvcam_isp_cpd.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1/vvcam_isp_cpd.c
 new file mode 100644
-index 0000000000000..56bd7ace800fe
+index 000000000000..56bd7ace800f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1/vvcam_isp_cpd.c
 @@ -0,0 +1,225 @@
@@ -74016,7 +74016,7 @@ index 0000000000000..56bd7ace800fe
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1/vvcam_isp_cpd.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1/vvcam_isp_cpd.h
 new file mode 100644
-index 0000000000000..4ee457cca2b5c
+index 000000000000..4ee457cca2b5
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1/vvcam_isp_cpd.h
 @@ -0,0 +1,77 @@
@@ -74099,7 +74099,7 @@ index 0000000000000..4ee457cca2b5c
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1_1/vvcam_isp_cpd.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1_1/vvcam_isp_cpd.c
 new file mode 100644
-index 0000000000000..83b4e58057635
+index 000000000000..83b4e5805763
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1_1/vvcam_isp_cpd.c
 @@ -0,0 +1,225 @@
@@ -74330,7 +74330,7 @@ index 0000000000000..83b4e58057635
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1_1/vvcam_isp_cpd.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1_1/vvcam_isp_cpd.h
 new file mode 100644
-index 0000000000000..4ee457cca2b5c
+index 000000000000..4ee457cca2b5
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cpd/cpd_v1_1/vvcam_isp_cpd.h
 @@ -0,0 +1,77 @@
@@ -74413,7 +74413,7 @@ index 0000000000000..4ee457cca2b5c
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cproc/cproc/vvcam_isp_cproc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cproc/cproc/vvcam_isp_cproc.c
 new file mode 100644
-index 0000000000000..692f16a8b3064
+index 000000000000..692f16a8b306
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cproc/cproc/vvcam_isp_cproc.c
 @@ -0,0 +1,366 @@
@@ -74785,7 +74785,7 @@ index 0000000000000..692f16a8b3064
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cproc/cproc/vvcam_isp_cproc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cproc/cproc/vvcam_isp_cproc.h
 new file mode 100644
-index 0000000000000..964f6173281a9
+index 000000000000..964f6173281a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/cproc/cproc/vvcam_isp_cproc.h
 @@ -0,0 +1,86 @@
@@ -74877,7 +74877,7 @@ index 0000000000000..964f6173281a9
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dg/dg_v1/vvcam_isp_dg.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dg/dg_v1/vvcam_isp_dg.c
 new file mode 100644
-index 0000000000000..aaf4c65ba2c88
+index 000000000000..aaf4c65ba2c8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dg/dg_v1/vvcam_isp_dg.c
 @@ -0,0 +1,259 @@
@@ -75142,7 +75142,7 @@ index 0000000000000..aaf4c65ba2c88
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dg/dg_v1/vvcam_isp_dg.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dg/dg_v1/vvcam_isp_dg.h
 new file mode 100644
-index 0000000000000..01c7d04699faf
+index 000000000000..01c7d04699fa
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dg/dg_v1/vvcam_isp_dg.h
 @@ -0,0 +1,77 @@
@@ -75225,7 +75225,7 @@ index 0000000000000..01c7d04699faf
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v1/vvcam_isp_dmsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v1/vvcam_isp_dmsc.c
 new file mode 100644
-index 0000000000000..05b07cbcd4bbf
+index 000000000000..05b07cbcd4bb
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v1/vvcam_isp_dmsc.c
 @@ -0,0 +1,497 @@
@@ -75728,7 +75728,7 @@ index 0000000000000..05b07cbcd4bbf
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v1/vvcam_isp_dmsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v1/vvcam_isp_dmsc.h
 new file mode 100644
-index 0000000000000..7215fd9f720c8
+index 000000000000..7215fd9f720c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v1/vvcam_isp_dmsc.h
 @@ -0,0 +1,109 @@
@@ -75843,7 +75843,7 @@ index 0000000000000..7215fd9f720c8
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v2/vvcam_isp_dmsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v2/vvcam_isp_dmsc.c
 new file mode 100644
-index 0000000000000..92147a9c58626
+index 000000000000..92147a9c5862
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v2/vvcam_isp_dmsc.c
 @@ -0,0 +1,1714 @@
@@ -77563,7 +77563,7 @@ index 0000000000000..92147a9c58626
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v2/vvcam_isp_dmsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v2/vvcam_isp_dmsc.h
 new file mode 100644
-index 0000000000000..67d0602de1919
+index 000000000000..67d0602de191
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v2/vvcam_isp_dmsc.h
 @@ -0,0 +1,268 @@
@@ -77837,7 +77837,7 @@ index 0000000000000..67d0602de1919
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v3/vvcam_isp_dmsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v3/vvcam_isp_dmsc.c
 new file mode 100644
-index 0000000000000..cdfb5ed67c57b
+index 000000000000..cdfb5ed67c57
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v3/vvcam_isp_dmsc.c
 @@ -0,0 +1,2241 @@
@@ -80084,7 +80084,7 @@ index 0000000000000..cdfb5ed67c57b
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v3/vvcam_isp_dmsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v3/vvcam_isp_dmsc.h
 new file mode 100644
-index 0000000000000..9f359808c21ed
+index 000000000000..9f359808c21e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dmsc/dmsc_v3/vvcam_isp_dmsc.h
 @@ -0,0 +1,376 @@
@@ -80466,7 +80466,7 @@ index 0000000000000..9f359808c21ed
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpcc/dpcc/vvcam_isp_dpcc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpcc/dpcc/vvcam_isp_dpcc.c
 new file mode 100644
-index 0000000000000..45e857a4208b7
+index 000000000000..45e857a4208b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpcc/dpcc/vvcam_isp_dpcc.c
 @@ -0,0 +1,551 @@
@@ -81023,7 +81023,7 @@ index 0000000000000..45e857a4208b7
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpcc/dpcc/vvcam_isp_dpcc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpcc/dpcc/vvcam_isp_dpcc.h
 new file mode 100644
-index 0000000000000..a5ea23f5248ee
+index 000000000000..a5ea23f5248e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpcc/dpcc/vvcam_isp_dpcc.h
 @@ -0,0 +1,111 @@
@@ -81140,7 +81140,7 @@ index 0000000000000..a5ea23f5248ee
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpf/dpf_v1/vvcam_isp_dpf.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpf/dpf_v1/vvcam_isp_dpf.c
 new file mode 100644
-index 0000000000000..7b37fdd102cff
+index 000000000000..7b37fdd102cf
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpf/dpf_v1/vvcam_isp_dpf.c
 @@ -0,0 +1,503 @@
@@ -81649,7 +81649,7 @@ index 0000000000000..7b37fdd102cff
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpf/dpf_v1/vvcam_isp_dpf.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpf/dpf_v1/vvcam_isp_dpf.h
 new file mode 100644
-index 0000000000000..7a04d108ec925
+index 000000000000..7a04d108ec92
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/dpf/dpf_v1/vvcam_isp_dpf.h
 @@ -0,0 +1,95 @@
@@ -81750,7 +81750,7 @@ index 0000000000000..7a04d108ec925
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v1/vvcam_isp_ee.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v1/vvcam_isp_ee.c
 new file mode 100644
-index 0000000000000..f7834487a0ca4
+index 000000000000..f7834487a0ca
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v1/vvcam_isp_ee.c
 @@ -0,0 +1,427 @@
@@ -82183,7 +82183,7 @@ index 0000000000000..f7834487a0ca4
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v1/vvcam_isp_ee.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v1/vvcam_isp_ee.h
 new file mode 100644
-index 0000000000000..b2cb3711aa8b2
+index 000000000000..b2cb3711aa8b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v1/vvcam_isp_ee.h
 @@ -0,0 +1,90 @@
@@ -82279,7 +82279,7 @@ index 0000000000000..b2cb3711aa8b2
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v2/vvcam_isp_ee.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v2/vvcam_isp_ee.c
 new file mode 100644
-index 0000000000000..277ea4190e15d
+index 000000000000..277ea4190e15
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v2/vvcam_isp_ee.c
 @@ -0,0 +1,871 @@
@@ -83156,7 +83156,7 @@ index 0000000000000..277ea4190e15d
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v2/vvcam_isp_ee.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v2/vvcam_isp_ee.h
 new file mode 100644
-index 0000000000000..b610b44b8dae2
+index 000000000000..b610b44b8dae
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v2/vvcam_isp_ee.h
 @@ -0,0 +1,145 @@
@@ -83307,7 +83307,7 @@ index 0000000000000..b610b44b8dae2
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v3/vvcam_isp_ee.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v3/vvcam_isp_ee.c
 new file mode 100644
-index 0000000000000..3d0dae482e135
+index 000000000000..3d0dae482e13
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v3/vvcam_isp_ee.c
 @@ -0,0 +1,2327 @@
@@ -85640,7 +85640,7 @@ index 0000000000000..3d0dae482e135
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v3/vvcam_isp_ee.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v3/vvcam_isp_ee.h
 new file mode 100644
-index 0000000000000..3f70886b91d86
+index 000000000000..3f70886b91d8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ee/ee_v3/vvcam_isp_ee.h
 @@ -0,0 +1,362 @@
@@ -86008,7 +86008,7 @@ index 0000000000000..3f70886b91d86
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v2/vvcam_isp_exp.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v2/vvcam_isp_exp.c
 new file mode 100644
-index 0000000000000..0b820d46547f4
+index 000000000000..0b820d46547f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v2/vvcam_isp_exp.c
 @@ -0,0 +1,269 @@
@@ -86283,7 +86283,7 @@ index 0000000000000..0b820d46547f4
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v2/vvcam_isp_exp.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v2/vvcam_isp_exp.h
 new file mode 100644
-index 0000000000000..0a4fa18d57c88
+index 000000000000..0a4fa18d57c8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v2/vvcam_isp_exp.h
 @@ -0,0 +1,78 @@
@@ -86367,7 +86367,7 @@ index 0000000000000..0a4fa18d57c88
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v3/vvcam_isp_exp_v3.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v3/vvcam_isp_exp_v3.c
 new file mode 100644
-index 0000000000000..fd186ae6a4121
+index 000000000000..fd186ae6a412
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v3/vvcam_isp_exp_v3.c
 @@ -0,0 +1,193 @@
@@ -86566,7 +86566,7 @@ index 0000000000000..fd186ae6a4121
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v3/vvcam_isp_exp_v3.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v3/vvcam_isp_exp_v3.h
 new file mode 100644
-index 0000000000000..4a6a89c844d90
+index 000000000000..4a6a89c844d9
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/exp/exp_v3/vvcam_isp_exp_v3.h
 @@ -0,0 +1,72 @@
@@ -86644,7 +86644,7 @@ index 0000000000000..4a6a89c844d90
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v1/vvcam_isp_gc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v1/vvcam_isp_gc.c
 new file mode 100644
-index 0000000000000..ad1396cdd43c5
+index 000000000000..ad1396cdd43c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v1/vvcam_isp_gc.c
 @@ -0,0 +1,254 @@
@@ -86904,7 +86904,7 @@ index 0000000000000..ad1396cdd43c5
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v1/vvcam_isp_gc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v1/vvcam_isp_gc.h
 new file mode 100644
-index 0000000000000..d7bc5dcb7a459
+index 000000000000..d7bc5dcb7a45
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v1/vvcam_isp_gc.h
 @@ -0,0 +1,77 @@
@@ -86987,7 +86987,7 @@ index 0000000000000..d7bc5dcb7a459
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v2/vvcam_isp_gc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v2/vvcam_isp_gc.c
 new file mode 100644
-index 0000000000000..69bf97ba93566
+index 000000000000..69bf97ba9356
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v2/vvcam_isp_gc.c
 @@ -0,0 +1,333 @@
@@ -87326,7 +87326,7 @@ index 0000000000000..69bf97ba93566
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v2/vvcam_isp_gc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v2/vvcam_isp_gc.h
 new file mode 100644
-index 0000000000000..3cbe8aa45d055
+index 000000000000..3cbe8aa45d05
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gc/gc_v2/vvcam_isp_gc.h
 @@ -0,0 +1,83 @@
@@ -87415,7 +87415,7 @@ index 0000000000000..3cbe8aa45d055
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ge/ge/vvcam_isp_ge.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ge/ge/vvcam_isp_ge.c
 new file mode 100644
-index 0000000000000..0d482d5eaabf9
+index 000000000000..0d482d5eaabf
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ge/ge/vvcam_isp_ge.c
 @@ -0,0 +1,176 @@
@@ -87597,7 +87597,7 @@ index 0000000000000..0d482d5eaabf9
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ge/ge/vvcam_isp_ge.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ge/ge/vvcam_isp_ge.h
 new file mode 100644
-index 0000000000000..f445eb55d5957
+index 000000000000..f445eb55d595
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ge/ge/vvcam_isp_ge.h
 @@ -0,0 +1,72 @@
@@ -87675,7 +87675,7 @@ index 0000000000000..f445eb55d5957
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gtm/gtm_v1/vvcam_isp_gtm.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gtm/gtm_v1/vvcam_isp_gtm.c
 new file mode 100644
-index 0000000000000..3b93204f992ce
+index 000000000000..3b93204f992c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gtm/gtm_v1/vvcam_isp_gtm.c
 @@ -0,0 +1,983 @@
@@ -88664,7 +88664,7 @@ index 0000000000000..3b93204f992ce
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gtm/gtm_v1/vvcam_isp_gtm.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gtm/gtm_v1/vvcam_isp_gtm.h
 new file mode 100644
-index 0000000000000..463b6465c25f1
+index 000000000000..463b6465c25f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gtm/gtm_v1/vvcam_isp_gtm.h
 @@ -0,0 +1,185 @@
@@ -88855,7 +88855,7 @@ index 0000000000000..463b6465c25f1
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gwdr/gwdr_v1/vvcam_isp_gwdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gwdr/gwdr_v1/vvcam_isp_gwdr.c
 new file mode 100644
-index 0000000000000..6630d75101a1a
+index 000000000000..6630d75101a1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gwdr/gwdr_v1/vvcam_isp_gwdr.c
 @@ -0,0 +1,279 @@
@@ -89140,7 +89140,7 @@ index 0000000000000..6630d75101a1a
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gwdr/gwdr_v1/vvcam_isp_gwdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gwdr/gwdr_v1/vvcam_isp_gwdr.h
 new file mode 100644
-index 0000000000000..4592433a1fb99
+index 000000000000..4592433a1fb9
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/gwdr/gwdr_v1/vvcam_isp_gwdr.h
 @@ -0,0 +1,79 @@
@@ -89225,7 +89225,7 @@ index 0000000000000..4592433a1fb99
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v1_3/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v1_3/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..94b7e24c12c16
+index 000000000000..94b7e24c12c1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v1_3/vvcam_isp_hdr.c
 @@ -0,0 +1,260 @@
@@ -89491,7 +89491,7 @@ index 0000000000000..94b7e24c12c16
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v1_3/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v1_3/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..7e6f88d97798b
+index 000000000000..7e6f88d97798
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v1_3/vvcam_isp_hdr.h
 @@ -0,0 +1,77 @@
@@ -89574,7 +89574,7 @@ index 0000000000000..7e6f88d97798b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..1c174a92d0452
+index 000000000000..1c174a92d045
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2/vvcam_isp_hdr.c
 @@ -0,0 +1,1178 @@
@@ -90758,7 +90758,7 @@ index 0000000000000..1c174a92d0452
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..bfe77d1315e61
+index 000000000000..bfe77d1315e6
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2/vvcam_isp_hdr.h
 @@ -0,0 +1,185 @@
@@ -90949,7 +90949,7 @@ index 0000000000000..bfe77d1315e61
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..3191a3bea767a
+index 000000000000..3191a3bea767
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1/vvcam_isp_hdr.c
 @@ -0,0 +1,259 @@
@@ -91214,7 +91214,7 @@ index 0000000000000..3191a3bea767a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..eb9dcde4048f5
+index 000000000000..eb9dcde4048f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1/vvcam_isp_hdr.h
 @@ -0,0 +1,78 @@
@@ -91298,7 +91298,7 @@ index 0000000000000..eb9dcde4048f5
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1_2dol/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1_2dol/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..d207af8d7a87d
+index 000000000000..d207af8d7a87
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1_2dol/vvcam_isp_hdr.c
 @@ -0,0 +1,257 @@
@@ -91561,7 +91561,7 @@ index 0000000000000..d207af8d7a87d
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1_2dol/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1_2dol/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..7e6f88d97798b
+index 000000000000..7e6f88d97798
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v2_1_2dol/vvcam_isp_hdr.h
 @@ -0,0 +1,77 @@
@@ -91644,7 +91644,7 @@ index 0000000000000..7e6f88d97798b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..3a4bf8a67b5e6
+index 000000000000..3a4bf8a67b5e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3/vvcam_isp_hdr.c
 @@ -0,0 +1,1499 @@
@@ -93149,7 +93149,7 @@ index 0000000000000..3a4bf8a67b5e6
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..1fa8f986f4619
+index 000000000000..1fa8f986f461
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3/vvcam_isp_hdr.h
 @@ -0,0 +1,222 @@
@@ -93377,7 +93377,7 @@ index 0000000000000..1fa8f986f4619
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_1/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_1/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..bab6a3ad4db86
+index 000000000000..bab6a3ad4db8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_1/vvcam_isp_hdr.c
 @@ -0,0 +1,232 @@
@@ -93615,7 +93615,7 @@ index 0000000000000..bab6a3ad4db86
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_1/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_1/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..7d7da39d6d59e
+index 000000000000..7d7da39d6d59
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_1/vvcam_isp_hdr.h
 @@ -0,0 +1,74 @@
@@ -93695,7 +93695,7 @@ index 0000000000000..7d7da39d6d59e
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_2dol/vvcam_isp_hdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_2dol/vvcam_isp_hdr.c
 new file mode 100644
-index 0000000000000..9450dcb69997e
+index 000000000000..9450dcb69997
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_2dol/vvcam_isp_hdr.c
 @@ -0,0 +1,494 @@
@@ -94195,7 +94195,7 @@ index 0000000000000..9450dcb69997e
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_2dol/vvcam_isp_hdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_2dol/vvcam_isp_hdr.h
 new file mode 100644
-index 0000000000000..a57052d3e5105
+index 000000000000..a57052d3e510
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/hdr/hdr_v3_2dol/vvcam_isp_hdr.h
 @@ -0,0 +1,119 @@
@@ -94320,7 +94320,7 @@ index 0000000000000..a57052d3e5105
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v1/vvcam_isp_lsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v1/vvcam_isp_lsc.c
 new file mode 100644
-index 0000000000000..2201775268541
+index 000000000000..220177526854
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v1/vvcam_isp_lsc.c
 @@ -0,0 +1,232 @@
@@ -94558,7 +94558,7 @@ index 0000000000000..2201775268541
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v1/vvcam_isp_lsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v1/vvcam_isp_lsc.h
 new file mode 100644
-index 0000000000000..d460a0f7e539f
+index 000000000000..d460a0f7e539
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v1/vvcam_isp_lsc.h
 @@ -0,0 +1,75 @@
@@ -94639,7 +94639,7 @@ index 0000000000000..d460a0f7e539f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v2/vvcam_isp_lsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v2/vvcam_isp_lsc.c
 new file mode 100644
-index 0000000000000..05780df9719ab
+index 000000000000..05780df9719a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v2/vvcam_isp_lsc.c
 @@ -0,0 +1,311 @@
@@ -94956,7 +94956,7 @@ index 0000000000000..05780df9719ab
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v2/vvcam_isp_lsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v2/vvcam_isp_lsc.h
 new file mode 100644
-index 0000000000000..c1486ed4632dd
+index 000000000000..c1486ed4632d
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v2/vvcam_isp_lsc.h
 @@ -0,0 +1,81 @@
@@ -95043,7 +95043,7 @@ index 0000000000000..c1486ed4632dd
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v3/vvcam_isp_lsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v3/vvcam_isp_lsc.c
 new file mode 100644
-index 0000000000000..8b7d67745a49a
+index 000000000000..8b7d67745a49
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v3/vvcam_isp_lsc.c
 @@ -0,0 +1,312 @@
@@ -95361,7 +95361,7 @@ index 0000000000000..8b7d67745a49a
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v3/vvcam_isp_lsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v3/vvcam_isp_lsc.h
 new file mode 100644
-index 0000000000000..753fc1f9eeb2b
+index 000000000000..753fc1f9eeb2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v3/vvcam_isp_lsc.h
 @@ -0,0 +1,81 @@
@@ -95448,7 +95448,7 @@ index 0000000000000..753fc1f9eeb2b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v4/vvcam_isp_lsc.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v4/vvcam_isp_lsc.c
 new file mode 100644
-index 0000000000000..9ad33ce8db4c0
+index 000000000000..9ad33ce8db4c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v4/vvcam_isp_lsc.c
 @@ -0,0 +1,312 @@
@@ -95766,7 +95766,7 @@ index 0000000000000..9ad33ce8db4c0
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v4/vvcam_isp_lsc.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v4/vvcam_isp_lsc.h
 new file mode 100644
-index 0000000000000..2b22ec5a6e7f0
+index 000000000000..2b22ec5a6e7f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lsc/lsc_v4/vvcam_isp_lsc.h
 @@ -0,0 +1,81 @@
@@ -95853,7 +95853,7 @@ index 0000000000000..2b22ec5a6e7f0
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lut3d/lut3d_v1/vvcam_isp_lut3d.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lut3d/lut3d_v1/vvcam_isp_lut3d.c
 new file mode 100644
-index 0000000000000..9d30ffd0f28e9
+index 000000000000..9d30ffd0f28e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lut3d/lut3d_v1/vvcam_isp_lut3d.c
 @@ -0,0 +1,247 @@
@@ -96106,7 +96106,7 @@ index 0000000000000..9d30ffd0f28e9
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lut3d/lut3d_v1/vvcam_isp_lut3d.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lut3d/lut3d_v1/vvcam_isp_lut3d.h
 new file mode 100644
-index 0000000000000..21347ed2de116
+index 000000000000..21347ed2de11
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/lut3d/lut3d_v1/vvcam_isp_lut3d.h
 @@ -0,0 +1,76 @@
@@ -96188,7 +96188,7 @@ index 0000000000000..21347ed2de116
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/pdaf/pdaf_v1/vvcam_isp_pdaf.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/pdaf/pdaf_v1/vvcam_isp_pdaf.c
 new file mode 100644
-index 0000000000000..e7b652f1d0586
+index 000000000000..e7b652f1d058
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/pdaf/pdaf_v1/vvcam_isp_pdaf.c
 @@ -0,0 +1,438 @@
@@ -96632,7 +96632,7 @@ index 0000000000000..e7b652f1d0586
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/pdaf/pdaf_v1/vvcam_isp_pdaf.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/pdaf/pdaf_v1/vvcam_isp_pdaf.h
 new file mode 100644
-index 0000000000000..43b9bdba0bc1f
+index 000000000000..43b9bdba0bc1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/pdaf/pdaf_v1/vvcam_isp_pdaf.h
 @@ -0,0 +1,105 @@
@@ -96743,7 +96743,7 @@ index 0000000000000..43b9bdba0bc1f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1/vvcam_isp_rgbir.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1/vvcam_isp_rgbir.c
 new file mode 100644
-index 0000000000000..f96d008e3851a
+index 000000000000..f96d008e3851
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1/vvcam_isp_rgbir.c
 @@ -0,0 +1,294 @@
@@ -97043,7 +97043,7 @@ index 0000000000000..f96d008e3851a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1/vvcam_isp_rgbir.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1/vvcam_isp_rgbir.h
 new file mode 100644
-index 0000000000000..27233d7f54a19
+index 000000000000..27233d7f54a1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1/vvcam_isp_rgbir.h
 @@ -0,0 +1,86 @@
@@ -97135,7 +97135,7 @@ index 0000000000000..27233d7f54a19
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1_1/vvcam_isp_rgbir.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1_1/vvcam_isp_rgbir.c
 new file mode 100644
-index 0000000000000..ade62ffe89533
+index 000000000000..ade62ffe8953
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1_1/vvcam_isp_rgbir.c
 @@ -0,0 +1,306 @@
@@ -97447,7 +97447,7 @@ index 0000000000000..ade62ffe89533
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1_1/vvcam_isp_rgbir.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1_1/vvcam_isp_rgbir.h
 new file mode 100644
-index 0000000000000..8a2aad20a6a5f
+index 000000000000..8a2aad20a6a5
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v1_1/vvcam_isp_rgbir.h
 @@ -0,0 +1,87 @@
@@ -97540,7 +97540,7 @@ index 0000000000000..8a2aad20a6a5f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2/vvcam_isp_rgbir.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2/vvcam_isp_rgbir.c
 new file mode 100644
-index 0000000000000..2ff25d3bbfa7b
+index 000000000000..2ff25d3bbfa7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2/vvcam_isp_rgbir.c
 @@ -0,0 +1,318 @@
@@ -97864,7 +97864,7 @@ index 0000000000000..2ff25d3bbfa7b
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2/vvcam_isp_rgbir.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2/vvcam_isp_rgbir.h
 new file mode 100644
-index 0000000000000..f2c49915358b2
+index 000000000000..f2c49915358b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2/vvcam_isp_rgbir.h
 @@ -0,0 +1,88 @@
@@ -97958,7 +97958,7 @@ index 0000000000000..f2c49915358b2
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2_1/vvcam_isp_rgbir.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2_1/vvcam_isp_rgbir.c
 new file mode 100644
-index 0000000000000..00377b6988d14
+index 000000000000..00377b6988d1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2_1/vvcam_isp_rgbir.c
 @@ -0,0 +1,330 @@
@@ -98294,7 +98294,7 @@ index 0000000000000..00377b6988d14
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2_1/vvcam_isp_rgbir.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2_1/vvcam_isp_rgbir.h
 new file mode 100644
-index 0000000000000..543f9d87356b7
+index 000000000000..543f9d87356b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/rgbir/rgbir_v2_1/vvcam_isp_rgbir.h
 @@ -0,0 +1,89 @@
@@ -98389,7 +98389,7 @@ index 0000000000000..543f9d87356b7
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/vvcam_isp_ctrl.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/vvcam_isp_ctrl.c
 new file mode 100644
-index 0000000000000..6404a5528fed2
+index 000000000000..6404a5528fed
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/vvcam_isp_ctrl.c
 @@ -0,0 +1,461 @@
@@ -98856,7 +98856,7 @@ index 0000000000000..6404a5528fed2
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/vvcam_isp_ctrl.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/vvcam_isp_ctrl.h
 new file mode 100644
-index 0000000000000..0a704498f21b9
+index 000000000000..0a704498f21b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/vvcam_isp_ctrl.h
 @@ -0,0 +1,101 @@
@@ -98963,7 +98963,7 @@ index 0000000000000..0a704498f21b9
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1/vvcam_isp_wb.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1/vvcam_isp_wb.c
 new file mode 100644
-index 0000000000000..77cb6d7a72294
+index 000000000000..77cb6d7a7229
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1/vvcam_isp_wb.c
 @@ -0,0 +1,258 @@
@@ -99227,7 +99227,7 @@ index 0000000000000..77cb6d7a72294
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1/vvcam_isp_wb.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1/vvcam_isp_wb.h
 new file mode 100644
-index 0000000000000..9093618b6f097
+index 000000000000..9093618b6f09
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1/vvcam_isp_wb.h
 @@ -0,0 +1,77 @@
@@ -99310,7 +99310,7 @@ index 0000000000000..9093618b6f097
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1_1/vvcam_isp_wb.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1_1/vvcam_isp_wb.c
 new file mode 100644
-index 0000000000000..ee209ce5e08e4
+index 000000000000..ee209ce5e08e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1_1/vvcam_isp_wb.c
 @@ -0,0 +1,258 @@
@@ -99574,7 +99574,7 @@ index 0000000000000..ee209ce5e08e4
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1_1/vvcam_isp_wb.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1_1/vvcam_isp_wb.h
 new file mode 100644
-index 0000000000000..9093618b6f097
+index 000000000000..9093618b6f09
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wb/wb_v1_1/vvcam_isp_wb.h
 @@ -0,0 +1,77 @@
@@ -99657,7 +99657,7 @@ index 0000000000000..9093618b6f097
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v3/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v3/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..714503824fca3
+index 000000000000..714503824fca
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v3/vvcam_isp_wdr.c
 @@ -0,0 +1,227 @@
@@ -99890,7 +99890,7 @@ index 0000000000000..714503824fca3
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v3/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v3/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..04786474ff699
+index 000000000000..04786474ff69
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v3/vvcam_isp_wdr.h
 @@ -0,0 +1,77 @@
@@ -99973,7 +99973,7 @@ index 0000000000000..04786474ff699
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v4/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v4/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..ee565cff36cdf
+index 000000000000..ee565cff36cd
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v4/vvcam_isp_wdr.c
 @@ -0,0 +1,646 @@
@@ -100625,7 +100625,7 @@ index 0000000000000..ee565cff36cdf
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v4/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v4/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..f2a5f31599303
+index 000000000000..f2a5f3159930
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v4/vvcam_isp_wdr.h
 @@ -0,0 +1,120 @@
@@ -100751,7 +100751,7 @@ index 0000000000000..f2a5f31599303
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..6ddb50dd6c800
+index 000000000000..6ddb50dd6c80
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5/vvcam_isp_wdr.c
 @@ -0,0 +1,1170 @@
@@ -101927,7 +101927,7 @@ index 0000000000000..6ddb50dd6c800
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..3b0be4f38007b
+index 000000000000..3b0be4f38007
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5/vvcam_isp_wdr.h
 @@ -0,0 +1,170 @@
@@ -102103,7 +102103,7 @@ index 0000000000000..3b0be4f38007b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_1/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_1/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..6ddb50dd6c800
+index 000000000000..6ddb50dd6c80
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_1/vvcam_isp_wdr.c
 @@ -0,0 +1,1170 @@
@@ -103279,7 +103279,7 @@ index 0000000000000..6ddb50dd6c800
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_1/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_1/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..3b0be4f38007b
+index 000000000000..3b0be4f38007
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_1/vvcam_isp_wdr.h
 @@ -0,0 +1,170 @@
@@ -103455,7 +103455,7 @@ index 0000000000000..3b0be4f38007b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..f332e80be3074
+index 000000000000..f332e80be307
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2/vvcam_isp_wdr.c
 @@ -0,0 +1,2113 @@
@@ -105574,7 +105574,7 @@ index 0000000000000..f332e80be3074
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..349b763e19ec4
+index 000000000000..349b763e19ec
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2/vvcam_isp_wdr.h
 @@ -0,0 +1,319 @@
@@ -105899,7 +105899,7 @@ index 0000000000000..349b763e19ec4
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2_1/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2_1/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..5025d141c1f9e
+index 000000000000..5025d141c1f9
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2_1/vvcam_isp_wdr.c
 @@ -0,0 +1,2085 @@
@@ -107990,7 +107990,7 @@ index 0000000000000..5025d141c1f9e
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2_1/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2_1/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..6057b95079f4c
+index 000000000000..6057b95079f4
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_2_1/vvcam_isp_wdr.h
 @@ -0,0 +1,317 @@
@@ -108313,7 +108313,7 @@ index 0000000000000..6057b95079f4c
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_3/vvcam_isp_wdr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_3/vvcam_isp_wdr.c
 new file mode 100644
-index 0000000000000..f332e80be3074
+index 000000000000..f332e80be307
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_3/vvcam_isp_wdr.c
 @@ -0,0 +1,2113 @@
@@ -110432,7 +110432,7 @@ index 0000000000000..f332e80be3074
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_3/vvcam_isp_wdr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_3/vvcam_isp_wdr.h
 new file mode 100644
-index 0000000000000..349b763e19ec4
+index 000000000000..349b763e19ec
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/wdr/wdr_v5_3/vvcam_isp_wdr.h
 @@ -0,0 +1,319 @@
@@ -110757,7 +110757,7 @@ index 0000000000000..349b763e19ec4
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ynr/ynr_v1/vvcam_isp_ynr.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ynr/ynr_v1/vvcam_isp_ynr.c
 new file mode 100644
-index 0000000000000..f2277e89042cc
+index 000000000000..f2277e89042c
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ynr/ynr_v1/vvcam_isp_ynr.c
 @@ -0,0 +1,318 @@
@@ -111081,7 +111081,7 @@ index 0000000000000..f2277e89042cc
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ynr/ynr_v1/vvcam_isp_ynr.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ynr/ynr_v1/vvcam_isp_ynr.h
 new file mode 100644
-index 0000000000000..65a7d262d2717
+index 000000000000..65a7d262d271
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/isp_ctrl/ynr/ynr_v1/vvcam_isp_ynr.h
 @@ -0,0 +1,82 @@
@@ -111169,7 +111169,7 @@ index 0000000000000..65a7d262d2717
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c
 new file mode 100644
-index 0000000000000..f75a632a74638
+index 000000000000..f75a632a7463
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.c
 @@ -0,0 +1,1762 @@
@@ -112937,7 +112937,7 @@ index 0000000000000..f75a632a74638
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.h
 new file mode 100644
-index 0000000000000..72f041472919f
+index 000000000000..72f041472919
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_driver.h
 @@ -0,0 +1,160 @@
@@ -113103,7 +113103,7 @@ index 0000000000000..72f041472919f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
 new file mode 100644
-index 0000000000000..2b8d299e2f02f
+index 000000000000..2b8d299e2f02
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
 @@ -0,0 +1,318 @@
@@ -113427,7 +113427,7 @@ index 0000000000000..2b8d299e2f02f
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.h
 new file mode 100644
-index 0000000000000..37711f9519609
+index 000000000000..37711f951960
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.h
 @@ -0,0 +1,137 @@
@@ -113570,7 +113570,7 @@ index 0000000000000..37711f9519609
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_platform.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_platform.c
 new file mode 100644
-index 0000000000000..32b84cb2edec4
+index 000000000000..32b84cb2edec
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_platform.c
 @@ -0,0 +1,206 @@
@@ -113782,7 +113782,7 @@ index 0000000000000..32b84cb2edec4
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_platform.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_platform.h
 new file mode 100644
-index 0000000000000..247a57fad7311
+index 000000000000..247a57fad731
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_platform.h
 @@ -0,0 +1,62 @@
@@ -113850,7 +113850,7 @@ index 0000000000000..247a57fad7311
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_procfs.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_procfs.c
 new file mode 100644
-index 0000000000000..4c08d643c33ed
+index 000000000000..4c08d643c33e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_procfs.c
 @@ -0,0 +1,403 @@
@@ -114259,7 +114259,7 @@ index 0000000000000..4c08d643c33ed
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_procfs.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_procfs.h
 new file mode 100644
-index 0000000000000..d175cf967b39a
+index 000000000000..d175cf967b39
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_procfs.h
 @@ -0,0 +1,64 @@
@@ -114329,7 +114329,7 @@ index 0000000000000..d175cf967b39a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/Makefile b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/Makefile
 new file mode 100644
-index 0000000000000..5da1c7d9c535a
+index 000000000000..5da1c7d9c535
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/Makefile
 @@ -0,0 +1,70 @@
@@ -114405,7 +114405,7 @@ index 0000000000000..5da1c7d9c535a
 +EXTRA_CFLAGS += -I$(VVCAM_PATH)/v4l2/common/
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_pipeline_link.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_pipeline_link.h
 new file mode 100644
-index 0000000000000..d687b80a06e20
+index 000000000000..d687b80a06e2
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_pipeline_link.h
 @@ -0,0 +1,235 @@
@@ -114646,7 +114646,7 @@ index 0000000000000..d687b80a06e20
 + #endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video.h
 new file mode 100644
-index 0000000000000..fc21ed0e96cf0
+index 000000000000..fc21ed0e96cf
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video.h
 @@ -0,0 +1,59 @@
@@ -114711,7 +114711,7 @@ index 0000000000000..fc21ed0e96cf0
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c
 new file mode 100644
-index 0000000000000..a49d7b11955b9
+index 000000000000..a49d7b11955b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.c
 @@ -0,0 +1,762 @@
@@ -115479,7 +115479,7 @@ index 0000000000000..a49d7b11955b9
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.h
 new file mode 100644
-index 0000000000000..6def1bf11d94b
+index 000000000000..6def1bf11d94
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_driver.h
 @@ -0,0 +1,133 @@
@@ -115618,7 +115618,7 @@ index 0000000000000..6def1bf11d94b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c
 new file mode 100644
-index 0000000000000..372ed7b783ca5
+index 000000000000..372ed7b783ca
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c
 @@ -0,0 +1,174 @@
@@ -115798,7 +115798,7 @@ index 0000000000000..372ed7b783ca5
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.h
 new file mode 100644
-index 0000000000000..2a4c49c5ffc9b
+index 000000000000..2a4c49c5ffc9
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.h
 @@ -0,0 +1,87 @@
@@ -115891,7 +115891,7 @@ index 0000000000000..2a4c49c5ffc9b
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_m2m_register.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_m2m_register.c
 new file mode 100644
-index 0000000000000..36f89b491bf79
+index 000000000000..36f89b491bf7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_m2m_register.c
 @@ -0,0 +1,55 @@
@@ -115952,7 +115952,7 @@ index 0000000000000..36f89b491bf79
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_m2m_register.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_m2m_register.h
 new file mode 100644
-index 0000000000000..36f89b491bf79
+index 000000000000..36f89b491bf7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_m2m_register.h
 @@ -0,0 +1,55 @@
@@ -116013,7 +116013,7 @@ index 0000000000000..36f89b491bf79
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_platform.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_platform.c
 new file mode 100644
-index 0000000000000..6a71181c69b40
+index 000000000000..6a71181c69b4
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_platform.c
 @@ -0,0 +1,125 @@
@@ -116144,7 +116144,7 @@ index 0000000000000..6a71181c69b40
 +module_param(devices_mask, int, 0644);
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_platform.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_platform.h
 new file mode 100644
-index 0000000000000..ccc6afdee0a1e
+index 000000000000..ccc6afdee0a1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_platform.h
 @@ -0,0 +1,62 @@
@@ -116212,7 +116212,7 @@ index 0000000000000..ccc6afdee0a1e
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c
 new file mode 100644
-index 0000000000000..e3a7160eb1c3d
+index 000000000000..e3a7160eb1c3
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c
 @@ -0,0 +1,2377 @@
@@ -118595,7 +118595,7 @@ index 0000000000000..e3a7160eb1c3d
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.h b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.h
 new file mode 100644
-index 0000000000000..89b87f59d6a5f
+index 000000000000..89b87f59d6a5
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.h
 @@ -0,0 +1,63 @@
@@ -118664,7 +118664,7 @@ index 0000000000000..89b87f59d6a5f
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2_insmod.sh b/drivers/media/platform/eswin/isp/vvcam/v4l2_insmod.sh
 new file mode 100644
-index 0000000000000..e8c73ed5a4154
+index 000000000000..e8c73ed5a415
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2_insmod.sh
 @@ -0,0 +1,121 @@
@@ -118791,7 +118791,7 @@ index 0000000000000..e8c73ed5a4154
 +fi
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2_rmmod.sh b/drivers/media/platform/eswin/isp/vvcam/v4l2_rmmod.sh
 new file mode 100644
-index 0000000000000..1a8e882d14f73
+index 000000000000..1a8e882d14f7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2_rmmod.sh
 @@ -0,0 +1,64 @@
@@ -118861,7 +118861,7 @@ index 0000000000000..1a8e882d14f73
 +rmmod ./mi_subsystem/vvcam_mss.ko
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/Makefile b/drivers/media/platform/eswin/isp/vvcam/vb/Makefile
 new file mode 100644
-index 0000000000000..6783d10a87ee9
+index 000000000000..6783d10a87ee
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/Makefile
 @@ -0,0 +1,69 @@
@@ -118936,7 +118936,7 @@ index 0000000000000..6783d10a87ee9
 +$(TARGET)-objs += vvcam_vb_procfs.o
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_cma.c b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_cma.c
 new file mode 100644
-index 0000000000000..6709e22df0ae3
+index 000000000000..6709e22df0ae
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_cma.c
 @@ -0,0 +1,237 @@
@@ -119179,7 +119179,7 @@ index 0000000000000..6709e22df0ae3
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_cma.h b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_cma.h
 new file mode 100644
-index 0000000000000..cf5272797020e
+index 000000000000..cf5272797020
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_cma.h
 @@ -0,0 +1,77 @@
@@ -119262,7 +119262,7 @@ index 0000000000000..cf5272797020e
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_mmz.c b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_mmz.c
 new file mode 100644
-index 0000000000000..b8bc9950370dd
+index 000000000000..b8bc9950370d
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_mmz.c
 @@ -0,0 +1,378 @@
@@ -119646,7 +119646,7 @@ index 0000000000000..b8bc9950370dd
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_mmz.h b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_mmz.h
 new file mode 100644
-index 0000000000000..5c8b333893943
+index 000000000000..5c8b33389394
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_mmz.h
 @@ -0,0 +1,98 @@
@@ -119750,7 +119750,7 @@ index 0000000000000..5c8b333893943
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb.h b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb.h
 new file mode 100644
-index 0000000000000..651f0659fc419
+index 000000000000..651f0659fc41
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb.h
 @@ -0,0 +1,74 @@
@@ -119830,7 +119830,7 @@ index 0000000000000..651f0659fc419
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c
 new file mode 100644
-index 0000000000000..c8483857beb32
+index 000000000000..c8483857beb3
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.c
 @@ -0,0 +1,401 @@
@@ -120237,7 +120237,7 @@ index 0000000000000..c8483857beb32
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.h b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.h
 new file mode 100644
-index 0000000000000..fe95efa6986a6
+index 000000000000..fe95efa6986a
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_driver.h
 @@ -0,0 +1,86 @@
@@ -120329,7 +120329,7 @@ index 0000000000000..fe95efa6986a6
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_platform.c b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_platform.c
 new file mode 100644
-index 0000000000000..87d19acf7dc7c
+index 000000000000..87d19acf7dc7
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_platform.c
 @@ -0,0 +1,94 @@
@@ -120429,7 +120429,7 @@ index 0000000000000..87d19acf7dc7c
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_platform.h b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_platform.h
 new file mode 100644
-index 0000000000000..064693630344c
+index 000000000000..064693630344
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_platform.h
 @@ -0,0 +1,62 @@
@@ -120497,7 +120497,7 @@ index 0000000000000..064693630344c
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_procfs.c b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_procfs.c
 new file mode 100644
-index 0000000000000..619c3b621762e
+index 000000000000..619c3b621762
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_procfs.c
 @@ -0,0 +1,455 @@
@@ -120958,7 +120958,7 @@ index 0000000000000..619c3b621762e
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_procfs.h b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_procfs.h
 new file mode 100644
-index 0000000000000..a7181ad708af5
+index 000000000000..a7181ad708af
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vb/vvcam_vb_procfs.h
 @@ -0,0 +1,64 @@
@@ -121028,7 +121028,7 @@ index 0000000000000..a7181ad708af5
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vicap/Makefile b/drivers/media/platform/eswin/isp/vvcam/vicap/Makefile
 new file mode 100644
-index 0000000000000..4ec13fd0481ea
+index 000000000000..4ec13fd0481e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vicap/Makefile
 @@ -0,0 +1,25 @@
@@ -121059,7 +121059,7 @@ index 0000000000000..4ec13fd0481ea
 +	@rm $(INSTALL_DIR)/lib/$(TARGET).ko
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_driver.c b/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_driver.c
 new file mode 100644
-index 0000000000000..70c9ccdd0a8ec
+index 000000000000..70c9ccdd0a8e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_driver.c
 @@ -0,0 +1,227 @@
@@ -121292,7 +121292,7 @@ index 0000000000000..70c9ccdd0a8ec
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_ioctl.c b/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_ioctl.c
 new file mode 100644
-index 0000000000000..6969e71f7c66f
+index 000000000000..6969e71f7c66
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_ioctl.c
 @@ -0,0 +1,352 @@
@@ -121650,7 +121650,7 @@ index 0000000000000..6969e71f7c66f
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_ioctl.h b/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_ioctl.h
 new file mode 100644
-index 0000000000000..5f08ae8f9bfea
+index 000000000000..5f08ae8f9bfe
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/vicap/vicap_ioctl.h
 @@ -0,0 +1,235 @@
@@ -121891,7 +121891,7 @@ index 0000000000000..5f08ae8f9bfea
 +#endif // __VICAP_IOCTL_H__
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/Makefile b/drivers/media/platform/eswin/isp/vvcam/videoin/Makefile
 new file mode 100644
-index 0000000000000..d9a4be8324a3a
+index 000000000000..d9a4be8324a3
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/Makefile
 @@ -0,0 +1,82 @@
@@ -121979,7 +121979,7 @@ index 0000000000000..d9a4be8324a3a
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi.h b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi.h
 new file mode 100644
-index 0000000000000..2836d2758acc0
+index 000000000000..2836d2758acc
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi.h
 @@ -0,0 +1,113 @@
@@ -122098,7 +122098,7 @@ index 0000000000000..2836d2758acc0
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_driver.c b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_driver.c
 new file mode 100644
-index 0000000000000..ca001ca7f5ab0
+index 000000000000..ca001ca7f5ab
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_driver.c
 @@ -0,0 +1,438 @@
@@ -122542,7 +122542,7 @@ index 0000000000000..ca001ca7f5ab0
 +MODULE_LICENSE("GPL");
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_driver.h b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_driver.h
 new file mode 100644
-index 0000000000000..abf590d8a7ae0
+index 000000000000..abf590d8a7ae
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_driver.h
 @@ -0,0 +1,100 @@
@@ -122648,7 +122648,7 @@ index 0000000000000..abf590d8a7ae0
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_hal.c b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_hal.c
 new file mode 100644
-index 0000000000000..4fc483e5cc8b6
+index 000000000000..4fc483e5cc8b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_hal.c
 @@ -0,0 +1,304 @@
@@ -122958,7 +122958,7 @@ index 0000000000000..4fc483e5cc8b6
 +
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_hal.h b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_hal.h
 new file mode 100644
-index 0000000000000..7d33c79c6ddfe
+index 000000000000..7d33c79c6ddf
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_hal.h
 @@ -0,0 +1,115 @@
@@ -123079,7 +123079,7 @@ index 0000000000000..7d33c79c6ddfe
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_platform.c b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_platform.c
 new file mode 100644
-index 0000000000000..8617d3976014e
+index 000000000000..8617d3976014
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_platform.c
 @@ -0,0 +1,151 @@
@@ -123236,7 +123236,7 @@ index 0000000000000..8617d3976014e
 +module_param(devices_mask, int, 0644);
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_platform.h b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_platform.h
 new file mode 100644
-index 0000000000000..3281c4f4c403e
+index 000000000000..3281c4f4c403
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_platform.h
 @@ -0,0 +1,62 @@
@@ -123304,7 +123304,7 @@ index 0000000000000..3281c4f4c403e
 +#endif
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_procfs.c b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_procfs.c
 new file mode 100644
-index 0000000000000..89ce352d71e9c
+index 000000000000..89ce352d71e9
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_procfs.c
 @@ -0,0 +1,645 @@
@@ -123955,7 +123955,7 @@ index 0000000000000..89ce352d71e9c
 +}
 diff --git a/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_procfs.h b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_procfs.h
 new file mode 100644
-index 0000000000000..d1112a4e7a2ea
+index 000000000000..d1112a4e7a2e
 --- /dev/null
 +++ b/drivers/media/platform/eswin/isp/vvcam/videoin/vvcam_vi_procfs.h
 @@ -0,0 +1,63 @@
@@ -124024,7 +124024,7 @@ index 0000000000000..d1112a4e7a2ea
 +#endif
 diff --git a/drivers/media/platform/eswin/mipi-csi2/Kconfig b/drivers/media/platform/eswin/mipi-csi2/Kconfig
 new file mode 100755
-index 0000000000000..20bbab487fb67
+index 000000000000..20bbab487fb6
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/Kconfig
 @@ -0,0 +1,54 @@
@@ -124084,7 +124084,7 @@ index 0000000000000..20bbab487fb67
 +	 If unsure, say N.
 diff --git a/drivers/media/platform/eswin/mipi-csi2/Makefile b/drivers/media/platform/eswin/mipi-csi2/Makefile
 new file mode 100755
-index 0000000000000..60d981dc940b2
+index 000000000000..60d981dc940b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/Makefile
 @@ -0,0 +1,16 @@
@@ -124106,7 +124106,7 @@ index 0000000000000..60d981dc940b2
 +#obj-$(CONFIG_ESWIN_MIPI_DMA) += eswin-mipi-dma.o
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 new file mode 100755
-index 0000000000000..33f7834a6a939
+index 000000000000..33f7834a6a93
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 @@ -0,0 +1,859 @@
@@ -124971,7 +124971,7 @@ index 0000000000000..33f7834a6a939
 +MODULE_DESCRIPTION("Synopsys DesignWare MIPI CSI-2 Host Platform driver");
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.h b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.h
 new file mode 100755
-index 0000000000000..257cbfbd044ba
+index 000000000000..257cbfbd044b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.h
 @@ -0,0 +1,148 @@
@@ -125125,7 +125125,7 @@ index 0000000000000..257cbfbd044ba
 +#endif /* _DW_CSI_PLAT_H__ */
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-sysfs.c b/drivers/media/platform/eswin/mipi-csi2/dw-csi-sysfs.c
 new file mode 100755
-index 0000000000000..e8d2bb9d0eab2
+index 000000000000..e8d2bb9d0eab
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-csi-sysfs.c
 @@ -0,0 +1,624 @@
@@ -125755,7 +125755,7 @@ index 0000000000000..e8d2bb9d0eab2
 +}
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-dphy-plat.c b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-plat.c
 new file mode 100755
-index 0000000000000..f0628844e09bc
+index 000000000000..f0628844e09b
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-plat.c
 @@ -0,0 +1,238 @@
@@ -125999,7 +125999,7 @@ index 0000000000000..f0628844e09bc
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-dphy-rx.c b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-rx.c
 new file mode 100755
-index 0000000000000..970d2b572c02a
+index 000000000000..970d2b572c02
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-rx.c
 @@ -0,0 +1,613 @@
@@ -126618,7 +126618,7 @@ index 0000000000000..970d2b572c02a
 +}
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-dphy-rx.h b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-rx.h
 new file mode 100755
-index 0000000000000..2e8d68c914c13
+index 000000000000..2e8d68c914c1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-rx.h
 @@ -0,0 +1,212 @@
@@ -126836,7 +126836,7 @@ index 0000000000000..2e8d68c914c13
 +#endif /*__PHY_SNPS_DPHY_RX_H__*/
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-dphy-sysfs.c b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-sysfs.c
 new file mode 100755
-index 0000000000000..d893e29f7adb2
+index 000000000000..d893e29f7adb
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-dphy-sysfs.c
 @@ -0,0 +1,232 @@
@@ -127074,7 +127074,7 @@ index 0000000000000..d893e29f7adb2
 +}
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-mipi-csi.c b/drivers/media/platform/eswin/mipi-csi2/dw-mipi-csi.c
 new file mode 100755
-index 0000000000000..fd94144747be1
+index 000000000000..fd94144747be
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-mipi-csi.c
 @@ -0,0 +1,668 @@
@@ -127748,7 +127748,7 @@ index 0000000000000..fd94144747be1
 +}
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-mipi-csi.h b/drivers/media/platform/eswin/mipi-csi2/dw-mipi-csi.h
 new file mode 100755
-index 0000000000000..e041c739519f4
+index 000000000000..e041c739519f
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/dw-mipi-csi.h
 @@ -0,0 +1,367 @@
@@ -128121,7 +128121,7 @@ index 0000000000000..e041c739519f4
 +#endif /*_DW_MIPI_CSI_H__ */
 diff --git a/drivers/media/platform/eswin/mipi-csi2/eswin-mipi-dma.c b/drivers/media/platform/eswin/mipi-csi2/eswin-mipi-dma.c
 new file mode 100755
-index 0000000000000..8755e2b5f552c
+index 000000000000..8755e2b5f552
 --- /dev/null
 +++ b/drivers/media/platform/eswin/mipi-csi2/eswin-mipi-dma.c
 @@ -0,0 +1,270 @@
@@ -128397,7 +128397,7 @@ index 0000000000000..8755e2b5f552c
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/media/platform/eswin/vi_top/Kconfig b/drivers/media/platform/eswin/vi_top/Kconfig
 new file mode 100644
-index 0000000000000..092b8515bfeee
+index 000000000000..092b8515bfee
 --- /dev/null
 +++ b/drivers/media/platform/eswin/vi_top/Kconfig
 @@ -0,0 +1,13 @@
@@ -128417,7 +128417,7 @@ index 0000000000000..092b8515bfeee
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/vi_top/Makefile b/drivers/media/platform/eswin/vi_top/Makefile
 new file mode 100644
-index 0000000000000..b2491689b4c8f
+index 000000000000..b2491689b4c8
 --- /dev/null
 +++ b/drivers/media/platform/eswin/vi_top/Makefile
 @@ -0,0 +1,3 @@
@@ -128427,7 +128427,7 @@ index 0000000000000..b2491689b4c8f
 \ No newline at end of file
 diff --git a/drivers/media/platform/eswin/vi_top/eswin_vi.c b/drivers/media/platform/eswin/vi_top/eswin_vi.c
 new file mode 100644
-index 0000000000000..2afdbc5b0f181
+index 000000000000..2afdbc5b0f18
 --- /dev/null
 +++ b/drivers/media/platform/eswin/vi_top/eswin_vi.c
 @@ -0,0 +1,626 @@
@@ -129059,7 +129059,7 @@ index 0000000000000..2afdbc5b0f181
 +MODULE_VERSION("0.1");
 diff --git a/drivers/media/platform/eswin/vi_top/vitop.h b/drivers/media/platform/eswin/vi_top/vitop.h
 new file mode 100644
-index 0000000000000..31879702e0a1a
+index 000000000000..31879702e0a1
 --- /dev/null
 +++ b/drivers/media/platform/eswin/vi_top/vitop.h
 @@ -0,0 +1,241 @@
@@ -129305,7 +129305,7 @@ index 0000000000000..31879702e0a1a
 +
 +#endif
 diff --git a/drivers/media/v4l2-core/v4l2-subdev.c b/drivers/media/v4l2-core/v4l2-subdev.c
-index cb3ad72a3e54a..eb905c565fe10 100644
+index cb3ad72a3e54..eb905c565fe1 100644
 --- a/drivers/media/v4l2-core/v4l2-subdev.c
 +++ b/drivers/media/v4l2-core/v4l2-subdev.c
 @@ -662,9 +662,10 @@ static long subdev_do_ioctl(struct file *file, unsigned int cmd, void *arg,
@@ -129321,7 +129321,7 @@ index cb3ad72a3e54a..eb905c565fe10 100644
  	}
  
 diff --git a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
-index 2b4fe08a5f587..54fb17a89b9fe 100644
+index 2b4fe08a5f58..54fb17a89b9f 100644
 --- a/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 +++ b/drivers/net/ethernet/stmicro/stmmac/dwmac-win2030.c
 @@ -81,8 +81,8 @@ struct dwc_qos_priv {
@@ -129344,7 +129344,7 @@ index 2b4fe08a5f587..54fb17a89b9fe 100644
  
  	return ret;
 diff --git a/drivers/of/Makefile b/drivers/of/Makefile
-index eff624854575c..640b282c115ae 100644
+index eff624854575..640b282c115a 100644
 --- a/drivers/of/Makefile
 +++ b/drivers/of/Makefile
 @@ -20,3 +20,5 @@ endif
@@ -129355,7 +129355,7 @@ index eff624854575c..640b282c115ae 100644
 +CFLAGS_device.o:= -DDEBUG
 \ No newline at end of file
 diff --git a/drivers/phy/Kconfig b/drivers/phy/Kconfig
-index e4502958fd62d..3e54ea24e8bb9 100644
+index e4502958fd62..3e54ea24e8bb 100644
 --- a/drivers/phy/Kconfig
 +++ b/drivers/phy/Kconfig
 @@ -98,5 +98,6 @@ source "drivers/phy/tegra/Kconfig"
@@ -129366,7 +129366,7 @@ index e4502958fd62d..3e54ea24e8bb9 100644
  
  endmenu
 diff --git a/drivers/phy/Makefile b/drivers/phy/Makefile
-index fb3dc9de61115..80268b9b7cab5 100644
+index fb3dc9de6111..80268b9b7cab 100644
 --- a/drivers/phy/Makefile
 +++ b/drivers/phy/Makefile
 @@ -35,4 +35,5 @@ obj-y					+= allwinner/	\
@@ -129378,7 +129378,7 @@ index fb3dc9de61115..80268b9b7cab5 100644
 +					   eswin/
 diff --git a/drivers/phy/eswin/Kconfig b/drivers/phy/eswin/Kconfig
 new file mode 100644
-index 0000000000000..1a857ec8a2caf
+index 000000000000..1a857ec8a2ca
 --- /dev/null
 +++ b/drivers/phy/eswin/Kconfig
 @@ -0,0 +1,7 @@
@@ -129391,7 +129391,7 @@ index 0000000000000..1a857ec8a2caf
 +	  Enable this to support the Eswin CSI2 DPHY.
 diff --git a/drivers/phy/eswin/Makefile b/drivers/phy/eswin/Makefile
 new file mode 100644
-index 0000000000000..9895f8ff516e8
+index 000000000000..9895f8ff516e
 --- /dev/null
 +++ b/drivers/phy/eswin/Makefile
 @@ -0,0 +1,5 @@
@@ -129402,7 +129402,7 @@ index 0000000000000..9895f8ff516e8
 +eswin_csi2_dphy-objs += phy-eswin-csi2-dphy.o #phy-eswin-csi2-dphy-hw.o
 diff --git a/drivers/phy/eswin/es-camera-module.h b/drivers/phy/eswin/es-camera-module.h
 new file mode 100644
-index 0000000000000..eb3f8bb351fd6
+index 000000000000..eb3f8bb351fd
 --- /dev/null
 +++ b/drivers/phy/eswin/es-camera-module.h
 @@ -0,0 +1,832 @@
@@ -130241,7 +130241,7 @@ index 0000000000000..eb3f8bb351fd6
 \ No newline at end of file
 diff --git a/drivers/phy/eswin/es-dvp2axi-config.h b/drivers/phy/eswin/es-dvp2axi-config.h
 new file mode 100644
-index 0000000000000..8382f76f6ac22
+index 000000000000..8382f76f6ac2
 --- /dev/null
 +++ b/drivers/phy/eswin/es-dvp2axi-config.h
 @@ -0,0 +1,108 @@
@@ -130356,7 +130356,7 @@ index 0000000000000..8382f76f6ac22
 \ No newline at end of file
 diff --git a/drivers/phy/eswin/es-video-format.h b/drivers/phy/eswin/es-video-format.h
 new file mode 100644
-index 0000000000000..88d5c4c801282
+index 000000000000..88d5c4c80128
 --- /dev/null
 +++ b/drivers/phy/eswin/es-video-format.h
 @@ -0,0 +1,54 @@
@@ -130416,7 +130416,7 @@ index 0000000000000..88d5c4c801282
 +#endif /* _UAPI_ES_VIDEO_FORMAT_H */
 diff --git a/drivers/phy/eswin/phy-eswin-csi2-dphy-common.h b/drivers/phy/eswin/phy-eswin-csi2-dphy-common.h
 new file mode 100644
-index 0000000000000..a5139d3c74aba
+index 000000000000..a5139d3c74ab
 --- /dev/null
 +++ b/drivers/phy/eswin/phy-eswin-csi2-dphy-common.h
 @@ -0,0 +1,128 @@
@@ -130550,7 +130550,7 @@ index 0000000000000..a5139d3c74aba
 +#endif
 diff --git a/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c b/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c
 new file mode 100644
-index 0000000000000..e0edce55d5104
+index 000000000000..e0edce55d510
 --- /dev/null
 +++ b/drivers/phy/eswin/phy-eswin-csi2-dphy-hw.c
 @@ -0,0 +1,1179 @@
@@ -131735,7 +131735,7 @@ index 0000000000000..e0edce55d5104
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/phy/eswin/phy-eswin-csi2-dphy.c b/drivers/phy/eswin/phy-eswin-csi2-dphy.c
 new file mode 100644
-index 0000000000000..b6096c905575d
+index 000000000000..b6096c905575
 --- /dev/null
 +++ b/drivers/phy/eswin/phy-eswin-csi2-dphy.c
 @@ -0,0 +1,984 @@
@@ -132725,7 +132725,7 @@ index 0000000000000..b6096c905575d
 +MODULE_LICENSE("GPL v2");
 diff --git a/include/media/eswin/common-def.h b/include/media/eswin/common-def.h
 new file mode 100644
-index 0000000000000..a72a661c2c63e
+index 000000000000..a72a661c2c63
 --- /dev/null
 +++ b/include/media/eswin/common-def.h
 @@ -0,0 +1,62 @@
@@ -132793,7 +132793,7 @@ index 0000000000000..a72a661c2c63e
 +#endif
 diff --git a/include/media/eswin/dw-csi-data.h b/include/media/eswin/dw-csi-data.h
 new file mode 100644
-index 0000000000000..ff1cd222f0d82
+index 000000000000..ff1cd222f0d8
 --- /dev/null
 +++ b/include/media/eswin/dw-csi-data.h
 @@ -0,0 +1,26 @@
@@ -132826,7 +132826,7 @@ index 0000000000000..ff1cd222f0d82
 \ No newline at end of file
 diff --git a/include/media/eswin/dw-dphy-data.h b/include/media/eswin/dw-dphy-data.h
 new file mode 100644
-index 0000000000000..d8fbf03a76cf1
+index 000000000000..d8fbf03a76cf
 --- /dev/null
 +++ b/include/media/eswin/dw-dphy-data.h
 @@ -0,0 +1,32 @@
@@ -132865,7 +132865,7 @@ index 0000000000000..d8fbf03a76cf1
 \ No newline at end of file
 diff --git a/include/media/eswin/dw-mipi-csi-pltfrm.h b/include/media/eswin/dw-mipi-csi-pltfrm.h
 new file mode 100644
-index 0000000000000..4358b0e6b892b
+index 000000000000..4358b0e6b892
 --- /dev/null
 +++ b/include/media/eswin/dw-mipi-csi-pltfrm.h
 @@ -0,0 +1,103 @@
@@ -132974,7 +132974,7 @@ index 0000000000000..4358b0e6b892b
 +#endif /* __DW_MIPI_CSI_PLTFRM_INCLUDES_H_ */
 diff --git a/include/media/eswin/eswin_vi.h b/include/media/eswin/eswin_vi.h
 new file mode 100644
-index 0000000000000..2559001dbbb23
+index 000000000000..2559001dbbb2
 --- /dev/null
 +++ b/include/media/eswin/eswin_vi.h
 @@ -0,0 +1,59 @@
@@ -133039,5 +133039,5 @@ index 0000000000000..2559001dbbb23
 +#endif /* _ESWIN_VI_H_ */
 \ No newline at end of file
 -- 
-2.53.0
+2.54.0
 

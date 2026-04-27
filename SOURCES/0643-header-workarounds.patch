@@ -1,4 +1,4 @@
-From f41b99d6ea1bc2b4aed4a61ae67a9e071fe211c8 Mon Sep 17 00:00:00 2001
+From c7c05bc694320b6c38f1bd0cdc1c505747107b29 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Wed, 12 Feb 2025 08:59:26 -0500
 Subject: [PATCH 643/652] header workarounds
@@ -12,7 +12,7 @@ Subject: [PATCH 643/652] header workarounds
  5 files changed, 39 insertions(+), 24 deletions(-)
 
 diff --git a/include/uapi/linux/dma_memcp.h b/include/uapi/linux/dma_memcp.h
-index 30ca7423a39c1..aec2723fc4c8d 100644
+index 30ca7423a39c..aec2723fc4c8 100644
 --- a/include/uapi/linux/dma_memcp.h
 +++ b/include/uapi/linux/dma_memcp.h
 @@ -21,6 +21,9 @@
@@ -26,7 +26,7 @@ index 30ca7423a39c1..aec2723fc4c8d 100644
  #define ES_DMA_MEMCP_H
  
 diff --git a/include/uapi/linux/es_vb_user.h b/include/uapi/linux/es_vb_user.h
-index 19588ab99b013..fed472773073b 100644
+index 19588ab99b01..fed472773073 100644
 --- a/include/uapi/linux/es_vb_user.h
 +++ b/include/uapi/linux/es_vb_user.h
 @@ -1,4 +1,4 @@
@@ -47,7 +47,7 @@ index 19588ab99b013..fed472773073b 100644
   * numa id encoding definitions
  */
 diff --git a/include/uapi/linux/eswin-ipc-scpu.h b/include/uapi/linux/eswin-ipc-scpu.h
-index e8fa083a2c7f0..a0164b374b13f 100644
+index e8fa083a2c7f..a0164b374b13 100644
 --- a/include/uapi/linux/eswin-ipc-scpu.h
 +++ b/include/uapi/linux/eswin-ipc-scpu.h
 @@ -47,6 +47,9 @@
@@ -70,7 +70,7 @@ index e8fa083a2c7f0..a0164b374b13f 100644
  }khandle_dma_allocation_data_t;
  
 diff --git a/include/uapi/linux/malloc_dmabuf.h b/include/uapi/linux/malloc_dmabuf.h
-index bf66ff0230ea3..1c5832b43bfd9 100644
+index bf66ff0230ea..1c5832b43bfd 100644
 --- a/include/uapi/linux/malloc_dmabuf.h
 +++ b/include/uapi/linux/malloc_dmabuf.h
 @@ -21,6 +21,8 @@
@@ -90,7 +90,7 @@ index bf66ff0230ea3..1c5832b43bfd9 100644
 \ No newline at end of file
 +#endif
 diff --git a/include/uapi/linux/mmz_vb.h b/include/uapi/linux/mmz_vb.h
-index 27a5f0a943526..5e808bba0e498 100644
+index 27a5f0a94352..5e808bba0e49 100644
 --- a/include/uapi/linux/mmz_vb.h
 +++ b/include/uapi/linux/mmz_vb.h
 @@ -2,6 +2,9 @@
@@ -189,5 +189,5 @@ index 27a5f0a943526..5e808bba0e498 100644
  
  #define MMZ_VB_IOC_MAGIC 		'M'
 -- 
-2.53.0
+2.54.0
 

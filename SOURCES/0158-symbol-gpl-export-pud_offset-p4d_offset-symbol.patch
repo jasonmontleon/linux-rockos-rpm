@@ -1,4 +1,4 @@
-From cf8d86b3bb4608f79751c3e88607397c50bbe6b4 Mon Sep 17 00:00:00 2001
+From b2ac5d90595d15be558ac8e4fc07ff038ce55a57 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Wed, 7 Aug 2024 18:18:57 +0800
 Subject: [PATCH 158/652] symbol: gpl: export pud_offset/p4d_offset symbol
@@ -12,7 +12,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 2 insertions(+)
 
 diff --git a/arch/riscv/mm/pgtable.c b/arch/riscv/mm/pgtable.c
-index ef887efcb6790..21ea6ed76470b 100644
+index ef887efcb679..21ea6ed76470 100644
 --- a/arch/riscv/mm/pgtable.c
 +++ b/arch/riscv/mm/pgtable.c
 @@ -36,6 +36,7 @@ pud_t *pud_offset(p4d_t *p4d, unsigned long address)
@@ -32,5 +32,5 @@ index ef887efcb6790..21ea6ed76470b 100644
  
  #ifdef CONFIG_HAVE_ARCH_HUGE_VMAP
 -- 
-2.53.0
+2.54.0
 

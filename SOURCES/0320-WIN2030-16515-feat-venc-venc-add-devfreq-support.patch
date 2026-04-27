@@ -1,4 +1,4 @@
-From 2e8e1585b32cf9313235f37a593bf07bf98d5e90 Mon Sep 17 00:00:00 2001
+From 6c268ebfd3d7ba326debd8c60c8789e66c450eba Mon Sep 17 00:00:00 2001
 From: zouxiaojun <zouxiaojun@eswincomputing.com>
 Date: Tue, 22 Oct 2024 15:15:39 +0800
 Subject: [PATCH 320/652] WIN2030-16515:feat(venc):venc add devfreq support
@@ -14,7 +14,7 @@ Signed-off-by: zouxiaojun <zouxiaojun@eswincomputing.com>
  2 files changed, 97 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index ab9c07cb01d94..f4466cbb2233a 100644
+index ab9c07cb01d9..f4466cbb2233 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -103,7 +103,7 @@ opp-1400000000 {
@@ -58,7 +58,7 @@ index ab9c07cb01d94..f4466cbb2233a 100644
  			vcmd-core = <0 0x6c>;
  			axife-core = <0x2000 0x7d0>;
 diff --git a/drivers/staging/media/eswin/venc/vc8000e_driver.c b/drivers/staging/media/eswin/venc/vc8000e_driver.c
-index 97743c8172cd6..0244069626c18 100644
+index 97743c8172cd..0244069626c1 100644
 --- a/drivers/staging/media/eswin/venc/vc8000e_driver.c
 +++ b/drivers/staging/media/eswin/venc/vc8000e_driver.c
 @@ -15,6 +15,11 @@
@@ -168,5 +168,5 @@ index 97743c8172cd6..0244069626c18 100644
  		ret = venc_sys_reset_init(pdev, vcrt);
  		if (ret < 0) {
 -- 
-2.53.0
+2.54.0
 

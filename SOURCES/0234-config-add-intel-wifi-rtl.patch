@@ -1,4 +1,4 @@
-From a4871fba3f34a5fca02a952dea9d9d3e7d2b96a4 Mon Sep 17 00:00:00 2001
+From 226444a2d61f6d3afdb81b177f7c484746fe4167 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Fri, 22 Nov 2024 17:14:08 +0800
 Subject: [PATCH 234/652] config: add intel wifi & rtl
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 33 insertions(+), 1 deletion(-)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index fe6b5b7f98efb..c1ce4ce9ed4cc 100644
+index fe6b5b7f98ef..c1ce4ce9ed4c 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -411,14 +411,46 @@ CONFIG_DWMAC_WIN2030=y
@@ -61,5 +61,5 @@ index fe6b5b7f98efb..c1ce4ce9ed4cc 100644
  # CONFIG_WLAN_VENDOR_SILABS is not set
  # CONFIG_WLAN_VENDOR_ST is not set
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From c84c90082957afa473b7a4d8f959aa6c28ed0f5f Mon Sep 17 00:00:00 2001
+From 2b216396e7f2af7f64be03189ca34db8bd3dfd40 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 28 Aug 2024 16:01:05 +0800
 Subject: [PATCH 163/652] feat:add eic7700_dbg_defconfig
@@ -16,7 +16,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
 
 diff --git a/arch/riscv/configs/eic7700_dbg_defconfig b/arch/riscv/configs/eic7700_dbg_defconfig
 new file mode 100644
-index 0000000000000..16397c4ba2f4f
+index 000000000000..16397c4ba2f4
 --- /dev/null
 +++ b/arch/riscv/configs/eic7700_dbg_defconfig
 @@ -0,0 +1,835 @@
@@ -856,5 +856,5 @@ index 0000000000000..16397c4ba2f4f
 +# CONFIG_RUNTIME_TESTING_MENU is not set
 +CONFIG_MEMTEST=y
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 0de7af05283f8ee785a6a7757fc615f84c8d096a Mon Sep 17 00:00:00 2001
+From c94b444709bac426f2f176c90a9886cb5a7da314 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Mon, 23 Dec 2024 20:02:31 +0800
 Subject: [PATCH 352/652] WIN2030-16860:feat:fix 96k palyback error
@@ -13,7 +13,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 7 insertions(+)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index bc05b82f5c798..77f225e11a2d8 100644
+index bc05b82f5c79..77f225e11a2d 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -794,6 +794,13 @@ static int es8328_hw_params(struct snd_pcm_substream *substream,
@@ -31,5 +31,5 @@ index bc05b82f5c798..77f225e11a2d8 100644
  }
  
 -- 
-2.53.0
+2.54.0
 

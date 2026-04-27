@@ -1,4 +1,4 @@
-From 273990df88fcbfb83f1362af3403810d4da46a1b Mon Sep 17 00:00:00 2001
+From 8bb9d8416407fc7e016ab2af6f6aaa264d277b18 Mon Sep 17 00:00:00 2001
 From: luoxianke <luoxianke@eswincomputing.com>
 Date: Wed, 28 May 2025 14:29:45 +0800
 Subject: [PATCH 528/652] fix:solve guvcview print err log
@@ -12,7 +12,7 @@ Signed-off-by: luoxianke <luoxianke@eswincomputing.com>
  2 files changed, 2 deletions(-)
 
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c
-index 372ed7b783ca5..85f137f4176a5 100644
+index 372ed7b783ca..85f137f4176a 100644
 --- a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_event.c
 @@ -100,7 +100,6 @@ int vvcam_video_post_event(struct vvcam_video_dev *vvcam_vdev,
@@ -24,7 +24,7 @@ index 372ed7b783ca5..85f137f4176a5 100644
      }
  
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c
-index e3a7160eb1c3d..d926dc00e8a4a 100644
+index e3a7160eb1c3..d926dc00e8a4 100644
 --- a/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/video/vvcam_video_register.c
 @@ -1237,7 +1237,6 @@ static int vvcam_video_try_create_pipeline(struct vvcam_video_dev *vvcam_vdev)
@@ -36,5 +36,5 @@ index e3a7160eb1c3d..d926dc00e8a4a 100644
      }
  
 -- 
-2.53.0
+2.54.0
 

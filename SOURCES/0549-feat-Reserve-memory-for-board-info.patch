@@ -1,4 +1,4 @@
-From dbd7d3360f69d5d74442bd54afce99c6ce79730e Mon Sep 17 00:00:00 2001
+From 510ba76e4d0bb22ba3d8b8be62ae96a2778e3b5d Mon Sep 17 00:00:00 2001
 From: Dongdong Zhang <zhangdongdong@eswincomputing.com>
 Date: Wed, 11 Jun 2025 17:24:27 +0800
 Subject: [PATCH 549/652] feat:Reserve memory for board info
@@ -15,7 +15,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 9 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index f9b1608c91d49..372a533eaba3f 100644
+index f9b1608c91d4..372a533eaba3 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -165,14 +165,19 @@ version_table:version_table@104413000 {
@@ -43,5 +43,5 @@ index f9b1608c91d49..372a533eaba3f 100644
  
  	};
 -- 
-2.53.0
+2.54.0
 

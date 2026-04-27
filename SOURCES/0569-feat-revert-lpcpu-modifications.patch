@@ -1,4 +1,4 @@
-From 9efd5918329ce265857f080b7d0ce26fe9aa954f Mon Sep 17 00:00:00 2001
+From 6b60f170fb299848363312bc6d3490ef546428ab Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Thu, 19 Jun 2025 19:10:40 +0800
 Subject: [PATCH 569/652] feat:revert lpcpu modifications
@@ -14,7 +14,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  1 file changed, 4 insertions(+), 4 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
-index 21d2c8c083b67..a331af3f0898e 100644
+index 21d2c8c083b6..a331af3f0898 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-evb.dts
 @@ -843,7 +843,7 @@ &fan_control {
@@ -54,5 +54,5 @@ index 21d2c8c083b67..a331af3f0898e 100644
  	pcf_rtc:rtc@51 {
  		compatible = "nxp,pcf8563";
 -- 
-2.53.0
+2.54.0
 

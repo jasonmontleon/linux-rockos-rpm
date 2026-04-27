@@ -1,4 +1,4 @@
-From 033ef337cb4673279704cb953d73f7b42703159c Mon Sep 17 00:00:00 2001
+From 33ac407aa8ee88cef16e4ebe1b6d2dace4e9f3f5 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Wed, 2 Jul 2025 09:43:31 +0800
 Subject: [PATCH 592/652] fix: eic7700 cpu voltage and cpufreq control failed
@@ -12,7 +12,7 @@ Signed-off-by: Xiang Xu <xuxiang@eswincomputing.com>
  1 file changed, 8 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/clk/eswin/clk.c b/drivers/clk/eswin/clk.c
-index 18ece1f2da59c..c4dc231f62d8b 100644
+index 18ece1f2da59..c4dc231f62d8 100644
 --- a/drivers/clk/eswin/clk.c
 +++ b/drivers/clk/eswin/clk.c
 @@ -381,9 +381,11 @@ static int clk_pll_set_rate(struct clk_hw *hw, unsigned long rate,
@@ -42,5 +42,5 @@ index 18ece1f2da59c..c4dc231f62d8b 100644
  
  	for (i = 0; i < nums; i++) {
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From ba30875ccb7857323f17fe1c764d76eea1ace4df Mon Sep 17 00:00:00 2001
+From 09df0843b108592e2bf12162f0a29793427491ff Mon Sep 17 00:00:00 2001
 From: shenzhenya <shenzhenya@eswincomputing.com>
 Date: Fri, 20 Jun 2025 15:00:43 +0800
 Subject: [PATCH 543/652] fix:fix ubuntu up warning and terminal lag
@@ -12,7 +12,7 @@ Signed-off-by: shenzhenya <shenzhenya@eswincomputing.com>
  1 file changed, 9 insertions(+)
 
 diff --git a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
-index 2b8d299e2f02f..9aa488f42add5 100644
+index 2b8d299e2f02..9aa488f42add 100644
 --- a/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
 +++ b/drivers/media/platform/eswin/isp/vvcam/v4l2/isp/vvcam_isp_event.c
 @@ -91,6 +91,11 @@ int vvcam_isp_post_event(struct v4l2_subdev *sd, struct vvcam_isp_event_pkg *eve
@@ -39,5 +39,5 @@ index 2b8d299e2f02f..9aa488f42add5 100644
      int ret = 0;
      struct vvcam_isp_ctrl *isp_ctrl;
 -- 
-2.53.0
+2.54.0
 

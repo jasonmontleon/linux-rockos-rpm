@@ -1,4 +1,4 @@
-From 62d66077f305f52479ad759bfd9f079273ac5c06 Mon Sep 17 00:00:00 2001
+From 128ed75393eacb8310eca6fd531d824174eea038 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Wed, 11 Dec 2024 14:32:12 +0800
 Subject: [PATCH 333/652] WIN2030-16445:fix:fix the issue of audio recording.
@@ -17,7 +17,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  4 files changed, 9 insertions(+), 5 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
-index 4059881343d14..2926d780b79c0 100644
+index 4059881343d1..2926d780b79c 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -137,6 +137,7 @@ d0_es8388_0: es8388-0@10 {
@@ -29,7 +29,7 @@ index 4059881343d14..2926d780b79c0 100644
  			d0_codec0_endpoint: endpoint {
  				system-clock-frequency = <12288000>;
 diff --git a/arch/riscv/configs/eic7700_defconfig b/arch/riscv/configs/eic7700_defconfig
-index e3a7b779ee595..353c29d85325b 100644
+index e3a7b779ee59..353c29d85325 100644
 --- a/arch/riscv/configs/eic7700_defconfig
 +++ b/arch/riscv/configs/eic7700_defconfig
 @@ -479,6 +479,7 @@ CONFIG_WATCHDOG=y
@@ -41,7 +41,7 @@ index e3a7b779ee595..353c29d85325b 100644
  CONFIG_MEDIA_SUPPORT=y
  CONFIG_MEDIA_SUPPORT_FILTER=y
 diff --git a/drivers/regulator/es5340.c b/drivers/regulator/es5340.c
-index 359f9a6ead15b..758e3b2fac54b 100644
+index 359f9a6ead15..758e3b2fac54 100644
 --- a/drivers/regulator/es5340.c
 +++ b/drivers/regulator/es5340.c
 @@ -711,9 +711,7 @@ static struct regulator_desc es5340_regulator_desc = {
@@ -55,7 +55,7 @@ index 359f9a6ead15b..758e3b2fac54b 100644
  
  	dev_info(dev,
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 1ceb706a9f9a6..bc05b82f5c798 100644
+index 1ceb706a9f9a..bc05b82f5c79 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -101,8 +101,9 @@ static const char * const supply_names[ES8328_SUPPLY_NUM] = {
@@ -90,5 +90,5 @@ index 1ceb706a9f9a6..bc05b82f5c798 100644
  		/* Select default capture path ---> phone mic */
  		snd_soc_component_write(component, ES8328_ADCCONTROL2, 0xf0);
 -- 
-2.53.0
+2.54.0
 

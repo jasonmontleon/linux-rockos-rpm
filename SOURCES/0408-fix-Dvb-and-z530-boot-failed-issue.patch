@@ -1,4 +1,4 @@
-From 604a33b8c744082bed03f96f7afafb2d9842dd1e Mon Sep 17 00:00:00 2001
+From 024c4929f3dd7e119b4b0e1f610d72f9e46f492b Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Fri, 7 Feb 2025 17:46:07 +0800
 Subject: [PATCH 408/652] fix:Dvb and z530 boot failed issue
@@ -13,7 +13,7 @@ Signed-off-by: lilijun <lilijun@eswincomputing.com>
  2 files changed, 6 insertions(+), 3 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
-index 61514cfcce99d..e520a4e89746c 100644
+index 61514cfcce99..e520a4e89746 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-dvb-dsi-panel.dtsi
 @@ -17,8 +17,6 @@
@@ -36,7 +36,7 @@ index 61514cfcce99d..e520a4e89746c 100644
  		#address-cells = <1>;
  		#size-cells = <0>;
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi b/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
-index 2875ce48c1a88..dfa297dfc44fa 100644
+index 2875ce48c1a8..dfa297dfc44f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530-dsi-panel.dtsi
 @@ -17,7 +17,6 @@
@@ -58,5 +58,5 @@ index 2875ce48c1a88..dfa297dfc44fa 100644
  		#address-cells = <1>;
  		#size-cells = <0>;
 -- 
-2.53.0
+2.54.0
 

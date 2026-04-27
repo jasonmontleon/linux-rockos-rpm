@@ -1,4 +1,4 @@
-From b5a3211f2cfd466d4039c1e02a7666c10031624a Mon Sep 17 00:00:00 2001
+From 4f37695aa2938943fb47c72af10cdc9341064fee Mon Sep 17 00:00:00 2001
 From: donghuawei <donghuawei@eswincomputing.com>
 Date: Fri, 24 Jan 2025 10:18:24 +0800
 Subject: [PATCH 393/652] WIN2030-17055:feat: npu set voltage modify
@@ -21,7 +21,7 @@ Signed-off-by: donghuawei <donghuawei@eswincomputing.com>
  7 files changed, 226 insertions(+), 115 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index af42c22de94bd..2d8f548f198f1 100644
+index af42c22de94b..2d8f548f198f 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -265,6 +265,7 @@ &pcie {
@@ -40,7 +40,7 @@ index af42c22de94bd..2d8f548f198f1 100644
 \ No newline at end of file
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 4a0b46ee05b33..e4663a6e1be6b 100644
+index 4a0b46ee05b3..e4663a6e1be6 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -489,13 +489,19 @@ d0_npu: eswin-npu@51c00000 {
@@ -68,7 +68,7 @@ index 4a0b46ee05b33..e4663a6e1be6b 100644
  			resets = <&d0_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
  			reset-names = "e31_core";
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 4ddcb756d3369..cf93f0a96878a 100644
+index 4ddcb756d336..cf93f0a96878 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -954,13 +954,21 @@ d1_npu: eswin-npu@71c00000 {
@@ -97,7 +97,7 @@ index 4ddcb756d3369..cf93f0a96878a 100644
  			resets = <&d1_reset NPU_RST_CTRL SW_NPU_E31CORE_RSTN>;
  			reset-names = "e31_core";
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index 101be38bbbfc7..1a55d0dbcfadb 100644
+index 101be38bbbfc..1a55d0dbcfad 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -788,34 +788,6 @@ static int llc_clk_set_parent(struct platform_device *pdev)
@@ -180,7 +180,7 @@ index 101be38bbbfc7..1a55d0dbcfadb 100644
  }
  
 diff --git a/drivers/soc/eswin/ai_driver/npu/dla_driver.h b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
-index bb5af332c7701..86e096f6ce519 100644
+index bb5af332c770..86e096f6ce51 100644
 --- a/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 +++ b/drivers/soc/eswin/ai_driver/npu/dla_driver.h
 @@ -72,6 +72,10 @@ struct nvdla_device {
@@ -203,7 +203,7 @@ index bb5af332c7701..86e096f6ce519 100644
  
  void dla_reg_write(struct nvdla_device *dev, uint32_t addr, uint32_t value);
 diff --git a/drivers/soc/eswin/ai_driver/npu/npu_main.c b/drivers/soc/eswin/ai_driver/npu/npu_main.c
-index f6970d5606050..d55fb1a8dbffe 100644
+index f6970d560605..d55fb1a8dbff 100644
 --- a/drivers/soc/eswin/ai_driver/npu/npu_main.c
 +++ b/drivers/soc/eswin/ai_driver/npu/npu_main.c
 @@ -332,14 +332,139 @@ struct nvdla_device *get_nvdla_dev(int i)
@@ -485,7 +485,7 @@ index f6970d5606050..d55fb1a8dbffe 100644
  	if (IS_ERR(df)) {
  		err = PTR_ERR(df);
 diff --git a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
-index a33c8efbccebc..1addd530c1f7c 100644
+index a33c8efbcceb..1addd530c1f7 100644
 --- a/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 +++ b/drivers/soc/eswin/ai_driver/npu/nvdla_hw.c
 @@ -862,6 +862,15 @@ int npu_dt_node_resources(struct nvdla_device *nvdla_dev)
@@ -545,5 +545,5 @@ index a33c8efbccebc..1addd530c1f7c 100644
  		&pdev->dev, "e31_core");
  	if (IS_ERR_OR_NULL(nvdla_dev->rstc_e31_core)) {
 -- 
-2.53.0
+2.54.0
 

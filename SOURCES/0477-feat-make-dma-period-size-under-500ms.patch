@@ -1,4 +1,4 @@
-From bae8edc2330efb9d628955df5142c6b0568bbd73 Mon Sep 17 00:00:00 2001
+From b55bc78f2f1fefd5a1b37ee9cb39a41ebba3d260 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Wed, 16 Apr 2025 10:19:42 +0800
 Subject: [PATCH 477/652] feat:make dma period size under 500ms
@@ -12,7 +12,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  1 file changed, 5 insertions(+), 5 deletions(-)
 
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 80787986d26d3..36f35cf22997d 100644
+index 80787986d26d..36f35cf22997 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -26,9 +26,9 @@
@@ -40,5 +40,5 @@ index 80787986d26d3..36f35cf22997d 100644
  	hw.fifo_size = dma_data->fifo_size;
  	hw.info |= SNDRV_PCM_INFO_BATCH;
 -- 
-2.53.0
+2.54.0
 

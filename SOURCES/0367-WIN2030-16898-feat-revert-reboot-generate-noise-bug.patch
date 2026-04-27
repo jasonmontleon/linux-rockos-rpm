@@ -1,4 +1,4 @@
-From b761f8a909f48818d9e08e6373609fbe6b488520 Mon Sep 17 00:00:00 2001
+From 8c267703d9f008261b4fffc976413db4892f5582 Mon Sep 17 00:00:00 2001
 From: zhouliang2 <zhouliang2@eswincomputing.com>
 Date: Fri, 27 Dec 2024 17:20:07 +0800
 Subject: [PATCH 367/652] WIN2030-16898:feat:revert reboot generate noise bug
@@ -17,7 +17,7 @@ Signed-off-by: zhouliang2 <zhouliang2@eswincomputing.com>
  3 files changed, 11 insertions(+), 7 deletions(-)
 
 diff --git a/sound/soc/codecs/eswin/es8328.c b/sound/soc/codecs/eswin/es8328.c
-index 26aedb86a7c90..924190fcacfa9 100644
+index 26aedb86a7c9..924190fcacfa 100644
 --- a/sound/soc/codecs/eswin/es8328.c
 +++ b/sound/soc/codecs/eswin/es8328.c
 @@ -700,8 +700,12 @@ static const struct snd_soc_dapm_route es8328_dapm_routes[] = {
@@ -36,7 +36,7 @@ index 26aedb86a7c90..924190fcacfa9 100644
  
  	return snd_soc_component_update_bits(dai->component, ES8328_DACCONTROL3,
 diff --git a/sound/soc/eswin/esw-dma.c b/sound/soc/eswin/esw-dma.c
-index 387974d162706..56de39b82b763 100644
+index 387974d16270..56de39b82b76 100644
 --- a/sound/soc/eswin/esw-dma.c
 +++ b/sound/soc/eswin/esw-dma.c
 @@ -426,10 +426,10 @@ int esw_pcm_dma_dai_register(struct i2s_dev *chip)
@@ -67,7 +67,7 @@ index 387974d162706..56de39b82b763 100644
  		chip->chan[SNDRV_PCM_STREAM_CAPTURE] = chan1;
  		period_bytes_max = dma_get_max_seg_size(chan1->device->dev);
 diff --git a/sound/soc/eswin/esw-i2s.c b/sound/soc/eswin/esw-i2s.c
-index 0d40aee31f871..eed2859387b11 100755
+index 0d40aee31f87..eed2859387b1 100755
 --- a/sound/soc/eswin/esw-i2s.c
 +++ b/sound/soc/eswin/esw-i2s.c
 @@ -1106,7 +1106,7 @@ static int i2s_probe(struct platform_device *pdev)
@@ -80,5 +80,5 @@ index 0d40aee31f871..eed2859387b11 100755
  		}
  	}
 -- 
-2.53.0
+2.54.0
 

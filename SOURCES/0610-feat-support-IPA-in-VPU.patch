@@ -1,4 +1,4 @@
-From b513e9b23e4187989f6cbbe4c0cc9b465f180d58 Mon Sep 17 00:00:00 2001
+From 08f85224bd53a46ea9a127aa9315106f2411a1e2 Mon Sep 17 00:00:00 2001
 From: zhouliang1 <zhouliang1@eswincomputing.com>
 Date: Fri, 4 Jul 2025 17:10:14 +0800
 Subject: [PATCH 610/652] feat:support IPA in VPU
@@ -20,7 +20,7 @@ Reviewed-by: Joey Zheng <zhengyu@eswincomputing.com>
  5 files changed, 190 insertions(+), 13 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
-index c21cb0f225ac3..db3f39182aecb 100644
+index c21cb0f225ac..db3f39182aec 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie-a2.dts
 @@ -253,6 +253,59 @@ ok_key {
@@ -133,7 +133,7 @@ index c21cb0f225ac3..db3f39182aecb 100644
  	spi-flash@0 {
  		compatible = "winbond,w25q128fw",
 diff --git a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
-index 30aa28ee5b0ee..91bd3ce4b44f8 100644
+index 30aa28ee5b0e..91bd3ce4b44f 100644
 --- a/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 +++ b/arch/riscv/boot/dts/eswin/vpu7702-pcie.dts
 @@ -253,6 +253,59 @@ ok_key {
@@ -246,7 +246,7 @@ index 30aa28ee5b0ee..91bd3ce4b44f8 100644
  	spi-flash@0 {
  		compatible = "winbond,w25q128fw",
 diff --git a/arch/riscv/configs/vpu7702_evb_defconfig b/arch/riscv/configs/vpu7702_evb_defconfig
-index bd2d85a0e7cb3..36756a8dfd509 100644
+index bd2d85a0e7cb..36756a8dfd50 100644
 --- a/arch/riscv/configs/vpu7702_evb_defconfig
 +++ b/arch/riscv/configs/vpu7702_evb_defconfig
 @@ -39,11 +39,14 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
@@ -296,7 +296,7 @@ index bd2d85a0e7cb3..36756a8dfd509 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/arch/riscv/configs/vpu7702_pcie_a2_defconfig b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
-index aeee72205a4ef..e70e59a4fb41a 100644
+index aeee72205a4e..e70e59a4fb41 100644
 --- a/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_a2_defconfig
 @@ -39,11 +39,14 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
@@ -346,7 +346,7 @@ index aeee72205a4ef..e70e59a4fb41a 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 diff --git a/arch/riscv/configs/vpu7702_pcie_defconfig b/arch/riscv/configs/vpu7702_pcie_defconfig
-index eb06fee59706a..45b98b871a637 100644
+index eb06fee59706..45b98b871a63 100644
 --- a/arch/riscv/configs/vpu7702_pcie_defconfig
 +++ b/arch/riscv/configs/vpu7702_pcie_defconfig
 @@ -39,11 +39,14 @@ CONFIG_CMDLINE="earlycon=sbi console=tty1 console=ttyS0,115200n8 clk_ignore_unus
@@ -396,5 +396,5 @@ index eb06fee59706a..45b98b871a637 100644
  CONFIG_MEMORY=y
  CONFIG_ESWIN_BUDDY=y
 -- 
-2.53.0
+2.54.0
 

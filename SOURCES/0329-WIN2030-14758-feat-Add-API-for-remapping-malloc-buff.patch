@@ -1,4 +1,4 @@
-From 511c7eaddb9eabd915bb10e82963f2a048dbe07c Mon Sep 17 00:00:00 2001
+From d47e5b9f726e9b39f489ecc9e4ae1c2607632cb8 Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Tue, 3 Dec 2024 14:21:54 +0800
 Subject: [PATCH 329/652] WIN2030-14758:feat:Add API for remapping malloc
@@ -17,7 +17,7 @@ Change-Id: I7f13eac26eaa7de0fb5e8c2077b2bb153d42fb22
  2 files changed, 189 insertions(+)
 
 diff --git a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
-index d9ba68d918ef0..283fbdfb1c071 100644
+index d9ba68d918ef..283fbdfb1c07 100644
 --- a/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 +++ b/drivers/memory/eswin/es_rsvmem_heap/dmabuf-heap-import-helper.c
 @@ -1169,3 +1169,190 @@ static void __exit split_dmabuf_exit(void)
@@ -213,7 +213,7 @@ index d9ba68d918ef0..283fbdfb1c071 100644
 +EXPORT_SYMBOL_GPL(remap_malloc_buf);
 \ No newline at end of file
 diff --git a/include/linux/dmabuf-heap-import-helper.h b/include/linux/dmabuf-heap-import-helper.h
-index 9a474f6594e71..d4acd7c5177c3 100644
+index 9a474f6594e7..d4acd7c5177c 100644
 --- a/include/linux/dmabuf-heap-import-helper.h
 +++ b/include/linux/dmabuf-heap-import-helper.h
 @@ -132,4 +132,6 @@ struct heap_mem *common_dmabuf_heap_rsv_iova_map(struct heap_root *root, int fd,
@@ -224,5 +224,5 @@ index 9a474f6594e71..d4acd7c5177c3 100644
 +
  #endif
 -- 
-2.53.0
+2.54.0
 

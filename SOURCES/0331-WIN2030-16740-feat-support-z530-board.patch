@@ -1,4 +1,4 @@
-From 0def689716f8e5c0abc2c14fef18685ff71cd571 Mon Sep 17 00:00:00 2001
+From 3fd9c682fef43bd0fdb649e5b65224380e9130e7 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Thu, 5 Dec 2024 20:05:27 +0800
 Subject: [PATCH 331/652] WIN2030-16740:feat:support z530 board
@@ -20,7 +20,7 @@ Signed-off-by: ningyu <ningyu@eswincomputing.com>
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-z530.dts
 
 diff --git a/arch/riscv/boot/dts/eswin/Makefile b/arch/riscv/boot/dts/eswin/Makefile
-index 80efde30fa4ff..cd6b6f5c3dbb1 100644
+index 80efde30fa4f..cd6b6f5c3dbb 100644
 --- a/arch/riscv/boot/dts/eswin/Makefile
 +++ b/arch/riscv/boot/dts/eswin/Makefile
 @@ -8,6 +8,7 @@ dtb-$(CONFIG_SOC_SIFIVE) += eswin-win2030.dtb \
@@ -34,7 +34,7 @@ index 80efde30fa4ff..cd6b6f5c3dbb1 100644
  obj-$(CONFIG_BUILTIN_DTB) += $(addsuffix .o, $(dtb-y))
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 new file mode 100644
-index 0000000000000..6ae44bf9b159b
+index 000000000000..6ae44bf9b159
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-som260-a1.dtsi
 @@ -0,0 +1,726 @@
@@ -766,7 +766,7 @@ index 0000000000000..6ae44bf9b159b
 +};
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-z530.dts b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 new file mode 100644
-index 0000000000000..0512aadbfb80d
+index 000000000000..0512aadbfb80
 --- /dev/null
 +++ b/arch/riscv/boot/dts/eswin/eic7700-z530.dts
 @@ -0,0 +1,184 @@
@@ -956,7 +956,7 @@ index 0000000000000..0512aadbfb80d
 +*/
 \ No newline at end of file
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
-index 0f0e36842fd00..71b68bc3064ed 100644
+index 0f0e36842fd0..71b68bc3064e 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-arch.dtsi
 @@ -234,12 +234,7 @@ cpu3_intc: interrupt-controller {
@@ -983,7 +983,7 @@ index 0f0e36842fd00..71b68bc3064ed 100644
  			reg-names = "control", "sideband";
  			sifive,a-mshr-count = <60>;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 7fb7d3b28df2e..e6d2005d854b3 100644
+index 7fb7d3b28df2..e6d2005d854b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -1296,7 +1296,7 @@ fan_control: fan_control@50b50000 {
@@ -1005,5 +1005,5 @@ index 7fb7d3b28df2e..e6d2005d854b3 100644
  		};
  
 -- 
-2.53.0
+2.54.0
 

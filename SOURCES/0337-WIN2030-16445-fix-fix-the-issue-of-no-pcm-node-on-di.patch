@@ -1,4 +1,4 @@
-From 07bff2ef4ce6d702e4e847e60d7af7de02379063 Mon Sep 17 00:00:00 2001
+From ea8a6e8dc8bde0f5865b53a243314a21620369ce Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 12 Dec 2024 15:40:07 +0800
 Subject: [PATCH 337/652] WIN2030-16445:fix:fix the issue of no pcm node on
@@ -14,7 +14,7 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  1 file changed, 9 insertions(+), 6 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 51734f0ecfe14..d7935bb5ec3bb 100644
+index 51734f0ecfe1..d7935bb5ec3b 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1197,8 +1197,9 @@ d1_pwm0: pwm@0x70818000 {
@@ -54,5 +54,5 @@ index 51734f0ecfe14..d7935bb5ec3bb 100644
  			#size-cells = <0>;
  			#sound-dai-cells = <0x00000000>;
 -- 
-2.53.0
+2.54.0
 

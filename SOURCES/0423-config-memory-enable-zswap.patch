@@ -1,4 +1,4 @@
-From 5f60f9c9bd3a38c73d970081c74e4e5fc536b542 Mon Sep 17 00:00:00 2001
+From fe7a0b015cd72523149ec88dca2519e477f8f02a Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 6 Mar 2025 23:15:41 +0800
 Subject: [PATCH 423/652] config: memory: enable zswap
@@ -9,7 +9,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
  1 file changed, 7 insertions(+)
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index ce7255a469703..b1223dff91aa3 100644
+index ce7255a46970..b1223dff91aa 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -60,6 +60,13 @@ CONFIG_BLK_WBT=y
@@ -27,5 +27,5 @@ index ce7255a469703..b1223dff91aa3 100644
  CONFIG_CMA=y
  CONFIG_NET=y
 -- 
-2.53.0
+2.54.0
 

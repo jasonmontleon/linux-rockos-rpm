@@ -1,4 +1,4 @@
-From ee88ac7c93ce6b185118abacc70c12e54a7ba58e Mon Sep 17 00:00:00 2001
+From 6240ca14c754c08d9fd5443b11bc3cbfd83e0f27 Mon Sep 17 00:00:00 2001
 From: tangdaoyong <tangdaoyong@eswincomputing.com>
 Date: Wed, 23 Oct 2024 14:19:57 +0800
 Subject: [PATCH 321/652] WIN2030-16532:feat(vdec):add devfreq support
@@ -14,7 +14,7 @@ Signed-off-by: tangdaoyong <tangdaoyong@eswincomputing.com>
  2 files changed, 94 insertions(+)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index f4466cbb2233a..57fbb83e48a9d 100644
+index f4466cbb2233..57fbb83e48a9 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -166,6 +166,22 @@ opp@200000000 {
@@ -49,7 +49,7 @@ index f4466cbb2233a..57fbb83e48a9d 100644
  			vcmd-core = <0 0x6c>;
  			axife-core = <0x200 0x100>;
 diff --git a/drivers/staging/media/eswin/vdec/hantro_dec.c b/drivers/staging/media/eswin/vdec/hantro_dec.c
-index 7c4de300d6e6b..780b2561ab200 100644
+index 7c4de300d6e6..780b2561ab20 100644
 --- a/drivers/staging/media/eswin/vdec/hantro_dec.c
 +++ b/drivers/staging/media/eswin/vdec/hantro_dec.c
 @@ -106,6 +106,11 @@
@@ -155,5 +155,5 @@ index 7c4de300d6e6b..780b2561ab200 100644
  	if (ret < 0) {
  		LOG_ERR("vdec: reset initialization failed");
 -- 
-2.53.0
+2.54.0
 

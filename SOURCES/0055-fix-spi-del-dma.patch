@@ -1,4 +1,4 @@
-From ce8bbbbb47f9dd926c65a4aeb0d3569371040c42 Mon Sep 17 00:00:00 2001
+From 8411586bd32516ad6ee2b654401d7eadb2c7b5c0 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 14 Jun 2024 14:54:27 +0800
 Subject: [PATCH 055/652] fix:spi del dma
@@ -12,7 +12,7 @@ Changelogs:
  3 files changed, 1 insertion(+), 10 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
-index 9f76de5f01622..0879dcca2527a 100644
+index 9f76de5f0162..0879dcca2527 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die0-soc.dtsi
 @@ -817,9 +817,6 @@ ssi0: spi@50810000 {
@@ -36,7 +36,7 @@ index 9f76de5f01622..0879dcca2527a 100644
  			status = "disabled";
  			dma-noncoherent;
 diff --git a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
-index 1805c2bcdccc6..1417c6298a3c2 100644
+index 1805c2bcdccc..1417c6298a3c 100644
 --- a/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 +++ b/arch/riscv/boot/dts/eswin/eswin-win2030-die1-soc.dtsi
 @@ -1589,9 +1589,6 @@ d1_ssi0: spi1@70810000 {
@@ -50,7 +50,7 @@ index 1805c2bcdccc6..1417c6298a3c2 100644
  			status = "disabled";
  			dma-noncoherent;
 diff --git a/drivers/spi/spi-dw-mmio.c b/drivers/spi/spi-dw-mmio.c
-index 39c1ae316ac06..4462f5b875136 100644
+index 39c1ae316ac0..4462f5b87513 100644
 --- a/drivers/spi/spi-dw-mmio.c
 +++ b/drivers/spi/spi-dw-mmio.c
 @@ -440,7 +440,7 @@ static const struct of_device_id dw_spi_mmio_of_match[] = {
@@ -63,5 +63,5 @@ index 39c1ae316ac06..4462f5b875136 100644
  };
  MODULE_DEVICE_TABLE(of, dw_spi_mmio_of_match);
 -- 
-2.53.0
+2.54.0
 

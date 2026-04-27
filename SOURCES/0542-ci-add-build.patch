@@ -1,4 +1,4 @@
-From 4b8f77f1081729e6d93f46cdf0a95b2318762351 Mon Sep 17 00:00:00 2001
+From 08a6f1a27e3d2032439bee49b2a7103ce147f49a Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Mon, 18 Nov 2024 03:55:15 +0800
 Subject: [PATCH 542/652] ci: add build
@@ -14,7 +14,7 @@ Signed-off-by: Han Gao <rabenda.cn@gmail.com>
 
 diff --git a/.github/workflows/build.yml b/.github/workflows/build.yml
 new file mode 100644
-index 0000000000000..bb5b2915c1f8f
+index 000000000000..bb5b2915c1f8
 --- /dev/null
 +++ b/.github/workflows/build.yml
 @@ -0,0 +1,76 @@
@@ -96,7 +96,7 @@ index 0000000000000..bb5b2915c1f8f
 +          retention-days: 30
 diff --git a/.github/workflows/native-build.yml b/.github/workflows/native-build.yml
 new file mode 100644
-index 0000000000000..881379558a099
+index 000000000000..881379558a09
 --- /dev/null
 +++ b/.github/workflows/native-build.yml
 @@ -0,0 +1,80 @@
@@ -181,5 +181,5 @@ index 0000000000000..881379558a099
 +          path: rockos-${{ matrix.name }}.tar.gz
 +          retention-days: 30
 -- 
-2.53.0
+2.54.0
 

@@ -1,4 +1,4 @@
-From 34415e8ccf5d86d98a99452a681ab791a7c95dda Mon Sep 17 00:00:00 2001
+From 3cdc058bc5e0c9220a6c4ba9a98a796e7440990a Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Fri, 4 Jul 2025 14:31:20 +0800
 Subject: [PATCH 544/652] fix: disable sdio1 by default for eic7700-sbc-a1
@@ -10,7 +10,7 @@ Signed-off-by: Min Lin <linmin@eswincomputing.com>
  1 file changed, 1 insertion(+), 27 deletions(-)
 
 diff --git a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
-index 690f4f2f6f402..8dfe46c4b3dc9 100644
+index 690f4f2f6f40..8dfe46c4b3dc 100644
 --- a/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 +++ b/arch/riscv/boot/dts/eswin/eic7700-sbc-a1.dts
 @@ -473,33 +473,7 @@ &sdio0 {
@@ -49,5 +49,5 @@ index 690f4f2f6f402..8dfe46c4b3dc9 100644
  
  &d0_gmac0 {
 -- 
-2.53.0
+2.54.0
 

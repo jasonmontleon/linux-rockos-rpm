@@ -1,4 +1,4 @@
-From 7c4d1f3a1df7859e4a28045f18a8935e74fdaee3 Mon Sep 17 00:00:00 2001
+From 5fc1a3b9986c64aa4d687262f6f0f1f185a87c51 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Tue, 18 Mar 2025 15:17:45 +0800
 Subject: [PATCH 448/652] fix:Fix cnoc npu timeout problem.
@@ -17,7 +17,7 @@ Signed-off-by: huangyifeng <huangyifeng@eswincomputing.com>
  2 files changed, 48 insertions(+), 23 deletions(-)
 
 diff --git a/drivers/memory/eswin/codacache/llc_spram.c b/drivers/memory/eswin/codacache/llc_spram.c
-index bc26aaa10e003..7b188b69f773b 100644
+index bc26aaa10e00..7b188b69f773 100644
 --- a/drivers/memory/eswin/codacache/llc_spram.c
 +++ b/drivers/memory/eswin/codacache/llc_spram.c
 @@ -769,28 +769,25 @@ static int llc_clk_set_parent(struct platform_device *pdev)
@@ -99,7 +99,7 @@ index bc26aaa10e003..7b188b69f773b 100644
  		return ret;
  	}
 diff --git a/drivers/regulator/mpq8785.c b/drivers/regulator/mpq8785.c
-index 994e1068a5391..2e4e95e3d98b0 100644
+index 994e1068a539..2e4e95e3d98b 100644
 --- a/drivers/regulator/mpq8785.c
 +++ b/drivers/regulator/mpq8785.c
 @@ -38,6 +38,7 @@
@@ -156,5 +156,5 @@ index 994e1068a5391..2e4e95e3d98b0 100644
  
  int mpq8785_regulator_disable(struct regulator_dev *rdev)
 -- 
-2.53.0
+2.54.0
 

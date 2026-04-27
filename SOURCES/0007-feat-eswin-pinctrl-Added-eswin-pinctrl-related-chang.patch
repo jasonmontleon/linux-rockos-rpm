@@ -1,4 +1,4 @@
-From 2178cac3fed1050fff14f35550ed0380dac76c50 Mon Sep 17 00:00:00 2001
+From b8767ecf73320bcef8658b2e39c24317898add4d Mon Sep 17 00:00:00 2001
 From: linmin <linmin@eswincomputing.com>
 Date: Mon, 22 Apr 2024 15:15:55 +0800
 Subject: [PATCH 007/652] feat(eswin pinctrl):Added eswin pinctrl related
@@ -18,7 +18,7 @@ Changelogs:
  create mode 100644 drivers/pinctrl/pinctrl-eic7700.c
 
 diff --git a/arch/riscv/configs/win2030_defconfig b/arch/riscv/configs/win2030_defconfig
-index 5d701e98d635f..c7a983e1e21fc 100644
+index 5d701e98d635..c7a983e1e21f 100644
 --- a/arch/riscv/configs/win2030_defconfig
 +++ b/arch/riscv/configs/win2030_defconfig
 @@ -140,6 +140,7 @@ CONFIG_SPI_DW_DMA=y
@@ -30,7 +30,7 @@ index 5d701e98d635f..c7a983e1e21fc 100644
  CONFIG_GPIO_SYSFS=y
  CONFIG_GPIO_DWAPB=y
 diff --git a/drivers/pinctrl/Kconfig b/drivers/pinctrl/Kconfig
-index ab3908a923e3a..81a8272c155c4 100644
+index ab3908a923e3..81a8272c155c 100644
 --- a/drivers/pinctrl/Kconfig
 +++ b/drivers/pinctrl/Kconfig
 @@ -49,6 +49,17 @@ config PINCTRL_AMD
@@ -52,7 +52,7 @@ index ab3908a923e3a..81a8272c155c4 100644
  	tristate "Apple SoC GPIO pin controller driver"
  	depends on ARCH_APPLE
 diff --git a/drivers/pinctrl/Makefile b/drivers/pinctrl/Makefile
-index dd6cda2702949..3b1057c5411eb 100644
+index dd6cda270294..3b1057c5411e 100644
 --- a/drivers/pinctrl/Makefile
 +++ b/drivers/pinctrl/Makefile
 @@ -10,6 +10,7 @@ obj-$(CONFIG_GENERIC_PINCONF)	+= pinconf-generic.o
@@ -65,7 +65,7 @@ index dd6cda2702949..3b1057c5411eb 100644
  obj-$(CONFIG_PINCTRL_AS3722)	+= pinctrl-as3722.o
 diff --git a/drivers/pinctrl/pinctrl-eic7700.c b/drivers/pinctrl/pinctrl-eic7700.c
 new file mode 100644
-index 0000000000000..c464e6964f26c
+index 000000000000..c464e6964f26
 --- /dev/null
 +++ b/drivers/pinctrl/pinctrl-eic7700.c
 @@ -0,0 +1,1363 @@
@@ -1433,5 +1433,5 @@ index 0000000000000..c464e6964f26c
 +MODULE_AUTHOR("luyulin@eswincomputing.com");
 +MODULE_LICENSE("GPL");
 -- 
-2.53.0
+2.54.0
 
