@@ -1,4 +1,4 @@
-From 3cdc058bc5e0c9220a6c4ba9a98a796e7440990a Mon Sep 17 00:00:00 2001
+From 14b58c7a76659e65c835da2338f75a3cd1ea4cb3 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Fri, 4 Jul 2025 14:31:20 +0800
 Subject: [PATCH 544/652] fix: disable sdio1 by default for eic7700-sbc-a1
