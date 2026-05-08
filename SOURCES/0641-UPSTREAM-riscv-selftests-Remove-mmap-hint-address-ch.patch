@@ -1,4 +1,4 @@
-From df1c6bd3295cfb6ab1c305dd148cbb388d682d69 Mon Sep 17 00:00:00 2001
+From a8364a8cbd3546fc87246d54b69233cc93ce9a68 Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Mon, 26 Aug 2024 09:36:46 -0700
 Subject: [PATCH 641/652] UPSTREAM: riscv: selftests: Remove mmap hint address

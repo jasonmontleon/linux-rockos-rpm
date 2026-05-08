@@ -1,4 +1,4 @@
-From 08ddbf90d1da22e317158fabf8c87cbf40330248 Mon Sep 17 00:00:00 2001
+From 9a9e509616d526f71697e383449bc0865c5babf7 Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Fri, 13 Jun 2025 09:14:53 +0800
 Subject: [PATCH 629/652] fix:enable pvt0 in 7702 boards by default
