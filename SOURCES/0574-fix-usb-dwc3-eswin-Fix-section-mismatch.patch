@@ -1,4 +1,4 @@
-From 891051354b908469be5a3c62cb6e8e0c9b46d1e5 Mon Sep 17 00:00:00 2001
+From 7275cf32de082f5e4e1586c788e29ecb156f9ef3 Mon Sep 17 00:00:00 2001
 From: Min Lin <linmin@eswincomputing.com>
 Date: Mon, 23 Jun 2025 10:06:00 +0800
 Subject: [PATCH 574/652] fix:usb: dwc3: eswin: Fix section mismatch

@@ -1,4 +1,4 @@
-From 9439b66b9e19041fa5bd7216d3618de501c4b70d Mon Sep 17 00:00:00 2001
+From af3419bef8eb49e343997e7fb1ada2078d36b598 Mon Sep 17 00:00:00 2001
 From: Maxim Kochetkov <fido_max@inbox.ru>
 Date: Mon, 4 Nov 2024 00:50:03 +0800
 Subject: [PATCH 220/652] backport: riscv: optimize ELF relocation function in
