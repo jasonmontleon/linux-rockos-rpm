@@ -1,4 +1,4 @@
-From b4e93422562c46b15cd9698ad9f9889d7535143f Mon Sep 17 00:00:00 2001
+From fa4988f3410b4aa612d816fc9d86046dacf153a5 Mon Sep 17 00:00:00 2001
 From: luoshanggui <luoshanggui@eswincomputing.com>
 Date: Mon, 23 Sep 2024 17:47:12 +0800
 Subject: [PATCH 178/652] feat: add trylock for npu ioctl Changelogs: add

@@ -1,4 +1,4 @@
-From 5802a9751ff273eade15aa85cc6a7ab968907dc9 Mon Sep 17 00:00:00 2001
+From 2ead38bb73711a9417095ead76a5e46f1c3d971b Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 23 May 2025 13:32:19 +0800
 Subject: [PATCH 515/652] feat: sbc vi
@@ -286,7 +286,7 @@ index e019b70ecda0..a7a2ec2d212f 100644
 +	memory-region = <&dvp2axi_mem>;
 +};
 diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-index 7caab5a79e65..a2e45b961ec7 100644
+index f41b2e1ab0a5..1899eb080515 100644
 --- a/drivers/media/i2c/imx219.c
 +++ b/drivers/media/i2c/imx219.c
 @@ -555,6 +555,10 @@ struct imx219 {
@@ -342,8 +342,8 @@ index 7caab5a79e65..a2e45b961ec7 100644
 +		gpiod_set_value(imx219->xvs_gpio, 1);
 +	}
  
- 	/*
- 	* The sensor must be powered for imx219_identify_module()
+ 	ret = imx219_get_regulators(imx219);
+ 	if (ret) {
 diff --git a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c b/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c
 index 92dd6fd50039..973ee3ef97bf 100755
 --- a/drivers/media/platform/eswin/mipi-csi2/dw-csi-plat.c

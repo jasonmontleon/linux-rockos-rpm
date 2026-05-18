@@ -1,4 +1,4 @@
-From ae0bb375f7bba39b01d2d607f66b666d84fa5a32 Mon Sep 17 00:00:00 2001
+From f75118d5cbb5c000cdb177d247bb9ed0007f0072 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Mon, 16 Jun 2025 17:18:27 +0800
 Subject: [PATCH 583/652] feat:Merge branch 'feature-vi' into dev
@@ -3960,7 +3960,7 @@ index 610cddc7a6d9..7113ea183e86 100644
  
  		d1_dc_test: dctest@702c0000 {
 diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-index a2e45b961ec7..5184683432c8 100644
+index 1899eb080515..22900f9162e3 100644
 --- a/drivers/media/i2c/imx219.c
 +++ b/drivers/media/i2c/imx219.c
 @@ -12,7 +12,7 @@
@@ -5120,12 +5120,12 @@ index a2e45b961ec7..5184683432c8 100644
 -	struct v4l2_mbus_framefmt *framefmt;
 -	int exposure_max, exposure_def, hblank;
 -	unsigned int i;
--
--	mutex_lock(&imx219->mutex);
 +	int exposure_max, exposure_def, hblank, pixel_rate;
 +	struct v4l2_mbus_framefmt *format;
 +	struct v4l2_rect *crop;
  
+-	mutex_lock(&imx219->mutex);
+-
 -	for (i = 0; i < ARRAY_SIZE(codes); i++)
 -		if (codes[i] == fmt->format.code)
 -			break;
@@ -5903,8 +5903,8 @@ index a2e45b961ec7..5184683432c8 100644
 +		gpiod_set_value_cansleep(imx219->mclk_gpio, 1);
  	}
  
- 	/*
-@@ -1552,20 +1587,22 @@ static int imx219_probe(struct i2c_client *client)
+ 	ret = imx219_get_regulators(imx219);
+@@ -1565,20 +1600,22 @@ static int imx219_probe(struct i2c_client *client)
  	imx219->mode = &supported_modes[0];
  
  	/* sensor doesn't enter LP-11 state upon power up until and unless
@@ -5934,7 +5934,7 @@ index a2e45b961ec7..5184683432c8 100644
  	usleep_range(100, 110);
  
  	ret = imx219_init_controls(imx219);
-@@ -1573,37 +1610,42 @@ static int imx219_probe(struct i2c_client *client)
+@@ -1586,37 +1623,42 @@ static int imx219_probe(struct i2c_client *client)
  		goto error_power_off;
  
  	/* Initialize subdev */
@@ -5988,7 +5988,7 @@ index a2e45b961ec7..5184683432c8 100644
  error_media_entity:
  	pm_runtime_disable(dev);
  	pm_runtime_set_suspended(dev);
-@@ -1624,6 +1666,7 @@ static void imx219_remove(struct i2c_client *client)
+@@ -1637,6 +1679,7 @@ static void imx219_remove(struct i2c_client *client)
  	struct imx219 *imx219 = to_imx219(sd);
  
  	v4l2_async_unregister_subdev(sd);
@@ -5996,7 +5996,7 @@ index a2e45b961ec7..5184683432c8 100644
  	media_entity_cleanup(&sd->entity);
  	imx219_free_controls(imx219);
  
-@@ -1634,14 +1677,15 @@ static void imx219_remove(struct i2c_client *client)
+@@ -1647,14 +1690,15 @@ static void imx219_remove(struct i2c_client *client)
  	}
  }
  

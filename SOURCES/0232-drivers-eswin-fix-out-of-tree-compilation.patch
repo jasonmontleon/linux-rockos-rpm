@@ -1,4 +1,4 @@
-From ac13c0bdc6ed2f4204dc0906a92d9fa13fca87ea Mon Sep 17 00:00:00 2001
+From e2237f5bbebbe53aa15ba86b8ded46cf9bc6ebfe Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Wed, 20 Nov 2024 15:48:28 +0800
 Subject: [PATCH 232/652] drivers: eswin: fix out-of-tree compilation

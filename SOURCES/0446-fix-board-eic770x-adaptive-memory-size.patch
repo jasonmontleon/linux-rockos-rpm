@@ -1,4 +1,4 @@
-From 1bfef758a7bc8a99bbf4279e7443b1ceff020c0e Mon Sep 17 00:00:00 2001
+From a8ce90ba58c2396af19297b751550be83b395790 Mon Sep 17 00:00:00 2001
 From: Xiang Xu <xuxiang@eswincomputing.com>
 Date: Thu, 20 Mar 2025 18:09:24 +0800
 Subject: [PATCH 446/652] fix:board: eic770x: adaptive memory size

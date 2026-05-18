@@ -1,4 +1,4 @@
-From 279e9afc272bacc4272edc55947226a0f3cd625f Mon Sep 17 00:00:00 2001
+From 919e25b0d906571346d218698abafce5f010e865 Mon Sep 17 00:00:00 2001
 From: congyuyang <congyuyang@eswincomputing.com>
 Date: Fri, 11 Apr 2025 21:29:00 +0800
 Subject: [PATCH 488/652] feat:Merge branch 'feature-vi' into win2030-dev
@@ -25,7 +25,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  arch/riscv/configs/eic7700_defconfig          |     9 +
  drivers/media/i2c/Kconfig                     |    24 +-
  drivers/media/i2c/Makefile                    |     3 +
- drivers/media/i2c/imx219.c                    |  1302 +-
+ drivers/media/i2c/imx219.c                    |  1292 +-
  drivers/media/i2c/imx327.c                    |  2255 +++
  drivers/media/platform/Kconfig                |     1 +
  drivers/media/platform/Makefile               |     4 +
@@ -354,7 +354,7 @@ Signed-off-by: congyuyang <congyuyang@eswincomputing.com>
  include/media/eswin/dw-dphy-data.h            |    32 +
  include/media/eswin/dw-mipi-csi-pltfrm.h      |   103 +
  include/media/eswin/eswin_vi.h                |    59 +
- 346 files changed, 128347 insertions(+), 952 deletions(-)
+ 346 files changed, 128347 insertions(+), 942 deletions(-)
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-evb-camera.dtsi
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-hifive-premier-p550-camera.dtsi
  create mode 100644 arch/riscv/boot/dts/eswin/eic7700-osm-camera.dtsi
@@ -3069,7 +3069,7 @@ index 80b00d39b48f..d0f8b180c1de 100644
 +obj-$(CONFIG_VIDEO_IMX327) += imx327.o
 \ No newline at end of file
 diff --git a/drivers/media/i2c/imx219.c b/drivers/media/i2c/imx219.c
-index a3d5a8a7c660..7caab5a79e65 100644
+index 03cbacd77a80..f41b2e1ab0a5 100644
 --- a/drivers/media/i2c/imx219.c
 +++ b/drivers/media/i2c/imx219.c
 @@ -12,7 +12,7 @@
@@ -3124,7 +3124,10 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +
 +/* Pixel rate is fixed at 182.4M for all the modes */
 +#define IMX219_PIXEL_RATE 182400000
-+
+ 
+-/* Pixel rate is fixed for all the modes */
+-#define IMX219_PIXEL_RATE		182400000
+-#define IMX219_PIXEL_RATE_4LANE		280800000
 +#define IMX219_DEFAULT_LINK_FREQ 456000000
 +
 +/* V_TIMING internal */
@@ -3134,7 +3137,9 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +#define IMX219_VTS_30FPS_BINNED 0x06e3
 +#define IMX219_VTS_30FPS_640x480 0x06e3
 +#define IMX219_VTS_MAX 0xffff
-+
+ 
+-#define IMX219_DEFAULT_LINK_FREQ	456000000
+-#define IMX219_DEFAULT_LINK_FREQ_4LANE	363000000
 +#define IMX219_VBLANK_MIN 4
 +
 +/*Frame Length Line*/
@@ -3169,10 +3174,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +#define IMX219_DGTL_GAIN_STEP 1
 +
 +#define IMX219_REG_ORIENTATION 0x0172
- 
--/* Pixel rate is fixed for all the modes */
--#define IMX219_PIXEL_RATE		182400000
--#define IMX219_PIXEL_RATE_4LANE		280800000
++
 +/* Test Pattern Control */
 +#define IMX219_REG_TEST_PATTERN 0x0600
 +#define IMX219_TEST_PATTERN_DISABLE 0
@@ -3180,9 +3182,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +#define IMX219_TEST_PATTERN_COLOR_BARS 2
 +#define IMX219_TEST_PATTERN_GREY_COLOR 3
 +#define IMX219_TEST_PATTERN_PN9 4
- 
--#define IMX219_DEFAULT_LINK_FREQ	456000000
--#define IMX219_DEFAULT_LINK_FREQ_4LANE	363000000
++
 +/* Test pattern colour components */
 +#define IMX219_REG_TESTP_RED 0x0602
 +#define IMX219_REG_TESTP_GREENR 0x0604
@@ -3762,8 +3762,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +	DPRINTK("imx219.c imx219_get_format_code codes[i] = 0x%x \n", codes[i]);
 +	return codes[i];
 +}
- 
--	return imx219_mbus_formats[i];
++
 +static void imx219_set_default_format(struct imx219 *imx219)
 +{
 +	struct v4l2_mbus_framefmt *fmt;
@@ -3809,7 +3808,8 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +	try_fmt->code =
 +		imx219_get_format_code(imx219, MEDIA_BUS_FMT_SRGGB10_1X10);
 +	try_fmt->field = V4L2_FIELD_NONE;
-+
+ 
+-	return imx219_mbus_formats[i];
 +	/* Initialize try_crop rectangle. */
 +	try_crop = v4l2_subdev_get_try_crop(sd, fh->state, 0);
 +	try_crop->top = IMX219_PIXEL_ARRAY_TOP;
@@ -4762,7 +4762,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
  		dev_err(dev, "Link frequency not supported: %lld\n",
  			ep_cfg.link_frequencies[0]);
  		goto error_out;
-@@ -1241,44 +1513,37 @@ static int imx219_probe(struct i2c_client *client)
+@@ -1241,29 +1513,32 @@ static int imx219_probe(struct i2c_client *client)
  	v4l2_i2c_subdev_init(&imx219->sd, client, &imx219_subdev_ops);
  
  	/* Check the hardware configuration in device tree */
@@ -4790,16 +4790,6 @@ index a3d5a8a7c660..7caab5a79e65 100644
 -			imx219->xclk_freq);
 -		return -EINVAL;
 -	}
--
--	ret = imx219_get_regulators(imx219);
--	if (ret) {
--		dev_err(dev, "failed to get regulators\n");
--		return ret;
--	}
--
--	/* Request optional enable pin */
--	imx219->reset_gpio = devm_gpiod_get_optional(dev, "reset",
--						     GPIOD_OUT_HIGH);
 +	// /* Get system clock (xclk) */
 +	// imx219->xclk = devm_clk_get(dev, NULL);
 +	// if (IS_ERR(imx219->xclk)) {
@@ -4824,6 +4814,11 @@ index a3d5a8a7c660..7caab5a79e65 100644
 +	// imx219->reset_gpio = devm_gpiod_get_optional(dev, "reset",
 +	// 					     GPIOD_OUT_HIGH);
  
+ 	ret = imx219_get_regulators(imx219);
+ 	if (ret) {
+@@ -1279,9 +1554,9 @@ static int imx219_probe(struct i2c_client *client)
+ 				     "failed to get reset gpio\n");
+ 
  	/*
 -	 * The sensor must be powered for imx219_identify_module()
 -	 * to be able to read the CHIP_ID register
@@ -4834,7 +4829,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
  	ret = imx219_power_on(dev);
  	if (ret)
  		return ret;
-@@ -1291,22 +1556,20 @@ static int imx219_probe(struct i2c_client *client)
+@@ -1294,22 +1569,20 @@ static int imx219_probe(struct i2c_client *client)
  	imx219->mode = &supported_modes[0];
  
  	/* sensor doesn't enter LP-11 state upon power up until and unless
@@ -4864,7 +4859,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
  	usleep_range(100, 110);
  
  	ret = imx219_init_controls(imx219);
-@@ -1314,45 +1577,40 @@ static int imx219_probe(struct i2c_client *client)
+@@ -1317,45 +1590,40 @@ static int imx219_probe(struct i2c_client *client)
  		goto error_power_off;
  
  	/* Initialize subdev */
@@ -4918,7 +4913,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
  	media_entity_cleanup(&imx219->sd.entity);
  
  error_handler_free:
-@@ -1370,7 +1628,6 @@ static void imx219_remove(struct i2c_client *client)
+@@ -1373,7 +1641,6 @@ static void imx219_remove(struct i2c_client *client)
  	struct imx219 *imx219 = to_imx219(sd);
  
  	v4l2_async_unregister_subdev(sd);
@@ -4926,7 +4921,7 @@ index a3d5a8a7c660..7caab5a79e65 100644
  	media_entity_cleanup(&sd->entity);
  	imx219_free_controls(imx219);
  
-@@ -1381,15 +1638,14 @@ static void imx219_remove(struct i2c_client *client)
+@@ -1384,15 +1651,14 @@ static void imx219_remove(struct i2c_client *client)
  	}
  }
  
