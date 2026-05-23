@@ -1,4 +1,4 @@
-From 4816c3b594a481f66472c6eb205883a667648b7e Mon Sep 17 00:00:00 2001
+From b54b3a1a2c5b477b30876fd29485feb23decbf7e Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Tue, 17 Dec 2024 14:22:26 +0800
 Subject: [PATCH 370/652] WIN2030-16550:feat:Differentiate output devices for
@@ -1741,7 +1741,7 @@ index b96f169eedfe..1f7a44346d8d 100644
 +es_drm-$(CONFIG_ESWIN_MIPI_DSI)+= es_mipi_dsi.o es_panel.o
 \ No newline at end of file
 diff --git a/drivers/gpu/drm/panel/panel-simple.c b/drivers/gpu/drm/panel/panel-simple.c
-index 8a94eee57d94..b1d17786b47c 100644
+index 7620ac20393b..2c0c7593e0b4 100644
 --- a/drivers/gpu/drm/panel/panel-simple.c
 +++ b/drivers/gpu/drm/panel/panel-simple.c
 @@ -3378,6 +3378,31 @@ static const struct panel_desc rocktech_rk043fn48h = {

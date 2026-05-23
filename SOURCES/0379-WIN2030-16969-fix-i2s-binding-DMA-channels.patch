@@ -1,4 +1,4 @@
-From 6c0964d56188f3593a11a4c0fa524fc550ab0d26 Mon Sep 17 00:00:00 2001
+From 815a080fb7adee8e1ccc298ff1ab16d02924d199 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 9 Jan 2025 17:03:33 +0800
 Subject: [PATCH 379/652] WIN2030-16969:fix:i2s binding DMA channels.
@@ -142,10 +142,10 @@ index 96cf2b22d8d5..42978f4a4cdc 100644
  			resets = <&d1_reset VO_I2SRST_CTRL SW_VO_I2S_RSTN>,
  				<&d1_reset VO_I2SRST_CTRL SW_VO_I2S_PRSTN>,
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 152ef7167318..470f5d0e60dc 100644
+index fc9ccc0f12b0..31a388b2369d 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-@@ -1415,23 +1415,42 @@ int win2030_dma_sel_cfg(struct axi_dma_chan *chan, u32 val)
+@@ -1413,23 +1413,42 @@ int win2030_dma_sel_cfg(struct axi_dma_chan *chan, u32 val)
  	return 0;
  }
  

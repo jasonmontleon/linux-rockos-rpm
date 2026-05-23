@@ -1,4 +1,4 @@
-From 2e925d6b65ac66b221f22cfdbb085f715a03d0bf Mon Sep 17 00:00:00 2001
+From 70fa0656df204ab4f549bffa5f6ccbec546f6738 Mon Sep 17 00:00:00 2001
 From: Jason Montleon <jmontleo@redhat.com>
 Date: Thu, 10 Jul 2025 14:51:04 -0400
 Subject: [PATCH 652/652] remove makefile reference for non existent directory

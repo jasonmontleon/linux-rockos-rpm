@@ -1,4 +1,4 @@
-From 69e9aa40f9e487d17fc8000507bb849ec2d7110a Mon Sep 17 00:00:00 2001
+From 7ac3dfd191a4f93874077d87308e44496039dad4 Mon Sep 17 00:00:00 2001
 From: Palmer Dabbelt <palmer@rivosinc.com>
 Date: Thu, 15 Feb 2024 08:04:23 -0800
 Subject: [PATCH 157/652] Merge patch series "membarrier: riscv: Core
@@ -126,10 +126,10 @@ index 000000000000..2387804b1c63
 +The barrier matches a full barrier in the proximity of the membarrier system call
 +entry, cf. membarrier_{private,global}_expedited().
 diff --git a/MAINTAINERS b/MAINTAINERS
-index e700dca4974b..656373b207f4 100644
+index 8b1ee5b11eca..f3a34c892552 100644
 --- a/MAINTAINERS
 +++ b/MAINTAINERS
-@@ -13703,7 +13703,9 @@ M:	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
+@@ -13711,7 +13711,9 @@ M:	Mathieu Desnoyers <mathieu.desnoyers@efficios.com>
  M:	"Paul E. McKenney" <paulmck@kernel.org>
  L:	linux-kernel@vger.kernel.org
  S:	Supported

@@ -1,4 +1,4 @@
-From b653c88a307669efdeee7f885ad293a256ebcb60 Mon Sep 17 00:00:00 2001
+From 7066d32b9ed2c0a604e9b4a9fb08c2f165df7dd7 Mon Sep 17 00:00:00 2001
 From: Eric Lin <eric.lin@sifive.com>
 Date: Tue, 16 Jul 2024 10:32:03 +0000
 Subject: [PATCH 214/652] perf vendor events riscv: Add SiFive P550 events

@@ -1,4 +1,4 @@
-From 4ae94d85330c6c540c921ca438279490f768acdb Mon Sep 17 00:00:00 2001
+From 365e381a3426ad8419610519cefbc84ba11dd66b Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 20:23:49 +0800
 Subject: [PATCH 430/652] dts: eswin: p550: add disable-wp & broken-cd

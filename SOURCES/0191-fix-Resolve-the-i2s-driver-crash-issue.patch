@@ -1,4 +1,4 @@
-From 4cb04ca3fd53146746b17c3fe7ed5075fd30800f Mon Sep 17 00:00:00 2001
+From 8786940cf2cdc11d9cdb2e47749710fca2adeb68 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Mon, 14 Oct 2024 14:35:38 +0800
 Subject: [PATCH 191/652] fix:Resolve the i2s driver crash issue.
@@ -14,10 +14,10 @@ Signed-off-by: denglei <denglei@eswincomputing.com>
  2 files changed, 6 insertions(+), 22 deletions(-)
 
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index cddc9a612ee3..6700a9b44f0f 100644
+index 952e3953b60f..cf4ebeed1137 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-@@ -1564,6 +1564,10 @@ static int dw_probe(struct platform_device *pdev)
+@@ -1562,6 +1562,10 @@ static int dw_probe(struct platform_device *pdev)
  	dma_cap_set(DMA_SLAVE, dw->dma.cap_mask);
  	dma_cap_set(DMA_CYCLIC, dw->dma.cap_mask);
  

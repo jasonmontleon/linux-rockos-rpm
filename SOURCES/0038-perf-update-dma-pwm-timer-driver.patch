@@ -1,4 +1,4 @@
-From 3d0f898c6f0266992345d87634020300158da9db Mon Sep 17 00:00:00 2001
+From 261a90e688bd079286bb3f47e3b0e7e64ea0b375 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 27 May 2024 18:53:47 +0800
 Subject: [PATCH 038/652] perf:update dma, pwm, timer driver
@@ -381,7 +381,7 @@ index 000000000000..089d0f28eba3
 +MODULE_DESCRIPTION("eswin timer driver");
 +MODULE_LICENSE("GPL v2");
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index dd98cce3dad8..54c1396d974b 100644
+index 876fa4f14947..669395205f5c 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -55,15 +55,14 @@
@@ -437,7 +437,7 @@ index dd98cce3dad8..54c1396d974b 100644
  }
  
  static u32 axi_chan_get_xfer_width(struct axi_dma_chan *chan, dma_addr_t src,
-@@ -717,7 +721,7 @@ static int dw_axi_dma_set_hw_desc(struct axi_dma_chan *chan,
+@@ -715,7 +719,7 @@ static int dw_axi_dma_set_hw_desc(struct axi_dma_chan *chan,
  	hw_desc->lli->block_ts_lo = cpu_to_le32(block_ts - 1);
  
  	ctllo |= DWAXIDMAC_BURST_TRANS_LEN_4 << CH_CTL_L_DST_MSIZE_POS |
@@ -446,7 +446,7 @@ index dd98cce3dad8..54c1396d974b 100644
  	hw_desc->lli->ctl_lo = cpu_to_le32(ctllo);
  
  	set_desc_src_master(hw_desc, chan);
-@@ -1372,8 +1376,11 @@ static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
+@@ -1370,8 +1374,11 @@ static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
  
  	chan = dchan_to_axi_dma_chan(dchan);
  	chan->hw_handshake_num = dma_spec->args[0];
@@ -460,7 +460,7 @@ index dd98cce3dad8..54c1396d974b 100644
  	return dchan;
  }
  
-@@ -1628,57 +1635,13 @@ static int dw_probe(struct platform_device *pdev)
+@@ -1626,57 +1633,13 @@ static int dw_probe(struct platform_device *pdev)
  	return ret;
  }
  
@@ -519,7 +519,7 @@ index dd98cce3dad8..54c1396d974b 100644
  
  	/* Enable clk before accessing to registers */
  	clk_prepare_enable(chip->cfgr_clk);
-@@ -1702,8 +1665,11 @@ static int dw_remove(struct platform_device *pdev)
+@@ -1700,8 +1663,11 @@ static int dw_remove(struct platform_device *pdev)
  		list_del(&chan->vc.chan.device_node);
  		tasklet_kill(&chan->vc.task);
  	}
@@ -533,7 +533,7 @@ index dd98cce3dad8..54c1396d974b 100644
  
  	return 0;
  }
-@@ -1723,7 +1689,7 @@ static const struct of_device_id dw_dma_of_id_table[] = {
+@@ -1721,7 +1687,7 @@ static const struct of_device_id dw_dma_of_id_table[] = {
  		.data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),
  	}, {
  		.compatible = "eswin,eic770x-axi-dma",
@@ -542,7 +542,7 @@ index dd98cce3dad8..54c1396d974b 100644
  	},
  	{}
  };
-@@ -1743,3 +1709,4 @@ module_platform_driver(dw_driver);
+@@ -1741,3 +1707,4 @@ module_platform_driver(dw_driver);
  MODULE_LICENSE("GPL v2");
  MODULE_DESCRIPTION("Synopsys DesignWare AXI DMA Controller platform driver");
  MODULE_AUTHOR("Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>");

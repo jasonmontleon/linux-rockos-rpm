@@ -1,4 +1,4 @@
-From b9696253ff24fd09e2f294c5239b9b2c214fe02e Mon Sep 17 00:00:00 2001
+From a20f11cb74394235229fb67e0f7358222037e908 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Thu, 23 May 2024 10:01:46 +0800
 Subject: [PATCH 020/652] feat:Add dma driver.
@@ -139,7 +139,7 @@ index 2ff82f4feba1..64bf0476b4bc 100755
  	{  WIN2030_CLK_HSP_RMII_REF_1		,"clk_hsp_rmii_ref_1",		"gate_hsp_rmii_ref_1", CLK_SET_RATE_PARENT,},
  
 diff --git a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
-index 72fb40de58b3..dd98cce3dad8 100644
+index 3ea3e203253a..876fa4f14947 100644
 --- a/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 +++ b/drivers/dma/dw-axi-dmac/dw-axi-dmac-platform.c
 @@ -28,10 +28,15 @@
@@ -190,7 +190,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  }
  
  static u32 axi_chan_get_xfer_width(struct axi_dma_chan *chan, dma_addr_t src,
-@@ -575,25 +598,43 @@ static void write_desc_dar(struct axi_dma_hw_desc *desc, dma_addr_t adr)
+@@ -573,25 +596,43 @@ static void write_desc_dar(struct axi_dma_hw_desc *desc, dma_addr_t adr)
  	desc->lli->dar = cpu_to_le64(adr);
  }
  
@@ -241,7 +241,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  	else
  		val &= ~CH_CTL_L_DST_MAST;
  
-@@ -676,11 +717,11 @@ static int dw_axi_dma_set_hw_desc(struct axi_dma_chan *chan,
+@@ -674,11 +715,11 @@ static int dw_axi_dma_set_hw_desc(struct axi_dma_chan *chan,
  	hw_desc->lli->block_ts_lo = cpu_to_le32(block_ts - 1);
  
  	ctllo |= DWAXIDMAC_BURST_TRANS_LEN_4 << CH_CTL_L_DST_MSIZE_POS |
@@ -256,7 +256,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  	hw_desc->len = len;
  	return 0;
  }
-@@ -945,8 +986,8 @@ dma_chan_prep_dma_memcpy(struct dma_chan *dchan, dma_addr_t dst_adr,
+@@ -943,8 +984,8 @@ dma_chan_prep_dma_memcpy(struct dma_chan *dchan, dma_addr_t dst_adr,
  		       DWAXIDMAC_CH_CTL_L_INC << CH_CTL_L_SRC_INC_POS);
  		hw_desc->lli->ctl_lo = cpu_to_le32(reg);
  
@@ -267,7 +267,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  
  		hw_desc->len = xfer_len;
  		desc->length += hw_desc->len;
-@@ -1283,6 +1324,41 @@ static int __maybe_unused axi_dma_runtime_resume(struct device *dev)
+@@ -1281,6 +1322,41 @@ static int __maybe_unused axi_dma_runtime_resume(struct device *dev)
  	return axi_dma_resume(chip);
  }
  
@@ -309,7 +309,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
  					    struct of_dma *ofdma)
  {
-@@ -1296,6 +1372,8 @@ static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
+@@ -1294,6 +1370,8 @@ static struct dma_chan *dw_axi_dma_of_xlate(struct of_phandle_args *dma_spec,
  
  	chan = dchan_to_axi_dma_chan(dchan);
  	chan->hw_handshake_num = dma_spec->args[0];
@@ -318,7 +318,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  	return dchan;
  }
  
-@@ -1419,6 +1497,23 @@ static int dw_probe(struct platform_device *pdev)
+@@ -1417,6 +1495,23 @@ static int dw_probe(struct platform_device *pdev)
  		if (ret)
  			return ret;
  	}
@@ -342,7 +342,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  
  	chip->dw->hdata->use_cfg2 = !!(flags & AXI_DMA_FLAG_USE_CFG2);
  
-@@ -1533,6 +1628,51 @@ static int dw_probe(struct platform_device *pdev)
+@@ -1531,6 +1626,51 @@ static int dw_probe(struct platform_device *pdev)
  	return ret;
  }
  
@@ -394,7 +394,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  static int dw_remove(struct platform_device *pdev)
  {
  	struct axi_dma_chip *chip = platform_get_drvdata(pdev);
-@@ -1562,6 +1702,8 @@ static int dw_remove(struct platform_device *pdev)
+@@ -1560,6 +1700,8 @@ static int dw_remove(struct platform_device *pdev)
  		list_del(&chan->vc.chan.device_node);
  		tasklet_kill(&chan->vc.task);
  	}
@@ -403,7 +403,7 @@ index 72fb40de58b3..dd98cce3dad8 100644
  
  	return 0;
  }
-@@ -1579,6 +1721,9 @@ static const struct of_device_id dw_dma_of_id_table[] = {
+@@ -1577,6 +1719,9 @@ static const struct of_device_id dw_dma_of_id_table[] = {
  	}, {
  		.compatible = "starfive,jh7110-axi-dma",
  		.data = (void *)(AXI_DMA_FLAG_HAS_RESETS | AXI_DMA_FLAG_USE_CFG2),

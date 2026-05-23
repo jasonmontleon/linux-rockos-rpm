@@ -1,4 +1,4 @@
-From c0149b176cf5072563b5ee103f15e46e07f762e4 Mon Sep 17 00:00:00 2001
+From 51d7fcd9275e948a9811937b655dbbd7791cd1da Mon Sep 17 00:00:00 2001
 From: lilijun <lilijun@eswincomputing.com>
 Date: Wed, 22 May 2024 14:27:49 +0800
 Subject: [PATCH 029/652] feat(DRM): Add DSI support for linux 6.6
