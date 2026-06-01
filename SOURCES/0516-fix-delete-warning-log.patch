@@ -1,4 +1,4 @@
-From 6ddd30f7901b21479f1b73b91a420f687703c0d0 Mon Sep 17 00:00:00 2001
+From 6fe99d5465f6d7533ea753a6d94ff4c99d9e5f47 Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 27 May 2025 14:05:17 +0800
 Subject: [PATCH 516/652] fix:delete warning log
@@ -12,7 +12,7 @@ Signed-off-by: wangguosheng <wangguosheng@eswincomputing.com>
  1 file changed, 1 deletion(-)
 
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index d3f0342a74b0..7c0a330c1f2b 100644
+index a55d8ddcf11a..d031449606fb 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -245,7 +245,6 @@ static int eswin_fan_control_read_fan(struct device *dev, u32 attr, long *val)

@@ -1,4 +1,4 @@
-From b0242019d4eb12c350d9b742567242dd71816397 Mon Sep 17 00:00:00 2001
+From 8afea669e8102f1cfd32d073495b2cf7ead0b28c Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Fri, 29 Mar 2024 00:18:16 -0700
 Subject: [PATCH 475/652] arch: add ARCH_HAS_KERNEL_FPU_SUPPORT

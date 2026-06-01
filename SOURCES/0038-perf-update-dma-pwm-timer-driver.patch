@@ -1,4 +1,4 @@
-From 59e7d1d85bd505a19a7cec02548e92e9907f6f83 Mon Sep 17 00:00:00 2001
+From d362e4ccc86f8e5e56c78b72e16eb3b9ecf37715 Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Mon, 27 May 2024 18:53:47 +0800
 Subject: [PATCH 038/652] perf:update dma, pwm, timer driver
@@ -548,7 +548,7 @@ index 876fa4f14947..669395205f5c 100644
  MODULE_AUTHOR("Eugeniy Paltsev <Eugeniy.Paltsev@synopsys.com>");
 +MODULE_AUTHOR("XuXiang <xuxiang@eswincomputing.com>");
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index f7ca5c29520b..ea92a0bb9906 100644
+index f033fc1e9fef..b1f9cf22a740 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -437,6 +437,7 @@ static int eswin_fan_control_probe(struct platform_device *pdev)

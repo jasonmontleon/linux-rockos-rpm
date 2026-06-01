@@ -1,4 +1,4 @@
-From 005d07f13f39a1056e16f04cc4a0ff7f3e8820ce Mon Sep 17 00:00:00 2001
+From c02c27d7a03e62a4b91d31e83c3c2fb8d2493b17 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Sat, 6 Jul 2024 20:04:55 +0800
 Subject: [PATCH 159/652] fix: pwm: eswin: Rename pwm_apply_state() to
@@ -13,7 +13,7 @@ Signed-off-by: Han Gao <gaohan@iscas.ac.cn>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index ea92a0bb9906..24a328da5178 100644
+index b1f9cf22a740..e8da0fab2213 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -139,7 +139,7 @@ static ssize_t eswin_fan_pwm_ctl_store(struct device *dev, struct device_attribu

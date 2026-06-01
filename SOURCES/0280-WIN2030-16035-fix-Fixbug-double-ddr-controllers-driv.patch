@@ -1,4 +1,4 @@
-From c8d41f0de4ea687b03b2ccf367f417e825c63be1 Mon Sep 17 00:00:00 2001
+From a24c666459af237373f6a14b0dce3e30ef595c7e Mon Sep 17 00:00:00 2001
 From: ningyu <ningyu@eswincomputing.com>
 Date: Wed, 6 Nov 2024 15:13:54 +0800
 Subject: [PATCH 280/652] WIN2030-16035:fix:Fixbug double ddr controllers
@@ -96,7 +96,7 @@ index 82d75406cc48..508010cf4434 100644
  
  free_edac_mc:
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 01447e641fa3..b1b48b5ec94b 100644
+index 523d47ba1585..56257419f3c8 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -510,7 +510,7 @@ static int eswin_fan_control_probe(struct platform_device *pdev)

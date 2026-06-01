@@ -1,4 +1,4 @@
-From 763ad456e2616fc7d91625d428e225d77de2b0c3 Mon Sep 17 00:00:00 2001
+From 04b5c9007130817618b40ef8e7789acf8741b34f Mon Sep 17 00:00:00 2001
 From: wangguosheng <wangguosheng@eswincomputing.com>
 Date: Tue, 1 Jul 2025 21:03:30 +0800
 Subject: [PATCH 597/652] fix:check d2d recovery status
@@ -44,7 +44,7 @@ index 7113ea183e86..b8d68edbe239 100644
  			clock-names = "pclk";
  			resets = <&d1_reset FAN_RST_CTRL SW_FAN_RST_N>;
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 3db082bdd542..9cdaf32f1ea8 100644
+index 7ef5afb962a4..5ce7940df1c1 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -39,7 +39,10 @@

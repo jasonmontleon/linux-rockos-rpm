@@ -1,4 +1,4 @@
-From 21ed9f8b590a0ca457ab6b40c8164a475b80da11 Mon Sep 17 00:00:00 2001
+From dd48d672c9955f4aec8de4616a0cfd6e276cc7cc Mon Sep 17 00:00:00 2001
 From: yangwei1 <yangwei1@eswincomputing.com>
 Date: Tue, 30 Jul 2024 13:56:07 +0800
 Subject: [PATCH 183/652] fix:Correct word errors,remove unused define
@@ -42,7 +42,7 @@ index 9883a0b1a8bf..067c9488efd5 100644
  			status = "disabled";
  			label = "d1_fan_control";
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
-index 24a328da5178..01447e641fa3 100644
+index e8da0fab2213..523d47ba1585 100644
 --- a/drivers/hwmon/eswin-fan-control.c
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -378,7 +378,7 @@ static int eswin_fan_control_init(struct eswin_fan_control_data *ctl,

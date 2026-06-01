@@ -1,4 +1,4 @@
-From 8685fdd5e1e9403e8e9641333db5a26b58aebdde Mon Sep 17 00:00:00 2001
+From ad94858e597b9f0b3360f66a6693100d351f08cb Mon Sep 17 00:00:00 2001
 From: xuxiang <xuxiang@eswincomputing.com>
 Date: Fri, 24 May 2024 13:24:28 +0800
 Subject: [PATCH 030/652] feat:add fan,rtc,wdt,dw-spi,pwm
@@ -111,7 +111,7 @@ index 6b5643ef316a..60f32f51eeb9 100644
  obj-$(CONFIG_SENSORS_PECI)	+= peci/
 diff --git a/drivers/hwmon/eswin-fan-control.c b/drivers/hwmon/eswin-fan-control.c
 new file mode 100644
-index 000000000000..9c8ab39dee30
+index 000000000000..a208fb09dd21
 --- /dev/null
 +++ b/drivers/hwmon/eswin-fan-control.c
 @@ -0,0 +1,522 @@
@@ -582,7 +582,7 @@ index 000000000000..9c8ab39dee30
 +	ret = devm_request_threaded_irq(&pdev->dev, ctl->irq,
 +					eswin_fan_control_irq_handler, NULL,
 +					IRQF_ONESHOT | IRQF_TRIGGER_HIGH,
-+					pdev->driver_override, ctl);
++					dev_name(&pdev->dev), ctl);
 +	if (ret) {
 +		dev_err(&pdev->dev, "Failed to request an irq, %d", ret);
 +		return ret;
