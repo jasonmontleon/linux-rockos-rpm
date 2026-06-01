@@ -1,4 +1,4 @@
-From df33e982005d1feb4a195fce256dd9e63c60334e Mon Sep 17 00:00:00 2001
+From 95ad5d77163c6520f6f728857a60cfe0a5b675b8 Mon Sep 17 00:00:00 2001
 From: liusheng <liusheng@eswincomputing.com>
 Date: Tue, 6 Aug 2024 14:29:38 +0800
 Subject: [PATCH 141/652] fix:signal to wait the gpu idle

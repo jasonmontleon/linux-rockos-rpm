@@ -1,4 +1,4 @@
-From 49e7d5425fef9f1e8a9e57783479b70014396b7b Mon Sep 17 00:00:00 2001
+From 92f0a30b8fe41d422d28d0c861623dbbd0c47134 Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Tue, 19 Nov 2024 10:45:39 +0800
 Subject: [PATCH 284/652] WIN2030-16445:fix:resolve the issue of DMA interrupt.

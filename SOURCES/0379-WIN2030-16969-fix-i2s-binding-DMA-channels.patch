@@ -1,4 +1,4 @@
-From 815a080fb7adee8e1ccc298ff1ab16d02924d199 Mon Sep 17 00:00:00 2001
+From 186c2b054d972274e5147a62910a7f7751f7f46c Mon Sep 17 00:00:00 2001
 From: denglei <denglei@eswincomputing.com>
 Date: Thu, 9 Jan 2025 17:03:33 +0800
 Subject: [PATCH 379/652] WIN2030-16969:fix:i2s binding DMA channels.

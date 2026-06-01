@@ -1,4 +1,4 @@
-From c976492b27c4b565a3156e21039ad40603d7a30b Mon Sep 17 00:00:00 2001
+From 11076a1ef7159a5f946ed5ec7d45acc0b60e495b Mon Sep 17 00:00:00 2001
 From: Han Gao <rabenda.cn@gmail.com>
 Date: Thu, 20 Mar 2025 00:15:45 +0800
 Subject: [PATCH 429/652] configs: eswin: enable REALTEK_PHY as builtin

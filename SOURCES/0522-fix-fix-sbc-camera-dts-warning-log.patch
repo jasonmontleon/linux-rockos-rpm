@@ -1,4 +1,4 @@
-From 47204fc8fdc8e74eb3ca4f5fc059fdd0728f7c04 Mon Sep 17 00:00:00 2001
+From d09c48b87bc91346b334000f067fd7303bc5d2fb Mon Sep 17 00:00:00 2001
 From: yufangxian <yufangxian@eswincomputing.com>
 Date: Fri, 30 May 2025 11:13:30 +0800
 Subject: [PATCH 522/652] fix: fix sbc-camera dts warning log
