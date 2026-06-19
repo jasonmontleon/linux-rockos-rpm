@@ -1,4 +1,4 @@
-From 40c0282e8a4c6575e861995bec5a57aa287355d2 Mon Sep 17 00:00:00 2001
+From e9d7daf8697f366d599640a3e3149c10bcf223cc Mon Sep 17 00:00:00 2001
 From: Charlie Jenkins <charlie@rivosinc.com>
 Date: Tue, 30 Jan 2024 17:07:01 -0800
 Subject: [PATCH 639/652] UPSTREAM: selftests: riscv: Generalize mm selftests

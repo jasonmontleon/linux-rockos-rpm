@@ -1,4 +1,4 @@
-From 83c5187eec0a0d687b51d9ffb1f5deac0e51a785 Mon Sep 17 00:00:00 2001
+From 84c77ec1026a239631622e2db5745331a08b7dd6 Mon Sep 17 00:00:00 2001
 From: huangyifeng <huangyifeng@eswincomputing.com>
 Date: Wed, 7 Aug 2024 17:01:33 +0800
 Subject: [PATCH 140/652] fix:when write protection config, do runtime resume

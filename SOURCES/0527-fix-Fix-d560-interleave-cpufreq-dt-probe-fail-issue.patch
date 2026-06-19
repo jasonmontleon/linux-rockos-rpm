@@ -1,4 +1,4 @@
-From d328d7146056c761048bdbe99d6fb509a6b11de7 Mon Sep 17 00:00:00 2001
+From 1cfb0056f278c245d4b2ceb233b1d830244449c3 Mon Sep 17 00:00:00 2001
 From: chenzhanzhan <chenzhanzhan@eswincomputing.com>
 Date: Fri, 23 May 2025 09:30:33 +0800
 Subject: [PATCH 527/652] fix: Fix d560 interleave cpufreq-dt probe fail issue

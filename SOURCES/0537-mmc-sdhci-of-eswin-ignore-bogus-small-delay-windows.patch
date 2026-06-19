@@ -1,4 +1,4 @@
-From 609a3a51da15e562b970e44aedaa168d06b0130b Mon Sep 17 00:00:00 2001
+From 0459036b4281e74e4f150d0184003a9d55af63fb Mon Sep 17 00:00:00 2001
 From: Icenowy Zheng <uwu@icenowy.me>
 Date: Fri, 13 Jun 2025 14:28:42 +0800
 Subject: [PATCH 537/652] mmc: sdhci-of-eswin: ignore bogus small delay windows

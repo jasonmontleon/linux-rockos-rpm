@@ -1,4 +1,4 @@
-From eef5beed48ac5bc628a6fe82ebd8bda3c0f0ca38 Mon Sep 17 00:00:00 2001
+From c2568178fbde6f7b6d8cdbe1bcce72c00856ada5 Mon Sep 17 00:00:00 2001
 From: Han Gao <gaohan@iscas.ac.cn>
 Date: Tue, 12 Nov 2024 00:03:38 +0800
 Subject: [PATCH 223/652] Revert "sync:drm support debugfs control virtual"

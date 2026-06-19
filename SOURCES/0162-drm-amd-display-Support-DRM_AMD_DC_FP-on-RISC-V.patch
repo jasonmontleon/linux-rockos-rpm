@@ -1,4 +1,4 @@
-From a16eb970c9c897f0129dd66d6623ec2b2733efdc Mon Sep 17 00:00:00 2001
+From 7a92cdaa751e4fe28eb950f626e3993e66a718dc Mon Sep 17 00:00:00 2001
 From: Samuel Holland <samuel.holland@sifive.com>
 Date: Tue, 21 Nov 2023 19:05:15 -0800
 Subject: [PATCH 162/652] drm/amd/display: Support DRM_AMD_DC_FP on RISC-V
